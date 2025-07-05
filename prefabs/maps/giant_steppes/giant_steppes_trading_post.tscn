@@ -1,10 +1,12 @@
-[gd_scene load_steps=19 format=4 uid="uid://cdbijlyp6y7hc"]
+[gd_scene load_steps=22 format=4 uid="uid://cdbijlyp6y7hc"]
 
 [ext_resource type="Script" uid="uid://vg00rfnn3346" path="res://scripts/overworld/map_script.gd" id="1_g2khu"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_1qah0"]
 [ext_resource type="PackedScene" uid="uid://d3rsvv5iihm7t" path="res://prefabs/overworld/warp_zone.tscn" id="3_i56hx"]
 [ext_resource type="PackedScene" uid="uid://bsalesakrx8yy" path="res://prefabs/entities/npc.tscn" id="3_wvudg"]
+[ext_resource type="Script" uid="uid://bwcja16pmp3mf" path="res://scripts/npcs/npc_sprite_state.gd" id="4_c11tp"]
 [ext_resource type="Script" uid="uid://8t63d3un22ug" path="res://scripts/npcs/npc_data.gd" id="4_sjsm5"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="5_aayxo"]
 [ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="5_nhkky"]
 [ext_resource type="Resource" uid="uid://btgbmsxpha4ua" path="res://gamedata/shops/giant_steppes/giant_steppes_trading_post.tres" id="5_sjsm5"]
 [ext_resource type="PackedScene" uid="uid://coqeee0n1wuob" path="res://prefabs/entities/interactable_decoration.tscn" id="6_hovep"]
@@ -12,7 +14,14 @@
 [ext_resource type="SpriteFrames" uid="uid://cclljpml4qjqw" path="res://graphics/animations/a_giant_steppes_shop_sign.tres" id="7_nhkky"]
 [ext_resource type="SpriteFrames" uid="uid://da4n30msgpyfp" path="res://graphics/animations/a_warlock_trader.tres" id="8_rsmun"]
 
-[sub_resource type="Resource" id="Resource_rsmun"]
+[sub_resource type="Resource" id="Resource_3o7ex"]
+script = ExtResource("4_c11tp")
+id = "default"
+priority = -1
+storyRequirements = Array[ExtResource("5_aayxo")]([])
+autoApplyState = false
+
+[sub_resource type="Resource" id="Resource_tah5c"]
 script = ExtResource("4_sjsm5")
 saveName = "npc"
 spriteState = "default"
@@ -106,7 +115,10 @@ tile_set = ExtResource("2_1qah0")
 position = Vector2(-8, -84)
 displayName = "Trader"
 saveName = "giant_steppes_trader"
-data = SubResource("Resource_rsmun")
+spriteStatesDict = Dictionary[String, ExtResource("4_c11tp")]({
+"default": SubResource("Resource_3o7ex")
+})
+data = SubResource("Resource_tah5c")
 dialogueEntries = Array[ExtResource("5_nhkky")]([ExtResource("6_rsmun")])
 npcShop = ExtResource("5_sjsm5")
 

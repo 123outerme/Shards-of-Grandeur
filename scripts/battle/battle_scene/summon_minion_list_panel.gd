@@ -25,7 +25,7 @@ func load_summon_minion_list_panel():
 	if minion == null:
 		return
 	
-	if minion.friendship >= minion.maxFriendship:
+	if minion.friendship >= minion.maxFriendship and minion.fullyAttuned:
 		shardItemSlot = null # if there is an item slot, this will clear it
 	
 	minionSprite.sprite_frames = minion.get_sprite_frames()

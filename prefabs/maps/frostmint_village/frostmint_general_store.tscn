@@ -1,12 +1,14 @@
-[gd_scene load_steps=19 format=4 uid="uid://crp4fb6q2fnd"]
+[gd_scene load_steps=23 format=4 uid="uid://crp4fb6q2fnd"]
 
 [ext_resource type="Script" uid="uid://vg00rfnn3346" path="res://scripts/overworld/map_script.gd" id="1_4s0py"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_c8s02"]
 [ext_resource type="PackedScene" uid="uid://bsalesakrx8yy" path="res://prefabs/entities/npc.tscn" id="3_1smum"]
 [ext_resource type="PackedScene" uid="uid://d3rsvv5iihm7t" path="res://prefabs/overworld/warp_zone.tscn" id="3_hmvcc"]
+[ext_resource type="Script" uid="uid://bwcja16pmp3mf" path="res://scripts/npcs/npc_sprite_state.gd" id="4_eh51r"]
 [ext_resource type="Script" uid="uid://8t63d3un22ug" path="res://scripts/npcs/npc_data.gd" id="4_jgq3e"]
 [ext_resource type="SpriteFrames" uid="uid://4kgtjjy5sok6" path="res://graphics/animations/a_tundra_man_4.tres" id="5_1smum"]
 [ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="5_7tdup"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="5_62hbh"]
 [ext_resource type="Resource" uid="uid://is307rht52c8" path="res://gamedata/shops/frostmint_village/blizzard_general_store.tres" id="5_jgq3e"]
 [ext_resource type="Resource" uid="uid://crf7e7cn4mgmb" path="res://gamedata/dialogue/frostmint_village/general_shopkeeper/frostmint_general_store_shopkeep_1.tres" id="6_igwuf"]
 [ext_resource type="Resource" uid="uid://cacimsfsw8akg" path="res://gamedata/dialogue/frostmint_village/general_shopkeeper/a_good_exchange/a_good_exch_special_delivery_inprogress.tres" id="6_xrogf"]
@@ -14,7 +16,14 @@
 [ext_resource type="SpriteFrames" uid="uid://dbt2qvkcm6nll" path="res://graphics/animations/a_snowy_shop_sign.tres" id="10_xrogf"]
 [ext_resource type="Texture2D" uid="uid://c3j1nagrqgxic" path="res://graphics/ui/talk_indicator_signpost.png" id="11_wwsvj"]
 
-[sub_resource type="Resource" id="Resource_5nhsa"]
+[sub_resource type="Resource" id="Resource_5slwp"]
+script = ExtResource("4_eh51r")
+id = "default"
+priority = -1
+storyRequirements = Array[ExtResource("5_62hbh")]([])
+autoApplyState = false
+
+[sub_resource type="Resource" id="Resource_5pwb8"]
 script = ExtResource("4_jgq3e")
 saveName = "npc"
 spriteState = "default"
@@ -40,7 +49,14 @@ dialogueLine = -1
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1smum"]
 size = Vector2(24, 25)
 
-[sub_resource type="Resource" id="Resource_xrogf"]
+[sub_resource type="Resource" id="Resource_4vgjv"]
+script = ExtResource("4_eh51r")
+id = "default"
+priority = -1
+storyRequirements = Array[ExtResource("5_62hbh")]([])
+autoApplyState = false
+
+[sub_resource type="Resource" id="Resource_i5tey"]
 script = ExtResource("4_jgq3e")
 saveName = "npc"
 spriteState = "default"
@@ -113,7 +129,10 @@ tile_set = ExtResource("2_c8s02")
 position = Vector2(-8, -78)
 displayName = "Shopkeeper"
 saveName = "frostmint_general_store_shopkeeper"
-data = SubResource("Resource_5nhsa")
+spriteStatesDict = Dictionary[String, ExtResource("4_eh51r")]({
+"default": SubResource("Resource_5slwp")
+})
+data = SubResource("Resource_5pwb8")
 dialogueEntries = Array[ExtResource("5_7tdup")]([ExtResource("6_xrogf"), ExtResource("6_igwuf")])
 npcShop = ExtResource("5_jgq3e")
 
@@ -134,7 +153,10 @@ visible = false
 [node name="ShopSign" parent="TilemapRoot" instance=ExtResource("3_1smum")]
 position = Vector2(113, 17)
 displayName = "Sign"
-data = SubResource("Resource_xrogf")
+spriteStatesDict = Dictionary[String, ExtResource("4_eh51r")]({
+"default": SubResource("Resource_4vgjv")
+})
+data = SubResource("Resource_i5tey")
 dialogueEntries = Array[ExtResource("5_7tdup")]([ExtResource("9_5nhsa")])
 facesPlayer = false
 

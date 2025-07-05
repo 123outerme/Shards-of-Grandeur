@@ -1,11 +1,13 @@
-[gd_scene load_steps=26 format=4 uid="uid://84wmvuo7jkx3"]
+[gd_scene load_steps=33 format=4 uid="uid://84wmvuo7jkx3"]
 
 [ext_resource type="Script" uid="uid://vg00rfnn3346" path="res://scripts/overworld/map_script.gd" id="1_pi30f"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_wspdn"]
 [ext_resource type="PackedScene" uid="uid://bsalesakrx8yy" path="res://prefabs/entities/npc.tscn" id="3_o3ng4"]
+[ext_resource type="Script" uid="uid://bwcja16pmp3mf" path="res://scripts/npcs/npc_sprite_state.gd" id="4_t3as0"]
 [ext_resource type="Script" uid="uid://8t63d3un22ug" path="res://scripts/npcs/npc_data.gd" id="4_xjgea"]
 [ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="5_3id2y"]
 [ext_resource type="SpriteFrames" uid="uid://bu7txxof6npce" path="res://graphics/animations/a_man4.tres" id="5_dk8mp"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="5_no4ai"]
 [ext_resource type="Resource" uid="uid://cavschyk5vxg2" path="res://gamedata/dialogue/leavenport/restaurant_owner/restaurant_owner1.tres" id="5_qg71i"]
 [ext_resource type="Resource" uid="uid://vlsqi7vf1gie" path="res://gamedata/shops/leavenport/leavenport_restaurant.tres" id="6_fvkvi"]
 [ext_resource type="Resource" uid="uid://c8h031jxebn5v" path="res://gamedata/dialogue/leavenport/restaurant_man/lp_restaurant_man1.tres" id="8_ncx5c"]
@@ -17,7 +19,14 @@
 [ext_resource type="Resource" uid="uid://7pdcduegxe5m" path="res://gamedata/cutscenes/leavenport/lp_restaurant_trade_deal_dine.tres" id="14_ln4q8"]
 [ext_resource type="SpriteFrames" uid="uid://4kgtjjy5sok6" path="res://graphics/animations/a_tundra_man_4.tres" id="17_cofti"]
 
-[sub_resource type="Resource" id="Resource_ln4q8"]
+[sub_resource type="Resource" id="Resource_cofti"]
+script = ExtResource("4_t3as0")
+id = "default"
+priority = -1
+storyRequirements = Array[ExtResource("5_no4ai")]([])
+autoApplyState = false
+
+[sub_resource type="Resource" id="Resource_lt76f"]
 script = ExtResource("4_xjgea")
 saveName = "npc"
 spriteState = "default"
@@ -40,7 +49,14 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_ux85e"]
+[sub_resource type="Resource" id="Resource_kkc2c"]
+script = ExtResource("4_t3as0")
+id = "default"
+priority = -1
+storyRequirements = Array[ExtResource("5_no4ai")]([])
+autoApplyState = false
+
+[sub_resource type="Resource" id="Resource_vgkyw"]
 script = ExtResource("4_xjgea")
 saveName = "npc"
 spriteState = "default"
@@ -63,7 +79,14 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_t3as0"]
+[sub_resource type="Resource" id="Resource_h875s"]
+script = ExtResource("4_t3as0")
+id = "default"
+priority = -1
+storyRequirements = Array[ExtResource("5_no4ai")]([])
+autoApplyState = false
+
+[sub_resource type="Resource" id="Resource_uv4vd"]
 script = ExtResource("4_xjgea")
 saveName = "npc"
 spriteState = "default"
@@ -86,12 +109,19 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_no4ai"]
+[sub_resource type="Resource" id="Resource_15y5o"]
+script = ExtResource("4_t3as0")
+id = "default"
+priority = -1
+storyRequirements = Array[ExtResource("5_no4ai")]([])
+autoApplyState = false
+
+[sub_resource type="Resource" id="Resource_ma8el"]
 script = ExtResource("4_xjgea")
 saveName = "npc"
 spriteState = "default"
 animation = "stand"
-position = Vector2(20, -79)
+position = Vector2(-9, 3)
 flipH = false
 visible = true
 selectedTarget = 0
@@ -112,7 +142,14 @@ dialogueLine = -1
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kkc2c"]
 size = Vector2(24, 25)
 
-[sub_resource type="Resource" id="Resource_cofti"]
+[sub_resource type="Resource" id="Resource_qr63w"]
+script = ExtResource("4_t3as0")
+id = "default"
+priority = -1
+storyRequirements = Array[ExtResource("5_no4ai")]([])
+autoApplyState = false
+
+[sub_resource type="Resource" id="Resource_bds8u"]
 script = ExtResource("4_xjgea")
 saveName = "npc"
 spriteState = "default"
@@ -199,7 +236,10 @@ tile_set = ExtResource("2_wspdn")
 position = Vector2(-43, -31)
 displayName = "Restaurant Owner"
 saveName = "leavenport_restaurant_owner"
-data = SubResource("Resource_ln4q8")
+spriteStatesDict = Dictionary[String, ExtResource("4_t3as0")]({
+"default": SubResource("Resource_cofti")
+})
+data = SubResource("Resource_lt76f")
 dialogueEntries = Array[ExtResource("5_3id2y")]([ExtResource("5_qg71i")])
 npcShop = ExtResource("6_fvkvi")
 
@@ -220,7 +260,10 @@ visible = false
 position = Vector2(20, -79)
 displayName = "Man"
 loadFlipH = true
-data = SubResource("Resource_ux85e")
+spriteStatesDict = Dictionary[String, ExtResource("4_t3as0")]({
+"default": SubResource("Resource_kkc2c")
+})
+data = SubResource("Resource_vgkyw")
 dialogueEntries = Array[ExtResource("5_3id2y")]([ExtResource("8_ncx5c")])
 
 [node name="NPCSprite" parent="TilemapRoot/NPC" index="0"]
@@ -239,7 +282,10 @@ visible = false
 [node name="NPC2" parent="TilemapRoot" instance=ExtResource("3_o3ng4")]
 position = Vector2(-19, -78)
 displayName = "Lady"
-data = SubResource("Resource_t3as0")
+spriteStatesDict = Dictionary[String, ExtResource("4_t3as0")]({
+"default": SubResource("Resource_h875s")
+})
+data = SubResource("Resource_uv4vd")
 dialogueEntries = Array[ExtResource("5_3id2y")]([ExtResource("9_3ft4f")])
 
 [node name="NPCSprite" parent="TilemapRoot/NPC2" index="0"]
@@ -262,7 +308,10 @@ collision_layer = 0
 displayName = "Shopkeeper"
 saveName = "lp_frostmint_shopkeeper"
 loadFlipH = true
-data = SubResource("Resource_no4ai")
+spriteStatesDict = Dictionary[String, ExtResource("4_t3as0")]({
+"default": SubResource("Resource_15y5o")
+})
+data = SubResource("Resource_ma8el")
 
 [node name="NPCSprite" parent="TilemapRoot/FrostmintShopkeeper" index="0"]
 sprite_frames = ExtResource("17_cofti")
@@ -288,7 +337,10 @@ rootNode = NodePath("../..")
 [node name="MockPlayer" parent="TilemapRoot/ToolCutsceneVisualizer" index="0"]
 position = Vector2(-43, -15)
 facingLeft = true
-data = SubResource("Resource_cofti")
+spriteStatesDict = Dictionary[String, ExtResource("4_t3as0")]({
+"default": SubResource("Resource_qr63w")
+})
+data = SubResource("Resource_bds8u")
 
 [node name="NPCSprite" parent="TilemapRoot/ToolCutsceneVisualizer/MockPlayer" index="0"]
 flip_h = true

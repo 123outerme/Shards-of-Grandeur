@@ -1,12 +1,31 @@
-[gd_resource type="Resource" script_class="Quest" load_steps=5 format=3 uid="uid://dpasfbf5p7oka"]
+[gd_resource type="Resource" script_class="Quest" load_steps=8 format=3 uid="uid://dpasfbf5p7oka"]
 
 [ext_resource type="Script" uid="uid://bnw42uegqk4wp" path="res://scripts/quests/quest.gd" id="1_j7i3x"]
 [ext_resource type="Script" uid="uid://b3j2bj1p0bkq8" path="res://scripts/quests/quest_step.gd" id="2_5o8i1"]
 [ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_5o8i1"]
+[ext_resource type="Resource" uid="uid://d0p6lcdfa8370" path="res://gamedata/dialogue/quiet_tundra/king_rat/king_rat_tundra_initial_rematch.tres" id="4_xs01p"]
+[ext_resource type="Resource" uid="uid://bjkrc2i7wl1c8" path="res://gamedata/dialogue/quiet_tundra/king_rat/king_rat_tundra_initial_defeated.tres" id="5_f1odc"]
 
 [sub_resource type="Resource" id="Resource_iodx2"]
 script = ExtResource("2_5o8i1")
-name = "TBD"
+name = "Duel Before the Throne"
+description = ""
+locations = Array[int]([51])
+turnInLocations = Array[int]([51])
+type = 4
+count = 1
+objectiveName = "usurped_king_rat_encounter"
+turnInNames = Array[String](["king_rat_tundra_west"])
+displayObjName = "Usurped King Rat"
+displayTurnInName = "Usurped King Rat"
+customStatusStr = ""
+turnInDialogue = Array[ExtResource("3_5o8i1")]([ExtResource("5_f1odc")])
+inProgressDialogue = Array[ExtResource("3_5o8i1")]([ExtResource("4_xs01p")])
+metadata/_custom_type_script = "uid://b3j2bj1p0bkq8"
+
+[sub_resource type="Resource" id="Resource_5o8i1"]
+script = ExtResource("2_5o8i1")
+name = ""
 description = ""
 locations = Array[int]([])
 turnInLocations = Array[int]([])
@@ -25,7 +44,7 @@ metadata/_custom_type_script = "uid://b3j2bj1p0bkq8"
 script = ExtResource("1_j7i3x")
 questName = "The Crownless King"
 description = "Where's your crown, King of the Rats?"
-steps = Array[ExtResource("2_5o8i1")]([SubResource("Resource_iodx2")])
+steps = Array[ExtResource("2_5o8i1")]([SubResource("Resource_iodx2"), SubResource("Resource_5o8i1")])
 isMainQuest = false
 advanceActAfterComplete = false
 metadata/_custom_type_script = "uid://bnw42uegqk4wp"

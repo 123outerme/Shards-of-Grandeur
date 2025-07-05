@@ -104,7 +104,7 @@ func which_minion_equipped(item: Item) -> String:
 
 func has_fully_attuned_minion() -> bool:
 	for minion: Combatant in get_minion_list():
-		if minion.friendship >= minion.maxFriendship:
+		if minion.friendship >= minion.maxFriendship and minion.fullyAttuned:
 			return true
 	return false
 
@@ -125,6 +125,7 @@ func fully_attune(saveName: String):
 		minion = get_minion(saveName)
 	if minion != null: # set max friendship on minion
 		minion.friendship = minion.maxFriendship
+		minion.fullyAttuned = true
 	else:
 		printerr('Fully attune minion ', saveName, ' ERROR, null minion')
 

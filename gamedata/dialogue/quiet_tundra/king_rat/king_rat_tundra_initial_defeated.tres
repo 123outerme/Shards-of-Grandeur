@@ -1,0 +1,163 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=19 format=3 uid="uid://bjkrc2i7wl1c8"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_l0jfk"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_h02tw"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_ryayd"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_ryayd"]
+[ext_resource type="Script" uid="uid://fw22o8hbosnk" path="res://scripts/inventory/inventory_slot.gd" id="4_s0fyv"]
+[ext_resource type="Script" uid="uid://fsrd48o26kgo" path="res://scripts/dialogue/story_reqs_dialogue_item.gd" id="5_ff2yx"]
+[ext_resource type="Resource" uid="uid://ct8c8cjij35fd" path="res://gamedata/dialogue/quiet_tundra/king_rat/king_rat_tundra_initial_defeated_no.tres" id="6_ef4sm"]
+[ext_resource type="Script" uid="uid://b6oofnelefs8o" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="6_ff2yx"]
+[ext_resource type="Resource" uid="uid://ckjwv3dnmqe4k" path="res://gamedata/dialogue/quiet_tundra/king_rat/king_rat_tundra_initial_defeated_turnin.tres" id="8_y1maa"]
+
+[sub_resource type="Resource" id="Resource_s0fyv"]
+script = ExtResource("1_l0jfk")
+lines = Array[String](["...", "First my subjects, frozen in Shards, used as experiments..."])
+minShowSecs = Array[float]([0.5, 0.5])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_ryayd")]([])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[sub_resource type="Resource" id="Resource_413v6"]
+script = ExtResource("1_l0jfk")
+lines = Array[String](["Then my crown, stolen in combat and coronated onto the subservient Minion of the victor..."])
+minShowSecs = Array[float]([0.5])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_ryayd")]([])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[sub_resource type="Resource" id="Resource_ovyil"]
+script = ExtResource("2_h02tw")
+minAct = 0
+maxAct = -1
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqPlacesVisited = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+prereqDefeatedEnemies = Array[String]([])
+prereqPuzzles = Array[String]([])
+prereqPuzzleStates = Dictionary[String, Array]({})
+prereqDiscoveredEvolutions = Array[String](["rat#prince_rat"])
+prereqHavingFollowers = Array[String]([])
+prereqHasItems = Array[ExtResource("4_s0fyv")]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String]([])
+invalidAfterVistingPlaces = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromPuzzleStates = Dictionary[String, Array]({})
+invalidFromHavingFollowers = Array[String]([])
+invalidFromHavingItems = Array[ExtResource("4_s0fyv")]([])
+metadata/_custom_type_script = "uid://bjesn36acj0uh"
+
+[sub_resource type="Resource" id="Resource_w8f3i"]
+script = ExtResource("5_ff2yx")
+alternativeDialogueItems = Array[ExtResource("1_l0jfk")]([SubResource("Resource_413v6")])
+alternativeStoryReqs = Array[ExtResource("2_h02tw")]([SubResource("Resource_ovyil")])
+lines = Array[String](["Then my crown, lost in combat to a biped..."])
+minShowSecs = Array[float]([0.5])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_ryayd")]([])
+metadata/_custom_type_script = "uid://fsrd48o26kgo"
+
+[sub_resource type="Resource" id="Resource_ef4sm"]
+script = ExtResource("2_h02tw")
+minAct = 0
+maxAct = -1
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqPlacesVisited = Array[String]([])
+prereqSpecialBattles = Array[String](["king_rat_encounter"])
+prereqDefeatedEnemies = Array[String]([])
+prereqPuzzles = Array[String]([])
+prereqPuzzleStates = Dictionary[String, Array]({})
+prereqDiscoveredEvolutions = Array[String]([])
+prereqHavingFollowers = Array[String]([])
+prereqHasItems = Array[ExtResource("4_s0fyv")]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String]([])
+invalidAfterVistingPlaces = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromPuzzleStates = Dictionary[String, Array]({})
+invalidFromHavingFollowers = Array[String]([])
+invalidFromHavingItems = Array[ExtResource("4_s0fyv")]([])
+metadata/_custom_type_script = "uid://bjesn36acj0uh"
+
+[sub_resource type="Resource" id="Resource_y1maa"]
+script = ExtResource("5_ff2yx")
+alternativeDialogueItems = Array[ExtResource("1_l0jfk")]([SubResource("Resource_w8f3i")])
+alternativeStoryReqs = Array[ExtResource("2_h02tw")]([SubResource("Resource_ef4sm")])
+lines = Array[String](["Then my crown, scattered to the forest floor by invading bipeds..."])
+minShowSecs = Array[float]([0.5])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_ryayd")]([])
+metadata/_custom_type_script = "uid://fsrd48o26kgo"
+
+[sub_resource type="Resource" id="Resource_q1thj"]
+script = ExtResource("2_ryayd")
+choiceBtn = "Not Really."
+leadsTo = ExtResource("6_ef4sm")
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("6_ff2yx")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = true
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_mpvsk"]
+script = ExtResource("2_ryayd")
+choiceBtn = "You're Still King."
+leadsTo = ExtResource("8_y1maa")
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("6_ff2yx")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = "The Crownless King#Duel Before the Throne"
+isDeclineChoice = false
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_ff2yx"]
+script = ExtResource("1_l0jfk")
+lines = Array[String](["Then, my home and kingdom, burned up in flames...", "And now my pride, finally shattered.", "Really, what sort of king am I? I am not fit to lead."])
+minShowSecs = Array[float]([0.5])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_ryayd")]([SubResource("Resource_q1thj"), SubResource("Resource_mpvsk")])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[resource]
+script = ExtResource("3_ryayd")
+entryId = ""
+items = Array[ExtResource("1_l0jfk")]([SubResource("Resource_s0fyv"), SubResource("Resource_y1maa"), SubResource("Resource_ff2yx")])
+ordStoryRequirements = Array[ExtResource("2_h02tw")]([])
+closesDialogue = false
+fullHealsPlayer = false
+annotation = ""
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"

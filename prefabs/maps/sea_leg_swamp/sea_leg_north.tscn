@@ -1,14 +1,16 @@
-[gd_scene load_steps=83 format=4 uid="uid://c2stj2e7k8167"]
+[gd_scene load_steps=86 format=4 uid="uid://c2stj2e7k8167"]
 
 [ext_resource type="Script" uid="uid://vg00rfnn3346" path="res://scripts/overworld/map_script.gd" id="1_6bca4"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_pq7tu"]
 [ext_resource type="PackedScene" uid="uid://bsalesakrx8yy" path="res://prefabs/entities/npc.tscn" id="3_o1d7x"]
 [ext_resource type="PackedScene" uid="uid://cm5yegguv62vn" path="res://prefabs/overworld/enemy_deaggro_zone.tscn" id="3_xolf8"]
 [ext_resource type="Script" uid="uid://8t63d3un22ug" path="res://scripts/npcs/npc_data.gd" id="4_b8dfc"]
+[ext_resource type="Script" uid="uid://bwcja16pmp3mf" path="res://scripts/npcs/npc_sprite_state.gd" id="4_ss7bh"]
 [ext_resource type="PackedScene" uid="uid://qx5fovogo7h3" path="res://prefabs/entities/enemy_spawner.tscn" id="4_vcg8l"]
 [ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="5_0csbw"]
 [ext_resource type="Script" uid="uid://dioty4gjx3hdu" path="res://scripts/overworld/overworld_enemy/spawner_data.gd" id="5_1qceu"]
 [ext_resource type="SpriteFrames" uid="uid://b10ap61ndn3h4" path="res://graphics/animations/a_chain_legion_soldier.tres" id="5_b8dfc"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="5_pes0k"]
 [ext_resource type="Resource" uid="uid://wxfr7mvexqip" path="res://gamedata/dialogue/sea_leg_swamp_north/cl_soldier_1/swamp_soldier_hello.tres" id="6_hqwcv"]
 [ext_resource type="Script" uid="uid://dga8cpwmm0j6h" path="res://scripts/battle/weighted_things/weighted_combatants.gd" id="6_u2x51"]
 [ext_resource type="Script" uid="uid://bvnw0ab8d80ti" path="res://scripts/overworld/overworld_enemy/random_encounter_level_stage.gd" id="7_o1d7x"]
@@ -24,6 +26,13 @@
 [ext_resource type="PackedScene" uid="uid://b1u1r7encrpgs" path="res://prefabs/overworld/camera_hold_zone.tscn" id="20_exfcx"]
 
 [sub_resource type="Resource" id="Resource_6v8br"]
+script = ExtResource("4_ss7bh")
+id = "default"
+priority = -1
+storyRequirements = Array[ExtResource("5_pes0k")]([])
+autoApplyState = false
+
+[sub_resource type="Resource" id="Resource_ms4d8"]
 script = ExtResource("4_b8dfc")
 saveName = "npc"
 spriteState = "default"
@@ -461,7 +470,10 @@ position = Vector2(424, 166)
 displayName = "Chain Legion Soldier"
 saveName = "cl_soldier_swamp_north_1"
 loadFlipH = true
-data = SubResource("Resource_6v8br")
+spriteStatesDict = Dictionary[String, ExtResource("4_ss7bh")]({
+"default": SubResource("Resource_6v8br")
+})
+data = SubResource("Resource_ms4d8")
 dialogueEntries = Array[ExtResource("5_0csbw")]([ExtResource("6_hqwcv")])
 
 [node name="NPCSprite" parent="TilemapRoot/Soldier1" index="0"]
@@ -479,6 +491,9 @@ visible = false
 
 [node name="GroundItem" parent="TilemapRoot" instance=ExtResource("8_dtr3b")]
 position = Vector2(-710, -231)
+
+[node name="GroundItem2" parent="TilemapRoot" instance=ExtResource("8_dtr3b")]
+position = Vector2(66, -320)
 
 [node name="EnemySpawners" type="Node" parent="."]
 

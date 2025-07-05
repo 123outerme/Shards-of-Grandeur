@@ -1,4 +1,4 @@
-[gd_scene load_steps=365 format=4 uid="uid://d3yjxfcekoxn0"]
+[gd_scene load_steps=368 format=4 uid="uid://d3yjxfcekoxn0"]
 
 [ext_resource type="Script" uid="uid://vg00rfnn3346" path="res://scripts/overworld/map_script.gd" id="1_yf525"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_wgf4x"]
@@ -33,9 +33,11 @@
 [ext_resource type="PackedScene" uid="uid://qx5fovogo7h3" path="res://prefabs/entities/enemy_spawner.tscn" id="14_jdsus"]
 [ext_resource type="Resource" uid="uid://bcaupef0hubwv" path="res://gamedata/dialogue/interactables/puzzles/blob_statue_puzzle/blob_statue_solved.tres" id="14_lpkwk"]
 [ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="14_p7apj"]
+[ext_resource type="Resource" uid="uid://ogats7lneabs" path="res://gamedata/dialogue/quiet_tundra/king_rat/king_rat_tundra_initial.tres" id="15_26mf7"]
 [ext_resource type="Script" uid="uid://dioty4gjx3hdu" path="res://scripts/overworld/overworld_enemy/spawner_data.gd" id="15_p7apj"]
 [ext_resource type="Resource" uid="uid://bu5pflhd2vjiq" path="res://gamedata/dialogue/interactables/puzzles/blob_statue_puzzle/blob_statue.tres" id="15_r8tee"]
 [ext_resource type="Texture2D" uid="uid://c3j1nagrqgxic" path="res://graphics/ui/talk_indicator_signpost.png" id="16_7mgps"]
+[ext_resource type="Resource" uid="uid://caqvsjbic1hv5" path="res://gamedata/dialogue/quiet_tundra/king_rat/king_rat_tundra1.tres" id="16_8htmm"]
 [ext_resource type="Script" uid="uid://dga8cpwmm0j6h" path="res://scripts/battle/weighted_things/weighted_combatants.gd" id="16_kxg45"]
 [ext_resource type="SpriteFrames" uid="uid://d2twvpugfcflu" path="res://graphics/structures/a_energy_wall_speaker.tres" id="16_odtt7"]
 [ext_resource type="Resource" uid="uid://dut7a0hmvsj87" path="res://gamedata/combatants/ice_hound/ice_hound.tres" id="16_r7qac"]
@@ -1947,6 +1949,9 @@ customWinText = ""
 battleMapPath = ""
 metadata/_custom_type_script = "uid://dllqv5vxrou7r"
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rbjqe"]
+size = Vector2(165, 128)
+
 [sub_resource type="Resource" id="Resource_peh4r"]
 script = ExtResource("15_p7apj")
 spawnerId = "tundra_west_32"
@@ -2142,6 +2147,7 @@ spriteStatesDict = Dictionary[String, ExtResource("4_8htmm")]({
 })
 spriteSize = Vector2i(32, 32)
 data = SubResource("Resource_hq652")
+dialogueEntries = Array[ExtResource("14_p7apj")]([ExtResource("15_26mf7"), ExtResource("16_8htmm")])
 facesPlayer = false
 
 [node name="NPCSprite" parent="TilemapRoot/KingRat" index="0"]
@@ -2847,6 +2853,10 @@ spawnerData = SubResource("Resource_xhjhg")
 enemyEncounter = SubResource("Resource_iaj7c")
 tilemap = NodePath("../../TilemapRoot")
 
+[node name="SpawnShape" parent="EnemySpawners/EnemySpawner31/SpawnArea" index="0"]
+position = Vector2(-2.5, -3)
+shape = SubResource("RectangleShape2D_rbjqe")
+
 [node name="EnemySpawner32" parent="EnemySpawners" node_paths=PackedStringArray("tilemap") instance=ExtResource("14_jdsus")]
 position = Vector2(502, -2225)
 spawnerData = SubResource("Resource_peh4r")
@@ -3043,6 +3053,7 @@ navigation_layers = 4
 [editable path="EnemySpawners/EnemySpawner28"]
 [editable path="EnemySpawners/EnemySpawner29"]
 [editable path="EnemySpawners/EnemySpawner30"]
+[editable path="EnemySpawners/EnemySpawner31"]
 [editable path="EnemySpawners/EnemySpawner32"]
 [editable path="HilltopEastWarpZone"]
 [editable path="SeaLegNorthWarpZone"]

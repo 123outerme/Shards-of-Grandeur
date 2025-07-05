@@ -1,0 +1,55 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=11 format=3 uid="uid://d0p6lcdfa8370"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_opg3b"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_82lnw"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_d8epe"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_82lnw"]
+[ext_resource type="Script" uid="uid://b6oofnelefs8o" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_bew8x"]
+[ext_resource type="Resource" uid="uid://bjrshpsrhy1n7" path="res://gamedata/dialogue/quiet_tundra/king_rat/king_rat_tundra_initial_decline.tres" id="3_u1m3t"]
+[ext_resource type="Resource" uid="uid://c2cyw2ghb6ao2" path="res://gamedata/dialogue/quiet_tundra/king_rat/king_rat_tundra_initial_battle.tres" id="5_2y7dr"]
+
+[sub_resource type="Resource" id="Resource_jufdh"]
+script = ExtResource("2_82lnw")
+choiceBtn = "Wait..."
+leadsTo = ExtResource("3_u1m3t")
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_bew8x")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = true
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_pnfc0"]
+script = ExtResource("2_82lnw")
+choiceBtn = "Me Neither!"
+leadsTo = ExtResource("5_2y7dr")
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_bew8x")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = false
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_u1m3t"]
+script = ExtResource("1_opg3b")
+lines = Array[String](["I didn't beat you badly enough last time, fool? Good, because I'm still not satisfied!"])
+minShowSecs = Array[float]([])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_82lnw")]([SubResource("Resource_jufdh"), SubResource("Resource_pnfc0")])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[resource]
+script = ExtResource("3_82lnw")
+entryId = ""
+items = Array[ExtResource("1_opg3b")]([SubResource("Resource_u1m3t")])
+ordStoryRequirements = Array[ExtResource("2_d8epe")]([])
+closesDialogue = false
+fullHealsPlayer = false
+annotation = ""
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"

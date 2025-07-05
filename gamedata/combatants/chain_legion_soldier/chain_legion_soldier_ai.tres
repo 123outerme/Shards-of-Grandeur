@@ -1,10 +1,11 @@
-[gd_resource type="Resource" script_class="CombatantAi" load_steps=17 format=3 uid="uid://3mp3gw6leuv1"]
+[gd_resource type="Resource" script_class="CombatantAi" load_steps=18 format=3 uid="uid://3mp3gw6leuv1"]
 
 [ext_resource type="Script" uid="uid://dflemol3c36f5" path="res://scripts/battle/combatant/abstract_combatant_ai_layer.gd" id="1_p7i6v"]
 [ext_resource type="Script" uid="uid://w2owehn7fmot" path="res://scripts/battle/combatant/combatant_ai.gd" id="2_dnulq"]
 [ext_resource type="Script" uid="uid://vxl3qi4y0tbk" path="res://scripts/battle/combatant/ai_layers/damage_layer.gd" id="2_xqmco"]
 [ext_resource type="Script" uid="uid://0yxyfr70qvwu" path="res://scripts/battle/combatant/ai_layers/aggro_layer.gd" id="3_3bh8b"]
 [ext_resource type="Script" uid="uid://isq1ycq00u4s" path="res://scripts/battle/combatant/ai_layers/buff_layer.gd" id="3_14q6v"]
+[ext_resource type="Script" uid="uid://bt3pb5c4p23hj" path="res://scripts/battle/combatant/combatant_ai_layer_base.gd" id="3_67hxi"]
 [ext_resource type="Script" uid="uid://dim2s6pbuqjth" path="res://scripts/battle/combatant/ai_layers/random_layer.gd" id="5_0etga"]
 [ext_resource type="Script" uid="uid://0ddrq70do5nq" path="res://scripts/battle/combatant/ai_layers/status_layer.gd" id="5_vvci8"]
 [ext_resource type="Script" uid="uid://dw68jtuc0bxvn" path="res://scripts/battle/combatant/ai_layers/orbs_layer.gd" id="6_1trl6"]
@@ -13,42 +14,42 @@
 [sub_resource type="Resource" id="Resource_xdn3a"]
 script = ExtResource("3_3bh8b")
 aggroStrategy = 0
+subLayers = Array[ExtResource("3_67hxi")]([])
 weight = 0.4
-subLayers = Array[ExtResource("1_p7i6v")]([])
 
 [sub_resource type="Resource" id="Resource_fbpyo"]
 script = ExtResource("2_xqmco")
 healLayer = false
+subLayers = Array[ExtResource("3_67hxi")]([SubResource("Resource_xdn3a")])
 weight = 0.7
-subLayers = Array[ExtResource("1_p7i6v")]([SubResource("Resource_xdn3a")])
 
 [sub_resource type="Resource" id="Resource_g85ww"]
 script = ExtResource("3_14q6v")
 buffStrategy = 2
+subLayers = Array[ExtResource("3_67hxi")]([])
 weight = 0.55
-subLayers = Array[ExtResource("1_p7i6v")]([])
 
 [sub_resource type="Resource" id="Resource_ysk4m"]
 script = ExtResource("5_vvci8")
+subLayers = Array[ExtResource("3_67hxi")]([])
 weight = 0.3
-subLayers = Array[ExtResource("1_p7i6v")]([])
 
 [sub_resource type="Resource" id="Resource_g4tne"]
 script = ExtResource("6_1trl6")
 mostOrbsWeight = 1.15
+subLayers = Array[ExtResource("3_67hxi")]([])
 weight = 0.2
-subLayers = Array[ExtResource("1_p7i6v")]([])
 
 [sub_resource type="Resource" id="Resource_hfamk"]
 script = ExtResource("5_0etga")
+subLayers = Array[ExtResource("3_67hxi")]([])
 weight = 0.3
-subLayers = Array[ExtResource("1_p7i6v")]([])
 
 [sub_resource type="Resource" id="Resource_vlkmp"]
 script = ExtResource("6_jcnlm")
 signatureWeight = 1.25
+subLayers = Array[ExtResource("3_67hxi")]([])
 weight = 0.2
-subLayers = Array[ExtResource("1_p7i6v")]([])
 
 [resource]
 script = ExtResource("2_dnulq")

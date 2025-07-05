@@ -1,13 +1,15 @@
-[gd_scene load_steps=29 format=4 uid="uid://bkontpdqbipb1"]
+[gd_scene load_steps=33 format=4 uid="uid://bkontpdqbipb1"]
 
 [ext_resource type="Script" uid="uid://vg00rfnn3346" path="res://scripts/overworld/map_script.gd" id="1_s3o63"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_tarat"]
 [ext_resource type="PackedScene" uid="uid://d3rsvv5iihm7t" path="res://prefabs/overworld/warp_zone.tscn" id="3_61dmr"]
 [ext_resource type="PackedScene" uid="uid://bsalesakrx8yy" path="res://prefabs/entities/npc.tscn" id="3_f4x3h"]
 [ext_resource type="PackedScene" uid="uid://cdnsjlf3gwbkf" path="res://prefabs/entities/ground_item.tscn" id="3_kcajg"]
+[ext_resource type="Script" uid="uid://bwcja16pmp3mf" path="res://scripts/npcs/npc_sprite_state.gd" id="4_8vcfh"]
 [ext_resource type="PackedScene" uid="uid://b1u1r7encrpgs" path="res://prefabs/overworld/camera_hold_zone.tscn" id="4_e3j1f"]
 [ext_resource type="Script" uid="uid://8t63d3un22ug" path="res://scripts/npcs/npc_data.gd" id="4_qw015"]
 [ext_resource type="SpriteFrames" uid="uid://crq8jtrfopwa3" path="res://graphics/animations/a_vampire.tres" id="5_ro6wv"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="5_u2q4f"]
 [ext_resource type="SpriteFrames" uid="uid://c17h32c34ksly" path="res://graphics/animations/a_warlock_agent.tres" id="6_qw015"]
 [ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="8_8vcfh"]
 [ext_resource type="Resource" uid="uid://cwxuxmq6m4hsp" path="res://gamedata/dialogue/giant_steppes/warlock_agent/agent_l2_1.tres" id="9_u2q4f"]
@@ -17,7 +19,14 @@
 [ext_resource type="Resource" uid="uid://dyj8w3r046uik" path="res://gamedata/cutscenes/giant_steppes/giant_steppes_arrive_l2.tres" id="12_5hxps"]
 [ext_resource type="Resource" uid="uid://xodejjykgcdx" path="res://gamedata/cutscenes/giant_steppes/gis_after_meeting1.tres" id="17_x858i"]
 
-[sub_resource type="Resource" id="Resource_5hxps"]
+[sub_resource type="Resource" id="Resource_c0ybn"]
+script = ExtResource("4_8vcfh")
+id = "default"
+priority = -1
+storyRequirements = Array[ExtResource("5_u2q4f")]([])
+autoApplyState = false
+
+[sub_resource type="Resource" id="Resource_hblap"]
 script = ExtResource("4_qw015")
 saveName = "npc"
 spriteState = "default"
@@ -40,7 +49,14 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_10q5v"]
+[sub_resource type="Resource" id="Resource_mfb64"]
+script = ExtResource("4_8vcfh")
+id = "default"
+priority = -1
+storyRequirements = Array[ExtResource("5_u2q4f")]([])
+autoApplyState = false
+
+[sub_resource type="Resource" id="Resource_riesw"]
 script = ExtResource("4_qw015")
 saveName = "npc"
 spriteState = "default"
@@ -150,7 +166,10 @@ tile_set = ExtResource("2_tarat")
 
 [node name="Warlock1" parent="TilemapRoot" instance=ExtResource("3_f4x3h")]
 position = Vector2(-298, 84)
-data = SubResource("Resource_5hxps")
+spriteStatesDict = Dictionary[String, ExtResource("4_8vcfh")]({
+"default": SubResource("Resource_c0ybn")
+})
+data = SubResource("Resource_hblap")
 
 [node name="NPCSprite" parent="TilemapRoot/Warlock1" index="0"]
 sprite_frames = ExtResource("5_ro6wv")
@@ -169,7 +188,10 @@ visible = false
 position = Vector2(0, 62)
 displayName = "Warlock Agent"
 saveName = "warlock_agent_giant_steppes_l2"
-data = SubResource("Resource_10q5v")
+spriteStatesDict = Dictionary[String, ExtResource("4_8vcfh")]({
+"default": SubResource("Resource_mfb64")
+})
+data = SubResource("Resource_riesw")
 dialogueEntries = Array[ExtResource("8_8vcfh")]([ExtResource("9_u2q4f")])
 
 [node name="NPCSprite" parent="TilemapRoot/WarlockAgent" index="0"]

@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://bjrshpsrhy1n7"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_cm2uy"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_i8gd7"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_madxw"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_i8gd7"]
+
+[sub_resource type="Resource" id="Resource_6v41g"]
+script = ExtResource("1_cm2uy")
+lines = Array[String](["You're lucky my royal code prevents me from attacking from behind, coward.", "Flee with your non-existent tail tucked between your legs!"])
+minShowSecs = Array[float]([])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_i8gd7")]([])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[resource]
+script = ExtResource("3_i8gd7")
+entryId = ""
+items = Array[ExtResource("1_cm2uy")]([SubResource("Resource_6v41g")])
+ordStoryRequirements = Array[ExtResource("2_madxw")]([])
+closesDialogue = true
+fullHealsPlayer = false
+annotation = ""
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"

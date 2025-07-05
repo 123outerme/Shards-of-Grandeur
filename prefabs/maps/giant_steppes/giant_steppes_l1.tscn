@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=4 uid="uid://drbsfhefdewe5"]
+[gd_scene load_steps=69 format=4 uid="uid://drbsfhefdewe5"]
 
 [ext_resource type="Script" uid="uid://vg00rfnn3346" path="res://scripts/overworld/map_script.gd" id="1_tdh71"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_iwy47"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://b1u1r7encrpgs" path="res://prefabs/overworld/camera_hold_zone.tscn" id="4_2j8mv"]
 [ext_resource type="PackedScene" uid="uid://bsalesakrx8yy" path="res://prefabs/entities/npc.tscn" id="4_upbwq"]
 [ext_resource type="Script" uid="uid://8t63d3un22ug" path="res://scripts/npcs/npc_data.gd" id="5_h3fmg"]
+[ext_resource type="Script" uid="uid://bwcja16pmp3mf" path="res://scripts/npcs/npc_sprite_state.gd" id="6_4hkxj"]
 [ext_resource type="SpriteFrames" uid="uid://crq8jtrfopwa3" path="res://graphics/animations/a_vampire.tres" id="6_f378v"]
 [ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="7_68q3o"]
 [ext_resource type="SpriteFrames" uid="uid://c17h32c34ksly" path="res://graphics/animations/a_warlock_agent.tres" id="7_h3fmg"]
@@ -29,7 +30,14 @@
 [ext_resource type="Resource" uid="uid://ded2gogbnwnnt" path="res://gamedata/dialogue/giant_steppes/warlock_agent/agent_training_block_demo_end.tres" id="19_m7m11"]
 [ext_resource type="Resource" uid="uid://bf7be5r483rl8" path="res://gamedata/cutscenes/giant_steppes/gis_demo_block.tres" id="25_68q3o"]
 
-[sub_resource type="Resource" id="Resource_1iokg"]
+[sub_resource type="Resource" id="Resource_2yuxa"]
+script = ExtResource("6_4hkxj")
+id = "default"
+priority = -1
+storyRequirements = Array[ExtResource("7_68q3o")]([])
+autoApplyState = false
+
+[sub_resource type="Resource" id="Resource_p6y5g"]
 script = ExtResource("5_h3fmg")
 saveName = "npc"
 spriteState = "default"
@@ -51,6 +59,13 @@ dialogueItems = []
 dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
+
+[sub_resource type="Resource" id="Resource_okj30"]
+script = ExtResource("6_4hkxj")
+id = "default"
+priority = -1
+storyRequirements = Array[ExtResource("7_68q3o")]([])
+autoApplyState = false
 
 [sub_resource type="Resource" id="Resource_o4dl1"]
 script = ExtResource("7_68q3o")
@@ -79,7 +94,7 @@ invalidFromHavingFollowers = Array[String]([])
 invalidFromHavingItems = Array[ExtResource("8_m7m11")]([])
 metadata/_custom_type_script = "uid://bjesn36acj0uh"
 
-[sub_resource type="Resource" id="Resource_4hkxj"]
+[sub_resource type="Resource" id="Resource_hmq42"]
 script = ExtResource("5_h3fmg")
 saveName = "npc"
 spriteState = "default"
@@ -105,7 +120,14 @@ dialogueLine = -1
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f378v"]
 size = Vector2(15.5, 13)
 
-[sub_resource type="Resource" id="Resource_2yuxa"]
+[sub_resource type="Resource" id="Resource_iqugw"]
+script = ExtResource("6_4hkxj")
+id = "default"
+priority = -1
+storyRequirements = Array[ExtResource("7_68q3o")]([])
+autoApplyState = false
+
+[sub_resource type="Resource" id="Resource_tnovd"]
 script = ExtResource("5_h3fmg")
 saveName = "npc"
 spriteState = "default"
@@ -164,6 +186,13 @@ size = Vector2(16, 16)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tnovd"]
 size = Vector2(16, 16)
 
+[sub_resource type="Resource" id="Resource_2ixtn"]
+script = ExtResource("6_4hkxj")
+id = "default"
+priority = -1
+storyRequirements = Array[ExtResource("7_68q3o")]([])
+autoApplyState = false
+
 [sub_resource type="Resource" id="Resource_qw8te"]
 script = ExtResource("7_68q3o")
 minAct = 0
@@ -191,7 +220,7 @@ invalidFromHavingFollowers = Array[String]([])
 invalidFromHavingItems = Array[ExtResource("8_m7m11")]([])
 metadata/_custom_type_script = "uid://bjesn36acj0uh"
 
-[sub_resource type="Resource" id="Resource_p6y5g"]
+[sub_resource type="Resource" id="Resource_m8ki0"]
 script = ExtResource("5_h3fmg")
 saveName = "npc"
 spriteState = "default"
@@ -340,7 +369,10 @@ saveName = "giant_steppes_l1_azure_boon"
 
 [node name="Warlock1" parent="TilemapRoot" instance=ExtResource("4_upbwq")]
 position = Vector2(150, -332)
-data = SubResource("Resource_1iokg")
+spriteStatesDict = Dictionary[String, ExtResource("6_4hkxj")]({
+"default": SubResource("Resource_2yuxa")
+})
+data = SubResource("Resource_p6y5g")
 
 [node name="NPCSprite" parent="TilemapRoot/Warlock1" index="0"]
 sprite_frames = ExtResource("6_f378v")
@@ -363,8 +395,11 @@ visible = false
 position = Vector2(321, -83)
 displayName = "Warlock Agent"
 loadFlipH = true
+spriteStatesDict = Dictionary[String, ExtResource("6_4hkxj")]({
+"default": SubResource("Resource_okj30")
+})
 orSpawnRequirements = Array[ExtResource("7_68q3o")]([SubResource("Resource_o4dl1")])
-data = SubResource("Resource_4hkxj")
+data = SubResource("Resource_hmq42")
 
 [node name="NPCSprite" parent="TilemapRoot/WarlockAgent" index="0"]
 sprite_frames = ExtResource("7_h3fmg")
@@ -385,10 +420,13 @@ position = Vector2(616, -80)
 displayName = "Ice Hound"
 saveName = "ice_hound_giant_steppes"
 facesRight = false
+spriteStatesDict = Dictionary[String, ExtResource("6_4hkxj")]({
+"default": SubResource("Resource_iqugw")
+})
 spriteSize = Vector2i(32, 32)
 spriteOffset = Vector2(-4, -8)
 speakerSpriteOffset = Vector2(-4, -8)
-data = SubResource("Resource_2yuxa")
+data = SubResource("Resource_tnovd")
 dialogueEntries = Array[ExtResource("8_0aigu")]([ExtResource("9_b2mwp")])
 
 [node name="NPCSprite" parent="TilemapRoot/IceHound" index="0"]
@@ -552,8 +590,11 @@ position = Vector2(1008, -163)
 displayName = "Warlock Agent"
 saveName = "warlock_agent_giant_steppes"
 loadFlipH = true
+spriteStatesDict = Dictionary[String, ExtResource("6_4hkxj")]({
+"default": SubResource("Resource_2ixtn")
+})
 orSpawnRequirements = Array[ExtResource("7_68q3o")]([SubResource("Resource_qw8te")])
-data = SubResource("Resource_p6y5g")
+data = SubResource("Resource_m8ki0")
 dialogueEntries = Array[ExtResource("8_0aigu")]([ExtResource("19_m7m11")])
 
 [node name="NPCSprite" parent="TilemapRoot/WarlockAgent2" index="0"]

@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=8 format=3 uid="uid://c2cyw2ghb6ao2"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_awews"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_1qbho"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_e3quk"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_e3quk"]
+[ext_resource type="Resource" uid="uid://dpasfbf5p7oka" path="res://gamedata/quests/quiet_tundra/the_crownless_king.tres" id="4_y1ose"]
+[ext_resource type="Resource" uid="uid://vw3nan7acdte" path="res://gamedata/static_encounters/usurped_king_rat_encounter.tres" id="5_mibjq"]
+
+[sub_resource type="Resource" id="Resource_y1ose"]
+script = ExtResource("1_awews")
+lines = Array[String](["RAAAAGH!!"])
+minShowSecs = Array[float]([])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_e3quk")]([])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[resource]
+script = ExtResource("3_e3quk")
+entryId = "king_rat_tundra_initial_battle"
+items = Array[ExtResource("1_awews")]([SubResource("Resource_y1ose")])
+ordStoryRequirements = Array[ExtResource("2_1qbho")]([])
+startsQuest = ExtResource("4_y1ose")
+closesDialogue = true
+fullHealsPlayer = false
+startsStaticEncounter = ExtResource("5_mibjq")
+annotation = ""
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"
