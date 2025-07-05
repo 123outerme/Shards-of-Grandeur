@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="CombatantSprite" load_steps=4 format=3 uid="uid://boyjqshivfkhl"]
+
+[ext_resource type="Resource" uid="uid://b5o7c8bysccqr" path="res://gamedata/combatants/king_rat/king_rat_overworld.tres" id="1_21cub"]
+[ext_resource type="Script" uid="uid://70gbsrstamsf" path="res://scripts/battle/combatant/combatant_sprite.gd" id="1_l336l"]
+[ext_resource type="SpriteFrames" uid="uid://chk2rrv6pkke1" path="res://graphics/animations/a_usurped_king_rat.tres" id="2_mkl3f"]
+
+[resource]
+script = ExtResource("1_l336l")
+spriteFrames = ExtResource("2_mkl3f")
+combatantOverworld = ExtResource("1_21cub")
+maxSize = Vector2(32, 32)
+idleSize = Vector2(32, 32)
+centerPosition = Vector2(16, 24)
+idleCanvasCenterPosition = Vector2(16, 19)
+feetPosition = Vector2(16, 31)
+headPosition = Vector2(10, 23)
+spriteFacesRight = false
+navigationLayer = 2
+attackAffinityStartMoveFrame = 0
+attackMagicStartMoveFrame = 0
+attackPhysStartMoveFrame = 0
+attackAffinityArrivalFrame = 2
+attackMagicArrivalFrame = 2
+attackPhysArrivalFrame = 4
+attackAffinityImpactFrame = 3
+attackMagicImpactFrame = 2
+attackPhysImpactFrame = 4
+metadata/_custom_type_script = "uid://70gbsrstamsf"

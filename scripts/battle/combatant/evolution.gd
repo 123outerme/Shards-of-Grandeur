@@ -49,6 +49,7 @@ func _init(
 	dropTable = i_dropTable
 
 func combatant_can_evolve(combatant: Combatant) -> bool:
+	# if there are no requirements: this is an unfinished/disabled evolution and should not be evolved to
 	if requiredArmor == null and requiredWeapon == null and requiredAccessory == null:
 		return false
 
