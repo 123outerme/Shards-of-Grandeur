@@ -1,0 +1,42 @@
+[gd_resource type="Resource" script_class="CodexEntry" load_steps=5 format=3 uid="uid://byxp1iva6oykx"]
+
+[ext_resource type="Script" uid="uid://c4twgpj0pv84" path="res://scripts/codex/codex_entry.gd" id="1_rbw1d"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_v4cbl"]
+[ext_resource type="Script" uid="uid://fw22o8hbosnk" path="res://scripts/inventory/inventory_slot.gd" id="3_v4cbl"]
+
+[sub_resource type="Resource" id="Resource_1nekk"]
+script = ExtResource("2_v4cbl")
+minAct = 0
+maxAct = -1
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String](["hilltop_enter", "standstill_burned_enter"])
+prereqDialogues = Array[String]([])
+prereqPlacesVisited = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+prereqDefeatedEnemies = Array[String]([])
+prereqPuzzles = Array[String]([])
+prereqPuzzleStates = Dictionary[String, Array]({})
+prereqDiscoveredEvolutions = Array[String]([])
+prereqHavingFollowers = Array[String]([])
+prereqHasItems = Array[ExtResource("3_v4cbl")]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String]([])
+invalidAfterVistingPlaces = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromPuzzleStates = Dictionary[String, Array]({})
+invalidFromHavingFollowers = Array[String]([])
+invalidFromHavingItems = Array[ExtResource("3_v4cbl")]([])
+metadata/_custom_type_script = "uid://bjesn36acj0uh"
+
+[resource]
+script = ExtResource("1_rbw1d")
+id = "hilltop"
+title = "Hilltop Forest"
+storyRequirements = Array[ExtResource("2_v4cbl")]([SubResource("Resource_1nekk")])
+description = "Hilltop Forest was a large forest spanning rolling hills. After it was burned down by the Chain Legion, most of it became a wasteland. The charred landscape makes it difficult to navigate, and easy to get lost in."
+sortOrder = 0
+priority = 1
+metadata/_custom_type_script = "uid://c4twgpj0pv84"

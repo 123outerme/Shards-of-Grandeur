@@ -1,0 +1,42 @@
+[gd_resource type="Resource" script_class="CodexEntry" load_steps=5 format=3 uid="uid://dwqs1bvnqlkyy"]
+
+[ext_resource type="Script" uid="uid://c4twgpj0pv84" path="res://scripts/codex/codex_entry.gd" id="1_gj7ju"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_1dhe0"]
+[ext_resource type="Script" uid="uid://fw22o8hbosnk" path="res://scripts/inventory/inventory_slot.gd" id="3_1dhe0"]
+
+[sub_resource type="Resource" id="Resource_4mmoe"]
+script = ExtResource("2_1dhe0")
+minAct = 0
+maxAct = -1
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqPlacesVisited = Array[String](["frostmint_village"])
+prereqSpecialBattles = Array[String]([])
+prereqDefeatedEnemies = Array[String]([])
+prereqPuzzles = Array[String]([])
+prereqPuzzleStates = Dictionary[String, Array]({})
+prereqDiscoveredEvolutions = Array[String]([])
+prereqHavingFollowers = Array[String]([])
+prereqHasItems = Array[ExtResource("3_1dhe0")]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String]([])
+invalidAfterVistingPlaces = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromPuzzleStates = Dictionary[String, Array]({})
+invalidFromHavingFollowers = Array[String]([])
+invalidFromHavingItems = Array[ExtResource("3_1dhe0")]([])
+metadata/_custom_type_script = "uid://bjesn36acj0uh"
+
+[resource]
+script = ExtResource("1_gj7ju")
+id = "frostmint_village"
+title = "Frostmint Village"
+storyRequirements = Array[ExtResource("2_1dhe0")]([SubResource("Resource_4mmoe")])
+description = "TBD"
+sortOrder = 0
+priority = 0
+metadata/_custom_type_script = "uid://c4twgpj0pv84"
