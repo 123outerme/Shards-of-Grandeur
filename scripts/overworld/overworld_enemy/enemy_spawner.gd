@@ -73,7 +73,7 @@ func _ready():
 func _on_area_2d_area_entered(area):
 	if enemy == null and area.name == 'PlayerEventCollider' and not spawnerData.disabled and (not PlayerFinder.player.disableMovement or spawnWhenPlayerLocked):
 		spawn_enemy()
-	if enemy != null and enemy.disabled and not spawnerData.disabled:
+	if enemy != null and area.name == 'PlayerEventCollider' and enemy.disabled and not spawnerData.disabled and (not PlayerFinder.player.disableMovement or spawnWhenPlayerLocked):
 		enemy.disabled = false
 		var angleRadians = randf_range(0, 2 * PI)
 		var radius: float = randf_range(0, spawnRange / 2.0) # range in diameter, so half of that

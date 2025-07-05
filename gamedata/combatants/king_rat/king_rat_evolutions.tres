@@ -1,8 +1,10 @@
-[gd_resource type="Resource" script_class="Evolutions" load_steps=3 format=3 uid="uid://cvqm8lj7pel6s"]
+[gd_resource type="Resource" script_class="Evolutions" load_steps=5 format=3 uid="uid://cvqm8lj7pel6s"]
 
 [ext_resource type="Script" uid="uid://csgq56o55et3e" path="res://scripts/battle/combatant/evolutions.gd" id="1_pmuuh"]
 [ext_resource type="Script" uid="uid://bajcategxhmyx" path="res://scripts/battle/combatant/evolution.gd" id="1_x0jk3"]
+[ext_resource type="Resource" uid="uid://dev4emnkdn22h" path="res://gamedata/combatants/king_rat/evolutions/crowned_king_rat/evolution_crowned_king_rat.tres" id="2_3w8a5"]
+[ext_resource type="Resource" uid="uid://hoj6ilaoet74" path="res://gamedata/combatants/king_rat/evolutions/usurped_king_rat/evolution_usurped_king_rat.tres" id="3_j8acg"]
 
 [resource]
 script = ExtResource("1_pmuuh")
-evolutionList = Array[ExtResource("1_x0jk3")]([])
+evolutionList = Array[ExtResource("1_x0jk3")]([ExtResource("2_3w8a5"), ExtResource("3_j8acg")])
