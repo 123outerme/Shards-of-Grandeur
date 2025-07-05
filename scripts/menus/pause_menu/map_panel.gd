@@ -35,12 +35,14 @@ signal back_pressed
 const sfxButtonScene = preload('res://prefabs/ui/sfx_button.tscn')
 
 @export var filter: MapLocationsFilter = MapLocationsFilter.ALL
+@export var cloudHideSfx: AudioStream = null
 
 var locationOptions: Array[MapPanelLocation]
 var selectedLocation: MapPanelLocation = null
 var noneLocationOption: MapPanelLocation = MapPanelLocation.new([], 'None', MapLocationType.NONE)
 var locationButtons: Dictionary[MapPanelLocation, Button] = {}
 var fromQuestsPanelQuest: Quest = null
+var cloudHideTweens: Array[Tween] = []
 
 @onready var mapPanelLabel: RichTextLabel = get_node('MapPanelLabel')
 
@@ -78,6 +80,9 @@ func load_map_panel(initial: bool = true) -> void:
 		update_filter(filter)
 	update_selected_location(selectedLocation)
 	visible = true
+	if initial:
+		await get_tree().create_timer(0.5).timeout
+		hide_clouds_for_seen_locations()
 
 func initial_focus() -> void:
 	allButton.grab_focus()
@@ -98,7 +103,7 @@ func update_cloud_layers() -> void:
 	for child: Node in children:
 		if child is MapCloudLayerTextureRect:
 			var cloudLayer: MapCloudLayerTextureRect = child as MapCloudLayerTextureRect
-			cloudLayer.visible = not PlayerResources.playerInfo.has_visited_map_location(cloudLayer.location)
+			cloudLayer.visible = not PlayerResources.playerInfo.has_removed_cloud_for_location(cloudLayer.location)
 
 func build_map_locations() -> void:
 	locationOptions = [noneLocationOption]
@@ -175,6 +180,29 @@ func get_current_location() -> MapPanelLocation:
 	printerr('get_current_location Error: Current WorldLocation is null!')
 	return MapPanelLocation.new([], TextUtils.substitute_playername('@')) # this is a problem if this returns!
 
+func hide_clouds_for_seen_locations() -> void:
+	var children: Array[Node] = cloudsControl.get_children()
+	var cloudsHiding: int = 0
+	for child: Node in children:
+		if child is MapCloudLayerTextureRect:
+			var cloudLayer: MapCloudLayerTextureRect = child as MapCloudLayerTextureRect
+			if PlayerResources.playerInfo.has_visited_map_location(cloudLayer.location) and \
+					not PlayerResources.playerInfo.has_removed_cloud_for_location(cloudLayer.location):
+				var hideTween: Tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CIRC)
+				
+				# delay cloud starting to hide by 0.5 seconds for each cloud to be dealt with; "cascading hide" effect
+				if cloudsHiding > 0:
+					hideTween.tween_property(cloudLayer, 'rotation', 0, 0.5 * cloudsHiding)
+				
+				# play hide sfx; arguments are to loop 0 times, vary pitch, auto-find SFX player, and force playing on different players
+				hideTween.tween_callback(SceneLoader.audioHandler.play_sfx.bind(cloudHideSfx, 0, true, -1, true))
+				
+				 # 1 second hide tween
+				hideTween.tween_property(cloudLayer, 'modulate', Color(1, 1, 1, 0), 1.0)
+				hideTween.finished.connect(_hide_cloud_tween_finished.bind(hideTween, cloudLayer))
+				cloudHideTweens.append(hideTween)
+				cloudsHiding += 1
+
 func update_filter(newFilter: MapLocationsFilter) -> void:
 	if filter != newFilter:
 		filter = newFilter
@@ -195,6 +223,12 @@ func deselect_filter(deselectedFilter: MapLocationsFilter) -> void:
 
 func _on_back_button_pressed() -> void:
 	visible = false
+	
+	for tween: Tween in cloudHideTweens:
+		if tween != null and not tween.is_valid():
+			tween.kill()
+	cloudHideTweens = []
+	
 	if fromQuestsPanelQuest != null:
 		SignalBus.return_from_quest_map_location.emit(fromQuestsPanelQuest)
 		# explicitly NOT null'ing fromQuestsPanelQuest:
@@ -296,3 +330,8 @@ func _show_map_for_location(locations: Array[WorldLocation.MapLocation], quest: 
 				update_selected_location(option)
 				break
 		filter = MapLocationsFilter.LOCATIONS
+
+func _hide_cloud_tween_finished(tween: Tween, cloudLayer: MapCloudLayerTextureRect) -> void:
+	cloudHideTweens.erase(tween)
+	cloudLayer.visible = false
+	PlayerResources.playerInfo.set_location_cloud_removed(cloudLayer.location)

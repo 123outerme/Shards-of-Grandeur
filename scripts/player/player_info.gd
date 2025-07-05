@@ -40,6 +40,7 @@ class_name PlayerInfo
 @export var puzzlesSolved: Array[String] = []
 @export var puzzleStates: Dictionary[String, Array] = {}
 @export var codexEntriesSeen: Array[String] = []
+@export var mapCloudsRemoved: Array[WorldLocation.MapLocation] = []
 @export var cutscenesTempDisabled: Array[String] = []
 @export var activeFollowers: Array[String] = []
 @export var queuedRewards: Array[Reward] = []
@@ -79,7 +80,9 @@ func _init(
 	i_puzzlesSolved: Array[String] = [],
 	i_puzzleStates: Dictionary[String, Array] = {},
 	i_codexEntriesSeen: Array[String] = [],
+	i_mapCloudsRemoved: Array[WorldLocation.MapLocation] = [],
 	i_cutscenesTempDisabled: Array[String] = [],
+	i_activeFollowers: Array[String] = [],
 	i_queuedRewards: Array[Reward] = [],
 	i_running = false,
 ):
@@ -117,7 +120,9 @@ func _init(
 	puzzlesSolved = i_puzzlesSolved
 	puzzleStates = i_puzzleStates
 	codexEntriesSeen = i_codexEntriesSeen
+	mapCloudsRemoved = i_mapCloudsRemoved
 	cutscenesTempDisabled = i_cutscenesTempDisabled
+	activeFollowers = i_activeFollowers
 	queuedRewards = i_queuedRewards
 	running = i_running
 
@@ -277,6 +282,13 @@ func has_seen_codex_entry(entryName: String) -> bool:
 func set_codex_entry_seen(entryName: String):
 	if not has_seen_codex_entry(entryName):
 		codexEntriesSeen.append(entryName)
+
+func has_removed_cloud_for_location(location: WorldLocation.MapLocation) -> bool:
+	return location in mapCloudsRemoved
+
+func set_location_cloud_removed(location: WorldLocation.MapLocation):
+	if not has_removed_cloud_for_location(location):
+		mapCloudsRemoved.append(location)
 
 func is_cutscene_temp_disabled(saveName: String) -> bool:
 	return saveName in cutscenesTempDisabled
