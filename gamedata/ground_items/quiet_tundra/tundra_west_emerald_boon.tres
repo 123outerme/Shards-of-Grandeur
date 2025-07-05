@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="PickedUpItem" load_steps=4 format=3 uid="uid://dn800okl4kfkj"]
+
+[ext_resource type="Resource" uid="uid://dcq2jswk412fk" path="res://gamedata/dialogue/interactables/ground_items/quiet_tundra/tundra_west_emerald_boon_1.tres" id="1_jy1em"]
+[ext_resource type="Resource" uid="uid://cneceugndgdpe" path="res://gamedata/items/key_items/emerald_boon.tres" id="2_pymge"]
+[ext_resource type="Script" uid="uid://dc62fqcsqe6d4" path="res://scripts/inventory/picked_up_item.gd" id="3_3h7bg"]
+
+[resource]
+script = ExtResource("3_3h7bg")
+item = ExtResource("2_pymge")
+wasPickedUp = false
+speaker = ""
+dialogueEntry = ExtResource("1_jy1em")
+savedItemIdx = 0
+savedTextIdx = 0
+metadata/_custom_type_script = "uid://dc62fqcsqe6d4"

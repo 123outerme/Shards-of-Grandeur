@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://dcq2jswk412fk"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_bloaj"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_lcbco"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="3_wmewr"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="4_aascs"]
+
+[sub_resource type="Resource" id="Resource_0m756"]
+script = ExtResource("1_bloaj")
+lines = Array[String](["This shimmering green magic, it seems to replicate itself periodically, before collapsing in again.", "I might be able to leverage this in battle, and duplicate the items my enemies leave behind in defeat!"])
+minShowSecs = Array[float]([])
+animation = ""
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_lcbco")]([])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[resource]
+script = ExtResource("4_aascs")
+entryId = ""
+items = Array[ExtResource("1_bloaj")]([SubResource("Resource_0m756")])
+ordStoryRequirements = Array[ExtResource("3_wmewr")]([])
+closesDialogue = false
+fullHealsPlayer = false
+annotation = ""
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"
