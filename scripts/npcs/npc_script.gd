@@ -27,9 +27,9 @@ const npcsDir: String = "npcs/"
 ## sprite state to use when first loading the NPC (w/o save data for this NPC)
 @export var spriteState: String = 'default'
 
-## String -> SpriteFrames: maps NPC sprite state string to the SpriteFrames for that state
-@export var stateSpritesDict: Dictionary[String, SpriteFrames] = {
-	'default': null
+## String -> NpcSpriteState: maps NPC sprite state string to the SpriteFrames for that state
+@export var spriteStatesDict: Dictionary[String, NpcSpriteState] = {
+	'default': NpcSpriteState.new('default', -1)
 }
 
 ## visual size of sprite (used for determining NavAgent radius, etc.)
@@ -199,7 +199,25 @@ func load_data(save_path):
 	if newData != null:
 		data = newData
 		# only load the new NPC data if it exists
-		set_sprite_state(data.spriteState)
+		
+		# load sprite state: check dictionary for auto-applied states with higher priority than the current one
+		var newSpriteState: String = data.spriteState
+		var highestPriority: int = Vector2i.MIN.x # minimum integer value
+		var chosenSpriteState: NpcSpriteState = null
+		if spriteStatesDict.has(data.spriteState):
+			chosenSpriteState = spriteStatesDict[data.spriteState]
+		
+		for state: NpcSpriteState in spriteStatesDict.values():
+			if state.autoApplyState:
+				if state.priority > highestPriority or (
+							state.priority == highestPriority and \
+							not NpcSpriteState.compare(chosenSpriteState, state)
+						):
+					chosenSpriteState = state
+					newSpriteState = state.id
+					highestPriority = state.priority
+		
+		set_sprite_state(newSpriteState)
 		npcSprite.play(data.animation)
 		position = data.position
 		combatMode = data.combatMode
@@ -579,9 +597,9 @@ func face_player():
 		face_horiz(player.position.x - position.x)
 
 func set_sprite_state(state: String):
-	if stateSpritesDict.has(state):
-		if stateSpritesDict[state] != null:
-			npcSprite.sprite_frames = stateSpritesDict[state]
+	if spriteStatesDict.has(state):
+		if spriteStatesDict[state] != null and spriteStatesDict[state].spriteFrames != null:
+			npcSprite.sprite_frames = spriteStatesDict[state].spriteFrames
 		spriteState = state
 	else:
 		printerr('NPC sprite state error: NPC at ', get_path(), ' (save name ', saveName, ') does not have sprite state "', state, '"')

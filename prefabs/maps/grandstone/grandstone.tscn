@@ -1,12 +1,14 @@
-[gd_scene load_steps=106 format=4 uid="uid://cuwljij08hy7b"]
+[gd_scene load_steps=122 format=4 uid="uid://cuwljij08hy7b"]
 
 [ext_resource type="Script" uid="uid://vg00rfnn3346" path="res://scripts/overworld/map_script.gd" id="1_s8jye"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_xe2ll"]
 [ext_resource type="PackedScene" uid="uid://bsalesakrx8yy" path="res://prefabs/entities/npc.tscn" id="3_d2cxy"]
+[ext_resource type="Script" uid="uid://bwcja16pmp3mf" path="res://scripts/npcs/npc_sprite_state.gd" id="4_c2pfj"]
 [ext_resource type="Script" uid="uid://8t63d3un22ug" path="res://scripts/npcs/npc_data.gd" id="4_fpyfw"]
 [ext_resource type="Resource" uid="uid://ee2utsdhavr6" path="res://gamedata/dialogue/grandstone/lady1/lady1_chatter.tres" id="5_flmpr"]
 [ext_resource type="SpriteFrames" uid="uid://b65nqsvqeoxfw" path="res://graphics/animations/a_lady1.tres" id="5_fmjsj"]
 [ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="5_h8211"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="5_xgl8o"]
 [ext_resource type="SpriteFrames" uid="uid://c1crhw3srnu01" path="res://graphics/animations/a_horse_cart_full.tres" id="6_jdkva"]
 [ext_resource type="Resource" uid="uid://buidowwxb4fbs" path="res://gamedata/dialogue/horsecart/horsecart_1.tres" id="6_q1mh4"]
 [ext_resource type="PackedScene" uid="uid://d3rsvv5iihm7t" path="res://prefabs/overworld/warp_zone.tscn" id="7_fj3tw"]
@@ -67,7 +69,14 @@
 [ext_resource type="Resource" uid="uid://cnnhicfwvefgo" path="res://gamedata/dialogue/grandstone/signs/half_captain_restaurant_sign.tres" id="42_gr5h7"]
 [ext_resource type="SpriteFrames" uid="uid://67qlhveu7u5x" path="res://graphics/animations/a_restaurant_sign.tres" id="42_u011h"]
 
-[sub_resource type="Resource" id="Resource_y2j34"]
+[sub_resource type="Resource" id="Resource_prjiw"]
+script = ExtResource("4_c2pfj")
+id = "default"
+priority = -1
+storyRequirements = Array[ExtResource("5_xgl8o")]([])
+autoApplyState = false
+
+[sub_resource type="Resource" id="Resource_c2pfj"]
 script = ExtResource("4_fpyfw")
 saveName = "npc"
 spriteState = "default"
@@ -102,7 +111,24 @@ position = Vector2(150, 64)
 relativeToCurrentPos = false
 pauseSecs = 1.25
 
-[sub_resource type="Resource" id="Resource_7pcte"]
+[sub_resource type="Resource" id="Resource_wo1s4"]
+script = ExtResource("4_c2pfj")
+id = "default"
+priority = -1
+spriteFrames = ExtResource("8_mdrcq")
+storyRequirements = Array[ExtResource("5_xgl8o")]([])
+autoApplyState = false
+
+[sub_resource type="Resource" id="Resource_xuqkd"]
+script = ExtResource("4_c2pfj")
+id = "shards_cart"
+priority = 0
+spriteFrames = ExtResource("6_jdkva")
+storyRequirements = Array[ExtResource("5_xgl8o")]([])
+autoApplyState = false
+metadata/_custom_type_script = "uid://bwcja16pmp3mf"
+
+[sub_resource type="Resource" id="Resource_xgl8o"]
 script = ExtResource("4_fpyfw")
 saveName = "npc"
 spriteState = "shards_cart"
@@ -131,7 +157,14 @@ size = Vector2(64, 14)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ti3hh"]
 size = Vector2(34, 32)
 
-[sub_resource type="Resource" id="Resource_a026r"]
+[sub_resource type="Resource" id="Resource_bdjen"]
+script = ExtResource("4_c2pfj")
+id = "default"
+priority = -1
+storyRequirements = Array[ExtResource("5_xgl8o")]([])
+autoApplyState = false
+
+[sub_resource type="Resource" id="Resource_tdlul"]
 script = ExtResource("4_fpyfw")
 saveName = "npc"
 spriteState = "default"
@@ -154,7 +187,14 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_74hje"]
+[sub_resource type="Resource" id="Resource_rwdin"]
+script = ExtResource("4_c2pfj")
+id = "default"
+priority = -1
+storyRequirements = Array[ExtResource("5_xgl8o")]([])
+autoApplyState = false
+
+[sub_resource type="Resource" id="Resource_a62mk"]
 script = ExtResource("4_fpyfw")
 saveName = "npc"
 spriteState = "default"
@@ -177,7 +217,14 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_42cg0"]
+[sub_resource type="Resource" id="Resource_qd2vt"]
+script = ExtResource("4_c2pfj")
+id = "default"
+priority = -1
+storyRequirements = Array[ExtResource("5_xgl8o")]([])
+autoApplyState = false
+
+[sub_resource type="Resource" id="Resource_nfkfe"]
 script = ExtResource("4_fpyfw")
 saveName = "npc"
 spriteState = "default"
@@ -200,7 +247,14 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_287m3"]
+[sub_resource type="Resource" id="Resource_kfe0i"]
+script = ExtResource("4_c2pfj")
+id = "default"
+priority = -1
+storyRequirements = Array[ExtResource("5_xgl8o")]([])
+autoApplyState = false
+
+[sub_resource type="Resource" id="Resource_ijshl"]
 script = ExtResource("4_fpyfw")
 saveName = "npc"
 spriteState = "default"
@@ -223,7 +277,14 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_2hdf0"]
+[sub_resource type="Resource" id="Resource_0f6ui"]
+script = ExtResource("4_c2pfj")
+id = "default"
+priority = -1
+storyRequirements = Array[ExtResource("5_xgl8o")]([])
+autoApplyState = false
+
+[sub_resource type="Resource" id="Resource_vpd6b"]
 script = ExtResource("4_fpyfw")
 saveName = "npc"
 spriteState = "default"
@@ -246,7 +307,14 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_mgp8e"]
+[sub_resource type="Resource" id="Resource_bxh1s"]
+script = ExtResource("4_c2pfj")
+id = "default"
+priority = -1
+storyRequirements = Array[ExtResource("5_xgl8o")]([])
+autoApplyState = false
+
+[sub_resource type="Resource" id="Resource_kidkm"]
 script = ExtResource("4_fpyfw")
 saveName = "npc"
 spriteState = "default"
@@ -269,7 +337,14 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_06ipj"]
+[sub_resource type="Resource" id="Resource_eixbh"]
+script = ExtResource("4_c2pfj")
+id = "default"
+priority = -1
+storyRequirements = Array[ExtResource("5_xgl8o")]([])
+autoApplyState = false
+
+[sub_resource type="Resource" id="Resource_l1cfa"]
 script = ExtResource("4_fpyfw")
 saveName = "npc"
 spriteState = "default"
@@ -325,7 +400,14 @@ size = Vector2(15, 6)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vts0p"]
 size = Vector2(24, 18)
 
-[sub_resource type="Resource" id="Resource_rdmk0"]
+[sub_resource type="Resource" id="Resource_mjlqg"]
+script = ExtResource("4_c2pfj")
+id = "default"
+priority = -1
+storyRequirements = Array[ExtResource("5_xgl8o")]([])
+autoApplyState = false
+
+[sub_resource type="Resource" id="Resource_vsy75"]
 script = ExtResource("4_fpyfw")
 saveName = "npc"
 spriteState = "default"
@@ -354,7 +436,14 @@ size = Vector2(16, 6)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gsysg"]
 size = Vector2(24, 14)
 
-[sub_resource type="Resource" id="Resource_3wr85"]
+[sub_resource type="Resource" id="Resource_hyinl"]
+script = ExtResource("4_c2pfj")
+id = "default"
+priority = -1
+storyRequirements = Array[ExtResource("5_xgl8o")]([])
+autoApplyState = false
+
+[sub_resource type="Resource" id="Resource_pwib5"]
 script = ExtResource("4_fpyfw")
 saveName = "npc"
 spriteState = "default"
@@ -383,7 +472,14 @@ size = Vector2(16, 6)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_peh4n"]
 size = Vector2(24, 14)
 
-[sub_resource type="Resource" id="Resource_e5l4l"]
+[sub_resource type="Resource" id="Resource_71ce3"]
+script = ExtResource("4_c2pfj")
+id = "default"
+priority = -1
+storyRequirements = Array[ExtResource("5_xgl8o")]([])
+autoApplyState = false
+
+[sub_resource type="Resource" id="Resource_pjuer"]
 script = ExtResource("4_fpyfw")
 saveName = "npc"
 spriteState = "default"
@@ -412,7 +508,14 @@ size = Vector2(16, 6)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fc46q"]
 size = Vector2(24, 14)
 
-[sub_resource type="Resource" id="Resource_6hwly"]
+[sub_resource type="Resource" id="Resource_gs0lh"]
+script = ExtResource("4_c2pfj")
+id = "default"
+priority = -1
+storyRequirements = Array[ExtResource("5_xgl8o")]([])
+autoApplyState = false
+
+[sub_resource type="Resource" id="Resource_g4ryv"]
 script = ExtResource("4_fpyfw")
 saveName = "npc"
 spriteState = "default"
@@ -531,7 +634,10 @@ tile_set = ExtResource("2_xe2ll")
 position = Vector2(8, 24)
 displayName = "Lady"
 saveName = "grandstone_lady1"
-data = SubResource("Resource_y2j34")
+spriteStatesDict = Dictionary[String, ExtResource("4_c2pfj")]({
+"default": SubResource("Resource_prjiw")
+})
+data = SubResource("Resource_c2pfj")
 dialogueEntries = Array[ExtResource("5_h8211")]([ExtResource("5_flmpr")])
 
 [node name="NPCSprite" parent="TilemapRoot/Lady1" index="0"]
@@ -564,10 +670,14 @@ stateSpritesDict = Dictionary[String, SpriteFrames]({
 "default": ExtResource("8_mdrcq"),
 "shards_cart": ExtResource("6_jdkva")
 })
+spriteStatesDict = Dictionary[String, ExtResource("4_c2pfj")]({
+"default": SubResource("Resource_wo1s4"),
+"shards_cart": SubResource("Resource_xuqkd")
+})
 spriteSize = Vector2i(64, 32)
 overrideSpeakerSprite = ExtResource("11_ixyvh")
 overrideSpeakerSpriteSize = Vector2i(32, 32)
-data = SubResource("Resource_7pcte")
+data = SubResource("Resource_xgl8o")
 dialogueEntries = Array[ExtResource("5_h8211")]([ExtResource("6_q1mh4")])
 facesPlayer = false
 
@@ -605,7 +715,10 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 position = Vector2(634, 11)
 displayName = "Dr. Hudson"
 saveName = "dr_hudson_grandstone"
-data = SubResource("Resource_a026r")
+spriteStatesDict = Dictionary[String, ExtResource("4_c2pfj")]({
+"default": SubResource("Resource_bdjen")
+})
+data = SubResource("Resource_tdlul")
 dialogueEntries = Array[ExtResource("5_h8211")]([ExtResource("9_i7gb8"), ExtResource("10_rabli")])
 
 [node name="NPCSprite" parent="TilemapRoot/DrHudson" index="0"]
@@ -634,7 +747,10 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 position = Vector2(617, -9)
 displayName = "Spelunker"
 saveName = "spelunker_grandstone"
-data = SubResource("Resource_74hje")
+spriteStatesDict = Dictionary[String, ExtResource("4_c2pfj")]({
+"default": SubResource("Resource_rwdin")
+})
+data = SubResource("Resource_a62mk")
 dialogueEntries = Array[ExtResource("5_h8211")]([ExtResource("10_ndj5n")])
 
 [node name="NPCSprite" parent="TilemapRoot/Spelunker" index="0"]
@@ -660,7 +776,10 @@ visible = false
 position = Vector2(-40, -81)
 displayName = "Man"
 saveName = "grandstone_market_man"
-data = SubResource("Resource_42cg0")
+spriteStatesDict = Dictionary[String, ExtResource("4_c2pfj")]({
+"default": SubResource("Resource_qd2vt")
+})
+data = SubResource("Resource_nfkfe")
 dialogueEntries = Array[ExtResource("5_h8211")]([ExtResource("17_wrdj8")])
 npcShop = ExtResource("21_3bgi6")
 
@@ -685,7 +804,10 @@ visible = false
 position = Vector2(-194, -208)
 displayName = "Man"
 saveName = "grandstone_man2"
-data = SubResource("Resource_287m3")
+spriteStatesDict = Dictionary[String, ExtResource("4_c2pfj")]({
+"default": SubResource("Resource_kfe0i")
+})
+data = SubResource("Resource_ijshl")
 dialogueEntries = Array[ExtResource("5_h8211")]([ExtResource("22_syaye"), ExtResource("23_vjxk8"), ExtResource("23_65cfo"), ExtResource("23_gbw8g")])
 
 [node name="NPCSprite" parent="TilemapRoot/Man2" index="0"]
@@ -706,7 +828,10 @@ visible = false
 position = Vector2(-174, -208)
 displayName = "Man"
 saveName = "grandstone_man3"
-data = SubResource("Resource_2hdf0")
+spriteStatesDict = Dictionary[String, ExtResource("4_c2pfj")]({
+"default": SubResource("Resource_0f6ui")
+})
+data = SubResource("Resource_vpd6b")
 dialogueEntries = Array[ExtResource("5_h8211")]([ExtResource("24_fp8pg"), ExtResource("28_3x5yj")])
 
 [node name="NPCSprite" parent="TilemapRoot/Man3" index="0"]
@@ -728,7 +853,10 @@ visible = false
 position = Vector2(-23, 232)
 displayName = "Spelunker"
 saveName = "grandstone_spelunker2"
-data = SubResource("Resource_mgp8e")
+spriteStatesDict = Dictionary[String, ExtResource("4_c2pfj")]({
+"default": SubResource("Resource_bxh1s")
+})
+data = SubResource("Resource_kidkm")
 dialogueEntries = Array[ExtResource("5_h8211")]([ExtResource("22_00ip3")])
 
 [node name="NPCSprite" parent="TilemapRoot/Spelunker2" index="0"]
@@ -748,7 +876,10 @@ visible = false
 [node name="EtchingStone" parent="TilemapRoot" instance=ExtResource("3_d2cxy")]
 position = Vector2(192, -50)
 displayName = "Etching Stone"
-data = SubResource("Resource_06ipj")
+spriteStatesDict = Dictionary[String, ExtResource("4_c2pfj")]({
+"default": SubResource("Resource_eixbh")
+})
+data = SubResource("Resource_l1cfa")
 dialogueEntries = Array[ExtResource("5_h8211")]([ExtResource("22_b052n")])
 facesPlayer = false
 
@@ -778,7 +909,10 @@ visible = false
 [node name="ArmorySign" parent="TilemapRoot" instance=ExtResource("3_d2cxy")]
 position = Vector2(-268, 171)
 displayName = "Sign"
-data = SubResource("Resource_rdmk0")
+spriteStatesDict = Dictionary[String, ExtResource("4_c2pfj")]({
+"default": SubResource("Resource_mjlqg")
+})
+data = SubResource("Resource_vsy75")
 dialogueEntries = Array[ExtResource("5_h8211")]([ExtResource("33_wtduk")])
 facesPlayer = false
 
@@ -812,7 +946,10 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 [node name="InnSign" parent="TilemapRoot" instance=ExtResource("3_d2cxy")]
 position = Vector2(-60, 107)
 displayName = "Sign"
-data = SubResource("Resource_3wr85")
+spriteStatesDict = Dictionary[String, ExtResource("4_c2pfj")]({
+"default": SubResource("Resource_hyinl")
+})
+data = SubResource("Resource_pwib5")
 dialogueEntries = Array[ExtResource("5_h8211")]([ExtResource("36_bf7qh")])
 facesPlayer = false
 
@@ -846,7 +983,10 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 [node name="BazaarSign" parent="TilemapRoot" instance=ExtResource("3_d2cxy")]
 position = Vector2(-268, -53)
 displayName = "Sign"
-data = SubResource("Resource_e5l4l")
+spriteStatesDict = Dictionary[String, ExtResource("4_c2pfj")]({
+"default": SubResource("Resource_71ce3")
+})
+data = SubResource("Resource_pjuer")
 dialogueEntries = Array[ExtResource("5_h8211")]([ExtResource("38_khawi")])
 facesPlayer = false
 
@@ -880,7 +1020,10 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 [node name="RestaurantSign" parent="TilemapRoot" instance=ExtResource("3_d2cxy")]
 position = Vector2(204, 59)
 displayName = "Sign"
-data = SubResource("Resource_6hwly")
+spriteStatesDict = Dictionary[String, ExtResource("4_c2pfj")]({
+"default": SubResource("Resource_gs0lh")
+})
+data = SubResource("Resource_g4ryv")
 dialogueEntries = Array[ExtResource("5_h8211")]([ExtResource("42_gr5h7")])
 facesPlayer = false
 

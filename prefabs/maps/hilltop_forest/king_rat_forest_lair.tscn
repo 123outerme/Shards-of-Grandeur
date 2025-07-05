@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=4 uid="uid://746qgtr6tybv"]
+[gd_scene load_steps=29 format=4 uid="uid://746qgtr6tybv"]
 
 [ext_resource type="Script" uid="uid://vg00rfnn3346" path="res://scripts/overworld/map_script.gd" id="1_x82e2"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_gyw6c"]
@@ -8,12 +8,58 @@
 [ext_resource type="Script" uid="uid://8t63d3un22ug" path="res://scripts/npcs/npc_data.gd" id="4_dewor"]
 [ext_resource type="Resource" uid="uid://ds07os34cyne0" path="res://gamedata/dialogue/hilltop_forest/king_rat/king_rat_1.tres" id="5_6u2mh"]
 [ext_resource type="SpriteFrames" uid="uid://bm53bw0yjgx4t" path="res://graphics/animations/a_king_rat.tres" id="5_7is2y"]
+[ext_resource type="SpriteFrames" uid="uid://chk2rrv6pkke1" path="res://graphics/animations/a_usurped_king_rat.tres" id="5_v6did"]
+[ext_resource type="Script" uid="uid://bwcja16pmp3mf" path="res://scripts/npcs/npc_sprite_state.gd" id="6_j0tet"]
 [ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="6_ojjv6"]
 [ext_resource type="Resource" uid="uid://d01uh7t7qa558" path="res://gamedata/dialogue/hilltop_forest/king_rat/king_rat_failed_fight.tres" id="7_pc4yy"]
 [ext_resource type="Resource" uid="uid://dyxrdxg3x0pd0" path="res://gamedata/dialogue/hilltop_forest/king_rat/king_rat_failed_defeated.tres" id="7_vq8kf"]
 [ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="8_6226m"]
 [ext_resource type="PackedScene" uid="uid://b1u1r7encrpgs" path="res://prefabs/overworld/camera_hold_zone.tscn" id="12_2jrgp"]
 [ext_resource type="Resource" uid="uid://xfb2kvpv6si7" path="res://gamedata/dialogue/hilltop_forest/king_rat/king_rat_defeated.tres" id="12_r8bnr"]
+
+[sub_resource type="Resource" id="Resource_tcrrf"]
+script = ExtResource("6_j0tet")
+id = "default"
+priority = -1
+spriteFrames = ExtResource("5_7is2y")
+storyRequirements = Array[ExtResource("8_6226m")]([])
+autoApplyState = false
+
+[sub_resource type="Resource" id="Resource_j0tet"]
+script = ExtResource("8_6226m")
+minAct = 0
+maxAct = -1
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqPlacesVisited = Array[String]([])
+prereqSpecialBattles = Array[String](["king_rat_encounter"])
+prereqDefeatedEnemies = Array[String]([])
+prereqPuzzles = Array[String]([])
+prereqPuzzleStates = Dictionary[String, Array]({})
+prereqDiscoveredEvolutions = Array[String]([])
+prereqHavingFollowers = Array[String]([])
+prereqHasItems = Array[ExtResource("4_cay33")]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String]([])
+invalidAfterVistingPlaces = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromPuzzleStates = Dictionary[String, Array]({})
+invalidFromHavingFollowers = Array[String]([])
+invalidFromHavingItems = Array[ExtResource("4_cay33")]([])
+metadata/_custom_type_script = "uid://bjesn36acj0uh"
+
+[sub_resource type="Resource" id="Resource_g020h"]
+script = ExtResource("6_j0tet")
+id = "usurped"
+priority = 0
+spriteFrames = ExtResource("5_v6did")
+storyRequirements = Array[ExtResource("8_6226m")]([SubResource("Resource_j0tet")])
+autoApplyState = true
+metadata/_custom_type_script = "uid://bwcja16pmp3mf"
 
 [sub_resource type="Resource" id="Resource_pv6tb"]
 script = ExtResource("8_6226m")
@@ -41,7 +87,7 @@ invalidFromPuzzleStates = Dictionary[String, Array]({})
 invalidFromHavingFollowers = Array[String]([])
 invalidFromHavingItems = Array[ExtResource("4_cay33")]([])
 
-[sub_resource type="Resource" id="Resource_cay33"]
+[sub_resource type="Resource" id="Resource_m2m81"]
 script = ExtResource("4_dewor")
 saveName = "npc"
 spriteState = "default"
@@ -148,9 +194,17 @@ position = Vector2(-6, -148)
 displayName = "King Rat"
 saveName = "king_rat_forest"
 facesRight = false
+stateSpritesDict = Dictionary[String, SpriteFrames]({
+"default": ExtResource("5_7is2y"),
+"usurped": ExtResource("5_v6did")
+})
+spriteStatesDict = Dictionary[String, ExtResource("6_j0tet")]({
+"default": SubResource("Resource_tcrrf"),
+"usurped": SubResource("Resource_g020h")
+})
 spriteSize = Vector2i(32, 32)
 spawnRequirements = SubResource("Resource_pv6tb")
-data = SubResource("Resource_cay33")
+data = SubResource("Resource_m2m81")
 dialogueEntries = Array[ExtResource("6_ojjv6")]([ExtResource("5_6u2mh"), ExtResource("7_pc4yy"), ExtResource("7_vq8kf"), ExtResource("12_r8bnr")])
 facesPlayer = false
 
@@ -194,15 +248,18 @@ shape = SubResource("RectangleShape2D_lttce")
 position = Vector2(0, -35)
 
 [node name="OneTileWideNav" type="NavigationRegion2D" parent="."]
+visible = false
 modulate = Color(1, 1, 1, 0)
 navigation_polygon = SubResource("NavigationPolygon_hwgpv")
 
 [node name="TwoTilesWideNav" type="NavigationRegion2D" parent="."]
+visible = false
 modulate = Color(1, 1, 1, 0)
 navigation_polygon = SubResource("NavigationPolygon_tohlk")
 navigation_layers = 2
 
 [node name="ThreeTilesWideNav" type="NavigationRegion2D" parent="."]
+visible = false
 modulate = Color(1, 1, 1, 0)
 navigation_polygon = SubResource("NavigationPolygon_8fg56")
 navigation_layers = 4

@@ -1,4 +1,4 @@
-[gd_scene load_steps=87 format=4 uid="uid://0bhmevnqm1m1"]
+[gd_scene load_steps=103 format=4 uid="uid://0bhmevnqm1m1"]
 
 [ext_resource type="Script" uid="uid://vg00rfnn3346" path="res://scripts/overworld/map_script.gd" id="1_r7bn8"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_7r2vx"]
@@ -9,6 +9,7 @@
 [ext_resource type="Resource" uid="uid://dpp6m8wi1pbk2" path="res://gamedata/dialogue/standstill/standstill_sign/standstill_sign_burned.tres" id="4_uhpsg"]
 [ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="6_6ui0f"]
 [ext_resource type="SpriteFrames" uid="uid://c6uukt3gc45t2" path="res://graphics/animations/a_lance_burned.tres" id="8_c8jjp"]
+[ext_resource type="Script" uid="uid://bwcja16pmp3mf" path="res://scripts/npcs/npc_sprite_state.gd" id="10_1my7m"]
 [ext_resource type="SpriteFrames" uid="uid://bwkavw4libfps" path="res://graphics/animations/a_alessia_burned_collapsed.tres" id="11_6103n"]
 [ext_resource type="PackedScene" uid="uid://coqeee0n1wuob" path="res://prefabs/entities/interactable_decoration.tscn" id="14_ouev7"]
 [ext_resource type="SpriteFrames" uid="uid://dhsuhevt6uhfc" path="res://graphics/animations/a_airship.tres" id="15_ie752"]
@@ -61,7 +62,24 @@ size = Vector2(24, 14)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_epj4x"]
 size = Vector2(16, 6)
 
-[sub_resource type="Resource" id="Resource_6r2dj"]
+[sub_resource type="Resource" id="Resource_1mx0a"]
+script = ExtResource("10_1my7m")
+id = "default"
+priority = -1
+spriteFrames = ExtResource("19_6w4i4")
+storyRequirements = Array[ExtResource("27_pcq27")]([])
+autoApplyState = false
+
+[sub_resource type="Resource" id="Resource_1my7m"]
+script = ExtResource("10_1my7m")
+id = "burned"
+priority = 0
+spriteFrames = ExtResource("8_c8jjp")
+storyRequirements = Array[ExtResource("27_pcq27")]([])
+autoApplyState = false
+metadata/_custom_type_script = "uid://bwcja16pmp3mf"
+
+[sub_resource type="Resource" id="Resource_y4u18"]
 script = ExtResource("4_7u8a6")
 saveName = "npc"
 spriteState = "burned"
@@ -84,7 +102,23 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_1my7m"]
+[sub_resource type="Resource" id="Resource_laws7"]
+script = ExtResource("10_1my7m")
+id = "default"
+priority = -1
+storyRequirements = Array[ExtResource("27_pcq27")]([])
+autoApplyState = false
+
+[sub_resource type="Resource" id="Resource_iaij5"]
+script = ExtResource("10_1my7m")
+id = ""
+priority = 0
+spriteFrames = ExtResource("11_6103n")
+storyRequirements = Array[ExtResource("27_pcq27")]([])
+autoApplyState = false
+metadata/_custom_type_script = "uid://bwcja16pmp3mf"
+
+[sub_resource type="Resource" id="Resource_bviyn"]
 script = ExtResource("4_7u8a6")
 saveName = "npc"
 spriteState = "burned_collapsed"
@@ -113,7 +147,14 @@ size = Vector2(8, 12)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ecl20"]
 size = Vector2(84, 17)
 
-[sub_resource type="Resource" id="Resource_1mx0a"]
+[sub_resource type="Resource" id="Resource_334rh"]
+script = ExtResource("10_1my7m")
+id = "default"
+priority = -1
+storyRequirements = Array[ExtResource("27_pcq27")]([])
+autoApplyState = false
+
+[sub_resource type="Resource" id="Resource_vcivq"]
 script = ExtResource("4_7u8a6")
 saveName = "npc"
 spriteState = "default"
@@ -136,7 +177,14 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_y4u18"]
+[sub_resource type="Resource" id="Resource_roksd"]
+script = ExtResource("10_1my7m")
+id = "default"
+priority = -1
+storyRequirements = Array[ExtResource("27_pcq27")]([])
+autoApplyState = false
+
+[sub_resource type="Resource" id="Resource_m8oj1"]
 script = ExtResource("4_7u8a6")
 saveName = "npc"
 spriteState = "default"
@@ -159,7 +207,14 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_laws7"]
+[sub_resource type="Resource" id="Resource_rfiw0"]
+script = ExtResource("10_1my7m")
+id = "default"
+priority = -1
+storyRequirements = Array[ExtResource("27_pcq27")]([])
+autoApplyState = false
+
+[sub_resource type="Resource" id="Resource_0q4jf"]
 script = ExtResource("4_7u8a6")
 saveName = "npc"
 spriteState = "default"
@@ -182,7 +237,14 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_bviyn"]
+[sub_resource type="Resource" id="Resource_nrbjt"]
+script = ExtResource("10_1my7m")
+id = "default"
+priority = -1
+storyRequirements = Array[ExtResource("27_pcq27")]([])
+autoApplyState = false
+
+[sub_resource type="Resource" id="Resource_3f3ry"]
 script = ExtResource("4_7u8a6")
 saveName = "npc"
 spriteState = "default"
@@ -205,7 +267,14 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_334rh"]
+[sub_resource type="Resource" id="Resource_52c5r"]
+script = ExtResource("10_1my7m")
+id = "default"
+priority = -1
+storyRequirements = Array[ExtResource("27_pcq27")]([])
+autoApplyState = false
+
+[sub_resource type="Resource" id="Resource_swkjo"]
 script = ExtResource("4_7u8a6")
 saveName = "npc"
 spriteState = "default"
@@ -228,7 +297,24 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_vcivq"]
+[sub_resource type="Resource" id="Resource_8n4mu"]
+script = ExtResource("10_1my7m")
+id = "default"
+priority = -1
+spriteFrames = ExtResource("20_06bi3")
+storyRequirements = Array[ExtResource("27_pcq27")]([])
+autoApplyState = false
+
+[sub_resource type="Resource" id="Resource_jyd2l"]
+script = ExtResource("10_1my7m")
+id = "disguised"
+priority = 0
+spriteFrames = ExtResource("20_ixyel")
+storyRequirements = Array[ExtResource("27_pcq27")]([])
+autoApplyState = false
+metadata/_custom_type_script = "uid://bwcja16pmp3mf"
+
+[sub_resource type="Resource" id="Resource_2oqdf"]
 script = ExtResource("4_7u8a6")
 saveName = "npc"
 spriteState = "disguised"
@@ -251,7 +337,14 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_roksd"]
+[sub_resource type="Resource" id="Resource_tksej"]
+script = ExtResource("10_1my7m")
+id = "default"
+priority = -1
+storyRequirements = Array[ExtResource("27_pcq27")]([])
+autoApplyState = false
+
+[sub_resource type="Resource" id="Resource_r7i6o"]
 script = ExtResource("4_7u8a6")
 saveName = "npc"
 spriteState = "default"
@@ -276,7 +369,14 @@ dialogueLine = -1
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k0swo"]
 
-[sub_resource type="Resource" id="Resource_m8oj1"]
+[sub_resource type="Resource" id="Resource_dkmha"]
+script = ExtResource("10_1my7m")
+id = "default"
+priority = -1
+storyRequirements = Array[ExtResource("27_pcq27")]([])
+autoApplyState = false
+
+[sub_resource type="Resource" id="Resource_np0hv"]
 script = ExtResource("4_7u8a6")
 saveName = "npc"
 spriteState = "default"
@@ -305,7 +405,14 @@ size = Vector2(16, 6)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7q2nc"]
 size = Vector2(24, 14)
 
-[sub_resource type="Resource" id="Resource_rfiw0"]
+[sub_resource type="Resource" id="Resource_gxlgf"]
+script = ExtResource("10_1my7m")
+id = "default"
+priority = -1
+storyRequirements = Array[ExtResource("27_pcq27")]([])
+autoApplyState = false
+
+[sub_resource type="Resource" id="Resource_vi8au"]
 script = ExtResource("4_7u8a6")
 saveName = "npc"
 spriteState = "default"
@@ -328,7 +435,14 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_0q4jf"]
+[sub_resource type="Resource" id="Resource_wx7g8"]
+script = ExtResource("10_1my7m")
+id = "default"
+priority = -1
+storyRequirements = Array[ExtResource("27_pcq27")]([])
+autoApplyState = false
+
+[sub_resource type="Resource" id="Resource_gjjga"]
 script = ExtResource("4_7u8a6")
 saveName = "npc"
 spriteState = "default"
@@ -543,7 +657,11 @@ stateSpritesDict = Dictionary[String, SpriteFrames]({
 "burned": ExtResource("8_c8jjp"),
 "default": ExtResource("19_6w4i4")
 })
-data = SubResource("Resource_6r2dj")
+spriteStatesDict = Dictionary[String, ExtResource("10_1my7m")]({
+"burned": SubResource("Resource_1my7m"),
+"default": SubResource("Resource_1mx0a")
+})
+data = SubResource("Resource_y4u18")
 
 [node name="NPCSprite" parent="TilemapRoot/Lance" index="0"]
 sprite_frames = ExtResource("8_c8jjp")
@@ -577,7 +695,11 @@ stateSpritesDict = Dictionary[String, SpriteFrames]({
 "burned_collapsed": ExtResource("11_6103n"),
 "default": null
 })
-data = SubResource("Resource_1my7m")
+spriteStatesDict = Dictionary[String, ExtResource("10_1my7m")]({
+"burned_collapsed": SubResource("Resource_iaij5"),
+"default": SubResource("Resource_laws7")
+})
+data = SubResource("Resource_bviyn")
 
 [node name="NPCSprite" parent="TilemapRoot/Alessia" index="0"]
 sprite_frames = ExtResource("11_6103n")
@@ -625,8 +747,11 @@ position = Vector2(243, -104)
 displayName = "Helia"
 saveName = "helia_standstill_burned"
 loadFlipH = true
+spriteStatesDict = Dictionary[String, ExtResource("10_1my7m")]({
+"default": SubResource("Resource_334rh")
+})
 spawnRequirements = ExtResource("16_c610c")
-data = SubResource("Resource_1mx0a")
+data = SubResource("Resource_vcivq")
 
 [node name="NPCSprite" parent="TilemapRoot/Helia" index="0"]
 sprite_frames = ExtResource("18_i1gh5")
@@ -651,8 +776,11 @@ position = Vector2(-181, 112)
 displayName = "Mage"
 saveName = "standstill_chain_legion_mage1"
 loadFlipH = true
+spriteStatesDict = Dictionary[String, ExtResource("10_1my7m")]({
+"default": SubResource("Resource_roksd")
+})
 spawnRequirements = ExtResource("16_c610c")
-data = SubResource("Resource_y4u18")
+data = SubResource("Resource_m8oj1")
 dialogueEntries = Array[ExtResource("6_6ui0f")]([ExtResource("17_2flwo")])
 
 [node name="NPCSprite" parent="TilemapRoot/ChainLegionMage1" index="0"]
@@ -674,8 +802,11 @@ position = Vector2(-48, -18)
 displayName = "Mage"
 saveName = "standstill_chain_legion_mage2"
 loadFlipH = true
+spriteStatesDict = Dictionary[String, ExtResource("10_1my7m")]({
+"default": SubResource("Resource_rfiw0")
+})
 spawnRequirements = ExtResource("16_c610c")
-data = SubResource("Resource_laws7")
+data = SubResource("Resource_0q4jf")
 dialogueEntries = Array[ExtResource("6_6ui0f")]([ExtResource("19_e2xf6")])
 
 [node name="NPCSprite" parent="TilemapRoot/ChainLegionMage2" index="0"]
@@ -697,8 +828,11 @@ position = Vector2(0, 94)
 displayName = "Mage"
 saveName = "standstill_chain_legion_mage3"
 loadFlipH = true
+spriteStatesDict = Dictionary[String, ExtResource("10_1my7m")]({
+"default": SubResource("Resource_nrbjt")
+})
 spawnRequirements = ExtResource("16_c610c")
-data = SubResource("Resource_bviyn")
+data = SubResource("Resource_3f3ry")
 dialogueEntries = Array[ExtResource("6_6ui0f")]([ExtResource("20_8fp06")])
 
 [node name="NPCSprite" parent="TilemapRoot/ChainLegionMage3" index="0"]
@@ -720,8 +854,11 @@ position = Vector2(232, -137)
 displayName = "Mage"
 saveName = "standstill_chain_legion_mage4"
 loadFlipH = true
+spriteStatesDict = Dictionary[String, ExtResource("10_1my7m")]({
+"default": SubResource("Resource_52c5r")
+})
 spawnRequirements = ExtResource("16_c610c")
-data = SubResource("Resource_334rh")
+data = SubResource("Resource_swkjo")
 
 [node name="NPCSprite" parent="TilemapRoot/ChainLegionMage4" index="0"]
 sprite_frames = ExtResource("19_s3yhh")
@@ -747,7 +884,11 @@ stateSpritesDict = Dictionary[String, SpriteFrames]({
 "default": ExtResource("20_06bi3"),
 "disguised": ExtResource("20_ixyel")
 })
-data = SubResource("Resource_vcivq")
+spriteStatesDict = Dictionary[String, ExtResource("10_1my7m")]({
+"default": SubResource("Resource_8n4mu"),
+"disguised": SubResource("Resource_jyd2l")
+})
+data = SubResource("Resource_2oqdf")
 
 [node name="NPCSprite" parent="TilemapRoot/WarlockAgent" index="0"]
 sprite_frames = ExtResource("20_ixyel")
@@ -769,7 +910,10 @@ visible = false
 position = Vector2(-40, 66)
 displayName = "Shopkeeper"
 saveName = "standstill_shopkeep_burned"
-data = SubResource("Resource_roksd")
+spriteStatesDict = Dictionary[String, ExtResource("10_1my7m")]({
+"default": SubResource("Resource_tksej")
+})
+data = SubResource("Resource_r7i6o")
 dialogueEntries = Array[ExtResource("6_6ui0f")]([ExtResource("21_ajjx8")])
 
 [node name="NPCSprite" parent="TilemapRoot/GeneralStoreShopkeep" index="0"]
@@ -794,7 +938,10 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 [node name="ArmorySign" parent="TilemapRoot" instance=ExtResource("3_ai1ib")]
 position = Vector2(147, -146)
 displayName = "Sign"
-data = SubResource("Resource_m8oj1")
+spriteStatesDict = Dictionary[String, ExtResource("10_1my7m")]({
+"default": SubResource("Resource_dkmha")
+})
+data = SubResource("Resource_np0hv")
 dialogueEntries = Array[ExtResource("6_6ui0f")]([ExtResource("23_asm6w")])
 facesPlayer = false
 
@@ -828,7 +975,10 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 [node name="InnSign" parent="TilemapRoot" instance=ExtResource("3_ai1ib")]
 position = Vector2(-93, -114)
 displayName = "Sign"
-data = SubResource("Resource_rfiw0")
+spriteStatesDict = Dictionary[String, ExtResource("10_1my7m")]({
+"default": SubResource("Resource_gxlgf")
+})
+data = SubResource("Resource_vi8au")
 dialogueEntries = Array[ExtResource("6_6ui0f")]([ExtResource("4_uhpsg")])
 facesPlayer = false
 
@@ -862,7 +1012,10 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 [node name="GeneralStoreSign" parent="TilemapRoot" instance=ExtResource("3_ai1ib")]
 position = Vector2(-19, 62)
 displayName = "Sign"
-data = SubResource("Resource_0q4jf")
+spriteStatesDict = Dictionary[String, ExtResource("10_1my7m")]({
+"default": SubResource("Resource_wx7g8")
+})
+data = SubResource("Resource_gjjga")
 dialogueEntries = Array[ExtResource("6_6ui0f")]([ExtResource("20_llh8f")])
 facesPlayer = false
 
