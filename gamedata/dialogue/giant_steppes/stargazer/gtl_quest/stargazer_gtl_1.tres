@@ -1,9 +1,12 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=7 format=3 uid="uid://ctnjudjjx8g6k"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=16 format=3 uid="uid://ctnjudjjx8g6k"]
 
 [ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_nskpg"]
 [ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_e5ewf"]
 [ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_xvjij"]
 [ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_e5ewf"]
+[ext_resource type="Script" uid="uid://b6oofnelefs8o" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_eg41i"]
+[ext_resource type="Script" uid="uid://fw22o8hbosnk" path="res://scripts/inventory/inventory_slot.gd" id="5_rpahf"]
+[ext_resource type="Script" uid="uid://fsrd48o26kgo" path="res://scripts/dialogue/story_reqs_dialogue_item.gd" id="6_7wm5l"]
 
 [sub_resource type="Resource" id="Resource_3hxew"]
 script = ExtResource("1_nskpg")
@@ -17,7 +20,42 @@ animateActorIsPlayer = false
 choices = Array[ExtResource("2_e5ewf")]([])
 metadata/_custom_type_script = "uid://grt2yrupha8c"
 
+[sub_resource type="Resource" id="Resource_o15cl"]
+script = ExtResource("2_e5ewf")
+choiceBtn = "None."
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_eg41i")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = true
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
 [sub_resource type="Resource" id="Resource_xvjij"]
+script = ExtResource("1_nskpg")
+lines = Array[String](["This may seem odd, but that could be caused by the shooting star I saw fall towards that area.", "So there was no crater?"])
+minShowSecs = Array[float]([])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_e5ewf")]([SubResource("Resource_o15cl")])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[sub_resource type="Resource" id="Resource_eg41i"]
+script = ExtResource("1_nskpg")
+lines = Array[String](["Well, that seems to be a certified mystery, then."])
+minShowSecs = Array[float]([])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_e5ewf")]([])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[sub_resource type="Resource" id="Resource_m7fx3"]
 script = ExtResource("1_nskpg")
 lines = Array[String](["TBD"])
 minShowSecs = Array[float]([])
@@ -29,10 +67,62 @@ animateActorIsPlayer = false
 choices = Array[ExtResource("2_e5ewf")]([])
 metadata/_custom_type_script = "uid://grt2yrupha8c"
 
+[sub_resource type="Resource" id="Resource_siwck"]
+script = ExtResource("2_xvjij")
+minAct = 4
+maxAct = -1
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqPlacesVisited = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+prereqDefeatedEnemies = Array[String]([])
+prereqPuzzles = Array[String]([])
+prereqPuzzleStates = Dictionary[String, Array]({})
+prereqDiscoveredEvolutions = Array[String]([])
+prereqHavingFollowers = Array[String]([])
+prereqHasItems = Array[ExtResource("5_rpahf")]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String]([])
+invalidAfterVistingPlaces = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromPuzzleStates = Dictionary[String, Array]({})
+invalidFromHavingFollowers = Array[String]([])
+invalidFromHavingItems = Array[ExtResource("5_rpahf")]([])
+metadata/_custom_type_script = "uid://bjesn36acj0uh"
+
+[sub_resource type="Resource" id="Resource_rpahf"]
+script = ExtResource("2_e5ewf")
+choiceBtn = "Okay."
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_eg41i")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = "A Pile of Stardust#See the Stargazer"
+isDeclineChoice = false
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_b1lgl"]
+script = ExtResource("6_7wm5l")
+alternativeDialogueItems = Array[ExtResource("1_nskpg")]([SubResource("Resource_m7fx3")])
+alternativeStoryReqs = Array[ExtResource("2_xvjij")]([SubResource("Resource_siwck")])
+lines = Array[String](["I would love to be able to devote some time to this, but with your Radiant War still ongoing, I cannot afford to be sidetracked.", "If you think it could be a threat to our plans, investigate for yourself. I will help you once we stop Steelspire."])
+minShowSecs = Array[float]([])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_e5ewf")]([SubResource("Resource_rpahf")])
+metadata/_custom_type_script = "uid://fsrd48o26kgo"
+
 [resource]
 script = ExtResource("3_e5ewf")
 entryId = "dusty_footprints"
-items = Array[ExtResource("1_nskpg")]([SubResource("Resource_3hxew"), SubResource("Resource_xvjij")])
+items = Array[ExtResource("1_nskpg")]([SubResource("Resource_3hxew"), SubResource("Resource_xvjij"), SubResource("Resource_eg41i"), SubResource("Resource_b1lgl")])
 ordStoryRequirements = Array[ExtResource("2_xvjij")]([])
 closesDialogue = false
 fullHealsPlayer = false

@@ -88,7 +88,7 @@ func _story_requirements_updated(initializing: bool = false) -> void:
 			deactivate()
 	
 	## check if interact sprite can be shown
-	if self in PlayerFinder.player.interactables and can_show_interact_sprite():
+	if PlayerFinder.player != null and self in PlayerFinder.player.interactables and can_show_interact_sprite():
 		show_interact_sprite()
 
 func deactivate() -> void:

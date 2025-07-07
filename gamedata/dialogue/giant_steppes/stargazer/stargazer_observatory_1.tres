@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=13 format=3 uid="uid://bay4subucd5tt"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=14 format=3 uid="uid://bay4subucd5tt"]
 
 [ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_acjcu"]
 [ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_foe53"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_ubqt2"]
 [ext_resource type="Resource" uid="uid://bjur1a7ex14gq" path="res://gamedata/dialogue/giant_steppes/stargazer/gtl_quest/stargazer_gtl_hint.tres" id="4_kd5lx"]
 [ext_resource type="Resource" uid="uid://bbgwe8pu4vh0u" path="res://gamedata/dialogue/giant_steppes/stargazer/act2_training/stargazer_training_start_demo.tres" id="4_w4ypg"]
+[ext_resource type="Resource" uid="uid://ctnjudjjx8g6k" path="res://gamedata/dialogue/giant_steppes/stargazer/gtl_quest/stargazer_gtl_1.tres" id="6_aof28"]
 
 [sub_resource type="Resource" id="Resource_w4ypg"]
 script = ExtResource("2_ubqt2")
@@ -46,6 +47,7 @@ metadata/_custom_type_script = "uid://bk6klhv2ls55w"
 [sub_resource type="Resource" id="Resource_yvq38"]
 script = ExtResource("2_ubqt2")
 choiceBtn = "Answers."
+leadsTo = ExtResource("6_aof28")
 returnsToParentId = ""
 randomDialogues = Array[ExtResource("3_kd5lx")]([])
 repeatsItem = false
