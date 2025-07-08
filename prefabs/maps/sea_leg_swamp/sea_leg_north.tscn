@@ -1,4 +1,4 @@
-[gd_scene load_steps=86 format=4 uid="uid://c2stj2e7k8167"]
+[gd_scene load_steps=100 format=4 uid="uid://c2stj2e7k8167"]
 
 [ext_resource type="Script" uid="uid://vg00rfnn3346" path="res://scripts/overworld/map_script.gd" id="1_6bca4"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_pq7tu"]
@@ -18,6 +18,8 @@
 [ext_resource type="PackedScene" uid="uid://cdnsjlf3gwbkf" path="res://prefabs/entities/ground_item.tscn" id="8_dtr3b"]
 [ext_resource type="PackedScene" uid="uid://d3rsvv5iihm7t" path="res://prefabs/overworld/warp_zone.tscn" id="9_1qceu"]
 [ext_resource type="Resource" uid="uid://b14w15l2gg5oc" path="res://gamedata/combatants/storm_swarm/storm_swarm.tres" id="10_hqwcv"]
+[ext_resource type="Resource" uid="uid://c3cppk4xbg6ff" path="res://gamedata/ground_items/sea_leg_swamp_north/sea_leg_north_mem_shard.tres" id="11_pes0k"]
+[ext_resource type="Resource" uid="uid://0ex746c72v3l" path="res://gamedata/ground_items/sea_leg_swamp_north/sea_leg_north_distilled_potion.tres" id="12_1t4kg"]
 [ext_resource type="Resource" uid="uid://bsx15gtbnpwml" path="res://gamedata/combatants/blob/blob.tres" id="12_4pw14"]
 [ext_resource type="Resource" uid="uid://w2rvne4y0561" path="res://gamedata/combatants/cloud_gull/cloud_gull.tres" id="12_fsvrx"]
 [ext_resource type="Resource" uid="uid://bhg4i01ukcdvd" path="res://gamedata/combatants/rat/rat.tres" id="16_vm6dd"]
@@ -120,18 +122,56 @@ disabled = false
 spawnedLastEncounter = false
 metadata/_custom_type_script = "uid://dioty4gjx3hdu"
 
+[sub_resource type="Resource" id="Resource_kdy62"]
+script = ExtResource("6_u2x51")
+combatant = ExtResource("12_4pw14")
+weight = 0.45
+metadata/_custom_type_script = "uid://dga8cpwmm0j6h"
+
+[sub_resource type="Resource" id="Resource_ta8rt"]
+script = ExtResource("6_u2x51")
+combatant = ExtResource("10_hqwcv")
+weight = 0.35
+metadata/_custom_type_script = "uid://dga8cpwmm0j6h"
+
+[sub_resource type="Resource" id="Resource_hh1li"]
+script = ExtResource("6_u2x51")
+weight = 0.2
+metadata/_custom_type_script = "uid://dga8cpwmm0j6h"
+
+[sub_resource type="Resource" id="Resource_sr372"]
+script = ExtResource("6_u2x51")
+combatant = ExtResource("17_qvhip")
+weight = 0.55
+metadata/_custom_type_script = "uid://dga8cpwmm0j6h"
+
+[sub_resource type="Resource" id="Resource_5bs4n"]
+script = ExtResource("6_u2x51")
+combatant = ExtResource("18_tp6mj")
+weight = 0.25
+metadata/_custom_type_script = "uid://dga8cpwmm0j6h"
+
+[sub_resource type="Resource" id="Resource_plk01"]
+script = ExtResource("6_u2x51")
+weight = 0.2
+metadata/_custom_type_script = "uid://dga8cpwmm0j6h"
+
 [sub_resource type="Resource" id="Resource_fsvrx"]
 script = ExtResource("8_b8dfc")
 combatantsMinLevel = 21
 combatantsMaxLevel = 23
 combatantsLvToPlayerLvRatio = 1.0
 levelStages = Array[ExtResource("7_o1d7x")]([])
-combatant2Options = Array[ExtResource("6_u2x51")]([])
-combatant3Options = Array[ExtResource("6_u2x51")]([])
+combatant2Options = Array[ExtResource("6_u2x51")]([SubResource("Resource_kdy62"), SubResource("Resource_ta8rt"), SubResource("Resource_hh1li")])
+combatant3Options = Array[ExtResource("6_u2x51")]([SubResource("Resource_sr372"), SubResource("Resource_5bs4n"), SubResource("Resource_plk01")])
+combatant1 = ExtResource("12_4pw14")
 specialRules = 0
 customWinText = ""
 battleMapPath = ""
 metadata/_custom_type_script = "uid://dllqv5vxrou7r"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1t4kg"]
+size = Vector2(214, 155)
 
 [sub_resource type="Resource" id="Resource_4pw14"]
 script = ExtResource("5_1qceu")
@@ -140,18 +180,44 @@ disabled = false
 spawnedLastEncounter = false
 metadata/_custom_type_script = "uid://dioty4gjx3hdu"
 
+[sub_resource type="Resource" id="Resource_hpsnl"]
+script = ExtResource("6_u2x51")
+combatant = ExtResource("10_hqwcv")
+weight = 0.85
+metadata/_custom_type_script = "uid://dga8cpwmm0j6h"
+
+[sub_resource type="Resource" id="Resource_erk3v"]
+script = ExtResource("6_u2x51")
+weight = 0.15
+metadata/_custom_type_script = "uid://dga8cpwmm0j6h"
+
+[sub_resource type="Resource" id="Resource_x2fx6"]
+script = ExtResource("6_u2x51")
+combatant = ExtResource("10_hqwcv")
+weight = 0.85
+metadata/_custom_type_script = "uid://dga8cpwmm0j6h"
+
+[sub_resource type="Resource" id="Resource_447ro"]
+script = ExtResource("6_u2x51")
+weight = 0.15
+metadata/_custom_type_script = "uid://dga8cpwmm0j6h"
+
 [sub_resource type="Resource" id="Resource_vm6dd"]
 script = ExtResource("8_b8dfc")
 combatantsMinLevel = 21
 combatantsMaxLevel = 22
 combatantsLvToPlayerLvRatio = 1.0
 levelStages = Array[ExtResource("7_o1d7x")]([])
-combatant2Options = Array[ExtResource("6_u2x51")]([])
-combatant3Options = Array[ExtResource("6_u2x51")]([])
+combatant2Options = Array[ExtResource("6_u2x51")]([SubResource("Resource_hpsnl"), SubResource("Resource_erk3v")])
+combatant3Options = Array[ExtResource("6_u2x51")]([SubResource("Resource_x2fx6"), SubResource("Resource_447ro")])
+combatant1 = ExtResource("10_hqwcv")
 specialRules = 0
 customWinText = ""
 battleMapPath = ""
 metadata/_custom_type_script = "uid://dllqv5vxrou7r"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6v8br"]
+size = Vector2(242, 165)
 
 [sub_resource type="Resource" id="Resource_qvhip"]
 script = ExtResource("5_1qceu")
@@ -422,7 +488,7 @@ size = Vector2(273, 37)
 size = Vector2(20, 73)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0csbw"]
-size = Vector2(89, 67)
+size = Vector2(122, 105)
 
 [node name="OverworldMap" type="Node2D"]
 script = ExtResource("1_6bca4")
@@ -491,9 +557,12 @@ visible = false
 
 [node name="GroundItem" parent="TilemapRoot" instance=ExtResource("8_dtr3b")]
 position = Vector2(-710, -231)
+pickedUpItem = ExtResource("11_pes0k")
+saveName = "sea_leg_north_mem_shard"
 
 [node name="GroundItem2" parent="TilemapRoot" instance=ExtResource("8_dtr3b")]
 position = Vector2(66, -320)
+pickedUpItem = ExtResource("12_1t4kg")
 
 [node name="EnemySpawners" type="Node" parent="."]
 
@@ -513,11 +582,19 @@ spawnerData = SubResource("Resource_hqwcv")
 enemyEncounter = SubResource("Resource_fsvrx")
 tilemap = NodePath("../../TilemapRoot")
 
+[node name="SpawnShape" parent="EnemySpawners/EnemySpawner2/SpawnArea" index="0"]
+position = Vector2(-6, 4.5)
+shape = SubResource("RectangleShape2D_1t4kg")
+
 [node name="EnemySpawner3" parent="EnemySpawners" node_paths=PackedStringArray("tilemap") instance=ExtResource("4_vcg8l")]
 position = Vector2(170, -142)
 spawnerData = SubResource("Resource_4pw14")
 enemyEncounter = SubResource("Resource_vm6dd")
 tilemap = NodePath("../../TilemapRoot")
+
+[node name="SpawnShape" parent="EnemySpawners/EnemySpawner3/SpawnArea" index="0"]
+position = Vector2(6, -7.5)
+shape = SubResource("RectangleShape2D_6v8br")
 
 [node name="EnemySpawner4" parent="EnemySpawners" node_paths=PackedStringArray("tilemap") instance=ExtResource("4_vcg8l")]
 position = Vector2(-45, -30)
@@ -627,11 +704,13 @@ shape = SubResource("RectangleShape2D_u2x51")
 position = Vector2(408, 170)
 
 [node name="CollisionShape2D" parent="EnemyDeaggroZone3" index="0"]
-position = Vector2(8.5, 3.5)
+position = Vector2(7, -0.5)
 shape = SubResource("RectangleShape2D_0csbw")
 
 [editable path="TilemapRoot/Soldier1"]
 [editable path="EnemySpawners/EnemySpawner"]
+[editable path="EnemySpawners/EnemySpawner2"]
+[editable path="EnemySpawners/EnemySpawner3"]
 [editable path="EnemySpawners/EnemySpawner4"]
 [editable path="EnemySpawners/EnemySpawner5"]
 [editable path="EnemySpawners/EnemySpawner6"]
