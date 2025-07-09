@@ -1,4 +1,4 @@
-[gd_scene load_steps=370 format=4 uid="uid://d3yjxfcekoxn0"]
+[gd_scene load_steps=380 format=4 uid="uid://d3yjxfcekoxn0"]
 
 [ext_resource type="Script" uid="uid://vg00rfnn3346" path="res://scripts/overworld/map_script.gd" id="1_yf525"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_wgf4x"]
@@ -42,7 +42,10 @@
 [ext_resource type="SpriteFrames" uid="uid://d2twvpugfcflu" path="res://graphics/structures/a_energy_wall_speaker.tres" id="16_odtt7"]
 [ext_resource type="Resource" uid="uid://dut7a0hmvsj87" path="res://gamedata/combatants/ice_hound/ice_hound.tres" id="16_r7qac"]
 [ext_resource type="Script" uid="uid://bvnw0ab8d80ti" path="res://scripts/overworld/overworld_enemy/random_encounter_level_stage.gd" id="17_7mgps"]
+[ext_resource type="Resource" uid="uid://jxmk51ajfok7" path="res://gamedata/dialogue/quiet_tundra/rat_subject_1/tundra_west_rat_subject_1_1.tres" id="17_716ng"]
+[ext_resource type="SpriteFrames" uid="uid://ckrlpy4ifbvap" path="res://graphics/animations/a_rat.tres" id="17_dct7q"]
 [ext_resource type="Script" uid="uid://dllqv5vxrou7r" path="res://scripts/overworld/overworld_enemy/random_encounter.gd" id="18_r7qac"]
+[ext_resource type="Resource" uid="uid://btqbgp8lp8rww" path="res://gamedata/dialogue/quiet_tundra/rat_subject_2/tundra_west_rat_subject_2_1.tres" id="19_111li"]
 [ext_resource type="Resource" uid="uid://bwg8cky4fu6ri" path="res://gamedata/combatants/mystic_fox/mystic_fox.tres" id="20_7mgps"]
 [ext_resource type="Resource" uid="uid://cpk0658pdwrli" path="res://gamedata/combatants/mystic_fox/evolutions/arctic_fox/arctic_fox_equipment.tres" id="21_r7qac"]
 [ext_resource type="Resource" uid="uid://bsx15gtbnpwml" path="res://gamedata/combatants/blob/blob.tres" id="22_8c8yf"]
@@ -175,6 +178,71 @@ size = Vector2(29, 17)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ffrxf"]
 size = Vector2(21, 30)
 
+[sub_resource type="Resource" id="Resource_jj782"]
+script = ExtResource("4_8htmm")
+id = "default"
+priority = -1
+storyRequirements = Array[ExtResource("7_qkweq")]([])
+autoApplyState = false
+
+[sub_resource type="Resource" id="Resource_q5crv"]
+script = ExtResource("9_fwu82")
+saveName = "npc"
+spriteState = "default"
+animation = "stand"
+position = Vector2(0, 0)
+flipH = false
+visible = true
+selectedTarget = 0
+loops = 0
+disableMovement = false
+previousDisableMove = false
+afterMoveWaitAccum = 0.0
+followerHomePosition = Vector2(0, 0)
+followingPlayer = false
+followerHomeSet = false
+combatMode = false
+version = ""
+dialogueItems = []
+dialogueIndex = -1
+dialogueItemIdx = -1
+dialogueLine = -1
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w3sqx"]
+size = Vector2(13, 11)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2f8kd"]
+size = Vector2(22, 19)
+
+[sub_resource type="Resource" id="Resource_01hau"]
+script = ExtResource("9_fwu82")
+saveName = "npc"
+spriteState = "default"
+animation = "stand"
+position = Vector2(0, 0)
+flipH = false
+visible = true
+selectedTarget = 0
+loops = 0
+disableMovement = false
+previousDisableMove = false
+afterMoveWaitAccum = 0.0
+followerHomePosition = Vector2(0, 0)
+followingPlayer = false
+followerHomeSet = false
+combatMode = false
+version = ""
+dialogueItems = []
+dialogueIndex = -1
+dialogueItemIdx = -1
+dialogueLine = -1
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lgh17"]
+size = Vector2(13, 11)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3sd1n"]
+size = Vector2(22, 19)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_034jo"]
 size = Vector2(31, 11)
 
@@ -281,7 +349,7 @@ priority = -1
 storyRequirements = Array[ExtResource("7_qkweq")]([])
 autoApplyState = false
 
-[sub_resource type="Resource" id="Resource_jj782"]
+[sub_resource type="Resource" id="Resource_1s0bc"]
 script = ExtResource("9_fwu82")
 saveName = "npc"
 spriteState = "default"
@@ -2174,6 +2242,57 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 [node name="MoveTrigger" parent="TilemapRoot/KingRat" index="4"]
 visible = false
 
+[node name="RatSubject1" parent="TilemapRoot" instance=ExtResource("12_0jhss")]
+position = Vector2(688, -1631)
+displayName = "Rat"
+saveName = "rat_subject_1"
+spriteStatesDict = Dictionary[String, ExtResource("4_8htmm")]({
+"default": SubResource("Resource_jj782")
+})
+data = SubResource("Resource_q5crv")
+dialogueEntries = Array[ExtResource("14_p7apj")]([ExtResource("17_716ng")])
+
+[node name="NPCSprite" parent="TilemapRoot/RatSubject1" index="0"]
+sprite_frames = ExtResource("17_dct7q")
+animation = &"stand"
+
+[node name="ColliderShape" parent="TilemapRoot/RatSubject1" index="1"]
+position = Vector2(0.5, 2.5)
+shape = SubResource("RectangleShape2D_w3sqx")
+
+[node name="TalkAreaShape" parent="TilemapRoot/RatSubject1/TalkArea" index="0"]
+position = Vector2(0, 2.5)
+shape = SubResource("RectangleShape2D_2f8kd")
+
+[node name="MoveTrigger" parent="TilemapRoot/RatSubject1" index="4"]
+visible = false
+
+[node name="RatSubject2" parent="TilemapRoot" instance=ExtResource("12_0jhss")]
+position = Vector2(733, -2388)
+displayName = "Rat"
+saveName = "rat_subject_2"
+loadFlipH = true
+spriteStatesDict = Dictionary[String, ExtResource("4_8htmm")]({
+"default": SubResource("Resource_jj782")
+})
+data = SubResource("Resource_01hau")
+dialogueEntries = Array[ExtResource("14_p7apj")]([ExtResource("19_111li")])
+
+[node name="NPCSprite" parent="TilemapRoot/RatSubject2" index="0"]
+sprite_frames = ExtResource("17_dct7q")
+animation = &"stand"
+
+[node name="ColliderShape" parent="TilemapRoot/RatSubject2" index="1"]
+position = Vector2(0.5, 2.5)
+shape = SubResource("RectangleShape2D_lgh17")
+
+[node name="TalkAreaShape" parent="TilemapRoot/RatSubject2/TalkArea" index="0"]
+position = Vector2(0, 2.5)
+shape = SubResource("RectangleShape2D_3sd1n")
+
+[node name="MoveTrigger" parent="TilemapRoot/RatSubject2" index="4"]
+visible = false
+
 [node name="FoxStatuePuzzle" parent="TilemapRoot" instance=ExtResource("4_8hka6")]
 position = Vector2(372, -2789)
 puzzle = ExtResource("7_6yrgo")
@@ -2468,7 +2587,7 @@ displayName = "Sign"
 spriteStatesDict = Dictionary[String, ExtResource("4_8htmm")]({
 "default": SubResource("Resource_w3m32")
 })
-data = SubResource("Resource_jj782")
+data = SubResource("Resource_1s0bc")
 dialogueEntries = Array[ExtResource("14_p7apj")]([ExtResource("9_3j4q5")])
 facesPlayer = false
 
@@ -3014,6 +3133,8 @@ navigation_layers = 4
 
 [editable path="TilemapRoot/MeleeMerchant"]
 [editable path="TilemapRoot/KingRat"]
+[editable path="TilemapRoot/RatSubject1"]
+[editable path="TilemapRoot/RatSubject2"]
 [editable path="TilemapRoot/FoxStatuePuzzle"]
 [editable path="TilemapRoot/FoxStatuePuzzle/AnimatedDecoration"]
 [editable path="TilemapRoot/FoxStatueEnergyWall"]
