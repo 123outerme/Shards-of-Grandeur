@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="ParticlePreset" load_steps=7 format=3 uid="uid://6iqyr52swvu7"]
+
+[ext_resource type="Script" uid="uid://cdxc0ye8vnah8" path="res://scripts/battle/particles/particle_preset.gd" id="1_n38d3"]
+[ext_resource type="Texture2D" uid="uid://c6lmnvtltbxli" path="res://graphics/particles/hit/hit_1.png" id="1_tuvu1"]
+[ext_resource type="Texture2D" uid="uid://c5oh44v7tr2hl" path="res://graphics/particles/hit/hit_2.png" id="2_7tthh"]
+[ext_resource type="Texture2D" uid="uid://c83is0pmramuv" path="res://graphics/particles/hit/hit_3.png" id="3_00c7j"]
+[ext_resource type="Texture2D" uid="uid://dx3kan4gi1h8v" path="res://graphics/particles/hit/hit_4.png" id="4_021fg"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_tuvu1"]
+lifetime_randomness = 0.1
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(4, 4, 1)
+emission_shape = 1
+emission_sphere_radius = 1.0
+direction = Vector3(-1, 0, 0)
+spread = 80.0
+initial_velocity_min = 35.0
+initial_velocity_max = 50.0
+
+[resource]
+script = ExtResource("1_n38d3")
+emitter = "behind"
+count = 4
+lifetime = 0.6
+duration = 0.5
+staggered = false
+processMaterial = SubResource("ParticleProcessMaterial_tuvu1")
+particleTextures = Array[Texture2D]([ExtResource("1_tuvu1"), ExtResource("2_7tthh"), ExtResource("3_00c7j"), ExtResource("4_021fg")])
+metadata/_custom_type_script = "uid://cdxc0ye8vnah8"

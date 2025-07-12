@@ -1,7 +1,8 @@
-[gd_resource type="Resource" script_class="MoveAnimation" load_steps=5 format=3 uid="uid://cvowd6o4p8vk4"]
+[gd_resource type="Resource" script_class="MoveAnimation" load_steps=6 format=3 uid="uid://cvowd6o4p8vk4"]
 
 [ext_resource type="Script" uid="uid://mk6loduurcg4" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="1_d6le8"]
 [ext_resource type="Script" uid="uid://dy6wwno8h0wdl" path="res://scripts/battle/particles/move_animation.gd" id="2_5n0lc"]
+[ext_resource type="Resource" uid="uid://du2bex31vk436" path="res://gamedata/moves/approaching_feint/sprite_approaching_feint.tres" id="2_j3f7f"]
 [ext_resource type="Script" uid="uid://c8pibqehmw101" path="res://scripts/battle/battle_scene/battlefield_shade_anim.gd" id="3_5n0lc"]
 
 [sub_resource type="Resource" id="Resource_j3f7f"]
@@ -21,7 +22,7 @@ makesContactTarget = 1
 makesContactPosOffset = Vector2(0, 0)
 hideUserHpTag = false
 hideTargetHpTag = false
-chargeMoveSprites = Array[ExtResource("1_d6le8")]([])
-surgeMoveSprites = Array[ExtResource("1_d6le8")]([])
+chargeMoveSprites = Array[ExtResource("1_d6le8")]([ExtResource("2_j3f7f")])
+surgeMoveSprites = Array[ExtResource("1_d6le8")]([ExtResource("2_j3f7f")])
 surgeBattlefieldShade = SubResource("Resource_j3f7f")
 metadata/_custom_type_script = "uid://dy6wwno8h0wdl"

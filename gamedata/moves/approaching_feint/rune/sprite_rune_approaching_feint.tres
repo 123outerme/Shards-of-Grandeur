@@ -1,0 +1,93 @@
+[gd_resource type="Resource" script_class="MoveAnimSprite" load_steps=11 format=3 uid="uid://ca3sr1d7ixd0k"]
+
+[ext_resource type="Script" uid="uid://n71lfdnd5xrr" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite_frame.gd" id="1_ux06i"]
+[ext_resource type="Script" uid="uid://mk6loduurcg4" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="2_s7wug"]
+[ext_resource type="SpriteFrames" uid="uid://dtctr413sejpr" path="res://graphics/moves/no_element/a_approaching_feint.tres" id="3_s7wug"]
+
+[sub_resource type="Resource" id="Resource_s7wug"]
+script = ExtResource("1_ux06i")
+annotation = "set up position in front of and above target"
+animation = "default"
+duration = 0.1
+speed = 1.0
+opacity = 1.0
+spritePivot = Vector2(0, 0)
+relativeTo = 1
+position = Vector2(0, 0)
+offset = 5
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+emitCompleteOnStart = false
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[sub_resource type="Curve" id="Curve_s7wug"]
+_data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_2h5gi"]
+_data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="Resource" id="Resource_8qx7m"]
+script = ExtResource("1_ux06i")
+annotation = "move rune to above and behind target"
+animation = "rune"
+duration = 1.0
+speed = 1.0
+opacity = 1.0
+spritePivot = Vector2(0, 0)
+relativeTo = 1
+position = Vector2(0, 0)
+offset = 6
+xCurve = SubResource("Curve_s7wug")
+yCurve = SubResource("Curve_2h5gi")
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+emitCompleteOnStart = false
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[sub_resource type="Curve" id="Curve_8qx7m"]
+_data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_3v6x3"]
+_data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="Resource" id="Resource_2h5gi"]
+script = ExtResource("1_ux06i")
+annotation = "fade out while moving to above/center of target"
+animation = ""
+duration = 0.5
+speed = 1.0
+opacity = 0.0
+spritePivot = Vector2(0, 0)
+relativeTo = 1
+position = Vector2(0, 0)
+offset = 4
+xCurve = SubResource("Curve_8qx7m")
+yCurve = SubResource("Curve_3v6x3")
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+emitCompleteOnStart = false
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[resource]
+script = ExtResource("2_s7wug")
+spriteFrames = ExtResource("3_s7wug")
+centerSprite = true
+maxSize = Vector2(16, 16)
+frames = Array[ExtResource("1_ux06i")]([SubResource("Resource_s7wug"), SubResource("Resource_8qx7m"), SubResource("Resource_2h5gi")])
+delayedUntilReposition = false
+playsOnImpactFrame = false
+onePerTarget = true
+metadata/_custom_type_script = "uid://mk6loduurcg4"

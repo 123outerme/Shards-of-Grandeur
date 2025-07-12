@@ -1,8 +1,10 @@
-[gd_resource type="Resource" script_class="KeywordRune" load_steps=5 format=3 uid="uid://dx5albndjc0fa"]
+[gd_resource type="Resource" script_class="KeywordRune" load_steps=7 format=3 uid="uid://dx5albndjc0fa"]
 
 [ext_resource type="Script" uid="uid://bhxtvkpc6kuqh" path="res://scripts/battle/combatant/runes/keyword_rune.gd" id="1_02xgw"]
+[ext_resource type="Resource" uid="uid://ca3sr1d7ixd0k" path="res://gamedata/moves/approaching_feint/rune/sprite_rune_approaching_feint.tres" id="1_cy0pe"]
 [ext_resource type="Script" uid="uid://b8q40qhoufelh" path="res://scripts/battle/combatant/element_multiplier.gd" id="2_cy0pe"]
 [ext_resource type="Script" uid="uid://dvivnpdo5ga72" path="res://scripts/battle/combatant/stat_changes.gd" id="3_cgjf3"]
+[ext_resource type="Resource" uid="uid://hvpktww4ss3o" path="res://gamedata/moves/approaching_feint/rune/trigger_sprite_rune_approaching_feint.tres" id="5_cgjf3"]
 
 [sub_resource type="Resource" id="Resource_vdwwk"]
 script = ExtResource("3_cgjf3")
@@ -30,4 +32,6 @@ element = 0
 power = 50
 lifesteal = 0.0
 statChanges = SubResource("Resource_vdwwk")
+runeSpriteAnim = ExtResource("1_cy0pe")
+triggerAnim = ExtResource("5_cgjf3")
 metadata/_custom_type_script = "uid://bhxtvkpc6kuqh"

@@ -1,8 +1,10 @@
-[gd_resource type="Resource" script_class="KeywordRune" load_steps=6 format=3 uid="uid://ctif0uo86axbb"]
+[gd_resource type="Resource" script_class="KeywordRune" load_steps=8 format=3 uid="uid://ctif0uo86axbb"]
 
+[ext_resource type="Resource" uid="uid://ca3sr1d7ixd0k" path="res://gamedata/moves/approaching_feint/rune/sprite_rune_approaching_feint.tres" id="1_5d2vs"]
 [ext_resource type="Script" uid="uid://bhxtvkpc6kuqh" path="res://scripts/battle/combatant/runes/keyword_rune.gd" id="1_x2a2q"]
 [ext_resource type="Script" uid="uid://3eyl5t8khbyn" path="res://scripts/battle/status_effects/guard_break.gd" id="2_5d2vs"]
 [ext_resource type="Script" uid="uid://cvjnh0a2q6sat" path="res://scripts/battle/combatant/surge_changes.gd" id="3_y53qk"]
+[ext_resource type="Resource" uid="uid://hvpktww4ss3o" path="res://gamedata/moves/approaching_feint/rune/trigger_sprite_rune_approaching_feint.tres" id="5_y53qk"]
 
 [sub_resource type="Resource" id="Resource_5d2vs"]
 script = ExtResource("2_5d2vs")
@@ -35,4 +37,6 @@ power = 70
 lifesteal = 0.0
 statusEffect = SubResource("Resource_5d2vs")
 surgeChanges = SubResource("Resource_x2a2q")
+runeSpriteAnim = ExtResource("1_5d2vs")
+triggerAnim = ExtResource("5_y53qk")
 metadata/_custom_type_script = "uid://bhxtvkpc6kuqh"

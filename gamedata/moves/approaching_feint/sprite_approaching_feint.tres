@@ -1,0 +1,143 @@
+[gd_resource type="Resource" script_class="MoveAnimSprite" load_steps=16 format=3 uid="uid://du2bex31vk436"]
+
+[ext_resource type="Script" uid="uid://n71lfdnd5xrr" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite_frame.gd" id="1_d0bpv"]
+[ext_resource type="Script" uid="uid://mk6loduurcg4" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="2_4vyj8"]
+[ext_resource type="AudioStream" uid="uid://id2wnvgxdsnm" path="res://audio/sfx/moves/wind/wind_whoosh.mp3" id="2_32euq"]
+[ext_resource type="SpriteFrames" uid="uid://dtctr413sejpr" path="res://graphics/moves/no_element/a_approaching_feint.tres" id="3_4vyj8"]
+
+[sub_resource type="Resource" id="Resource_32euq"]
+script = ExtResource("1_d0bpv")
+annotation = "set up position in front of user"
+animation = "default"
+duration = 0.1
+speed = 1.0
+opacity = 1.0
+spritePivot = Vector2(0, 0)
+relativeTo = 2
+position = Vector2(8, 0)
+offset = 1
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+emitCompleteOnStart = false
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[sub_resource type="Curve" id="Curve_4vyj8"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 1.4, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_32euq"]
+_data = [Vector2(0, 0), 0.0, 1.4, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Resource" id="Resource_4y7cq"]
+script = ExtResource("1_d0bpv")
+annotation = "play wind up anim as sprite moves towards above/behind the user"
+animation = "wind_up"
+duration = 0.5
+speed = 1.0
+opacity = 1.0
+spritePivot = Vector2(0, 0)
+relativeTo = 2
+position = Vector2(0, 0)
+offset = 6
+xCurve = SubResource("Curve_4vyj8")
+yCurve = SubResource("Curve_32euq")
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+emitCompleteOnStart = false
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[sub_resource type="Resource" id="Resource_jxtyq"]
+script = ExtResource("1_d0bpv")
+annotation = "Let the fist shake"
+animation = "fist_shake"
+duration = 1.0
+speed = 1.0
+opacity = 1.0
+spritePivot = Vector2(0, 0)
+relativeTo = 5
+position = Vector2(0, 0)
+offset = 0
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+emitCompleteOnStart = false
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[sub_resource type="Curve" id="Curve_4y7cq"]
+_data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_jxtyq"]
+_data = [Vector2(0, 0), 0.0, 0.042088, 0, 1, Vector2(0.329457, 0.0138662), 0.042088, 0.0, 1, 0, Vector2(0.786822, 0.936378), 1.36786, 1.36786, 0, 0, Vector2(1, 1), 0.298443, 0.0, 1, 0]
+point_count = 4
+
+[sub_resource type="Resource" id="Resource_1wkgb"]
+script = ExtResource("1_d0bpv")
+annotation = "throw the punch towards the target"
+animation = "throw_punch"
+duration = 0.33
+speed = 1.0
+opacity = 1.0
+spritePivot = Vector2(0, 0)
+relativeTo = 1
+position = Vector2(-4, 0)
+offset = 1
+xCurve = SubResource("Curve_4y7cq")
+yCurve = SubResource("Curve_jxtyq")
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+sfx = ExtResource("2_32euq")
+emitCompleteOnStart = false
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[sub_resource type="Curve" id="Curve_1wkgb"]
+_data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_hngjm"]
+_data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="Resource" id="Resource_4vyj8"]
+script = ExtResource("1_d0bpv")
+annotation = "fade out as the punch keeps traveling towards the target"
+animation = ""
+duration = 0.33
+speed = 1.0
+opacity = 0.0
+spritePivot = Vector2(0, 0)
+relativeTo = 1
+position = Vector2(0, 0)
+offset = 2
+xCurve = SubResource("Curve_1wkgb")
+yCurve = SubResource("Curve_hngjm")
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+emitCompleteOnStart = false
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[resource]
+script = ExtResource("2_4vyj8")
+spriteFrames = ExtResource("3_4vyj8")
+centerSprite = true
+maxSize = Vector2(16, 16)
+frames = Array[ExtResource("1_d0bpv")]([SubResource("Resource_32euq"), SubResource("Resource_4y7cq"), SubResource("Resource_jxtyq"), SubResource("Resource_1wkgb"), SubResource("Resource_4vyj8")])
+delayedUntilReposition = false
+playsOnImpactFrame = true
+onePerTarget = true
+metadata/_custom_type_script = "uid://mk6loduurcg4"
