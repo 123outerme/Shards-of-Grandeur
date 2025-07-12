@@ -1,10 +1,12 @@
-[gd_resource type="Resource" script_class="Quest" load_steps=8 format=3 uid="uid://dpasfbf5p7oka"]
+[gd_resource type="Resource" script_class="Quest" load_steps=10 format=3 uid="uid://dpasfbf5p7oka"]
 
 [ext_resource type="Script" uid="uid://bnw42uegqk4wp" path="res://scripts/quests/quest.gd" id="1_j7i3x"]
 [ext_resource type="Script" uid="uid://b3j2bj1p0bkq8" path="res://scripts/quests/quest_step.gd" id="2_5o8i1"]
 [ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_5o8i1"]
 [ext_resource type="Resource" uid="uid://d0p6lcdfa8370" path="res://gamedata/dialogue/quiet_tundra/king_rat/king_rat_tundra_initial_rematch.tres" id="4_xs01p"]
 [ext_resource type="Resource" uid="uid://bjkrc2i7wl1c8" path="res://gamedata/dialogue/quiet_tundra/king_rat/king_rat_tundra_initial_defeated.tres" id="5_f1odc"]
+[ext_resource type="Resource" uid="uid://bqrcd3d7ur7no" path="res://gamedata/dialogue/quiet_tundra/king_rat/king_rat_tundra_subjects_inprogress.tres" id="6_gb4qg"]
+[ext_resource type="Resource" uid="uid://syfjxb80604o" path="res://gamedata/dialogue/quiet_tundra/king_rat/king_rat_tundra_subjects_turnin.tres" id="7_jfs2c"]
 
 [sub_resource type="Resource" id="Resource_iodx2"]
 script = ExtResource("2_5o8i1")
@@ -25,19 +27,19 @@ metadata/_custom_type_script = "uid://b3j2bj1p0bkq8"
 
 [sub_resource type="Resource" id="Resource_5o8i1"]
 script = ExtResource("2_5o8i1")
-name = ""
-description = ""
-locations = Array[int]([])
-turnInLocations = Array[int]([])
-type = 0
+name = "Convince The Subjects"
+description = "Two rodent subjects wander the Quiet Tundra, abandoning their King but still in great need. Convince them to rejoin their kingdom!"
+locations = Array[int]([51])
+turnInLocations = Array[int]([51])
+type = 5
 count = 1
-objectiveName = ""
-turnInNames = Array[String]([])
+objectiveName = "---"
+turnInNames = Array[String](["king_rat_tundra_west"])
 displayObjName = ""
-displayTurnInName = ""
-customStatusStr = ""
-turnInDialogue = Array[ExtResource("3_5o8i1")]([])
-inProgressDialogue = Array[ExtResource("3_5o8i1")]([])
+displayTurnInName = "King Rat"
+customStatusStr = "Convince Both Rats!"
+turnInDialogue = Array[ExtResource("3_5o8i1")]([ExtResource("7_jfs2c")])
+inProgressDialogue = Array[ExtResource("3_5o8i1")]([ExtResource("6_gb4qg")])
 metadata/_custom_type_script = "uid://b3j2bj1p0bkq8"
 
 [resource]

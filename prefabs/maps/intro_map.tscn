@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=4 uid="uid://cwh0ho74p6tyh"]
+[gd_scene load_steps=66 format=4 uid="uid://cwh0ho74p6tyh"]
 
 [ext_resource type="Script" uid="uid://vg00rfnn3346" path="res://scripts/overworld/map_script.gd" id="1_s6d62"]
 [ext_resource type="PackedScene" uid="uid://ckjsms2r3k2jv" path="res://prefabs/overworld/cutscene_trigger.tscn" id="2_1jl0p"]
@@ -12,6 +12,7 @@
 [ext_resource type="SpriteFrames" uid="uid://dpv5h88cccjko" path="res://graphics/animations/a_dr_hudson.tres" id="6_ycoji"]
 [ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="7_4in6g"]
 [ext_resource type="PackedScene" uid="uid://qx5fovogo7h3" path="res://prefabs/entities/enemy_spawner.tscn" id="7_8f7k4"]
+[ext_resource type="Script" uid="uid://bwcja16pmp3mf" path="res://scripts/npcs/npc_sprite_state.gd" id="8_4e20k"]
 [ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="8_paddf"]
 [ext_resource type="SpriteFrames" uid="uid://dykq3bxn7ynyp" path="res://graphics/animations/a_horse_cart.tres" id="9_jtu4n"]
 [ext_resource type="Resource" uid="uid://cy6c7301nx7fg" path="res://gamedata/cutscenes/intro_scene/intro_cutscene.tres" id="11_27a4a"]
@@ -54,7 +55,14 @@ dialogueEntry = ExtResource("4_gdydo")
 savedItemIdx = 0
 savedTextIdx = 0
 
-[sub_resource type="Resource" id="Resource_8chcn"]
+[sub_resource type="Resource" id="Resource_647gc"]
+script = ExtResource("8_4e20k")
+id = "default"
+priority = -1
+storyRequirements = Array[ExtResource("18_481j8")]([])
+autoApplyState = false
+
+[sub_resource type="Resource" id="Resource_4pmmf"]
 script = ExtResource("4_cq1x4")
 saveName = "npc"
 spriteState = "default"
@@ -80,7 +88,14 @@ dialogueLine = -1
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3ntff"]
 size = Vector2(15, 14)
 
-[sub_resource type="Resource" id="Resource_4e20k"]
+[sub_resource type="Resource" id="Resource_wrsnn"]
+script = ExtResource("8_4e20k")
+id = "default"
+priority = -1
+storyRequirements = Array[ExtResource("18_481j8")]([])
+autoApplyState = false
+
+[sub_resource type="Resource" id="Resource_sgfsf"]
 script = ExtResource("4_cq1x4")
 saveName = "npc"
 spriteState = "default"
@@ -144,7 +159,7 @@ spawnedLastEncounter = false
 [sub_resource type="Resource" id="Resource_noxp6"]
 script = ExtResource("18_481j8")
 minAct = 0
-maxAct = 5
+maxAct = -1
 prereqQuests = Array[String]([])
 prereqCutscenes = Array[String]([])
 prereqDialogues = Array[String]([])
@@ -185,7 +200,14 @@ agent_radius = 7.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m5j4p"]
 size = Vector2(48, 59)
 
-[sub_resource type="Resource" id="Resource_647gc"]
+[sub_resource type="Resource" id="Resource_pc5tc"]
+script = ExtResource("8_4e20k")
+id = "default"
+priority = -1
+storyRequirements = Array[ExtResource("18_481j8")]([])
+autoApplyState = false
+
+[sub_resource type="Resource" id="Resource_rt1yj"]
 script = ExtResource("4_cq1x4")
 saveName = "npc"
 spriteState = "default"
@@ -257,7 +279,10 @@ saveName = "intro_sword"
 position = Vector2(1, 16)
 displayName = "Dr. Hudson"
 saveName = "dr_hudson_intro"
-data = SubResource("Resource_8chcn")
+spriteStatesDict = Dictionary[String, ExtResource("8_4e20k")]({
+"default": SubResource("Resource_647gc")
+})
+data = SubResource("Resource_4pmmf")
 dialogueEntries = Array[ExtResource("8_paddf")]([ExtResource("4_xxhfb"), ExtResource("5_5bmok")])
 
 [node name="NPCSprite" parent="TilemapRoot/DrHudson" index="0"]
@@ -283,9 +308,12 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 position = Vector2(-98, 4)
 displayName = "Horse"
 saveName = "horse_cart_intro"
+spriteStatesDict = Dictionary[String, ExtResource("8_4e20k")]({
+"default": SubResource("Resource_wrsnn")
+})
 overrideSpeakerSprite = ExtResource("13_47plv")
 overrideSpeakerSpriteSize = Vector2i(32, 32)
-data = SubResource("Resource_4e20k")
+data = SubResource("Resource_sgfsf")
 dialogueEntries = Array[ExtResource("8_paddf")]([SubResource("Resource_3n8lp")])
 facesPlayer = false
 
@@ -337,7 +365,7 @@ shape = SubResource("RectangleShape2D_dqdkq")
 position = Vector2(534, 7)
 spawnerData = SubResource("Resource_mb2oe")
 enemyEncounter = ExtResource("18_ld2et")
-storyRequirements = SubResource("Resource_noxp6")
+storyRequirements = Array[ExtResource("18_481j8")]([SubResource("Resource_noxp6")])
 spawnWhenPlayerLocked = true
 spawnRange = 0.0
 enemyPatrolRange = 8.0
@@ -377,7 +405,10 @@ rootNode = NodePath("..")
 
 [node name="MockPlayer" parent="ToolCutsceneVisualizer" index="0"]
 position = Vector2(1008, 8)
-data = SubResource("Resource_647gc")
+spriteStatesDict = Dictionary[String, ExtResource("8_4e20k")]({
+"default": SubResource("Resource_pc5tc")
+})
+data = SubResource("Resource_rt1yj")
 
 [node name="NPCSprite" parent="ToolCutsceneVisualizer/MockPlayer" index="0"]
 animation = &"walk"

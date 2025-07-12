@@ -8,7 +8,7 @@ class_name EnemySpawner
 @export var enemyEncounter: EnemyEncounter = null
 
 ## if not valid, will disable the spawner
-@export var storyRequirements: StoryRequirements = null
+@export var storyRequirements: Array[StoryRequirements] = []
 
 ## if true, this spawner can spawn an enemy when the player cannot move. Useful for spawning enemies as part of a cutscene
 @export var spawnWhenPlayerLocked: bool = false
@@ -132,7 +132,7 @@ func load_data(save_path):
 			spawnerData.spawnedLastEncounter = false
 			if not importantFight:
 				spawnerData.disabled = true # disable if it caused the last encounter
-	if storyRequirements != null and not storyRequirements.is_valid():
+	if storyRequirements != null and not StoryRequirements.list_is_valid(storyRequirements):
 		spawnerData.disabled = true
 
 func delete_enemy():

@@ -1,0 +1,48 @@
+[gd_resource type="Resource" script_class="Weapon" load_steps=7 format=3 uid="uid://b464hm5bhywmb"]
+
+[ext_resource type="Script" uid="uid://c4jrorkxpw01e" path="res://scripts/inventory/items/weapon.gd" id="1_f1ter"]
+[ext_resource type="Texture2D" uid="uid://dtc66tn0ij707" path="res://graphics/items/weapons/snowball.png" id="1_jfclc"]
+[ext_resource type="Script" uid="uid://b8q40qhoufelh" path="res://scripts/battle/combatant/element_multiplier.gd" id="3_nospa"]
+[ext_resource type="Script" uid="uid://dvivnpdo5ga72" path="res://scripts/battle/combatant/stat_changes.gd" id="4_jwkvt"]
+
+[sub_resource type="Resource" id="Resource_4b7yg"]
+script = ExtResource("3_nospa")
+element = 1
+multiplier = 1.03
+metadata/_custom_type_script = "uid://b8q40qhoufelh"
+
+[sub_resource type="Resource" id="Resource_f5d5k"]
+script = ExtResource("4_jwkvt")
+physAttackIncrease = 0
+magicAttackIncrease = 0
+affinityIncrease = 0
+resistanceIncrease = 0
+speedIncrease = 0
+physAttackMultiplier = 1.0
+magicAttackMultiplier = 1.0
+affinityMultiplier = 1.02
+resistanceMultiplier = 1.0
+speedMultiplier = 1.0
+elementMultipliers = Array[ExtResource("3_nospa")]([SubResource("Resource_4b7yg")])
+keywordMultipliers = Dictionary[String, float]({
+"Ice": 1.03
+})
+metadata/_custom_type_script = "uid://dvivnpdo5ga72"
+
+[resource]
+script = ExtResource("1_f1ter")
+statChanges = SubResource("Resource_f5d5k")
+timing = 1
+bonusOrbs = 0
+itemSprite = ExtResource("1_jfclc")
+itemName = "Snowball"
+itemType = 2
+itemDescription = "Melting a little bit at a time, holding this snowball keeps your hand wet and cold. However, it never seems to completely melt away. A surprise snowball to the face can still do some damage!"
+cost = 15
+maxCount = 1
+usable = false
+battleUsable = false
+consumable = false
+equippable = true
+battleTargets = 1
+metadata/_custom_type_script = "uid://c4jrorkxpw01e"
