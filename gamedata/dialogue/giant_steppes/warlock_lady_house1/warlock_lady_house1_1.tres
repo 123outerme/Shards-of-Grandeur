@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://qgiv40gqtf3a"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_a0d7a"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_7ug7u"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_ri5do"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_ri5do"]
+
+[sub_resource type="Resource" id="Resource_sc1x5"]
+script = ExtResource("1_a0d7a")
+lines = Array[String](["Hello, adventurer! It's not as cold on the mountain as you would've thought, right?", "That's because the particular stone they chose to make the mountain out of absorbs the sunlight really well!"])
+minShowSecs = Array[float]([])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_ri5do")]([])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[resource]
+script = ExtResource("3_ri5do")
+entryId = ""
+items = Array[ExtResource("1_a0d7a")]([SubResource("Resource_sc1x5")])
+ordStoryRequirements = Array[ExtResource("2_7ug7u")]([])
+closesDialogue = false
+fullHealsPlayer = false
+annotation = ""
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"

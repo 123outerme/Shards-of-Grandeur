@@ -1,0 +1,53 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=10 format=3 uid="uid://dkwk254puky42"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_jn0k5"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_krckc"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_sk5ug"]
+[ext_resource type="Script" uid="uid://b6oofnelefs8o" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_h5yuo"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_sk5ug"]
+[ext_resource type="Resource" uid="uid://j1csotyiixe1" path="res://gamedata/dialogue/giant_steppes/chamber_master/gs_chamber_master_initial_deny.tres" id="4_h5yuo"]
+
+[sub_resource type="Resource" id="Resource_hg70w"]
+script = ExtResource("2_sk5ug")
+choiceBtn = "None..."
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_h5yuo")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = true
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_42x2u"]
+script = ExtResource("2_sk5ug")
+choiceBtn = "What is This Place?"
+leadsTo = ExtResource("4_h5yuo")
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_h5yuo")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = false
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_h5yuo"]
+script = ExtResource("1_jn0k5")
+lines = Array[String](["This is the Chamber of Sealing. What business do you have here, adventurer of Grandstone?"])
+minShowSecs = Array[float]([])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_sk5ug")]([SubResource("Resource_hg70w"), SubResource("Resource_42x2u")])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[resource]
+script = ExtResource("3_sk5ug")
+entryId = ""
+items = Array[ExtResource("1_jn0k5")]([SubResource("Resource_h5yuo")])
+ordStoryRequirements = Array[ExtResource("2_krckc")]([])
+closesDialogue = false
+fullHealsPlayer = false
+annotation = ""
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"

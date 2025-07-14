@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="WorldLocation" load_steps=5 format=3 uid="uid://2te70kg5o4r"]
+
+[ext_resource type="Script" uid="uid://1kibgfap86bm" path="res://scripts/overworld/map_entry.gd" id="1_oidt8"]
+[ext_resource type="AudioStream" uid="uid://bqteksvyw463i" path="res://audio/music/overworld/tundra.mp3" id="2_7xpoe"]
+[ext_resource type="Script" uid="uid://dd27pbjjyrw7p" path="res://scripts/overworld/world_location.gd" id="2_o4as0"]
+
+[sub_resource type="Resource" id="Resource_oidt8"]
+script = ExtResource("1_oidt8")
+path = "giant_steppes/giant_steppes_house_1"
+overworldTheme = ExtResource("2_7xpoe")
+battleMapName = "forest_battle_map"
+battleMusic = Array[AudioStream]([])
+isRecoverLocation = false
+recoverPosition = Vector2(0, 0)
+metadata/_custom_type_script = "uid://1kibgfap86bm"
+
+[resource]
+script = ExtResource("2_o4as0")
+locationName = "Giant Steppes"
+maps = Array[ExtResource("1_oidt8")]([SubResource("Resource_oidt8")])
+mapLocation = 50
+metadata/_custom_type_script = "uid://dd27pbjjyrw7p"

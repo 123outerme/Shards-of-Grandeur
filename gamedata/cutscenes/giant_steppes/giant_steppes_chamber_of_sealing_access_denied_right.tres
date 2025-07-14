@@ -1,0 +1,219 @@
+[gd_resource type="Resource" script_class="Cutscene" load_steps=26 format=3 uid="uid://eq2l0udri31v"]
+
+[ext_resource type="Script" uid="uid://cqpl74uk8cjo0" path="res://scripts/cutscenes/cutscene_frame.gd" id="1_ixkvy"]
+[ext_resource type="Script" uid="uid://fpa08p2kb0ts" path="res://scripts/cutscenes/cutscene.gd" id="2_ev2ay"]
+[ext_resource type="Script" uid="uid://cg21ocaokyfnx" path="res://scripts/cutscenes/actor_anim_set.gd" id="2_w20dh"]
+[ext_resource type="Script" uid="uid://dy2r6h7mhh2oc" path="res://scripts/cutscenes/actor_sprite_anim.gd" id="3_1nwcl"]
+[ext_resource type="Resource" uid="uid://dcphj1dtjg3mr" path="res://gamedata/cutscenes/reused/player_stand_anim.tres" id="4_1nwcl"]
+[ext_resource type="Script" uid="uid://8oxtwxpqllgd" path="res://scripts/cutscenes/actor_face_target.gd" id="4_fya2g"]
+[ext_resource type="Script" uid="uid://g5p5b4jsf6bs" path="res://scripts/cutscenes/actor_tween.gd" id="5_ueqbs"]
+[ext_resource type="Script" uid="uid://jcu0gq2ns4in" path="res://scripts/cutscenes/cutscene_dialogue.gd" id="6_kw4c5"]
+[ext_resource type="Resource" uid="uid://bhhs2axr1n15b" path="res://gamedata/cutscenes/reused/player_walk_anim.tres" id="8_fya2g"]
+[ext_resource type="Resource" uid="uid://b6xqmhu51w1g0" path="res://gamedata/dialogue/cutscenes/giant_steppes/giant_steppes_chamber_of_sealing_access_denied/giant_steppes_chamber_of_sealing_access_denied_1.tres" id="8_kw4c5"]
+[ext_resource type="Script" uid="uid://b5d2qgg22dgbw" path="res://scripts/cutscenes/tweens/tween_vector2.gd" id="9_ueqbs"]
+[ext_resource type="Resource" uid="uid://yraqbffl3kcx" path="res://gamedata/dialogue/cutscenes/giant_steppes/giant_steppes_chamber_of_sealing_access_denied/giant_steppes_chamber_of_sealing_access_denied_2.tres" id="11_mohon"]
+
+[sub_resource type="Resource" id="Resource_n3lr6"]
+script = ExtResource("3_1nwcl")
+actorTreePath = "TilemapRoot/ChamberMaster"
+isPlayer = false
+animation = "talk"
+metadata/_custom_type_script = "uid://dy2r6h7mhh2oc"
+
+[sub_resource type="Resource" id="Resource_fya2g"]
+script = ExtResource("4_fya2g")
+actorTreePath = ""
+isPlayer = true
+targetTreePath = "TilemapRoot/ChamberMaster"
+targetPosition = Vector2(0, 0)
+targetIsPlayer = false
+metadata/_custom_type_script = "uid://8oxtwxpqllgd"
+
+[sub_resource type="Resource" id="Resource_ftbko"]
+script = ExtResource("4_fya2g")
+actorTreePath = "TilemapRoot/ChamberMaster"
+isPlayer = false
+targetTreePath = ""
+targetPosition = Vector2(0, 0)
+targetIsPlayer = true
+metadata/_custom_type_script = "uid://8oxtwxpqllgd"
+
+[sub_resource type="Resource" id="Resource_mohon"]
+script = ExtResource("1_ixkvy")
+frameLength = 0.1
+annotation = "The chamber master stops you and speaks"
+actorTweens = Array[ExtResource("5_ueqbs")]([])
+actorAnims = Array[ExtResource("3_1nwcl")]([ExtResource("4_1nwcl"), SubResource("Resource_n3lr6")])
+actorAnimSets = Array[ExtResource("2_w20dh")]([])
+actorFaceTargets = Array[ExtResource("4_fya2g")]([SubResource("Resource_fya2g"), SubResource("Resource_ftbko")])
+dialogues = Array[ExtResource("6_kw4c5")]([ExtResource("8_kw4c5")])
+playSfxs = Array[AudioStream]([])
+snapshotActorPaths = Array[String]([])
+restoreSnapshotActorPaths = Array[String]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
+
+[sub_resource type="Resource" id="Resource_kw4c5"]
+script = ExtResource("1_ixkvy")
+frameLength = 0.1
+annotation = "Wait for the dialogue box to be cleared"
+actorTweens = Array[ExtResource("5_ueqbs")]([])
+actorAnims = Array[ExtResource("3_1nwcl")]([])
+actorAnimSets = Array[ExtResource("2_w20dh")]([])
+actorFaceTargets = Array[ExtResource("4_fya2g")]([])
+dialogues = Array[ExtResource("6_kw4c5")]([])
+playSfxs = Array[AudioStream]([])
+snapshotActorPaths = Array[String]([])
+restoreSnapshotActorPaths = Array[String]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
+
+[sub_resource type="Resource" id="Resource_atx3b"]
+script = ExtResource("3_1nwcl")
+actorTreePath = "TilemapRoot/ChamberMaster"
+isPlayer = false
+animation = "stand"
+metadata/_custom_type_script = "uid://dy2r6h7mhh2oc"
+
+[sub_resource type="Resource" id="Resource_1q1md"]
+script = ExtResource("9_ueqbs")
+value = Vector2(-58, -103)
+actorTreePath = ""
+isPlayer = true
+propertyName = "position"
+easeType = 2
+transitionType = 0
+metadata/_custom_type_script = "uid://b5d2qgg22dgbw"
+
+[sub_resource type="Resource" id="Resource_ueqbs"]
+script = ExtResource("1_ixkvy")
+frameLength = 1.0
+annotation = "the player walks away from the stairs"
+actorTweens = Array[ExtResource("5_ueqbs")]([SubResource("Resource_1q1md")])
+actorAnims = Array[ExtResource("3_1nwcl")]([ExtResource("8_fya2g"), SubResource("Resource_atx3b")])
+actorAnimSets = Array[ExtResource("2_w20dh")]([])
+actorFaceTargets = Array[ExtResource("4_fya2g")]([])
+dialogues = Array[ExtResource("6_kw4c5")]([])
+playSfxs = Array[AudioStream]([])
+snapshotActorPaths = Array[String]([])
+restoreSnapshotActorPaths = Array[String]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
+
+[sub_resource type="Resource" id="Resource_wpilv"]
+script = ExtResource("3_1nwcl")
+actorTreePath = "TilemapRoot/ChamberMaster"
+isPlayer = false
+animation = "talk"
+metadata/_custom_type_script = "uid://dy2r6h7mhh2oc"
+
+[sub_resource type="Resource" id="Resource_ojebc"]
+script = ExtResource("1_ixkvy")
+frameLength = 0.1
+annotation = "the player stops, the chamber master speaks again"
+actorTweens = Array[ExtResource("5_ueqbs")]([])
+actorAnims = Array[ExtResource("3_1nwcl")]([ExtResource("4_1nwcl"), SubResource("Resource_wpilv")])
+actorAnimSets = Array[ExtResource("2_w20dh")]([])
+actorFaceTargets = Array[ExtResource("4_fya2g")]([])
+dialogues = Array[ExtResource("6_kw4c5")]([ExtResource("11_mohon")])
+playSfxs = Array[AudioStream]([])
+snapshotActorPaths = Array[String]([])
+restoreSnapshotActorPaths = Array[String]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
+
+[sub_resource type="Resource" id="Resource_6eaak"]
+script = ExtResource("1_ixkvy")
+frameLength = 0.1
+annotation = "wait for the text box to be closed"
+actorTweens = Array[ExtResource("5_ueqbs")]([])
+actorAnims = Array[ExtResource("3_1nwcl")]([])
+actorAnimSets = Array[ExtResource("2_w20dh")]([])
+actorFaceTargets = Array[ExtResource("4_fya2g")]([])
+dialogues = Array[ExtResource("6_kw4c5")]([])
+playSfxs = Array[AudioStream]([])
+snapshotActorPaths = Array[String]([])
+restoreSnapshotActorPaths = Array[String]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
+
+[sub_resource type="Resource" id="Resource_1fphp"]
+script = ExtResource("3_1nwcl")
+actorTreePath = "TilemapRoot/ChamberMaster"
+isPlayer = false
+animation = "stand"
+metadata/_custom_type_script = "uid://dy2r6h7mhh2oc"
+
+[sub_resource type="Resource" id="Resource_6cv4v"]
+script = ExtResource("1_ixkvy")
+frameLength = 0.1
+annotation = "The chamber master stops the talk anim"
+actorTweens = Array[ExtResource("5_ueqbs")]([])
+actorAnims = Array[ExtResource("3_1nwcl")]([SubResource("Resource_1fphp")])
+actorAnimSets = Array[ExtResource("2_w20dh")]([])
+actorFaceTargets = Array[ExtResource("4_fya2g")]([])
+dialogues = Array[ExtResource("6_kw4c5")]([])
+playSfxs = Array[AudioStream]([])
+snapshotActorPaths = Array[String]([])
+restoreSnapshotActorPaths = Array[String]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
+
+[resource]
+script = ExtResource("2_ev2ay")
+cutsceneFrames = Array[ExtResource("1_ixkvy")]([SubResource("Resource_mohon"), SubResource("Resource_kw4c5"), SubResource("Resource_ueqbs"), SubResource("Resource_ojebc"), SubResource("Resource_6eaak"), SubResource("Resource_6cv4v")])
+saveName = ""
+unlockCameraHoldAfter = true
+activateActorsBefore = Array[String]([])
+deactivateActorsAfter = Array[String]([])
+tempDisabledAfter = false
+notes = ""
+metadata/_custom_type_script = "uid://fpa08p2kb0ts"

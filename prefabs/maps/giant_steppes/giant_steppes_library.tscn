@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://d86tyj0eydeo"]
+[gd_scene load_steps=17 format=4 uid="uid://d86tyj0eydeo"]
 
 [ext_resource type="Script" uid="uid://vg00rfnn3346" path="res://scripts/overworld/map_script.gd" id="1_aldqd"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_30rpl"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="5_m8siu"]
 [ext_resource type="PackedScene" uid="uid://d3rsvv5iihm7t" path="res://prefabs/overworld/warp_zone.tscn" id="6_6y554"]
 [ext_resource type="Resource" uid="uid://btlvvnwqh7s20" path="res://gamedata/dialogue/giant_steppes/keeper_of_history/keeper_of_history_library_1.tres" id="6_vpp0h"]
+[ext_resource type="PackedScene" uid="uid://coqeee0n1wuob" path="res://prefabs/entities/interactable_decoration.tscn" id="10_m8siu"]
 
 [sub_resource type="Resource" id="Resource_ojbxr"]
 script = ExtResource("4_ta5vp")
@@ -123,6 +124,126 @@ position = Vector2(0, 4)
 [node name="MoveTrigger" parent="TilemapRoot/KeeperOfHistory" index="4"]
 visible = false
 
+[node name="Shelf1" parent="TilemapRoot" instance=ExtResource("10_m8siu")]
+position = Vector2(-40, -72)
+saveName = "gs_library_shelf_1"
+
+[node name="Collision" parent="TilemapRoot/Shelf1/AnimatedDecoration" index="1"]
+visible = false
+
+[node name="CollisionShape2D" parent="TilemapRoot/Shelf1/AnimatedDecoration/Collision" index="0"]
+disabled = true
+
+[node name="Shelf2" parent="TilemapRoot" instance=ExtResource("10_m8siu")]
+position = Vector2(-88, -71)
+saveName = "gs_library_shelf_2"
+
+[node name="Collision" parent="TilemapRoot/Shelf2/AnimatedDecoration" index="1"]
+visible = false
+
+[node name="CollisionShape2D" parent="TilemapRoot/Shelf2/AnimatedDecoration/Collision" index="0"]
+disabled = true
+
+[node name="Shelf3" parent="TilemapRoot" instance=ExtResource("10_m8siu")]
+position = Vector2(-56, -89)
+saveName = "gs_library_shelf_3"
+
+[node name="Collision" parent="TilemapRoot/Shelf3/AnimatedDecoration" index="1"]
+visible = false
+
+[node name="CollisionShape2D" parent="TilemapRoot/Shelf3/AnimatedDecoration/Collision" index="0"]
+disabled = true
+
+[node name="Shelf4" parent="TilemapRoot" instance=ExtResource("10_m8siu")]
+position = Vector2(-200, -71)
+saveName = "gs_library_shelf_4"
+
+[node name="Collision" parent="TilemapRoot/Shelf4/AnimatedDecoration" index="1"]
+visible = false
+
+[node name="CollisionShape2D" parent="TilemapRoot/Shelf4/AnimatedDecoration/Collision" index="0"]
+disabled = true
+
+[node name="Shelf5" parent="TilemapRoot" instance=ExtResource("10_m8siu")]
+position = Vector2(-168, -89)
+saveName = "gs_library_shelf_5"
+
+[node name="Collision" parent="TilemapRoot/Shelf5/AnimatedDecoration" index="1"]
+visible = false
+
+[node name="CollisionShape2D" parent="TilemapRoot/Shelf5/AnimatedDecoration/Collision" index="0"]
+disabled = true
+
+[node name="Shelf6" parent="TilemapRoot" instance=ExtResource("10_m8siu")]
+position = Vector2(-296, -71)
+saveName = "gs_library_shelf_6"
+
+[node name="Collision" parent="TilemapRoot/Shelf6/AnimatedDecoration" index="1"]
+visible = false
+
+[node name="CollisionShape2D" parent="TilemapRoot/Shelf6/AnimatedDecoration/Collision" index="0"]
+disabled = true
+
+[node name="Shelf7" parent="TilemapRoot" instance=ExtResource("10_m8siu")]
+position = Vector2(-264, -89)
+saveName = "gs_library_shelf_7"
+
+[node name="Collision" parent="TilemapRoot/Shelf7/AnimatedDecoration" index="1"]
+visible = false
+
+[node name="CollisionShape2D" parent="TilemapRoot/Shelf7/AnimatedDecoration/Collision" index="0"]
+disabled = true
+
+[node name="Shelf8" parent="TilemapRoot" instance=ExtResource("10_m8siu")]
+position = Vector2(-328, -89)
+saveName = "gs_library_shelf_8"
+
+[node name="Collision" parent="TilemapRoot/Shelf8/AnimatedDecoration" index="1"]
+visible = false
+
+[node name="CollisionShape2D" parent="TilemapRoot/Shelf8/AnimatedDecoration/Collision" index="0"]
+disabled = true
+
+[node name="Shelf9" parent="TilemapRoot" instance=ExtResource("10_m8siu")]
+position = Vector2(-88, -151)
+saveName = "gs_library_shelf_9"
+
+[node name="Collision" parent="TilemapRoot/Shelf9/AnimatedDecoration" index="1"]
+visible = false
+
+[node name="CollisionShape2D" parent="TilemapRoot/Shelf9/AnimatedDecoration/Collision" index="0"]
+disabled = true
+
+[node name="Shelf10" parent="TilemapRoot" instance=ExtResource("10_m8siu")]
+position = Vector2(-184, -151)
+saveName = "gs_library_shelf_10"
+
+[node name="Collision" parent="TilemapRoot/Shelf10/AnimatedDecoration" index="1"]
+visible = false
+
+[node name="CollisionShape2D" parent="TilemapRoot/Shelf10/AnimatedDecoration/Collision" index="0"]
+disabled = true
+
+[node name="Shelf11" parent="TilemapRoot" instance=ExtResource("10_m8siu")]
+position = Vector2(-264, -151)
+saveName = "gs_library_shelf_11"
+
+[node name="Collision" parent="TilemapRoot/Shelf11/AnimatedDecoration" index="1"]
+visible = false
+
+[node name="CollisionShape2D" parent="TilemapRoot/Shelf11/AnimatedDecoration/Collision" index="0"]
+disabled = true
+
+[node name="Shelf12" parent="TilemapRoot" instance=ExtResource("10_m8siu")]
+position = Vector2(-328, -152)
+saveName = "gs_library_shelf_12"
+
+[node name="Collision" parent="TilemapRoot/Shelf12/AnimatedDecoration" index="1"]
+visible = false
+
+[node name="CollisionShape2D" parent="TilemapRoot/Shelf12/AnimatedDecoration/Collision" index="0"]
+disabled = true
+
 [node name="OneTileWideNav" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_hwgpv")
 
@@ -140,3 +261,27 @@ mapName = "giant_steppes_l2"
 mapPos = Vector2(-264, -41)
 
 [editable path="TilemapRoot/KeeperOfHistory"]
+[editable path="TilemapRoot/Shelf1"]
+[editable path="TilemapRoot/Shelf1/AnimatedDecoration"]
+[editable path="TilemapRoot/Shelf2"]
+[editable path="TilemapRoot/Shelf2/AnimatedDecoration"]
+[editable path="TilemapRoot/Shelf3"]
+[editable path="TilemapRoot/Shelf3/AnimatedDecoration"]
+[editable path="TilemapRoot/Shelf4"]
+[editable path="TilemapRoot/Shelf4/AnimatedDecoration"]
+[editable path="TilemapRoot/Shelf5"]
+[editable path="TilemapRoot/Shelf5/AnimatedDecoration"]
+[editable path="TilemapRoot/Shelf6"]
+[editable path="TilemapRoot/Shelf6/AnimatedDecoration"]
+[editable path="TilemapRoot/Shelf7"]
+[editable path="TilemapRoot/Shelf7/AnimatedDecoration"]
+[editable path="TilemapRoot/Shelf8"]
+[editable path="TilemapRoot/Shelf8/AnimatedDecoration"]
+[editable path="TilemapRoot/Shelf9"]
+[editable path="TilemapRoot/Shelf9/AnimatedDecoration"]
+[editable path="TilemapRoot/Shelf10"]
+[editable path="TilemapRoot/Shelf10/AnimatedDecoration"]
+[editable path="TilemapRoot/Shelf11"]
+[editable path="TilemapRoot/Shelf11/AnimatedDecoration"]
+[editable path="TilemapRoot/Shelf12"]
+[editable path="TilemapRoot/Shelf12/AnimatedDecoration"]
