@@ -54,18 +54,27 @@ size = Vector2(13, 13)
 size = Vector2(12, 8)
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_hwgpv"]
+vertices = PackedVector2Array(-97.4609, -41, -101.883, -42, -91.5312, -42, -87.3516, -41, 105, -121, 105, 5, 5.5625, 5, 52, -58, 87, -105, 35.1016, -58, -120.969, -60, -117.469, -46, -119.547, -46, -121, -46.3203, -121, -121, -68, -58, -87.0312, -60, -68, -81, -103, -121, -103, -105, 87, -121, 52, -81, -80.2109, -37.4297, -21.5625, 5, -121, 5, -121, -9, -78, -9, -50.1016, -59, -78, -17.8906, -76, -22.5625, -51.1016, -58, 34.1016, -59, -1.42969, 8, -14.5703, 8, -76, -31.1172)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6, 7, 8), PackedInt32Array(9, 7, 6), PackedInt32Array(10, 11, 12, 13), PackedInt32Array(10, 13, 14), PackedInt32Array(15, 3, 2, 16, 17), PackedInt32Array(10, 14, 18, 19), PackedInt32Array(16, 10, 19, 17), PackedInt32Array(8, 20, 4), PackedInt32Array(8, 7, 21), PackedInt32Array(19, 8, 21, 17), PackedInt32Array(22, 3, 15), PackedInt32Array(23, 24, 25, 26), PackedInt32Array(27, 23, 26, 28, 29, 30), PackedInt32Array(27, 31, 9, 6, 32, 33, 23), PackedInt32Array(30, 29, 34, 15), PackedInt32Array(22, 15, 34)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-140, -138, -138, -43, -85, -31, -85, -16, -135, -16, -138, 16, 121, 16, 120, -140)])
 parsed_collision_mask = 1
 source_geometry_mode = 1
 source_geometry_group_name = &"NavigationGroup"
 agent_radius = 7.0
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_tohlk"]
+vertices = PackedVector2Array(60, -50, 97, -3, 3.92188, -3, 31.7891, -50, -19.9219, -3, -75.6797, -3, -75.5391, -3.3125, -70, -3.50781, 95, -97, 95, -113, 97, -113, 60, -89, -111, -97, -76, -89, -113, -68, -113, -113, -111, -113, -76.7891, -68, -76, -50, -81.6328, -48.6172, -70, -46.3906, -47.7891, -50, -46.7891, -51, -70, -16.2422, -68, -20.9219, -70, -36.5391, -68, -33.5391, 30.7891, -51, -3.07812, 0, -12.9219, 0)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6, 7), PackedInt32Array(8, 9, 10, 1), PackedInt32Array(8, 1, 0, 11), PackedInt32Array(12, 8, 11, 13), PackedInt32Array(14, 15, 16, 12), PackedInt32Array(14, 12, 13, 17), PackedInt32Array(17, 13, 18), PackedInt32Array(19, 17, 18), PackedInt32Array(20, 19, 18, 21), PackedInt32Array(22, 4, 7, 23, 24, 21), PackedInt32Array(25, 20, 21, 26), PackedInt32Array(22, 27, 3, 2, 28, 29, 4), PackedInt32Array(26, 21, 24)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-138, -136, -137, -44, -85, -34, -85, -18, -138, -16, -138, 16, 123, 16, 120, -140)])
 parsed_collision_mask = 1
 source_geometry_mode = 1
 source_geometry_group_name = &"NavigationGroup"
 agent_radius = 15.0
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_8fg56"]
+vertices = PackedVector2Array(-43.4688, -43, -18.2812, -11, -61, -11, -61, -16.9375, -60, -19.2891, -44.4688, -42, -61, -37.4609, -61, -42, -60, -35.9609, 68, -42, 68, -89, 89, -89, 89, -11, 2.28125, -11, 28.4688, -42, 27.4688, -43, -4.71875, -8, -11.2812, -8, -84, -76, -105, -76, -105, -89, -84, -89)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4, 5), PackedInt32Array(6, 7, 5, 8), PackedInt32Array(9, 10, 11, 12), PackedInt32Array(9, 12, 13, 14), PackedInt32Array(0, 15, 14, 13, 16, 17, 1), PackedInt32Array(5, 4, 8), PackedInt32Array(18, 19, 20, 21)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-138, -137, -135, -46, -84, -35, -84, -17, -136, -18, -138, 16, 124, 16, 119, -141)])
 parsed_collision_mask = 1
 source_geometry_mode = 1
 source_geometry_group_name = &"NavigationGroup"
@@ -160,13 +169,16 @@ shape = SubResource("RectangleShape2D_l07fh")
 disabled = true
 
 [node name="OneTileWideNav" type="NavigationRegion2D" parent="."]
+visible = false
 navigation_polygon = SubResource("NavigationPolygon_hwgpv")
 
 [node name="TwoTilesWideNav" type="NavigationRegion2D" parent="."]
+visible = false
 navigation_polygon = SubResource("NavigationPolygon_tohlk")
 navigation_layers = 2
 
 [node name="ThreeTilesWideNav" type="NavigationRegion2D" parent="."]
+visible = false
 navigation_polygon = SubResource("NavigationPolygon_8fg56")
 navigation_layers = 4
 

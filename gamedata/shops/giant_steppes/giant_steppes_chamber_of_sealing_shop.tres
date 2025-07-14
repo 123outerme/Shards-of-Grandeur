@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="NpcShop" load_steps=9 format=3 uid="uid://b3iolebmam38g"]
+
+[ext_resource type="Script" uid="uid://c02s6f1mg2nhw" path="res://scripts/npcs/npc_shop.gd" id="1_ux0f7"]
+[ext_resource type="Script" uid="uid://dvhu11n6qar12" path="res://scripts/inventory/shop_inventory_slot.gd" id="2_kso1s"]
+[ext_resource type="Resource" uid="uid://cf1id4cdagmpk" path="res://gamedata/items/key_items/crimson_boon.tres" id="3_ebbon"]
+[ext_resource type="Resource" uid="uid://7t2wewwgvuf8" path="res://gamedata/items/key_items/azure_boon.tres" id="4_ngrdc"]
+[ext_resource type="Resource" uid="uid://cneceugndgdpe" path="res://gamedata/items/key_items/emerald_boon.tres" id="7_6lfmk"]
+
+[sub_resource type="Resource" id="Resource_6yhw5"]
+script = ExtResource("2_kso1s")
+sinceVersion = "0.3.6"
+item = ExtResource("4_ngrdc")
+count = -1
+metadata/_custom_type_script = "uid://dvhu11n6qar12"
+
+[sub_resource type="Resource" id="Resource_7hh8y"]
+script = ExtResource("2_kso1s")
+sinceVersion = "0.3.6"
+item = ExtResource("3_ebbon")
+count = -1
+metadata/_custom_type_script = "uid://dvhu11n6qar12"
+
+[sub_resource type="Resource" id="Resource_8e86s"]
+script = ExtResource("2_kso1s")
+sinceVersion = "0.3.6"
+item = ExtResource("7_6lfmk")
+count = -1
+metadata/_custom_type_script = "uid://dvhu11n6qar12"
+
+[resource]
+script = ExtResource("1_ux0f7")
+id = ""
+shopItemSlots = Array[ExtResource("2_kso1s")]([SubResource("Resource_6yhw5"), SubResource("Resource_7hh8y"), SubResource("Resource_8e86s")])
+metadata/_custom_type_script = "uid://c02s6f1mg2nhw"
