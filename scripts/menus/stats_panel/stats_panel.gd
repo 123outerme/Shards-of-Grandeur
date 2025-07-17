@@ -81,6 +81,7 @@ var previousMoveListSlot: int = -1
 @onready var minionsControl: Control = get_node('StatsPanel/Panel/TabbedView/TabContainer/Minions')
 @onready var minionsPanel: MinionsPanel = get_node('StatsPanel/Panel/TabbedView/TabContainer/Minions/MinionsPanel')
 
+@onready var battleBoonsControl: Control = get_node('StatsPanel/Panel/TabbedView/TabContainer/Battle Boons')
 @onready var battleBoostsPanel: BattleBoostsPanel = get_node('StatsPanel/Panel/TabbedView/TabContainer/Battle Boons/BattleBoostsPanel')
 
 @onready var newMovesPanel: NewMovesPanel = get_node('StatsPanel/Panel/TabbedView/TabContainer/New Moves/NewMovesPanel')
@@ -96,7 +97,7 @@ var previousMoveListSlot: int = -1
 
 func _ready() -> void:
 	SettingsHandler.settings_changed.connect(_settings_changed)
-	tabbedViewContainer.tab_selected.connect(_tab_selected)
+	tabbedViewContainer.tab_changed.connect(_tab_selected)
 
 func _unhandled_input(event):
 	if visible and event.is_action_pressed('game_decline') and not levelUpAnimPlaying:
@@ -110,7 +111,7 @@ func _unhandled_input(event):
 		var direction: int = -1 if event.is_action_pressed('game_tab_left') else 1
 		# if going to a tab that's hidden; jump one more instead
 		if (selectedIdx + direction == TabbedViewTab.NEW_MOVES and not newMovesPanel.visible) \
-				or (selectedIdx + direction == TabbedViewTab.BATTLE_BOOSTS and not battleBoostsPanel.visible):
+				or (selectedIdx + direction == TabbedViewTab.BATTLE_BOOSTS and not battleBoonsControl.visible):
 			direction *= 2
 		# get next filter button to the left (negative)/right (positive) that's not disabled (wrapping around)
 		var newTabIdx: int = wrapi(selectedIdx + direction, 0, tabbedViewContainer.get_tab_count())
@@ -240,7 +241,7 @@ func load_stats_panel(fromToggle: bool = false):
 	battleBoostsPanel.inBattle = inBattle
 	battleBoostsPanel.levelUp = levelUp
 	battleBoostsPanel.load_battle_boosts_panel()
-	tabbedViewContainer.set_tab_hidden(TabbedViewTab.BATTLE_BOOSTS, not battleBoostsPanel.visible)
+	tabbedViewContainer.set_tab_hidden(TabbedViewTab.BATTLE_BOOSTS, not battleBoostsPanel.enabled)
 	
 	newMovesPanel.levelUp = levelUp
 	if minion == null:
@@ -445,6 +446,13 @@ func _on_inventory_panel_node_open_stats(combatant: Combatant):
 func _tab_selected(idx: int) -> void:
 	if idx >= 0 and idx < TabbedViewTab.TAB_COUNT and visible:
 		SceneLoader.audioHandler.play_sfx(tabChangeSfx)
+	
+	# update backButton focus neighbor top
+	match idx:
+		TabbedViewTab.BATTLE_BOOSTS:
+			backButton.focus_neighbor_top = backButton.get_path_to(battleBoostsPanel.helpButton)
+		_:
+			backButton.focus_neighbor_top = ''
 
 func _settings_changed() -> void:
 	pass
@@ -466,7 +474,6 @@ func _level_up_anim_panel_fade_in():
 func _level_up_loop_music():
 	SceneLoader.audioHandler.play_music(levelUpLoopMusic, -1)
 	SceneLoader.audioHandler.music_playback_complete.disconnect(_level_up_loop_music)
-
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == 'level_up':

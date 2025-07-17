@@ -1,4 +1,4 @@
-[gd_scene load_steps=136 format=4 uid="uid://d4i0j6b3bb4rt"]
+[gd_scene load_steps=144 format=4 uid="uid://d4i0j6b3bb4rt"]
 
 [ext_resource type="Script" uid="uid://vg00rfnn3346" path="res://scripts/overworld/map_script.gd" id="1_frkjt"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_y8mli"]
@@ -6,7 +6,11 @@
 [ext_resource type="Resource" uid="uid://c1as4pu7h6tmu" path="res://gamedata/ground_items/hilltop_east/ht_east_river_heal2.tres" id="4_7jxta"]
 [ext_resource type="Resource" uid="uid://bnde6sbe81qve" path="res://gamedata/ground_items/hilltop_east/ht_east_potion.tres" id="4_ponpx"]
 [ext_resource type="Resource" uid="uid://dw27llscjvtn2" path="res://gamedata/ground_items/hilltop_east/ht_east_walking_staff.tres" id="7_1ffng"]
+[ext_resource type="Resource" uid="uid://bufuvyb62s57h" path="res://gamedata/ground_items/hilltop_east/ht_east_king_rat_crown.tres" id="8_8swpe"]
 [ext_resource type="Resource" uid="uid://ck8vsi13o5keu" path="res://gamedata/ground_items/hilltop_east/ht_east_standard_sword.tres" id="9_fah0i"]
+[ext_resource type="Script" uid="uid://bwcja16pmp3mf" path="res://scripts/npcs/npc_sprite_state.gd" id="9_qmgxs"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="10_8swpe"]
+[ext_resource type="Script" uid="uid://fw22o8hbosnk" path="res://scripts/inventory/inventory_slot.gd" id="10_d7oin"]
 [ext_resource type="PackedScene" uid="uid://bsalesakrx8yy" path="res://prefabs/entities/npc.tscn" id="11_m2u23"]
 [ext_resource type="Resource" uid="uid://bkp6unp7ys28m" path="res://gamedata/story_requirements/main_story/act1/leavenport_takeover.tres" id="12_riy1g"]
 [ext_resource type="Script" uid="uid://8t63d3un22ug" path="res://scripts/npcs/npc_data.gd" id="13_ol66b"]
@@ -37,7 +41,41 @@
 [ext_resource type="Resource" uid="uid://bidfx3ehukpyo" path="res://gamedata/cutscenes/hilltop_forest/hilltop_east_bridge_demo_turnback.tres" id="32_4v2yw"]
 [ext_resource type="PackedScene" uid="uid://cm5yegguv62vn" path="res://prefabs/overworld/enemy_deaggro_zone.tscn" id="34_bi7ge"]
 
-[sub_resource type="Resource" id="Resource_x4gbv"]
+[sub_resource type="Resource" id="Resource_q8bf2"]
+script = ExtResource("10_8swpe")
+minAct = 0
+maxAct = -1
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqPlacesVisited = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+prereqDefeatedEnemies = Array[String]([])
+prereqPuzzles = Array[String]([])
+prereqPuzzleStates = Dictionary[String, Array]({})
+prereqDiscoveredEvolutions = Array[String]([])
+prereqHavingFollowers = Array[String]([])
+prereqHasItems = Array[ExtResource("10_d7oin")]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String]([])
+invalidAfterVistingPlaces = Array[String]([])
+invalidAfterSpecialBattles = Array[String](["king_rat_encounter"])
+invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromPuzzleStates = Dictionary[String, Array]({})
+invalidFromHavingFollowers = Array[String]([])
+invalidFromHavingItems = Array[ExtResource("10_d7oin")]([])
+metadata/_custom_type_script = "uid://bjesn36acj0uh"
+
+[sub_resource type="Resource" id="Resource_d7oin"]
+script = ExtResource("9_qmgxs")
+id = "default"
+priority = -1
+storyRequirements = Array[ExtResource("10_8swpe")]([])
+autoApplyState = false
+
+[sub_resource type="Resource" id="Resource_aa8k6"]
 script = ExtResource("13_ol66b")
 saveName = "npc"
 spriteState = "default"
@@ -60,7 +98,14 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_cmu5m"]
+[sub_resource type="Resource" id="Resource_w0j7g"]
+script = ExtResource("9_qmgxs")
+id = "default"
+priority = -1
+storyRequirements = Array[ExtResource("10_8swpe")]([])
+autoApplyState = false
+
+[sub_resource type="Resource" id="Resource_lda65"]
 script = ExtResource("13_ol66b")
 saveName = "npc"
 spriteState = "default"
@@ -608,6 +653,9 @@ size = Vector2(121, 20)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rgwtf"]
 size = Vector2(20, 146)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q8bf2"]
+size = Vector2(131, 20)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qmgxs"]
 size = Vector2(122.329, 8)
 
@@ -658,11 +706,6 @@ modulate = Color(1, 1, 1, 0)
 use_parent_material = true
 tile_set = ExtResource("2_y8mli")
 
-[node name="GroundItem4" parent="TilemapRoot" instance=ExtResource("3_013nt")]
-position = Vector2(1396, -321)
-pickedUpItem = ExtResource("4_7jxta")
-saveName = "ht_east_river_heal2"
-
 [node name="GroundItem" parent="TilemapRoot" instance=ExtResource("3_013nt")]
 position = Vector2(1720, 48)
 pickedUpItem = ExtResource("4_ponpx")
@@ -678,11 +721,25 @@ position = Vector2(648, 1080)
 pickedUpItem = ExtResource("9_fah0i")
 saveName = "ht_east_sword"
 
+[node name="GroundItem4" parent="TilemapRoot" instance=ExtResource("3_013nt")]
+position = Vector2(1396, -321)
+pickedUpItem = ExtResource("4_7jxta")
+saveName = "ht_east_river_heal2"
+
+[node name="GroundItem5" parent="TilemapRoot" instance=ExtResource("3_013nt")]
+position = Vector2(984, -318)
+pickedUpItem = ExtResource("8_8swpe")
+saveName = "ht_east_king_rat_crown"
+storyRequirements = Array[ExtResource("10_8swpe")]([SubResource("Resource_q8bf2")])
+
 [node name="ChainLegionSoldier1" parent="TilemapRoot" instance=ExtResource("11_m2u23")]
 position = Vector2(678, 659)
 loadFlipH = true
+spriteStatesDict = Dictionary[String, ExtResource("9_qmgxs")]({
+"default": SubResource("Resource_d7oin")
+})
 spawnRequirements = ExtResource("12_riy1g")
-data = SubResource("Resource_x4gbv")
+data = SubResource("Resource_aa8k6")
 
 [node name="NPCSprite" parent="TilemapRoot/ChainLegionSoldier1" index="0"]
 sprite_frames = ExtResource("14_cved2")
@@ -699,8 +756,11 @@ visible = false
 
 [node name="ChainLegionSoldier2" parent="TilemapRoot" instance=ExtResource("11_m2u23")]
 position = Vector2(731, 663)
+spriteStatesDict = Dictionary[String, ExtResource("9_qmgxs")]({
+"default": SubResource("Resource_w0j7g")
+})
 spawnRequirements = ExtResource("12_riy1g")
-data = SubResource("Resource_cmu5m")
+data = SubResource("Resource_lda65")
 
 [node name="NPCSprite" parent="TilemapRoot/ChainLegionSoldier2" index="0"]
 sprite_frames = ExtResource("15_ypepm")
@@ -954,10 +1014,11 @@ position = Vector2(0, 63)
 shape = SubResource("RectangleShape2D_rgwtf")
 
 [node name="EnemyDeaggroZone5" parent="." instance=ExtResource("34_bi7ge")]
-position = Vector2(921, -283)
+position = Vector2(971, -283)
 
 [node name="CollisionShape2D" parent="EnemyDeaggroZone5" index="0"]
-position = Vector2(55.5, 0)
+position = Vector2(6.5, 0)
+shape = SubResource("RectangleShape2D_q8bf2")
 
 [node name="TundraWestWarpZone" parent="." instance=ExtResource("27_jf1e8")]
 position = Vector2(1597, -236)

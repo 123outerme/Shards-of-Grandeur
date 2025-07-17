@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=4 uid="uid://c1m3kg17xcxre"]
+[gd_scene load_steps=29 format=4 uid="uid://c1m3kg17xcxre"]
 
 [ext_resource type="Script" uid="uid://vg00rfnn3346" path="res://scripts/overworld/map_script.gd" id="1_2wdq7"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_cfw4e"]
@@ -8,6 +8,9 @@
 [ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="5_vl4w1"]
 [ext_resource type="Script" uid="uid://8t63d3un22ug" path="res://scripts/npcs/npc_data.gd" id="6_h4c06"]
 [ext_resource type="SpriteFrames" uid="uid://crq8jtrfopwa3" path="res://graphics/animations/a_vampire.tres" id="7_idrjy"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="7_jbply"]
+[ext_resource type="Resource" uid="uid://dkwk254puky42" path="res://gamedata/dialogue/giant_steppes/chamber_master/gs_chamber_master_1.tres" id="8_bd3v8"]
+[ext_resource type="Resource" uid="uid://b3iolebmam38g" path="res://gamedata/shops/giant_steppes/giant_steppes_chamber_of_sealing_shop.tres" id="9_bd3v8"]
 [ext_resource type="Script" uid="uid://fpa08p2kb0ts" path="res://scripts/cutscenes/cutscene.gd" id="9_swvae"]
 [ext_resource type="PackedScene" uid="uid://ckjsms2r3k2jv" path="res://prefabs/overworld/cutscene_trigger.tscn" id="9_vl4w1"]
 [ext_resource type="Resource" uid="uid://3q1lqg0v1u8x" path="res://gamedata/cutscenes/giant_steppes/giant_steppes_chamber_of_sealing_access_denied_top_left.tres" id="10_m0cgo"]
@@ -171,6 +174,8 @@ spriteStatesDict = Dictionary[String, ExtResource("4_idrjy")]({
 "default": SubResource("Resource_swvae")
 })
 data = SubResource("Resource_d1w6t")
+dialogueEntries = Array[ExtResource("7_jbply")]([ExtResource("8_bd3v8")])
+npcShop = ExtResource("9_bd3v8")
 
 [node name="NPCSprite" parent="TilemapRoot/ChamberMaster" index="0"]
 sprite_frames = ExtResource("7_idrjy")
@@ -250,7 +255,7 @@ navigation_layers = 4
 [node name="WarpZone" parent="." instance=ExtResource("3_0mmeb")]
 position = Vector2(-8, 18)
 mapName = "giant_steppes_l1"
-mapPos = Vector2(328, -273)
+mapPos = Vector2(88, -337)
 
 [node name="TestCamera" parent="." instance=ExtResource("14_d1w6t")]
 position = Vector2(136, 8)

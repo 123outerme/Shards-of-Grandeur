@@ -1,8 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://3oi1i5ioq0pv"]
+[gd_scene load_steps=7 format=3 uid="uid://3oi1i5ioq0pv"]
 
 [ext_resource type="Script" uid="uid://r57tba7n08vm" path="res://scripts/menus/stats_panel/battle_boosts_panel.gd" id="1_i5nlt"]
 [ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://themes/root_theme.tres" id="2_5g6vc"]
 [ext_resource type="StyleBox" uid="uid://cqjpxgwhrhqj2" path="res://themes/nested_ui/inner_panel.tres" id="3_nlc8a"]
+[ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="4_cdcii"]
+[ext_resource type="Texture2D" uid="uid://biscd4ubrdmwc" path="res://graphics/ui/question_mark.png" id="5_dahh7"]
+[ext_resource type="PackedScene" uid="uid://cxs31up6d6dxj" path="res://prefabs/ui/tooltip_panel.tscn" id="6_dahh7"]
 
 [node name="BattleBoostsPanel" type="Control"]
 layout_mode = 3
@@ -57,3 +60,23 @@ grow_horizontal = 2
 grow_vertical = 0
 bbcode_enabled = true
 text = "[center]After winning a roaming encounter, these modifiers will apply to the battle's Rewards, then all Boons are reset.[/center]"
+
+[node name="HelpButton" parent="Panel" instance=ExtResource("4_cdcii")]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = 40.0
+grow_horizontal = 0
+icon = ExtResource("5_dahh7")
+expand_icon = true
+
+[node name="TooltipPanel" parent="." instance=ExtResource("6_dahh7")]
+visible = false
+layout_mode = 1
+
+[connection signal="pressed" from="Panel/HelpButton" to="." method="_on_sfx_button_pressed"]
+[connection signal="ok_pressed" from="TooltipPanel" to="." method="_on_tooltip_panel_ok_pressed"]

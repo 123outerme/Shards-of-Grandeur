@@ -3,9 +3,12 @@ extends Control
 
 @export var inBattle: bool = false
 @export var levelUp: bool = false
-@export var enabled: bool = true
+
+var enabled: bool = true
 
 @onready var battleBoostsText: RichTextLabel = get_node('Panel/BattleBoostsText')
+@onready var helpButton: Button = get_node('Panel/HelpButton')
+@onready var tooltipPanel: TooltipPanel = get_node('TooltipPanel')
 
 func load_battle_boosts_panel() -> void:
 	var itemCountModifier: float = PlayerResources.playerInfo.get_battle_reward_item_count_modifier()
@@ -14,18 +17,16 @@ func load_battle_boosts_panel() -> void:
 	var attunementModifier: float = PlayerResources.playerInfo.get_battle_attunement_modifier()
 	var spawnsThreeOfFace: bool = PlayerResources.playerInfo.get_spawns_three_face_combatant()
 	
-	if not enabled or (inBattle and levelUp) or len(PlayerResources.playerInfo.activeBattleModifierItems) == 0 or \
+	if (inBattle and levelUp) or len(PlayerResources.playerInfo.activeBattleModifierItems) == 0 or \
 			(expModifier == 1.0 and goldModifier == 1.0 and attunementModifier == 1.0 and not spawnsThreeOfFace):
 		enabled = false
-		visible = false
 		return
 	
 	enabled = true
-	visible = true
 	
 	var effectTexts: Array[String] = []
 	if spawnsThreeOfFace:
-		effectTexts.append('Encountering 3x the roaming creature\n')
+		effectTexts.append('Encountering 3x the roaming creature!\n')
 	
 	if itemCountModifier != 1.0:
 		if itemCountModifier <= 0:
@@ -64,3 +65,11 @@ func load_battle_boosts_panel() -> void:
 			effectTexts.append(modifierStr + '% Attunement for the summoned minion')
 	
 	battleBoostsText.text = '[center]Next Battle:\n\n' + TextUtils.string_arr_to_string(effectTexts, '\n', '\n', '\n', '* ') + '[/center]'
+
+func _on_sfx_button_pressed() -> void:
+	tooltipPanel.title = 'Battle Boons'
+	tooltipPanel.details = BattleModifierItem.get_all_applied_modifier_items_text(true)
+	tooltipPanel.load_tooltip_panel()
+
+func _on_tooltip_panel_ok_pressed() -> void:
+	helpButton.grab_focus()

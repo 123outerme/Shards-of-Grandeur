@@ -208,6 +208,7 @@ unspentStatPtsIndicator = ExtResource("3_ao33y")
 newMoveIndicator = ExtResource("4_sak5l")
 minionChangedIndicator = ExtResource("5_jrvq8")
 metadata/_edit_vertical_guides_ = [640.0]
+metadata/_edit_horizontal_guides_ = [360.0]
 
 [node name="StatsPanel" type="Control" parent="."]
 layout_mode = 3
@@ -434,6 +435,28 @@ offset_bottom = 87.5
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="TooltipPanel" parent="StatsPanel/Panel/TabbedView/TabContainer/Battle Boons/BattleBoostsPanel" index="1"]
+offset_left = -301.0
+offset_top = -115.0
+offset_right = 299.0
+offset_bottom = 250.0
+
+[node name="Panel" parent="StatsPanel/Panel/TabbedView/TabContainer/Battle Boons/BattleBoostsPanel/TooltipPanel" index="1"]
+offset_left = 97.0
+offset_top = -260.0
+offset_right = -95.0
+offset_bottom = 262.0
+
+[node name="TooltipDetails" parent="StatsPanel/Panel/TabbedView/TabContainer/Battle Boons/BattleBoostsPanel/TooltipPanel/Panel" index="1"]
+anchors_preset = 10
+anchor_top = 0.0
+anchor_bottom = 0.0
+offset_left = 11.0
+offset_top = 73.0
+offset_bottom = 151.0
+grow_vertical = 1
+fit_content = true
+
 [node name="LevelUpLabel" type="RichTextLabel" parent="StatsPanel/Panel"]
 layout_mode = 1
 anchors_preset = 5
@@ -515,3 +538,5 @@ layout_mode = 1
 [editable path="StatsPanel/Panel/TabbedView/TabContainer/Equipment/EquipmentPanel"]
 [editable path="StatsPanel/Panel/TabbedView/TabContainer/Moves/MoveListPanel"]
 [editable path="StatsPanel/Panel/TabbedView/TabContainer/Minions/MinionsPanel"]
+[editable path="StatsPanel/Panel/TabbedView/TabContainer/Battle Boons/BattleBoostsPanel"]
+[editable path="StatsPanel/Panel/TabbedView/TabContainer/Battle Boons/BattleBoostsPanel/TooltipPanel"]

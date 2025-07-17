@@ -16,6 +16,23 @@ class_name BattleModifierItem
 ## if true, the next RandomEncounter will automatically spawn 3x the "face" enemy (Center/combatant1), ignoring its allies set in the Encounter
 @export var spawnsThreeOfFace: bool = false
 
+static func get_all_applied_modifier_items_text(bbCode: bool = false) -> String:
+	var useMsg: String = 'After winning the next roaming encounter, the following boons will be applied:\n\n'
+	
+	var activeModifierItems: Array[BattleModifierItem] = PlayerResources.playerInfo.activeBattleModifierItems.duplicate(false)
+	
+	if bbCode:
+		useMsg += '[left]'
+	for idx: int in range(len(activeModifierItems)):
+		var modifierItem: BattleModifierItem = activeModifierItems[idx]
+		useMsg += '* ' + modifierItem.itemName + ' (' + TextUtils.string_arr_to_string(modifierItem.get_effect_texts(true)) + ')'
+		if idx < len(activeModifierItems) - 1:
+			useMsg += '\n'
+	if bbCode:
+		useMsg += '[/left]'
+	
+	return useMsg
+
 func _init(
 	i_sprite = null,
 	i_name = "",
@@ -69,17 +86,10 @@ func use(_target: Combatant):
 		PlayerResources.playerInfo.activeBattleModifierItems.append(self)
 
 func get_use_message(_target: Combatant) -> String:
-	var useMsg: String = 'In the next roaming encounter, the following will be active:\n\n'
+	var useMsg: String = 'In the next roaming encounter, the following will now be active:\n\n'
 	
-	var activeModifierItems: Array[BattleModifierItem] = PlayerResources.playerInfo.activeBattleModifierItems.duplicate(false)
-	if self not in activeModifierItems:
-		activeModifierItems.append(self)
-	
-	for idx: int in range(len(activeModifierItems)):
-		var modifierItem: BattleModifierItem = activeModifierItems[idx]
-		useMsg += '* ' + modifierItem.itemName + ' (' + TextUtils.string_arr_to_string(modifierItem.get_effect_texts(true)) + ')'
-		if idx < len(activeModifierItems) - 1:
-			useMsg += '\n'
+	var effectTexts: Array[String] = get_effect_texts(true)
+	useMsg += TextUtils.string_arr_to_string(effectTexts)
 	
 	return useMsg
 

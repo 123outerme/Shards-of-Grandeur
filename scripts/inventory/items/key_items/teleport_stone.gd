@@ -49,7 +49,8 @@ func _init(
 	targetPos = i_targetPos
 
 func use(_target: Combatant):
-	PlayerFinder.player.useTeleportStone = self
+	if PlayerFinder.player != null:
+		PlayerFinder.player.useTeleportStone = self
 
 func can_be_used_now() -> bool:
 	for requirement: StoryRequirements in DISABLE_IF_VALID_REQUIREMENTS:
@@ -62,4 +63,10 @@ func can_be_used_now() -> bool:
 		if PlayerResources.playerInfo.map == mapName:
 			return false
 	
-	return PlayerResources.playerInfo.map != targetMap
+	if PlayerResources.playerInfo.map == targetMap:
+		return false
+	
+	if PlayerFinder.player != null and PlayerFinder.player.useTeleportStone != null:
+		return false
+	
+	return true
