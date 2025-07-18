@@ -599,10 +599,10 @@ func update_sprite_state(curState: String) -> void:
 	
 	for state: NpcSpriteState in spriteStatesDict.values():
 		if state.autoApplyState:
-			if state.priority > highestPriority or (
+			if state.is_valid() and (state.priority > highestPriority or (
 						state.priority == highestPriority and \
 						not NpcSpriteState.compare(chosenSpriteState, state)
-					):
+					)):
 				chosenSpriteState = state
 				newSpriteState = state.id
 				highestPriority = state.priority
