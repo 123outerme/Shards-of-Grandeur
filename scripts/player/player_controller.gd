@@ -450,7 +450,7 @@ func update_npc_speaker_sprite(dialogueItem: DialogueItem) -> void:
 	else:
 		var npcSpriteFrames: SpriteFrames = talkNPC.get_sprite_frames()
 		if npcSpriteFrames == null or not npcSpriteFrames.has_animation(dialogueItem.animation):
-			printerr('ERROR in update_npc_speaker_sprite: npc sprite frames are null: ', npcSpriteFrames == null, ' or does not have animation ', dialogueItem.animation)
+			printerr('ERROR in update_npc_speaker_sprite: npc sprite frames are null: ', npcSpriteFrames == null, ' or does not have animation "', dialogueItem.animation, '" / where NPC=', talkNPC.get_path().get_concatenated_names() if talkNPC != null else StringName('null'), ' | dialogueItem=', dialogueItem.lines)
 			return
 		textBox.speakerSpriteFrames = npcSpriteFrames
 		textBox.speakerAnim = dialogueItem.animation

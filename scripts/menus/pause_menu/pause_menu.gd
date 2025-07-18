@@ -101,6 +101,7 @@ func _on_quit_button_pressed():
 	SaveHandler.save_data()
 	PlayerResources.saveFolder = ''
 	PlayerResources.battleSaveFolder = ''
+	await get_tree().process_frame
 	SceneLoader.load_main_menu()
 
 func _on_map_panel_back_pressed() -> void:

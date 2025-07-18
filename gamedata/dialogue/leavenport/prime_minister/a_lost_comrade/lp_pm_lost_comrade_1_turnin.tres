@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=8 format=3 uid="uid://drklgaa6wf8np"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=9 format=3 uid="uid://drklgaa6wf8np"]
 
 [ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_tj3ak"]
 [ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_1ff7o"]
@@ -8,13 +8,24 @@
 
 [sub_resource type="Resource" id="Resource_sskbf"]
 script = ExtResource("2_1ff7o")
-choiceBtn = "Never Mind..."
+choiceBtn = "Forget It..."
 returnsToParentId = ""
 randomDialogues = Array[ExtResource("3_vy1h1")]([])
 repeatsItem = false
 buttonDims = Vector2(80, 40)
 turnsInQuest = ""
+isDeclineChoice = true
+
+[sub_resource type="Resource" id="Resource_5muwt"]
+script = ExtResource("2_1ff7o")
+choiceBtn = "Thanks, I'll Try."
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_vy1h1")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = "A Lost Comrade#To The Town Hall"
 isDeclineChoice = false
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
 
 [sub_resource type="Resource" id="Resource_4l7an"]
 script = ExtResource("1_tj3ak")
@@ -25,7 +36,7 @@ speakerOverride = ""
 actorAnimation = ""
 animateActorTreePath = ""
 animateActorIsPlayer = false
-choices = Array[ExtResource("2_1ff7o")]([SubResource("Resource_sskbf")])
+choices = Array[ExtResource("2_1ff7o")]([SubResource("Resource_sskbf"), SubResource("Resource_5muwt")])
 
 [resource]
 script = ExtResource("3_5ti0h")

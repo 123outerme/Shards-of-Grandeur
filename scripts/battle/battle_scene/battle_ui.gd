@@ -275,13 +275,16 @@ func open_stats(combatant: Combatant, levelUp: bool = false):
 	statsPanel.toggle()
 	battlePanels.animatedBgPanel.visible = true
 
+func should_apply_reward_modifiers() -> bool:
+	return playerWins and (PlayerResources.playerInfo.encounter is RandomEncounter)
+
 func build_rewards() -> Array[Reward]:
 	var rewards: Array[Reward] = []
 	if escapes and not playerWins:
 		return [null]
 	# if rewards have not been built yet: do this now
 	if len(battleController.state.rewards) == 0:
-		var applyRewardModifiers: bool = playerWins and not (PlayerResources.playerInfo.encounter is RandomEncounter)
+		var applyRewardModifiers: bool = should_apply_reward_modifiers()
 		var itemsModifier: float = PlayerResources.playerInfo.get_battle_reward_item_count_modifier() if applyRewardModifiers else 1.0
 		var expModifier: float = PlayerResources.playerInfo.get_battle_reward_exp_modifier() if applyRewardModifiers else 1.0
 		var goldModifier: float = PlayerResources.playerInfo.get_battle_reward_gold_modifier() if applyRewardModifiers else 1.0

@@ -1,10 +1,12 @@
-[gd_scene load_steps=18 format=4 uid="uid://ds5u8lsvxlg2c"]
+[gd_scene load_steps=21 format=4 uid="uid://ds5u8lsvxlg2c"]
 
 [ext_resource type="Script" uid="uid://vg00rfnn3346" path="res://scripts/overworld/map_script.gd" id="1_knm7c"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_vhfdw"]
 [ext_resource type="PackedScene" uid="uid://bsalesakrx8yy" path="res://prefabs/entities/npc.tscn" id="3_ndbm5"]
 [ext_resource type="Script" uid="uid://8t63d3un22ug" path="res://scripts/npcs/npc_data.gd" id="4_v8nqt"]
+[ext_resource type="Script" uid="uid://bwcja16pmp3mf" path="res://scripts/npcs/npc_sprite_state.gd" id="4_wox0r"]
 [ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="5_4w8ab"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="5_5s067"]
 [ext_resource type="Resource" uid="uid://beg8gy0jt3gtj" path="res://gamedata/dialogue/leavenport/prime_minister/lp_pm_intro.tres" id="5_l0lul"]
 [ext_resource type="Resource" uid="uid://4o02emahx2vv" path="res://gamedata/dialogue/leavenport/prime_minister/lp_pm_takeover.tres" id="6_1lenj"]
 [ext_resource type="SpriteFrames" uid="uid://dba1h7kbm4kvt" path="res://graphics/animations/a_leavenport_pm.tres" id="6_3saiu"]
@@ -14,7 +16,14 @@
 [ext_resource type="Resource" uid="uid://du3d0pl18jif2" path="res://gamedata/dialogue/leavenport/prime_minister/angry_angler/lp_pm_angry_angler_11_inprogress.tres" id="8_6pepg"]
 [ext_resource type="Resource" uid="uid://dxjxdfgbsk6vg" path="res://gamedata/dialogue/leavenport/prime_minister/lp_pm_post_takeover1.tres" id="8_us3ll"]
 
-[sub_resource type="Resource" id="Resource_hxn2e"]
+[sub_resource type="Resource" id="Resource_0qrtm"]
+script = ExtResource("4_wox0r")
+id = "default"
+priority = -1
+storyRequirements = Array[ExtResource("5_5s067")]([])
+autoApplyState = false
+
+[sub_resource type="Resource" id="Resource_okbeg"]
 script = ExtResource("4_v8nqt")
 saveName = "npc"
 spriteState = "default"
@@ -99,7 +108,10 @@ tile_set = ExtResource("2_vhfdw")
 position = Vector2(-52, -61)
 displayName = "Prime Minister"
 saveName = "leavenport_pm"
-data = SubResource("Resource_hxn2e")
+spriteStatesDict = Dictionary[String, ExtResource("4_wox0r")]({
+"default": SubResource("Resource_0qrtm")
+})
+data = SubResource("Resource_okbeg")
 dialogueEntries = Array[ExtResource("5_4w8ab")]([ExtResource("6_gnje5"), ExtResource("7_80f67"), ExtResource("8_6pepg"), ExtResource("5_l0lul"), ExtResource("6_1lenj"), ExtResource("8_us3ll")])
 
 [node name="NPCSprite" parent="TilemapRoot/PrimeMinister" index="0"]

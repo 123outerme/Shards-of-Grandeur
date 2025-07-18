@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=12 format=3 uid="uid://wxfr7mvexqip"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=18 format=3 uid="uid://wxfr7mvexqip"]
 
 [ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_bd2vp"]
 [ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_mh52l"]
@@ -7,10 +7,12 @@
 [ext_resource type="Resource" uid="uid://d2g6cin26xn3n" path="res://gamedata/dialogue/sea_leg_swamp_north/cl_soldier_1/swamp_soldier_solius_clue.tres" id="5_vabfr"]
 [ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="6_xtnyq"]
 [ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="7_58kci"]
+[ext_resource type="Script" uid="uid://fw22o8hbosnk" path="res://scripts/inventory/inventory_slot.gd" id="7_b4ad4"]
+[ext_resource type="Script" uid="uid://fsrd48o26kgo" path="res://scripts/dialogue/story_reqs_dialogue_item.gd" id="8_2eubt"]
 
-[sub_resource type="Resource" id="Resource_mr3fx"]
+[sub_resource type="Resource" id="Resource_vabfr"]
 script = ExtResource("2_mh52l")
-choiceBtn = "Bye!"
+choiceBtn = "Mind Your Business."
 returnsToParentId = ""
 randomDialogues = Array[ExtResource("3_b4ad4")]([])
 repeatsItem = false
@@ -19,9 +21,9 @@ turnsInQuest = ""
 isDeclineChoice = true
 metadata/_custom_type_script = "uid://bk6klhv2ls55w"
 
-[sub_resource type="Resource" id="Resource_ovy8x"]
+[sub_resource type="Resource" id="Resource_xtnyq"]
 script = ExtResource("2_mh52l")
-choiceBtn = "Don't Act Chummy With Me..."
+choiceBtn = "Don't Act Chummy With Me!"
 leadsTo = ExtResource("4_2eubt")
 returnsToParentId = ""
 randomDialogues = Array[ExtResource("3_b4ad4")]([])
@@ -43,7 +45,7 @@ turnsInQuest = ""
 isDeclineChoice = false
 metadata/_custom_type_script = "uid://bk6klhv2ls55w"
 
-[sub_resource type="Resource" id="Resource_m6t5s"]
+[sub_resource type="Resource" id="Resource_58kci"]
 script = ExtResource("1_bd2vp")
 lines = Array[String](["Hello, adventurer! What brings you this way?"])
 minShowSecs = Array[float]([])
@@ -52,13 +54,77 @@ speakerOverride = ""
 actorAnimation = ""
 animateActorTreePath = ""
 animateActorIsPlayer = false
-choices = Array[ExtResource("2_mh52l")]([SubResource("Resource_mr3fx"), SubResource("Resource_ovy8x"), SubResource("Resource_uy8fe")])
+choices = Array[ExtResource("2_mh52l")]([SubResource("Resource_vabfr"), SubResource("Resource_xtnyq"), SubResource("Resource_uy8fe")])
 metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[sub_resource type="Resource" id="Resource_gttjw"]
+script = ExtResource("6_xtnyq")
+minAct = 0
+maxAct = -1
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqPlacesVisited = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+prereqDefeatedEnemies = Array[String]([])
+prereqPuzzles = Array[String]([])
+prereqPuzzleStates = Dictionary[String, Array]({})
+prereqDiscoveredEvolutions = Array[String]([])
+prereqHavingFollowers = Array[String]([])
+prereqHasItems = Array[ExtResource("7_b4ad4")]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String](["cl_soldier_swamp_north_1#swamp_soldier_introd"])
+invalidAfterVistingPlaces = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromPuzzleStates = Dictionary[String, Array]({})
+invalidFromHavingFollowers = Array[String]([])
+invalidFromHavingItems = Array[ExtResource("7_b4ad4")]([])
+metadata/_custom_type_script = "uid://bjesn36acj0uh"
+
+[sub_resource type="Resource" id="Resource_b4ad4"]
+script = ExtResource("2_mh52l")
+choiceBtn = "Bye!"
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_b4ad4")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = true
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_iltak"]
+script = ExtResource("2_mh52l")
+choiceBtn = "Have You Seen Solius?"
+leadsTo = ExtResource("5_vabfr")
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_b4ad4")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = false
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_gu22l"]
+script = ExtResource("8_2eubt")
+alternativeDialogueItems = Array[ExtResource("1_bd2vp")]([SubResource("Resource_58kci")])
+alternativeStoryReqs = Array[ExtResource("6_xtnyq")]([SubResource("Resource_gttjw")])
+lines = Array[String](["Hello, @! What brings you this way?"])
+minShowSecs = Array[float]([])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_mh52l")]([SubResource("Resource_b4ad4"), SubResource("Resource_iltak")])
+metadata/_custom_type_script = "uid://fsrd48o26kgo"
 
 [resource]
 script = ExtResource("7_58kci")
 entryId = ""
-items = Array[ExtResource("1_bd2vp")]([SubResource("Resource_m6t5s")])
+items = Array[ExtResource("1_bd2vp")]([SubResource("Resource_gu22l")])
 ordStoryRequirements = Array[ExtResource("6_xtnyq")]([])
 closesDialogue = false
 fullHealsPlayer = false

@@ -162,6 +162,7 @@ func load_save(saveFolder: String):
 	loadPressed = true
 	get_viewport().gui_release_focus() # release focus so player can't spam load button
 	await fade_out_panel()
+	await get_tree().process_frame
 	SaveHandler.load_data(saveFolder)
 	SceneLoader.load_game(saveFolder)
 

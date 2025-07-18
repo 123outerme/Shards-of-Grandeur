@@ -1,4 +1,4 @@
-[gd_scene load_steps=149 format=4 uid="uid://dufgei1vjio8v"]
+[gd_scene load_steps=150 format=4 uid="uid://dufgei1vjio8v"]
 
 [ext_resource type="Script" uid="uid://vg00rfnn3346" path="res://scripts/overworld/map_script.gd" id="1_wdq4m"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_jrrc0"]
@@ -13,6 +13,7 @@
 [ext_resource type="Resource" uid="uid://dqe63k3ojpw3x" path="res://gamedata/dialogue/grandstone/dr_ildran/ildran_at_odds.tres" id="6_j4i73"]
 [ext_resource type="SpriteFrames" uid="uid://b65nqsvqeoxfw" path="res://graphics/animations/a_lady1.tres" id="7_ebdae"]
 [ext_resource type="Resource" uid="uid://c0cedgck2fvkh" path="res://gamedata/dialogue/grandstone/dr_ildran/ildran_standstill_turnin.tres" id="7_o7qmq"]
+[ext_resource type="Resource" uid="uid://bc34m5meqdoag" path="res://gamedata/dialogue/grandstone/dr_ildran/ildran_cracking3.tres" id="8_fpdn7"]
 [ext_resource type="SpriteFrames" uid="uid://dykq3bxn7ynyp" path="res://graphics/animations/a_horse_cart.tres" id="9_1iw4v"]
 [ext_resource type="Resource" uid="uid://bxtca71it6kf6" path="res://gamedata/dialogue/grandstone/lady1/lady1_act2_1.tres" id="10_0wex4"]
 [ext_resource type="SpriteFrames" uid="uid://c1crhw3srnu01" path="res://graphics/animations/a_horse_cart_full.tres" id="10_4lf1j"]
@@ -794,7 +795,7 @@ spriteStatesDict = Dictionary[String, ExtResource("4_urq8s")]({
 "default": SubResource("Resource_jl64n")
 })
 data = SubResource("Resource_wsv5f")
-dialogueEntries = Array[ExtResource("5_sk2j3")]([ExtResource("6_8swug"), ExtResource("6_j4i73"), ExtResource("7_o7qmq"), ExtResource("6_3u0vs")])
+dialogueEntries = Array[ExtResource("5_sk2j3")]([ExtResource("8_fpdn7"), ExtResource("6_8swug"), ExtResource("6_j4i73"), ExtResource("7_o7qmq"), ExtResource("6_3u0vs")])
 
 [node name="NPCSprite" parent="TilemapRoot/DrIldran" index="0"]
 sprite_frames = ExtResource("5_udpn3")
@@ -845,10 +846,6 @@ position = Vector2(208, -134)
 displayName = "Horse"
 saveName = "horse_cart_grandstone"
 loadFlipH = true
-stateSpritesDict = Dictionary[String, SpriteFrames]({
-"default": ExtResource("9_1iw4v"),
-"shards_cart": ExtResource("10_4lf1j")
-})
 spriteStatesDict = Dictionary[String, ExtResource("4_urq8s")]({
 "default": SubResource("Resource_0xs5b"),
 "shards_cart": SubResource("Resource_xogp7")
@@ -895,11 +892,6 @@ displayName = "Horse"
 saveName = "horse_marble_gs"
 loadFlipH = true
 spriteState = "marble_cart"
-stateSpritesDict = Dictionary[String, SpriteFrames]({
-"default": ExtResource("9_1iw4v"),
-"marble_cart": ExtResource("11_wtvo4"),
-"shards_cart": ExtResource("10_4lf1j")
-})
 spriteStatesDict = Dictionary[String, ExtResource("4_urq8s")]({
 "default": SubResource("Resource_pcfrt"),
 "marble_cart": SubResource("Resource_fpdn7"),

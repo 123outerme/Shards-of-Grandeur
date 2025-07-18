@@ -500,7 +500,8 @@ func end_battle():
 			minionCombatant.combatant.downed,
 			PlayerResources.playerInfo.get_battle_attunement_modifier() if (battleUI.playerWins or not (PlayerResources.playerInfo.encounter is RandomEncounter)) else 1.0
 		)
-	if PlayerResources.playerInfo.encounter is RandomEncounter:
+	# if modifiers were applied: clear them now
+	if battleUI.should_apply_reward_modifiers():
 		PlayerResources.playerInfo.activeBattleModifierItems = []
 	SceneLoader.audioHandler.fade_out_music()
 	shadeTween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_LINEAR)

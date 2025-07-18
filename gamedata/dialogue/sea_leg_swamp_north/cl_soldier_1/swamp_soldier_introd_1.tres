@@ -1,8 +1,9 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=10 format=3 uid="uid://yug7rn4677gh"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=11 format=3 uid="uid://yug7rn4677gh"]
 
 [ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_ugcay"]
 [ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_hn5r2"]
 [ext_resource type="Script" uid="uid://b6oofnelefs8o" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_82pgr"]
+[ext_resource type="Resource" uid="uid://x52o43h51guu" path="res://gamedata/dialogue/sea_leg_swamp_north/cl_soldier_1/swamp_soldier_introd_2.tres" id="3_hn5r2"]
 [ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="4_1ipjn"]
 [ext_resource type="Script" uid="uid://fw22o8hbosnk" path="res://scripts/inventory/inventory_slot.gd" id="5_v8cr6"]
 [ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="6_uetlt"]
@@ -10,6 +11,7 @@
 [sub_resource type="Resource" id="Resource_uupe5"]
 script = ExtResource("2_hn5r2")
 choiceBtn = "You're Sure?"
+leadsTo = ExtResource("3_hn5r2")
 returnsToParentId = ""
 randomDialogues = Array[ExtResource("3_82pgr")]([])
 repeatsItem = false

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=9 format=3 uid="uid://du3d0pl18jif2"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=11 format=3 uid="uid://du3d0pl18jif2"]
 
 [ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_jg2qn"]
 [ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_deail"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_5kabc"]
 [ext_resource type="Resource" uid="uid://dqbdu25qgq7lc" path="res://gamedata/dialogue/leavenport/prime_minister/angry_angler/lp_pm_angry_angler_11_turnin.tres" id="3_y608k"]
 [ext_resource type="Script" uid="uid://b6oofnelefs8o" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="4_vfqsn"]
+[ext_resource type="Script" uid="uid://fw22o8hbosnk" path="res://scripts/inventory/inventory_slot.gd" id="6_g3qfb"]
 
 [sub_resource type="Resource" id="Resource_l2nqp"]
 script = ExtResource("2_qn0rw")
@@ -29,11 +30,38 @@ animateActorTreePath = ""
 animateActorIsPlayer = false
 choices = Array[ExtResource("2_qn0rw")]([SubResource("Resource_l2nqp")])
 
+[sub_resource type="Resource" id="Resource_bpcko"]
+script = ExtResource("2_deail")
+minAct = 0
+maxAct = -1
+prereqQuests = Array[String](["Danger on the Leaven River"])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqPlacesVisited = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+prereqDefeatedEnemies = Array[String]([])
+prereqPuzzles = Array[String]([])
+prereqPuzzleStates = Dictionary[String, Array]({})
+prereqDiscoveredEvolutions = Array[String]([])
+prereqHavingFollowers = Array[String]([])
+prereqHasItems = Array[ExtResource("6_g3qfb")]([])
+invalidAfterCompletingQuests = Array[String](["Angry Angler#Sea Wyrms in Retreat"])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String]([])
+invalidAfterVistingPlaces = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromPuzzleStates = Dictionary[String, Array]({})
+invalidFromHavingFollowers = Array[String]([])
+invalidFromHavingItems = Array[ExtResource("6_g3qfb")]([])
+metadata/_custom_type_script = "uid://bjesn36acj0uh"
+
 [resource]
 script = ExtResource("3_5kabc")
 entryId = "sea_wyrm_report"
 items = Array[ExtResource("1_jg2qn")]([SubResource("Resource_p3xiw")])
-ordStoryRequirements = Array[ExtResource("2_deail")]([])
+ordStoryRequirements = Array[ExtResource("2_deail")]([SubResource("Resource_bpcko")])
 closesDialogue = false
 fullHealsPlayer = false
 annotation = ""

@@ -88,7 +88,6 @@ func has_reached_status_for_one_quest_of(questNames: Array[String], status: Ques
 						if tracker.get_step_status(step) == status:
 							return true
 				else:
-					# if step name not specified, return true unless FAILED or NOT_STARTED status
 					return status != QuestTracker.Status.FAILED and status != QuestTracker.Status.NOT_STARTED
 	return false
 
