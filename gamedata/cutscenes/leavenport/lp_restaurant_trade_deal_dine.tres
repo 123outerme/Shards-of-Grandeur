@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Cutscene" load_steps=57 format=3 uid="uid://7pdcduegxe5m"]
+[gd_resource type="Resource" script_class="Cutscene" load_steps=60 format=3 uid="uid://7pdcduegxe5m"]
 
 [ext_resource type="Script" uid="uid://cqpl74uk8cjo0" path="res://scripts/cutscenes/cutscene_frame.gd" id="1_0eldb"]
 [ext_resource type="Script" uid="uid://fpa08p2kb0ts" path="res://scripts/cutscenes/cutscene.gd" id="2_0yoc4"]
@@ -53,7 +53,7 @@ metadata/_custom_type_script = "uid://csrikyyse38e2"
 [sub_resource type="Resource" id="Resource_h6h36"]
 script = ExtResource("6_uw7wv")
 speaker = "Shopkeeper"
-texts = Array[String](["I have arrived! Greetings, my partner in trade, and @. "])
+texts = Array[String](["Not until I arrive! Greetings, my partner in trade, and @. "])
 textboxSfxs = Array[AudioStream]([])
 speakerActorScenePath = "TilemapRoot/FrostmintShopkeeper"
 speakerActorIsPlayer = false
@@ -166,7 +166,7 @@ metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
 
 [sub_resource type="Resource" id="Resource_4nnq4"]
 script = ExtResource("6_uw7wv")
-speaker = ""
+speaker = "Shopkeeper"
 texts = Array[String](["The box that @ carries contains all the goods, as promised.", "Why don't we test our product out first, with a toast to this new deal?"])
 textboxSfxs = Array[AudioStream]([])
 speakerActorScenePath = "TilemapRoot/FrostmintShopkeeper"
@@ -610,6 +610,29 @@ removesFollowerId = ""
 endStartsShardLearnTutorial = false
 metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
 
+[sub_resource type="Resource" id="Resource_cx73l"]
+script = ExtResource("1_0eldb")
+frameLength = 0.1
+annotation = "wait for text box to be closed"
+actorTweens = Array[ExtResource("5_7scj6")]([])
+actorAnims = Array[ExtResource("3_7cnbn")]([])
+actorAnimSets = Array[ExtResource("2_kcgr3")]([])
+actorFaceTargets = Array[ExtResource("4_uv6rt")]([])
+dialogues = Array[ExtResource("6_uw7wv")]([])
+playSfxs = Array[AudioStream]([])
+snapshotActorPaths = Array[String]([])
+restoreSnapshotActorPaths = Array[String]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
+
 [sub_resource type="Resource" id="Resource_llgay"]
 script = ExtResource("3_7cnbn")
 actorTreePath = "TilemapRoot/FrostmintShopkeeper"
@@ -634,7 +657,7 @@ shakeCamForDuration = false
 endHoldCamera = false
 endFade = 1
 endFadeLength = 1.5
-healsPlayer = false
+healsPlayer = true
 addsFollowerId = ""
 removesFollowerId = ""
 endStartsShardLearnTutorial = false
@@ -699,7 +722,53 @@ metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
 [sub_resource type="Resource" id="Resource_0xet2"]
 script = ExtResource("1_0eldb")
 frameLength = 0.2
-annotation = "Wait a slight bit before the cutscene is completed"
+annotation = "Wait a slight bit before the fade in"
+actorTweens = Array[ExtResource("5_7scj6")]([])
+actorAnims = Array[ExtResource("3_7cnbn")]([])
+actorAnimSets = Array[ExtResource("2_kcgr3")]([])
+actorFaceTargets = Array[ExtResource("4_uv6rt")]([])
+dialogues = Array[ExtResource("6_uw7wv")]([])
+playSfxs = Array[AudioStream]([])
+snapshotActorPaths = Array[String]([])
+restoreSnapshotActorPaths = Array[String]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
+
+[sub_resource type="Resource" id="Resource_ac1f2"]
+script = ExtResource("1_0eldb")
+frameLength = 0.1
+annotation = "start fade in"
+actorTweens = Array[ExtResource("5_7scj6")]([])
+actorAnims = Array[ExtResource("3_7cnbn")]([])
+actorAnimSets = Array[ExtResource("2_kcgr3")]([])
+actorFaceTargets = Array[ExtResource("4_uv6rt")]([])
+dialogues = Array[ExtResource("6_uw7wv")]([])
+playSfxs = Array[AudioStream]([])
+snapshotActorPaths = Array[String]([])
+restoreSnapshotActorPaths = Array[String]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 2
+endFadeLength = 0.5
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
+
+[sub_resource type="Resource" id="Resource_y27da"]
+script = ExtResource("1_0eldb")
+frameLength = 0.5
+annotation = "wait for fade in to complete"
 actorTweens = Array[ExtResource("5_7scj6")]([])
 actorAnims = Array[ExtResource("3_7cnbn")]([])
 actorAnimSets = Array[ExtResource("2_kcgr3")]([])
@@ -721,7 +790,7 @@ metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
 
 [resource]
 script = ExtResource("2_0yoc4")
-cutsceneFrames = Array[ExtResource("1_0eldb")]([SubResource("Resource_ohjur"), SubResource("Resource_ubkkr"), SubResource("Resource_vjs1c"), SubResource("Resource_chqsj"), SubResource("Resource_4u0hb"), SubResource("Resource_tj6e0"), SubResource("Resource_2jufj"), SubResource("Resource_ikcfw"), SubResource("Resource_ms5n6"), SubResource("Resource_7cnbn"), SubResource("Resource_7scj6"), SubResource("Resource_uv6rt"), SubResource("Resource_ajr5j"), SubResource("Resource_n3dj1"), SubResource("Resource_n68xm"), SubResource("Resource_sq2tu"), SubResource("Resource_g3mb8"), SubResource("Resource_8l3wo"), SubResource("Resource_kcgr3"), SubResource("Resource_0xet2")])
+cutsceneFrames = Array[ExtResource("1_0eldb")]([SubResource("Resource_ohjur"), SubResource("Resource_ubkkr"), SubResource("Resource_vjs1c"), SubResource("Resource_chqsj"), SubResource("Resource_4u0hb"), SubResource("Resource_tj6e0"), SubResource("Resource_2jufj"), SubResource("Resource_ikcfw"), SubResource("Resource_ms5n6"), SubResource("Resource_7cnbn"), SubResource("Resource_7scj6"), SubResource("Resource_uv6rt"), SubResource("Resource_ajr5j"), SubResource("Resource_n3dj1"), SubResource("Resource_n68xm"), SubResource("Resource_sq2tu"), SubResource("Resource_cx73l"), SubResource("Resource_g3mb8"), SubResource("Resource_8l3wo"), SubResource("Resource_kcgr3"), SubResource("Resource_0xet2"), SubResource("Resource_ac1f2"), SubResource("Resource_y27da")])
 saveName = "lp_restaurant_trade_deal_dine"
 unlockCameraHoldAfter = true
 activateActorsBefore = Array[String]([])

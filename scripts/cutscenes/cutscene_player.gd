@@ -175,7 +175,7 @@ func handle_restore_snapshots(frame: CutsceneFrame):
 				actor.position = snapshot.position
 				
 				if 'invisible' in actor:
-					actor.set('invsible', not snapshot.visible)
+					actor.set('invisible', not snapshot.visible)
 				else:
 					actor.visible = snapshot.visible
 				

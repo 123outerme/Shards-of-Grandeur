@@ -1,6 +1,8 @@
 extends Node2D
 class_name TextBox
 
+signal text_box_closed
+
 @export var textScrollSfx: AudioStream = null
 @export var advanceDialogueSfx: Array[AudioStream] = []
 @export var buttonRow: HBoxContainer
@@ -280,6 +282,7 @@ func hide_textbox():
 	speakerSpriteScale = 3
 	speakerSpriteOffset = Vector2.ZERO
 	speakerAnim = ''
+	text_box_closed.emit()
 
 func show_text_instant():
 	SceneLoader.audioHandler.stop_sfx(textScrollSfx)

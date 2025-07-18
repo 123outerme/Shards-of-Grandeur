@@ -1,6 +1,8 @@
 extends CharacterBody2D
 class_name PlayerController
 
+signal all_menus_closed
+
 const BASE_SPEED = 80
 const RUN_SPEED = 120
 # cooldowns calculated from animation framerate and "step" frame timings
@@ -912,18 +914,55 @@ func get_collider() -> CollisionShape2D: # for use before full player initializa
 
 func menu_closed() -> void:
 	if not inventoryPanel.visible and not questsPanel.visible and \
-			not statsPanel.visible and not pausePanel.visible:
+			not statsPanel.visible and not pausePanel.visible and \
+			not overworldRewardPanel.visible and not overworldConsole.visible:
 		animatedBgPanel.visible = false
+		all_menus_closed.emit()
 		overworldTouchControls.set_all_visible()
 		if not textBox.visible:
 			SceneLoader.unpause_autonomous_movers()
 			if useTeleportStone != null:
-				play_animation('teleport')
-				SceneLoader.audioHandler.play_sfx(teleportSfx)
-				disableMovement = true
-				await get_tree().create_timer(0.5).timeout
-				if not SceneLoader.mapLoader.loading:
-					SceneLoader.mapLoader.entered_warp(useTeleportStone.targetMap, useTeleportStone.targetPos, position)
+				handle_teleport_stone()
+		else:
+			handle_textbox_on_menu_closed()
+
+func handle_teleport_stone() -> void:
+	if useTeleportStone != null:
+		play_animation('teleport')
+		SceneLoader.audioHandler.play_sfx(teleportSfx)
+		disableMovement = true
+		# wait for the teleport player anim to complete
+		await get_tree().create_timer(0.5).timeout
+		if not SceneLoader.mapLoader.loading:
+			SceneLoader.mapLoader.entered_warp(useTeleportStone.targetMap, useTeleportStone.targetPos, position)
+
+func handle_textbox_on_menu_closed() -> void:
+	if textBox.visible:
+		# refocus the clicked button, whatever that may be
+		textBox.refocus_choice(pickedChoice)
+		if pickedChoice != null:
+			# if it opens an NPC shop: clear the picked choice
+			if pickedChoice is NPCDialogueChoice and pickedChoice.opensShop:
+				pickedChoice = null
+			elif pickedChoice.turnsInQuest != '':
+				# if it turns in a quest, check if the quest was actually turned in
+				var questName = pickedChoice.turnsInQuest.split('#')[0]
+				var stepName = pickedChoice.turnsInQuest.split('#')[1]
+				var questTracker: QuestTracker = PlayerResources.questInventory.get_quest_tracker_by_name(questName)
+				if questTracker != null:
+					var step: QuestStep = questTracker.get_step_by_name(stepName)
+					var status: QuestTracker.Status = questTracker.get_step_status(step)
+					# if the quest was actually turned in: advance the dialogue
+					if status == QuestTracker.Status.COMPLETED:
+						if pickedChoice.leadsTo != null:
+							if talkNPC != null:
+								talkNPC.add_dialogue_entry_in_dialogue(pickedChoice.leadsTo)
+							elif interactable != null:
+								var interDialogue: InteractableDialogue = InteractableDialogue.new()
+								interDialogue.dialogueEntry = pickedChoice.leadsTo
+								interDialogue.speaker = interactableDialogues[interactableDialogueIndex].speaker
+								interactableDialogues.append(interDialogue)
+						advance_dialogue()
 
 func start_battle():
 	if startingBattle:
@@ -964,11 +1003,6 @@ func _on_turn_in_button_pressed():
 
 func _on_inventory_panel_node_back_pressed():
 	menu_closed()
-	if textBox.visible and not inventoryPanel.visible and not questsPanel.visible \
-			and not statsPanel.visible and not pausePanel.visible:
-		textBox.refocus_choice(pickedChoice)
-		if pickedChoice != null and pickedChoice is NPCDialogueChoice and pickedChoice.opensShop:
-			pickedChoice = null
 
 func _on_inventory_panel_node_inventory_reopened() -> void:
 	animatedBgPanel.visible = true
@@ -976,26 +1010,6 @@ func _on_inventory_panel_node_inventory_reopened() -> void:
 
 func _on_quests_panel_node_back_pressed():
 	menu_closed()
-	if textBox.visible and not inventoryPanel.visible and not questsPanel.visible \
-			and not statsPanel.visible and not pausePanel.visible:
-		textBox.refocus_choice(pickedChoice)
-		if pickedChoice != null and pickedChoice.turnsInQuest != '':
-			var questName = pickedChoice.turnsInQuest.split('#')[0]
-			var stepName = pickedChoice.turnsInQuest.split('#')[1]
-			var questTracker: QuestTracker = PlayerResources.questInventory.get_quest_tracker_by_name(questName)
-			if questTracker != null:
-				var step: QuestStep = questTracker.get_step_by_name(stepName)
-				var status: QuestTracker.Status = questTracker.get_step_status(step)
-				if status == QuestTracker.Status.COMPLETED:
-					if pickedChoice.leadsTo != null:
-						if talkNPC != null:
-							talkNPC.add_dialogue_entry_in_dialogue(pickedChoice.leadsTo)
-						elif interactable != null:
-							var interDialogue: InteractableDialogue = InteractableDialogue.new()
-							interDialogue.dialogueEntry = pickedChoice.leadsTo
-							interDialogue.speaker = interactableDialogues[interactableDialogueIndex].speaker
-							interactableDialogues.append(interDialogue)
-					advance_dialogue()
 
 func _on_stats_panel_node_attempt_equip_weapon_to(stats: Stats):
 	inventoryPanel.selectedFilter = Item.Type.WEAPON
@@ -1043,14 +1057,6 @@ func _on_stats_panel_node_back_pressed():
 	statsPanel.levelUp = false
 	statsPanel.newLvs = 0
 	menu_closed()
-	if textBox.visible and not inventoryPanel.visible and not questsPanel.visible \
-			and not statsPanel.visible and not pausePanel.visible:
-		if pickedChoice != null and pickedChoice.turnsInQuest != '':
-			if pickedChoice.leadsTo != null:
-				talkNPC.add_dialogue_entry_in_dialogue(pickedChoice.leadsTo)
-			advance_dialogue()
-		else:
-			textBox.refocus_choice(pickedChoice)
 
 func _on_quests_panel_node_turn_in_step_to(saveName):
 	if saveName == talkNPC.saveName:
@@ -1079,19 +1085,23 @@ func _after_start_battle_fade_out():
 	SceneLoader.load_battle()
 
 func _on_pause_menu_resume_game():
-	if not inventoryPanel.visible and not questsPanel.visible \
-			and not statsPanel.visible and not pausePanel.visible:
-		animatedBgPanel.visible = false
-		if textBox.visible:
-			textBox.refocus_choice(pickedChoice)
-	overworldTouchControls.set_all_visible()
+	menu_closed()
 
 func _overworld_rewards_given(rewardsTitle: String = 'Rewards') -> void:
 	if not overworldRewardPanel.visible: # first, only handle if the panel isn't already open
-		# if in a cutscene, wait until the cutscene is fully completed before popping up the rewards
-		if inCutscene:
-			await SceneLoader.cutscenePlayer.cutscene_completed
-		# then, after the cutscene, if another signal emission call didn't handle this yet:
+		# if in a cutscene, a menu, or a dialogue:
+		# wait until all cutscenes/menus/dialogues are fully completed before popping up the rewards
+		while inventoryPanel.visible or questsPanel.visible or \
+				statsPanel.visible or pausePanel.visible or \
+				textBox.visible or inCutscene:
+			if inventoryPanel.visible or questsPanel.visible or \
+					statsPanel.visible or pausePanel.visible:
+				await all_menus_closed
+			elif textBox.visible:
+				await textBox.text_box_closed
+			elif inCutscene:
+				await SceneLoader.cutscenePlayer.cutscene_completed
+		# then, when the player is free to move, if another signal emission call didn't handle this yet:
 		if not overworldRewardPanel.visible:
 			SceneLoader.pause_autonomous_movers()
 			overworldTouchControls.set_all_visible(false)
@@ -1104,8 +1114,7 @@ func _on_overworld_reward_panel_ok_button_pressed() -> void:
 	if gainedLvs > 0:
 		level_up(gainedLvs)
 	else:
-		overworldTouchControls.set_all_visible()
-		SceneLoader.unpause_autonomous_movers()
+		menu_closed()
 
 func _filter_out_null(value):
 	return value != null
@@ -1121,8 +1130,7 @@ func _sort_interactables(a: Interactable, b: Interactable):
 	return false
 
 func _on_overworld_console_console_closed():
-	SceneLoader.unpause_autonomous_movers() # make sure autonomous movers are unpaused
-	overworldTouchControls.set_all_visible()
+	menu_closed()
 
 func _on_overworld_touch_controls_run_toggled():
 	if SceneLoader.curMapEntry.isRecoverLocation or SettingsHandler.gameSettings.enableExperimentalFeatures:
