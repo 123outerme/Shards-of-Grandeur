@@ -46,6 +46,9 @@ func _init(
 func get_lines() -> Array[String]:
 	return lines
 
+func get_choices() -> Array[DialogueChoice]:
+	return choices
+
 func get_min_show_secs(idx: int) -> float:
 	if idx >= len(minShowSecs) or idx < 0:
 		return 0

@@ -33,6 +33,19 @@ func get_lines() -> Array[String]:
 	
 	return super.get_lines()
 
+func get_choices() -> Array[DialogueChoice]:
+	if len(alternativeDialogueItems) != len(alternativeStoryReqs):
+		push_warning('StoryReqsDialogueItem get_choices() WARNING: number of alt dialogue items does not equal number of alt story requirements for resource ', resource_path)
+	
+	for idx: int in range(len(alternativeDialogueItems)):
+		var storyReqs: StoryRequirements = null
+		if idx < len(alternativeStoryReqs):
+			storyReqs = alternativeStoryReqs[idx]
+		if storyReqs == null or storyReqs.is_valid():
+			return alternativeDialogueItems[idx].get_choices()
+	
+	return super.get_choices()
+
 func get_min_show_secs(idx: int) -> float:
 	if len(alternativeDialogueItems) != len(alternativeStoryReqs):
 		push_warning('StoryReqsDialogueItem get_min_show_secs() WARNING: number of alt dialogue items does not equal number of alt story requirements for resource ', resource_path)

@@ -165,21 +165,22 @@ func add_choices():
 	delete_choices()
 	var buttonIdx: int = 0
 	var maxBtnHeight: float = 40
-	for idx in range(len(dialogueItem.choices)):
-		var isValid: bool = dialogueItem.choices[idx].is_valid()
-		if dialogueItem.choices[idx].leadsTo != null:
-			isValid = isValid and dialogueItem.choices[idx].leadsTo.can_use_dialogue()
+	var dialogueChoices: Array[DialogueChoice] = dialogueItem.get_choices()
+	for idx in range(len(dialogueChoices)):
+		var isValid: bool = dialogueChoices[idx].is_valid()
+		if dialogueChoices[idx].leadsTo != null:
+			isValid = isValid and dialogueChoices[idx].leadsTo.can_use_dialogue()
 		
-		if len(dialogueItem.choices[idx].randomDialogues) > 0:
+		if len(dialogueChoices[idx].randomDialogues) > 0:
 			# if at least one random option is valid, this can be selected
 			var aDialogueOptionIsValid: bool = false
-			for randomDialogue: WeightedDialogueEntry in dialogueItem.choices[idx].randomDialogues:
+			for randomDialogue: WeightedDialogueEntry in dialogueChoices[idx].randomDialogues:
 				aDialogueOptionIsValid = aDialogueOptionIsValid or randomDialogue.dialogueEntry.can_use_dialogue()
 			isValid = isValid and aDialogueOptionIsValid
 		
 		# if a puzzle dialogue choice: check puzzle dialogue options for option validity
-		if dialogueItem.choices[idx] is PuzzleDialogueChoice:
-			var puzzleChoice: PuzzleDialogueChoice = dialogueItem.choices[idx] as PuzzleDialogueChoice
+		if dialogueChoices[idx] is PuzzleDialogueChoice:
+			var puzzleChoice: PuzzleDialogueChoice = dialogueChoices[idx] as PuzzleDialogueChoice
 			# if a state puzzle, check state puzzle related options for validity
 			if puzzleChoice.puzzle != null and puzzleChoice.puzzle is StatePuzzle:
 				var statePuzzle: StatePuzzle = puzzleChoice.puzzle as StatePuzzle
@@ -194,7 +195,7 @@ func add_choices():
 		# choice is valid if it and the dialogue options it can lead to have valid StoryRequirements
 		
 		if isValid:
-			var choice = dialogueItem.choices[idx]
+			var choice = dialogueChoices[idx]
 			if choice.turnsInQuest != '':
 				var questName = choice.turnsInQuest.split('#')[0]
 				var stepName = choice.turnsInQuest.split('#')[1]
@@ -300,8 +301,9 @@ func select_decline_choice():
 	if not PlayerFinder.player.makingChoice or dialogueItem == null:
 		return
 	var buttons: Array[Node] = buttonContainer.get_children()
+	var dialogueChoices: Array[DialogueChoice] = dialogueItem.get_choices()
 	for idx in range(len(buttons)):
-		if dialogueItem.choices[choicesDialogueItemIdxs[idx]].isDeclineChoice:
+		if dialogueChoices[choicesDialogueItemIdxs[idx]].isDeclineChoice:
 			_select_choice(idx)
 			return
 
@@ -314,8 +316,8 @@ func _viewport_focus_changed(control):
 			lastChoiceFocused = button
 	
 func _select_choice(idx: int):
-	#print(dialogueItem.choices[idx].leadsTo.entryId, ' what is going on')
-	PlayerFinder.player.select_choice(dialogueItem.choices[choicesDialogueItemIdxs[idx]])
+	#print(dialogueItem.get_choices()[idx].leadsTo.entryId, ' what is going on')
+	PlayerFinder.player.select_choice(dialogueItem.get_choices()[choicesDialogueItemIdxs[idx]])
 	lastChoiceFocused = null
 
 func _on_box_container_scroller_visibility_changed() -> void:
