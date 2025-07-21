@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://sbbm0fd438f6"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_6mfjj"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_c85nn"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_eyhnd"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_eyhnd"]
+
+[sub_resource type="Resource" id="Resource_jmd7t"]
+script = ExtResource("1_6mfjj")
+lines = Array[String](["\"The Powers of Destruction are known as a decimating force of nature, or perhaps a deity, that creates disorder.\"", "\"The Elements of the Powers of Destruction are Lightning, Fire, and Dark. Through these three, Creation is destroyed.\"", "\"There are those who worship the Powers of Destruction as a necessary presence in the cycle of all things.\"", "\"Those worshippers are eternally at odds with those of the Powers of Creation, and their feud, whether silent or violent, endures.\""])
+minShowSecs = Array[float]([])
+animation = ""
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_eyhnd")]([])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[resource]
+script = ExtResource("3_eyhnd")
+entryId = ""
+items = Array[ExtResource("1_6mfjj")]([SubResource("Resource_jmd7t")])
+ordStoryRequirements = Array[ExtResource("2_c85nn")]([])
+closesDialogue = false
+fullHealsPlayer = false
+annotation = ""
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"

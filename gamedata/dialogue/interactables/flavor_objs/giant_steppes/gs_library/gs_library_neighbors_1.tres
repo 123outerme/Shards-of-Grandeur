@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://dh6cyfpyscv1d"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_tdd13"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_6ekn4"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_lgima"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_lgima"]
+
+[sub_resource type="Resource" id="Resource_a4f6y"]
+script = ExtResource("1_tdd13")
+lines = Array[String](["\"The closest settlement to Giant Steppes is Frostmint Village. The town is covered in year-round snow, and fires are often burning to warm its citizens.\"", "\"Leavenport is a city of seaside artisans, enjoying the fine arts, cooking, and archaeology. They seem to be particularly popular for the bread they bake.\"", "\"The city-state of Steelspire uses might and magic in equal measures to construct an impregnable city and expand their reaches to nearby resources.\"", "\"Grandstone is a strong and resilient city with a tradition rooted in stoneworking and the study of magic. Perhaps their knowledge shall rival the Warlocks, one day.\""])
+minShowSecs = Array[float]([])
+animation = ""
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_lgima")]([])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[resource]
+script = ExtResource("3_lgima")
+entryId = ""
+items = Array[ExtResource("1_tdd13")]([SubResource("Resource_a4f6y")])
+ordStoryRequirements = Array[ExtResource("2_6ekn4")]([])
+closesDialogue = false
+fullHealsPlayer = false
+annotation = ""
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"

@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://cplesvmp663uw"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_50m1w"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_fmxl2"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_o758v"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_fmxl2"]
+
+[sub_resource type="Resource" id="Resource_4c8hx"]
+script = ExtResource("1_50m1w")
+lines = Array[String](["\"$highlight{Magic}color$ is the power that comes from the mind. It requires fortitude of will to alter the material world.\"", "\"Training in magic requires years of active study. Or, it can be quickly grasped, by entering a mouth of the Radiant Cave.\"", "\"With magic, one can conjure images, create fire, water, earth, and wind, and even call upon the power of the stars.\"", "\"One's magical abilities can be amplified by artifacts embued with power by another practicioner.\""])
+minShowSecs = Array[float]([])
+animation = ""
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_fmxl2")]([])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[resource]
+script = ExtResource("3_fmxl2")
+entryId = ""
+items = Array[ExtResource("1_50m1w")]([SubResource("Resource_4c8hx")])
+ordStoryRequirements = Array[ExtResource("2_o758v")]([])
+closesDialogue = false
+fullHealsPlayer = false
+annotation = ""
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"

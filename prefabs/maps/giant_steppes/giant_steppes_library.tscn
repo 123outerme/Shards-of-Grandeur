@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://d86tyj0eydeo"]
+[gd_scene load_steps=27 format=4 uid="uid://d86tyj0eydeo"]
 
 [ext_resource type="Script" uid="uid://vg00rfnn3346" path="res://scripts/overworld/map_script.gd" id="1_aldqd"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_30rpl"]
@@ -11,6 +11,16 @@
 [ext_resource type="PackedScene" uid="uid://d3rsvv5iihm7t" path="res://prefabs/overworld/warp_zone.tscn" id="6_6y554"]
 [ext_resource type="Resource" uid="uid://btlvvnwqh7s20" path="res://gamedata/dialogue/giant_steppes/keeper_of_history/keeper_of_history_library_1.tres" id="6_vpp0h"]
 [ext_resource type="PackedScene" uid="uid://coqeee0n1wuob" path="res://prefabs/entities/interactable_decoration.tscn" id="10_m8siu"]
+[ext_resource type="Resource" uid="uid://dpqktryhjm00l" path="res://gamedata/dialogue/interactables/flavor_objs/giant_steppes/gs_library/gs_library_founding.tres" id="11_ojbxr"]
+[ext_resource type="Resource" uid="uid://bob7wnaobycl2" path="res://gamedata/dialogue/interactables/flavor_objs/giant_steppes/gs_library/gs_library_cave.tres" id="12_tb0q7"]
+[ext_resource type="Resource" uid="uid://dg2367iofcpjp" path="res://gamedata/dialogue/interactables/flavor_objs/giant_steppes/gs_library/gs_library_neighbors.tres" id="13_8t8aq"]
+[ext_resource type="Resource" uid="uid://dqyggqnumk41y" path="res://gamedata/dialogue/interactables/flavor_objs/giant_steppes/gs_library/gs_library_basics_of_magic.tres" id="14_op46h"]
+[ext_resource type="Resource" uid="uid://dtql4xb4tidwk" path="res://gamedata/dialogue/interactables/flavor_objs/giant_steppes/gs_library/gs_library_shards.tres" id="15_315cd"]
+[ext_resource type="Resource" uid="uid://cbellcmoph0m4" path="res://gamedata/dialogue/interactables/flavor_objs/giant_steppes/gs_library/gs_library_minions.tres" id="15_jujnl"]
+[ext_resource type="Resource" uid="uid://bqq383b65tywi" path="res://gamedata/dialogue/interactables/flavor_objs/giant_steppes/gs_library/gs_library_affinity.tres" id="17_3vnvb"]
+[ext_resource type="Resource" uid="uid://cahqh47ibt1iv" path="res://gamedata/dialogue/interactables/flavor_objs/giant_steppes/gs_library/gs_library_powers_of_destruction.tres" id="18_35roj"]
+[ext_resource type="Resource" uid="uid://d1xialb41ndgr" path="res://gamedata/dialogue/interactables/flavor_objs/giant_steppes/gs_library/gs_library_powers_of_creation.tres" id="18_jwbkx"]
+[ext_resource type="Resource" uid="uid://c68ykjqiwhdlc" path="res://gamedata/dialogue/interactables/flavor_objs/giant_steppes/gs_library/gs_library_astral.tres" id="18_lef10"]
 
 [sub_resource type="Resource" id="Resource_ojbxr"]
 script = ExtResource("4_ta5vp")
@@ -19,7 +29,7 @@ priority = -1
 storyRequirements = Array[ExtResource("5_m8siu")]([])
 autoApplyState = false
 
-[sub_resource type="Resource" id="Resource_m8siu"]
+[sub_resource type="Resource" id="Resource_lef10"]
 script = ExtResource("4_dpsuv")
 saveName = "npc"
 spriteState = "default"
@@ -108,7 +118,7 @@ saveName = "keeper_of_history_library"
 spriteStatesDict = Dictionary[String, ExtResource("4_ta5vp")]({
 "default": SubResource("Resource_ojbxr")
 })
-data = SubResource("Resource_m8siu")
+data = SubResource("Resource_lef10")
 dialogueEntries = Array[ExtResource("5_bxs7t")]([ExtResource("6_vpp0h")])
 
 [node name="NPCSprite" parent="TilemapRoot/KeeperOfHistory" index="0"]
@@ -127,6 +137,7 @@ visible = false
 [node name="Shelf1" parent="TilemapRoot" instance=ExtResource("10_m8siu")]
 position = Vector2(-40, -72)
 saveName = "gs_library_shelf_1"
+dialogue = ExtResource("11_ojbxr")
 
 [node name="Collision" parent="TilemapRoot/Shelf1/AnimatedDecoration" index="1"]
 visible = false
@@ -137,6 +148,7 @@ disabled = true
 [node name="Shelf2" parent="TilemapRoot" instance=ExtResource("10_m8siu")]
 position = Vector2(-88, -71)
 saveName = "gs_library_shelf_2"
+dialogue = ExtResource("12_tb0q7")
 
 [node name="Collision" parent="TilemapRoot/Shelf2/AnimatedDecoration" index="1"]
 visible = false
@@ -147,6 +159,7 @@ disabled = true
 [node name="Shelf3" parent="TilemapRoot" instance=ExtResource("10_m8siu")]
 position = Vector2(-56, -89)
 saveName = "gs_library_shelf_3"
+dialogue = ExtResource("13_8t8aq")
 
 [node name="Collision" parent="TilemapRoot/Shelf3/AnimatedDecoration" index="1"]
 visible = false
@@ -157,6 +170,7 @@ disabled = true
 [node name="Shelf4" parent="TilemapRoot" instance=ExtResource("10_m8siu")]
 position = Vector2(-200, -71)
 saveName = "gs_library_shelf_4"
+dialogue = ExtResource("14_op46h")
 
 [node name="Collision" parent="TilemapRoot/Shelf4/AnimatedDecoration" index="1"]
 visible = false
@@ -167,6 +181,7 @@ disabled = true
 [node name="Shelf5" parent="TilemapRoot" instance=ExtResource("10_m8siu")]
 position = Vector2(-168, -89)
 saveName = "gs_library_shelf_5"
+dialogue = ExtResource("15_jujnl")
 
 [node name="Collision" parent="TilemapRoot/Shelf5/AnimatedDecoration" index="1"]
 visible = false
@@ -177,6 +192,7 @@ disabled = true
 [node name="Shelf6" parent="TilemapRoot" instance=ExtResource("10_m8siu")]
 position = Vector2(-296, -71)
 saveName = "gs_library_shelf_6"
+dialogue = ExtResource("15_315cd")
 
 [node name="Collision" parent="TilemapRoot/Shelf6/AnimatedDecoration" index="1"]
 visible = false
@@ -187,6 +203,7 @@ disabled = true
 [node name="Shelf7" parent="TilemapRoot" instance=ExtResource("10_m8siu")]
 position = Vector2(-264, -89)
 saveName = "gs_library_shelf_7"
+dialogue = ExtResource("17_3vnvb")
 
 [node name="Collision" parent="TilemapRoot/Shelf7/AnimatedDecoration" index="1"]
 visible = false
@@ -215,8 +232,9 @@ visible = false
 disabled = true
 
 [node name="Shelf10" parent="TilemapRoot" instance=ExtResource("10_m8siu")]
-position = Vector2(-184, -151)
+position = Vector2(-232, -151)
 saveName = "gs_library_shelf_10"
+dialogue = ExtResource("18_jwbkx")
 
 [node name="Collision" parent="TilemapRoot/Shelf10/AnimatedDecoration" index="1"]
 visible = false
@@ -227,6 +245,7 @@ disabled = true
 [node name="Shelf11" parent="TilemapRoot" instance=ExtResource("10_m8siu")]
 position = Vector2(-264, -151)
 saveName = "gs_library_shelf_11"
+dialogue = ExtResource("18_35roj")
 
 [node name="Collision" parent="TilemapRoot/Shelf11/AnimatedDecoration" index="1"]
 visible = false
@@ -237,6 +256,7 @@ disabled = true
 [node name="Shelf12" parent="TilemapRoot" instance=ExtResource("10_m8siu")]
 position = Vector2(-328, -152)
 saveName = "gs_library_shelf_12"
+dialogue = ExtResource("18_lef10")
 
 [node name="Collision" parent="TilemapRoot/Shelf12/AnimatedDecoration" index="1"]
 visible = false

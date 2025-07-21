@@ -18,9 +18,10 @@ func peek_next() -> Combatant:
 	
 	return combatants.front()
 
-func pop() -> Combatant:
+func pop(reloadOrder: bool = true) -> Combatant:
 	var combatant = combatants.pop_front()
-	reload()
+	if reloadOrder:
+		reload()
 	return combatant
 
 func empty():

@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://dvrmm0l1saave"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_jsmdi"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_134ft"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_kh5sh"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_kh5sh"]
+
+[sub_resource type="Resource" id="Resource_j6lkd"]
+script = ExtResource("1_jsmdi")
+lines = Array[String](["\"The skies contain many secrets. The power exhibited by each star in the sky immeasurable.\"", "\"If these celestial bodies are above us, then why can we not reach them? We can reach the tops of trees by climbing, after all.\"", "\"Some great, invisible power keeps us from the stars. Or rather, the power that keeps us from the stars comes from the stars themselves.\"", "\"Therefore, how can we not channel this $highlight{Astral}color$ energy? Through magic we draw power from the worldly Elements. What is different about the stars?\"", "\"If we learn to harness Astral power, our place above the hostile creatures and nations both will be cemented, just as the stars are fixed in the sky.\""])
+minShowSecs = Array[float]([])
+animation = ""
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_kh5sh")]([])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[resource]
+script = ExtResource("3_kh5sh")
+entryId = ""
+items = Array[ExtResource("1_jsmdi")]([SubResource("Resource_j6lkd")])
+ordStoryRequirements = Array[ExtResource("2_134ft")]([])
+closesDialogue = false
+fullHealsPlayer = false
+annotation = ""
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"

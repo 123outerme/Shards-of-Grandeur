@@ -224,11 +224,9 @@ func update_turn_text() -> bool:
 	return text != '' and text != null
 
 func finish_turn() -> WinCon.TurnResult:
-	var lastCombatant: Combatant = turnQueue.pop() # remove the turn from the queue
+	var lastCombatant: Combatant = turnQueue.pop(true) # remove the turn from the queue and reload (re-sort) based on the results of this turn
 	if lastCombatant != null:
 		lastCombatant.command = null # remove the command from the previous turn's combatant
-	
-	turnQueue.reload() # re-sort turn queue to affect turn order based on the results of this turn
 	
 	for cNode: CombatantNode in battleController.get_all_combatant_nodes():
 		cNode.update_current_tag_stats(true) # after the turn is over, update the battle storage variables
@@ -238,6 +236,7 @@ func finish_turn() -> WinCon.TurnResult:
 
 func try_start_next_turn(turnResult: WinCon.TurnResult) -> bool:
 	if turnResult == WinCon.TurnResult.NOTHING:
+		
 		play_turn() # go to the next turn
 		return true
 	return false

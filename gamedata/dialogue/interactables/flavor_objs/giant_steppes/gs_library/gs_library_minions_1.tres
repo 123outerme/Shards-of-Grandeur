@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://b7st3hy13qaci"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_ha2ks"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_0ys18"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_lw4hk"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_lw4hk"]
+
+[sub_resource type="Resource" id="Resource_6q00d"]
+script = ExtResource("1_ha2ks")
+lines = Array[String](["\"A Minion, or magically created follower, can be cast in one of two ways, depending on the skill of the caster.\"", "\"In the first way, a $highlight{Shard}color$ containing the essence of the desired creature is used, as the caster channels power into it to create the Minion.\"", "\"This process depletes the Shard of its magical power, and it becomes an inert crystal afterwards.\"", "\"The second process requires the caster to have become intensely familiar with the desired Minion, and to have $highlight{Attuned}color$ deeply with its kind.\"", "\"There are few masters capable of a summon through Attunement, and even fewer capable of teaching the proper technique.\""])
+minShowSecs = Array[float]([])
+animation = ""
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_lw4hk")]([])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[resource]
+script = ExtResource("3_lw4hk")
+entryId = ""
+items = Array[ExtResource("1_ha2ks")]([SubResource("Resource_6q00d")])
+ordStoryRequirements = Array[ExtResource("2_0ys18")]([])
+closesDialogue = false
+fullHealsPlayer = false
+annotation = ""
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"

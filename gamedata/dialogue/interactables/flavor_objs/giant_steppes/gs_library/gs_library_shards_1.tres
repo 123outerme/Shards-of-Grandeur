@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://dufq01qgmwrnc"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_mxi28"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_31yl2"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_wqaqs"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_31yl2"]
+
+[sub_resource type="Resource" id="Resource_86ueu"]
+script = ExtResource("1_mxi28")
+lines = Array[String](["\"$highlight{Shards}color$ are sparkling blue crystals that hold magic power. Their only known source is beneath the surface, inside the Radiant Cave.\"", "\"Shards all appear to hold essences of some kind. The most common kind of essence is that of a creature.\"", "\"Memories have also been known to have been preserved inside a Shard, but the exact mechanism one of these Shards were produced by is unknown.\""])
+minShowSecs = Array[float]([])
+animation = ""
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_31yl2")]([])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[resource]
+script = ExtResource("3_31yl2")
+entryId = ""
+items = Array[ExtResource("1_mxi28")]([SubResource("Resource_86ueu")])
+ordStoryRequirements = Array[ExtResource("2_wqaqs")]([])
+closesDialogue = false
+fullHealsPlayer = false
+annotation = ""
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"

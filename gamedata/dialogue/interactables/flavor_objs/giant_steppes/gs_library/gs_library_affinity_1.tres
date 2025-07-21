@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://b5cuj85hmf6g5"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_oek8w"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_gfv5m"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="3_a5r88"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="4_k72gx"]
+
+[sub_resource type="Resource" id="Resource_qs18p"]
+script = ExtResource("1_oek8w")
+lines = Array[String](["\"The natural world contains creatures and locations of extraordinary majesty.\"", "\"What brought the highest mountains, the lowest valleys into shape? How do beasts such as Ice Hounds survive in such harsh, icy conditions?\"", "\"It is evident that there is power to be found in nature. Those who have an $highlight{Affinity}color$ for the natural world can harness it. \"", "\"The ability to induce growth, healing, and vigor into other life is one of the most immediate strengths those with Affinity display.\"", "\"Some are more apt with weakening and poisoning their enemies, like a Shroom Lizard injecting toxins into its prey.\"", "\"Rarer still are those with Affinity who are able to manifest that into tangible form and strike with it, much like Magic.\""])
+minShowSecs = Array[float]([])
+animation = ""
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_gfv5m")]([])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[resource]
+script = ExtResource("4_k72gx")
+entryId = ""
+items = Array[ExtResource("1_oek8w")]([SubResource("Resource_qs18p")])
+ordStoryRequirements = Array[ExtResource("3_a5r88")]([])
+closesDialogue = false
+fullHealsPlayer = false
+annotation = ""
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"
