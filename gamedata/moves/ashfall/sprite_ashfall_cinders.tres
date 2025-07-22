@@ -1,0 +1,56 @@
+[gd_resource type="Resource" script_class="MoveAnimSprite" load_steps=7 format=3 uid="uid://ble6evjeo72ik"]
+
+[ext_resource type="Script" uid="uid://n71lfdnd5xrr" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite_frame.gd" id="1_5t6re"]
+[ext_resource type="Resource" uid="uid://b0orjtbnhl4nt" path="res://gamedata/moves/ashfall/particles_ashfall_cinders.tres" id="2_d1uvs"]
+[ext_resource type="Script" uid="uid://mk6loduurcg4" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="2_taoup"]
+[ext_resource type="SpriteFrames" uid="uid://y16pb441s2au" path="res://graphics/moves/fire/a_ashfall.tres" id="3_taoup"]
+
+[sub_resource type="Resource" id="Resource_d1uvs"]
+script = ExtResource("1_5t6re")
+annotation = "set up position at target"
+animation = ""
+duration = 0.1
+speed = 1.0
+opacity = 1.0
+spritePivot = Vector2(0, 0)
+relativeTo = 1
+position = Vector2(0, -8)
+offset = 4
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+emitCompleteOnStart = false
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[sub_resource type="Resource" id="Resource_fvs07"]
+script = ExtResource("1_5t6re")
+annotation = "play cinders particles"
+animation = ""
+duration = 3.0
+speed = 1.0
+opacity = 1.0
+spritePivot = Vector2(0, 0)
+relativeTo = 5
+position = Vector2(0, 0)
+offset = 0
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+particles = ExtResource("2_d1uvs")
+emitCompleteOnStart = false
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[resource]
+script = ExtResource("2_taoup")
+spriteFrames = ExtResource("3_taoup")
+centerSprite = true
+maxSize = Vector2(16, 16)
+frames = Array[ExtResource("1_5t6re")]([SubResource("Resource_d1uvs"), SubResource("Resource_fvs07")])
+delayedUntilReposition = false
+playsOnImpactFrame = false
+onePerTarget = true
+metadata/_custom_type_script = "uid://mk6loduurcg4"

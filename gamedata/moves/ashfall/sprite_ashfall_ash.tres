@@ -1,0 +1,56 @@
+[gd_resource type="Resource" script_class="MoveAnimSprite" load_steps=7 format=3 uid="uid://bgdx6agst2fa5"]
+
+[ext_resource type="Script" uid="uid://n71lfdnd5xrr" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite_frame.gd" id="1_aiyd3"]
+[ext_resource type="Resource" uid="uid://dc8ex32x21tiv" path="res://gamedata/moves/ashfall/particles_ashfall_ash.tres" id="2_50x54"]
+[ext_resource type="Script" uid="uid://mk6loduurcg4" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="2_gm33h"]
+[ext_resource type="SpriteFrames" uid="uid://y16pb441s2au" path="res://graphics/moves/fire/a_ashfall.tres" id="3_gm33h"]
+
+[sub_resource type="Resource" id="Resource_50x54"]
+script = ExtResource("1_aiyd3")
+annotation = "set up position at target"
+animation = "default"
+duration = 0.1
+speed = 1.0
+opacity = 1.0
+spritePivot = Vector2(0, 0)
+relativeTo = 1
+position = Vector2(0, -8)
+offset = 4
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+emitCompleteOnStart = false
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[sub_resource type="Resource" id="Resource_20c7p"]
+script = ExtResource("1_aiyd3")
+annotation = "play particles over target"
+animation = ""
+duration = 3.0
+speed = 1.0
+opacity = 1.0
+spritePivot = Vector2(0, 0)
+relativeTo = 5
+position = Vector2(0, 0)
+offset = 0
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+particles = ExtResource("2_50x54")
+emitCompleteOnStart = false
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[resource]
+script = ExtResource("2_gm33h")
+spriteFrames = ExtResource("3_gm33h")
+centerSprite = true
+maxSize = Vector2(16, 16)
+frames = Array[ExtResource("1_aiyd3")]([SubResource("Resource_50x54"), SubResource("Resource_20c7p")])
+delayedUntilReposition = false
+playsOnImpactFrame = false
+onePerTarget = true
+metadata/_custom_type_script = "uid://mk6loduurcg4"

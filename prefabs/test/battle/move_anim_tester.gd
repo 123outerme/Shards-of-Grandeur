@@ -23,6 +23,7 @@ var useItemAnimation: MoveAnimation = load('res://gamedata/items/use_item_animat
 
 func _ready():
 	SceneLoader.audioHandler = get_node('AudioHandler')
+	SettingsHandler.gameSettings.battleAnims = true # enable battle anims in case stored settings disable it
 	PlayerResources.playerInfo = PlayerInfo.new()
 	moveLearnAnimController.customTarget = targetCombatant
 	moveLearnAnimController.customTargetEvolution = evolution
