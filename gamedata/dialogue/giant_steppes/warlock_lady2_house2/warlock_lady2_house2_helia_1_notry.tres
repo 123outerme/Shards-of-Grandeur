@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://cldgfch5hpitb"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_nu03g"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_c2k3w"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_np4l5"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_c2k3w"]
+
+[sub_resource type="Resource" id="Resource_s5vfr"]
+script = ExtResource("1_nu03g")
+lines = Array[String](["Oh... you can't mean to say she's... an enemy?"])
+minShowSecs = Array[float]([])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_c2k3w")]([])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[resource]
+script = ExtResource("3_c2k3w")
+entryId = ""
+items = Array[ExtResource("1_nu03g")]([SubResource("Resource_s5vfr")])
+ordStoryRequirements = Array[ExtResource("2_np4l5")]([])
+closesDialogue = true
+fullHealsPlayer = false
+annotation = ""
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"

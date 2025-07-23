@@ -1,4 +1,4 @@
-[gd_scene load_steps=70 format=4 uid="uid://drbsfhefdewe5"]
+[gd_scene load_steps=74 format=4 uid="uid://drbsfhefdewe5"]
 
 [ext_resource type="Script" uid="uid://vg00rfnn3346" path="res://scripts/overworld/map_script.gd" id="1_tdh71"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_iwy47"]
@@ -9,12 +9,16 @@
 [ext_resource type="Resource" uid="uid://yw2ppo0pj0i0" path="res://gamedata/ground_items/giant_steppes/giant_steppes_l1_berries.tres" id="4_2yuxa"]
 [ext_resource type="PackedScene" uid="uid://bsalesakrx8yy" path="res://prefabs/entities/npc.tscn" id="4_upbwq"]
 [ext_resource type="Script" uid="uid://8t63d3un22ug" path="res://scripts/npcs/npc_data.gd" id="5_h3fmg"]
+[ext_resource type="Resource" uid="uid://cpbmywit7me03" path="res://gamedata/ground_items/giant_steppes/giant_steppes_l1_cape.tres" id="5_o4dl1"]
 [ext_resource type="Script" uid="uid://bwcja16pmp3mf" path="res://scripts/npcs/npc_sprite_state.gd" id="6_4hkxj"]
 [ext_resource type="SpriteFrames" uid="uid://crq8jtrfopwa3" path="res://graphics/animations/a_vampire.tres" id="6_f378v"]
+[ext_resource type="Resource" uid="uid://ckoleql2d4bol" path="res://gamedata/ground_items/giant_steppes/giant_steppes_l1_mem_shard.tres" id="6_p6y5g"]
 [ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="7_68q3o"]
 [ext_resource type="SpriteFrames" uid="uid://c17h32c34ksly" path="res://graphics/animations/a_warlock_agent.tres" id="7_h3fmg"]
+[ext_resource type="Resource" uid="uid://dj7clpl53d35h" path="res://gamedata/ground_items/giant_steppes/giant_steppes_l1_crimson_boon.tres" id="7_okj30"]
 [ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="8_0aigu"]
 [ext_resource type="PackedScene" uid="uid://coqeee0n1wuob" path="res://prefabs/entities/interactable_decoration.tscn" id="8_f378v"]
+[ext_resource type="Resource" uid="uid://tnn1j0wkfadv" path="res://gamedata/ground_items/giant_steppes/giant_steppes_l1_emerald_boon.tres" id="8_hmq42"]
 [ext_resource type="SpriteFrames" uid="uid://c4mkc32qlnv5d" path="res://graphics/animations/a_ice_hound.tres" id="8_ku0es"]
 [ext_resource type="Script" uid="uid://fw22o8hbosnk" path="res://scripts/inventory/inventory_slot.gd" id="8_m7m11"]
 [ext_resource type="Resource" uid="uid://bhlphav7l7lyf" path="res://gamedata/dialogue/giant_steppes/ice_hound/ice_hound_bark.tres" id="9_b2mwp"]
@@ -355,15 +359,23 @@ saveName = "gs_l1_snow_berries"
 
 [node name="GroundItem2" parent="TilemapRoot" instance=ExtResource("3_cp1q1")]
 position = Vector2(-120, -341)
+pickedUpItem = ExtResource("5_o4dl1")
+saveName = "gs_l1_cape"
 
 [node name="GroundItem3" parent="TilemapRoot" instance=ExtResource("3_cp1q1")]
 position = Vector2(682, 183)
+pickedUpItem = ExtResource("6_p6y5g")
+saveName = "gs_l1_mem_shard"
 
 [node name="GroundItem4" parent="TilemapRoot" instance=ExtResource("3_cp1q1")]
 position = Vector2(-47, -334)
+pickedUpItem = ExtResource("7_okj30")
+saveName = "gs_l1_crimson_boon"
 
 [node name="GroundItem5" parent="TilemapRoot" instance=ExtResource("3_cp1q1")]
 position = Vector2(733, -334)
+pickedUpItem = ExtResource("8_hmq42")
+saveName = "gs_l1_emerald_boon"
 
 [node name="GroundItem6" parent="TilemapRoot" instance=ExtResource("3_cp1q1")]
 position = Vector2(250, -271)

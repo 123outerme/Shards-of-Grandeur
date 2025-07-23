@@ -1,0 +1,55 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=11 format=3 uid="uid://baujwpk6dstgy"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_a3pqn"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_7161u"]
+[ext_resource type="Resource" uid="uid://bohxt6b3i46vi" path="res://gamedata/dialogue/giant_steppes/warlock_lady2_house2/warlock_lady2_house2_helia_1_try.tres" id="3_dg8yb"]
+[ext_resource type="Script" uid="uid://b6oofnelefs8o" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_w4vfx"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="4_dg8yb"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="5_brien"]
+[ext_resource type="Resource" uid="uid://cldgfch5hpitb" path="res://gamedata/dialogue/giant_steppes/warlock_lady2_house2/warlock_lady2_house2_helia_1_notry.tres" id="5_men00"]
+
+[sub_resource type="Resource" id="Resource_i8dyu"]
+script = ExtResource("2_7161u")
+choiceBtn = "I'll Try."
+leadsTo = ExtResource("3_dg8yb")
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_w4vfx")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = true
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_aras8"]
+script = ExtResource("2_7161u")
+choiceBtn = "I Can't Promise."
+leadsTo = ExtResource("5_men00")
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_w4vfx")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = false
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_s7hlh"]
+script = ExtResource("1_a3pqn")
+lines = Array[String](["I can't believe... she ran off?", "Adventurer, you're the one who faced my daughter, Helia? Will you bring her back...?"])
+minShowSecs = Array[float]([])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_7161u")]([SubResource("Resource_i8dyu"), SubResource("Resource_aras8")])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[resource]
+script = ExtResource("5_brien")
+entryId = ""
+items = Array[ExtResource("1_a3pqn")]([SubResource("Resource_s7hlh")])
+ordStoryRequirements = Array[ExtResource("4_dg8yb")]([])
+closesDialogue = false
+fullHealsPlayer = false
+annotation = ""
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"

@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=4 uid="uid://bkontpdqbipb1"]
+[gd_scene load_steps=36 format=4 uid="uid://bkontpdqbipb1"]
 
 [ext_resource type="Script" uid="uid://vg00rfnn3346" path="res://scripts/overworld/map_script.gd" id="1_s3o63"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_tarat"]
@@ -17,6 +17,9 @@
 [ext_resource type="PackedScene" uid="uid://ckjsms2r3k2jv" path="res://prefabs/overworld/cutscene_trigger.tscn" id="10_44juo"]
 [ext_resource type="Script" uid="uid://fpa08p2kb0ts" path="res://scripts/cutscenes/cutscene.gd" id="11_ou0gu"]
 [ext_resource type="Resource" uid="uid://dyj8w3r046uik" path="res://gamedata/cutscenes/giant_steppes/giant_steppes_arrive_l2.tres" id="12_5hxps"]
+[ext_resource type="Resource" uid="uid://cpbmywit7me03" path="res://gamedata/ground_items/giant_steppes/giant_steppes_l1_cape.tres" id="12_u2q4f"]
+[ext_resource type="Resource" uid="uid://dj7clpl53d35h" path="res://gamedata/ground_items/giant_steppes/giant_steppes_l1_crimson_boon.tres" id="13_c0ybn"]
+[ext_resource type="Resource" uid="uid://tnn1j0wkfadv" path="res://gamedata/ground_items/giant_steppes/giant_steppes_l1_emerald_boon.tres" id="14_hblap"]
 [ext_resource type="Resource" uid="uid://xodejjykgcdx" path="res://gamedata/cutscenes/giant_steppes/gis_after_meeting1.tres" id="17_x858i"]
 
 [sub_resource type="Resource" id="Resource_c0ybn"]
@@ -26,7 +29,7 @@ priority = -1
 storyRequirements = Array[ExtResource("5_u2q4f")]([])
 autoApplyState = false
 
-[sub_resource type="Resource" id="Resource_8vcfh"]
+[sub_resource type="Resource" id="Resource_hblap"]
 script = ExtResource("4_qw015")
 saveName = "npc"
 spriteState = "default"
@@ -56,7 +59,7 @@ priority = -1
 storyRequirements = Array[ExtResource("5_u2q4f")]([])
 autoApplyState = false
 
-[sub_resource type="Resource" id="Resource_u2q4f"]
+[sub_resource type="Resource" id="Resource_riesw"]
 script = ExtResource("4_qw015")
 saveName = "npc"
 spriteState = "default"
@@ -169,7 +172,7 @@ position = Vector2(-298, 84)
 spriteStatesDict = Dictionary[String, ExtResource("4_8vcfh")]({
 "default": SubResource("Resource_c0ybn")
 })
-data = SubResource("Resource_8vcfh")
+data = SubResource("Resource_hblap")
 
 [node name="NPCSprite" parent="TilemapRoot/Warlock1" index="0"]
 sprite_frames = ExtResource("5_ro6wv")
@@ -191,7 +194,7 @@ saveName = "warlock_agent_giant_steppes_l2"
 spriteStatesDict = Dictionary[String, ExtResource("4_8vcfh")]({
 "default": SubResource("Resource_mfb64")
 })
-data = SubResource("Resource_u2q4f")
+data = SubResource("Resource_riesw")
 dialogueEntries = Array[ExtResource("8_8vcfh")]([ExtResource("9_u2q4f")])
 
 [node name="NPCSprite" parent="TilemapRoot/WarlockAgent" index="0"]
@@ -210,12 +213,18 @@ visible = false
 
 [node name="GroundItem2" parent="TilemapRoot" instance=ExtResource("3_kcajg")]
 position = Vector2(-568, 75)
+pickedUpItem = ExtResource("12_u2q4f")
+saveName = "gs_l1_cape"
 
 [node name="GroundItem4" parent="TilemapRoot" instance=ExtResource("3_kcajg")]
 position = Vector2(-495, 82)
+pickedUpItem = ExtResource("13_c0ybn")
+saveName = "gs_l1_crimson_boon"
 
 [node name="GroundItem5" parent="TilemapRoot" instance=ExtResource("3_kcajg")]
 position = Vector2(285, 82)
+pickedUpItem = ExtResource("14_hblap")
+saveName = "gs_l1_emerald_boon"
 
 [node name="GroundItem6" parent="TilemapRoot" instance=ExtResource("3_kcajg")]
 position = Vector2(-198, 145)

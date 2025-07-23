@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=4 uid="uid://c1m3kg17xcxre"]
+[gd_scene load_steps=30 format=4 uid="uid://c1m3kg17xcxre"]
 
 [ext_resource type="Script" uid="uid://vg00rfnn3346" path="res://scripts/overworld/map_script.gd" id="1_2wdq7"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_cfw4e"]
@@ -13,6 +13,7 @@
 [ext_resource type="Resource" uid="uid://b3iolebmam38g" path="res://gamedata/shops/giant_steppes/giant_steppes_chamber_of_sealing_shop.tres" id="9_bd3v8"]
 [ext_resource type="Script" uid="uid://fpa08p2kb0ts" path="res://scripts/cutscenes/cutscene.gd" id="9_swvae"]
 [ext_resource type="PackedScene" uid="uid://ckjsms2r3k2jv" path="res://prefabs/overworld/cutscene_trigger.tscn" id="9_vl4w1"]
+[ext_resource type="SpriteFrames" uid="uid://cqq5hln1q3l12" path="res://graphics/animations/a_warlock_man2.tres" id="10_j3w3o"]
 [ext_resource type="Resource" uid="uid://3q1lqg0v1u8x" path="res://gamedata/cutscenes/giant_steppes/giant_steppes_chamber_of_sealing_access_denied_top_left.tres" id="10_m0cgo"]
 [ext_resource type="Resource" uid="uid://cr13eh1n05qpn" path="res://gamedata/cutscenes/giant_steppes/giant_steppes_chamber_of_sealing_access_denied_bottom_left.tres" id="11_dckxy"]
 [ext_resource type="Resource" uid="uid://eq2l0udri31v" path="res://gamedata/cutscenes/giant_steppes/giant_steppes_chamber_of_sealing_access_denied_right.tres" id="11_m0cgo"]
@@ -25,7 +26,7 @@ priority = -1
 storyRequirements = Array[ExtResource("5_vl4w1")]([])
 autoApplyState = false
 
-[sub_resource type="Resource" id="Resource_bd3v8"]
+[sub_resource type="Resource" id="Resource_gg66f"]
 script = ExtResource("6_h4c06")
 saveName = "npc"
 spriteState = "default"
@@ -58,7 +59,7 @@ priority = -1
 storyRequirements = Array[ExtResource("5_vl4w1")]([])
 autoApplyState = false
 
-[sub_resource type="Resource" id="Resource_j3w3o"]
+[sub_resource type="Resource" id="Resource_gjjeh"]
 script = ExtResource("6_h4c06")
 saveName = "npc"
 spriteState = "default"
@@ -173,20 +174,22 @@ saveName = "gs_chamber_master_ground_floor"
 spriteStatesDict = Dictionary[String, ExtResource("4_idrjy")]({
 "default": SubResource("Resource_swvae")
 })
-data = SubResource("Resource_bd3v8")
+data = SubResource("Resource_gg66f")
 dialogueEntries = Array[ExtResource("7_jbply")]([ExtResource("8_bd3v8")])
 npcShop = ExtResource("9_bd3v8")
 
 [node name="NPCSprite" parent="TilemapRoot/ChamberMaster" index="0"]
-sprite_frames = ExtResource("7_idrjy")
+sprite_frames = ExtResource("10_j3w3o")
 animation = &"stand"
 
 [node name="ColliderShape" parent="TilemapRoot/ChamberMaster" index="1"]
 position = Vector2(0, 3.5)
+debug_color = Color(0, 0.6, 0.701961, 0)
 
 [node name="TalkAreaShape" parent="TilemapRoot/ChamberMaster/TalkArea" index="0"]
 position = Vector2(0, 7)
 shape = SubResource("RectangleShape2D_idrjy")
+debug_color = Color(0, 0.6, 0.701961, 0)
 
 [node name="MoveTrigger" parent="TilemapRoot/ChamberMaster" index="4"]
 visible = false
@@ -196,7 +199,7 @@ position = Vector2(190, 53)
 spriteStatesDict = Dictionary[String, ExtResource("4_idrjy")]({
 "default": SubResource("Resource_2yuxa")
 })
-data = SubResource("Resource_j3w3o")
+data = SubResource("Resource_gjjeh")
 
 [node name="NPCSprite" parent="TilemapRoot/Warlock1" index="0"]
 sprite_frames = ExtResource("7_idrjy")
