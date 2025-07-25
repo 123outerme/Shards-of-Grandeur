@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=4 uid="uid://coqf1qhc110i4"]
+[gd_scene load_steps=21 format=4 uid="uid://coqf1qhc110i4"]
 
 [ext_resource type="Script" uid="uid://vg00rfnn3346" path="res://scripts/overworld/map_script.gd" id="1_uqa73"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_hflgg"]
@@ -11,6 +11,7 @@
 [ext_resource type="Resource" uid="uid://cacy24llacnay" path="res://gamedata/ground_items/frostmint_village/frostmint_mansion_courtyard_berries_2.tres" id="6_8m1ec"]
 [ext_resource type="Resource" uid="uid://dqmky7ggxr5nq" path="res://gamedata/dialogue/interactables/flavor_objs/frostmint_village/frostmint_mansion_demo_locked.tres" id="6_gx6ws"]
 [ext_resource type="Resource" uid="uid://pu6jxghia6ls" path="res://gamedata/ground_items/frostmint_village/frostmint_mansion_courtyard_memshard.tres" id="6_m3g00"]
+[ext_resource type="Resource" uid="uid://b5gf25bqbp2rr" path="res://gamedata/ground_items/frostmint_village/frostmint_mansion_courtyard_curing_ritual.tres" id="6_ohgbe"]
 [ext_resource type="PackedScene" uid="uid://blb38hmic2jvq" path="res://prefabs/overworld/test_camera.tscn" id="6_vcqn3"]
 [ext_resource type="Resource" uid="uid://ju3kgcmyn50f" path="res://gamedata/ground_items/frostmint_village/frostmint_mansion_courtyard_lantern.tres" id="7_m3g00"]
 
@@ -106,6 +107,8 @@ saveName = "frostmint_mansion_courtyard_berries"
 
 [node name="GroundItem3" parent="TilemapRoot" instance=ExtResource("3_7dxqp")]
 position = Vector2(89, -411)
+pickedUpItem = ExtResource("6_ohgbe")
+saveName = "frostmint_mansion_courtyard_curing_ritual"
 
 [node name="GroundItem4" parent="TilemapRoot" instance=ExtResource("3_7dxqp")]
 position = Vector2(151, -605)

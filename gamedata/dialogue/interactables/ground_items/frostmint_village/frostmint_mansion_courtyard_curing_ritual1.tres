@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://bg72xxxir6t6h"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_4nf1n"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_74o6y"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_jr6qb"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_74o6y"]
+
+[sub_resource type="Resource" id="Resource_jun8m"]
+script = ExtResource("1_4nf1n")
+lines = Array[String](["These are the elements to perform a Curing Ritual, said to heal any ailment and restore even a sickly body to full strength. Interesting..."])
+minShowSecs = Array[float]([])
+animation = ""
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_74o6y")]([])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[resource]
+script = ExtResource("3_74o6y")
+entryId = ""
+items = Array[ExtResource("1_4nf1n")]([SubResource("Resource_jun8m")])
+ordStoryRequirements = Array[ExtResource("2_jr6qb")]([])
+closesDialogue = false
+fullHealsPlayer = false
+annotation = ""
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"

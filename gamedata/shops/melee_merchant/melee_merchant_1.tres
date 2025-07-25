@@ -1,10 +1,12 @@
-[gd_resource type="Resource" script_class="NpcShop" load_steps=9 format=3 uid="uid://d1cg03p00q5xt"]
+[gd_resource type="Resource" script_class="NpcShop" load_steps=13 format=3 uid="uid://d1cg03p00q5xt"]
 
 [ext_resource type="Script" uid="uid://c02s6f1mg2nhw" path="res://scripts/npcs/npc_shop.gd" id="1_cywf5"]
 [ext_resource type="Script" uid="uid://dvhu11n6qar12" path="res://scripts/inventory/shop_inventory_slot.gd" id="2_ca8bw"]
 [ext_resource type="Resource" uid="uid://gsi2oasr2ndh" path="res://gamedata/items/healing/distilled_potion.tres" id="3_ca8bw"]
 [ext_resource type="Resource" uid="uid://cylyev1ny8klx" path="res://gamedata/items/key_items/reset_pearl.tres" id="4_ecrsl"]
 [ext_resource type="Resource" uid="uid://catbp3kx5o6of" path="res://gamedata/items/accessory/bent_coin.tres" id="5_gsg6u"]
+[ext_resource type="Resource" uid="uid://cglmo18mfo05y" path="res://gamedata/items/key_items/memory_shard_1.tres" id="6_xjbgv"]
+[ext_resource type="Resource" uid="uid://cdttq0nf5mnns" path="res://gamedata/items/key_items/memory_shard_2.tres" id="7_x1b3o"]
 
 [sub_resource type="Resource" id="Resource_2kj7h"]
 script = ExtResource("2_ca8bw")
@@ -27,8 +29,22 @@ item = ExtResource("4_ecrsl")
 count = 3
 metadata/_custom_type_script = "uid://dvhu11n6qar12"
 
+[sub_resource type="Resource" id="Resource_8yofe"]
+script = ExtResource("2_ca8bw")
+sinceVersion = "0.3.6"
+item = ExtResource("6_xjbgv")
+count = 5
+metadata/_custom_type_script = "uid://dvhu11n6qar12"
+
+[sub_resource type="Resource" id="Resource_87wor"]
+script = ExtResource("2_ca8bw")
+sinceVersion = "0.3.6"
+item = ExtResource("7_x1b3o")
+count = 2
+metadata/_custom_type_script = "uid://dvhu11n6qar12"
+
 [resource]
 script = ExtResource("1_cywf5")
 id = "melee_merchant"
-shopItemSlots = Array[ExtResource("2_ca8bw")]([SubResource("Resource_2kj7h"), SubResource("Resource_ecrsl"), SubResource("Resource_gsg6u")])
+shopItemSlots = Array[ExtResource("2_ca8bw")]([SubResource("Resource_2kj7h"), SubResource("Resource_ecrsl"), SubResource("Resource_gsg6u"), SubResource("Resource_8yofe"), SubResource("Resource_87wor")])
 metadata/_custom_type_script = "uid://c02s6f1mg2nhw"

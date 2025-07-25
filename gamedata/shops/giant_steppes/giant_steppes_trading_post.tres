@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="NpcShop" load_steps=11 format=3 uid="uid://btgbmsxpha4ua"]
+[gd_resource type="Resource" script_class="NpcShop" load_steps=13 format=3 uid="uid://btgbmsxpha4ua"]
 
 [ext_resource type="Script" uid="uid://c02s6f1mg2nhw" path="res://scripts/npcs/npc_shop.gd" id="1_ix23d"]
 [ext_resource type="Script" uid="uid://dvhu11n6qar12" path="res://scripts/inventory/shop_inventory_slot.gd" id="2_x3m1v"]
@@ -6,6 +6,7 @@
 [ext_resource type="Resource" uid="uid://bciuylgulmvia" path="res://gamedata/items/healing/sorcery_elixir.tres" id="4_wqyjd"]
 [ext_resource type="Resource" uid="uid://c4fdyahda7qvf" path="res://gamedata/items/key_items/reset_contract.tres" id="5_gkpo3"]
 [ext_resource type="Resource" uid="uid://bcpi8vp4styc2" path="res://gamedata/items/key_items/giant_steppes_teleport_stone.tres" id="6_5kipt"]
+[ext_resource type="Resource" uid="uid://mkdpogf63wcq" path="res://gamedata/items/healing/snow_berries.tres" id="6_f3a2i"]
 
 [sub_resource type="Resource" id="Resource_f3a2i"]
 script = ExtResource("2_x3m1v")
@@ -28,6 +29,13 @@ item = ExtResource("3_x3m1v")
 count = -1
 metadata/_custom_type_script = "uid://dvhu11n6qar12"
 
+[sub_resource type="Resource" id="Resource_d3vah"]
+script = ExtResource("2_x3m1v")
+sinceVersion = "0.3.6"
+item = ExtResource("6_f3a2i")
+count = -1
+metadata/_custom_type_script = "uid://dvhu11n6qar12"
+
 [sub_resource type="Resource" id="Resource_gkpo3"]
 script = ExtResource("2_x3m1v")
 sinceVersion = ""
@@ -38,5 +46,5 @@ metadata/_custom_type_script = "uid://dvhu11n6qar12"
 [resource]
 script = ExtResource("1_ix23d")
 id = ""
-shopItemSlots = Array[ExtResource("2_x3m1v")]([SubResource("Resource_f3a2i"), SubResource("Resource_5kipt"), SubResource("Resource_wqyjd"), SubResource("Resource_gkpo3")])
+shopItemSlots = Array[ExtResource("2_x3m1v")]([SubResource("Resource_f3a2i"), SubResource("Resource_5kipt"), SubResource("Resource_wqyjd"), SubResource("Resource_d3vah"), SubResource("Resource_gkpo3")])
 metadata/_custom_type_script = "uid://c02s6f1mg2nhw"
