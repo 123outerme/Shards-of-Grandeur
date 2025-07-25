@@ -1,0 +1,46 @@
+[gd_resource type="Resource" script_class="Weapon" load_steps=7 format=3 uid="uid://cuxpi4rrhb6lv"]
+
+[ext_resource type="Texture2D" uid="uid://dylmmjsgoryet" path="res://graphics/items/weapons/rustic_lantern.png" id="1_md2ba"]
+[ext_resource type="Script" uid="uid://c4jrorkxpw01e" path="res://scripts/inventory/items/weapon.gd" id="1_ogp66"]
+[ext_resource type="Script" uid="uid://b8q40qhoufelh" path="res://scripts/battle/combatant/element_multiplier.gd" id="3_fmtlt"]
+[ext_resource type="Script" uid="uid://dvivnpdo5ga72" path="res://scripts/battle/combatant/stat_changes.gd" id="4_huwbq"]
+
+[sub_resource type="Resource" id="Resource_i5h6v"]
+script = ExtResource("3_fmtlt")
+element = 2
+multiplier = 1.03
+metadata/_custom_type_script = "uid://b8q40qhoufelh"
+
+[sub_resource type="Resource" id="Resource_m564o"]
+script = ExtResource("4_huwbq")
+physAttackIncrease = 0
+magicAttackIncrease = 0
+affinityIncrease = 0
+resistanceIncrease = 0
+speedIncrease = 0
+physAttackMultiplier = 1.02
+magicAttackMultiplier = 1.0
+affinityMultiplier = 1.01
+resistanceMultiplier = 1.0
+speedMultiplier = 1.0
+elementMultipliers = Array[ExtResource("3_fmtlt")]([SubResource("Resource_i5h6v")])
+keywordMultipliers = Dictionary[String, float]({})
+metadata/_custom_type_script = "uid://dvivnpdo5ga72"
+
+[resource]
+script = ExtResource("1_ogp66")
+statChanges = SubResource("Resource_m564o")
+timing = 1
+bonusOrbs = 0
+itemSprite = ExtResource("1_md2ba")
+itemName = "Rustic Lantern"
+itemType = 2
+itemDescription = "This burnished iron lantern has not rusted, despite obviously seeing many stormy nights. The flame inside still burns bright, despite having not been fueled in a long time."
+cost = 25
+maxCount = 1
+usable = false
+battleUsable = false
+consumable = false
+equippable = true
+battleTargets = 1
+metadata/_custom_type_script = "uid://c4jrorkxpw01e"

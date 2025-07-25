@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://bomlkyp58i5jh"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_7tml1"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_2kbb7"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_sosyt"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_sosyt"]
+
+[sub_resource type="Resource" id="Resource_wcxfh"]
+script = ExtResource("1_7tml1")
+lines = Array[String](["Inside the Memory Shard, I see a man in a long coat, trudging down this same path I've taken...", "Holding a lantern out to the front door of the mansion, he inspects the door handle, then turns around.", "I see him walk back into the hedge-lined path... What was he looking for?"])
+minShowSecs = Array[float]([])
+animation = ""
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_sosyt")]([])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[resource]
+script = ExtResource("3_sosyt")
+entryId = ""
+items = Array[ExtResource("1_7tml1")]([SubResource("Resource_wcxfh")])
+ordStoryRequirements = Array[ExtResource("2_2kbb7")]([])
+closesDialogue = false
+fullHealsPlayer = false
+annotation = ""
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"
