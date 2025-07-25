@@ -1,0 +1,105 @@
+[gd_resource type="Resource" script_class="MoveAnimSprite" load_steps=11 format=3 uid="uid://br7h6xiolck0j"]
+
+[ext_resource type="Script" uid="uid://n71lfdnd5xrr" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite_frame.gd" id="1_gd60g"]
+[ext_resource type="Resource" uid="uid://kyq4q1d6v7fi" path="res://gamedata/moves/mud_sling/particles_mud_sling.tres" id="2_2lots"]
+[ext_resource type="Script" uid="uid://mk6loduurcg4" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="2_ii00p"]
+[ext_resource type="SpriteFrames" uid="uid://bpp4kjxy8escm" path="res://graphics/moves/earth/a_mud_sling.tres" id="3_ii00p"]
+
+[sub_resource type="Resource" id="Resource_ii00p"]
+script = ExtResource("1_gd60g")
+annotation = "set up position in front of user"
+animation = "default"
+duration = 0.1
+speed = 1.0
+opacity = 1.0
+spritePivot = Vector2(0, 0)
+relativeTo = 2
+position = Vector2(0, 0)
+offset = 1
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+emitCompleteOnStart = false
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[sub_resource type="Resource" id="Resource_6sgrc"]
+script = ExtResource("1_gd60g")
+annotation = "start throw anim"
+animation = "mud_sling_throw"
+duration = 0.333
+speed = 1.0
+opacity = 1.0
+spritePivot = Vector2(0, 0)
+relativeTo = 5
+position = Vector2(0, 0)
+offset = 0
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+emitCompleteOnStart = false
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[sub_resource type="Curve" id="Curve_ii00p"]
+_data = [Vector2(0, 0), 0.0, 1.4, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_2lots"]
+_limits = [0.0, 1.5, 0.0, 1.0]
+_data = [Vector2(0, 0), 0.0, 3.01163, 0, 1, Vector2(0.498069, 1.5), 0.0, 0.0, 0, 0, Vector2(1, 1), -0.996154, 0.0, 1, 0]
+point_count = 3
+
+[sub_resource type="Resource" id="Resource_2lots"]
+script = ExtResource("1_gd60g")
+annotation = "send mud ball at target"
+animation = "mud_sling_throw"
+duration = 0.833
+speed = 1.0
+opacity = 1.0
+spritePivot = Vector2(0, 0)
+relativeTo = 1
+position = Vector2(0, 0)
+offset = 0
+xCurve = SubResource("Curve_ii00p")
+yCurve = SubResource("Curve_2lots")
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+emitCompleteOnStart = false
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[sub_resource type="Resource" id="Resource_ok5xq"]
+script = ExtResource("1_gd60g")
+annotation = "play splat anim"
+animation = "mud_sling_splat"
+duration = 0.833
+speed = 1.0
+opacity = 1.0
+spritePivot = Vector2(0, 0)
+relativeTo = 5
+position = Vector2(0, 0)
+offset = 0
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+particles = ExtResource("2_2lots")
+emitCompleteOnStart = false
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[resource]
+script = ExtResource("2_ii00p")
+spriteFrames = ExtResource("3_ii00p")
+centerSprite = true
+maxSize = Vector2(32, 24)
+frames = Array[ExtResource("1_gd60g")]([SubResource("Resource_ii00p"), SubResource("Resource_6sgrc"), SubResource("Resource_2lots"), SubResource("Resource_ok5xq")])
+delayedUntilReposition = true
+playsOnImpactFrame = true
+onePerTarget = true
+metadata/_custom_type_script = "uid://mk6loduurcg4"
