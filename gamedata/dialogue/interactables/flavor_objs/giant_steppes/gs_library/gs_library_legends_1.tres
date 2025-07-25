@@ -1,0 +1,79 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=14 format=3 uid="uid://basomgc1fg363"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_4iq57"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_18sx8"]
+[ext_resource type="Script" uid="uid://b6oofnelefs8o" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_18sx8"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="3_fjho4"]
+[ext_resource type="Resource" uid="uid://c38k1fvi57bnr" path="res://gamedata/dialogue/interactables/flavor_objs/giant_steppes/gs_library/legends/gs_library_legends_titan.tres" id="4_fjho4"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="4_uuusy"]
+[ext_resource type="Resource" uid="uid://ixcl0k0www0r" path="res://gamedata/dialogue/interactables/flavor_objs/giant_steppes/gs_library/legends/gs_library_legends_space_knight.tres" id="5_uuusy"]
+[ext_resource type="Resource" uid="uid://cw7u1euvy8byj" path="res://gamedata/dialogue/interactables/flavor_objs/giant_steppes/gs_library/legends/gs_library_legends_the_sorcerer.tres" id="6_fkcgs"]
+
+[sub_resource type="Resource" id="Resource_fjho4"]
+script = ExtResource("2_18sx8")
+choiceBtn = "(Close the Book)"
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_18sx8")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = true
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_uuusy"]
+script = ExtResource("2_18sx8")
+choiceBtn = "The Titans"
+leadsTo = ExtResource("4_fjho4")
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_18sx8")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = false
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_fkcgs"]
+script = ExtResource("2_18sx8")
+choiceBtn = "The Space Knight"
+leadsTo = ExtResource("5_uuusy")
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_18sx8")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = false
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_h3tcw"]
+script = ExtResource("2_18sx8")
+choiceBtn = "The Sorcerer"
+leadsTo = ExtResource("6_fkcgs")
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_18sx8")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = false
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_rbh4i"]
+script = ExtResource("1_4iq57")
+lines = Array[String](["$highlight{Table of Contents}color$ - This is a collection of the various legends told throughout the land, and any credible claims about their existence."])
+minShowSecs = Array[float]([])
+animation = ""
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_18sx8")]([SubResource("Resource_fjho4"), SubResource("Resource_uuusy"), SubResource("Resource_fkcgs"), SubResource("Resource_h3tcw")])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[resource]
+script = ExtResource("4_uuusy")
+entryId = "gs_library_legends_1"
+items = Array[ExtResource("1_4iq57")]([SubResource("Resource_rbh4i")])
+ordStoryRequirements = Array[ExtResource("3_fjho4")]([])
+closesDialogue = false
+fullHealsPlayer = false
+annotation = ""
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"

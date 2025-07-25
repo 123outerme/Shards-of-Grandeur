@@ -1,0 +1,40 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=8 format=3 uid="uid://c38k1fvi57bnr"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_h5sew"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_ccqul"]
+[ext_resource type="Script" uid="uid://b6oofnelefs8o" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_ro50c"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="4_gooyp"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="5_gi2f7"]
+
+[sub_resource type="Resource" id="Resource_24flt"]
+script = ExtResource("2_ccqul")
+choiceBtn = "Back to Table of Contents"
+returnsToParentId = "gs_library_legends_1"
+randomDialogues = Array[ExtResource("3_ro50c")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = true
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_jwrys"]
+script = ExtResource("1_h5sew")
+lines = Array[String](["\"$highlight{The Titans}color$ - Stone golems said to be creators of the landscape as we see it today. It is said that they are one with the Elements themselves.\"", "\"Supposedly, Titans have been spotted in recent times in the Gray Mountains. As the path is treacherous, and the stones many, few believe such stories.\""])
+minShowSecs = Array[float]([])
+animation = ""
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_ccqul")]([SubResource("Resource_24flt")])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[resource]
+script = ExtResource("5_gi2f7")
+entryId = ""
+items = Array[ExtResource("1_h5sew")]([SubResource("Resource_jwrys")])
+ordStoryRequirements = Array[ExtResource("4_gooyp")]([])
+closesDialogue = false
+fullHealsPlayer = false
+annotation = ""
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"

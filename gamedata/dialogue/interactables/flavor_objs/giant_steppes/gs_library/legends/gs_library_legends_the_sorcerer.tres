@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://cw7u1euvy8byj"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_y5kr0"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_0udvg"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_anpjg"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_0udvg"]
+
+[sub_resource type="Resource" id="Resource_0ubjq"]
+script = ExtResource("1_y5kr0")
+lines = Array[String](["\"$highlight{The Sorcerer}color$ - An engimatic drifter who lived over a thousand years ago. Known to have wielded immense magical prowess.\"", "\"Despite these claims, none of The Sorcerer's magical knowledge was seemingly preserved for future generations.\""])
+minShowSecs = Array[float]([])
+animation = ""
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_0udvg")]([])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[resource]
+script = ExtResource("3_0udvg")
+entryId = ""
+items = Array[ExtResource("1_y5kr0")]([SubResource("Resource_0ubjq")])
+ordStoryRequirements = Array[ExtResource("2_anpjg")]([])
+closesDialogue = false
+fullHealsPlayer = false
+annotation = ""
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"

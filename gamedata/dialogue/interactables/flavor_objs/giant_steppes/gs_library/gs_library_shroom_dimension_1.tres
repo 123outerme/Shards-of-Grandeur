@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://e88ib5rwcwcf"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_2gyw8"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_1ai76"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_db1ko"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_1ai76"]
+
+[sub_resource type="Resource" id="Resource_klmn4"]
+script = ExtResource("1_2gyw8")
+lines = Array[String](["\"Deep in the forests, there lay a field of mushrooms. The atmosphere there was noticeably stranger.\"", "\"As this old explorer was looking for a place to camp the night, this was a prime location. I set up my tent, and got to work on the fire.\"", "\"I turned my back on the firepit to fetch... something or other, and looked back to discover the fire was completely missing!\"", "\"No wood, no stone pit, nothing. Just as if I had never built one. Disturbed, but not yet discouraged, I tried again.\"", "\"This time, carefully keeping a watch on my fire, I was successful. Cooked a good meal, and called it a night in the tent.\"", "\"When I woke up, I was no longer in the clearing. The sky was pink, the clouds purple, and the ground underfoot were like mushroom caps!\"", "\"I know my mushrooms, and the ones I foraged were not the kind to do that to a person.\"", "\"I started to wander in this strange realm, and before I got too far, my vision was overcome by a flash of light. Then, I was back in the clearing.\""])
+minShowSecs = Array[float]([])
+animation = ""
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_1ai76")]([])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[resource]
+script = ExtResource("3_1ai76")
+entryId = ""
+items = Array[ExtResource("1_2gyw8")]([SubResource("Resource_klmn4")])
+ordStoryRequirements = Array[ExtResource("2_db1ko")]([])
+closesDialogue = false
+fullHealsPlayer = false
+annotation = ""
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"

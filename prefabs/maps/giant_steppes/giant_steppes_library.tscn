@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=4 uid="uid://d86tyj0eydeo"]
+[gd_scene load_steps=29 format=4 uid="uid://d86tyj0eydeo"]
 
 [ext_resource type="Script" uid="uid://vg00rfnn3346" path="res://scripts/overworld/map_script.gd" id="1_aldqd"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_30rpl"]
@@ -19,8 +19,10 @@
 [ext_resource type="Resource" uid="uid://cbellcmoph0m4" path="res://gamedata/dialogue/interactables/flavor_objs/giant_steppes/gs_library/gs_library_minions.tres" id="15_jujnl"]
 [ext_resource type="Resource" uid="uid://bqq383b65tywi" path="res://gamedata/dialogue/interactables/flavor_objs/giant_steppes/gs_library/gs_library_affinity.tres" id="17_3vnvb"]
 [ext_resource type="Resource" uid="uid://cahqh47ibt1iv" path="res://gamedata/dialogue/interactables/flavor_objs/giant_steppes/gs_library/gs_library_powers_of_destruction.tres" id="18_35roj"]
+[ext_resource type="Resource" uid="uid://nxc6b3yly18y" path="res://gamedata/dialogue/interactables/flavor_objs/giant_steppes/gs_library/gs_library_shroom_dimension.tres" id="18_ag4ub"]
 [ext_resource type="Resource" uid="uid://d1xialb41ndgr" path="res://gamedata/dialogue/interactables/flavor_objs/giant_steppes/gs_library/gs_library_powers_of_creation.tres" id="18_jwbkx"]
 [ext_resource type="Resource" uid="uid://c68ykjqiwhdlc" path="res://gamedata/dialogue/interactables/flavor_objs/giant_steppes/gs_library/gs_library_astral.tres" id="18_lef10"]
+[ext_resource type="Resource" uid="uid://dd3j8duxgk1nt" path="res://gamedata/dialogue/interactables/flavor_objs/giant_steppes/gs_library/gs_library_legends.tres" id="19_12fw1"]
 
 [sub_resource type="Resource" id="Resource_ojbxr"]
 script = ExtResource("4_ta5vp")
@@ -29,7 +31,7 @@ priority = -1
 storyRequirements = Array[ExtResource("5_m8siu")]([])
 autoApplyState = false
 
-[sub_resource type="Resource" id="Resource_jwbkx"]
+[sub_resource type="Resource" id="Resource_12fw1"]
 script = ExtResource("4_dpsuv")
 saveName = "npc"
 spriteState = "default"
@@ -118,7 +120,7 @@ saveName = "keeper_of_history_library"
 spriteStatesDict = Dictionary[String, ExtResource("4_ta5vp")]({
 "default": SubResource("Resource_ojbxr")
 })
-data = SubResource("Resource_jwbkx")
+data = SubResource("Resource_12fw1")
 dialogueEntries = Array[ExtResource("5_bxs7t")]([ExtResource("6_vpp0h")])
 
 [node name="NPCSprite" parent="TilemapRoot/KeeperOfHistory" index="0"]
@@ -214,6 +216,7 @@ disabled = true
 [node name="Shelf8" parent="TilemapRoot" instance=ExtResource("10_m8siu")]
 position = Vector2(-328, -89)
 saveName = "gs_library_shelf_8"
+dialogue = ExtResource("18_ag4ub")
 
 [node name="Collision" parent="TilemapRoot/Shelf8/AnimatedDecoration" index="1"]
 visible = false
@@ -224,6 +227,7 @@ disabled = true
 [node name="Shelf9" parent="TilemapRoot" instance=ExtResource("10_m8siu")]
 position = Vector2(-88, -151)
 saveName = "gs_library_shelf_9"
+dialogue = ExtResource("19_12fw1")
 
 [node name="Collision" parent="TilemapRoot/Shelf9/AnimatedDecoration" index="1"]
 visible = false

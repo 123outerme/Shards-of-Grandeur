@@ -1,0 +1,40 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=8 format=3 uid="uid://ixcl0k0www0r"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_5na4l"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_fftnm"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_pc2rc"]
+[ext_resource type="Script" uid="uid://b6oofnelefs8o" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_4s43o"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_fftnm"]
+
+[sub_resource type="Resource" id="Resource_0typi"]
+script = ExtResource("2_fftnm")
+choiceBtn = "Back to Table of Contents"
+returnsToParentId = "gs_library_legends_1"
+randomDialogues = Array[ExtResource("3_4s43o")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = false
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_1ay2i"]
+script = ExtResource("1_5na4l")
+lines = Array[String](["\"$highlight{The Space Knight}color$ - A voiceless warrior covered in strange steel, covered in gray dust. It is not known if the Space Knight even has a face.\""])
+minShowSecs = Array[float]([])
+animation = ""
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_fftnm")]([SubResource("Resource_0typi")])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[resource]
+script = ExtResource("3_fftnm")
+entryId = ""
+items = Array[ExtResource("1_5na4l")]([SubResource("Resource_1ay2i")])
+ordStoryRequirements = Array[ExtResource("2_pc2rc")]([])
+closesDialogue = false
+fullHealsPlayer = false
+annotation = ""
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"
