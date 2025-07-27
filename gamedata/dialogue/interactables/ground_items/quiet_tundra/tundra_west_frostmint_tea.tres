@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="PickedUpItem" load_steps=4 format=3 uid="uid://dg8reidgphgv5"]
+
+[ext_resource type="Resource" uid="uid://df5o67u6bpmlo" path="res://gamedata/ground_items/quiet_tundra/tundra_west_frostmint_tea1.tres" id="1_0shii"]
+[ext_resource type="Script" uid="uid://dc62fqcsqe6d4" path="res://scripts/inventory/picked_up_item.gd" id="1_nkyps"]
+[ext_resource type="Resource" uid="uid://c2bdh1g33vs52" path="res://gamedata/items/healing/frostmint_tea.tres" id="2_5ahnb"]
+
+[resource]
+script = ExtResource("1_nkyps")
+item = ExtResource("2_5ahnb")
+wasPickedUp = false
+speaker = ""
+dialogueEntry = ExtResource("1_0shii")
+savedItemIdx = 0
+savedTextIdx = 0
+metadata/_custom_type_script = "uid://dc62fqcsqe6d4"

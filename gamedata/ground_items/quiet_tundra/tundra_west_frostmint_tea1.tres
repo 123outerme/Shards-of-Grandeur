@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://df5o67u6bpmlo"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_bu4dn"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_3k4uf"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_25s4c"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_3k4uf"]
+
+[sub_resource type="Resource" id="Resource_n20l5"]
+script = ExtResource("1_bu4dn")
+lines = Array[String](["This is a Frostmint Tea! I'll bet that Scout Penguin swiped this off a patron of the Frostmint Village's tavern."])
+minShowSecs = Array[float]([])
+animation = ""
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_3k4uf")]([])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[resource]
+script = ExtResource("3_3k4uf")
+entryId = ""
+items = Array[ExtResource("1_bu4dn")]([SubResource("Resource_n20l5")])
+ordStoryRequirements = Array[ExtResource("2_25s4c")]([])
+closesDialogue = false
+fullHealsPlayer = false
+annotation = ""
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"
