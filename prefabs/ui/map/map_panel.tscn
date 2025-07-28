@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://cfxdils72sliv"]
+[gd_scene load_steps=35 format=3 uid="uid://cfxdils72sliv"]
 
 [ext_resource type="Script" uid="uid://bpsykw1b5wnl1" path="res://scripts/menus/pause_menu/map_panel.gd" id="1_smrfh"]
 [ext_resource type="AudioStream" uid="uid://id2wnvgxdsnm" path="res://audio/sfx/moves/wind/wind_whoosh.mp3" id="2_mua6g"]
@@ -7,10 +7,14 @@
 [ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="4_g45t3"]
 [ext_resource type="PackedScene" uid="uid://cx1nv23dkg60x" path="res://prefabs/ui/map/map_marker.tscn" id="4_w0vni"]
 [ext_resource type="PackedScene" uid="uid://mssyfvag61k" path="res://prefabs/ui/map/map_cloud_layer.tscn" id="5_0xsm1"]
+[ext_resource type="PackedScene" uid="uid://bh1okba0y1t8t" path="res://prefabs/ui/map/map_overlay_layer.tscn" id="5_fll8l"]
 [ext_resource type="Script" uid="uid://cqu8qkicb5n1f" path="res://scripts/menus/scroll_better_follow.gd" id="5_pcbcm"]
+[ext_resource type="Texture2D" uid="uid://b7yii4usqbrfi" path="res://graphics/ui/map/world_map_burned_forest.png" id="6_fb6ox"]
 [ext_resource type="Texture2D" uid="uid://bwgmyq2t44sv8" path="res://graphics/ui/map/world_map_hilltop_clouds.png" id="6_r08rx"]
 [ext_resource type="Texture2D" uid="uid://dfxwbr8uk1c8s" path="res://graphics/ui/map/world_map_standstill_clouds.png" id="6_wxfme"]
 [ext_resource type="Texture2D" uid="uid://d3ljqswdy48gy" path="res://graphics/ui/map/world_map_mushroom_grotto_clouds.png" id="7_sbt08"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="7_uiqb2"]
+[ext_resource type="Resource" uid="uid://fyqynvxrqkm6" path="res://gamedata/story_requirements/locations/reqs_standstill_burned.tres" id="8_3xx0i"]
 [ext_resource type="Texture2D" uid="uid://dhnjdwo16k56s" path="res://graphics/ui/map/world_map_leavenport_clouds.png" id="8_k3b6f"]
 [ext_resource type="Texture2D" uid="uid://durebm0wji4k3" path="res://graphics/ui/map/world_map_sea_leg_east_clouds.png" id="9_g8ukx"]
 [ext_resource type="Texture2D" uid="uid://dqo7ac6ci1p5i" path="res://graphics/ui/map/world_map_sea_leg_south_clouds.png" id="10_x2kn6"]
@@ -98,6 +102,19 @@ scale = Vector2(4, 4)
 texture = ExtResource("3_ajkb5")
 stretch_mode = 2
 
+[node name="MapOverlaysControl" type="Control" parent="MapSpritesControl"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ForestBurnedOverlay" parent="MapSpritesControl/MapOverlaysControl" instance=ExtResource("5_fll8l")]
+layout_mode = 1
+texture = ExtResource("6_fb6ox")
+storyRequirements = Array[ExtResource("7_uiqb2")]([ExtResource("8_3xx0i")])
+
 [node name="CloudsControl" type="Control" parent="MapSpritesControl"]
 layout_mode = 1
 anchors_preset = 15
@@ -106,7 +123,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="StandstillClouds" parent="MapSpritesControl/CloudsControl" instance=ExtResource("5_0xsm1")]
+[node name="StandstillCloudLayer" parent="MapSpritesControl/CloudsControl" instance=ExtResource("5_0xsm1")]
 layout_mode = 1
 texture = ExtResource("6_wxfme")
 location = 20
@@ -397,10 +414,18 @@ custom_minimum_size = Vector2(80, 40)
 layout_mode = 2
 focus_neighbor_left = NodePath("../LocationsButton")
 focus_neighbor_top = NodePath(".")
-focus_neighbor_right = NodePath(".")
+focus_neighbor_right = NodePath("../KeyLocationsButton")
 toggle_mode = true
 button_group = SubResource("ButtonGroup_fb6ox")
 text = "Quests"
+
+[node name="KeyLocationsButton" parent="LocationsControl/HBoxContainer" instance=ExtResource("4_g45t3")]
+layout_mode = 2
+focus_neighbor_left = NodePath("../QuestsButton")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath(".")
+toggle_mode = true
+text = "Key Places"
 
 [node name="BoxContainerScroller" parent="LocationsControl" node_paths=PackedStringArray("scrollContainer", "bailoutFocusControl") instance=ExtResource("24_gc6op")]
 layout_mode = 1
@@ -453,5 +478,7 @@ text = "Back"
 [connection signal="toggled" from="LocationsControl/HBoxContainer/AllButton" to="." method="_on_all_button_toggled"]
 [connection signal="toggled" from="LocationsControl/HBoxContainer/LocationsButton" to="." method="_on_locations_button_toggled"]
 [connection signal="toggled" from="LocationsControl/HBoxContainer/QuestsButton" to="." method="_on_quests_button_toggled"]
+[connection signal="toggled" from="LocationsControl/HBoxContainer/KeyLocationsButton" to="." method="_on_key_locations_button_toggled"]
+[connection signal="scroll_buttons_updated" from="LocationsControl/BoxContainerScroller" to="." method="_on_box_container_scroller_scroll_buttons_updated"]
 [connection signal="visibility_changed" from="LocationsControl/ScrollContainer" to="LocationsControl/ScrollContainer" method="_on_visibility_changed"]
 [connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]

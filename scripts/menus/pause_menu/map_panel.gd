@@ -1,16 +1,20 @@
 extends Control
 class_name MapPanel
 
+const KEY_LOCATIONS_PATH = 'res://gamedata/map/key_locations'
+
 enum MapLocationsFilter {
 	ALL = 0,
 	LOCATIONS = 1,
 	QUESTS = 2,
+	KEY_LOCATIONS = 3,
 }
 
 enum MapLocationType {
 	NONE,
 	LOCATION,
-	QUEST
+	QUEST,
+	KEY_LOCATION,
 }
 
 class MapPanelLocation:
@@ -37,22 +41,32 @@ const sfxButtonScene = preload('res://prefabs/ui/sfx_button.tscn')
 @export var filter: MapLocationsFilter = MapLocationsFilter.ALL
 @export var cloudHideSfx: AudioStream = null
 
-var locationOptions: Array[MapPanelLocation]
+var locationOptions: Array[MapPanelLocation] = []
 var selectedLocation: MapPanelLocation = null
 var noneLocationOption: MapPanelLocation = MapPanelLocation.new([], 'None', MapLocationType.NONE)
+
 var locationButtons: Dictionary[MapPanelLocation, Button] = {}
+var noneLocationButton: Button = null
+var firstButton: Button = null
+var lastButton: Button = null
+
+var keyLocations: Array[KeyMapLocation] = []
+
 var fromQuestsPanelQuest: Quest = null
+
 var cloudHideTweens: Array[Tween] = []
 
 @onready var mapPanelLabel: RichTextLabel = get_node('MapPanelLabel')
 
 @onready var markersControl: Control = get_node('MapSpritesControl/MarkersControl')
 @onready var cloudsControl: Control = get_node('MapSpritesControl/CloudsControl')
+@onready var overlaysControl: Control = get_node('MapSpritesControl/MapOverlaysControl')
 @onready var unknownOverlay: TextureRect = get_node('MapSpritesControl/UnknownOverlay')
 
 @onready var allButton: Button = get_node('LocationsControl/HBoxContainer/AllButton')
 @onready var locationsButton: Button = get_node('LocationsControl/HBoxContainer/LocationsButton')
 @onready var questsButton: Button = get_node('LocationsControl/HBoxContainer/QuestsButton')
+@onready var keyLocationsButton: Button = get_node('LocationsControl/HBoxContainer/KeyLocationsButton')
 
 @onready var buttonsHboxContainer: HBoxContainer = get_node('LocationsControl/ScrollContainer/HBoxContainer')
 @onready var scrollContainer: ScrollContainer = get_node('LocationsControl/ScrollContainer')
@@ -62,6 +76,7 @@ var cloudHideTweens: Array[Tween] = []
 
 func _init() -> void:
 	SignalBus.show_map_for_location.connect(_show_map_for_location)
+	load_key_locations()
 
 func _unhandled_input(event):
 	if visible:
@@ -70,6 +85,7 @@ func _unhandled_input(event):
 			get_viewport().set_input_as_handled()
 
 func load_map_panel(initial: bool = true) -> void:
+	update_map_overlays()
 	update_cloud_layers()
 	build_map_locations()
 	if initial:
@@ -87,6 +103,22 @@ func load_map_panel(initial: bool = true) -> void:
 func initial_focus() -> void:
 	allButton.grab_focus()
 
+func load_key_locations() -> void:
+	keyLocations = []
+	var files: PackedStringArray = DirAccess.get_files_at(KEY_LOCATIONS_PATH)
+	if len(files) > 0:
+		# each filename has ".remap" at the end of it (if this project is being played as a final build), load that file minus the ".remap"
+		for file: String in files:
+			# just in case there's a ".remap" in the path that's not at the end (although this should never be the case):
+			# get everything except the LAST file extension present
+			var resourceFilename: String = file.get_basename()
+			# if it doesn't have ".tres" at the end (only if being played in the editor): add it
+			if not resourceFilename.ends_with('.tres'):
+				resourceFilename += '.tres'
+			var keyLocation: KeyMapLocation = ResourceLoader.load(KEY_LOCATIONS_PATH + '/' + resourceFilename) as KeyMapLocation
+			if keyLocation != null:
+				keyLocations.append(keyLocation)
+
 func restore_filter_button_focus(filterSelected: MapLocationsFilter) -> void:
 	match filterSelected:
 		MapLocationsFilter.ALL:
@@ -95,15 +127,22 @@ func restore_filter_button_focus(filterSelected: MapLocationsFilter) -> void:
 			locationsButton.grab_focus()
 		MapLocationsFilter.QUESTS:
 			questsButton.grab_focus()
+		MapLocationsFilter.KEY_LOCATIONS:
+			keyLocationsButton.grab_focus()
 		_: # default
 			initial_focus()
+
+func update_map_overlays() -> void:
+	var children: Array[Node] = overlaysControl.get_children()
+	for child: Node in children:
+		if child is MapOverlayLayer:
+			child.validate()
 
 func update_cloud_layers() -> void:
 	var children: Array[Node] = cloudsControl.get_children()
 	for child: Node in children:
 		if child is MapCloudLayerTextureRect:
-			var cloudLayer: MapCloudLayerTextureRect = child as MapCloudLayerTextureRect
-			cloudLayer.visible = not PlayerResources.playerInfo.has_removed_cloud_for_location(cloudLayer.location)
+			child.visible = not PlayerResources.playerInfo.has_removed_cloud_for_location(child.location)
 
 func build_map_locations() -> void:
 	locationOptions = [noneLocationOption]
@@ -111,13 +150,17 @@ func build_map_locations() -> void:
 		locationOptions.append_array(build_locations_options())
 	if filter == MapLocationsFilter.ALL or filter == MapLocationsFilter.QUESTS:
 		locationOptions.append_array(build_quests_options())
+	if filter == MapLocationsFilter.ALL or filter == MapLocationsFilter.KEY_LOCATIONS:
+		locationOptions.append_array(build_key_locations_options())
 	
 	for child: Node in buttonsHboxContainer.get_children():
 		child.queue_free()
+	await get_tree().process_frame
 	
 	locationButtons = {}
-	var lastButton: Button = null
-	var firstButton: Button = null
+	firstButton = null
+	noneLocationButton = null
+	lastButton = null
 	for option: MapPanelLocation in locationOptions:
 		var instantiatedButton: Button = sfxButtonScene.instantiate()
 		instantiatedButton.text = option.buttonText
@@ -128,26 +171,49 @@ func build_map_locations() -> void:
 		_connect_location_button_focus.call_deferred(instantiatedButton, lastButton)
 		if firstButton == null:
 			firstButton = instantiatedButton
+		if option == noneLocationOption:
+			noneLocationButton = instantiatedButton
 		lastButton = instantiatedButton
 	
-	## make so filter buttons left/right press focus scroll container buttons
-	boxContainerScroller.connect_scroll_left_right_neighbor(allButton)
-	boxContainerScroller.connect_scroll_right_left_neighbor(questsButton)
-	## make so scroll left focus + left wraps around, vice versa
-	boxContainerScroller.connect_scroll_left_left_neighbor(boxContainerScroller.scrollRightBtn)
-	boxContainerScroller.connect_scroll_right_right_neighbor(boxContainerScroller.scrollLeftBtn)
-	## fix back button focus so left goes to left, right goes to right
-	boxContainerScroller.connect_scroll_left_right_neighbor(backButton)
-	boxContainerScroller.connect_scroll_right_left_neighbor(backButton)
-	## fix left/right button focus so they connect to the first/last buttons
-	boxContainerScroller.connect_scroll_left_right_neighbor(firstButton)
-	boxContainerScroller.connect_scroll_right_left_neighbor(lastButton)
-	## let bottom press focus back button
-	boxContainerScroller.connect_scroll_left_bottom_neighbor(backButton)
-	boxContainerScroller.connect_scroll_right_bottom_neighbor(backButton)
-	## let top press focus filter buttons
-	boxContainerScroller.connect_scroll_left_top_neighbor(allButton)
-	boxContainerScroller.connect_scroll_right_top_neighbor(questsButton)
+	connect_scroll_buttons_neighbors.call_deferred()
+	# instead of doing the above, connect after the scroll buttons are updated
+
+func connect_scroll_buttons_neighbors() -> void:
+	# disables the first/last filter buttons' bottom neighbors
+	# since they connect to scroll buttons that they may not be connected to in a frame,
+	# this could cause focus to be completely lost if switching from visible scroll buttons to invisible
+	# (before the below if statement runs, the player could press Down and lose focus to the invisible scroll buttons
+	allButton.focus_neighbor_bottom = allButton.get_path_to(noneLocationButton)
+	keyLocationsButton.focus_neighbor_bottom = keyLocationsButton.get_path_to(noneLocationButton)
+	await get_tree().process_frame
+	if boxContainerScroller.visible:
+		## make so filter buttons left/right press focus scroll container buttons
+		boxContainerScroller.connect_scroll_left_right_neighbor(allButton)
+		boxContainerScroller.connect_scroll_right_left_neighbor(keyLocationsButton)
+		## make so scroll left focus + left wraps around, vice versa
+		boxContainerScroller.connect_scroll_left_left_neighbor(boxContainerScroller.scrollRightBtn)
+		boxContainerScroller.connect_scroll_right_right_neighbor(boxContainerScroller.scrollLeftBtn)
+		## fix back button focus so left goes to left, right goes to right
+		boxContainerScroller.connect_scroll_left_right_neighbor(backButton)
+		boxContainerScroller.connect_scroll_right_left_neighbor(backButton)
+		## fix left/right button focus so they connect to the first/last buttons
+		boxContainerScroller.connect_scroll_left_right_neighbor(firstButton)
+		boxContainerScroller.connect_scroll_right_left_neighbor(lastButton)
+		## let bottom press focus back button
+		boxContainerScroller.connect_scroll_left_bottom_neighbor(backButton)
+		boxContainerScroller.connect_scroll_right_bottom_neighbor(backButton)
+		## let top press focus filter buttons
+		boxContainerScroller.connect_scroll_left_top_neighbor(allButton)
+		boxContainerScroller.connect_scroll_right_top_neighbor(keyLocationsButton)
+	else:
+		allButton.focus_neighbor_left = '.'
+		allButton.focus_neighbor_bottom = ''
+		keyLocationsButton.focus_neighbor_right = '.'
+		keyLocationsButton.focus_neighbor_bottom = ''
+		firstButton.focus_neighbor_left = '.'
+		lastButton.focus_neighbor_right = '.'
+		backButton.focus_neighbor_left = '.'
+		backButton.focus_neighbor_right = '.'
 	backButton.focus_neighbor_top = '' # unset focus neighbor so it's automatic
 
 func build_locations_options() -> Array[MapPanelLocation]:
@@ -155,7 +221,7 @@ func build_locations_options() -> Array[MapPanelLocation]:
 	var markers: Array[Node] = markersControl.get_children()
 	for marker: Node in markers:
 		var mapMarker: MapMarker = marker as MapMarker
-		if PlayerResources.playerInfo.has_visited_map_location(mapMarker.location):
+		if marker.visible and PlayerResources.playerInfo.has_visited_map_location(mapMarker.location):
 			options.append(MapPanelLocation.new([mapMarker.location], WorldLocation.map_location_to_specific_string(mapMarker.location)))
 	return options
 
@@ -172,6 +238,20 @@ func build_quests_options() -> Array[MapPanelLocation]:
 						else step.turnInLocations
 				options.append(MapPanelLocation.new(locations, questTracker.quest.questName, MapLocationType.QUEST, questTracker.quest))
 	return options
+
+func build_key_locations_options() -> Array[MapPanelLocation]:
+	var options: Dictionary[String, MapPanelLocation] = {}
+	var keyLocMap: Dictionary[String, KeyMapLocation] = {}
+	
+	for keyLocation: KeyMapLocation in keyLocations:
+		if keyLocation.is_valid() and \
+				(not keyLocMap.has(keyLocation.id) or keyLocMap[keyLocation.id].priority < keyLocation.priority):
+			keyLocMap[keyLocation.id] = keyLocation
+			options[keyLocation.id] = MapPanelLocation.new(keyLocation.locations, keyLocation.name, MapLocationType.KEY_LOCATION)
+	
+	var optionsList: Array[MapPanelLocation] = options.values()
+	optionsList.sort_custom(KeyMapLocation._sort)
+	return optionsList
 
 func get_current_location() -> MapPanelLocation:
 	var worldLocation: WorldLocation = MapLoader.get_world_location_for_name(PlayerResources.playerInfo.map)
@@ -215,9 +295,11 @@ func update_filter(newFilter: MapLocationsFilter) -> void:
 		locationsButton.button_pressed = false
 	if questsButton.button_pressed and newFilter != MapLocationsFilter.QUESTS:
 		questsButton.button_pressed = false
+	if keyLocationsButton.button_pressed and newFilter != MapLocationsFilter.KEY_LOCATIONS:
+		keyLocationsButton.button_pressed = false
 
 func deselect_filter(deselectedFilter: MapLocationsFilter) -> void:
-	if not allButton.button_pressed and not locationsButton.button_pressed and not questsButton.button_pressed:
+	if not allButton.button_pressed and not locationsButton.button_pressed and not questsButton.button_pressed and not keyLocationsButton.button_pressed:
 		update_filter(MapLocationsFilter.ALL)
 		allButton.button_pressed = true
 
@@ -265,7 +347,7 @@ func update_selected_location(location: MapPanelLocation) -> void:
 		if mapMarker.location == playerLocation.locations[0]:
 			markPlayer = true
 		if selectedLocation != null and mapMarker.location in selectedLocation.locations:
-			if location.type == MapLocationType.LOCATION:
+			if location.type == MapLocationType.LOCATION or location.type == MapLocationType.KEY_LOCATION:
 				if markPlayer:
 					mapMarker.mark_player_location()
 				else:
@@ -306,6 +388,12 @@ func _on_quests_button_toggled(toggled_on: bool) -> void:
 	else:
 		deselect_filter(MapLocationsFilter.QUESTS)
 
+func _on_key_locations_button_toggled(toggled_on: bool) -> void:
+	if toggled_on:
+		update_filter(MapLocationsFilter.KEY_LOCATIONS)
+	else:
+		deselect_filter(MapLocationsFilter.KEY_LOCATIONS)
+
 func _show_map_for_location(locations: Array[WorldLocation.MapLocation], quest: Quest):
 	initial_focus.call_deferred()
 	if quest != null:
@@ -335,3 +423,6 @@ func _hide_cloud_tween_finished(tween: Tween, cloudLayer: MapCloudLayerTextureRe
 	cloudHideTweens.erase(tween)
 	cloudLayer.visible = false
 	PlayerResources.playerInfo.set_location_cloud_removed(cloudLayer.location)
+
+func _on_box_container_scroller_scroll_buttons_updated() -> void:
+	pass #connect_scroll_buttons_neighbors()

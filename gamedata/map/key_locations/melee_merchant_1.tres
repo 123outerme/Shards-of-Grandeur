@@ -1,0 +1,42 @@
+[gd_resource type="Resource" script_class="KeyMapLocation" load_steps=5 format=3 uid="uid://doj3vwskwih4v"]
+
+[ext_resource type="Script" uid="uid://bevem607vrnsm" path="res://scripts/overworld/key_map_location.gd" id="1_exewi"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_wp42t"]
+[ext_resource type="Script" uid="uid://fw22o8hbosnk" path="res://scripts/inventory/inventory_slot.gd" id="3_wp42t"]
+
+[sub_resource type="Resource" id="Resource_dk2et"]
+script = ExtResource("2_wp42t")
+minAct = 0
+maxAct = -1
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String](["melee_merchant_tundra_west#melee_merchant_intro"])
+prereqPlacesVisited = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+prereqDefeatedEnemies = Array[String]([])
+prereqPuzzles = Array[String]([])
+prereqPuzzleStates = Dictionary[String, Array]({})
+prereqDiscoveredEvolutions = Array[String]([])
+prereqHavingFollowers = Array[String]([])
+prereqHasItems = Array[ExtResource("3_wp42t")]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String]([])
+invalidAfterVistingPlaces = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromPuzzleStates = Dictionary[String, Array]({})
+invalidFromHavingFollowers = Array[String]([])
+invalidFromHavingItems = Array[ExtResource("3_wp42t")]([])
+metadata/_custom_type_script = "uid://bjesn36acj0uh"
+
+[resource]
+script = ExtResource("1_exewi")
+id = "melee_merchant"
+name = "Melee Merchant"
+locations = Array[int]([51])
+storyRequirements = Array[ExtResource("2_wp42t")]([SubResource("Resource_dk2et")])
+priority = 0
+sortOrder = -1
+metadata/_custom_type_script = "uid://bevem607vrnsm"

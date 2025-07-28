@@ -3,11 +3,14 @@ class_name MapMarker
 
 @export var location: WorldLocation.MapLocation
 
+@export var storyRequirements: Array[StoryRequirements] = []
+
 @onready var pinSprite: AnimatedSprite2D = get_node('PinSprite')
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	hide_marker()
+	visible = StoryRequirements.list_is_valid(storyRequirements)
 
 func hide_marker() -> void:
 	pinSprite.play('hide')
