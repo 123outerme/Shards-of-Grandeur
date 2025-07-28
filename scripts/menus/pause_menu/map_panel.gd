@@ -135,7 +135,7 @@ func restore_filter_button_focus(filterSelected: MapLocationsFilter) -> void:
 func update_map_overlays() -> void:
 	var children: Array[Node] = overlaysControl.get_children()
 	for child: Node in children:
-		if child is MapOverlayLayer:
+		if child is StoryReqsTextureRect:
 			child.validate()
 
 func update_cloud_layers() -> void:

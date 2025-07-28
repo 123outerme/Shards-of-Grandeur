@@ -18,7 +18,6 @@ func _ready():
 func _story_reqs_updated():
 	if Engine.is_editor_hint():
 		return
-	
 	visible = StoryRequirements.list_is_valid(storyRequirements)
 	update_collision()
 	load_decoration()
