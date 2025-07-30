@@ -1,0 +1,74 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=14 format=3 uid="uid://32k75qs8dxt5"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_6qsyk"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_0l2q7"]
+[ext_resource type="Script" uid="uid://b6oofnelefs8o" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_0l2q7"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="3_kntg6"]
+[ext_resource type="Resource" uid="uid://uy1aw7k4ph8y" path="res://gamedata/dialogue/quiet_tundra/rat_subject_1/tundra_west_rat_subject1_convince_b1_succeed.tres" id="3_unq25"]
+[ext_resource type="Resource" uid="uid://cdl4egqbo0ol" path="res://gamedata/puzzles/quiet_tundra/convince_rat_subjects_puzzle.tres" id="3_wxigl"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="4_unq25"]
+[ext_resource type="Script" uid="uid://rq70khw4bw6c" path="res://scripts/dialogue/choice_types/puzzle_dialogue_choice.gd" id="5_qxv5a"]
+[ext_resource type="Resource" uid="uid://cmq12eomkfq6" path="res://gamedata/dialogue/quiet_tundra/rat_subject_1/tundra_west_rat_subject1_convince_b1_fail.tres" id="5_wxigl"]
+
+[sub_resource type="Resource" id="Resource_wxigl"]
+script = ExtResource("1_6qsyk")
+lines = Array[String](["It's the fault of the bipeds. The Chain Legion burned down your forest in the first place.", "They used magic more powerful than either you or the other bipeds could handle. I failed to stop them."])
+minShowSecs = Array[float]([])
+animation = "stand"
+speakerOverride = "@"
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_0l2q7")]([])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[sub_resource type="Resource" id="Resource_n3iuu"]
+script = ExtResource("5_qxv5a")
+puzzle = ExtResource("3_wxigl")
+puzzleStateIndex = 0
+acceptsSolve = true
+setsState = "solved"
+leadsToIfSolveFails = ExtResource("3_unq25")
+choiceBtn = "He's On That Hill."
+leadsTo = ExtResource("3_unq25")
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_0l2q7")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = false
+metadata/_custom_type_script = "uid://rq70khw4bw6c"
+
+[sub_resource type="Resource" id="Resource_unq25"]
+script = ExtResource("2_0l2q7")
+choiceBtn = "He Already Tried."
+leadsTo = ExtResource("5_wxigl")
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_0l2q7")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = false
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_6qsyk"]
+script = ExtResource("1_6qsyk")
+lines = Array[String](["So, it's YOUR fault?! How dare you let this happen!", "I'll take our revenge, for all my kin!", "... Well, on second thought, you seem too tough for me, but not for the King Rat!", "I'll find him again, and have him settle the score on behalf of all of us!"])
+minShowSecs = Array[float]([])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_0l2q7")]([SubResource("Resource_n3iuu"), SubResource("Resource_unq25")])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[resource]
+script = ExtResource("4_unq25")
+entryId = ""
+items = Array[ExtResource("1_6qsyk")]([SubResource("Resource_wxigl"), SubResource("Resource_6qsyk")])
+ordStoryRequirements = Array[ExtResource("3_kntg6")]([])
+closesDialogue = false
+fullHealsPlayer = false
+annotation = ""
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"

@@ -1,9 +1,10 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://jxmk51ajfok7"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=8 format=3 uid="uid://jxmk51ajfok7"]
 
 [ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_va6ok"]
 [ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_554r4"]
 [ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_o5rco"]
 [ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_o5rco"]
+[ext_resource type="Script" uid="uid://fw22o8hbosnk" path="res://scripts/inventory/inventory_slot.gd" id="4_bdrfe"]
 
 [sub_resource type="Resource" id="Resource_k8o4l"]
 script = ExtResource("1_va6ok")
@@ -17,11 +18,38 @@ animateActorIsPlayer = false
 choices = Array[ExtResource("2_o5rco")]([])
 metadata/_custom_type_script = "uid://grt2yrupha8c"
 
+[sub_resource type="Resource" id="Resource_wf03h"]
+script = ExtResource("2_554r4")
+minAct = 0
+maxAct = -1
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqPlacesVisited = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+prereqDefeatedEnemies = Array[String]([])
+prereqPuzzles = Array[String]([])
+prereqPuzzleStates = Dictionary[String, Array]({})
+prereqDiscoveredEvolutions = Array[String]([])
+prereqHavingFollowers = Array[String]([])
+prereqHasItems = Array[ExtResource("4_bdrfe")]([])
+invalidAfterCompletingQuests = Array[String](["The Crownless King#Duel Before the Throne"])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String]([])
+invalidAfterVistingPlaces = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromPuzzleStates = Dictionary[String, Array]({})
+invalidFromHavingFollowers = Array[String]([])
+invalidFromHavingItems = Array[ExtResource("4_bdrfe")]([])
+metadata/_custom_type_script = "uid://bjesn36acj0uh"
+
 [resource]
 script = ExtResource("3_o5rco")
 entryId = ""
 items = Array[ExtResource("1_va6ok")]([SubResource("Resource_k8o4l")])
-ordStoryRequirements = Array[ExtResource("2_554r4")]([])
+ordStoryRequirements = Array[ExtResource("2_554r4")]([SubResource("Resource_wf03h")])
 closesDialogue = false
 fullHealsPlayer = false
 annotation = ""

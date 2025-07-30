@@ -1,0 +1,74 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=14 format=3 uid="uid://djjf57xr8kagm"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_dwtia"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_db7lq"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_sm8oy"]
+[ext_resource type="Script" uid="uid://b6oofnelefs8o" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_iwltv"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_sm8oy"]
+[ext_resource type="Resource" uid="uid://n0536d62odj6" path="res://gamedata/dialogue/quiet_tundra/rat_subject_1/tundra_west_rat_subject1_convince_b2_succeed.tres" id="3_xalk7"]
+[ext_resource type="Resource" uid="uid://cdl4egqbo0ol" path="res://gamedata/puzzles/quiet_tundra/convince_rat_subjects_puzzle.tres" id="4_xalk7"]
+[ext_resource type="Script" uid="uid://rq70khw4bw6c" path="res://scripts/dialogue/choice_types/puzzle_dialogue_choice.gd" id="5_544hx"]
+[ext_resource type="Resource" uid="uid://cfam48xht0ux0" path="res://gamedata/dialogue/quiet_tundra/rat_subject_1/tundra_west_rat_subject1_convince_b2_fail.tres" id="7_544hx"]
+
+[sub_resource type="Resource" id="Resource_ofkem"]
+script = ExtResource("1_dwtia")
+lines = Array[String](["Your doubt in your king betrays his trust. How can he lead a group of unwilling subjects? This is why you're all scattered now."])
+minShowSecs = Array[float]([])
+animation = "stand"
+speakerOverride = "@"
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_sm8oy")]([])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[sub_resource type="Resource" id="Resource_bg58y"]
+script = ExtResource("5_544hx")
+puzzle = ExtResource("4_xalk7")
+puzzleStateIndex = 1
+acceptsSolve = true
+setsState = "solved"
+leadsToIfSolveFails = ExtResource("3_xalk7")
+choiceBtn = "Not True."
+leadsTo = ExtResource("3_xalk7")
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_iwltv")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = true
+metadata/_custom_type_script = "uid://rq70khw4bw6c"
+
+[sub_resource type="Resource" id="Resource_2d375"]
+script = ExtResource("2_sm8oy")
+choiceBtn = "Just His Crown?"
+leadsTo = ExtResource("7_544hx")
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_iwltv")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = false
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_db7lq"]
+script = ExtResource("1_dwtia")
+lines = Array[String](["No, he has scattered us! He's only concerned about the loss of his crown."])
+minShowSecs = Array[float]([])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_sm8oy")]([SubResource("Resource_bg58y"), SubResource("Resource_2d375")])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[resource]
+script = ExtResource("3_sm8oy")
+entryId = ""
+items = Array[ExtResource("1_dwtia")]([SubResource("Resource_ofkem"), SubResource("Resource_db7lq")])
+ordStoryRequirements = Array[ExtResource("2_db7lq")]([])
+closesDialogue = false
+fullHealsPlayer = false
+annotation = ""
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"

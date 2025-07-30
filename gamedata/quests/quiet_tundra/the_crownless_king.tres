@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Quest" load_steps=10 format=3 uid="uid://dpasfbf5p7oka"]
+[gd_resource type="Resource" script_class="Quest" load_steps=11 format=3 uid="uid://dpasfbf5p7oka"]
 
 [ext_resource type="Script" uid="uid://bnw42uegqk4wp" path="res://scripts/quests/quest.gd" id="1_j7i3x"]
 [ext_resource type="Script" uid="uid://b3j2bj1p0bkq8" path="res://scripts/quests/quest_step.gd" id="2_5o8i1"]
@@ -11,7 +11,7 @@
 [sub_resource type="Resource" id="Resource_iodx2"]
 script = ExtResource("2_5o8i1")
 name = "Duel Before the Throne"
-description = ""
+description = "TBD"
 locations = Array[int]([51])
 turnInLocations = Array[int]([51])
 type = 4
@@ -42,11 +42,28 @@ turnInDialogue = Array[ExtResource("3_5o8i1")]([ExtResource("7_jfs2c")])
 inProgressDialogue = Array[ExtResource("3_5o8i1")]([ExtResource("6_gb4qg")])
 metadata/_custom_type_script = "uid://b3j2bj1p0bkq8"
 
+[sub_resource type="Resource" id="Resource_gb4qg"]
+script = ExtResource("2_5o8i1")
+name = "TBD"
+description = "TBD"
+locations = Array[int]([])
+turnInLocations = Array[int]([])
+type = 0
+count = 1
+objectiveName = "---"
+turnInNames = Array[String]([])
+displayObjName = ""
+displayTurnInName = ""
+customStatusStr = ""
+turnInDialogue = Array[ExtResource("3_5o8i1")]([])
+inProgressDialogue = Array[ExtResource("3_5o8i1")]([])
+metadata/_custom_type_script = "uid://b3j2bj1p0bkq8"
+
 [resource]
 script = ExtResource("1_j7i3x")
 questName = "The Crownless King"
 description = "Where's your crown, King of the Rats?"
-steps = Array[ExtResource("2_5o8i1")]([SubResource("Resource_iodx2"), SubResource("Resource_5o8i1")])
+steps = Array[ExtResource("2_5o8i1")]([SubResource("Resource_iodx2"), SubResource("Resource_5o8i1"), SubResource("Resource_gb4qg")])
 isMainQuest = false
 advanceActAfterComplete = false
 metadata/_custom_type_script = "uid://bnw42uegqk4wp"

@@ -71,15 +71,7 @@ func can_solve() -> bool:
 	return solvePuzzleMechanic == null or solvePuzzleMechanic.can_solve()
 
 func solve() -> bool:
-	var currentStates: Array[String] = PlayerResources.playerInfo.get_puzzle_states(id)
-	if len(currentStates) == len(solvedStates):
-		var isSolved: bool = true
-		for i: int in range(len(currentStates)):
-			if currentStates[i] != solvedStates[i]:
-				isSolved = false
-				break
-		if isSolved and (solvePuzzleMechanic == null or solvePuzzleMechanic.can_solve()):
-			var solvedMechanic: bool = solvePuzzleMechanic.solve()
-			if solvedMechanic:
-				return super.solve()
+	if can_solve():
+		if solvePuzzleMechanic == null or solvePuzzleMechanic.solve():
+			return super.solve()
 	return false

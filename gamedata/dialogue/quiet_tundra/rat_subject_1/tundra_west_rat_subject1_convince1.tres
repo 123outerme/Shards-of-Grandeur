@@ -1,0 +1,96 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=15 format=3 uid="uid://c61a0xo0a4v56"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_cbaj8"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_raqoc"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_shrvr"]
+[ext_resource type="Script" uid="uid://b6oofnelefs8o" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_2kquo"]
+[ext_resource type="Resource" uid="uid://cm5iaiw1nthj8" path="res://gamedata/dialogue/quiet_tundra/rat_subject_1/tundra_west_rat_subject1_convince1_end.tres" id="3_fpx20"]
+[ext_resource type="Script" uid="uid://fw22o8hbosnk" path="res://scripts/inventory/inventory_slot.gd" id="3_shrvr"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="4_2kquo"]
+[ext_resource type="Resource" uid="uid://32k75qs8dxt5" path="res://gamedata/dialogue/quiet_tundra/rat_subject_1/tundra_west_rat_subject1_convince_b1.tres" id="5_2g74m"]
+[ext_resource type="Resource" uid="uid://djjf57xr8kagm" path="res://gamedata/dialogue/quiet_tundra/rat_subject_1/tundra_west_rat_subject1_convince_b2.tres" id="6_n8nxs"]
+
+[sub_resource type="Resource" id="Resource_2g74m"]
+script = ExtResource("2_shrvr")
+choiceBtn = "He's Foolish!"
+leadsTo = ExtResource("3_fpx20")
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_2kquo")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = true
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_shrvr"]
+script = ExtResource("2_shrvr")
+choiceBtn = "It's Our Fault."
+leadsTo = ExtResource("5_2g74m")
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_2kquo")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = false
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_n8nxs"]
+script = ExtResource("2_shrvr")
+choiceBtn = "It's Your Doubt's Fault."
+leadsTo = ExtResource("6_n8nxs")
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_2kquo")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = false
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_2kquo"]
+script = ExtResource("1_cbaj8")
+lines = Array[String](["Brr....", "I followed that foolish king through this frozen wasteland... but I've had it. It's his fault we lost our home!"])
+minShowSecs = Array[float]([])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_shrvr")]([SubResource("Resource_2g74m"), SubResource("Resource_shrvr"), SubResource("Resource_n8nxs")])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[sub_resource type="Resource" id="Resource_fpx20"]
+script = ExtResource("2_raqoc")
+minAct = 0
+maxAct = -1
+prereqQuests = Array[String](["The Crownless King#Duel Before the Throne"])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqPlacesVisited = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+prereqDefeatedEnemies = Array[String]([])
+prereqPuzzles = Array[String]([])
+prereqPuzzleStates = Dictionary[String, Array]({})
+prereqDiscoveredEvolutions = Array[String]([])
+prereqHavingFollowers = Array[String]([])
+prereqHasItems = Array[ExtResource("3_shrvr")]([])
+invalidAfterCompletingQuests = Array[String](["The Crownless King#Convince The Subjects"])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String]([])
+invalidAfterVistingPlaces = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromPuzzleStates = Dictionary[String, Array]({})
+invalidFromHavingFollowers = Array[String]([])
+invalidFromHavingItems = Array[ExtResource("3_shrvr")]([])
+metadata/_custom_type_script = "uid://bjesn36acj0uh"
+
+[resource]
+script = ExtResource("4_2kquo")
+entryId = ""
+items = Array[ExtResource("1_cbaj8")]([SubResource("Resource_2kquo")])
+ordStoryRequirements = Array[ExtResource("2_raqoc")]([SubResource("Resource_fpx20")])
+closesDialogue = false
+fullHealsPlayer = false
+annotation = ""
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"

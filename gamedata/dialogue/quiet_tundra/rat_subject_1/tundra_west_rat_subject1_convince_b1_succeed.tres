@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=7 format=3 uid="uid://uy1aw7k4ph8y"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_y4n57"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_1t8x0"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="3_j5pjn"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="4_2jtby"]
+[ext_resource type="Resource" uid="uid://dovn05efxs6dv" path="res://gamedata/cutscenes/quiet_tundra_west/rat_subject1_rejoin.tres" id="5_1t8x0"]
+
+[sub_resource type="Resource" id="Resource_d5cmn"]
+script = ExtResource("1_y4n57")
+lines = Array[String](["You'll see! You act tough, but I know my king will knock you flat with ease!"])
+minShowSecs = Array[float]([])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_1t8x0")]([])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[resource]
+script = ExtResource("4_2jtby")
+entryId = ""
+items = Array[ExtResource("1_y4n57")]([SubResource("Resource_d5cmn")])
+ordStoryRequirements = Array[ExtResource("3_j5pjn")]([])
+startsCutscene = ExtResource("5_1t8x0")
+closesDialogue = true
+fullHealsPlayer = false
+annotation = ""
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"

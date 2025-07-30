@@ -1,4 +1,4 @@
-[gd_scene load_steps=425 format=4 uid="uid://d3yjxfcekoxn0"]
+[gd_scene load_steps=429 format=4 uid="uid://d3yjxfcekoxn0"]
 
 [ext_resource type="Script" uid="uid://vg00rfnn3346" path="res://scripts/overworld/map_script.gd" id="1_yf525"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_wgf4x"]
@@ -44,11 +44,15 @@
 [ext_resource type="Script" uid="uid://bvnw0ab8d80ti" path="res://scripts/overworld/overworld_enemy/random_encounter_level_stage.gd" id="17_7mgps"]
 [ext_resource type="Resource" uid="uid://jxmk51ajfok7" path="res://gamedata/dialogue/quiet_tundra/rat_subject_1/tundra_west_rat_subject1_1.tres" id="17_716ng"]
 [ext_resource type="SpriteFrames" uid="uid://ckrlpy4ifbvap" path="res://graphics/animations/a_rat.tres" id="17_dct7q"]
+[ext_resource type="Resource" uid="uid://dc7catd804ux1" path="res://gamedata/dialogue/quiet_tundra/rat_subject_1/tundra_west_rat_subject1_united1.tres" id="17_og8w2"]
 [ext_resource type="Script" uid="uid://dllqv5vxrou7r" path="res://scripts/overworld/overworld_enemy/random_encounter.gd" id="18_r7qac"]
+[ext_resource type="Resource" uid="uid://c61a0xo0a4v56" path="res://gamedata/dialogue/quiet_tundra/rat_subject_1/tundra_west_rat_subject1_convince1.tres" id="18_wpyiy"]
 [ext_resource type="Resource" uid="uid://btqbgp8lp8rww" path="res://gamedata/dialogue/quiet_tundra/rat_subject_2/tundra_west_rat_subject2_1.tres" id="19_111li"]
 [ext_resource type="Resource" uid="uid://bwg8cky4fu6ri" path="res://gamedata/combatants/mystic_fox/mystic_fox.tres" id="20_7mgps"]
+[ext_resource type="Resource" uid="uid://cy3f060v1hyrx" path="res://gamedata/dialogue/quiet_tundra/rat_subject_2/tundra_west_rat_subject2_united1.tres" id="21_gxho8"]
 [ext_resource type="Resource" uid="uid://cpk0658pdwrli" path="res://gamedata/combatants/mystic_fox/evolutions/arctic_fox/arctic_fox_equipment.tres" id="21_r7qac"]
 [ext_resource type="Resource" uid="uid://bsx15gtbnpwml" path="res://gamedata/combatants/blob/blob.tres" id="22_8c8yf"]
+[ext_resource type="Resource" uid="uid://wmt1ndgbgcdy" path="res://gamedata/dialogue/quiet_tundra/rat_subject_2/tundra_west_rat_subject2_convince1.tres" id="22_t13ir"]
 [ext_resource type="SpriteFrames" uid="uid://dgvq4im6yvtel" path="res://graphics/structures/a_blob_statue_puzzle.tres" id="25_57w4p"]
 [ext_resource type="Resource" uid="uid://q13ivcb0m22b" path="res://gamedata/ground_items/quiet_tundra/tundra_ice_gem.tres" id="25_r8tee"]
 [ext_resource type="Resource" uid="uid://ta4xvquq2dev" path="res://gamedata/combatants/tree_bear/tree_bear.tres" id="25_yqpcr"]
@@ -2508,7 +2512,7 @@ spriteStatesDict = Dictionary[String, ExtResource("4_8htmm")]({
 "default": SubResource("Resource_jj782")
 })
 data = SubResource("Resource_q5crv")
-dialogueEntries = Array[ExtResource("14_p7apj")]([ExtResource("17_716ng")])
+dialogueEntries = Array[ExtResource("14_p7apj")]([ExtResource("17_og8w2"), ExtResource("18_wpyiy"), ExtResource("17_716ng")])
 
 [node name="NPCSprite" parent="TilemapRoot/RatSubject1" index="0"]
 sprite_frames = ExtResource("17_dct7q")
@@ -2535,7 +2539,7 @@ spriteStatesDict = Dictionary[String, ExtResource("4_8htmm")]({
 "default": SubResource("Resource_jj782")
 })
 data = SubResource("Resource_1s0bc")
-dialogueEntries = Array[ExtResource("14_p7apj")]([ExtResource("19_111li")])
+dialogueEntries = Array[ExtResource("14_p7apj")]([ExtResource("21_gxho8"), ExtResource("22_t13ir"), ExtResource("19_111li")])
 
 [node name="NPCSprite" parent="TilemapRoot/RatSubject2" index="0"]
 sprite_frames = ExtResource("17_dct7q")

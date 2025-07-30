@@ -1,0 +1,42 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=8 format=3 uid="uid://n0536d62odj6"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_rfnc0"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_akpxp"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_w5bj3"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_akpxp"]
+[ext_resource type="Resource" uid="uid://dovn05efxs6dv" path="res://gamedata/cutscenes/quiet_tundra_west/rat_subject1_rejoin.tres" id="4_w5bj3"]
+
+[sub_resource type="Resource" id="Resource_675xf"]
+script = ExtResource("1_rfnc0")
+lines = Array[String](["That's not true. The King Rat was very clear, he needs the help of his subjects to rebuild the kingdom. He needs you."])
+minShowSecs = Array[float]([])
+animation = "stand"
+speakerOverride = "@"
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_akpxp")]([])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[sub_resource type="Resource" id="Resource_akpxp"]
+script = ExtResource("1_rfnc0")
+lines = Array[String](["He... needs me? I thought the subjects were supposed to need their king, never the other way around...", "If he needs me, then I'll return to his side. Thank you, biped."])
+minShowSecs = Array[float]([])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_akpxp")]([])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[resource]
+script = ExtResource("3_akpxp")
+entryId = ""
+items = Array[ExtResource("1_rfnc0")]([SubResource("Resource_675xf"), SubResource("Resource_akpxp")])
+ordStoryRequirements = Array[ExtResource("2_w5bj3")]([])
+startsCutscene = ExtResource("4_w5bj3")
+closesDialogue = true
+fullHealsPlayer = false
+annotation = ""
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"
