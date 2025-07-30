@@ -1,4 +1,4 @@
-[gd_scene load_steps=422 format=4 uid="uid://d3yjxfcekoxn0"]
+[gd_scene load_steps=425 format=4 uid="uid://d3yjxfcekoxn0"]
 
 [ext_resource type="Script" uid="uid://vg00rfnn3346" path="res://scripts/overworld/map_script.gd" id="1_yf525"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_wgf4x"]
@@ -79,6 +79,8 @@
 [ext_resource type="PackedScene" uid="uid://bh1okba0y1t8t" path="res://prefabs/story_reqs_texture_rect.tscn" id="56_j1eib"]
 [ext_resource type="Texture2D" uid="uid://tyclg15gpyyh" path="res://graphics/terrain/snow_tile.png" id="56_w3sqx"]
 [ext_resource type="SpriteFrames" uid="uid://dip4j7s5ojeli" path="res://graphics/furniture/a_campfire.tres" id="57_w3sqx"]
+[ext_resource type="PackedScene" uid="uid://drntacqptcfm5" path="res://prefabs/entities/decoration.tscn" id="58_lgh17"]
+[ext_resource type="Texture2D" uid="uid://yk538nfavrs3" path="res://graphics/structures/igloo.png" id="59_3sd1n"]
 [ext_resource type="Resource" uid="uid://bhg4i01ukcdvd" path="res://gamedata/combatants/rat/rat.tres" id="64_a63kb"]
 
 [sub_resource type="Resource" id="Resource_4wyrg"]
@@ -389,6 +391,9 @@ size = Vector2(1, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x105b"]
 size = Vector2(16, 7)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_swa6l"]
+size = Vector2(30, 14)
 
 [sub_resource type="Resource" id="Resource_0f81w"]
 script = ExtResource("15_p7apj")
@@ -2560,7 +2565,6 @@ dialogue = ExtResource("5_lpkwk")
 
 [node name="AnimatedDecoration" parent="TilemapRoot/FoxStatuePuzzle" index="0"]
 animName = "unsolved"
-updateOnStoryReqsUpdate = null
 
 [node name="AnimatedSprite2D" parent="TilemapRoot/FoxStatuePuzzle/AnimatedDecoration" index="0"]
 sprite_frames = ExtResource("14_57w4p")
@@ -2589,7 +2593,6 @@ shape = SubResource("RectangleShape2D_qkweq")
 
 [node name="AnimatedDecoration" parent="TilemapRoot/FoxStatueEnergyWall" index="1"]
 animName = "energy_wall_1"
-updateOnStoryReqsUpdate = null
 
 [node name="AnimatedSprite2D" parent="TilemapRoot/FoxStatueEnergyWall/AnimatedDecoration" index="0"]
 sprite_frames = ExtResource("7_2scif")
@@ -2602,7 +2605,6 @@ shape = SubResource("RectangleShape2D_1gwlf")
 z_index = 0
 position = Vector2(-48, 0)
 animName = "energy_wall_side"
-updateOnStoryReqsUpdate = null
 
 [node name="AnimatedSprite2D" parent="TilemapRoot/FoxStatueEnergyWall/AnimatedDecoration2" index="0"]
 sprite_frames = ExtResource("7_2scif")
@@ -2617,7 +2619,6 @@ shape = SubResource("RectangleShape2D_8c8yf")
 z_index = 0
 position = Vector2(48, 0)
 animName = "energy_wall_side"
-updateOnStoryReqsUpdate = null
 
 [node name="AnimatedSprite2D" parent="TilemapRoot/FoxStatueEnergyWall/AnimatedDecoration3" index="0"]
 sprite_frames = ExtResource("7_2scif")
@@ -2631,7 +2632,6 @@ shape = SubResource("RectangleShape2D_yqpcr")
 z_index = 0
 position = Vector2(-16, 0)
 animName = "energy_wall_no_sparks"
-updateOnStoryReqsUpdate = null
 
 [node name="AnimatedSprite2D" parent="TilemapRoot/FoxStatueEnergyWall/AnimatedDecoration4" index="0"]
 sprite_frames = ExtResource("7_2scif")
@@ -2644,7 +2644,6 @@ shape = SubResource("RectangleShape2D_ffwqc")
 z_index = 0
 position = Vector2(-32, 0)
 animName = "energy_wall_1"
-updateOnStoryReqsUpdate = null
 
 [node name="AnimatedSprite2D" parent="TilemapRoot/FoxStatueEnergyWall/AnimatedDecoration5" index="0"]
 sprite_frames = ExtResource("7_2scif")
@@ -2657,7 +2656,6 @@ shape = SubResource("RectangleShape2D_b133f")
 z_index = 0
 position = Vector2(16, 0)
 animName = "energy_wall_2"
-updateOnStoryReqsUpdate = null
 
 [node name="AnimatedSprite2D" parent="TilemapRoot/FoxStatueEnergyWall/AnimatedDecoration6" index="0"]
 sprite_frames = ExtResource("7_2scif")
@@ -2670,7 +2668,6 @@ shape = SubResource("RectangleShape2D_al2hv")
 z_index = 0
 position = Vector2(32, 0)
 animName = "energy_wall_no_sparks"
-updateOnStoryReqsUpdate = null
 
 [node name="AnimatedSprite2D" parent="TilemapRoot/FoxStatueEnergyWall/AnimatedDecoration7" index="0"]
 sprite_frames = ExtResource("7_2scif")
@@ -2692,7 +2689,6 @@ dialogue = ExtResource("15_r8tee")
 
 [node name="AnimatedDecoration" parent="TilemapRoot/BlobStatuePuzzle" index="0"]
 animName = "unsolved"
-updateOnStoryReqsUpdate = null
 
 [node name="AnimatedSprite2D" parent="TilemapRoot/BlobStatuePuzzle/AnimatedDecoration" index="0"]
 sprite_frames = ExtResource("25_57w4p")
@@ -2722,7 +2718,6 @@ shape = SubResource("RectangleShape2D_qkweq")
 
 [node name="AnimatedDecoration" parent="TilemapRoot/BlobStatueEnergyWall" index="1"]
 animName = "energy_wall_1"
-updateOnStoryReqsUpdate = null
 
 [node name="AnimatedSprite2D" parent="TilemapRoot/BlobStatueEnergyWall/AnimatedDecoration" index="0"]
 sprite_frames = ExtResource("7_2scif")
@@ -2735,7 +2730,6 @@ shape = SubResource("RectangleShape2D_1gwlf")
 z_index = 0
 position = Vector2(-48, 0)
 animName = "energy_wall_side"
-updateOnStoryReqsUpdate = null
 
 [node name="AnimatedSprite2D" parent="TilemapRoot/BlobStatueEnergyWall/AnimatedDecoration2" index="0"]
 sprite_frames = ExtResource("7_2scif")
@@ -2750,7 +2744,6 @@ shape = SubResource("RectangleShape2D_8c8yf")
 z_index = 0
 position = Vector2(48, 0)
 animName = "energy_wall_side"
-updateOnStoryReqsUpdate = null
 
 [node name="AnimatedSprite2D" parent="TilemapRoot/BlobStatueEnergyWall/AnimatedDecoration3" index="0"]
 sprite_frames = ExtResource("7_2scif")
@@ -2764,7 +2757,6 @@ shape = SubResource("RectangleShape2D_yqpcr")
 z_index = 0
 position = Vector2(-16, 0)
 animName = "energy_wall_2"
-updateOnStoryReqsUpdate = null
 
 [node name="AnimatedSprite2D" parent="TilemapRoot/BlobStatueEnergyWall/AnimatedDecoration4" index="0"]
 sprite_frames = ExtResource("7_2scif")
@@ -2777,7 +2769,6 @@ shape = SubResource("RectangleShape2D_ffwqc")
 z_index = 0
 position = Vector2(-32, 0)
 animName = "energy_wall_no_sparks"
-updateOnStoryReqsUpdate = null
 
 [node name="AnimatedSprite2D" parent="TilemapRoot/BlobStatueEnergyWall/AnimatedDecoration5" index="0"]
 sprite_frames = ExtResource("7_2scif")
@@ -2790,7 +2781,6 @@ shape = SubResource("RectangleShape2D_b133f")
 z_index = 0
 position = Vector2(16, 0)
 animName = "energy_wall_no_sparks"
-updateOnStoryReqsUpdate = null
 
 [node name="AnimatedSprite2D" parent="TilemapRoot/BlobStatueEnergyWall/AnimatedDecoration6" index="0"]
 sprite_frames = ExtResource("7_2scif")
@@ -2803,7 +2793,6 @@ shape = SubResource("RectangleShape2D_al2hv")
 z_index = 0
 position = Vector2(32, 0)
 animName = "energy_wall_1"
-updateOnStoryReqsUpdate = null
 
 [node name="AnimatedSprite2D" parent="TilemapRoot/BlobStatueEnergyWall/AnimatedDecoration7" index="0"]
 sprite_frames = ExtResource("7_2scif")
@@ -2818,9 +2807,6 @@ position = Vector2(1165, -1828)
 interactAnim = "stand"
 saveName = "solius_tattered_cloth"
 dialogue = ExtResource("40_y7mw8")
-
-[node name="AnimatedDecoration" parent="TilemapRoot/SoliusTatteredCloth" index="1"]
-updateOnStoryReqsUpdate = null
 
 [node name="AnimatedSprite2D" parent="TilemapRoot/SoliusTatteredCloth/AnimatedDecoration" index="0"]
 sprite_frames = ExtResource("40_6gvpo")
@@ -2842,9 +2828,6 @@ dialogue = ExtResource("32_flbv4")
 
 [node name="CollisionShape2D" parent="TilemapRoot/GtlFootprints" index="0"]
 shape = SubResource("RectangleShape2D_8htmm")
-
-[node name="AnimatedDecoration" parent="TilemapRoot/GtlFootprints" index="1"]
-updateOnStoryReqsUpdate = null
 
 [node name="AnimatedSprite2D" parent="TilemapRoot/GtlFootprints/AnimatedDecoration" index="0"]
 sprite_frames = ExtResource("32_7ke06")
@@ -2983,7 +2966,6 @@ stretch_mode = 1
 
 [node name="KingRatCampfire" parent="TilemapRoot" instance=ExtResource("7_sqoo7")]
 position = Vector2(344, -2024)
-updateOnStoryReqsUpdate = false
 
 [node name="AnimatedSprite2D" parent="TilemapRoot/KingRatCampfire" index="0"]
 sprite_frames = ExtResource("57_w3sqx")
@@ -2992,6 +2974,36 @@ frame_progress = 0.932846
 [node name="CollisionShape2D" parent="TilemapRoot/KingRatCampfire/Collision" index="0"]
 position = Vector2(0, 4.5)
 shape = SubResource("RectangleShape2D_x105b")
+
+[node name="Igloo" parent="TilemapRoot" instance=ExtResource("58_lgh17")]
+position = Vector2(267, -2094)
+texture = ExtResource("59_3sd1n")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="TilemapRoot/Igloo"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TilemapRoot/Igloo/StaticBody2D"]
+position = Vector2(0, 5)
+shape = SubResource("RectangleShape2D_swa6l")
+
+[node name="Igloo2" parent="TilemapRoot" instance=ExtResource("58_lgh17")]
+position = Vector2(234, -2067)
+texture = ExtResource("59_3sd1n")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="TilemapRoot/Igloo2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TilemapRoot/Igloo2/StaticBody2D"]
+position = Vector2(0, 5)
+shape = SubResource("RectangleShape2D_swa6l")
+
+[node name="Igloo3" parent="TilemapRoot" instance=ExtResource("58_lgh17")]
+position = Vector2(249, -2031)
+texture = ExtResource("59_3sd1n")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="TilemapRoot/Igloo3"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TilemapRoot/Igloo3/StaticBody2D"]
+position = Vector2(0, 5)
+shape = SubResource("RectangleShape2D_swa6l")
 
 [node name="EnemySpawners" type="Node" parent="."]
 
