@@ -1,0 +1,157 @@
+[gd_resource type="Resource" script_class="Cutscene" load_steps=17 format=3 uid="uid://b3mp82ugi5yym"]
+
+[ext_resource type="Script" uid="uid://cqpl74uk8cjo0" path="res://scripts/cutscenes/cutscene_frame.gd" id="1_bqlcd"]
+[ext_resource type="Script" uid="uid://cg21ocaokyfnx" path="res://scripts/cutscenes/actor_anim_set.gd" id="2_x4lgk"]
+[ext_resource type="Script" uid="uid://dy2r6h7mhh2oc" path="res://scripts/cutscenes/actor_sprite_anim.gd" id="3_tvunk"]
+[ext_resource type="Script" uid="uid://8oxtwxpqllgd" path="res://scripts/cutscenes/actor_face_target.gd" id="4_db2fx"]
+[ext_resource type="Script" uid="uid://g5p5b4jsf6bs" path="res://scripts/cutscenes/actor_tween.gd" id="5_dgrnc"]
+[ext_resource type="Script" uid="uid://jcu0gq2ns4in" path="res://scripts/cutscenes/cutscene_dialogue.gd" id="6_u60f2"]
+[ext_resource type="Script" uid="uid://b5d2qgg22dgbw" path="res://scripts/cutscenes/tweens/tween_vector2.gd" id="7_umyk5"]
+[ext_resource type="Script" uid="uid://csrikyyse38e2" path="res://scripts/cutscenes/tweens/tween_bool.gd" id="8_hwhlj"]
+[ext_resource type="Script" uid="uid://fpa08p2kb0ts" path="res://scripts/cutscenes/cutscene.gd" id="9_ugjc2"]
+
+[sub_resource type="Resource" id="Resource_jjxjk"]
+script = ExtResource("1_bqlcd")
+frameLength = 0.1
+annotation = "Start the fade out"
+actorTweens = Array[ExtResource("5_dgrnc")]([])
+actorAnims = Array[ExtResource("3_tvunk")]([])
+actorAnimSets = Array[ExtResource("2_x4lgk")]([])
+actorFaceTargets = Array[ExtResource("4_db2fx")]([])
+dialogues = Array[ExtResource("6_u60f2")]([])
+playSfxs = Array[AudioStream]([])
+snapshotActorPaths = Array[String]([])
+restoreSnapshotActorPaths = Array[String]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 1
+endFadeLength = 0.5
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
+
+[sub_resource type="Resource" id="Resource_12xxx"]
+script = ExtResource("1_bqlcd")
+frameLength = 0.6
+annotation = "wait for the fade out to complete plus 0.1s"
+actorTweens = Array[ExtResource("5_dgrnc")]([])
+actorAnims = Array[ExtResource("3_tvunk")]([])
+actorAnimSets = Array[ExtResource("2_x4lgk")]([])
+actorFaceTargets = Array[ExtResource("4_db2fx")]([])
+dialogues = Array[ExtResource("6_u60f2")]([])
+playSfxs = Array[AudioStream]([])
+snapshotActorPaths = Array[String]([])
+restoreSnapshotActorPaths = Array[String]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
+
+[sub_resource type="Resource" id="Resource_bqlcd"]
+script = ExtResource("7_umyk5")
+value = Vector2(322, -2019)
+actorTreePath = "TilemapRoot/RatSubject2"
+isPlayer = false
+propertyName = "position"
+easeType = 2
+transitionType = 0
+metadata/_custom_type_script = "uid://b5d2qgg22dgbw"
+
+[sub_resource type="Resource" id="Resource_1v1do"]
+script = ExtResource("1_bqlcd")
+frameLength = 0.2
+annotation = "move the rat to nearby the king rat"
+actorTweens = Array[ExtResource("5_dgrnc")]([SubResource("Resource_bqlcd")])
+actorAnims = Array[ExtResource("3_tvunk")]([])
+actorAnimSets = Array[ExtResource("2_x4lgk")]([])
+actorFaceTargets = Array[ExtResource("4_db2fx")]([])
+dialogues = Array[ExtResource("6_u60f2")]([])
+playSfxs = Array[AudioStream]([])
+snapshotActorPaths = Array[String]([])
+restoreSnapshotActorPaths = Array[String]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
+
+[sub_resource type="Resource" id="Resource_5vu3v"]
+script = ExtResource("8_hwhlj")
+value = true
+actorTreePath = "TilemapRoot/RatSubject2"
+isPlayer = false
+propertyName = "flip_h"
+easeType = 2
+transitionType = 0
+metadata/_custom_type_script = "uid://csrikyyse38e2"
+
+[sub_resource type="Resource" id="Resource_1y5k3"]
+script = ExtResource("1_bqlcd")
+frameLength = 0.1
+annotation = "make the rat face right; start the fade in"
+actorTweens = Array[ExtResource("5_dgrnc")]([SubResource("Resource_5vu3v")])
+actorAnims = Array[ExtResource("3_tvunk")]([])
+actorAnimSets = Array[ExtResource("2_x4lgk")]([])
+actorFaceTargets = Array[ExtResource("4_db2fx")]([])
+dialogues = Array[ExtResource("6_u60f2")]([])
+playSfxs = Array[AudioStream]([])
+snapshotActorPaths = Array[String]([])
+restoreSnapshotActorPaths = Array[String]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 2
+endFadeLength = 0.5
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
+
+[sub_resource type="Resource" id="Resource_p0egy"]
+script = ExtResource("1_bqlcd")
+frameLength = 0.5
+annotation = "let the camera fade in"
+actorTweens = Array[ExtResource("5_dgrnc")]([])
+actorAnims = Array[ExtResource("3_tvunk")]([])
+actorAnimSets = Array[ExtResource("2_x4lgk")]([])
+actorFaceTargets = Array[ExtResource("4_db2fx")]([])
+dialogues = Array[ExtResource("6_u60f2")]([])
+playSfxs = Array[AudioStream]([])
+snapshotActorPaths = Array[String]([])
+restoreSnapshotActorPaths = Array[String]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
+
+[resource]
+script = ExtResource("9_ugjc2")
+cutsceneFrames = Array[ExtResource("1_bqlcd")]([SubResource("Resource_jjxjk"), SubResource("Resource_12xxx"), SubResource("Resource_1v1do"), SubResource("Resource_1y5k3"), SubResource("Resource_p0egy")])
+saveName = "tundra_w_rat_subject2_rejoin"
+unlockCameraHoldAfter = true
+activateActorsBefore = Array[String]([])
+deactivateActorsAfter = Array[String]([])
+tempDisabledAfter = false
+notes = ""
+metadata/_custom_type_script = "uid://fpa08p2kb0ts"

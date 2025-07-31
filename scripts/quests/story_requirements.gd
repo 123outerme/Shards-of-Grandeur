@@ -204,11 +204,10 @@ func is_valid() -> bool:
 		if not PlayerResources.playerInfo.has_puzzle_states(puzzleId):
 			return false
 		var curStates: Array[String] = PlayerResources.playerInfo.get_puzzle_states(puzzleId)
-		var prereqStates: Array[String] = prereqPuzzleStates[puzzleId] as Array[String]
 		# if the prereq states doesn't cover every current state, then the remaining states are not checked (wildcarded)
-		for i: int in range(len(prereqStates)):
+		for i: int in range(len(prereqPuzzleStates[puzzleId])):
 			# if this prerequisite isn't a wildcard and it doesn't exist or match in the list of current states: fail
-			if prereqStates[i] != '' and (i >= len(curStates) or curStates[i] != prereqStates[i]):
+			if prereqPuzzleStates[puzzleId][i] != '' and (i >= len(curStates) or curStates[i] != prereqPuzzleStates[puzzleId][i]):
 				return false
 	
 	if len(prereqDiscoveredEvolutions) == 1 and prereqDiscoveredEvolutions[0] == '':
@@ -262,12 +261,11 @@ func is_valid() -> bool:
 	for puzzleId: String in invalidFromPuzzleStates.keys():
 		if PlayerResources.playerInfo.has_puzzle_states(puzzleId):
 			var curStates: Array[String] = PlayerResources.playerInfo.get_puzzle_states(puzzleId)
-			var invalidStates: Array[String] = invalidFromPuzzleStates[puzzleId] as Array[String]
 			# if the prereq states doesn't cover every current state, then the remaining states are not checked (wildcarded)
 			var matches: bool = true
-			for i: int in range(len(invalidStates)):
+			for i: int in range(len(invalidFromPuzzleStates[puzzleId])):
 				# if this prerequisite isn't a wildcard and it doesn't exist or match in the list of current states: fail
-				if invalidStates[i] != '' and (i >= len(curStates) or curStates[i] != invalidStates[i]):
+				if invalidFromPuzzleStates[puzzleId][i] != '' and (i >= len(curStates) or curStates[i] != invalidFromPuzzleStates[puzzleId][i]):
 					matches = false
 					break
 			if matches:

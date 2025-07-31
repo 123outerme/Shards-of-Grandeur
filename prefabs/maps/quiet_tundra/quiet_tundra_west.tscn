@@ -1,8 +1,7 @@
-[gd_scene load_steps=429 format=4 uid="uid://d3yjxfcekoxn0"]
+[gd_scene load_steps=428 format=4 uid="uid://d3yjxfcekoxn0"]
 
 [ext_resource type="Script" uid="uid://vg00rfnn3346" path="res://scripts/overworld/map_script.gd" id="1_yf525"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_wgf4x"]
-[ext_resource type="PackedScene" uid="uid://blb38hmic2jvq" path="res://prefabs/overworld/test_camera.tscn" id="3_1p1kd"]
 [ext_resource type="PackedScene" uid="uid://cdnsjlf3gwbkf" path="res://prefabs/entities/ground_item.tscn" id="3_pc3q1"]
 [ext_resource type="PackedScene" uid="uid://do1yjhijgbid3" path="res://prefabs/entities/simple_puzzle_decoration.tscn" id="4_8hka6"]
 [ext_resource type="Script" uid="uid://bwcja16pmp3mf" path="res://scripts/npcs/npc_sprite_state.gd" id="4_8htmm"]
@@ -2983,9 +2982,7 @@ shape = SubResource("RectangleShape2D_x105b")
 position = Vector2(267, -2094)
 texture = ExtResource("59_3sd1n")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="TilemapRoot/Igloo"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TilemapRoot/Igloo/StaticBody2D"]
+[node name="CollisionShape2D" parent="TilemapRoot/Igloo/Collision" index="0"]
 position = Vector2(0, 5)
 shape = SubResource("RectangleShape2D_swa6l")
 
@@ -2993,9 +2990,7 @@ shape = SubResource("RectangleShape2D_swa6l")
 position = Vector2(234, -2067)
 texture = ExtResource("59_3sd1n")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="TilemapRoot/Igloo2"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TilemapRoot/Igloo2/StaticBody2D"]
+[node name="CollisionShape2D" parent="TilemapRoot/Igloo2/Collision" index="0"]
 position = Vector2(0, 5)
 shape = SubResource("RectangleShape2D_swa6l")
 
@@ -3003,9 +2998,7 @@ shape = SubResource("RectangleShape2D_swa6l")
 position = Vector2(249, -2031)
 texture = ExtResource("59_3sd1n")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="TilemapRoot/Igloo3"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TilemapRoot/Igloo3/StaticBody2D"]
+[node name="CollisionShape2D" parent="TilemapRoot/Igloo3/Collision" index="0"]
 position = Vector2(0, 5)
 shape = SubResource("RectangleShape2D_swa6l")
 
@@ -3478,9 +3471,6 @@ position = Vector2(82, -516)
 position = Vector2(-5.5, -0.5)
 shape = SubResource("RectangleShape2D_omqid")
 
-[node name="TestCamera" parent="." instance=ExtResource("3_1p1kd")]
-position = Vector2(214, 260)
-
 [node name="OneTileWideNav" type="NavigationRegion2D" parent="."]
 visible = false
 navigation_polygon = SubResource("NavigationPolygon_hwgpv")
@@ -3526,6 +3516,9 @@ navigation_layers = 4
 [editable path="TilemapRoot/VillageSign"]
 [editable path="TilemapRoot/GroundItem7"]
 [editable path="TilemapRoot/KingRatCampfire"]
+[editable path="TilemapRoot/Igloo"]
+[editable path="TilemapRoot/Igloo2"]
+[editable path="TilemapRoot/Igloo3"]
 [editable path="EnemySpawners/EnemySpawner"]
 [editable path="EnemySpawners/EnemySpawner2"]
 [editable path="EnemySpawners/EnemySpawner3"]

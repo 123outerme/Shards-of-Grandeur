@@ -1,9 +1,10 @@
-[gd_resource type="Resource" script_class="StatePuzzle" load_steps=6 format=3 uid="uid://cdl4egqbo0ol"]
+[gd_resource type="Resource" script_class="StatePuzzle" load_steps=8 format=3 uid="uid://cdl4egqbo0ol"]
 
 [ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="1_0mpbg"]
 [ext_resource type="Script" uid="uid://fw22o8hbosnk" path="res://scripts/inventory/inventory_slot.gd" id="2_w1jry"]
 [ext_resource type="Script" uid="uid://l1a7t2fpf7x4" path="res://scripts/overworld/puzzles/state_puzzle.gd" id="3_gibas"]
 [ext_resource type="Script" uid="uid://2ggfbo5xh0ho" path="res://scripts/overworld/puzzles/puzzle_mechanic.gd" id="4_ysx1v"]
+[ext_resource type="Script" uid="uid://db0rvatuwdbyr" path="res://scripts/overworld/puzzles/puzzle_mechanics/noop_puzzle_mechanic.gd" id="5_w1jry"]
 
 [sub_resource type="Resource" id="Resource_ogkj5"]
 script = ExtResource("1_0mpbg")
@@ -32,11 +33,17 @@ invalidFromHavingFollowers = Array[String]([])
 invalidFromHavingItems = Array[ExtResource("2_w1jry")]([])
 metadata/_custom_type_script = "uid://bjesn36acj0uh"
 
+[sub_resource type="Resource" id="Resource_gibas"]
+script = ExtResource("5_w1jry")
+metadata/_custom_type_script = "uid://db0rvatuwdbyr"
+
 [resource]
 script = ExtResource("3_gibas")
 defaultStates = Array[String](["default", "default"])
 solvedStates = Array[String](["solved", "solved"])
-stateTransitionPuzzleMechanics = Dictionary[String, ExtResource("4_ysx1v")]({})
+stateTransitionPuzzleMechanics = Dictionary[String, ExtResource("4_ysx1v")]({
+"*>solved": SubResource("Resource_gibas")
+})
 id = "convince_rat_subjects"
 prereqStoryRequirements = Array[ExtResource("1_0mpbg")]([SubResource("Resource_ogkj5")])
 metadata/_custom_type_script = "uid://l1a7t2fpf7x4"

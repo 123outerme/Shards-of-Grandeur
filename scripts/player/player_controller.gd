@@ -615,6 +615,9 @@ func select_choice(choice: DialogueChoice):
 				var statePuzzle: StatePuzzle = puzzleChoice.puzzle as StatePuzzle
 				if puzzleChoice.setsState != '':
 					var currentStates: Array[String] = PlayerResources.playerInfo.get_puzzle_states(statePuzzle.id)
+					if len(currentStates) <= puzzleChoice.puzzleStateIndex:
+						for idx: int in range(len(currentStates), puzzleChoice.puzzleStateIndex + 1):
+							currentStates.append(statePuzzle.defaultStates[idx])
 					statePuzzle.transition_state(puzzleChoice.setsState, puzzleChoice.puzzleStateIndex, currentStates[puzzleChoice.puzzleStateIndex])
 			if puzzleChoice.acceptsSolve:
 				var solved: bool = puzzleChoice.puzzle.solve()

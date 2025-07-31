@@ -399,6 +399,8 @@ func advance_dialogue() -> bool:
 	
 	if len(data.dialogueItems) == 0:
 		return false
+	if len(data.dialogueItems[data.dialogueIndex].items) == 0:
+		return false
 	
 	var hasDialogue: bool = true
 	data.dialogueLine += 1
