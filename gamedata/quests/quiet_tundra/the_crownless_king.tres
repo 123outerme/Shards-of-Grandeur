@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Quest" load_steps=11 format=3 uid="uid://dpasfbf5p7oka"]
+[gd_resource type="Resource" script_class="Quest" load_steps=15 format=3 uid="uid://dpasfbf5p7oka"]
 
 [ext_resource type="Script" uid="uid://bnw42uegqk4wp" path="res://scripts/quests/quest.gd" id="1_j7i3x"]
 [ext_resource type="Script" uid="uid://b3j2bj1p0bkq8" path="res://scripts/quests/quest_step.gd" id="2_5o8i1"]
@@ -11,7 +11,7 @@
 [sub_resource type="Resource" id="Resource_iodx2"]
 script = ExtResource("2_5o8i1")
 name = "Duel Before the Throne"
-description = "TBD"
+description = "The King Rat is enraged at all of mankind, for the destruction of the forest. Repel his revenge!"
 locations = Array[int]([51])
 turnInLocations = Array[int]([51])
 type = 4
@@ -44,8 +44,76 @@ metadata/_custom_type_script = "uid://b3j2bj1p0bkq8"
 
 [sub_resource type="Resource" id="Resource_gb4qg"]
 script = ExtResource("2_5o8i1")
+name = "Scout It Out"
+description = "The nearby Scout Penguins pose a threat to the King Rat's new kingdom. Send them a message!"
+locations = Array[int]([51])
+turnInLocations = Array[int]([51])
+type = 2
+count = 3
+objectiveName = "scout_penguin"
+turnInNames = Array[String]([])
+displayObjName = "Scout Penguin"
+displayTurnInName = ""
+customStatusStr = ""
+turnInDialogue = Array[ExtResource("3_5o8i1")]([])
+inProgressDialogue = Array[ExtResource("3_5o8i1")]([])
+metadata/_custom_type_script = "uid://b3j2bj1p0bkq8"
+
+[sub_resource type="Resource" id="Resource_ibg1x"]
+script = ExtResource("2_5o8i1")
+name = "A Royal Return"
+description = "After defeating some enemy Scout Penguins, return to the King Rat and see the progress he's made on his new kingdom."
+locations = Array[int]([51])
+turnInLocations = Array[int]([51])
+type = 0
+count = 1
+objectiveName = ""
+turnInNames = Array[String]([])
+displayObjName = "King Rat"
+displayTurnInName = "King Rat"
+customStatusStr = ""
+turnInDialogue = Array[ExtResource("3_5o8i1")]([])
+inProgressDialogue = Array[ExtResource("3_5o8i1")]([])
+metadata/_custom_type_script = "uid://b3j2bj1p0bkq8"
+
+[sub_resource type="Resource" id="Resource_jfs2c"]
+script = ExtResource("2_5o8i1")
+name = "A New Crown"
+description = "With new homes built, it's time to forge a new crown. The King Rat would like this realm's finest smith to craft a quality headpiece."
+locations = Array[int]([55])
+turnInLocations = Array[int]([51])
+type = 0
+count = 1
+objectiveName = ""
+turnInNames = Array[String]([])
+displayObjName = "Frostmint Smith"
+displayTurnInName = "King Rat"
+customStatusStr = ""
+turnInDialogue = Array[ExtResource("3_5o8i1")]([])
+inProgressDialogue = Array[ExtResource("3_5o8i1")]([])
+metadata/_custom_type_script = "uid://b3j2bj1p0bkq8"
+
+[sub_resource type="Resource" id="Resource_t0sud"]
+script = ExtResource("2_5o8i1")
+name = "Quarry of Minerals"
+description = "The Frostmint Smith needs plenty of raw gold to forge the crown from. Grandstone's quarry might be the place to acquire such metals!"
+locations = Array[int]([12])
+turnInLocations = Array[int]([])
+type = 0
+count = 1
+objectiveName = "TBD"
+turnInNames = Array[String]([])
+displayObjName = "Grandstone Foreman"
+displayTurnInName = "TBD"
+customStatusStr = ""
+turnInDialogue = Array[ExtResource("3_5o8i1")]([])
+inProgressDialogue = Array[ExtResource("3_5o8i1")]([])
+metadata/_custom_type_script = "uid://b3j2bj1p0bkq8"
+
+[sub_resource type="Resource" id="Resource_jafpe"]
+script = ExtResource("2_5o8i1")
 name = "TBD"
-description = "TBD"
+description = ""
 locations = Array[int]([])
 turnInLocations = Array[int]([])
 type = 0
@@ -63,7 +131,7 @@ metadata/_custom_type_script = "uid://b3j2bj1p0bkq8"
 script = ExtResource("1_j7i3x")
 questName = "The Crownless King"
 description = "Where's your crown, King of the Rats?"
-steps = Array[ExtResource("2_5o8i1")]([SubResource("Resource_iodx2"), SubResource("Resource_5o8i1"), SubResource("Resource_gb4qg")])
+steps = Array[ExtResource("2_5o8i1")]([SubResource("Resource_iodx2"), SubResource("Resource_5o8i1"), SubResource("Resource_gb4qg"), SubResource("Resource_ibg1x"), SubResource("Resource_jfs2c"), SubResource("Resource_t0sud"), SubResource("Resource_jafpe")])
 isMainQuest = false
 advanceActAfterComplete = false
 metadata/_custom_type_script = "uid://bnw42uegqk4wp"
