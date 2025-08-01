@@ -1,9 +1,10 @@
-[gd_resource type="Resource" script_class="Quest" load_steps=19 format=3 uid="uid://dpasfbf5p7oka"]
+[gd_resource type="Resource" script_class="Quest" load_steps=24 format=3 uid="uid://dpasfbf5p7oka"]
 
 [ext_resource type="Script" uid="uid://bnw42uegqk4wp" path="res://scripts/quests/quest.gd" id="1_j7i3x"]
 [ext_resource type="Script" uid="uid://b3j2bj1p0bkq8" path="res://scripts/quests/quest_step.gd" id="2_5o8i1"]
 [ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_5o8i1"]
 [ext_resource type="Resource" uid="uid://d0p6lcdfa8370" path="res://gamedata/dialogue/quiet_tundra/king_rat/king_rat_tundra_initial_rematch.tres" id="4_xs01p"]
+[ext_resource type="Script" uid="uid://flaq3s0m3pf2" path="res://scripts/reward/reward.gd" id="5_e87w4"]
 [ext_resource type="Resource" uid="uid://bjkrc2i7wl1c8" path="res://gamedata/dialogue/quiet_tundra/king_rat/king_rat_tundra_initial_defeated.tres" id="5_f1odc"]
 [ext_resource type="Resource" uid="uid://bqrcd3d7ur7no" path="res://gamedata/dialogue/quiet_tundra/king_rat/king_rat_tundra_subjects_inprogress.tres" id="6_gb4qg"]
 [ext_resource type="Resource" uid="uid://syfjxb80604o" path="res://gamedata/dialogue/quiet_tundra/king_rat/king_rat_tundra_subjects_turnin.tres" id="7_jfs2c"]
@@ -12,10 +13,19 @@
 [ext_resource type="Resource" uid="uid://bbc40ciiedewm" path="res://gamedata/dialogue/quiet_tundra/king_rat/king_rat_tundra_new_crown_inprogress.tres" id="10_jafpe"]
 [ext_resource type="Resource" uid="uid://dpjskixq6r1vh" path="res://gamedata/dialogue/quiet_tundra/king_rat/king_rat_tundra_new_crown_turnin.tres" id="11_e87w4"]
 
+[sub_resource type="Resource" id="Resource_8n570"]
+script = ExtResource("5_e87w4")
+experience = 200
+gold = 0
+itemCount = 1
+fullyAttuneCombatantSaveName = ""
+metadata/_custom_type_script = "uid://flaq3s0m3pf2"
+
 [sub_resource type="Resource" id="Resource_iodx2"]
 script = ExtResource("2_5o8i1")
 name = "Duel Before the Throne"
 description = "The King Rat is enraged at all of mankind, for the destruction of the forest. Repel his revenge!"
+reward = SubResource("Resource_8n570")
 locations = Array[int]([51])
 turnInLocations = Array[int]([51])
 type = 4
@@ -29,10 +39,19 @@ turnInDialogue = Array[ExtResource("3_5o8i1")]([ExtResource("5_f1odc")])
 inProgressDialogue = Array[ExtResource("3_5o8i1")]([ExtResource("4_xs01p")])
 metadata/_custom_type_script = "uid://b3j2bj1p0bkq8"
 
+[sub_resource type="Resource" id="Resource_wl1ip"]
+script = ExtResource("5_e87w4")
+experience = 100
+gold = 10
+itemCount = 1
+fullyAttuneCombatantSaveName = ""
+metadata/_custom_type_script = "uid://flaq3s0m3pf2"
+
 [sub_resource type="Resource" id="Resource_5o8i1"]
 script = ExtResource("2_5o8i1")
 name = "Convince The Subjects"
 description = "Two rodent subjects wander the Quiet Tundra, abandoning their King but still in great need. Convince them to rejoin their kingdom!"
+reward = SubResource("Resource_wl1ip")
 locations = Array[int]([51])
 turnInLocations = Array[int]([51])
 type = 5
@@ -63,10 +82,19 @@ turnInDialogue = Array[ExtResource("3_5o8i1")]([])
 inProgressDialogue = Array[ExtResource("3_5o8i1")]([])
 metadata/_custom_type_script = "uid://b3j2bj1p0bkq8"
 
+[sub_resource type="Resource" id="Resource_3jl6i"]
+script = ExtResource("5_e87w4")
+experience = 220
+gold = 15
+itemCount = 1
+fullyAttuneCombatantSaveName = ""
+metadata/_custom_type_script = "uid://flaq3s0m3pf2"
+
 [sub_resource type="Resource" id="Resource_ibg1x"]
 script = ExtResource("2_5o8i1")
 name = "A Royal Return"
 description = "After defeating some enemy Scout Penguins, return to the King Rat and see the progress he's made on his new kingdom."
+reward = SubResource("Resource_3jl6i")
 locations = Array[int]([51])
 turnInLocations = Array[int]([51])
 type = 0
@@ -80,10 +108,19 @@ turnInDialogue = Array[ExtResource("3_5o8i1")]([ExtResource("9_jafpe")])
 inProgressDialogue = Array[ExtResource("3_5o8i1")]([ExtResource("8_jfs2c")])
 metadata/_custom_type_script = "uid://b3j2bj1p0bkq8"
 
+[sub_resource type="Resource" id="Resource_8yvs6"]
+script = ExtResource("5_e87w4")
+experience = 125
+gold = 0
+itemCount = 1
+fullyAttuneCombatantSaveName = ""
+metadata/_custom_type_script = "uid://flaq3s0m3pf2"
+
 [sub_resource type="Resource" id="Resource_jfs2c"]
 script = ExtResource("2_5o8i1")
 name = "A New Crown"
 description = "With new homes built, it's time to forge a new crown. The King Rat would like this realm's finest smith to craft a quality headpiece."
+reward = SubResource("Resource_8yvs6")
 locations = Array[int]([55])
 turnInLocations = Array[int]([51])
 type = 0

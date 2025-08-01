@@ -247,7 +247,7 @@ func build_key_locations_options() -> Array[MapPanelLocation]:
 		if keyLocation.is_valid() and \
 				(not keyLocMap.has(keyLocation.id) or keyLocMap[keyLocation.id].priority < keyLocation.priority):
 			keyLocMap[keyLocation.id] = keyLocation
-			options[keyLocation.id] = MapPanelLocation.new(keyLocation.locations, keyLocation.name, MapLocationType.KEY_LOCATION)
+			options[keyLocation.id] = MapPanelLocation.new(keyLocation.locations, TextUtils.substitute_playername(keyLocation.name), MapLocationType.KEY_LOCATION)
 	
 	var optionsList: Array[MapPanelLocation] = options.values()
 	optionsList.sort_custom(KeyMapLocation._sort)
