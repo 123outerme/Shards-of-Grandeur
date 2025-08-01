@@ -13,7 +13,7 @@
 [ext_resource type="Resource" uid="uid://bsx15gtbnpwml" path="res://gamedata/combatants/blob/blob.tres" id="9_qqchu"]
 [ext_resource type="Script" uid="uid://flaq3s0m3pf2" path="res://scripts/reward/reward.gd" id="9_wpvco"]
 [ext_resource type="Resource" uid="uid://biwy0v0u0bxam" path="res://gamedata/items/weapon/ice_gem.tres" id="10_0ecd1"]
-[ext_resource type="Resource" uid="uid://dlvou480hinjf" path="res://gamedata/combatants/shroom_gnome/shroom_gnome.tres" id="11_dsmw5"]
+[ext_resource type="Resource" uid="uid://bhg4i01ukcdvd" path="res://gamedata/combatants/rat/rat.tres" id="11_cl2mb"]
 [ext_resource type="Resource" uid="uid://ct32l7eceriuy" path="res://gamedata/moves/torch/torch.tres" id="12_nbu5k"]
 [ext_resource type="Script" uid="uid://bdxm8cikhf0o0" path="res://scripts/battle/win_conditions/survive_win_con.gd" id="13_5buqe"]
 [ext_resource type="Script" uid="uid://biq3088m28kr2" path="res://scripts/battle/combatant/rune.gd" id="17_mfbgk"]
@@ -34,8 +34,8 @@
 [ext_resource type="Resource" uid="uid://cntmieslwj8h1" path="res://gamedata/moves/searing_rune/rune/trigger_sprite_rune_searing_rune_charge.tres" id="28_w0nhl"]
 [ext_resource type="Resource" uid="uid://bcx60u36qshvn" path="res://gamedata/combatants/player/player.tres" id="28_yubvn"]
 [ext_resource type="Resource" uid="uid://b6n834o6wy5o7" path="res://gamedata/moves/reckless_pact/reckless_pact.tres" id="32_cl2mb"]
-[ext_resource type="Resource" uid="uid://cvda0ne25nod6" path="res://gamedata/moves/consuming_roots/consuming_roots.tres" id="33_evxqu"]
 [ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="33_snsqx"]
+[ext_resource type="Resource" uid="uid://bdb03a6ibprre" path="res://gamedata/moves/rat_race/rat_race.tres" id="34_evxqu"]
 [ext_resource type="Resource" uid="uid://cpmh4qw3gwv3b" path="res://gamedata/items/healing/leavenport_loaf.tres" id="43_1s0me"]
 [ext_resource type="PackedScene" uid="uid://bk5magi8dnwgj" path="res://prefabs/battle/battle_animation_manager.tscn" id="43_cxami"]
 [ext_resource type="Script" uid="uid://fw22o8hbosnk" path="res://scripts/inventory/inventory_slot.gd" id="44_j7j6h"]
@@ -58,7 +58,7 @@ combatant2Level = 1
 combatant2Weapon = ExtResource("10_0ecd1")
 combatant2Moves = Array[ExtResource("4_egeqm")]([])
 combatant2ShardSummoned = false
-combatant3 = ExtResource("11_dsmw5")
+combatant3 = ExtResource("11_cl2mb")
 combatant3Level = 20
 combatant3Moves = Array[ExtResource("4_egeqm")]([])
 combatant3ShardSummoned = false
@@ -205,10 +205,10 @@ decisionsRandomNum = -1.0
 [sub_resource type="Resource" id="Resource_hmp4c"]
 script = ExtResource("9_jd22b")
 type = 1
-move = ExtResource("33_evxqu")
+move = ExtResource("34_evxqu")
 moveEffectType = 1
-orbChange = 2
-targetPositions = Array[String](["You"])
+orbChange = 1
+targetPositions = Array[String](["Center", "Top", "Bottom"])
 randomNums = Array[float]([])
 selfRandomNum = -1.0
 decisionsRandomNum = -1.0

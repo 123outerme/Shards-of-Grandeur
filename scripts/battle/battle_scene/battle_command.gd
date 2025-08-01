@@ -545,7 +545,8 @@ func get_command_results(user: Combatant) -> String:
 		# print damages dealt, statuses afflicted on targets
 		for i in range(len(targets)):
 			var target: Combatant = targets[i]
-			var targetName = target.disp_name()
+			var targetName: String = target.disp_name()
+			var targetResultText: String = ''
 			if target == user:
 				targetName = 'self'
 			if not target.downed:
@@ -565,48 +566,48 @@ func get_command_results(user: Combatant) -> String:
 
 					var damageText: String = TextUtils.num_to_comma_string(absi(damage))
 					if damage > 0: # damage, not healing
-						resultsText += damageText + moveElString + 'damage to ' + targetName
+						targetResultText += damageText + moveElString + 'damage to ' + targetName
 					else:
-						resultsText += targetName + ' by ' + damageText + ' HP'
+						targetResultText += targetName + ' by ' + damageText + ' HP'
 					if type == Type.MOVE and moveEffect.statusEffect != null:
 						if commandResult.afflictedStatuses[i]:
 							if moveEffect.statusEffect.type != StatusEffect.Type.NONE:
-								resultsText += ' and afflicted ' + moveEffect.statusEffect.status_effect_to_string()
+								targetResultText += ' and afflicted ' + moveEffect.statusEffect.status_effect_to_string()
 							else:
-								resultsText += ' and cured ' + StatusEffect.potency_to_string(moveEffect.statusEffect.potency) + ' statuses'
+								targetResultText += ' and cured ' + StatusEffect.potency_to_string(moveEffect.statusEffect.potency) + ' statuses'
 						else:
 							if target.get_status_effectiveness_multiplier(moveEffect.statusEffect.type) == Combatant.STATUS_EFFECTIVENESS_MULTIPLIERS.immune:
-								resultsText += ', but the ' + moveEffect.statusEffect.get_status_type_string() + ' was nullified'
+								targetResultText += ', but the ' + moveEffect.statusEffect.get_status_type_string() + ' was nullified'
 							elif target.get_status_effectiveness_multiplier(moveEffect.statusEffect.type) == Combatant.STATUS_EFFECTIVENESS_MULTIPLIERS.resisted:
-								resultsText += ', but the ' + moveEffect.statusEffect.get_status_type_string() + ' was resisted'
+								targetResultText += ', but the ' + moveEffect.statusEffect.get_status_type_string() + ' was resisted'
 							else:
-								resultsText += ', but failed to afflict ' + moveEffect.statusEffect.get_status_type_string()
+								targetResultText += ', but failed to afflict ' + moveEffect.statusEffect.get_status_type_string()
 				else:
 					# if no damage was dealt
 					if type == Type.MOVE and moveEffect.statusEffect != null:
 						if commandResult.afflictedStatuses[i]:
 							if moveEffect.statusEffect.type != StatusEffect.Type.NONE:
-								resultsText += 'afflicted '
+								targetResultText += 'afflicted '
 							else:
-								resultsText += 'cured '
+								targetResultText += 'cured '
 						else:
 							if moveEffect.statusEffect.type != StatusEffect.Type.NONE:
-								resultsText += 'failed to afflict '
+								targetResultText += 'failed to afflict '
 							else:
-								resultsText += 'failed to cure '
+								targetResultText += 'failed to cure '
 						if moveEffect.statusEffect.type != StatusEffect.Type.NONE:
-							resultsText += moveEffect.statusEffect.status_effect_to_string() + ' on '
+							targetResultText += moveEffect.statusEffect.status_effect_to_string() + ' on '
 						else:
-							resultsText += StatusEffect.potency_to_string(moveEffect.statusEffect.potency) + ' status on '
+							targetResultText += StatusEffect.potency_to_string(moveEffect.statusEffect.potency) + ' status on '
 						if target.get_status_effectiveness_multiplier(moveEffect.statusEffect.type) == Combatant.STATUS_EFFECTIVENESS_MULTIPLIERS.immune:
-							resultsText += 'the immune '
+							targetResultText += 'the immune '
 						elif target.get_status_effectiveness_multiplier(moveEffect.statusEffect.type) == Combatant.STATUS_EFFECTIVENESS_MULTIPLIERS.resisted:
-							resultsText += 'the resisting '
-						resultsText += targetName
+							targetResultText += 'the resisting '
+						targetResultText += targetName
 					if type == Type.USE_ITEM:
 						if slot.item.itemType == Item.Type.HEALING:
 							if slot.item.healBy != 0:
-								resultsText += targetName + ' by not enough to help'
+								targetResultText += targetName + ' by not enough to help'
 				if type == Type.USE_ITEM and slot.item.itemType == Item.Type.HEALING:
 					var effectMsgs: Array[String] = []
 					if slot.item.statusStrengthHeal != StatusEffect.Potency.NONE and target.statusEffect == null:
@@ -616,28 +617,32 @@ func get_command_results(user: Combatant) -> String:
 						var multipliers: Array[StatMultiplierText] = slot.item.statChanges.get_multipliers_text()
 						effectMsgs.append('boosted ' + StatMultiplierText.multiplier_text_list_to_string(multipliers))
 					if len(effectMsgs) > 0:
-						resultsText += ', '
+						targetResultText += ', '
 						if len(effectMsgs) == 1:
-							resultsText += 'and '
+							targetResultText += 'and '
 					for idx in range(len(effectMsgs)):
-						resultsText += effectMsgs[idx]
+						targetResultText += effectMsgs[idx]
 						if idx < len(effectMsgs) - 2:
-							resultsText += ', '
+							targetResultText += ', '
 						if idx == len(effectMsgs) - 2:
-							resultsText += 'and '
+							targetResultText += 'and '
 			else:
 				if actionTargets == Targets.ENEMY or actionTargets == Targets.ALL_ENEMIES:
-					resultsText += '... insult to injury on ' + targetName
+					targetResultText += '... insult to injury on ' + targetName
 				else:
-					resultsText += '... but too little, too late for ' + target.disp_name() # don't use 'self'
-		
-			if i < len(targets) - 1:
-				if len(targets) > 2:
-					resultsText += ','
-				resultsText += ' '
-				if i == len(targets) - 2:
-					resultsText += 'and '
-			else:
+					targetResultText += '... but too little, too late for ' + target.disp_name() # don't use 'self'
+			
+			resultsText += targetResultText
+			if targetResultText != '':
+				if i < len(targets) - 1:
+					if len(targets) > 2:
+						resultsText += ','
+					resultsText += ' '
+					if i == len(targets) - 2:
+						resultsText += 'and '
+				else:
+					resultsText += '!'
+			elif i == len(targets) - 1:
 				resultsText += '!'
 		
 		# print damages dealt to intercepting targets
