@@ -367,7 +367,9 @@ func get_cur_dialogue_entry() -> DialogueEntry:
 	return data.dialogueItems[data.dialogueIndex]
 
 func get_cur_dialogue_item(updateTextBox: bool = true) -> DialogueItem:
-	if data.dialogueIndex < 0 or data.dialogueIndex >= len(data.dialogueItems):
+	if data.dialogueIndex < 0 or \
+			data.dialogueIndex >= len(data.dialogueItems) or \
+			data.dialogueItemIdx >= len(data.dialogueItems[data.dialogueIndex].items):
 		if updateTextBox:
 			player.textBox.dialogueItem = null
 			player.textBox.dialogueItemIdx = -1
@@ -380,7 +382,9 @@ func get_cur_dialogue_item(updateTextBox: bool = true) -> DialogueItem:
 	return data.dialogueItems[data.dialogueIndex].items[data.dialogueItemIdx]
 
 func get_cur_dialogue_string() -> String:
-	if data.dialogueIndex < 0 or data.dialogueIndex >= len(data.dialogueItems):
+	if data.dialogueIndex < 0 or \
+			data.dialogueIndex >= len(data.dialogueItems) or \
+			data.dialogueItemIdx >= len(data.dialogueItems[data.dialogueIndex].items):
 		player.textBox.dialogueItem = null
 		player.textBox.dialogueItemIdx = -1
 		return ''
@@ -446,8 +450,9 @@ func advance_dialogue() -> bool:
 				data.dialogueLine = -1
 				data.dialogueItems = []
 			else:
-				if data.dialogueItems[data.dialogueIndex].items[data.dialogueItemIdx].animation != '':
-					play_animation(data.dialogueItems[data.dialogueIndex].items[data.dialogueItemIdx].animation)
+				if len(data.dialogueItems[data.dialogueIndex].items) < data.dialogueItemIdx:
+					if data.dialogueItems[data.dialogueIndex].items[data.dialogueItemIdx].animation != '':
+						play_animation(data.dialogueItems[data.dialogueIndex].items[data.dialogueItemIdx].animation)
 		else:
 			if data.dialogueItems[data.dialogueIndex].items[data.dialogueItemIdx].animation != '':
 				play_animation(data.dialogueItems[data.dialogueIndex].items[data.dialogueItemIdx].animation)

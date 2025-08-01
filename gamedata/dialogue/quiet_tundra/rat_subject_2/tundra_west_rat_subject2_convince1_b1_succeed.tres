@@ -1,0 +1,42 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=8 format=3 uid="uid://1oqpi7p7hg34"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_fenvc"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_jw8i4"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_s77fp"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_s77fp"]
+[ext_resource type="Resource" uid="uid://b3mp82ugi5yym" path="res://gamedata/cutscenes/quiet_tundra_west/rat_subject2_rejoin.tres" id="5_s77fp"]
+
+[sub_resource type="Resource" id="Resource_4eg4u"]
+script = ExtResource("1_fenvc")
+lines = Array[String](["In a frozen land where fire cannot grow, your home will never be burnt up again.", "I think it shows your king learned from what happened to the forest."])
+minShowSecs = Array[float]([])
+animation = "stand"
+speakerOverride = "@"
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_s77fp")]([])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[sub_resource type="Resource" id="Resource_jw8i4"]
+script = ExtResource("1_fenvc")
+lines = Array[String](["I had no idea he was thinking about that when he led us here. I judged his decision too harshly. Thank you, biped."])
+minShowSecs = Array[float]([])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_s77fp")]([])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[resource]
+script = ExtResource("3_s77fp")
+entryId = ""
+items = Array[ExtResource("1_fenvc")]([SubResource("Resource_4eg4u"), SubResource("Resource_jw8i4")])
+ordStoryRequirements = Array[ExtResource("2_jw8i4")]([])
+startsCutscene = ExtResource("5_s77fp")
+closesDialogue = true
+fullHealsPlayer = false
+annotation = ""
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"

@@ -1,4 +1,4 @@
-[gd_scene load_steps=430 format=4 uid="uid://d3yjxfcekoxn0"]
+[gd_scene load_steps=431 format=4 uid="uid://d3yjxfcekoxn0"]
 
 [ext_resource type="Script" uid="uid://vg00rfnn3346" path="res://scripts/overworld/map_script.gd" id="1_yf525"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_wgf4x"]
@@ -391,6 +391,35 @@ size = Vector2(24, 14)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_51540"]
 size = Vector2(1, 1)
+
+[sub_resource type="Resource" id="Resource_5vh8p"]
+script = ExtResource("7_qkweq")
+minAct = 0
+maxAct = -1
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqPlacesVisited = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+prereqDefeatedEnemies = Array[String]([])
+prereqPuzzles = Array[String]([])
+prereqPuzzleStates = Dictionary[String, Array]({})
+prereqDiscoveredEvolutions = Array[String]([])
+prereqHavingFollowers = Array[String]([])
+prereqHasItems = Array[ExtResource("8_1gwlf")]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String]([])
+invalidAfterVistingPlaces = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromPuzzleStates = Dictionary[String, Array]({
+"convince_rat_subjects": ["", "solved"]
+})
+invalidFromHavingFollowers = Array[String]([])
+invalidFromHavingItems = Array[ExtResource("8_1gwlf")]([])
+metadata/_custom_type_script = "uid://bjesn36acj0uh"
 
 [sub_resource type="Resource" id="Resource_31qva"]
 script = ExtResource("7_qkweq")
@@ -3022,7 +3051,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = ExtResource("56_w3sqx")
 stretch_mode = 1
-storyRequirements = Array[ExtResource("7_qkweq")]([SubResource("Resource_31qva")])
+storyRequirements = Array[ExtResource("7_qkweq")]([SubResource("Resource_5vh8p")])
 
 [node name="KingRatCampfire" parent="TilemapRoot" instance=ExtResource("7_sqoo7")]
 position = Vector2(344, -2024)

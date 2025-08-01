@@ -1,0 +1,74 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=14 format=3 uid="uid://tnurjkegqem6"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_opnba"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_2gj5p"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_2krn7"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_2krn7"]
+[ext_resource type="Script" uid="uid://b6oofnelefs8o" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_aqhjf"]
+[ext_resource type="Resource" uid="uid://1oqpi7p7hg34" path="res://gamedata/dialogue/quiet_tundra/rat_subject_2/tundra_west_rat_subject2_convince1_b1_succeed.tres" id="3_jwe6j"]
+[ext_resource type="Resource" uid="uid://cdl4egqbo0ol" path="res://gamedata/puzzles/quiet_tundra/convince_rat_subjects_puzzle.tres" id="4_5b8yr"]
+[ext_resource type="Script" uid="uid://rq70khw4bw6c" path="res://scripts/dialogue/choice_types/puzzle_dialogue_choice.gd" id="4_aimby"]
+[ext_resource type="Resource" uid="uid://48ug8yiyvy0x" path="res://gamedata/dialogue/quiet_tundra/rat_subject_2/tundra_west_rat_subject2_convince1_b1_fail.tres" id="5_aimby"]
+
+[sub_resource type="Resource" id="Resource_aqhjf"]
+script = ExtResource("1_opnba")
+lines = Array[String](["Your king was leading you out away from the destruction. This is a safer place than a burning forest, for sure."])
+minShowSecs = Array[float]([])
+animation = "stand"
+speakerOverride = "@"
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_2krn7")]([])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[sub_resource type="Resource" id="Resource_sbw2s"]
+script = ExtResource("4_aimby")
+puzzle = ExtResource("4_5b8yr")
+puzzleStateIndex = 1
+acceptsSolve = true
+setsState = "solved"
+leadsToIfSolveFails = ExtResource("3_jwe6j")
+choiceBtn = "Your Home Can't Burn Here."
+leadsTo = ExtResource("3_jwe6j")
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_aqhjf")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = true
+metadata/_custom_type_script = "uid://rq70khw4bw6c"
+
+[sub_resource type="Resource" id="Resource_jwe6j"]
+script = ExtResource("2_2krn7")
+choiceBtn = "The Fire Was Back There."
+leadsTo = ExtResource("5_aimby")
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_aqhjf")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = false
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_2gj5p"]
+script = ExtResource("1_opnba")
+lines = Array[String](["\"Out of the frying pan, and into the fire\", as you bipeds say. Well, I sure wish there was fire here, that'd make things more bearable!"])
+minShowSecs = Array[float]([])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_2krn7")]([SubResource("Resource_sbw2s"), SubResource("Resource_jwe6j")])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[resource]
+script = ExtResource("3_2krn7")
+entryId = ""
+items = Array[ExtResource("1_opnba")]([SubResource("Resource_aqhjf"), SubResource("Resource_2gj5p")])
+ordStoryRequirements = Array[ExtResource("2_2gj5p")]([])
+closesDialogue = false
+fullHealsPlayer = false
+annotation = ""
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"

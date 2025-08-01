@@ -1,0 +1,74 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=14 format=3 uid="uid://kjbtq6ylmbnm"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_fg417"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_dn11d"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_ilar4"]
+[ext_resource type="Resource" uid="uid://sf06hich6pwd" path="res://gamedata/dialogue/quiet_tundra/rat_subject_2/tundra_west_rat_subject2_convince1_b2_succeed.tres" id="3_0cn0w"]
+[ext_resource type="Resource" uid="uid://bun1iqa2fr480" path="res://gamedata/dialogue/quiet_tundra/rat_subject_2/tundra_west_rat_subject2_convince1_b2_fail.tres" id="3_hgkv3"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_ilar4"]
+[ext_resource type="Resource" uid="uid://cdl4egqbo0ol" path="res://gamedata/puzzles/quiet_tundra/convince_rat_subjects_puzzle.tres" id="4_0cn0w"]
+[ext_resource type="Script" uid="uid://b6oofnelefs8o" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="5_glceb"]
+[ext_resource type="Script" uid="uid://rq70khw4bw6c" path="res://scripts/dialogue/choice_types/puzzle_dialogue_choice.gd" id="6_5g1ps"]
+
+[sub_resource type="Resource" id="Resource_str2p"]
+script = ExtResource("1_fg417")
+lines = Array[String](["This land isn't so bad, actually. It's free of us bipeds. Completely unclaimed territory to build a new kingdom in."])
+minShowSecs = Array[float]([])
+animation = "stand"
+speakerOverride = "@"
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_ilar4")]([])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[sub_resource type="Resource" id="Resource_wuebq"]
+script = ExtResource("6_5g1ps")
+puzzle = ExtResource("4_0cn0w")
+puzzleStateIndex = 1
+acceptsSolve = true
+setsState = "solved"
+leadsToIfSolveFails = ExtResource("3_0cn0w")
+choiceBtn = "He Sees Opportunity."
+leadsTo = ExtResource("3_0cn0w")
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("5_glceb")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = true
+metadata/_custom_type_script = "uid://rq70khw4bw6c"
+
+[sub_resource type="Resource" id="Resource_ah2ax"]
+script = ExtResource("2_ilar4")
+choiceBtn = "You'll Get Used To It!"
+leadsTo = ExtResource("3_hgkv3")
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("5_glceb")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = false
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_dn11d"]
+script = ExtResource("1_fg417")
+lines = Array[String](["Of course it's unclaimed, nobody sane would want to live here. It's absolutely bone-chilling!"])
+minShowSecs = Array[float]([])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_ilar4")]([SubResource("Resource_wuebq"), SubResource("Resource_ah2ax")])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[resource]
+script = ExtResource("3_ilar4")
+entryId = ""
+items = Array[ExtResource("1_fg417")]([SubResource("Resource_str2p"), SubResource("Resource_dn11d")])
+ordStoryRequirements = Array[ExtResource("2_dn11d")]([])
+closesDialogue = false
+fullHealsPlayer = false
+annotation = ""
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"
