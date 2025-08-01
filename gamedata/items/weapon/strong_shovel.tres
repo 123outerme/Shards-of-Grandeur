@@ -1,0 +1,46 @@
+[gd_resource type="Resource" script_class="Weapon" load_steps=7 format=3 uid="uid://cupa36xfl2ydk"]
+
+[ext_resource type="Script" uid="uid://c4jrorkxpw01e" path="res://scripts/inventory/items/weapon.gd" id="1_3ootg"]
+[ext_resource type="Texture2D" uid="uid://cvj7rgi5vsnja" path="res://graphics/items/weapons/strong_shovel.png" id="1_ivyf1"]
+[ext_resource type="Script" uid="uid://b8q40qhoufelh" path="res://scripts/battle/combatant/element_multiplier.gd" id="3_mh6r1"]
+[ext_resource type="Script" uid="uid://dvivnpdo5ga72" path="res://scripts/battle/combatant/stat_changes.gd" id="4_v4ti8"]
+
+[sub_resource type="Resource" id="Resource_o38r2"]
+script = ExtResource("3_mh6r1")
+element = 5
+multiplier = 1.02
+metadata/_custom_type_script = "uid://b8q40qhoufelh"
+
+[sub_resource type="Resource" id="Resource_s1ukd"]
+script = ExtResource("4_v4ti8")
+physAttackIncrease = 0
+magicAttackIncrease = 0
+affinityIncrease = 0
+resistanceIncrease = 0
+speedIncrease = 0
+physAttackMultiplier = 1.04
+magicAttackMultiplier = 1.0
+affinityMultiplier = 1.0
+resistanceMultiplier = 1.02
+speedMultiplier = 1.0
+elementMultipliers = Array[ExtResource("3_mh6r1")]([SubResource("Resource_o38r2")])
+keywordMultipliers = Dictionary[String, float]({})
+metadata/_custom_type_script = "uid://dvivnpdo5ga72"
+
+[resource]
+script = ExtResource("1_3ootg")
+statChanges = SubResource("Resource_s1ukd")
+timing = 5
+bonusOrbs = 1
+itemSprite = ExtResource("1_ivyf1")
+itemName = "Strong Shovel"
+itemType = 2
+itemDescription = "This sturdy shovel is excellent for digging up the ground. Its sharp tip allows it to double well as a melee weapon, and after every strike, its excellent quality strengthens the wielder's senses."
+cost = 22
+maxCount = 1
+usable = false
+battleUsable = false
+consumable = false
+equippable = true
+battleTargets = 1
+metadata/_custom_type_script = "uid://c4jrorkxpw01e"

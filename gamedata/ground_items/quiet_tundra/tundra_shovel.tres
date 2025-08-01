@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="PickedUpItem" load_steps=4 format=3 uid="uid://cfynnxsxyg38w"]
+
+[ext_resource type="Resource" uid="uid://bdvc1dtuiqvvc" path="res://gamedata/dialogue/interactables/ground_items/quiet_tundra/tundra_shovel1.tres" id="1_qdq0w"]
+[ext_resource type="Script" uid="uid://dc62fqcsqe6d4" path="res://scripts/inventory/picked_up_item.gd" id="1_wme0j"]
+[ext_resource type="Resource" uid="uid://cupa36xfl2ydk" path="res://gamedata/items/weapon/strong_shovel.tres" id="2_72b0y"]
+
+[resource]
+script = ExtResource("1_wme0j")
+item = ExtResource("2_72b0y")
+wasPickedUp = false
+speaker = ""
+dialogueEntry = ExtResource("1_qdq0w")
+savedItemIdx = 0
+savedTextIdx = 0
+metadata/_custom_type_script = "uid://dc62fqcsqe6d4"

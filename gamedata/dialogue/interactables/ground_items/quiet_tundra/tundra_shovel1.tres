@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://bdvc1dtuiqvvc"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_5jsi7"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_3m3rf"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_ewgpg"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_3m3rf"]
+
+[sub_resource type="Resource" id="Resource_th71h"]
+script = ExtResource("1_5jsi7")
+lines = Array[String](["This shovel was just sitting by the edge of this ledge... whoever regularly clears the stone paths here must've left it. I think I can make good use of it!"])
+minShowSecs = Array[float]([])
+animation = ""
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_3m3rf")]([])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[resource]
+script = ExtResource("3_3m3rf")
+entryId = ""
+items = Array[ExtResource("1_5jsi7")]([SubResource("Resource_th71h")])
+ordStoryRequirements = Array[ExtResource("2_ewgpg")]([])
+closesDialogue = false
+fullHealsPlayer = false
+annotation = ""
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"
