@@ -1,0 +1,55 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=11 format=3 uid="uid://dpjskixq6r1vh"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_msl62"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_mswl0"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_onexd"]
+[ext_resource type="Script" uid="uid://b6oofnelefs8o" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_cbc8v"]
+[ext_resource type="Resource" uid="uid://gxvyvgtamka7" path="res://gamedata/dialogue/quiet_tundra/king_rat/king_rat_tundra_new_crown_turnin_no.tres" id="3_lgkxi"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_mswl0"]
+[ext_resource type="Resource" uid="uid://dp0ou5wok1gtv" path="res://gamedata/dialogue/quiet_tundra/king_rat/king_rat_tundra_new_crown_turnin_yes.tres" id="5_lgkxi"]
+
+[sub_resource type="Resource" id="Resource_mswl0"]
+script = ExtResource("2_mswl0")
+choiceBtn = "Nothing..."
+leadsTo = ExtResource("3_lgkxi")
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_cbc8v")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = false
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_lgkxi"]
+script = ExtResource("2_mswl0")
+choiceBtn = "The Smith Accepted."
+leadsTo = ExtResource("5_lgkxi")
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_cbc8v")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = true
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_cbc8v"]
+script = ExtResource("1_msl62")
+lines = Array[String](["Hello, friend. What news do you bring from Frostmint Village?"])
+minShowSecs = Array[float]([])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_mswl0")]([SubResource("Resource_mswl0"), SubResource("Resource_lgkxi")])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[resource]
+script = ExtResource("3_mswl0")
+entryId = ""
+items = Array[ExtResource("1_msl62")]([SubResource("Resource_cbc8v")])
+ordStoryRequirements = Array[ExtResource("2_onexd")]([])
+closesDialogue = false
+fullHealsPlayer = false
+annotation = ""
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"

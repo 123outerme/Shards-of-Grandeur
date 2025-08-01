@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Cutscene" load_steps=17 format=3 uid="uid://dovn05efxs6dv"]
+[gd_resource type="Resource" script_class="Cutscene" load_steps=18 format=3 uid="uid://dovn05efxs6dv"]
 
 [ext_resource type="Script" uid="uid://cqpl74uk8cjo0" path="res://scripts/cutscenes/cutscene_frame.gd" id="1_ast6m"]
 [ext_resource type="Script" uid="uid://fpa08p2kb0ts" path="res://scripts/cutscenes/cutscene.gd" id="2_hnr7g"]
@@ -10,12 +10,19 @@
 [ext_resource type="Script" uid="uid://b5d2qgg22dgbw" path="res://scripts/cutscenes/tweens/tween_vector2.gd" id="7_dcg0g"]
 [ext_resource type="Script" uid="uid://csrikyyse38e2" path="res://scripts/cutscenes/tweens/tween_bool.gd" id="8_12xxx"]
 
+[sub_resource type="Resource" id="Resource_css6j"]
+script = ExtResource("3_dcg0g")
+actorTreePath = "TilemapRoot/RatSubject1"
+isPlayer = false
+animation = "stand"
+metadata/_custom_type_script = "uid://dy2r6h7mhh2oc"
+
 [sub_resource type="Resource" id="Resource_jjxjk"]
 script = ExtResource("1_ast6m")
 frameLength = 0.1
-annotation = "Start the fade out"
+annotation = "Rat stands; start the fade out"
 actorTweens = Array[ExtResource("5_6o3w0")]([])
-actorAnims = Array[ExtResource("3_dcg0g")]([])
+actorAnims = Array[ExtResource("3_dcg0g")]([SubResource("Resource_css6j")])
 actorAnimSets = Array[ExtResource("2_yaght")]([])
 actorFaceTargets = Array[ExtResource("4_12xxx")]([])
 dialogues = Array[ExtResource("6_1v1do")]([])

@@ -1,6 +1,8 @@
 extends Node2D
 class_name EnemySpawner
 
+const enemiesDir: String = 'enemies/'
+
 ## the spawner's unique data
 @export var spawnerData: SpawnerData = SpawnerData.new()
 
@@ -45,8 +47,8 @@ class_name EnemySpawner
 
 @export_storage var enemy: OverworldEnemy = null
 
+var spawnedLastEncounterDisabled: bool = false
 var overworldEnemyScene = load("res://prefabs/entities/overworld_enemy.tscn")
-var enemiesDir: String = 'enemies/'
 
 @onready var spawnArea: Area2D = get_node('SpawnArea')
 @onready var shape: CollisionShape2D = get_node("SpawnArea/SpawnShape")
@@ -67,6 +69,9 @@ func _ready():
 	if enemyEncounter.combatant1 == null:
 		printerr('EnemySpawner ', spawnerData.spawnerId, ' (name ', name, ') error: no combatant1 provided')
 		queue_free()
+	
+	PlayerResources.story_requirements_updated.connect(_story_reqs_updated)
+	_story_reqs_updated()
 	
 	spawn_enemy()
 
@@ -132,6 +137,7 @@ func load_data(save_path):
 			spawnerData.spawnedLastEncounter = false
 			if not importantFight:
 				spawnerData.disabled = true # disable if it caused the last encounter
+				spawnedLastEncounterDisabled = true
 	if storyRequirements != null and not StoryRequirements.list_is_valid(storyRequirements):
 		spawnerData.disabled = true
 
@@ -143,3 +149,11 @@ func delete_enemy():
 
 func get_save_filename() -> String:
 	return enemiesDir
+
+func _story_reqs_updated() -> void:
+	if storyRequirements != null and not StoryRequirements.list_is_valid(storyRequirements):
+		spawnerData.disabled = true
+		if enemy != null:
+			enemy.disabled = true
+	elif not spawnedLastEncounterDisabled:
+		spawnerData.disabled = false

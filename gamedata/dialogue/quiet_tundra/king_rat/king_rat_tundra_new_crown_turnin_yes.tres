@@ -1,0 +1,40 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=7 format=3 uid="uid://dp0ou5wok1gtv"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_crtet"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_a8bpb"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_ps187"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_a8bpb"]
+
+[sub_resource type="Resource" id="Resource_hxpvm"]
+script = ExtResource("1_crtet")
+lines = Array[String](["Smith, the Frostmint Smith, agreed to take up the comission to forge you a new crown. You will have to negotiate price after the materials are gathered.", "Frostmint Village does not have any raw gold left in their stockpile, so for that I'm going to visit the Grandstone Quarry. This will be a gift from my people."])
+minShowSecs = Array[float]([])
+animation = "stand"
+speakerOverride = "@"
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_a8bpb")]([])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[sub_resource type="Resource" id="Resource_ps187"]
+script = ExtResource("1_crtet")
+lines = Array[String](["Oh, wonderful news, friend! We graciously accept your gift of the raw materials to forge my new crown. I will agree to Smith's terms, and I look forward to the partnership between our three kingdoms."])
+minShowSecs = Array[float]([])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_a8bpb")]([])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[resource]
+script = ExtResource("3_a8bpb")
+entryId = ""
+items = Array[ExtResource("1_crtet")]([SubResource("Resource_hxpvm"), SubResource("Resource_ps187")])
+ordStoryRequirements = Array[ExtResource("2_ps187")]([])
+closesDialogue = true
+fullHealsPlayer = false
+annotation = ""
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"

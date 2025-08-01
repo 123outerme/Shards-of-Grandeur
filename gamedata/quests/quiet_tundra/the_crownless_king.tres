@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Quest" load_steps=15 format=3 uid="uid://dpasfbf5p7oka"]
+[gd_resource type="Resource" script_class="Quest" load_steps=19 format=3 uid="uid://dpasfbf5p7oka"]
 
 [ext_resource type="Script" uid="uid://bnw42uegqk4wp" path="res://scripts/quests/quest.gd" id="1_j7i3x"]
 [ext_resource type="Script" uid="uid://b3j2bj1p0bkq8" path="res://scripts/quests/quest_step.gd" id="2_5o8i1"]
@@ -7,6 +7,10 @@
 [ext_resource type="Resource" uid="uid://bjkrc2i7wl1c8" path="res://gamedata/dialogue/quiet_tundra/king_rat/king_rat_tundra_initial_defeated.tres" id="5_f1odc"]
 [ext_resource type="Resource" uid="uid://bqrcd3d7ur7no" path="res://gamedata/dialogue/quiet_tundra/king_rat/king_rat_tundra_subjects_inprogress.tres" id="6_gb4qg"]
 [ext_resource type="Resource" uid="uid://syfjxb80604o" path="res://gamedata/dialogue/quiet_tundra/king_rat/king_rat_tundra_subjects_turnin.tres" id="7_jfs2c"]
+[ext_resource type="Resource" uid="uid://cvea3m1vblcef" path="res://gamedata/dialogue/quiet_tundra/king_rat/king_rat_tundra_penguins_turnin.tres" id="8_jfs2c"]
+[ext_resource type="Resource" uid="uid://blaqn03yxn1j1" path="res://gamedata/dialogue/quiet_tundra/king_rat/king_rat_tundra_penguins_turnin_yes.tres" id="9_ibg1x"]
+[ext_resource type="Resource" uid="uid://bbc40ciiedewm" path="res://gamedata/dialogue/quiet_tundra/king_rat/king_rat_tundra_new_crown_inprogress.tres" id="10_jafpe"]
+[ext_resource type="Resource" uid="uid://dpjskixq6r1vh" path="res://gamedata/dialogue/quiet_tundra/king_rat/king_rat_tundra_new_crown_turnin.tres" id="11_e87w4"]
 
 [sub_resource type="Resource" id="Resource_iodx2"]
 script = ExtResource("2_5o8i1")
@@ -67,13 +71,13 @@ locations = Array[int]([51])
 turnInLocations = Array[int]([51])
 type = 0
 count = 1
-objectiveName = ""
-turnInNames = Array[String]([])
+objectiveName = "king_rat_tundra_west#penguins_defeated"
+turnInNames = Array[String](["king_rat_tundra_west"])
 displayObjName = "King Rat"
 displayTurnInName = "King Rat"
 customStatusStr = ""
-turnInDialogue = Array[ExtResource("3_5o8i1")]([])
-inProgressDialogue = Array[ExtResource("3_5o8i1")]([])
+turnInDialogue = Array[ExtResource("3_5o8i1")]([ExtResource("9_ibg1x")])
+inProgressDialogue = Array[ExtResource("3_5o8i1")]([ExtResource("8_jfs2c")])
 metadata/_custom_type_script = "uid://b3j2bj1p0bkq8"
 
 [sub_resource type="Resource" id="Resource_jfs2c"]
@@ -84,13 +88,13 @@ locations = Array[int]([55])
 turnInLocations = Array[int]([51])
 type = 0
 count = 1
-objectiveName = ""
-turnInNames = Array[String]([])
+objectiveName = "frostmint_smith_forge#---"
+turnInNames = Array[String](["king_rat_tundra_west"])
 displayObjName = "Frostmint Smith"
 displayTurnInName = "King Rat"
 customStatusStr = ""
-turnInDialogue = Array[ExtResource("3_5o8i1")]([])
-inProgressDialogue = Array[ExtResource("3_5o8i1")]([])
+turnInDialogue = Array[ExtResource("3_5o8i1")]([ExtResource("11_e87w4")])
+inProgressDialogue = Array[ExtResource("3_5o8i1")]([ExtResource("10_jafpe")])
 metadata/_custom_type_script = "uid://b3j2bj1p0bkq8"
 
 [sub_resource type="Resource" id="Resource_t0sud"]

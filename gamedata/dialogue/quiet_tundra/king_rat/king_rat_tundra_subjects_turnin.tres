@@ -1,20 +1,47 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://syfjxb80604o"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=11 format=3 uid="uid://syfjxb80604o"]
 
 [ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_5178l"]
 [ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_3gcd8"]
 [ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_4xi8r"]
 [ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_4xi8r"]
+[ext_resource type="Resource" uid="uid://dit8b0jgwws71" path="res://gamedata/dialogue/quiet_tundra/king_rat/king_rat_tundra_subjects_turnin_no.tres" id="3_rwq7v"]
+[ext_resource type="Script" uid="uid://b6oofnelefs8o" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_x40q7"]
+[ext_resource type="Resource" uid="uid://bjcd3tln07up6" path="res://gamedata/dialogue/quiet_tundra/king_rat/king_rat_tundra_penguins_start.tres" id="5_rwq7v"]
+
+[sub_resource type="Resource" id="Resource_rwq7v"]
+script = ExtResource("2_4xi8r")
+choiceBtn = "Wait..."
+leadsTo = ExtResource("3_rwq7v")
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_x40q7")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = true
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_ptw5a"]
+script = ExtResource("2_4xi8r")
+choiceBtn = "Commence Operation: Chilly Reception!"
+leadsTo = ExtResource("5_rwq7v")
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_x40q7")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = "The Crownless King#Convince The Subjects"
+isDeclineChoice = false
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
 
 [sub_resource type="Resource" id="Resource_x40q7"]
 script = ExtResource("1_5178l")
-lines = Array[String]([""])
+lines = Array[String](["Thank you so much, my friend. With my subjects back under my wing, we can rebuild our kingdom.", "Even though we have a fire going here, we won't last long without some shelter. Unfortunately, the Scout Penguins keep us from building them.", "They're not fond of their new neighbors. One of them distracts me while the other sabatoges the igloos I'm building.", "Would you defeat 3 Scout Penguins, to send them a message for me?"])
 minShowSecs = Array[float]([])
 animation = "talk"
 speakerOverride = ""
 actorAnimation = ""
 animateActorTreePath = ""
 animateActorIsPlayer = false
-choices = Array[ExtResource("2_4xi8r")]([])
+choices = Array[ExtResource("2_4xi8r")]([SubResource("Resource_rwq7v"), SubResource("Resource_ptw5a")])
 metadata/_custom_type_script = "uid://grt2yrupha8c"
 
 [resource]

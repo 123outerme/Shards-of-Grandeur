@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://gxvyvgtamka7"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_nr34f"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_m4tmr"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_yqkqh"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_yqkqh"]
+
+[sub_resource type="Resource" id="Resource_4xqyf"]
+script = ExtResource("1_nr34f")
+lines = Array[String](["Oh, that disappoints me. Please, let me know if your trip to Frostmint Village was a productive one. This crown is very important to me, and the kingdom as a whole."])
+minShowSecs = Array[float]([])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_yqkqh")]([])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[resource]
+script = ExtResource("3_yqkqh")
+entryId = ""
+items = Array[ExtResource("1_nr34f")]([SubResource("Resource_4xqyf")])
+ordStoryRequirements = Array[ExtResource("2_m4tmr")]([])
+closesDialogue = true
+fullHealsPlayer = false
+annotation = ""
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=12 format=3 uid="uid://bdoawk3rueekj"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=16 format=3 uid="uid://bdoawk3rueekj"]
 
 [ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_gqjdk"]
 [ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_ega4p"]
@@ -7,6 +7,8 @@
 [ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_ujbp0"]
 [ext_resource type="Script" uid="uid://c5cim8hvxtg3h" path="res://scripts/dialogue/choice_types/npc_dialogue_choice.gd" id="4_v67uw"]
 [ext_resource type="Resource" uid="uid://blqpj51uo6btu" path="res://gamedata/dialogue/frostmint_village/smith/frostmint_smith_solius.tres" id="5_v67uw"]
+[ext_resource type="Resource" uid="uid://c6eeqjm8r2ja5" path="res://gamedata/dialogue/frostmint_village/smith/the_crownless_king/frostmint_smith_king_rat_crown_job.tres" id="6_binva"]
+[ext_resource type="Resource" uid="uid://bhliamm7a8agc" path="res://gamedata/dialogue/frostmint_village/smith/the_crownless_king/frostmint_smith_king_rat_crown_await_materials.tres" id="7_p0wvv"]
 
 [sub_resource type="Resource" id="Resource_binva"]
 script = ExtResource("2_ujbp0")
@@ -45,6 +47,30 @@ turnsInQuest = ""
 isDeclineChoice = false
 metadata/_custom_type_script = "uid://bk6klhv2ls55w"
 
+[sub_resource type="Resource" id="Resource_0xtsb"]
+script = ExtResource("2_ujbp0")
+choiceBtn = "Forge A Crown?"
+leadsTo = ExtResource("6_binva")
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_eibye")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = false
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_d2wmk"]
+script = ExtResource("2_ujbp0")
+choiceBtn = "King Rat Crown?"
+leadsTo = ExtResource("7_p0wvv")
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_eibye")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = false
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
 [sub_resource type="Resource" id="Resource_eibye"]
 script = ExtResource("1_gqjdk")
 lines = Array[String](["Hello, traveller! I am Smith the smith.
@@ -56,7 +82,7 @@ speakerOverride = ""
 actorAnimation = ""
 animateActorTreePath = ""
 animateActorIsPlayer = false
-choices = Array[ExtResource("2_ujbp0")]([SubResource("Resource_binva"), SubResource("Resource_p0wvv"), SubResource("Resource_v67uw")])
+choices = Array[ExtResource("2_ujbp0")]([SubResource("Resource_binva"), SubResource("Resource_p0wvv"), SubResource("Resource_v67uw"), SubResource("Resource_0xtsb"), SubResource("Resource_d2wmk")])
 metadata/_custom_type_script = "uid://grt2yrupha8c"
 
 [resource]

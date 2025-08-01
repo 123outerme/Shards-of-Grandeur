@@ -1,0 +1,55 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=11 format=3 uid="uid://blaqn03yxn1j1"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_xkkcf"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_i7d8g"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_y1vtt"]
+[ext_resource type="Resource" uid="uid://d4nrni5y6cngy" path="res://gamedata/dialogue/quiet_tundra/king_rat/king_rat_tundra_new_crown_decline.tres" id="3_3l7wp"]
+[ext_resource type="Script" uid="uid://b6oofnelefs8o" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_vklxp"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_y1vtt"]
+[ext_resource type="Resource" uid="uid://dehbllpbg5jfq" path="res://gamedata/dialogue/quiet_tundra/king_rat/king_rat_tundra_new_crown_start.tres" id="5_jtd0b"]
+
+[sub_resource type="Resource" id="Resource_3l7wp"]
+script = ExtResource("2_y1vtt")
+choiceBtn = "I'm Not Sure..."
+leadsTo = ExtResource("3_3l7wp")
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_vklxp")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = true
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_jtd0b"]
+script = ExtResource("2_y1vtt")
+choiceBtn = "I'll Deliver The Message."
+leadsTo = ExtResource("5_jtd0b")
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_vklxp")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = false
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_vklxp"]
+script = ExtResource("1_xkkcf")
+lines = Array[String](["Great biped, here's the next step I'd like to take to rebuild my kingdom.", "I'd like a new crown.", "Despite how my role as king didn't change without my crown, I still need a symbol of my authority, enchanted with magic.", "I know that the Frostmint Village nearby has a talented forge, and if we are to live here, I want to be on good terms with them.", "Would you ask the Frostmint Smith if he's willing to offer his services? We will pay whatever price they ask of us."])
+minShowSecs = Array[float]([])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_y1vtt")]([SubResource("Resource_3l7wp"), SubResource("Resource_jtd0b")])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[resource]
+script = ExtResource("3_y1vtt")
+entryId = ""
+items = Array[ExtResource("1_xkkcf")]([SubResource("Resource_vklxp")])
+ordStoryRequirements = Array[ExtResource("2_i7d8g")]([])
+closesDialogue = false
+fullHealsPlayer = false
+annotation = ""
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"

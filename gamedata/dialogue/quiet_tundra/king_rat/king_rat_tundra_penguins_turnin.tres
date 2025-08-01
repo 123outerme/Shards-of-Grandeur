@@ -1,0 +1,55 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=11 format=3 uid="uid://cvea3m1vblcef"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_8rvmr"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_5hct1"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_s6nnc"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_5hct1"]
+[ext_resource type="Resource" uid="uid://lq2bftksn4qr" path="res://gamedata/dialogue/quiet_tundra/king_rat/king_rat_tundra_penguins_turnin_no.tres" id="3_bi4ls"]
+[ext_resource type="Script" uid="uid://b6oofnelefs8o" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_nyfxx"]
+[ext_resource type="Resource" uid="uid://blaqn03yxn1j1" path="res://gamedata/dialogue/quiet_tundra/king_rat/king_rat_tundra_penguins_turnin_yes.tres" id="5_bi4ls"]
+
+[sub_resource type="Resource" id="Resource_bi4ls"]
+script = ExtResource("2_5hct1")
+choiceBtn = "Not Done Yet..."
+leadsTo = ExtResource("3_bi4ls")
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_nyfxx")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = true
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_5wk0m"]
+script = ExtResource("2_5hct1")
+choiceBtn = "I Sure Did!"
+leadsTo = ExtResource("5_bi4ls")
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_nyfxx")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = false
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_nyfxx"]
+script = ExtResource("1_8rvmr")
+lines = Array[String](["There, three igloos, nice and cozy! It seems like you fended off the Scout Penguins, friend."])
+minShowSecs = Array[float]([])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_5hct1")]([SubResource("Resource_bi4ls"), SubResource("Resource_5wk0m")])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[resource]
+script = ExtResource("3_5hct1")
+entryId = "penguins_defeated"
+items = Array[ExtResource("1_8rvmr")]([SubResource("Resource_nyfxx")])
+ordStoryRequirements = Array[ExtResource("2_s6nnc")]([])
+closesDialogue = false
+fullHealsPlayer = false
+annotation = ""
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"

@@ -1,0 +1,52 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=9 format=3 uid="uid://bbc40ciiedewm"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_0o4im"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_c46t0"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_vxgyk"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_vxgyk"]
+[ext_resource type="Script" uid="uid://b6oofnelefs8o" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="4_yc7rb"]
+
+[sub_resource type="Resource" id="Resource_2j3y6"]
+script = ExtResource("2_vxgyk")
+choiceBtn = "Not Yet."
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("4_yc7rb")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = true
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_wrudk"]
+script = ExtResource("1_0o4im")
+lines = Array[String](["Have you spoken with the Frostmint Smith yet?"])
+minShowSecs = Array[float]([])
+animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_vxgyk")]([SubResource("Resource_2j3y6")])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[sub_resource type="Resource" id="Resource_vxgyk"]
+script = ExtResource("1_0o4im")
+lines = Array[String](["Very well. I have tasked you as my emissary and mediator, though, so please be willing soon to go east, to Frostmint Village and broker this deal!"])
+minShowSecs = Array[float]([])
+animation = ""
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_vxgyk")]([])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[resource]
+script = ExtResource("3_vxgyk")
+entryId = ""
+items = Array[ExtResource("1_0o4im")]([SubResource("Resource_wrudk"), SubResource("Resource_vxgyk")])
+ordStoryRequirements = Array[ExtResource("2_c46t0")]([])
+closesDialogue = true
+fullHealsPlayer = false
+annotation = ""
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"

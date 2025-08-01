@@ -1,16 +1,25 @@
-[gd_scene load_steps=11 format=4 uid="uid://duac26fsc1mex"]
+[gd_scene load_steps=14 format=4 uid="uid://duac26fsc1mex"]
 
 [ext_resource type="Script" uid="uid://vg00rfnn3346" path="res://scripts/overworld/map_script.gd" id="1_xse4h"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_q2m02"]
 [ext_resource type="PackedScene" uid="uid://bsalesakrx8yy" path="res://prefabs/entities/npc.tscn" id="3_1a3o1"]
 [ext_resource type="PackedScene" uid="uid://d3rsvv5iihm7t" path="res://prefabs/overworld/warp_zone.tscn" id="3_78mls"]
 [ext_resource type="Script" uid="uid://8t63d3un22ug" path="res://scripts/npcs/npc_data.gd" id="4_n4nik"]
+[ext_resource type="Script" uid="uid://bwcja16pmp3mf" path="res://scripts/npcs/npc_sprite_state.gd" id="4_wqh7u"]
 [ext_resource type="SpriteFrames" uid="uid://bqk8u1g0seka5" path="res://graphics/animations/a_frostmint_smith.tres" id="5_1a3o1"]
 [ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="5_iwydc"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="5_lbc55"]
 [ext_resource type="Resource" uid="uid://bdoawk3rueekj" path="res://gamedata/dialogue/frostmint_village/smith/frostmint_smith_1.tres" id="6_lmmo0"]
 [ext_resource type="Resource" uid="uid://da31i7x4n58d0" path="res://gamedata/shops/frostmint_village/frostmint_forge.tres" id="7_lmmo0"]
 
-[sub_resource type="Resource" id="Resource_lmmo0"]
+[sub_resource type="Resource" id="Resource_alluo"]
+script = ExtResource("4_wqh7u")
+id = "default"
+priority = -1
+storyRequirements = Array[ExtResource("5_lbc55")]([])
+autoApplyState = false
+
+[sub_resource type="Resource" id="Resource_rna4o"]
 script = ExtResource("4_n4nik")
 saveName = "npc"
 spriteState = "default"
@@ -76,8 +85,11 @@ tile_set = ExtResource("2_q2m02")
 [node name="Smith" parent="TilemapRoot" instance=ExtResource("3_1a3o1")]
 position = Vector2(-8, -68)
 displayName = "Smith"
-saveName = "frostmint_smith"
-data = SubResource("Resource_lmmo0")
+saveName = "frostmint_smith_forge"
+spriteStatesDict = Dictionary[String, ExtResource("4_wqh7u")]({
+"default": SubResource("Resource_alluo")
+})
+data = SubResource("Resource_rna4o")
 dialogueEntries = Array[ExtResource("5_iwydc")]([ExtResource("6_lmmo0")])
 npcShop = ExtResource("7_lmmo0")
 
