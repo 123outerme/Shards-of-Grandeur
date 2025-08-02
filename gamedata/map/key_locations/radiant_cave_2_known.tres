@@ -1,0 +1,42 @@
+[gd_resource type="Resource" script_class="KeyMapLocation" load_steps=5 format=3 uid="uid://bit8psdm2h4hs"]
+
+[ext_resource type="Script" uid="uid://bevem607vrnsm" path="res://scripts/overworld/key_map_location.gd" id="1_y2lhm"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_j0bxe"]
+[ext_resource type="Script" uid="uid://fw22o8hbosnk" path="res://scripts/inventory/inventory_slot.gd" id="3_dajee"]
+
+[sub_resource type="Resource" id="Resource_ufbx3"]
+script = ExtResource("2_j0bxe")
+minAct = 1
+maxAct = -1
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String](["solius_to_cave_path"])
+prereqDialogues = Array[String]([])
+prereqPlacesVisited = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+prereqDefeatedEnemies = Array[String]([])
+prereqPuzzles = Array[String]([])
+prereqPuzzleStates = Dictionary[String, Array]({})
+prereqDiscoveredEvolutions = Array[String]([])
+prereqHavingFollowers = Array[String]([])
+prereqHasItems = Array[ExtResource("3_dajee")]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String]([])
+invalidAfterVistingPlaces = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromPuzzleStates = Dictionary[String, Array]({})
+invalidFromHavingFollowers = Array[String]([])
+invalidFromHavingItems = Array[ExtResource("3_dajee")]([])
+metadata/_custom_type_script = "uid://bjesn36acj0uh"
+
+[resource]
+script = ExtResource("1_y2lhm")
+id = "radiant_cave"
+name = "Radiant Cave"
+locations = Array[int]([31])
+storyRequirements = Array[ExtResource("2_j0bxe")]([SubResource("Resource_ufbx3")])
+priority = 2
+sortOrder = 0
+metadata/_custom_type_script = "uid://bevem607vrnsm"

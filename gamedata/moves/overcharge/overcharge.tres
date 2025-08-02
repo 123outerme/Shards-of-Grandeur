@@ -1,0 +1,137 @@
+[gd_resource type="Resource" script_class="Move" load_steps=18 format=3 uid="uid://bl0qiq5gvpgl6"]
+
+[ext_resource type="Script" uid="uid://drwve0pkx3g5o" path="res://scripts/battle/combatant/move_effect.gd" id="1_b26t3"]
+[ext_resource type="Resource" uid="uid://doxloiwh6510c" path="res://gamedata/moves/overcharge/rune/charge_rune_overcharge.tres" id="1_lm8g6"]
+[ext_resource type="Script" uid="uid://dx4lnh4driy7a" path="res://scripts/battle/combatant/move.gd" id="1_ww3q6"]
+[ext_resource type="Script" uid="uid://b8q40qhoufelh" path="res://scripts/battle/combatant/element_multiplier.gd" id="2_3hc3h"]
+[ext_resource type="Script" uid="uid://dvivnpdo5ga72" path="res://scripts/battle/combatant/stat_changes.gd" id="3_8dap6"]
+[ext_resource type="Resource" uid="uid://bxf5g55hb7cts" path="res://gamedata/moves/overcharge/anim_overcharge.tres" id="4_8dap6"]
+[ext_resource type="Resource" uid="uid://bi6beorpyh17m" path="res://gamedata/moves/overcharge/rune/surge_rune_overcharge.tres" id="7_msxeb"]
+[ext_resource type="Script" uid="uid://cvjnh0a2q6sat" path="res://scripts/battle/combatant/surge_changes.gd" id="8_msxeb"]
+
+[sub_resource type="Resource" id="Resource_mfpqr"]
+script = ExtResource("2_3hc3h")
+element = 3
+multiplier = 1.25
+metadata/_custom_type_script = "uid://b8q40qhoufelh"
+
+[sub_resource type="Resource" id="Resource_lm8g6"]
+script = ExtResource("3_8dap6")
+physAttackIncrease = 0
+magicAttackIncrease = 0
+affinityIncrease = 0
+resistanceIncrease = 0
+speedIncrease = 0
+physAttackMultiplier = 1.0
+magicAttackMultiplier = 1.15
+affinityMultiplier = 1.0
+resistanceMultiplier = 1.0
+speedMultiplier = 1.1
+elementMultipliers = Array[ExtResource("2_3hc3h")]([SubResource("Resource_mfpqr")])
+keywordMultipliers = Dictionary[String, float]({})
+metadata/_custom_type_script = "uid://dvivnpdo5ga72"
+
+[sub_resource type="Resource" id="Resource_xwovl"]
+script = ExtResource("1_b26t3")
+role = 3
+keywords = Array[String]([])
+orbChange = 2
+power = 0
+lifesteal = 0.0
+selfHpSacrifice = 0.0
+priority = 0
+targets = 1
+targetStatChanges = SubResource("Resource_lm8g6")
+selfGetsStatus = false
+statusChance = 0.0
+statusRequiredForTargetStatChanges = false
+rune = ExtResource("1_lm8g6")
+metadata/_custom_type_script = "uid://drwve0pkx3g5o"
+
+[sub_resource type="Resource" id="Resource_tbl0u"]
+script = ExtResource("2_3hc3h")
+element = 3
+multiplier = 1.02
+metadata/_custom_type_script = "uid://b8q40qhoufelh"
+
+[sub_resource type="Resource" id="Resource_l0gus"]
+script = ExtResource("3_8dap6")
+physAttackIncrease = 0
+magicAttackIncrease = 0
+affinityIncrease = 0
+resistanceIncrease = 0
+speedIncrease = 0
+physAttackMultiplier = 1.0
+magicAttackMultiplier = 1.02
+affinityMultiplier = 1.0
+resistanceMultiplier = 1.0
+speedMultiplier = 1.02
+elementMultipliers = Array[ExtResource("2_3hc3h")]([SubResource("Resource_tbl0u")])
+keywordMultipliers = Dictionary[String, float]({})
+metadata/_custom_type_script = "uid://dvivnpdo5ga72"
+
+[sub_resource type="Resource" id="Resource_sg702"]
+script = ExtResource("8_msxeb")
+powerPerOrb = 0
+lifestealPerOrb = 0.0
+selfHpSacrificePerOrb = 0.0
+targetStatChangesPerOrb = SubResource("Resource_l0gus")
+weakThresholdOrbs = 0
+strongThresholdOrbs = 0
+overwhelmingThresholdOrbs = 0
+additionalStatusTurnsPerOrb = 0.0
+additionalStatusChancePerOrb = 0.0
+metadata/_custom_type_script = "uid://cvjnh0a2q6sat"
+
+[sub_resource type="Resource" id="Resource_msxeb"]
+script = ExtResource("2_3hc3h")
+element = 3
+multiplier = 1.4
+metadata/_custom_type_script = "uid://b8q40qhoufelh"
+
+[sub_resource type="Resource" id="Resource_vxmg1"]
+script = ExtResource("3_8dap6")
+physAttackIncrease = 0
+magicAttackIncrease = 0
+affinityIncrease = 0
+resistanceIncrease = 0
+speedIncrease = 0
+physAttackMultiplier = 1.0
+magicAttackMultiplier = 1.25
+affinityMultiplier = 1.0
+resistanceMultiplier = 1.0
+speedMultiplier = 1.15
+elementMultipliers = Array[ExtResource("2_3hc3h")]([SubResource("Resource_msxeb")])
+keywordMultipliers = Dictionary[String, float]({})
+metadata/_custom_type_script = "uid://dvivnpdo5ga72"
+
+[sub_resource type="Resource" id="Resource_3hc3h"]
+script = ExtResource("1_b26t3")
+role = 3
+keywords = Array[String]([])
+orbChange = -4
+power = 0
+lifesteal = 0.0
+selfHpSacrifice = 0.0
+priority = 0
+targets = 1
+targetStatChanges = SubResource("Resource_vxmg1")
+selfGetsStatus = false
+statusChance = 0.0
+statusRequiredForTargetStatChanges = false
+rune = ExtResource("7_msxeb")
+surgeChanges = SubResource("Resource_sg702")
+metadata/_custom_type_script = "uid://drwve0pkx3g5o"
+
+[resource]
+script = ExtResource("1_ww3q6")
+moveName = "Over-Charge"
+requiredLv = 23
+category = 1
+element = 3
+chargeEffect = SubResource("Resource_xwovl")
+surgeEffect = SubResource("Resource_3hc3h")
+description = "The user embues their body with electric power, up to their physical limits. If they Surge with power, the electricity will overload them!"
+moveLearnedText = "Sparks fly from the Shard you used, and an electric current starts circulating through your veins! You fight to keep from twitching. As you reach out, lightning discharges from your hand!"
+moveAnimation = ExtResource("4_8dap6")
+metadata/_custom_type_script = "uid://dx4lnh4driy7a"

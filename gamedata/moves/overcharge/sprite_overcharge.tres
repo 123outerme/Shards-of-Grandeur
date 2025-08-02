@@ -1,0 +1,56 @@
+[gd_resource type="Resource" script_class="MoveAnimSprite" load_steps=7 format=3 uid="uid://dsx716ejkldgi"]
+
+[ext_resource type="Script" uid="uid://n71lfdnd5xrr" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite_frame.gd" id="1_ii1ka"]
+[ext_resource type="Script" uid="uid://mk6loduurcg4" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="2_mva0c"]
+[ext_resource type="AudioStream" uid="uid://dxwnwew6mwm6q" path="res://audio/sfx/moves/lightning/lightning_1.mp3" id="2_v1o3w"]
+[ext_resource type="SpriteFrames" uid="uid://drlfwfn0qlltf" path="res://graphics/moves/lightning/a_overcharge.tres" id="3_mva0c"]
+
+[sub_resource type="Resource" id="Resource_mva0c"]
+script = ExtResource("1_ii1ka")
+annotation = "set up position at target"
+animation = "default"
+duration = 0.1
+speed = 1.0
+opacity = 1.0
+spritePivot = Vector2(0, 0)
+relativeTo = 1
+position = Vector2(0, 0)
+offset = 0
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+emitCompleteOnStart = false
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[sub_resource type="Resource" id="Resource_v1o3w"]
+script = ExtResource("1_ii1ka")
+annotation = "play overcharge anim"
+animation = "overcharge"
+duration = 1.667
+speed = 1.0
+opacity = 1.0
+spritePivot = Vector2(0, 0)
+relativeTo = 5
+position = Vector2(0, 0)
+offset = 0
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+sfx = ExtResource("2_v1o3w")
+emitCompleteOnStart = false
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[resource]
+script = ExtResource("2_mva0c")
+spriteFrames = ExtResource("3_mva0c")
+centerSprite = true
+maxSize = Vector2(32, 32)
+frames = Array[ExtResource("1_ii1ka")]([SubResource("Resource_mva0c"), SubResource("Resource_v1o3w")])
+delayedUntilReposition = false
+playsOnImpactFrame = true
+onePerTarget = true
+metadata/_custom_type_script = "uid://mk6loduurcg4"

@@ -1,0 +1,40 @@
+[gd_resource type="Resource" script_class="SurgeRune" load_steps=8 format=3 uid="uid://bi6beorpyh17m"]
+
+[ext_resource type="Script" uid="uid://b5xrxa7jwj6bo" path="res://scripts/battle/combatant/runes/surge_rune.gd" id="1_25pwt"]
+[ext_resource type="Resource" uid="uid://cpcdxyuct4gdk" path="res://gamedata/moves/overcharge/rune/sprite_rune_overcharge.tres" id="1_gi476"]
+[ext_resource type="Script" uid="uid://cvjnh0a2q6sat" path="res://scripts/battle/combatant/surge_changes.gd" id="2_5rmcq"]
+[ext_resource type="Script" uid="uid://bsbsngy6lknn0" path="res://scripts/battle/status_effects/mania.gd" id="2_fmth0"]
+[ext_resource type="Resource" uid="uid://b15dimxdmymfa" path="res://gamedata/moves/overcharge/rune/trigger_sprite_rune_overcharge.tres" id="5_gi476"]
+
+[sub_resource type="Resource" id="Resource_cygyg"]
+script = ExtResource("2_fmth0")
+type = 7
+potency = 1
+overwritesOtherStatuses = true
+turnsLeft = 3
+metadata/_custom_type_script = "uid://bsbsngy6lknn0"
+
+[sub_resource type="Resource" id="Resource_fmth0"]
+script = ExtResource("2_5rmcq")
+powerPerOrb = 2
+lifestealPerOrb = 0.0
+selfHpSacrificePerOrb = 0.0
+weakThresholdOrbs = 0
+strongThresholdOrbs = 0
+overwhelmingThresholdOrbs = 0
+additionalStatusTurnsPerOrb = 0.0
+additionalStatusChancePerOrb = 0.0
+metadata/_custom_type_script = "uid://cvjnh0a2q6sat"
+
+[resource]
+script = ExtResource("1_25pwt")
+orbChange = 1
+category = 1
+element = 3
+power = 50
+lifesteal = 0.0
+statusEffect = SubResource("Resource_cygyg")
+surgeChanges = SubResource("Resource_fmth0")
+runeSpriteAnim = ExtResource("1_gi476")
+triggerAnim = ExtResource("5_gi476")
+metadata/_custom_type_script = "uid://b5xrxa7jwj6bo"

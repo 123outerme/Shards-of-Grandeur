@@ -1,0 +1,125 @@
+[gd_resource type="Resource" script_class="MoveAnimSprite" load_steps=13 format=3 uid="uid://b15dimxdmymfa"]
+
+[ext_resource type="Script" uid="uid://n71lfdnd5xrr" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite_frame.gd" id="1_3xlrw"]
+[ext_resource type="AudioStream" uid="uid://drpioiwvi7nx6" path="res://audio/sfx/moves/lightning/lightning_2.mp3" id="2_dngp6"]
+[ext_resource type="Script" uid="uid://mk6loduurcg4" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="3_a1nre"]
+[ext_resource type="Resource" uid="uid://dyhkoyvq3q4yk" path="res://gamedata/moves/overcharge/rune/particles_trigger_sprite_rune_overcharge.tres" id="3_dngp6"]
+[ext_resource type="SpriteFrames" uid="uid://drlfwfn0qlltf" path="res://graphics/moves/lightning/a_overcharge.tres" id="4_yg2wg"]
+
+[sub_resource type="Resource" id="Resource_gp0gu"]
+script = ExtResource("1_3xlrw")
+annotation = "start above target"
+animation = "default"
+duration = 0.1
+speed = 1.0
+opacity = 0.0
+spritePivot = Vector2(0, 0)
+relativeTo = 1
+position = Vector2(0, -6)
+offset = 4
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+emitCompleteOnStart = false
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[sub_resource type="Resource" id="Resource_vnspi"]
+script = ExtResource("1_3xlrw")
+annotation = "fade in while playing rune anim"
+animation = "rune"
+duration = 0.333
+speed = 1.0
+opacity = 1.0
+spritePivot = Vector2(0, 0)
+relativeTo = 5
+position = Vector2(0, 0)
+offset = 0
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+emitCompleteOnStart = false
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[sub_resource type="Curve" id="Curve_gp0gu"]
+_data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_vnspi"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Resource" id="Resource_sgp12"]
+script = ExtResource("1_3xlrw")
+annotation = "stay faded in for another loop and 2 frames as it moves to center of target"
+animation = ""
+duration = 1.0
+speed = 1.0
+opacity = 1.0
+spritePivot = Vector2(0, 0)
+relativeTo = 1
+position = Vector2(0, 0)
+offset = 0
+xCurve = SubResource("Curve_gp0gu")
+yCurve = SubResource("Curve_vnspi")
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+emitCompleteOnStart = false
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[sub_resource type="Resource" id="Resource_vjrrn"]
+script = ExtResource("1_3xlrw")
+annotation = "play trigger anim"
+animation = "rune_trigger_charge"
+duration = 1.167
+speed = 1.0
+opacity = 1.0
+spritePivot = Vector2(0, 0)
+relativeTo = 5
+position = Vector2(0, 0)
+offset = 0
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+sfx = ExtResource("2_dngp6")
+emitCompleteOnStart = false
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[sub_resource type="Resource" id="Resource_3xlrw"]
+script = ExtResource("1_3xlrw")
+annotation = "play particles"
+animation = ""
+duration = 1.0
+speed = 1.0
+opacity = 1.0
+spritePivot = Vector2(0, 0)
+relativeTo = 5
+position = Vector2(0, 0)
+offset = 0
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+particles = ExtResource("3_dngp6")
+emitCompleteOnStart = false
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[resource]
+script = ExtResource("3_a1nre")
+spriteFrames = ExtResource("4_yg2wg")
+centerSprite = true
+maxSize = Vector2(32, 32)
+frames = Array[ExtResource("1_3xlrw")]([SubResource("Resource_gp0gu"), SubResource("Resource_vnspi"), SubResource("Resource_sgp12"), SubResource("Resource_vjrrn"), SubResource("Resource_3xlrw")])
+delayedUntilReposition = false
+playsOnImpactFrame = true
+onePerTarget = true
+metadata/_custom_type_script = "uid://mk6loduurcg4"
