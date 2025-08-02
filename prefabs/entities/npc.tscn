@@ -1,14 +1,23 @@
-[gd_scene load_steps=13 format=3 uid="uid://bsalesakrx8yy"]
+[gd_scene load_steps=16 format=3 uid="uid://bsalesakrx8yy"]
 
 [ext_resource type="Script" uid="uid://cr2tvfn348vex" path="res://scripts/npcs/npc_script.gd" id="1_1dp2i"]
 [ext_resource type="Script" uid="uid://8t63d3un22ug" path="res://scripts/npcs/npc_data.gd" id="2_8xmgr"]
 [ext_resource type="Texture2D" uid="uid://ybgaeplkp4q0" path="res://graphics/ui/talk_indicator_standard.png" id="2_ejx50"]
 [ext_resource type="Script" uid="uid://dfsq4f80e2bal" path="res://scripts/npcs/npc_movement.gd" id="2_fvlbl"]
+[ext_resource type="Script" uid="uid://bwcja16pmp3mf" path="res://scripts/npcs/npc_sprite_state.gd" id="2_jivhs"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="3_nhgc8"]
 [ext_resource type="AudioStream" uid="uid://bj0i1vekyc0vn" path="res://audio/sfx/step1.ogg" id="5_j1v18"]
 [ext_resource type="AudioStream" uid="uid://cm2q5q5k4y6aa" path="res://audio/sfx/step2.ogg" id="6_qf463"]
 [ext_resource type="AudioStream" uid="uid://djue6exjyyyhj" path="res://audio/sfx/step3.ogg" id="7_jivhs"]
 
-[sub_resource type="Resource" id="Resource_ngafu"]
+[sub_resource type="Resource" id="Resource_mvove"]
+script = ExtResource("2_jivhs")
+id = "default"
+priority = -1
+storyRequirements = Array[ExtResource("3_nhgc8")]([])
+autoApplyState = false
+
+[sub_resource type="Resource" id="Resource_5hka4"]
 script = ExtResource("2_8xmgr")
 saveName = "npc"
 spriteState = "default"
@@ -46,7 +55,10 @@ size = Vector2(32, 32)
 z_index = -10
 motion_mode = 1
 script = ExtResource("1_1dp2i")
-data = SubResource("Resource_ngafu")
+spriteStatesDict = Dictionary[String, ExtResource("2_jivhs")]({
+"default": SubResource("Resource_mvove")
+})
+data = SubResource("Resource_5hka4")
 
 [node name="NPCSprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_518hb")
