@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="ParticlePreset" load_steps=6 format=3 uid="uid://dqk46rfmlelkw"]
+
+[ext_resource type="Texture2D" uid="uid://bcqcsypqt45l" path="res://graphics/particles/misc/rat/rat_1.png" id="1_ny00f"]
+[ext_resource type="Script" uid="uid://cdxc0ye8vnah8" path="res://scripts/battle/particles/particle_preset.gd" id="1_w4jht"]
+[ext_resource type="Texture2D" uid="uid://bxei8cvp5ca80" path="res://graphics/particles/misc/rat/rat_2.png" id="2_tmu4g"]
+[ext_resource type="AudioStream" uid="uid://id2wnvgxdsnm" path="res://audio/sfx/moves/wind/wind_whoosh.mp3" id="4_tmu4g"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_tmu4g"]
+particle_flag_disable_z = true
+emission_shape = 2
+emission_sphere_radius = 9.0
+orbit_velocity_min = -0.75
+orbit_velocity_max = -0.75
+radial_velocity_min = 30.0
+radial_velocity_max = 30.0
+gravity = Vector3(0, 0, 0)
+radial_accel_min = -30.0
+radial_accel_max = -30.0
+tangential_accel_min = 0.599998
+tangential_accel_max = 0.699998
+attractor_interaction_enabled = false
+scale_min = 0.5
+scale_max = 0.5
+
+[resource]
+script = ExtResource("1_w4jht")
+emitter = "front"
+count = 2
+lifetime = 0.5
+duration = 1.5
+staggered = true
+processMaterial = SubResource("ParticleProcessMaterial_tmu4g")
+particleTextures = Array[Texture2D]([ExtResource("1_ny00f"), ExtResource("2_tmu4g"), ExtResource("1_ny00f"), ExtResource("2_tmu4g")])
+sfx = ExtResource("4_tmu4g")
+metadata/_custom_type_script = "uid://cdxc0ye8vnah8"
