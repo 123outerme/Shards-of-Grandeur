@@ -249,6 +249,7 @@ text = "Back to
 Player Command"
 
 [node name="Moves" type="Control" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer" node_paths=PackedStringArray("battleUI", "moveDetailsPanel")]
+visible = false
 layout_mode = 2
 script = ExtResource("9_fgnxg")
 battleUI = NodePath("../../../..")
@@ -802,6 +803,13 @@ bbcode_enabled = true
 text = "[center]Turn 9999[/center]"
 fit_content = true
 
+[node name="ButtonsBackdrop" type="Panel" parent="BattleCam/UIPanels"]
+offset_left = -632.0
+offset_top = -352.0
+offset_right = -360.0
+offset_bottom = -272.0
+mouse_filter = 2
+
 [node name="PanelsButtons" type="HBoxContainer" parent="BattleCam/UIPanels"]
 z_index = 1
 anchors_preset = 8
@@ -841,6 +849,13 @@ focus_neighbor_right = NodePath("../../FlowOfBattle/ToggleFobButton")
 icon = ExtResource("21_4ekjo")
 icon_alignment = 1
 expand_icon = true
+
+[node name="FlowOfBattleBackdrop" type="Panel" parent="BattleCam/UIPanels"]
+offset_left = 344.0
+offset_top = -352.0
+offset_right = 628.0
+offset_bottom = -252.0
+mouse_filter = 2
 
 [node name="FlowOfBattle" type="Control" parent="BattleCam/UIPanels" node_paths=PackedStringArray("battleController")]
 layout_mode = 3
