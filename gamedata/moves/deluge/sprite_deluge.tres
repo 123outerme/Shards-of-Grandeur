@@ -1,10 +1,11 @@
-[gd_resource type="Resource" script_class="MoveAnimSprite" load_steps=9 format=3 uid="uid://cqlv6pninrfgi"]
+[gd_resource type="Resource" script_class="MoveAnimSprite" load_steps=10 format=3 uid="uid://cqlv6pninrfgi"]
 
 [ext_resource type="Script" uid="uid://n71lfdnd5xrr" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite_frame.gd" id="1_oowhb"]
-[ext_resource type="AudioStream" uid="uid://bdx7pc7unyg2f" path="res://audio/sfx/moves/mage_blast_10.mp3" id="2_q43kb"]
+[ext_resource type="AudioStream" uid="uid://cwgun00usnugt" path="res://audio/sfx/moves/water/deluge.mp3" id="2_q43kb"]
 [ext_resource type="Script" uid="uid://mk6loduurcg4" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="2_yt3o3"]
 [ext_resource type="Resource" uid="uid://cx0e4wruijufg" path="res://gamedata/moves/deluge/particles_deluge.tres" id="3_qdmvu"]
 [ext_resource type="SpriteFrames" uid="uid://jk75cdj5x237" path="res://graphics/moves/water/a_deluge.tres" id="3_yt3o3"]
+[ext_resource type="AudioStream" uid="uid://c0a5bfm0t8s5l" path="res://audio/sfx/moves/water/wave_splash.mp3" id="4_qdmvu"]
 
 [sub_resource type="Resource" id="Resource_yt3o3"]
 script = ExtResource("1_oowhb")
@@ -47,7 +48,7 @@ metadata/_custom_type_script = "uid://n71lfdnd5xrr"
 
 [sub_resource type="Resource" id="Resource_q43kb"]
 script = ExtResource("1_oowhb")
-annotation = "play particles on target"
+annotation = "play particles on target when the wave hits"
 animation = ""
 duration = 1.333
 speed = 1.0
@@ -62,6 +63,7 @@ rotateToFacePosition = Vector2(0, 0)
 rotateToFaceOffset = 0
 trackRotationTarget = false
 particles = ExtResource("3_qdmvu")
+sfx = ExtResource("4_qdmvu")
 emitCompleteOnStart = false
 metadata/_custom_type_script = "uid://n71lfdnd5xrr"
 

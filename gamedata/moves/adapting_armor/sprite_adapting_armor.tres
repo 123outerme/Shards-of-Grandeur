@@ -1,9 +1,10 @@
-[gd_resource type="Resource" script_class="MoveAnimSprite" load_steps=10 format=3 uid="uid://d1d1b7wc7ej1t"]
+[gd_resource type="Resource" script_class="MoveAnimSprite" load_steps=12 format=3 uid="uid://d1d1b7wc7ej1t"]
 
 [ext_resource type="Script" uid="uid://n71lfdnd5xrr" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite_frame.gd" id="1_am77p"]
 [ext_resource type="Script" uid="uid://mk6loduurcg4" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="2_0ltye"]
 [ext_resource type="AudioStream" uid="uid://dmehiu0e38fdb" path="res://audio/sfx/moves/heal.ogg" id="2_oipo0"]
 [ext_resource type="SpriteFrames" uid="uid://dggwg4rkywb1b" path="res://graphics/moves/nature/a_adapting_armor.tres" id="3_0ltye"]
+[ext_resource type="AudioStream" uid="uid://cds4noa453ppi" path="res://audio/sfx/moves/nature/wither.mp3" id="3_autml"]
 
 [sub_resource type="Resource" id="Resource_0ltye"]
 script = ExtResource("1_am77p")
@@ -28,7 +29,7 @@ metadata/_custom_type_script = "uid://n71lfdnd5xrr"
 script = ExtResource("1_am77p")
 annotation = "play animation"
 animation = "adapting_armor_grow"
-duration = 1.667
+duration = 1.333
 speed = 1.0
 opacity = 1.0
 spritePivot = Vector2(0, 0)
@@ -41,6 +42,26 @@ rotateToFacePosition = Vector2(0, 0)
 rotateToFaceOffset = 0
 trackRotationTarget = false
 sfx = ExtResource("2_oipo0")
+emitCompleteOnStart = false
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[sub_resource type="Resource" id="Resource_ea782"]
+script = ExtResource("1_am77p")
+annotation = "play wither sfx"
+animation = ""
+duration = 0.334
+speed = 1.0
+opacity = 1.0
+spritePivot = Vector2(0, 0)
+relativeTo = 5
+position = Vector2(0, 0)
+offset = 0
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+sfx = ExtResource("3_autml")
 emitCompleteOnStart = false
 metadata/_custom_type_script = "uid://n71lfdnd5xrr"
 
@@ -78,7 +99,7 @@ script = ExtResource("2_0ltye")
 spriteFrames = ExtResource("3_0ltye")
 centerSprite = true
 maxSize = Vector2(32, 32)
-frames = Array[ExtResource("1_am77p")]([SubResource("Resource_0ltye"), SubResource("Resource_oipo0"), SubResource("Resource_autml")])
+frames = Array[ExtResource("1_am77p")]([SubResource("Resource_0ltye"), SubResource("Resource_oipo0"), SubResource("Resource_ea782"), SubResource("Resource_autml")])
 delayedUntilReposition = false
 playsOnImpactFrame = true
 onePerTarget = true

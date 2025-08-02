@@ -1,7 +1,8 @@
-[gd_resource type="Resource" script_class="MoveAnimSprite" load_steps=8 format=3 uid="uid://dnxx87sm5ohqj"]
+[gd_resource type="Resource" script_class="MoveAnimSprite" load_steps=9 format=3 uid="uid://dnxx87sm5ohqj"]
 
 [ext_resource type="Script" uid="uid://n71lfdnd5xrr" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite_frame.gd" id="1_rj2aa"]
 [ext_resource type="Script" uid="uid://mk6loduurcg4" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="2_82db6"]
+[ext_resource type="AudioStream" uid="uid://defqxgxewcxj" path="res://audio/sfx/moves/puff_of_smoke.mp3" id="2_eh57y"]
 [ext_resource type="SpriteFrames" uid="uid://bt024uwlykk7i" path="res://graphics/moves/dark/a_backstab_smoke.tres" id="3_82db6"]
 
 [sub_resource type="Resource" id="Resource_82db6"]
@@ -39,6 +40,7 @@ rotateToFace = 1
 rotateToFacePosition = Vector2(0, 0)
 rotateToFaceOffset = 0
 trackRotationTarget = false
+sfx = ExtResource("2_eh57y")
 emitCompleteOnStart = false
 metadata/_custom_type_script = "uid://n71lfdnd5xrr"
 
@@ -77,6 +79,7 @@ rotateToFace = 1
 rotateToFacePosition = Vector2(0, 0)
 rotateToFaceOffset = 0
 trackRotationTarget = false
+sfx = ExtResource("2_eh57y")
 emitCompleteOnStart = true
 metadata/_custom_type_script = "uid://n71lfdnd5xrr"
 

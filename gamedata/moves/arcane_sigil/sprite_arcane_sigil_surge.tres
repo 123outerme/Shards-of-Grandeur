@@ -1,7 +1,9 @@
-[gd_resource type="Resource" script_class="MoveAnimSprite" load_steps=8 format=3 uid="uid://wvxs3l5odnvy"]
+[gd_resource type="Resource" script_class="MoveAnimSprite" load_steps=11 format=3 uid="uid://wvxs3l5odnvy"]
 
 [ext_resource type="Script" uid="uid://n71lfdnd5xrr" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite_frame.gd" id="1_4dsw4"]
 [ext_resource type="Script" uid="uid://mk6loduurcg4" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="2_mclqq"]
+[ext_resource type="AudioStream" uid="uid://b06cdggoixugq" path="res://audio/sfx/moves/mage_blast_9.mp3" id="2_qhs05"]
+[ext_resource type="AudioStream" uid="uid://3iallxdgoee" path="res://audio/sfx/moves/magic/magic_buff.mp3" id="3_blncj"]
 [ext_resource type="SpriteFrames" uid="uid://byyhkaqve51pl" path="res://graphics/moves/blue_magic/arcane_sigil/a_arcane_sigil.tres" id="3_qhs05"]
 
 [sub_resource type="Curve" id="Curve_ndgry"]
@@ -37,7 +39,7 @@ metadata/_custom_type_script = "uid://n71lfdnd5xrr"
 script = ExtResource("1_4dsw4")
 annotation = "play sigil anim"
 animation = "sigil"
-duration = 2.5
+duration = 0.667
 speed = 1.0
 opacity = 1.0
 spritePivot = Vector2(0, 0)
@@ -49,6 +51,27 @@ rotateToFace = 1
 rotateToFacePosition = Vector2(0, 0)
 rotateToFaceOffset = 0
 trackRotationTarget = false
+sfx = ExtResource("2_qhs05")
+emitCompleteOnStart = false
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[sub_resource type="Resource" id="Resource_wj4c2"]
+script = ExtResource("1_4dsw4")
+annotation = ""
+animation = ""
+duration = 1.833
+speed = 1.0
+opacity = 1.0
+spritePivot = Vector2(0, 0)
+relativeTo = 5
+position = Vector2(0, 0)
+offset = 0
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+sfx = ExtResource("3_blncj")
 emitCompleteOnStart = false
 metadata/_custom_type_script = "uid://n71lfdnd5xrr"
 
@@ -57,7 +80,7 @@ script = ExtResource("2_mclqq")
 spriteFrames = ExtResource("3_qhs05")
 centerSprite = true
 maxSize = Vector2(32, 32)
-frames = Array[ExtResource("1_4dsw4")]([SubResource("Resource_vqixl"), SubResource("Resource_g7u37")])
+frames = Array[ExtResource("1_4dsw4")]([SubResource("Resource_vqixl"), SubResource("Resource_g7u37"), SubResource("Resource_wj4c2")])
 delayedUntilReposition = false
 playsOnImpactFrame = true
 onePerTarget = true

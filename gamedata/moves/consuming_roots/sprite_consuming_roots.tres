@@ -1,9 +1,10 @@
-[gd_resource type="Resource" script_class="MoveAnimSprite" load_steps=11 format=3 uid="uid://c1fceo0t8c8r3"]
+[gd_resource type="Resource" script_class="MoveAnimSprite" load_steps=12 format=3 uid="uid://c1fceo0t8c8r3"]
 
 [ext_resource type="Script" uid="uid://n71lfdnd5xrr" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite_frame.gd" id="1_ik5qq"]
 [ext_resource type="Script" uid="uid://mk6loduurcg4" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="1_sxg1x"]
 [ext_resource type="SpriteFrames" uid="uid://cpa43w68ats30" path="res://graphics/moves/nature/a_nature.tres" id="2_7ysho"]
 [ext_resource type="Resource" uid="uid://b4ipdyyox7iyl" path="res://gamedata/moves/consuming_roots/particles_consuming_roots.tres" id="2_jxqph"]
+[ext_resource type="AudioStream" uid="uid://cds4noa453ppi" path="res://audio/sfx/moves/nature/wither.mp3" id="3_mnu7f"]
 
 [sub_resource type="Curve" id="Curve_aghtp"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
@@ -86,6 +87,7 @@ rotateToFace = 1
 rotateToFacePosition = Vector2(0, 0)
 rotateToFaceOffset = 0
 trackRotationTarget = false
+sfx = ExtResource("3_mnu7f")
 emitCompleteOnStart = false
 
 [resource]
