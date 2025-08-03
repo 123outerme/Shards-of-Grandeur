@@ -1,7 +1,8 @@
-[gd_resource type="Resource" script_class="MoveAnimSprite" load_steps=6 format=3 uid="uid://c3qjf1kuta004"]
+[gd_resource type="Resource" script_class="MoveAnimSprite" load_steps=7 format=3 uid="uid://c3qjf1kuta004"]
 
 [ext_resource type="Script" uid="uid://n71lfdnd5xrr" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite_frame.gd" id="1_s42ga"]
 [ext_resource type="Script" uid="uid://mk6loduurcg4" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="2_3ip7y"]
+[ext_resource type="AudioStream" uid="uid://id2wnvgxdsnm" path="res://audio/sfx/moves/wind/wind_whoosh.mp3" id="2_fud63"]
 [ext_resource type="SpriteFrames" uid="uid://6ywitb426agi" path="res://graphics/moves/lightning/a_gathering_storm.tres" id="3_3ip7y"]
 
 [sub_resource type="Resource" id="Resource_3ip7y"]
@@ -39,6 +40,7 @@ rotateToFace = 1
 rotateToFacePosition = Vector2(0, 0)
 rotateToFaceOffset = 0
 trackRotationTarget = false
+sfx = ExtResource("2_fud63")
 emitCompleteOnStart = false
 metadata/_custom_type_script = "uid://n71lfdnd5xrr"
 

@@ -1,10 +1,11 @@
-[gd_resource type="Resource" script_class="ParticlePreset" load_steps=7 format=3 uid="uid://b81wia08rimvb"]
+[gd_resource type="Resource" script_class="ParticlePreset" load_steps=8 format=3 uid="uid://b81wia08rimvb"]
 
 [ext_resource type="Texture2D" uid="uid://cqbc4t7b7hg58" path="res://graphics/particles/water/ice_1.png" id="1_cq7ni"]
 [ext_resource type="Script" uid="uid://cdxc0ye8vnah8" path="res://scripts/battle/particles/particle_preset.gd" id="1_plyj2"]
 [ext_resource type="Texture2D" uid="uid://bs6mahpieyhkw" path="res://graphics/particles/water/ice_2.png" id="2_2nxmc"]
 [ext_resource type="Texture2D" uid="uid://ccl4dcdgdvq75" path="res://graphics/particles/water/ice_3.png" id="3_5d5ua"]
 [ext_resource type="Texture2D" uid="uid://cur4mjy3ev262" path="res://graphics/particles/water/ice_4.png" id="4_b1nv1"]
+[ext_resource type="AudioStream" uid="uid://d2p05r8lgdhol" path="res://audio/sfx/moves/ice/glass_shattering.mp3" id="6_2nxmc"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_cq7ni"]
 lifetime_randomness = 0.2
@@ -26,4 +27,5 @@ duration = 1.333
 staggered = false
 processMaterial = SubResource("ParticleProcessMaterial_cq7ni")
 particleTextures = Array[Texture2D]([ExtResource("1_cq7ni"), ExtResource("2_2nxmc"), ExtResource("3_5d5ua"), ExtResource("4_b1nv1")])
+sfx = ExtResource("6_2nxmc")
 metadata/_custom_type_script = "uid://cdxc0ye8vnah8"

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="MoveAnimSprite" load_steps=10 format=3 uid="uid://cipwih5hvncej"]
+[gd_resource type="Resource" script_class="MoveAnimSprite" load_steps=12 format=3 uid="uid://cipwih5hvncej"]
 
 [ext_resource type="Script" uid="uid://n71lfdnd5xrr" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite_frame.gd" id="1_osj53"]
 [ext_resource type="Script" uid="uid://mk6loduurcg4" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="2_4vonw"]
@@ -6,12 +6,13 @@
 [ext_resource type="SpriteFrames" uid="uid://td35y4ici4xq" path="res://graphics/moves/wind/a_downdraft.tres" id="3_4vonw"]
 [ext_resource type="AudioStream" uid="uid://id2wnvgxdsnm" path="res://audio/sfx/moves/wind/wind_whoosh.mp3" id="3_on55f"]
 [ext_resource type="Resource" uid="uid://7y82g8hpv1o7" path="res://gamedata/moves/downdraft/particles_downdraft_spin.tres" id="3_qvsrd"]
+[ext_resource type="AudioStream" uid="uid://defqxgxewcxj" path="res://audio/sfx/moves/puff_of_smoke.mp3" id="5_4xi6d"]
 
 [sub_resource type="Resource" id="Resource_4vonw"]
 script = ExtResource("1_osj53")
 annotation = "position so that wind will land at target's feet"
 animation = "default"
-duration = 1.0
+duration = 0.1
 speed = 1.0
 opacity = 1.0
 spritePivot = Vector2(0, 0)
@@ -51,7 +52,7 @@ metadata/_custom_type_script = "uid://n71lfdnd5xrr"
 script = ExtResource("1_osj53")
 annotation = "play particles whipping circularly"
 animation = ""
-duration = 1.833
+duration = 0.833
 speed = 1.0
 opacity = 1.0
 spritePivot = Vector2(0, 0)
@@ -67,12 +68,32 @@ particles = ExtResource("3_qvsrd")
 emitCompleteOnStart = false
 metadata/_custom_type_script = "uid://n71lfdnd5xrr"
 
+[sub_resource type="Resource" id="Resource_artgq"]
+script = ExtResource("1_osj53")
+annotation = "play sfx when downdraft breaks apart"
+animation = ""
+duration = 1.0
+speed = 1.0
+opacity = 1.0
+spritePivot = Vector2(0, 0)
+relativeTo = 5
+position = Vector2(0, 0)
+offset = 0
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+sfx = ExtResource("5_4xi6d")
+emitCompleteOnStart = false
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
 [resource]
 script = ExtResource("2_4vonw")
 spriteFrames = ExtResource("3_4vonw")
 centerSprite = true
 maxSize = Vector2(24, 32)
-frames = Array[ExtResource("1_osj53")]([SubResource("Resource_4vonw"), SubResource("Resource_qvsrd"), SubResource("Resource_on55f")])
+frames = Array[ExtResource("1_osj53")]([SubResource("Resource_4vonw"), SubResource("Resource_qvsrd"), SubResource("Resource_on55f"), SubResource("Resource_artgq")])
 delayedUntilReposition = false
 playsOnImpactFrame = true
 onePerTarget = true

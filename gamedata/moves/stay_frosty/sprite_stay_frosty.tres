@@ -1,8 +1,10 @@
-[gd_resource type="Resource" script_class="MoveAnimSprite" load_steps=9 format=3 uid="uid://chqxx1cfbkd4l"]
+[gd_resource type="Resource" script_class="MoveAnimSprite" load_steps=12 format=3 uid="uid://chqxx1cfbkd4l"]
 
 [ext_resource type="Script" uid="uid://n71lfdnd5xrr" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite_frame.gd" id="1_mrjt3"]
+[ext_resource type="AudioStream" uid="uid://cklqasllfeeqv" path="res://audio/sfx/moves/ice/ice_glass.mp3" id="2_0bxe4"]
 [ext_resource type="Script" uid="uid://mk6loduurcg4" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="2_4r2e4"]
 [ext_resource type="SpriteFrames" uid="uid://d3gq5h0mplcla" path="res://graphics/moves/water/a_stay_frosty.tres" id="3_0bxe4"]
+[ext_resource type="AudioStream" uid="uid://c5t1q7wmcikka" path="res://audio/sfx/moves/water/water_pouring.mp3" id="3_wr7dc"]
 
 [sub_resource type="Curve" id="Curve_bp35o"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
@@ -37,7 +39,7 @@ metadata/_custom_type_script = "uid://n71lfdnd5xrr"
 script = ExtResource("1_mrjt3")
 annotation = "play stay frosty anim"
 animation = "stay_frosty"
-duration = 3.0
+duration = 1.5
 speed = 1.0
 opacity = 1.0
 spritePivot = Vector2(0, 0)
@@ -49,6 +51,27 @@ rotateToFace = 1
 rotateToFacePosition = Vector2(0, 0)
 rotateToFaceOffset = 0
 trackRotationTarget = false
+sfx = ExtResource("2_0bxe4")
+emitCompleteOnStart = false
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[sub_resource type="Resource" id="Resource_4r2e4"]
+script = ExtResource("1_mrjt3")
+annotation = "play pour sfx"
+animation = ""
+duration = 1.5
+speed = 1.0
+opacity = 1.0
+spritePivot = Vector2(0, 0)
+relativeTo = 5
+position = Vector2(0, 0)
+offset = 0
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+sfx = ExtResource("3_wr7dc")
 emitCompleteOnStart = false
 metadata/_custom_type_script = "uid://n71lfdnd5xrr"
 
@@ -76,7 +99,7 @@ script = ExtResource("2_4r2e4")
 spriteFrames = ExtResource("3_0bxe4")
 centerSprite = true
 maxSize = Vector2(24, 24)
-frames = Array[ExtResource("1_mrjt3")]([SubResource("Resource_bp35o"), SubResource("Resource_l1ffi"), SubResource("Resource_dss7r")])
+frames = Array[ExtResource("1_mrjt3")]([SubResource("Resource_bp35o"), SubResource("Resource_l1ffi"), SubResource("Resource_4r2e4"), SubResource("Resource_dss7r")])
 delayedUntilReposition = false
 playsOnImpactFrame = false
 onePerTarget = true

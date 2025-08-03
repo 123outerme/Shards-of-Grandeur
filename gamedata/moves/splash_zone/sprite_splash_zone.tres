@@ -1,7 +1,8 @@
-[gd_resource type="Resource" script_class="MoveAnimSprite" load_steps=9 format=3 uid="uid://dr6uh4fyxwmst"]
+[gd_resource type="Resource" script_class="MoveAnimSprite" load_steps=10 format=3 uid="uid://dr6uh4fyxwmst"]
 
 [ext_resource type="Script" uid="uid://n71lfdnd5xrr" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite_frame.gd" id="1_4gadj"]
 [ext_resource type="Script" uid="uid://mk6loduurcg4" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="2_oma5d"]
+[ext_resource type="AudioStream" uid="uid://c0a5bfm0t8s5l" path="res://audio/sfx/moves/water/wave_splash.mp3" id="2_tkhev"]
 [ext_resource type="SpriteFrames" uid="uid://clrg6gba2sqfk" path="res://graphics/moves/water/a_splash_zone.tres" id="3_oma5d"]
 
 [sub_resource type="Resource" id="Resource_oma5d"]
@@ -49,6 +50,7 @@ rotateToFace = 1
 rotateToFacePosition = Vector2(0, 0)
 rotateToFaceOffset = 0
 trackRotationTarget = false
+sfx = ExtResource("2_tkhev")
 emitCompleteOnStart = false
 metadata/_custom_type_script = "uid://n71lfdnd5xrr"
 

@@ -1,8 +1,9 @@
-[gd_resource type="Resource" script_class="MoveAnimSprite" load_steps=11 format=3 uid="uid://br7h6xiolck0j"]
+[gd_resource type="Resource" script_class="MoveAnimSprite" load_steps=12 format=3 uid="uid://br7h6xiolck0j"]
 
 [ext_resource type="Script" uid="uid://n71lfdnd5xrr" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite_frame.gd" id="1_gd60g"]
 [ext_resource type="Resource" uid="uid://kyq4q1d6v7fi" path="res://gamedata/moves/mud_sling/particles_mud_sling.tres" id="2_2lots"]
 [ext_resource type="Script" uid="uid://mk6loduurcg4" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="2_ii00p"]
+[ext_resource type="AudioStream" uid="uid://defqxgxewcxj" path="res://audio/sfx/moves/puff_of_smoke.mp3" id="2_ok5xq"]
 [ext_resource type="SpriteFrames" uid="uid://bpp4kjxy8escm" path="res://graphics/moves/earth/a_mud_sling.tres" id="3_ii00p"]
 
 [sub_resource type="Resource" id="Resource_ii00p"]
@@ -40,6 +41,7 @@ rotateToFace = 1
 rotateToFacePosition = Vector2(0, 0)
 rotateToFaceOffset = 0
 trackRotationTarget = false
+sfx = ExtResource("2_ok5xq")
 emitCompleteOnStart = false
 metadata/_custom_type_script = "uid://n71lfdnd5xrr"
 

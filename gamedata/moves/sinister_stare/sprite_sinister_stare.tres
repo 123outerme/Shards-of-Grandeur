@@ -1,9 +1,12 @@
-[gd_resource type="Resource" script_class="MoveAnimSprite" load_steps=16 format=3 uid="uid://2plrqbr0o3cs"]
+[gd_resource type="Resource" script_class="MoveAnimSprite" load_steps=19 format=3 uid="uid://2plrqbr0o3cs"]
 
 [ext_resource type="Script" uid="uid://n71lfdnd5xrr" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite_frame.gd" id="1_k0fo2"]
+[ext_resource type="AudioStream" uid="uid://defqxgxewcxj" path="res://audio/sfx/moves/puff_of_smoke.mp3" id="2_gi3vt"]
 [ext_resource type="Script" uid="uid://mk6loduurcg4" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="2_hly21"]
 [ext_resource type="Resource" uid="uid://bg3rq1744qmjh" path="res://gamedata/moves/sinister_stare/particles_sinister_stare_target.tres" id="2_jhbf3"]
 [ext_resource type="SpriteFrames" uid="uid://ocrhj3agaqg1" path="res://graphics/moves/dark/a_sinister_stare.tres" id="3_hly21"]
+[ext_resource type="AudioStream" uid="uid://id2wnvgxdsnm" path="res://audio/sfx/moves/wind/wind_whoosh.mp3" id="3_trdhw"]
+[ext_resource type="AudioStream" uid="uid://b6ovxmt0vdswq" path="res://audio/sfx/moves/dark/intimidating_sting.mp3" id="5_gi3vt"]
 
 [sub_resource type="Curve" id="Curve_gi3vt"]
 _data = [Vector2(1, 1), 1.0, 1.0, 1, 1]
@@ -60,6 +63,7 @@ rotateToFace = 1
 rotateToFacePosition = Vector2(0, 0)
 rotateToFaceOffset = 0
 trackRotationTarget = false
+sfx = ExtResource("2_gi3vt")
 emitCompleteOnStart = false
 metadata/_custom_type_script = "uid://n71lfdnd5xrr"
 
@@ -89,6 +93,7 @@ rotateToFace = 1
 rotateToFacePosition = Vector2(0, 0)
 rotateToFaceOffset = 0
 trackRotationTarget = false
+sfx = ExtResource("3_trdhw")
 emitCompleteOnStart = false
 metadata/_custom_type_script = "uid://n71lfdnd5xrr"
 
@@ -109,6 +114,7 @@ rotateToFacePosition = Vector2(0, 0)
 rotateToFaceOffset = 0
 trackRotationTarget = false
 particles = ExtResource("2_jhbf3")
+sfx = ExtResource("5_gi3vt")
 emitCompleteOnStart = false
 metadata/_custom_type_script = "uid://n71lfdnd5xrr"
 
