@@ -43,7 +43,7 @@ prereqPlacesVisited = Array[String]([])
 prereqSpecialBattles = Array[String]([])
 prereqDefeatedEnemies = Array[String]([])
 prereqPuzzles = Array[String]([])
-prereqPuzzleStates = {}
+prereqPuzzleStates = Dictionary[String, Array]({})
 prereqDiscoveredEvolutions = Array[String]([])
 prereqHavingFollowers = Array[String]([])
 prereqHasItems = Array[ExtResource("4_frg0a")]([])
@@ -54,11 +54,11 @@ invalidAfterDialogues = Array[String]([])
 invalidAfterVistingPlaces = Array[String]([])
 invalidAfterSpecialBattles = Array[String]([])
 invalidAfterSolvingPuzzles = Array[String]([])
-invalidFromPuzzleStates = {}
+invalidFromPuzzleStates = Dictionary[String, Array]({})
 invalidFromHavingFollowers = Array[String]([])
 invalidFromHavingItems = Array[ExtResource("4_frg0a")]([])
 
-[sub_resource type="Resource" id="Resource_5bfj0"]
+[sub_resource type="Resource" id="Resource_30j85"]
 script = ExtResource("4_w52o7")
 saveName = "npc"
 spriteState = "default"
@@ -81,7 +81,7 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_wjb2k"]
+[sub_resource type="Resource" id="Resource_p1fij"]
 script = ExtResource("4_w52o7")
 saveName = "npc"
 spriteState = "default"
@@ -130,7 +130,7 @@ dialogueEntry = ExtResource("17_1bdjb")
 savedItemIdx = 0
 savedTextIdx = 0
 
-[sub_resource type="Resource" id="Resource_0t1lm"]
+[sub_resource type="Resource" id="Resource_pqrbd"]
 script = ExtResource("4_w52o7")
 saveName = "npc"
 spriteState = "default"
@@ -159,7 +159,7 @@ size = Vector2(16, 6)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_00dxq"]
 size = Vector2(24, 14)
 
-[sub_resource type="Resource" id="Resource_snx0n"]
+[sub_resource type="Resource" id="Resource_xmrco"]
 script = ExtResource("4_w52o7")
 saveName = "npc"
 spriteState = "default"
@@ -182,7 +182,7 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_y75il"]
+[sub_resource type="Resource" id="Resource_kycru"]
 script = ExtResource("4_w52o7")
 saveName = "npc"
 spriteState = "default"
@@ -205,7 +205,7 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_mdsrl"]
+[sub_resource type="Resource" id="Resource_q1h58"]
 script = ExtResource("4_w52o7")
 saveName = "npc"
 spriteState = "default"
@@ -234,7 +234,7 @@ size = Vector2(16, 6)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xlyn7"]
 size = Vector2(24, 14)
 
-[sub_resource type="Resource" id="Resource_rleet"]
+[sub_resource type="Resource" id="Resource_gr63f"]
 script = ExtResource("4_w52o7")
 saveName = "npc"
 spriteState = "default"
@@ -257,7 +257,7 @@ dialogueIndex = -1
 dialogueItemIdx = -1
 dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_k6akc"]
+[sub_resource type="Resource" id="Resource_dcblc"]
 script = ExtResource("4_w52o7")
 saveName = "npc"
 spriteState = "default"
@@ -346,7 +346,7 @@ position = Vector2(-52, -44)
 displayName = "Elder"
 saveName = "nomad2_hut"
 spawnRequirements = SubResource("Resource_c2gd7")
-data = SubResource("Resource_5bfj0")
+data = SubResource("Resource_30j85")
 dialogueEntries = Array[ExtResource("7_dtsyx")]([ExtResource("7_7105x")])
 
 [node name="NPCSprite" parent="TilemapRoot/Nomad2" index="0"]
@@ -366,7 +366,7 @@ visible = false
 [node name="Signpost" parent="TilemapRoot" instance=ExtResource("3_agm5n")]
 position = Vector2(480, -320)
 displayName = "Sign"
-data = SubResource("Resource_wjb2k")
+data = SubResource("Resource_p1fij")
 dialogueEntries = Array[ExtResource("7_dtsyx")]([ExtResource("8_if42d")])
 facesPlayer = false
 
@@ -435,7 +435,7 @@ sprite_frames = ExtResource("17_b0vsa")
 [node name="GeneralStoreSign" parent="TilemapRoot" instance=ExtResource("3_agm5n")]
 position = Vector2(717, -338)
 displayName = "Sign"
-data = SubResource("Resource_0t1lm")
+data = SubResource("Resource_pqrbd")
 dialogueEntries = Array[ExtResource("7_dtsyx")]([ExtResource("18_53qc7")])
 facesPlayer = false
 
@@ -469,7 +469,7 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 [node name="ArmorySign" parent="TilemapRoot" instance=ExtResource("3_agm5n")]
 position = Vector2(883, -546)
 displayName = "Sign"
-data = SubResource("Resource_snx0n")
+data = SubResource("Resource_xmrco")
 dialogueEntries = Array[ExtResource("7_dtsyx")]([ExtResource("20_u7mlx")])
 facesPlayer = false
 
@@ -503,7 +503,7 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 [node name="InnSign" parent="TilemapRoot" instance=ExtResource("3_agm5n")]
 position = Vector2(643, -514)
 displayName = "Sign"
-data = SubResource("Resource_y75il")
+data = SubResource("Resource_kycru")
 dialogueEntries = Array[ExtResource("7_dtsyx")]([ExtResource("22_7mkxe")])
 facesPlayer = false
 
@@ -537,7 +537,7 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 [node name="BurnedGeneralStoreSign" parent="TilemapRoot" instance=ExtResource("3_agm5n")]
 position = Vector2(717, 238)
 displayName = "Sign"
-data = SubResource("Resource_mdsrl")
+data = SubResource("Resource_q1h58")
 dialogueEntries = Array[ExtResource("7_dtsyx")]([ExtResource("18_53qc7")])
 facesPlayer = false
 
@@ -571,7 +571,7 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 [node name="BurnedArmorySign" parent="TilemapRoot" instance=ExtResource("3_agm5n")]
 position = Vector2(883, 30)
 displayName = "Sign"
-data = SubResource("Resource_rleet")
+data = SubResource("Resource_gr63f")
 dialogueEntries = Array[ExtResource("7_dtsyx")]([ExtResource("20_u7mlx")])
 facesPlayer = false
 
@@ -605,7 +605,7 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 [node name="BurnedInnSign" parent="TilemapRoot" instance=ExtResource("3_agm5n")]
 position = Vector2(643, 62)
 displayName = "Sign"
-data = SubResource("Resource_k6akc")
+data = SubResource("Resource_dcblc")
 dialogueEntries = Array[ExtResource("7_dtsyx")]([ExtResource("12_sauue")])
 facesPlayer = false
 

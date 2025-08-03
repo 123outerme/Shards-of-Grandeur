@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Cutscene" load_steps=32 format=3 uid="uid://cldxgmtsil24s"]
+[gd_resource type="Resource" script_class="Cutscene" load_steps=33 format=3 uid="uid://cldxgmtsil24s"]
 
 [ext_resource type="Script" uid="uid://cqpl74uk8cjo0" path="res://scripts/cutscenes/cutscene_frame.gd" id="1_x2p2s"]
 [ext_resource type="Script" uid="uid://cg21ocaokyfnx" path="res://scripts/cutscenes/actor_anim_set.gd" id="2_qxaiv"]
@@ -78,6 +78,29 @@ addsFollowerId = ""
 removesFollowerId = ""
 endStartsShardLearnTutorial = false
 
+[sub_resource type="Resource" id="Resource_6u53f"]
+script = ExtResource("1_x2p2s")
+frameLength = 0.1
+annotation = "wait for text box to be closed"
+actorTweens = Array[ExtResource("6_ke7b7")]([])
+actorAnims = Array[ExtResource("3_0pfcc")]([ExtResource("9_d0swg")])
+actorAnimSets = Array[ExtResource("2_qxaiv")]([])
+actorFaceTargets = Array[ExtResource("5_og8lp")]([])
+dialogues = Array[ExtResource("8_ru21p")]([])
+playSfxs = Array[AudioStream]([])
+snapshotActorPaths = Array[String]([])
+restoreSnapshotActorPaths = Array[String]([])
+endTextBoxPauses = true
+shakeCamForDuration = false
+endHoldCamera = false
+endFade = 0
+endFadeLength = 0.0
+healsPlayer = false
+addsFollowerId = ""
+removesFollowerId = ""
+endStartsShardLearnTutorial = false
+metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
+
 [sub_resource type="Resource" id="Resource_jqanc"]
 script = ExtResource("3_0pfcc")
 actorTreePath = "TilemapRoot/ChainLegionMage1"
@@ -100,7 +123,7 @@ script = ExtResource("1_x2p2s")
 frameLength = 0.1
 annotation = "Stop the player walking and have the first mage call out"
 actorTweens = Array[ExtResource("6_ke7b7")]([])
-actorAnims = Array[ExtResource("3_0pfcc")]([ExtResource("9_d0swg"), SubResource("Resource_jqanc")])
+actorAnims = Array[ExtResource("3_0pfcc")]([SubResource("Resource_jqanc")])
 actorAnimSets = Array[ExtResource("2_qxaiv")]([])
 actorFaceTargets = Array[ExtResource("5_og8lp")]([])
 dialogues = Array[ExtResource("8_ru21p")]([SubResource("Resource_h8ghp")])
@@ -293,7 +316,7 @@ invalidFromHavingItems = Array[ExtResource("12_b67gk")]([])
 
 [resource]
 script = ExtResource("11_65kgn")
-cutsceneFrames = Array[ExtResource("1_x2p2s")]([SubResource("Resource_3qyhe"), SubResource("Resource_ligm2"), SubResource("Resource_n534g"), SubResource("Resource_vdd2h"), SubResource("Resource_s8md0"), SubResource("Resource_n7gd6"), SubResource("Resource_q7q8a"), SubResource("Resource_oy4lv")])
+cutsceneFrames = Array[ExtResource("1_x2p2s")]([SubResource("Resource_3qyhe"), SubResource("Resource_ligm2"), SubResource("Resource_6u53f"), SubResource("Resource_n534g"), SubResource("Resource_vdd2h"), SubResource("Resource_s8md0"), SubResource("Resource_n7gd6"), SubResource("Resource_q7q8a"), SubResource("Resource_oy4lv")])
 saveName = "standstill_burned_enter"
 storyRequirements = SubResource("Resource_wvqjc")
 unlockCameraHoldAfter = true

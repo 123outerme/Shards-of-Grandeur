@@ -8,7 +8,7 @@ const MIN_PERCENT_HP_DICT: Dictionary[Potency, float] = {
 	Potency.OVERWHELMING: 0.1
 }
 
-const ENDURE_AT_BARRIER_CHANCE = 0.5 # 50% chance when the combatant's HP is at or below the barrier to endure
+const ENDURE_AT_BARRIER_CHANCE = 0.66667 # 66.667% chance when the combatant's HP is at or below the barrier to endure
 
 const _icon: Texture2D = preload('res://graphics/ui/endure.png')
 
