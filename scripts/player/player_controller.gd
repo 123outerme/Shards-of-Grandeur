@@ -846,6 +846,8 @@ func put_interactable_text(advance: bool = false, playDialogueAnim: bool = false
 					textBox.dialogueItem = null
 					textBox.dialogueItemIdx = -1
 					textBox.set_textbox_text('Your inventory is too full for this ' + pickedUpItem.item.itemName + '!', 'Inventory Full')
+					update_interactable_speaker_sprite(textBox.dialogueItem)
+					SceneLoader.pause_autonomous_movers()
 				return
 
 		textBox.dialogueItem = interactableDialogue.dialogueEntry.items[interactableDialogue.savedItemIdx]

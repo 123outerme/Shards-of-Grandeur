@@ -38,6 +38,8 @@ func get_minion(saveName: String) -> Combatant:
 func init_minion(saveName: String) -> Combatant:
 	var minion = Combatant.load_combatant_resource(saveName)
 	if minion != null:
+		# set it defeated so its weaknesses can be shown in battle
+		PlayerResources.playerInfo.set_enemy_defeated(saveName)
 		level_up_minion(minion, PlayerResources.playerInfo.combatant.stats.level, true)
 		# remove the drop table because it's unneeded now
 		minion.dropTable = null

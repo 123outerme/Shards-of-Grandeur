@@ -272,8 +272,14 @@ func has_found_evolution(fullEvoSaveName: String) -> bool:
 	return fullEvoSaveName in evolutionsFound
 
 func mark_evolution_found(fullEvoSaveName: String) -> void:
+	var reqsUpdated: bool = false
+	if not has_defeated_enemy(fullEvoSaveName):
+		enemiesDefeated.append(fullEvoSaveName)
+		reqsUpdated = true
 	if not has_found_evolution(fullEvoSaveName):
 		evolutionsFound.append(fullEvoSaveName)
+		reqsUpdated = true
+	if reqsUpdated:
 		PlayerResources.story_requirements_updated.emit()
 
 func has_seen_codex_entry(entryName: String) -> bool:

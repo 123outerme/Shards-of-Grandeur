@@ -66,8 +66,13 @@ func load_battle_stats_panel():
 		keywordDmgMultText.text ='[center]' \
 			+ StatMultiplierText.multiplier_text_list_to_newlined_string(keywordMultTexts) + '[/center]'
 	
+	var evolution: Evolution = combatant.get_evolution()
 	var hasBeatenStoryReq: StoryRequirements = StoryRequirements.new()
-	hasBeatenStoryReq.prereqDefeatedEnemies = [combatant.save_name()]
+	if evolution != null:
+		hasBeatenStoryReq.prereqDefeatedEnemies = [combatant.save_name() + '#' + evolution.evolutionSaveName]
+	else:
+		hasBeatenStoryReq.prereqDefeatedEnemies = [combatant.save_name()]
+		
 	if hasBeatenStoryReq.is_valid() or combatant.save_name() == 'player':
 		elementWeaknessesText.text = '[center]'
 		var elementWeaknesses: Array[Move.Element] = combatant.get_element_weaknesses()

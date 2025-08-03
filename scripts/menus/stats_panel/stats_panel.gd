@@ -231,6 +231,7 @@ func load_stats_panel(fromToggle: bool = false):
 			moveListPanel.lastMovePanel.set_buttons_bottom_neighbor(moveListPanel.lastMovePanel.detailsButton.get_path_to(backButton))
 	equipmentPanel.weapon = stats.equippedWeapon
 	equipmentPanel.armor = stats.equippedArmor
+	equipmentPanel.accessory = stats.equippedAccessory
 	equipmentPanel.statsPanel = self
 	equipmentPanel.load_equipment_panel()
 	minionsPanel.minion = minion

@@ -488,10 +488,11 @@ func end_battle():
 	PlayerResources.playerInfo.combatant.triggeredRunesStatus = []
 	for combatantNode: CombatantNode in get_all_combatant_nodes():
 		if combatantNode.combatant != null and combatantNode.role == CombatantNode.Role.ENEMY:
-			PlayerResources.playerInfo.set_enemy_defeated(combatantNode.combatant.save_name())
-			# if this creature is an evolution, set its save name as defeated as well.
 			if combatantNode.combatant.get_evolution() != null:
-				PlayerResources.playerInfo.set_enemy_defeated(combatantNode.combatant.get_evolution_save_name())
+				PlayerResources.playerInfo.set_enemy_defeated(combatantNode.combatant.save_name() + '#' + combatantNode.combatant.get_evolution_save_name())
+			else:
+				PlayerResources.playerInfo.set_enemy_defeated(combatantNode.combatant.save_name())
+			# if this creature is an evolution, set its save name as defeated as well.
 	clean_up_minion_combatant()
 	if minionCombatant.combatant != null:
 		minionCombatant.combatant.orbs = 0
