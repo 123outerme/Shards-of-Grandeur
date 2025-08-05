@@ -283,7 +283,7 @@ func turn_in(questTracker: QuestTracker):
 		act_changed.emit()
 	turn_in_step_to.emit(turnInTargetName)
 	load_quests_panel(true, true) # not from the toggle function, but will focus any other quests that can be turned in
-	questRewardPanel.load_quest_reward_panel()
+	questRewardPanel.load_quest_reward_panel.call_deferred()
 	backButton.disabled = true
 	
 func show_details(questTracker: QuestTracker):

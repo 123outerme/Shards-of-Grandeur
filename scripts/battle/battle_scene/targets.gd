@@ -26,6 +26,7 @@ func initial_focus():
 	backButton.grab_focus()
 
 func load_targets():
+	reset_targets(false)
 	commandText.text = '[center]' + battleUI.commandingCombatant.combatant.disp_name() + ' will use '
 	
 	var targets: BattleCommand.Targets = BattleCommand.Targets.NONE

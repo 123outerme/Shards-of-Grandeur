@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://vgmb5l1ihc2p"]
+[gd_scene load_steps=59 format=3 uid="uid://vgmb5l1ihc2p"]
 
 [ext_resource type="Script" uid="uid://ba1n20fjtp4k5" path="res://prefabs/test/battle/battle_tester.gd" id="1_7scea"]
 [ext_resource type="Resource" uid="uid://0qma1pdmr3vo" path="res://gamedata/combatants/mirage/mirage.tres" id="2_bwnp0"]
@@ -14,8 +14,8 @@
 [ext_resource type="Script" uid="uid://flaq3s0m3pf2" path="res://scripts/reward/reward.gd" id="9_wpvco"]
 [ext_resource type="Resource" uid="uid://biwy0v0u0bxam" path="res://gamedata/items/weapon/ice_gem.tres" id="10_0ecd1"]
 [ext_resource type="Resource" uid="uid://bhg4i01ukcdvd" path="res://gamedata/combatants/rat/rat.tres" id="11_cl2mb"]
-[ext_resource type="Resource" uid="uid://ct32l7eceriuy" path="res://gamedata/moves/torch/torch.tres" id="12_nbu5k"]
 [ext_resource type="Script" uid="uid://bdxm8cikhf0o0" path="res://scripts/battle/win_conditions/survive_win_con.gd" id="13_5buqe"]
+[ext_resource type="Resource" uid="uid://txe6nx7c22oy" path="res://gamedata/moves/draconic_seal/draconic_seal.tres" id="16_evxqu"]
 [ext_resource type="Script" uid="uid://biq3088m28kr2" path="res://scripts/battle/combatant/rune.gd" id="17_mfbgk"]
 [ext_resource type="Resource" uid="uid://ct5mgs5qt8lsa" path="res://gamedata/moves/burning_heart/rune/sprite_rune_burning_heart_charge.tres" id="18_botcp"]
 [ext_resource type="Script" uid="uid://cbb5diqsv44du" path="res://scripts/battle/battle_scene/turn_executor.gd" id="18_rw5pq"]
@@ -34,6 +34,7 @@
 [ext_resource type="Resource" uid="uid://cntmieslwj8h1" path="res://gamedata/moves/searing_rune/rune/trigger_sprite_rune_searing_rune_charge.tres" id="28_w0nhl"]
 [ext_resource type="Resource" uid="uid://bcx60u36qshvn" path="res://gamedata/combatants/player/player.tres" id="28_yubvn"]
 [ext_resource type="Resource" uid="uid://b6n834o6wy5o7" path="res://gamedata/moves/reckless_pact/reckless_pact.tres" id="32_cl2mb"]
+[ext_resource type="Script" uid="uid://c4g8cps6yo76w" path="res://scripts/battle/status_effects/interception.gd" id="32_kwrsi"]
 [ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="33_snsqx"]
 [ext_resource type="Resource" uid="uid://bdb03a6ibprre" path="res://gamedata/moves/rat_race/rat_race.tres" id="34_evxqu"]
 [ext_resource type="Resource" uid="uid://cpmh4qw3gwv3b" path="res://gamedata/items/healing/leavenport_loaf.tres" id="43_1s0me"]
@@ -84,10 +85,10 @@ battleMapPath = ""
 [sub_resource type="Resource" id="Resource_snunq"]
 script = ExtResource("9_jd22b")
 type = 1
-move = ExtResource("12_nbu5k")
-moveEffectType = 1
-orbChange = 1
-targetPositions = Array[String](["Bottom"])
+move = ExtResource("16_evxqu")
+moveEffectType = 2
+orbChange = -5
+targetPositions = Array[String](["Center", "Top", "Bottom"])
 randomNums = Array[float]([1.0])
 selfRandomNum = -1.0
 decisionsRandomNum = -1.0
@@ -116,7 +117,7 @@ weight = 0.1
 script = ExtResource("21_6efxx")
 categories = Array[ExtResource("20_jje8i")]([SubResource("Resource_3cd3y"), SubResource("Resource_wm2w7"), SubResource("Resource_pl5yt"), SubResource("Resource_1i7gf")])
 
-[sub_resource type="Resource" id="Resource_kwrsi"]
+[sub_resource type="Resource" id="Resource_5gppg"]
 script = ExtResource("20_cl2mb")
 type = 8
 potency = 1
@@ -180,6 +181,13 @@ randomNums = Array[float]([0.5])
 selfRandomNum = -1.0
 decisionsRandomNum = -1.0
 
+[sub_resource type="Resource" id="Resource_f67c7"]
+script = ExtResource("32_kwrsi")
+type = 9
+potency = 1
+overwritesOtherStatuses = true
+turnsLeft = 5
+
 [sub_resource type="Resource" id="Resource_mx2w5"]
 script = ExtResource("9_jd22b")
 type = 1
@@ -221,10 +229,11 @@ playerLv = 22
 playerOrbs = 3
 playerCommand = SubResource("Resource_snunq")
 playerStatAllocStrat = SubResource("Resource_h5dco")
-playerStatus = SubResource("Resource_kwrsi")
+playerStatus = SubResource("Resource_5gppg")
 playerRunes = Array[ExtResource("17_mfbgk")]([SubResource("Resource_spqei"), SubResource("Resource_xsbc3"), SubResource("Resource_0al0g")])
 playerRuneCasterPositions = Array[String](["Ally", "Center", "Center"])
 minionCommand = SubResource("Resource_el0wh")
+minionStatus = SubResource("Resource_f67c7")
 enemy1Command = SubResource("Resource_mx2w5")
 enemy2Command = SubResource("Resource_2nv1k")
 enemy3Command = SubResource("Resource_hmp4c")
