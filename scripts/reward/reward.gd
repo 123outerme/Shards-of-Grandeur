@@ -26,7 +26,7 @@ func _init(
 func copy() -> Reward:
 	return Reward.new(experience, gold, item, itemCount, fullyAttuneCombatantSaveName)
 
-func scale_reward_by_level(initialLv: int, currentLv: int, customScale: float = 1.0) -> Reward:
+func scale_reward_by_level(initialLv: int, currentLv: int, playerLv: int, customScale: float = 1.0) -> Reward:
 	var scaledReward: Reward = copy()
 	# c = current, i = initial
 	# exp scale factor = 1 + (0.004 * (c-i)^2) + (0.03 * (c-i))
@@ -34,6 +34,11 @@ func scale_reward_by_level(initialLv: int, currentLv: int, customScale: float = 
 	# gold scale factor = 1 + (0.02 * (c-i))
 	var goldScaleFactor: float = 1.0 + (0.02 * (currentLv - initialLv))
 	scaledReward.experience = roundi(scaledReward.experience * expScaleFactor * customScale)
+	
+	# if the player is 5+ levels over the reward level: scale the intended XP gains back (min bound at 25%, 15 lv difference) 
+	if playerLv > currentLv + 4:
+		scaledReward.experience = roundi(scaledReward.experience * ( 1 - min(0.25, 0.075 * (playerLv - currentLv - 4)) ))
+	
 	scaledReward.gold = roundi(scaledReward.gold * goldScaleFactor * customScale)
 	# no scaling on the item reward or the full attunement!
 	return scaledReward
