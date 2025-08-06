@@ -1,0 +1,95 @@
+[gd_resource type="Resource" script_class="Move" load_steps=13 format=3 uid="uid://cjjf3h6v1senf"]
+
+[ext_resource type="Script" uid="uid://drwve0pkx3g5o" path="res://scripts/battle/combatant/move_effect.gd" id="1_8bbox"]
+[ext_resource type="Resource" uid="uid://dghha5rpd7ksq" path="res://gamedata/moves/crooked_curse/rune/rune_crooked_curse_charge.tres" id="1_a14sj"]
+[ext_resource type="Script" uid="uid://dx4lnh4driy7a" path="res://scripts/battle/combatant/move.gd" id="2_b52hq"]
+[ext_resource type="Resource" uid="uid://30eesmhu7ek4" path="res://gamedata/moves/crooked_curse/anim_crooked_curse.tres" id="2_eiucg"]
+[ext_resource type="Script" uid="uid://cvjnh0a2q6sat" path="res://scripts/battle/combatant/surge_changes.gd" id="3_eiucg"]
+[ext_resource type="Script" uid="uid://dohairjlp4nco" path="res://scripts/battle/status_effects/element_burn.gd" id="3_uo6rf"]
+[ext_resource type="Resource" uid="uid://boayhkhx3xks0" path="res://gamedata/moves/crooked_curse/rune/rune_crooked_curse_surge.tres" id="6_42lpp"]
+
+[sub_resource type="Resource" id="Resource_a14sj"]
+script = ExtResource("3_uo6rf")
+element = 7
+power = 0.0
+attackerStat = 0.0
+attackerLv = 1
+damageTriggered = false
+type = 11
+potency = 1
+overwritesOtherStatuses = false
+turnsLeft = 2
+metadata/_custom_type_script = "uid://dohairjlp4nco"
+
+[sub_resource type="Resource" id="Resource_uxs3t"]
+script = ExtResource("1_8bbox")
+role = 1
+keywords = Array[String]([])
+orbChange = 0
+power = 45
+lifesteal = 0.0
+selfHpSacrifice = 0.0
+priority = -1
+targets = 5
+statusEffect = SubResource("Resource_a14sj")
+selfGetsStatus = false
+statusChance = 0.3
+statusRequiredForTargetStatChanges = false
+rune = ExtResource("1_a14sj")
+metadata/_custom_type_script = "uid://drwve0pkx3g5o"
+
+[sub_resource type="Resource" id="Resource_uo6rf"]
+script = ExtResource("3_uo6rf")
+element = 7
+power = 0.0
+attackerStat = 0.0
+attackerLv = 1
+damageTriggered = false
+type = 11
+potency = 1
+overwritesOtherStatuses = true
+turnsLeft = 3
+metadata/_custom_type_script = "uid://dohairjlp4nco"
+
+[sub_resource type="Resource" id="Resource_jt5s5"]
+script = ExtResource("3_eiucg")
+powerPerOrb = 5
+lifestealPerOrb = 0.02
+selfHpSacrificePerOrb = 0.0
+weakThresholdOrbs = 0
+strongThresholdOrbs = 6
+overwhelmingThresholdOrbs = 9
+additionalStatusTurnsPerOrb = 0.25
+additionalStatusChancePerOrb = 0.05
+metadata/_custom_type_script = "uid://cvjnh0a2q6sat"
+
+[sub_resource type="Resource" id="Resource_p4ses"]
+script = ExtResource("1_8bbox")
+role = 1
+keywords = Array[String]([])
+orbChange = -3
+power = 60
+lifesteal = 0.0
+selfHpSacrifice = 0.0
+priority = -1
+targets = 5
+statusEffect = SubResource("Resource_uo6rf")
+selfGetsStatus = false
+statusChance = 0.6
+statusRequiredForTargetStatChanges = false
+rune = ExtResource("6_42lpp")
+surgeChanges = SubResource("Resource_jt5s5")
+metadata/_custom_type_script = "uid://drwve0pkx3g5o"
+
+[resource]
+script = ExtResource("2_b52hq")
+moveName = "Crooked Curse"
+requiredLv = 28
+category = 1
+element = 7
+chargeEffect = SubResource("Resource_uxs3t")
+surgeEffect = SubResource("Resource_p4ses")
+description = "Cast a spell so horrific that it haunts your opponent twice! Strike fear into their heart, and it will multiply..."
+moveLearnedText = ""
+moveAnimation = ExtResource("2_eiucg")
+metadata/_custom_type_script = "uid://dx4lnh4driy7a"

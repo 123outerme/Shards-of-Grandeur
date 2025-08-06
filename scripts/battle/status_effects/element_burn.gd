@@ -38,6 +38,28 @@ const _nova_icon: Texture2D = preload('res://graphics/ui/nova.png')
 # > i.e. if Fear is put on a combatant and Lightning Damage dealt from a previous Rune(s) triggering,
 # > during the AFTER_ROUND step, if this combatant has a Dark Damage Rune, that would then trigger mistakenly
 
+static func get_element_burn_name_from_type(element: Move.Element) -> String:
+	match element:
+		Move.Element.NONE:
+			return 'Element Burn'
+		Move.Element.FIRE:
+			return 'Burn'
+		Move.Element.WATER:
+			return 'Soak'
+		Move.Element.LIGHTNING:
+			return 'Jolt'
+		Move.Element.WIND:
+			return 'Gust'
+		Move.Element.EARTH:
+			return 'Crush'
+		Move.Element.NATURE:
+			return 'Poison'
+		Move.Element.DARK:
+			return 'Fear'
+		Move.Element.ASTRAL:
+			return 'Nova'
+	return 'UNKNOWN'
+
 func _init(
 	i_potency = Potency.NONE,
 	i_overwrites = false,
@@ -78,26 +100,7 @@ func apply_status(combatant: Combatant, allCombatants: Array[Combatant], timing:
 	return dealtDmgCombatants
 	
 func get_status_type_string() -> String:
-	match element:
-		Move.Element.NONE:
-			return 'Element Burn'
-		Move.Element.FIRE:
-			return 'Burn'
-		Move.Element.WATER:
-			return 'Soak'
-		Move.Element.LIGHTNING:
-			return 'Jolt'
-		Move.Element.WIND:
-			return 'Gust'
-		Move.Element.EARTH:
-			return 'Crush'
-		Move.Element.NATURE:
-			return 'Poison'
-		Move.Element.DARK:
-			return 'Fear'
-		Move.Element.ASTRAL:
-			return 'Nova'
-	return 'UNKNOWN'
+	return get_element_burn_name_from_type(element)
 
 func set_burn_damage_parameters(pPower: float, pAttackerStat: float, pAttackerLv: int):
 	power = pPower

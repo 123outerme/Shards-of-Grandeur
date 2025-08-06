@@ -1,0 +1,139 @@
+[gd_resource type="Resource" script_class="Move" load_steps=16 format=3 uid="uid://bmyf7pt8fyruh"]
+
+[ext_resource type="Script" uid="uid://drwve0pkx3g5o" path="res://scripts/battle/combatant/move_effect.gd" id="1_4ie2h"]
+[ext_resource type="Script" uid="uid://dx4lnh4driy7a" path="res://scripts/battle/combatant/move.gd" id="1_b0344"]
+[ext_resource type="Script" uid="uid://b8q40qhoufelh" path="res://scripts/battle/combatant/element_multiplier.gd" id="2_nuhwt"]
+[ext_resource type="Script" uid="uid://dvivnpdo5ga72" path="res://scripts/battle/combatant/stat_changes.gd" id="3_0ci3y"]
+[ext_resource type="Resource" uid="uid://ulye0mojqh80" path="res://gamedata/moves/snow_coating/anim_snow_coating.tres" id="4_nuhwt"]
+[ext_resource type="Script" uid="uid://cvjnh0a2q6sat" path="res://scripts/battle/combatant/surge_changes.gd" id="5_d0ciy"]
+
+[sub_resource type="Resource" id="Resource_rqtm5"]
+script = ExtResource("2_nuhwt")
+element = 1
+multiplier = 1.05
+metadata/_custom_type_script = "uid://b8q40qhoufelh"
+
+[sub_resource type="Resource" id="Resource_w7jri"]
+script = ExtResource("3_0ci3y")
+physAttackIncrease = 0
+magicAttackIncrease = 0
+affinityIncrease = 0
+resistanceIncrease = 0
+speedIncrease = 0
+physAttackMultiplier = 1.0
+magicAttackMultiplier = 1.0
+affinityMultiplier = 1.0
+resistanceMultiplier = 1.1
+speedMultiplier = 1.0
+elementMultipliers = Array[ExtResource("2_nuhwt")]([SubResource("Resource_rqtm5")])
+keywordMultipliers = Dictionary[String, float]({
+"Ice": 1.05
+})
+metadata/_custom_type_script = "uid://dvivnpdo5ga72"
+
+[sub_resource type="Resource" id="Resource_dsyu0"]
+script = ExtResource("1_4ie2h")
+role = 3
+keywords = Array[String](["Ice"])
+orbChange = 1
+power = 0
+lifesteal = 0.0
+selfHpSacrifice = 0.0
+priority = 0
+targets = 1
+targetStatChanges = SubResource("Resource_w7jri")
+selfGetsStatus = false
+statusChance = 0.0
+statusRequiredForTargetStatChanges = false
+metadata/_custom_type_script = "uid://drwve0pkx3g5o"
+
+[sub_resource type="Resource" id="Resource_0ci3y"]
+script = ExtResource("2_nuhwt")
+element = 1
+multiplier = 1.02
+metadata/_custom_type_script = "uid://b8q40qhoufelh"
+
+[sub_resource type="Resource" id="Resource_d0ciy"]
+script = ExtResource("3_0ci3y")
+physAttackIncrease = 0
+magicAttackIncrease = 0
+affinityIncrease = 0
+resistanceIncrease = 0
+speedIncrease = 0
+physAttackMultiplier = 1.0
+magicAttackMultiplier = 1.0
+affinityMultiplier = 1.0
+resistanceMultiplier = 1.02
+speedMultiplier = 1.0
+elementMultipliers = Array[ExtResource("2_nuhwt")]([SubResource("Resource_0ci3y")])
+keywordMultipliers = Dictionary[String, float]({
+"Ice": 1.02
+})
+metadata/_custom_type_script = "uid://dvivnpdo5ga72"
+
+[sub_resource type="Resource" id="Resource_7ua48"]
+script = ExtResource("5_d0ciy")
+powerPerOrb = 0
+lifestealPerOrb = 0.0
+selfHpSacrificePerOrb = 0.0
+targetStatChangesPerOrb = SubResource("Resource_d0ciy")
+weakThresholdOrbs = 0
+strongThresholdOrbs = 0
+overwhelmingThresholdOrbs = 0
+additionalStatusTurnsPerOrb = 0.0
+additionalStatusChancePerOrb = 0.0
+metadata/_custom_type_script = "uid://cvjnh0a2q6sat"
+
+[sub_resource type="Resource" id="Resource_4ie2h"]
+script = ExtResource("2_nuhwt")
+element = 1
+multiplier = 1.1
+metadata/_custom_type_script = "uid://b8q40qhoufelh"
+
+[sub_resource type="Resource" id="Resource_nuhwt"]
+script = ExtResource("3_0ci3y")
+physAttackIncrease = 0
+magicAttackIncrease = 0
+affinityIncrease = 0
+resistanceIncrease = 0
+speedIncrease = 0
+physAttackMultiplier = 1.0
+magicAttackMultiplier = 1.0
+affinityMultiplier = 1.0
+resistanceMultiplier = 1.2
+speedMultiplier = 1.0
+elementMultipliers = Array[ExtResource("2_nuhwt")]([SubResource("Resource_4ie2h")])
+keywordMultipliers = Dictionary[String, float]({
+"Ice": 1.1
+})
+metadata/_custom_type_script = "uid://dvivnpdo5ga72"
+
+[sub_resource type="Resource" id="Resource_ndc25"]
+script = ExtResource("1_4ie2h")
+role = 3
+keywords = Array[String](["Ice"])
+orbChange = -4
+power = 0
+lifesteal = 0.0
+selfHpSacrifice = 0.0
+priority = 0
+targets = 1
+targetStatChanges = SubResource("Resource_nuhwt")
+selfGetsStatus = false
+statusChance = 0.0
+statusRequiredForTargetStatChanges = false
+surgeChanges = SubResource("Resource_7ua48")
+metadata/_custom_type_script = "uid://drwve0pkx3g5o"
+
+[resource]
+script = ExtResource("1_b0344")
+moveName = "Snow Coating"
+requiredLv = 24
+category = 0
+element = 1
+chargeEffect = SubResource("Resource_dsyu0")
+surgeEffect = SubResource("Resource_ndc25")
+description = "The user rolls around in the snow to add a layer of protective ice."
+moveLearnedText = ""
+moveAnimation = ExtResource("4_nuhwt")
+metadata/_custom_type_script = "uid://dx4lnh4driy7a"

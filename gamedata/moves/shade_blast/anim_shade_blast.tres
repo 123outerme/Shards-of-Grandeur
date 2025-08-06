@@ -1,12 +1,27 @@
-[gd_resource type="Resource" script_class="MoveAnimation" load_steps=4 format=3 uid="uid://cg5chhchrty7r"]
+[gd_resource type="Resource" script_class="MoveAnimation" load_steps=6 format=3 uid="uid://cg5chhchrty7r"]
 
 [ext_resource type="Script" uid="uid://mk6loduurcg4" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="1_musq0"]
 [ext_resource type="Resource" uid="uid://joetyg56p1on" path="res://gamedata/moves/shade_blast/sprite_shade_blast.tres" id="2_gly1q"]
 [ext_resource type="Script" uid="uid://dy6wwno8h0wdl" path="res://scripts/battle/particles/move_animation.gd" id="3_nnl0f"]
+[ext_resource type="Script" uid="uid://c8pibqehmw101" path="res://scripts/battle/battle_scene/battlefield_shade_anim.gd" id="4_4yur6"]
+
+[sub_resource type="Resource" id="Resource_pr5yo"]
+script = ExtResource("4_4yur6")
+startSecs = 0.0
+lastsSecs = -1.0
+color = Color(0.164706, 0.129412, 0.266667, 0.34902)
+fadeInSecs = 0.5
+fadeOutSecs = 0.25
+metadata/_custom_type_script = "uid://c8pibqehmw101"
 
 [resource]
 script = ExtResource("3_nnl0f")
 combatantAnimation = "attack_magic"
 makesContact = false
+makesContactTarget = 1
+makesContactPosOffset = Vector2(0, 0)
+hideUserHpTag = false
+hideTargetHpTag = false
 chargeMoveSprites = Array[ExtResource("1_musq0")]([ExtResource("2_gly1q")])
 surgeMoveSprites = Array[ExtResource("1_musq0")]([ExtResource("2_gly1q")])
+surgeBattlefieldShade = SubResource("Resource_pr5yo")

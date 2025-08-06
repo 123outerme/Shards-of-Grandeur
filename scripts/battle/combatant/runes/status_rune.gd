@@ -7,6 +7,9 @@ class_name StatusRune
 ## if not NONE, will only trigger off of the specified status
 @export var type: StatusEffect.Type = StatusEffect.Type.NONE
 
+## if type is Element Burn and Element is not NONE, will only trigger off the specified element
+@export var triggerElement: Move.Element = Move.Element.NONE
+
 @export_storage var currentStatus: StatusEffect = null
 
 func _init(
@@ -23,11 +26,13 @@ func _init(
 	i_triggerAnim: MoveAnimSprite = null,
 	i_minPotency: StatusEffect.Potency = StatusEffect.Potency.WEAK,
 	i_type: StatusEffect.Type = StatusEffect.Type.NONE,
+	i_triggerElement: Move.Element = Move.Element.NONE,
 	i_currentStatus: StatusEffect = null,
 ):
 	super(i_orbChange, i_category, i_element, i_power, i_lifesteal, i_statChanges, i_statusEffect, i_surgeChanges, i_caster, i_runeSpriteAnim, i_triggerAnim)
 	minPotency = i_minPotency
 	type = i_type
+	triggerElement = i_triggerElement
 	currentStatus = i_currentStatus
 
 func init_rune_state(combatant: Combatant, otherCombatants: Array[Combatant], state: BattleState) -> void:
@@ -40,7 +45,10 @@ func get_rune_type() -> String:
 func get_long_rune_type() -> String:
 	var statusName: String = 'Status'
 	if type != StatusEffect.Type.NONE:
-		statusName = StatusEffect.status_type_to_string(type)
+		if type == StatusEffect.Type.ELEMENT_BURN and triggerElement != Move.Element.NONE:
+			statusName = ElementBurn.get_element_burn_name_from_type(triggerElement)
+		else:
+			statusName = StatusEffect.status_type_to_string(type)
 	if minPotency != StatusEffect.Potency.NONE:
 		return StatusEffect.potency_to_string(minPotency) + ' ' + statusName + ' Rune'
 	else:
@@ -49,17 +57,29 @@ func get_long_rune_type() -> String:
 func get_rune_trigger_description() -> String:
 	var statusName: String = 'Status'
 	if type != StatusEffect.Type.NONE:
-		statusName = StatusEffect.status_type_to_string(type)
+		if type == StatusEffect.Type.ELEMENT_BURN and triggerElement != Move.Element.NONE:
+			statusName = ElementBurn.get_element_burn_name_from_type(triggerElement)
+		else:
+			statusName = StatusEffect.status_type_to_string(type)
 	if minPotency != StatusEffect.Potency.NONE:
 		return 'When ' + StatusEffect.potency_to_string(minPotency) + ' ' + statusName + ' is Afflicted'
 	else:
 		return 'When Any ' + statusName + ' is Afflicted'
 
 func get_rune_tooltip() -> String:
-	var tooltip: String = "This Rune's effect triggers when the enchanted combatant gets afflicted with a Status Effect"
+	var tooltip: String = "This Rune's effect triggers when the enchanted combatant gets afflicted with "
+	
+	if type != StatusEffect.Type.NONE:
+		if type == StatusEffect.Type.ELEMENT_BURN and triggerElement != Move.Element.NONE:
+			tooltip += ElementBurn.get_element_burn_name_from_type(triggerElement)
+		else:
+			tooltip += StatusEffect.status_type_to_string(type)
+	else:
+		tooltip += 'a Status Effect'
+	
 	if minPotency != StatusEffect.Potency.NONE:
-		tooltip += " (of at least " + StatusEffect.potency_to_string(minPotency) + " Potency)."
-	return tooltip
+		tooltip += " (of at least " + StatusEffect.potency_to_string(minPotency) + " Potency)"
+	return tooltip + '.'
 
 func does_rune_trigger(combatant: Combatant, otherCombatants: Array[Combatant], state: BattleState, timing: BattleCommand.ApplyTiming, firstCheck: bool) -> bool:
 	if combatant.statusEffect == null:
@@ -68,6 +88,11 @@ func does_rune_trigger(combatant: Combatant, otherCombatants: Array[Combatant], 
 	var statusTypeMatches: bool = false
 	if type != StatusEffect.Type.NONE:
 		statusTypeMatches = type == combatant.statusEffect.type
+		if combatant.statusEffect.type == StatusEffect.Type.ELEMENT_BURN and \
+				type == StatusEffect.Type.ELEMENT_BURN and \
+				triggerElement != Move.Element.NONE:
+			var elementBurn: ElementBurn = combatant.statusEffect as ElementBurn
+			statusTypeMatches = elementBurn.element == triggerElement
 	else:
 		statusTypeMatches = true
 	
@@ -88,6 +113,7 @@ func copy(copyStorage: bool = false) -> StatusRune:
 		triggerAnim,
 		minPotency,
 		type,
+		triggerElement,
 	)
 	
 	if copyStorage:
