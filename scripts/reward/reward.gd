@@ -37,7 +37,7 @@ func scale_reward_by_level(initialLv: int, currentLv: int, playerLv: int, custom
 	
 	# if the player is 5+ levels over the reward level: scale the intended XP gains back (min bound at 25%, 15 lv difference) 
 	if playerLv > currentLv + 4:
-		scaledReward.experience = roundi(scaledReward.experience * ( 1 - min(0.25, 0.075 * (playerLv - currentLv - 4)) ))
+		scaledReward.experience = roundi(scaledReward.experience * min(0.25, 1 - 0.075 * (playerLv - currentLv - 4)))
 	
 	scaledReward.gold = roundi(scaledReward.gold * goldScaleFactor * customScale)
 	# no scaling on the item reward or the full attunement!
