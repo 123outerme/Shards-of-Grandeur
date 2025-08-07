@@ -15,7 +15,7 @@
 [ext_resource type="Resource" uid="uid://biwy0v0u0bxam" path="res://gamedata/items/weapon/ice_gem.tres" id="10_0ecd1"]
 [ext_resource type="Resource" uid="uid://bhg4i01ukcdvd" path="res://gamedata/combatants/rat/rat.tres" id="11_cl2mb"]
 [ext_resource type="Script" uid="uid://bdxm8cikhf0o0" path="res://scripts/battle/win_conditions/survive_win_con.gd" id="13_5buqe"]
-[ext_resource type="Resource" uid="uid://txe6nx7c22oy" path="res://gamedata/moves/draconic_seal/draconic_seal.tres" id="16_evxqu"]
+[ext_resource type="Resource" uid="uid://cjjf3h6v1senf" path="res://gamedata/moves/crooked_curse/crooked_curse.tres" id="16_evxqu"]
 [ext_resource type="Script" uid="uid://biq3088m28kr2" path="res://scripts/battle/combatant/rune.gd" id="17_mfbgk"]
 [ext_resource type="Resource" uid="uid://ct5mgs5qt8lsa" path="res://gamedata/moves/burning_heart/rune/sprite_rune_burning_heart_charge.tres" id="18_botcp"]
 [ext_resource type="Script" uid="uid://cbb5diqsv44du" path="res://scripts/battle/battle_scene/turn_executor.gd" id="18_rw5pq"]
@@ -55,7 +55,7 @@ combatant1Level = 20
 combatant1Moves = Array[ExtResource("4_egeqm")]([])
 combatant1ShardSummoned = false
 combatant2 = ExtResource("9_qqchu")
-combatant2Level = 1
+combatant2Level = 20
 combatant2Weapon = ExtResource("10_0ecd1")
 combatant2Moves = Array[ExtResource("4_egeqm")]([])
 combatant2ShardSummoned = false
@@ -86,10 +86,10 @@ battleMapPath = ""
 script = ExtResource("9_jd22b")
 type = 1
 move = ExtResource("16_evxqu")
-moveEffectType = 2
-orbChange = -5
-targetPositions = Array[String](["Center", "Top", "Bottom"])
-randomNums = Array[float]([1.0])
+moveEffectType = 1
+orbChange = 0
+targetPositions = Array[String](["Bottom"])
+randomNums = Array[float]([0.0])
 selfRandomNum = -1.0
 decisionsRandomNum = -1.0
 

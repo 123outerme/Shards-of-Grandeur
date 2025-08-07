@@ -37,7 +37,11 @@ func _init(
 
 func init_rune_state(combatant: Combatant, otherCombatants: Array[Combatant], state: BattleState) -> void:
 	super.init_rune_state(combatant, otherCombatants, state)
+	#''' the rune will trigger if a status that matches is afflicted this same turn
+	currentStatus = combatant.battleStorageStatus
+	''' # if this is not preferred, use the following:
 	currentStatus = combatant.statusEffect
+	#'''
 
 func get_rune_type() -> String:
 	return 'Status Rune'
