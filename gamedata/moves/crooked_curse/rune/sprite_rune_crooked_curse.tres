@@ -1,0 +1,45 @@
+[gd_resource type="Resource" script_class="MoveAnimSprite" load_steps=5 format=3 uid="uid://50mthfkmv44r"]
+
+[ext_resource type="Script" uid="uid://n71lfdnd5xrr" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite_frame.gd" id="1_8m3an"]
+[ext_resource type="Script" uid="uid://mk6loduurcg4" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="2_ru3ke"]
+
+[sub_resource type="Resource" id="Resource_8m3an"]
+script = ExtResource("1_8m3an")
+annotation = "position over target"
+animation = "default"
+duration = 0.1
+speed = 1.0
+opacity = 1.0
+spritePivot = Vector2(0, 0)
+relativeTo = 1
+position = Vector2(0, 0)
+offset = 4
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+emitCompleteOnStart = false
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_m07hb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": null
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[resource]
+script = ExtResource("2_ru3ke")
+spriteFrames = SubResource("SpriteFrames_m07hb")
+centerSprite = true
+maxSize = Vector2(16, 16)
+frames = Array[ExtResource("1_8m3an")]([SubResource("Resource_8m3an")])
+delayedUntilReposition = false
+playsOnImpactFrame = true
+onePerTarget = true
+metadata/_custom_type_script = "uid://mk6loduurcg4"

@@ -1,6 +1,8 @@
-[gd_resource type="Resource" script_class="StatusRune" load_steps=2 format=3 uid="uid://boayhkhx3xks0"]
+[gd_resource type="Resource" script_class="StatusRune" load_steps=4 format=3 uid="uid://boayhkhx3xks0"]
 
 [ext_resource type="Script" uid="uid://bdemnu1fiqn5n" path="res://scripts/battle/combatant/runes/status_rune.gd" id="1_ufp1u"]
+[ext_resource type="Resource" uid="uid://50mthfkmv44r" path="res://gamedata/moves/crooked_curse/rune/sprite_rune_crooked_curse.tres" id="1_unvra"]
+[ext_resource type="Resource" uid="uid://sry7xhm5t76o" path="res://gamedata/moves/crooked_curse/rune/trigger_sprite_rune_crooked_curse.tres" id="3_tcvrg"]
 
 [resource]
 script = ExtResource("1_ufp1u")
@@ -12,4 +14,6 @@ category = 1
 element = 7
 power = 40
 lifesteal = 0.25
+runeSpriteAnim = ExtResource("1_unvra")
+triggerAnim = ExtResource("3_tcvrg")
 metadata/_custom_type_script = "uid://bdemnu1fiqn5n"

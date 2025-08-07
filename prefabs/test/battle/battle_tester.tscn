@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=3 uid="uid://vgmb5l1ihc2p"]
+[gd_scene load_steps=61 format=3 uid="uid://vgmb5l1ihc2p"]
 
 [ext_resource type="Script" uid="uid://ba1n20fjtp4k5" path="res://prefabs/test/battle/battle_tester.gd" id="1_7scea"]
 [ext_resource type="Resource" uid="uid://0qma1pdmr3vo" path="res://gamedata/combatants/mirage/mirage.tres" id="2_bwnp0"]
@@ -37,6 +37,7 @@
 [ext_resource type="Script" uid="uid://c4g8cps6yo76w" path="res://scripts/battle/status_effects/interception.gd" id="32_kwrsi"]
 [ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="33_snsqx"]
 [ext_resource type="Resource" uid="uid://bdb03a6ibprre" path="res://gamedata/moves/rat_race/rat_race.tres" id="34_evxqu"]
+[ext_resource type="Script" uid="uid://dohairjlp4nco" path="res://scripts/battle/status_effects/element_burn.gd" id="36_kwrsi"]
 [ext_resource type="Resource" uid="uid://cpmh4qw3gwv3b" path="res://gamedata/items/healing/leavenport_loaf.tres" id="43_1s0me"]
 [ext_resource type="PackedScene" uid="uid://bk5magi8dnwgj" path="res://prefabs/battle/battle_animation_manager.tscn" id="43_cxami"]
 [ext_resource type="Script" uid="uid://fw22o8hbosnk" path="res://scripts/inventory/inventory_slot.gd" id="44_j7j6h"]
@@ -89,7 +90,7 @@ move = ExtResource("16_evxqu")
 moveEffectType = 1
 orbChange = 0
 targetPositions = Array[String](["Bottom"])
-randomNums = Array[float]([0.0])
+randomNums = Array[float]([1.0])
 selfRandomNum = -1.0
 decisionsRandomNum = -1.0
 
@@ -221,6 +222,19 @@ randomNums = Array[float]([])
 selfRandomNum = -1.0
 decisionsRandomNum = -1.0
 
+[sub_resource type="Resource" id="Resource_lf1pv"]
+script = ExtResource("36_kwrsi")
+element = 7
+power = 40.0
+attackerStat = 110.0
+attackerLv = 20
+damageTriggered = false
+type = 11
+potency = 1
+overwritesOtherStatuses = false
+turnsLeft = 3
+metadata/_custom_type_script = "uid://dohairjlp4nco"
+
 [node name="BattleTester" type="Node2D" node_paths=PackedStringArray("globalMarker")]
 script = ExtResource("1_7scea")
 encounter = SubResource("Resource_eyqig")
@@ -237,6 +251,7 @@ minionStatus = SubResource("Resource_f67c7")
 enemy1Command = SubResource("Resource_mx2w5")
 enemy2Command = SubResource("Resource_2nv1k")
 enemy3Command = SubResource("Resource_hmp4c")
+enemy3Status = SubResource("Resource_lf1pv")
 globalMarker = NodePath("BattleAnimationManager/GlobalMarker")
 
 [node name="BattleAnimationManager" parent="." instance=ExtResource("43_cxami")]
