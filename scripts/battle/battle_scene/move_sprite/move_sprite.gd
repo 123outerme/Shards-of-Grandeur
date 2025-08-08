@@ -116,7 +116,7 @@ func load_frame():
 	
 	if sprFrame.particles != null:
 		var presetCopy: ParticlePreset = sprFrame.particles.duplicate(true)
-		if not user.leftSide: # particles are designed & saved as they would play on an enemy (right side)
+		if not user.leftSide and presetCopy.processMaterial != null: # particles are designed & saved as they would play on an enemy (right side)
 			presetCopy.processMaterial.direction.x *= -1 # invert inital X emission direction
 			presetCopy.processMaterial.emission_shape_offset.x *= -1 # invert emission shape X offset direction
 			# flip orbit (tangential) velocity to correspond with flipped sprite
@@ -130,10 +130,10 @@ func load_frame():
 		particleEmitter.preset = presetCopy
 		particleEmitter.set_make_particles(true)
 		particleEmitter.z_index = -1 if sprFrame.particles.emitter == 'behind' else 1
-		SceneLoader.audioHandler.play_sfx(sprFrame.particles.sfx)
+		SceneLoader.audioHandler.play_sfx(sprFrame.particles.sfx, 0, sprFrame.particles.randomizeSfxPitch)
 	
 	if sprFrame.sfx != null:
-		SceneLoader.audioHandler.play_sfx(sprFrame.sfx)
+		SceneLoader.audioHandler.play_sfx(sprFrame.sfx, 0, sprFrame.randomizeSfxPitch)
 	
 	if sprFrame.emitCompleteOnStart:
 		move_sprite_complete.emit(self)

@@ -576,12 +576,12 @@ func play_particles(preset: ParticlePreset, timingDelay: float = 0):
 			await get_tree().create_timer(6 / 8.0).timeout # 6 frames into the animation (or 6/8 of a sec)
 			shardParticles.preset = presetCopy
 			shardParticles.set_make_particles(true)
-			SceneLoader.audioHandler.play_sfx(presetCopy.sfx)
+			SceneLoader.audioHandler.play_sfx(presetCopy.sfx, 0, presetCopy.randomizeSfxPitch)
 			await get_tree().create_timer(3 / 8.0).timeout # +3 frames into the animation (or 9/8 secs total)
 			animatedSprite.visible = true
 			shardSummoned = false
 			return
-	SceneLoader.audioHandler.play_sfx(presetCopy.sfx)
+	SceneLoader.audioHandler.play_sfx(presetCopy.sfx, 0, presetCopy.randomizeSfxPitch)
 
 func play_move_sprite(moveAnimSprite: MoveAnimSprite):
 	var nodes: Array[CombatantNode] = moveSpriteTargets

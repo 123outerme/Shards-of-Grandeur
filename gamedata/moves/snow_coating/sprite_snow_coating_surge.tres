@@ -1,0 +1,78 @@
+[gd_resource type="Resource" script_class="MoveAnimSprite" load_steps=8 format=3 uid="uid://by8t5bamfjrkn"]
+
+[ext_resource type="Script" uid="uid://n71lfdnd5xrr" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite_frame.gd" id="1_jane7"]
+[ext_resource type="AudioStream" uid="uid://cu8bukgtknwti" path="res://audio/sfx/moves/swing.ogg" id="2_k0orh"]
+[ext_resource type="Script" uid="uid://mk6loduurcg4" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="2_r1whl"]
+[ext_resource type="SpriteFrames" uid="uid://bajynlgob3sek" path="res://graphics/moves/water/a_snow_coating.tres" id="3_r1whl"]
+
+[sub_resource type="Resource" id="Resource_r1whl"]
+script = ExtResource("1_jane7")
+annotation = "set up position on user"
+animation = "default"
+duration = 0.1
+speed = 1.0
+opacity = 1.0
+spritePivot = Vector2(0, 0)
+relativeTo = 2
+position = Vector2(-2, 0)
+offset = 1
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+randomizeSfxPitch = false
+emitCompleteOnStart = false
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[sub_resource type="Resource" id="Resource_k0orh"]
+script = ExtResource("1_jane7")
+annotation = "wait for snow coating anim to play through"
+animation = ""
+duration = 3.5
+speed = 1.0
+opacity = 1.0
+spritePivot = Vector2(0, 0)
+relativeTo = 5
+position = Vector2(0, 0)
+offset = 0
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+randomizeSfxPitch = false
+emitCompleteOnStart = false
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[sub_resource type="Resource" id="Resource_hosh3"]
+script = ExtResource("1_jane7")
+annotation = "play ice shield anim"
+animation = "ice_shield"
+duration = 1.333
+speed = 1.0
+opacity = 1.0
+spritePivot = Vector2(0, 0)
+relativeTo = 5
+position = Vector2(0, 0)
+offset = 0
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+sfx = ExtResource("2_k0orh")
+randomizeSfxPitch = false
+emitCompleteOnStart = false
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[resource]
+script = ExtResource("2_r1whl")
+spriteFrames = ExtResource("3_r1whl")
+centerSprite = true
+maxSize = Vector2(32, 32)
+frames = Array[ExtResource("1_jane7")]([SubResource("Resource_r1whl"), SubResource("Resource_k0orh"), SubResource("Resource_hosh3")])
+delayedUntilReposition = false
+playsOnImpactFrame = true
+onePerTarget = false
+metadata/_custom_type_script = "uid://mk6loduurcg4"

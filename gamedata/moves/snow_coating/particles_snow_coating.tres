@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="ParticlePreset" load_steps=7 format=3 uid="uid://c0imcxo54rbml"]
+
+[ext_resource type="Texture2D" uid="uid://cqbc4t7b7hg58" path="res://graphics/particles/water/ice_1.png" id="1_beue1"]
+[ext_resource type="Texture2D" uid="uid://bs6mahpieyhkw" path="res://graphics/particles/water/ice_2.png" id="2_ra3im"]
+[ext_resource type="Texture2D" uid="uid://ccl4dcdgdvq75" path="res://graphics/particles/water/ice_3.png" id="3_bmdj6"]
+[ext_resource type="Texture2D" uid="uid://cur4mjy3ev262" path="res://graphics/particles/water/ice_4.png" id="4_8fx2n"]
+[ext_resource type="Script" uid="uid://cdxc0ye8vnah8" path="res://scripts/battle/particles/particle_preset.gd" id="5_v624n"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_31i6q"]
+lifetime_randomness = 0.1
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 8.0
+direction = Vector3(0, -1, 0)
+spread = 90.0
+initial_velocity_min = 45.0
+initial_velocity_max = 55.0
+gravity = Vector3(0, 10, 0)
+
+[resource]
+script = ExtResource("5_v624n")
+emitter = "behind"
+count = 4
+lifetime = 1.0
+duration = 1.1
+staggered = false
+processMaterial = SubResource("ParticleProcessMaterial_31i6q")
+particleTextures = Array[Texture2D]([ExtResource("1_beue1"), ExtResource("2_ra3im"), ExtResource("3_bmdj6"), ExtResource("4_8fx2n")])
+randomizeSfxPitch = false
+metadata/_custom_type_script = "uid://cdxc0ye8vnah8"

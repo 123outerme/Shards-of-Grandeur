@@ -82,27 +82,31 @@ enum MoveSpriteOffset {
 ## sfx to play on this frame
 @export var sfx: AudioStream = null
 
+## if true, will have the AudioHandler slightly randomize the SFX's pitch
+@export var randomizeSfxPitch: bool = false
+
 ## if true, emits the complete event for the MoveSprite when this frame is STARTED, rather than when it's ENDED. The rest of the frames in the animation will play on and then the sprite will be freed.
 @export var emitCompleteOnStart: bool = false
 
 func _init(
-	i_annotation = '',
-	i_animation = '',
-	i_duration = 1,
-	i_speed = 1,
-	i_relativeTo = MoveSpriteTarget.CURRENT_POSITION,
-	i_pos = Vector2(),
-	i_offset = MoveSpriteOffset.NONE,
-	i_xCurve = Curve.new(),
-	i_yCurve = Curve.new(),
-	i_rotate = false,
-	i_rotateToFace = MoveSpriteTarget.TARGET,
-	i_rotateToFacePos = Vector2(),
-	i_spritePivot = Vector2.ZERO,
-	i_rotateToFaceOffset = MoveSpriteOffset.NONE,
-	i_trackRotationTarget = false,
-	i_particles = null,
-	i_sfx = null,
+	i_annotation: String = '',
+	i_animation: String = '',
+	i_duration: float = 1,
+	i_speed: float = 1,
+	i_relativeTo: MoveSpriteTarget = MoveSpriteTarget.CURRENT_POSITION,
+	i_pos: Vector2 = Vector2(),
+	i_offset: MoveSpriteOffset = MoveSpriteOffset.NONE,
+	i_xCurve: Curve = Curve.new(),
+	i_yCurve: Curve = Curve.new(),
+	i_rotate: bool = false,
+	i_rotateToFace: MoveSpriteTarget = MoveSpriteTarget.TARGET,
+	i_rotateToFacePos: Vector2 = Vector2(),
+	i_spritePivot: Vector2 = Vector2.ZERO,
+	i_rotateToFaceOffset: MoveSpriteOffset = MoveSpriteOffset.NONE,
+	i_trackRotationTarget: bool = false,
+	i_particles: ParticlePreset = null,
+	i_sfx: AudioStream = null,
+	i_randomizeSfxPitch: bool = false,
 	i_emitCompleteOnStart: bool = false,
 ):
 	annotation = i_annotation
@@ -122,6 +126,7 @@ func _init(
 	trackRotationTarget = i_trackRotationTarget
 	particles = i_particles
 	sfx = i_sfx
+	randomizeSfxPitch = i_randomizeSfxPitch
 	emitCompleteOnStart = i_emitCompleteOnStart
 
 func get_real_duration(diff: Vector2):

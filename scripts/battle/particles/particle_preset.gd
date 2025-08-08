@@ -24,15 +24,19 @@ class_name ParticlePreset
 ## sfx to play when particles start being emitted
 @export var sfx: AudioStream = null
 
+## if true, will have the AudioHandler slightly randomize the SFX's pitch
+@export var randomizeSfxPitch: bool = false
+
 func _init(
-	i_emitter = 'behind',
-	i_count = 0,
-	i_lifetime = 0.5,
-	i_duration = 1.25,
-	i_staggered = false,
-	i_processMaterial = null,
+	i_emitter: String = 'behind',
+	i_count: int = 0,
+	i_lifetime: float = 0.5,
+	i_duration: float = 1.25,
+	i_staggered: bool = false,
+	i_processMaterial: ParticleProcessMaterial = null,
 	i_particles: Array[Texture2D] = [],
-	i_sfx = null,
+	i_sfx: AudioStream = null,
+	i_randomizeSfxPitch: bool = false,
 ):
 	emitter = i_emitter
 	count = i_count
@@ -42,3 +46,4 @@ func _init(
 	processMaterial = i_processMaterial
 	particleTextures = i_particles
 	sfx = i_sfx
+	randomizeSfxPitch = i_randomizeSfxPitch
