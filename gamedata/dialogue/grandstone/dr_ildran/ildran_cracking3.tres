@@ -1,10 +1,13 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=9 format=3 uid="uid://bc34m5meqdoag"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=15 format=3 uid="uid://bc34m5meqdoag"]
 
 [ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_757s6"]
 [ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_f8s1i"]
 [ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_t8w23"]
+[ext_resource type="Script" uid="uid://b6oofnelefs8o" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_3od1t"]
 [ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_f8s1i"]
+[ext_resource type="Resource" uid="uid://bp3pwpfmyqxr0" path="res://gamedata/dialogue/grandstone/dr_ildran/ildran_dragon.tres" id="4_cm7e7"]
 [ext_resource type="Script" uid="uid://fw22o8hbosnk" path="res://scripts/inventory/inventory_slot.gd" id="4_t8w23"]
+[ext_resource type="Resource" uid="uid://drhrlo64n28k" path="res://gamedata/dialogue/grandstone/dr_ildran/draconic_experiments/draconic_experiments_q2_inprogress.tres" id="5_cm7e7"]
 
 [sub_resource type="Resource" id="Resource_odctl"]
 script = ExtResource("1_757s6")
@@ -18,6 +21,41 @@ animateActorIsPlayer = false
 choices = Array[ExtResource("2_f8s1i")]([])
 metadata/_custom_type_script = "uid://grt2yrupha8c"
 
+[sub_resource type="Resource" id="Resource_c5l35"]
+script = ExtResource("2_f8s1i")
+choiceBtn = "Good Luck."
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_3od1t")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = true
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_x6hn6"]
+script = ExtResource("2_f8s1i")
+choiceBtn = "There was a Dragon..."
+leadsTo = ExtResource("4_cm7e7")
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_3od1t")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = false
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_8vqkg"]
+script = ExtResource("2_f8s1i")
+choiceBtn = "About That Dragon Shard..."
+leadsTo = ExtResource("5_cm7e7")
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_3od1t")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = false
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
 [sub_resource type="Resource" id="Resource_3od1t"]
 script = ExtResource("1_757s6")
 lines = Array[String](["Wow, @... I don't even know what to say. I would have doubted you even went that far north, but clearly you did.", "Thank you for bringing this good news. With Solius still missing and Grandstone still crumbling, there's not much we can offer you.", "But... good luck. Don't forget to come back every once in a while!"])
@@ -27,7 +65,7 @@ speakerOverride = ""
 actorAnimation = ""
 animateActorTreePath = ""
 animateActorIsPlayer = false
-choices = Array[ExtResource("2_f8s1i")]([])
+choices = Array[ExtResource("2_f8s1i")]([SubResource("Resource_c5l35"), SubResource("Resource_x6hn6"), SubResource("Resource_8vqkg")])
 metadata/_custom_type_script = "uid://grt2yrupha8c"
 
 [sub_resource type="Resource" id="Resource_f8s1i"]
@@ -61,8 +99,7 @@ metadata/_custom_type_script = "uid://bjesn36acj0uh"
 script = ExtResource("3_f8s1i")
 entryId = ""
 items = Array[ExtResource("1_757s6")]([SubResource("Resource_odctl"), SubResource("Resource_3od1t")])
-storyRequirements = SubResource("Resource_f8s1i")
-ordStoryRequirements = Array[ExtResource("2_t8w23")]([])
+ordStoryRequirements = Array[ExtResource("2_t8w23")]([SubResource("Resource_f8s1i")])
 closesDialogue = false
 fullHealsPlayer = false
 annotation = ""

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=12 format=3 uid="uid://cll3hc4unphdp"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=16 format=3 uid="uid://cll3hc4unphdp"]
 
 [ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_1ri6y"]
 [ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="2_25rlg"]
@@ -6,6 +6,8 @@
 [ext_resource type="Script" uid="uid://b6oofnelefs8o" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_m1apy"]
 [ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="4_6tnk0"]
 [ext_resource type="Resource" uid="uid://bp3pwpfmyqxr0" path="res://gamedata/dialogue/grandstone/dr_ildran/ildran_dragon.tres" id="4_am4dc"]
+[ext_resource type="Resource" uid="uid://c3myecjf348or" path="res://gamedata/dialogue/grandstone/dr_ildran/draconic_experiments/draconic_experiments_q1_inprogress.tres" id="5_608uc"]
+[ext_resource type="Resource" uid="uid://drhrlo64n28k" path="res://gamedata/dialogue/grandstone/dr_ildran/draconic_experiments/draconic_experiments_q2_inprogress.tres" id="6_7hkcj"]
 [ext_resource type="Script" uid="uid://fw22o8hbosnk" path="res://scripts/inventory/inventory_slot.gd" id="6_mr7ff"]
 
 [sub_resource type="Resource" id="Resource_e7hke"]
@@ -29,6 +31,30 @@ buttonDims = Vector2(80, 40)
 turnsInQuest = ""
 isDeclineChoice = false
 
+[sub_resource type="Resource" id="Resource_0tvek"]
+script = ExtResource("2_i2w6n")
+choiceBtn = "Dragon Shard..."
+leadsTo = ExtResource("5_608uc")
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_m1apy")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = false
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_608uc"]
+script = ExtResource("2_i2w6n")
+choiceBtn = "About That Dragon Shard..."
+leadsTo = ExtResource("6_7hkcj")
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_m1apy")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = false
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
 [sub_resource type="Resource" id="Resource_qkb2o"]
 script = ExtResource("1_1ri6y")
 lines = Array[String](["Go, help Standstill then! We did promise them. I'll visit as soon as the critical repairs are made."])
@@ -38,7 +64,7 @@ speakerOverride = ""
 actorAnimation = ""
 animateActorTreePath = ""
 animateActorIsPlayer = false
-choices = Array[ExtResource("2_i2w6n")]([SubResource("Resource_e7hke"), SubResource("Resource_j58bw")])
+choices = Array[ExtResource("2_i2w6n")]([SubResource("Resource_e7hke"), SubResource("Resource_j58bw"), SubResource("Resource_0tvek"), SubResource("Resource_608uc")])
 
 [sub_resource type="Resource" id="Resource_l4ybl"]
 script = ExtResource("4_6tnk0")
@@ -70,8 +96,7 @@ invalidFromHavingItems = Array[ExtResource("6_mr7ff")]([])
 script = ExtResource("2_25rlg")
 entryId = ""
 items = Array[ExtResource("1_1ri6y")]([SubResource("Resource_qkb2o")])
-storyRequirements = SubResource("Resource_l4ybl")
-ordStoryRequirements = Array[ExtResource("4_6tnk0")]([])
+ordStoryRequirements = Array[ExtResource("4_6tnk0")]([SubResource("Resource_l4ybl")])
 closesDialogue = false
 fullHealsPlayer = false
 annotation = ""
