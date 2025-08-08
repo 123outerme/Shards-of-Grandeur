@@ -1,4 +1,4 @@
-[gd_scene load_steps=434 format=4 uid="uid://d3yjxfcekoxn0"]
+[gd_scene load_steps=444 format=4 uid="uid://d3yjxfcekoxn0"]
 
 [ext_resource type="Script" uid="uid://vg00rfnn3346" path="res://scripts/overworld/map_script.gd" id="1_yf525"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_wgf4x"]
@@ -87,6 +87,7 @@
 [ext_resource type="PackedScene" uid="uid://drntacqptcfm5" path="res://prefabs/entities/decoration.tscn" id="58_lgh17"]
 [ext_resource type="Resource" uid="uid://cfynnxsxyg38w" path="res://gamedata/ground_items/quiet_tundra/tundra_shovel.tres" id="58_rkn3e"]
 [ext_resource type="Texture2D" uid="uid://yk538nfavrs3" path="res://graphics/structures/igloo.png" id="59_3sd1n"]
+[ext_resource type="Resource" uid="uid://bxtm6w8y0luma" path="res://gamedata/ground_items/quiet_tundra/tundra_west_prismatic_boon.tres" id="62_kii16"]
 [ext_resource type="Resource" uid="uid://bhg4i01ukcdvd" path="res://gamedata/combatants/rat/rat.tres" id="64_a63kb"]
 
 [sub_resource type="Resource" id="Resource_4wyrg"]
@@ -2415,6 +2416,64 @@ metadata/_custom_type_script = "uid://dllqv5vxrou7r"
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wpyiy"]
 size = Vector2(197, 161)
 
+[sub_resource type="Resource" id="Resource_vyenx"]
+script = ExtResource("15_p7apj")
+spawnerId = "tundra_west_36"
+disabled = false
+spawnedLastEncounter = false
+metadata/_custom_type_script = "uid://dioty4gjx3hdu"
+
+[sub_resource type="Resource" id="Resource_tmlw1"]
+script = ExtResource("16_kxg45")
+combatant = ExtResource("34_yup33")
+weight = 0.45
+metadata/_custom_type_script = "uid://dga8cpwmm0j6h"
+
+[sub_resource type="Resource" id="Resource_po4s0"]
+script = ExtResource("16_kxg45")
+combatant = ExtResource("31_al2hv")
+weight = 0.4
+metadata/_custom_type_script = "uid://dga8cpwmm0j6h"
+
+[sub_resource type="Resource" id="Resource_gmujo"]
+script = ExtResource("16_kxg45")
+weight = 0.15
+metadata/_custom_type_script = "uid://dga8cpwmm0j6h"
+
+[sub_resource type="Resource" id="Resource_30dwq"]
+script = ExtResource("16_kxg45")
+combatant = ExtResource("16_r7qac")
+weight = 0.4
+metadata/_custom_type_script = "uid://dga8cpwmm0j6h"
+
+[sub_resource type="Resource" id="Resource_yfaww"]
+script = ExtResource("16_kxg45")
+combatant = ExtResource("34_yup33")
+weight = 0.4
+metadata/_custom_type_script = "uid://dga8cpwmm0j6h"
+
+[sub_resource type="Resource" id="Resource_60xda"]
+script = ExtResource("16_kxg45")
+weight = 0.2
+metadata/_custom_type_script = "uid://dga8cpwmm0j6h"
+
+[sub_resource type="Resource" id="Resource_jomg8"]
+script = ExtResource("18_r7qac")
+combatantsMinLevel = 24
+combatantsMaxLevel = 26
+combatantsLvToPlayerLvRatio = 1.0
+levelStages = Array[ExtResource("17_7mgps")]([])
+combatant2Options = Array[ExtResource("16_kxg45")]([SubResource("Resource_tmlw1"), SubResource("Resource_po4s0"), SubResource("Resource_gmujo")])
+combatant3Options = Array[ExtResource("16_kxg45")]([SubResource("Resource_30dwq"), SubResource("Resource_yfaww"), SubResource("Resource_60xda")])
+combatant1 = ExtResource("34_yup33")
+specialRules = 0
+customWinText = ""
+battleMapPath = ""
+metadata/_custom_type_script = "uid://dllqv5vxrou7r"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3a1wu"]
+size = Vector2(155, 131)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ybcso"]
 size = Vector2(122.329, 8)
 
@@ -3048,6 +3107,7 @@ saveName = "tundra_west_snow_berries_3"
 
 [node name="GroundItem13" parent="TilemapRoot" instance=ExtResource("3_pc3q1")]
 position = Vector2(281, -3543)
+pickedUpItem = ExtResource("62_kii16")
 
 [node name="KingRatSnowCover" parent="TilemapRoot" instance=ExtResource("56_j1eib")]
 z_index = -17
@@ -3454,6 +3514,15 @@ tilemap = NodePath("../../TilemapRoot")
 position = Vector2(-0.5, -1.5)
 shape = SubResource("RectangleShape2D_wpyiy")
 
+[node name="EnemySpawner36" parent="EnemySpawners" instance=ExtResource("14_jdsus")]
+position = Vector2(347, -4111)
+spawnerData = SubResource("Resource_vyenx")
+enemyEncounter = SubResource("Resource_jomg8")
+
+[node name="SpawnShape" parent="EnemySpawners/EnemySpawner36/SpawnArea" index="0"]
+position = Vector2(0.5, -0.5)
+shape = SubResource("RectangleShape2D_3a1wu")
+
 [node name="HilltopEastWarpZone" parent="." instance=ExtResource("5_46r8r")]
 position = Vector2(-304, 289)
 mapName = "hilltop_east"
@@ -3652,6 +3721,7 @@ navigation_layers = 4
 [editable path="EnemySpawners/EnemySpawner33"]
 [editable path="EnemySpawners/EnemySpawner34"]
 [editable path="EnemySpawners/EnemySpawner35"]
+[editable path="EnemySpawners/EnemySpawner36"]
 [editable path="HilltopEastWarpZone"]
 [editable path="SeaLegNorthWarpZone"]
 [editable path="FrostmintVillageWarpZone"]
