@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="ParticlePreset" load_steps=8 format=3 uid="uid://d0kayilcqr1u6"]
+
+[ext_resource type="Texture2D" uid="uid://oi8rk845uje8" path="res://graphics/particles/dark/dark_1.png" id="1_1k0m7"]
+[ext_resource type="Script" uid="uid://cdxc0ye8vnah8" path="res://scripts/battle/particles/particle_preset.gd" id="1_y04l7"]
+[ext_resource type="Texture2D" uid="uid://ceaugujdsimv8" path="res://graphics/particles/dark/dark_2.png" id="2_ea8vw"]
+[ext_resource type="Texture2D" uid="uid://bg7f8vjh6fgp7" path="res://graphics/particles/dark/dark_3.png" id="3_mc57p"]
+[ext_resource type="Texture2D" uid="uid://bql4uh54mrlv4" path="res://graphics/particles/dark/dark_4.png" id="4_quori"]
+[ext_resource type="AudioStream" uid="uid://b6ovxmt0vdswq" path="res://audio/sfx/moves/dark/intimidating_sting.mp3" id="6_ea8vw"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_yh3sq"]
+lifetime_randomness = 0.1
+particle_flag_disable_z = true
+emission_shape = 2
+emission_sphere_radius = 5.0
+radial_velocity_min = 20.0
+radial_velocity_max = 25.0
+gravity = Vector3(0, 0, 0)
+
+[resource]
+script = ExtResource("1_y04l7")
+emitter = "behind"
+count = 4
+lifetime = 0.625
+duration = 1.25
+staggered = true
+processMaterial = SubResource("ParticleProcessMaterial_yh3sq")
+particleTextures = Array[Texture2D]([ExtResource("1_1k0m7"), ExtResource("2_ea8vw"), ExtResource("3_mc57p"), ExtResource("4_quori")])
+sfx = ExtResource("6_ea8vw")
+randomizeSfxPitch = false
+metadata/_custom_type_script = "uid://cdxc0ye8vnah8"

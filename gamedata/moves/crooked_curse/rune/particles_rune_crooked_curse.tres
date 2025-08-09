@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="ParticlePreset" load_steps=7 format=3 uid="uid://d0m5koul4dggl"]
+
+[ext_resource type="Script" uid="uid://cdxc0ye8vnah8" path="res://scripts/battle/particles/particle_preset.gd" id="1_7hcs5"]
+[ext_resource type="Texture2D" uid="uid://oi8rk845uje8" path="res://graphics/particles/dark/dark_1.png" id="1_fcoe4"]
+[ext_resource type="Texture2D" uid="uid://ceaugujdsimv8" path="res://graphics/particles/dark/dark_2.png" id="2_nfd5s"]
+[ext_resource type="Texture2D" uid="uid://bg7f8vjh6fgp7" path="res://graphics/particles/dark/dark_3.png" id="3_qyp3b"]
+[ext_resource type="Texture2D" uid="uid://bql4uh54mrlv4" path="res://graphics/particles/dark/dark_4.png" id="4_fyiik"]
+[ext_resource type="Material" uid="uid://dgmy3478al764" path="res://gamedata/moves/crooked_curse/rune/rune_crooked_curse_particle_process_mat.tres" id="5_nfd5s"]
+
+[resource]
+script = ExtResource("1_7hcs5")
+emitter = "front"
+count = 3
+lifetime = 0.6
+duration = 0.5
+staggered = true
+processMaterial = ExtResource("5_nfd5s")
+particleTextures = Array[Texture2D]([ExtResource("1_fcoe4"), ExtResource("2_nfd5s"), ExtResource("3_qyp3b"), ExtResource("4_fyiik")])
+randomizeSfxPitch = false
+metadata/_custom_type_script = "uid://cdxc0ye8vnah8"
