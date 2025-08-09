@@ -1,10 +1,11 @@
-[gd_resource type="Resource" script_class="WorldLocation" load_steps=7 format=3 uid="uid://dkj0nn505ikid"]
+[gd_resource type="Resource" script_class="WorldLocation" load_steps=8 format=3 uid="uid://dkj0nn505ikid"]
 
 [ext_resource type="Script" uid="uid://1kibgfap86bm" path="res://scripts/overworld/map_entry.gd" id="1_x5sg0"]
 [ext_resource type="AudioStream" uid="uid://dnfsxipd2v2xo" path="res://audio/music/battle/battletheme_uvutudx_demo.mp3" id="2_8h22d"]
 [ext_resource type="AudioStream" uid="uid://d0c34p7rvr8rf" path="res://audio/music/gtl_3.mp3" id="2_q4vxc"]
 [ext_resource type="Script" uid="uid://dd27pbjjyrw7p" path="res://scripts/overworld/world_location.gd" id="2_r84jc"]
 [ext_resource type="AudioStream" uid="uid://c7d7pycfjgo44" path="res://audio/music/battle/newbattlethemev2.mp3" id="3_tljnc"]
+[ext_resource type="Resource" uid="uid://b2xfuefroa36n" path="res://gamedata/particle_presets/overworld/particles_sand.tres" id="4_1yalo"]
 
 [sub_resource type="Resource" id="Resource_at8q2"]
 script = ExtResource("1_x5sg0")
@@ -14,6 +15,7 @@ battleMapName = "desert_battle_map"
 battleMusic = Array[AudioStream]([ExtResource("2_8h22d"), ExtResource("3_tljnc")])
 isRecoverLocation = false
 recoverPosition = Vector2(0, 0)
+cameraParticles = ExtResource("4_1yalo")
 
 [resource]
 script = ExtResource("2_r84jc")

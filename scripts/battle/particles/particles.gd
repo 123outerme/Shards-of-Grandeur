@@ -47,14 +47,14 @@ var startTime: float = 0
 		set_make_particles(value)
 var _makeParticles: bool = false
 
-func _init():
+func _init() -> void:
 	makeParticles = false
 	
-func _process(_delta):
-	if waves > 0 and Time.get_unix_time_from_system() > startTime + duration and makeParticles:
+func _process(_delta) -> void:
+	if not duration < 0 and waves > 0 and Time.get_unix_time_from_system() > startTime + duration and makeParticles:
 		set_make_particles(false)
 
-func load_preset():
+func load_preset() -> void:
 	lifetime = preset.lifetime
 	set_num_particles(preset.count)
 	duration = preset.duration
@@ -69,7 +69,7 @@ func load_preset():
 			particleSpawner.process_material = preset.processMaterial
 			textureIdx += 1
 
-func set_make_particles(showParticles: bool):
+func set_make_particles(showParticles: bool) -> void:
 	_makeParticles = showParticles
 	var children = get_children()
 	if showParticles:
@@ -78,19 +78,28 @@ func set_make_particles(showParticles: bool):
 		var child = children[idx]
 		if child is GPUParticles2D:
 			var particleSpawner: GPUParticles2D = child as GPUParticles2D
-			if particleSpawner.emitting != showParticles and not (not particleSpawner.emitting and preset.count < 1):
-				if preset.staggered and not idx == 0:
+			if preset != null and particleSpawner.emitting != showParticles and not (not particleSpawner.emitting and preset.count < 1):
+				if showParticles and preset.staggered and not idx == 0:
 					# stagger by delaying a portion of the particles' lifetime to start the next spawning process
 					await get_tree().create_timer(preset.lifetime / len(children)).timeout
 				particleSpawner.emitting = showParticles
 			particleSpawner.lifetime = lifetime
+			particleSpawner.visible = showParticles
 
-func set_num_particles(value: int):
+func set_num_particles(value: int) -> void:
 	if value < 1:
 		return
-	var children = get_children()
+	var children: Array[Node] = get_children()
 	_particles = value
 	for child in children:
 		if child is GPUParticles2D:
 			var particleSpawner: GPUParticles2D = child as GPUParticles2D
 			particleSpawner.amount = _particles
+
+func erase_all_particles() -> void:
+	makeParticles = false
+	var children: Array[Node] = get_children()
+	for child in children:
+		if child is GPUParticles2D:
+			var particleSpawner: GPUParticles2D = child as GPUParticles2D
+			particleSpawner.visible = false

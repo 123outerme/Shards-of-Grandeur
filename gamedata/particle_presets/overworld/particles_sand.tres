@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="ParticlePreset" load_steps=7 format=3 uid="uid://b2xfuefroa36n"]
+
+[ext_resource type="Texture2D" uid="uid://btsmsrx4vgg5a" path="res://graphics/particles/earth/sand_1.png" id="1_b4txq"]
+[ext_resource type="Script" uid="uid://cdxc0ye8vnah8" path="res://scripts/battle/particles/particle_preset.gd" id="1_s63o0"]
+[ext_resource type="Texture2D" uid="uid://dw5r1x16jqgtm" path="res://graphics/particles/earth/sand_2.png" id="2_a033l"]
+[ext_resource type="Texture2D" uid="uid://cjaw2f5fl7oxj" path="res://graphics/particles/earth/sand_3.png" id="3_vkph1"]
+[ext_resource type="Texture2D" uid="uid://ftcvry4cdiqb" path="res://graphics/particles/earth/sand_4.png" id="4_vgk32"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_b1wr0"]
+lifetime_randomness = 0.1
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(-160, -45, 0)
+emission_shape = 3
+emission_box_extents = Vector3(1, 135, 1)
+direction = Vector3(0.993, 0.122, 0)
+spread = 2.0
+initial_velocity_min = 155.0
+initial_velocity_max = 180.0
+gravity = Vector3(0, 0, 0)
+
+[resource]
+script = ExtResource("1_s63o0")
+emitter = "behind"
+count = 35
+lifetime = 2.25
+duration = -1.0
+staggered = true
+processMaterial = SubResource("ParticleProcessMaterial_b1wr0")
+particleTextures = Array[Texture2D]([ExtResource("1_b4txq"), ExtResource("2_a033l"), ExtResource("3_vkph1"), ExtResource("4_vgk32")])
+randomizeSfxPitch = false
+metadata/_custom_type_script = "uid://cdxc0ye8vnah8"

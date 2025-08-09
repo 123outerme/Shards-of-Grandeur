@@ -150,6 +150,7 @@ func reparent_player():
 	else:
 		printerr('TILEMAP NULL error')
 	player.speed = player.BASE_SPEED # reset running
+	player.cam.play_particles(mapEntry.cameraParticles)
 	SceneLoader.cutscenePlayer.rootNode = tilemap.get_parent()
 
 func destroy_overworld_enemies():

@@ -14,6 +14,7 @@ const CAM_SHAKING_POSITIONS: Array[Vector2] = [
 ]
 
 @onready var player: PlayerController = get_node("..")
+@onready var particleEmitter: Particles = get_node('ParticleEmitter')
 @onready var alertControl: Control = get_node('AlertControl')
 @onready var letterbox: Control = get_node("Letterbox")
 @onready var shade: Control = get_node("Shade")
@@ -193,6 +194,13 @@ func toggle_cutscene_paused_shade():
 		shadeColor.modulate = Color(0, 0, 0, max(shadeColor.modulate.a, 0.7))
 		resumeButton.grab_focus()
 	set_alert_panels_lifetime_pause(cutscenePaused)
+
+func play_particles(preset: ParticlePreset) -> void:
+	if preset == null:
+		particleEmitter.erase_all_particles()
+	particleEmitter.preset = preset
+	if preset != null:
+		particleEmitter.makeParticles = true
 
 func _fade_out_complete():
 	if not interruptTween:
