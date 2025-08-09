@@ -1,8 +1,8 @@
-[gd_resource type="Resource" script_class="MoveAnimSprite" load_steps=7 format=3 uid="uid://b341u4bvoymni"]
+[gd_resource type="Resource" script_class="MoveAnimSprite" load_steps=8 format=3 uid="uid://b341u4bvoymni"]
 
 [ext_resource type="Script" uid="uid://n71lfdnd5xrr" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite_frame.gd" id="1_veaj7"]
 [ext_resource type="Script" uid="uid://mk6loduurcg4" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="2_iiuts"]
-[ext_resource type="AudioStream" uid="uid://dmehiu0e38fdb" path="res://audio/sfx/moves/heal.ogg" id="2_v140q"]
+[ext_resource type="AudioStream" uid="uid://caf0a2u6nq5tv" path="res://audio/sfx/moves/ice/refreeze.mp3" id="2_v140q"]
 [ext_resource type="SpriteFrames" uid="uid://s5nxpwtdykx2" path="res://graphics/moves/water/a_refreeze.tres" id="3_iiuts"]
 
 [sub_resource type="Resource" id="Resource_iiuts"]
@@ -46,12 +46,32 @@ randomizeSfxPitch = false
 emitCompleteOnStart = false
 metadata/_custom_type_script = "uid://n71lfdnd5xrr"
 
+[sub_resource type="Resource" id="Resource_mknng"]
+script = ExtResource("1_veaj7")
+annotation = "fade out"
+animation = ""
+duration = 0.5
+speed = 1.0
+opacity = 0.0
+spritePivot = Vector2(0, 0)
+relativeTo = 5
+position = Vector2(0, 0)
+offset = 0
+rotate = false
+rotateToFace = 1
+rotateToFacePosition = Vector2(0, 0)
+rotateToFaceOffset = 0
+trackRotationTarget = false
+randomizeSfxPitch = false
+emitCompleteOnStart = false
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
 [resource]
 script = ExtResource("2_iiuts")
 spriteFrames = ExtResource("3_iiuts")
 centerSprite = true
 maxSize = Vector2(32, 32)
-frames = Array[ExtResource("1_veaj7")]([SubResource("Resource_iiuts"), SubResource("Resource_v140q")])
+frames = Array[ExtResource("1_veaj7")]([SubResource("Resource_iiuts"), SubResource("Resource_v140q"), SubResource("Resource_mknng")])
 delayedUntilReposition = true
 playsOnImpactFrame = false
 onePerTarget = true

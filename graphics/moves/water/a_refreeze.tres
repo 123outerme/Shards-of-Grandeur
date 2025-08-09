@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=14 format=3 uid="uid://s5nxpwtdykx2"]
+[gd_resource type="SpriteFrames" load_steps=15 format=3 uid="uid://s5nxpwtdykx2"]
 
 [ext_resource type="Texture2D" uid="uid://b1rc45jo6p8pm" path="res://graphics/moves/water/refreeze/refreeze.png" id="1_j775d"]
 
@@ -50,6 +50,10 @@ region = Rect2(320, 0, 32, 32)
 atlas = ExtResource("1_j775d")
 region = Rect2(352, 0, 32, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_j775d"]
+atlas = ExtResource("1_j775d")
+region = Rect2(384, 0, 32, 32)
+
 [resource]
 animations = [{
 "frames": [{
@@ -96,6 +100,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_dcdx3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j775d")
 }],
 "loop": false,
 "name": &"refreeze",

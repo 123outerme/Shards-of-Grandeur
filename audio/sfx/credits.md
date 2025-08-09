@@ -34,6 +34,7 @@ This is the place where I will properly catalogue the creators and/or licenses o
 - `fire/impact4.mp3`: Authored by EminYILDIRIM -- https://freesound.org/s/562413/ -- License: Attribution 4.0
 - `ice/glass_shattering.mp3`: Authored by C_Rogers -- https://freesound.org/s/203375 -- License: Creative Commons 0
 - `ice/ice_glass.mp3`: Authored by athenspublic -- https://freesound.org/s/341579/ -- License: Creative Commons 0
+- `ice/sleigh_bells.mp3`, `ice/refreeze.mp3`: Authored by se2001 -- https://freesound.org/s/478601/ -- License: Creative Commons 0
 - `lightning/lightning_1.mp3`: Copyright (c) 2024 Ian Groat.
 - `lightning/lightning_2.mp3`: Copyright (c) 2024 Ian Groat.
 - `lightning/spark_double.mp3`, `lightning/spark_triple.mp3`: Authored by Cat-Fox_Alex -- https://freesound.org/s/818029/ -- License: Creative Commons 0
