@@ -47,9 +47,14 @@ var startTime: float = 0
 		set_make_particles(value)
 var _makeParticles: bool = false
 
-func _init() -> void:
-	makeParticles = false
-	
+@export var startParticlesOnLoad: bool = false
+
+@onready var timer: Timer = get_node('Timer')
+
+func _ready() -> void:
+	if not Engine.is_editor_hint():
+		makeParticles = startParticlesOnLoad
+
 func _process(_delta) -> void:
 	if not duration < 0 and waves > 0 and Time.get_unix_time_from_system() > startTime + duration and makeParticles:
 		set_make_particles(false)
@@ -71,17 +76,17 @@ func load_preset() -> void:
 
 func set_make_particles(showParticles: bool) -> void:
 	_makeParticles = showParticles
-	var children = get_children()
+	var children: Array[Node] = get_children()
 	if showParticles:
 		startTime = Time.get_unix_time_from_system()
 	for idx in range(len(children)):
-		var child = children[idx]
-		if child is GPUParticles2D:
-			var particleSpawner: GPUParticles2D = child as GPUParticles2D
+		if children[idx] is GPUParticles2D:
+			var particleSpawner: GPUParticles2D = children[idx] as GPUParticles2D
 			if preset != null and particleSpawner.emitting != showParticles and not (not particleSpawner.emitting and preset.count < 1):
 				if showParticles and preset.staggered and not idx == 0:
 					# stagger by delaying a portion of the particles' lifetime to start the next spawning process
-					await get_tree().create_timer(preset.lifetime / len(children)).timeout
+					timer.start(preset.lifetime / len(children))
+					await timer.timeout
 				particleSpawner.emitting = showParticles
 			particleSpawner.lifetime = lifetime
 			particleSpawner.visible = showParticles

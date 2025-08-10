@@ -22,9 +22,6 @@ class_name MapEntry
 ## if `isRecoverLocation` is true, the place where the player should spawn after recovering
 @export var recoverPosition: Vector2 = Vector2()
 
-## a ParticlePreset for particles to play on the player's camera particle emitter
-@export var cameraParticles: ParticlePreset = null
-
 static func get_battle_map_scene_path(mapName: String) -> String:
 	return 'res://prefabs/battle/battle_maps/' + mapName + '.tscn'
 
@@ -36,7 +33,6 @@ func _init(
 	i_battleMusic: Array[AudioStream] = [],
 	i_isRecover = false,
 	i_recoverPos = Vector2(),
-	i_cameraParticles: ParticlePreset = null,
 ):
 	path = i_path
 	requirements = i_requirements
@@ -45,7 +41,6 @@ func _init(
 	battleMusic = i_battleMusic
 	isRecoverLocation = i_isRecover
 	recoverPosition = i_recoverPos
-	cameraParticles = i_cameraParticles
 
 func get_map_path() -> String:
 	return 'res://prefabs/maps/' + path + '.tscn'

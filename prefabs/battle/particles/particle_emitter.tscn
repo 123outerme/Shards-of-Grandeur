@@ -25,45 +25,53 @@ waves = 2.0
 duration = 1.25
 
 [node name="GpuParticles1" type="GPUParticles2D" parent="."]
+visible = false
 emitting = false
 amount = 5
-process_material = SubResource("ParticleProcessMaterial_ftvmg")
 texture = ExtResource("3_2dho4")
 lifetime = 0.625
 explosiveness = 0.5
 collision_base_size = 2.0
 visibility_rect = Rect2(-20, -20, 40, 40)
 local_coords = true
+process_material = SubResource("ParticleProcessMaterial_ftvmg")
 
 [node name="GpuParticles2" type="GPUParticles2D" parent="."]
+visible = false
 emitting = false
 amount = 5
-process_material = SubResource("ParticleProcessMaterial_ftvmg")
 texture = ExtResource("4_0ssy5")
 lifetime = 0.625
 explosiveness = 0.5
 collision_base_size = 2.0
 visibility_rect = Rect2(-20, -20, 40, 40)
 local_coords = true
+process_material = SubResource("ParticleProcessMaterial_ftvmg")
 
 [node name="GpuParticles3" type="GPUParticles2D" parent="."]
+visible = false
 emitting = false
 amount = 5
-process_material = SubResource("ParticleProcessMaterial_ftvmg")
 texture = ExtResource("5_84x8s")
 lifetime = 0.625
 explosiveness = 0.5
 collision_base_size = 2.0
 visibility_rect = Rect2(-20, -20, 40, 40)
 local_coords = true
+process_material = SubResource("ParticleProcessMaterial_ftvmg")
 
 [node name="GpuParticles4" type="GPUParticles2D" parent="."]
+visible = false
 emitting = false
 amount = 5
-process_material = SubResource("ParticleProcessMaterial_ftvmg")
 texture = ExtResource("6_l6cyk")
 lifetime = 0.625
 explosiveness = 0.5
 collision_base_size = 2.0
 visibility_rect = Rect2(-20, -20, 40, 40)
 local_coords = true
+process_material = SubResource("ParticleProcessMaterial_ftvmg")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+ignore_time_scale = true

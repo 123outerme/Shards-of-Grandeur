@@ -1,11 +1,10 @@
-[gd_resource type="Resource" script_class="WorldLocation" load_steps=14 format=3 uid="uid://ct5re21o4w1pu"]
+[gd_resource type="Resource" script_class="WorldLocation" load_steps=13 format=3 uid="uid://ct5re21o4w1pu"]
 
 [ext_resource type="AudioStream" uid="uid://cfuuyombto64k" path="res://audio/music/overworld/standstill.mp3" id="1_0wv8b"]
 [ext_resource type="Script" uid="uid://1kibgfap86bm" path="res://scripts/overworld/map_entry.gd" id="1_w0atp"]
 [ext_resource type="Script" uid="uid://dd27pbjjyrw7p" path="res://scripts/overworld/world_location.gd" id="2_3ubyx"]
 [ext_resource type="Resource" uid="uid://fyqynvxrqkm6" path="res://gamedata/story_requirements/locations/reqs_standstill_burned.tres" id="3_1cu5g"]
 [ext_resource type="AudioStream" uid="uid://dnfsxipd2v2xo" path="res://audio/music/battle/battletheme_uvutudx_demo.mp3" id="3_ocfii"]
-[ext_resource type="Resource" uid="uid://cek38bpouiubh" path="res://gamedata/particle_presets/overworld/particles_ash.tres" id="4_0t8hf"]
 [ext_resource type="AudioStream" uid="uid://c7d7pycfjgo44" path="res://audio/music/battle/newbattlethemev2.mp3" id="4_lstum"]
 [ext_resource type="Script" uid="uid://fw22o8hbosnk" path="res://scripts/inventory/inventory_slot.gd" id="5_i0nsa"]
 [ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="6_m4cv4"]
@@ -45,7 +44,6 @@ battleMapName = "burned_forest_battle_map"
 battleMusic = Array[AudioStream]([ExtResource("3_ocfii"), ExtResource("4_lstum")])
 isRecoverLocation = true
 recoverPosition = Vector2(168, -140)
-cameraParticles = ExtResource("4_0t8hf")
 
 [sub_resource type="Resource" id="Resource_ri1r4"]
 script = ExtResource("1_w0atp")
@@ -56,7 +54,6 @@ battleMapName = "burned_forest_battle_map"
 battleMusic = Array[AudioStream]([ExtResource("3_ocfii"), ExtResource("4_lstum")])
 isRecoverLocation = false
 recoverPosition = Vector2(0, 0)
-cameraParticles = ExtResource("4_0t8hf")
 
 [sub_resource type="Resource" id="Resource_jimr8"]
 script = ExtResource("1_w0atp")
