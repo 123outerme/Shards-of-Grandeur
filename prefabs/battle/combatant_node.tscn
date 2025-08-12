@@ -52,10 +52,8 @@ preset = ExtResource("8_a3k0w")
 lifetime = 0.75
 waves = 0.9
 duration = 0.675
-startParticlesOnLoad = null
 
 [node name="BehindParticleEmitter" parent="SpriteContainer/BehindParticleContainer" instance=ExtResource("11_231h2")]
-startParticlesOnLoad = null
 
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="SpriteContainer"]
 sprite_frames = SubResource("SpriteFrames_nsy4x")
@@ -66,7 +64,6 @@ offset = Vector2(-8, -8)
 
 [node name="FrontParticleEmitter" parent="SpriteContainer/FrontParticleContainer" instance=ExtResource("11_231h2")]
 scale = Vector2(1.5, 1.5)
-startParticlesOnLoad = null
 
 [node name="HitParticleEmitter" parent="SpriteContainer/FrontParticleContainer" instance=ExtResource("11_231h2")]
 scale = Vector2(1.5, 1.5)
@@ -75,7 +72,6 @@ lifetime = 0.5
 particles = 3
 waves = 1.0
 duration = 0.5
-startParticlesOnLoad = null
 
 [node name="GpuParticles1" parent="SpriteContainer/FrontParticleContainer/HitParticleEmitter" index="0"]
 amount = 3
@@ -104,7 +100,6 @@ lifetime = 0.75
 particles = 6
 waves = 0.9
 duration = 0.675
-startParticlesOnLoad = null
 
 [node name="EventTextContainer" type="Control" parent="SpriteContainer"]
 z_index = 2

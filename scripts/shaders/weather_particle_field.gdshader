@@ -23,7 +23,7 @@ uniform int horizontalDensity = 4;
 */
 uniform int verticalDensity = 4;
 
-/** The max distance (in pixels) that each particle may be randomly displaced in a particular direction
+/** The max distance (in pixels) that each particle may be randomly displaced in a particular direction; a translation overflowing the particle's cell will wrap around
 */
 uniform float positionRandRange = 3;
 
@@ -109,8 +109,8 @@ void fragment() {
 			
 			//*
 			if (
-				int(floor(pixelPos.x + timeOffset.x)) % cellDims.x == int(round(randVec3.x * positionRandRange)) && 
-				int(floor(pixelPos.y + timeOffset.y)) % cellDims.y == int(round(randVec3.y * positionRandRange))
+				int(floor(pixelPos.x + timeOffset.x)) % cellDims.x == (int(round(randVec3.x * positionRandRange)) % cellDims.x) && 
+				int(floor(pixelPos.y + timeOffset.y)) % cellDims.y == (int(round(randVec3.y * positionRandRange)) % cellDims.y)
 			) {
 				switch (particleIdx) {
 					case 0u:
