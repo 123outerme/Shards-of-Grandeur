@@ -7,13 +7,17 @@ shader_type canvas_item;
 */
 uniform float weather_direction_angle_degrees = 45.0;
 
-/** The angle range (in degrees) at which `weather_direction_angle_degrees` will randomly vary per particle
+/** NOTE: not currently functional. The angle range (in degrees) at which `weather_direction_angle_degrees` will randomly vary per particle
 */
 uniform float weather_direction_angle_rand_range = 2.0;
 
-/** Speed at which the weather particles will fall
+/** Speed at which the weather particles move in the chosen direction
 */
 uniform float speed = 10.0;
+
+/** Range at which the `speed` will randomly vary based on the specific particle
+*/
+uniform float speed_rand_range = 0.5;
 
 /** Density in the X direction of the particles on the screen
 */
@@ -49,12 +53,14 @@ uniform sampler2D particle4;
 */
 uniform ivec2 particleDims = ivec2(2, 2);
 
-uniform float particleScale = 1.0;
+/** Integer (pixel) scaling of the particle textures; note that a higher number DOES incur a higher processing time cost
+*/
+uniform int particleScale = 1;
 
 varying vec2 vertex_position;
 varying float motionAngleRad;
 
-vec3 floatHashVec2ToVec3(in highp vec2 f) {
+highp vec3 floatHashVec2ToVec3(in highp vec2 f) {
     uint fx = fixZero(f.x);
     uint fy = fixZero(f.y);
 
@@ -73,57 +79,61 @@ vec3 floatHashVec2ToVec3(in highp vec2 f) {
 void vertex() {
 	vertex_position = VERTEX;
 	motionAngleRad = (weather_direction_angle_degrees + 180.0) * PI / 180.0;
-	COLOR = vec4(0, 0, 0, 0);
 }
 
 void fragment() {
 	vec4 color = COLOR;
 
-	for(float x = 0.0; x < float(particleDims.x); x++) {
-		for (float y = 0.0; y < float(particleDims.y); y++) {
+	for(float x = 0.0; x < float(particleDims.x * particleScale); x++) {
+		for (float y = 0.0; y < float(particleDims.y * particleScale); y++) {
 			vec2 pixelPos = vertex_position - vec2(x, y);
-			ivec2 cellDims = ivec2(horizontalDensity + particleDims.x, verticalDensity + particleDims.y);
+			ivec2 cellDims = ivec2(horizontalDensity + particleDims.x * particleScale, verticalDensity + particleDims.y * particleScale);
 			vec2 timeOffset = vec2(cos(motionAngleRad), sin(motionAngleRad)) * TIME * speed;
+			
 			ivec2 cellPos = ivec2(
 				int((pixelPos.x + timeOffset.x) / float(cellDims.x)),
 				int((pixelPos.y + timeOffset.y) / float(cellDims.y))
 			);
 			
-			uint particleIdx = uintHashVec2ToFloat(vec2(cellPos)) % 4u;
+			highp vec3 randVec3 = floatHashVec2ToVec3(vec2(cellPos));
 			
-			vec3 randVec3 = floatHashVec2ToVec3(vec2(cellPos));
-			float finalAngleRad = motionAngleRad + ((randVec3.z - 0.5) * weather_direction_angle_rand_range * PI / 180.0);
-			vec2 finalTimeOffset = vec2(cos(finalAngleRad), sin(finalAngleRad)) * TIME * speed;
-			
+			// note: doesn't work; causes weird artifacts on the particles as they cross cell boundaries
+			//float finalAngleRad = motionAngleRad + ((randVec3.z - 0.5) * weather_direction_angle_rand_range * PI / 180.0);
+			//vec2 finalTimeOffset = vec2(cos(finalAngleRad), sin(finalAngleRad)) * TIME * speed;
+			/* TESTING
 			if (color.a == 0.0) {
+				//color = vec4(pixelPos + finalTimeOffset - floor(pixelPos + finalTimeOffset), 0, 1);
 				/*
 				ivec2 finalCellPos = ivec2(
 					int((pixelPos.x + finalTimeOffset.x) / float(cellDims.x)),
 					int((pixelPos.y + finalTimeOffset.y) / float(cellDims.y))
 				);
-				//*/
+				//* /
 				//color = vec4(randVec3, 1);
 				//color = vec4(cellPos.x % 2 == 0 ? 1.0 : 0.0, cellPos.y % 2 == 0 ? 1.0 : 0.0, 0, 1);
 				//color = vec4(finalCellPos.x % 2 == 0 ? 1.0 : 0.0, finalCellPos.y % 2 == 0 ? 1.0 : 0.0, 0, 1);
 			}
+			//*/
 			
 			//*
 			if (
 				int(floor(pixelPos.x + timeOffset.x)) % cellDims.x == (int(round(randVec3.x * positionRandRange)) % cellDims.x) && 
 				int(floor(pixelPos.y + timeOffset.y)) % cellDims.y == (int(round(randVec3.y * positionRandRange)) % cellDims.y)
 			) {
+				uint particleIdx = uintHashVec2ToFloat(vec2(cellPos)) % 4u;
+				vec2 particleUV = vec2(floor(x / float(particleScale)), floor(y / float(particleScale)));
 				switch (particleIdx) {
 					case 0u:
-						color = texture(particle1, vec2(x, y));
+						color = texture(particle1, particleUV);
 						break;
 					case 1u:
-						color = texture(particle2, vec2(x, y));
+						color = texture(particle2, particleUV);
 						break;
 					case 2u:
-						color = texture(particle3, vec2(x, y));
+						color = texture(particle3, particleUV);
 						break;
 					case 3u:
-						color = texture(particle4, vec2(x, y));
+						color = texture(particle4, particleUV);
 						break;
 				}
 			}
