@@ -1,70 +1,135 @@
 shader_type canvas_item;
 
+// CC0 licensed source: https://github.com/MMqd/uint-shader-hash
+#include "res://scripts/shaders/uint_hash.gdshaderinc"
+
 /** Angle (in degrees) at which the weather particles will fall
 */
 uniform float weather_direction_angle_degrees = 45.0;
+
+/** The angle range (in degrees) at which `weather_direction_angle_degrees` will randomly vary per particle
+*/
+uniform float weather_direction_angle_rand_range = 2.0;
 
 /** Speed at which the weather particles will fall
 */
 uniform float speed = 10.0;
 
-/** Density of the particles on the screen
+/** Density in the X direction of the particles on the screen
 */
-uniform float density = 0.5;
+uniform int horizontalDensity = 4;
+
+/** Density in the Y direction of the particles on the screen
+*/
+uniform int verticalDensity = 4;
+
+/** The max distance (in pixels) that each particle may be randomly displaced in a particular direction
+*/
+uniform float positionRandRange = 3;
 
 /** A particle texture to use here
 */
-uniform sampler2D particle;
+uniform sampler2D particle1;
 
-/** The dimensions of the provided particle texture
+/** A particle texture to use here
 */
-uniform vec2 particleDims;
+uniform sampler2D particle2;
+
+
+/** A particle texture to use here
+*/
+uniform sampler2D particle3;
+
+
+/** A particle texture to use here
+*/
+uniform sampler2D particle4;
+
+/** The dimensions of the provided particle textures
+*/
+uniform ivec2 particleDims = ivec2(2, 2);
+
+uniform float particleScale = 1.0;
 
 varying vec2 vertex_position;
-varying float finalAngleDeg;
+varying float motionAngleRad;
 
-// from auto-generated ParticleProcessMaterial => ShaderMaterial converted shader
-uint hash(uint x) {
-	x = ((x >> uint(16)) ^ x) * uint(73244475);
-	x = ((x >> uint(16)) ^ x) * uint(73244475);
-	x = (x >> uint(16)) ^ x;
-	return x;
-}
+vec3 floatHashVec2ToVec3(in highp vec2 f) {
+    uint fx = fixZero(f.x);
+    uint fy = fixZero(f.y);
 
-float calculate_position_weight(vec2 position) {
-	float posX = cos(finalAngleDeg * PI / 180.0) * position.x;
-	float posY = sin(finalAngleDeg * PI / 180.0) * position.y;
-	float posXRotated = cos((finalAngleDeg + 90.0) * PI / 180.0) * position.x;
-	float posYRotated = sin((finalAngleDeg + 90.0) * PI / 180.0) * position.y;
-	return sin( (posX + posY + TIME * speed) * density ) * sin( (posXRotated + posYRotated) * density );
+    highp uint h = 2u; // 2 outputs
+
+    h = hashUint(h + fx, MAGIC_NUMBERS[0]);
+    h = hashUint(h + fy, MAGIC_NUMBERS[1]);
+
+    return vec3(
+        uintTo01Float(hashUint(h + fx, MAGIC_NUMBERS[0])),
+        uintTo01Float(hashUint(h + fy, MAGIC_NUMBERS[1])),
+        uintTo01Float(hashUint(h, MAGIC_NUMBERS[2]))
+    );
 }
 
 void vertex() {
 	vertex_position = VERTEX;
-	finalAngleDeg = weather_direction_angle_degrees + 180.0;
+	motionAngleRad = (weather_direction_angle_degrees + 180.0) * PI / 180.0;
+	COLOR = vec4(0, 0, 0, 0);
 }
 
 void fragment() {
-	vec4 color = vec4(0, 0, 0, 0);
-	
-	/*
-	float particlePos = calculate_position_weight(vertex_position, vec2(0, 0));
-	if (abs(particlePos - 1.0) <= 0.01) {
-		color = texture(particle, vec2(0, 0));
-	}
-	//*/
-	//*
-	for(int x = 0; x < int(particleDims.x); x++) {
-		for (int y = 0; y < int(particleDims.y); y++) {
-			float particlePos = calculate_position_weight(vertex_position - vec2(float(x), float(y)));
-			//color = vec4(particlePos, 0, 0, 1);
+	vec4 color = COLOR;
+
+	for(float x = 0.0; x < float(particleDims.x); x++) {
+		for (float y = 0.0; y < float(particleDims.y); y++) {
+			vec2 pixelPos = vertex_position - vec2(x, y);
+			ivec2 cellDims = ivec2(horizontalDensity + particleDims.x, verticalDensity + particleDims.y);
+			vec2 timeOffset = vec2(cos(motionAngleRad), sin(motionAngleRad)) * TIME * speed;
+			ivec2 cellPos = ivec2(
+				int((pixelPos.x + timeOffset.x) / float(cellDims.x)),
+				int((pixelPos.y + timeOffset.y) / float(cellDims.y))
+			);
+			
+			uint particleIdx = uintHashVec2ToFloat(vec2(cellPos)) % 4u;
+			
+			vec3 randVec3 = floatHashVec2ToVec3(vec2(cellPos));
+			float finalAngleRad = motionAngleRad + ((randVec3.z - 0.5) * weather_direction_angle_rand_range * PI / 180.0);
+			vec2 finalTimeOffset = vec2(cos(finalAngleRad), sin(finalAngleRad)) * TIME * speed;
+			
+			if (color.a == 0.0) {
+				/*
+				ivec2 finalCellPos = ivec2(
+					int((pixelPos.x + finalTimeOffset.x) / float(cellDims.x)),
+					int((pixelPos.y + finalTimeOffset.y) / float(cellDims.y))
+				);
+				//*/
+				//color = vec4(randVec3, 1);
+				//color = vec4(cellPos.x % 2 == 0 ? 1.0 : 0.0, cellPos.y % 2 == 0 ? 1.0 : 0.0, 0, 1);
+				//color = vec4(finalCellPos.x % 2 == 0 ? 1.0 : 0.0, finalCellPos.y % 2 == 0 ? 1.0 : 0.0, 0, 1);
+			}
+			
 			//*
-			if (abs(particlePos - 1.0) <= 0.03) {
-				color = texture(particle, vec2(float(x), float(y)));
+			if (
+				int(floor(pixelPos.x + timeOffset.x)) % cellDims.x == int(round(randVec3.x * positionRandRange)) && 
+				int(floor(pixelPos.y + timeOffset.y)) % cellDims.y == int(round(randVec3.y * positionRandRange))
+			) {
+				switch (particleIdx) {
+					case 0u:
+						color = texture(particle1, vec2(x, y));
+						break;
+					case 1u:
+						color = texture(particle2, vec2(x, y));
+						break;
+					case 2u:
+						color = texture(particle3, vec2(x, y));
+						break;
+					case 3u:
+						color = texture(particle4, vec2(x, y));
+						break;
+				}
 			}
 			//*/
 		}
 	}
-	//*/
+	
 	COLOR = color;
 }
