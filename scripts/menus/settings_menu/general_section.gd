@@ -152,6 +152,10 @@ func _on_background_motion_button_toggled(toggled_on: bool) -> void:
 	SettingsHandler.gameSettings.backgroundMotion = toggled_on
 	SettingsHandler.settings_changed.emit()
 
+func _on_weather_particles_button_toggled(toggled_on: bool) -> void:
+	SettingsHandler.gameSettings.disableWeatherParticles = toggled_on
+	SettingsHandler.settings_changed.emit()
+
 func _on_battle_anims_button_toggled(toggled_on: bool) -> void:
 	SettingsHandler.gameSettings.battleAnims = toggled_on
 	SettingsHandler.settings_changed.emit()

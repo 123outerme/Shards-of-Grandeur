@@ -1,4 +1,4 @@
-[gd_scene load_steps=452 format=4 uid="uid://d3yjxfcekoxn0"]
+[gd_scene load_steps=453 format=4 uid="uid://d3yjxfcekoxn0"]
 
 [ext_resource type="Script" uid="uid://vg00rfnn3346" path="res://scripts/overworld/map_script.gd" id="1_yf525"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_wgf4x"]
@@ -94,6 +94,7 @@
 [ext_resource type="Texture2D" uid="uid://bs6mahpieyhkw" path="res://graphics/particles/water/ice_2.png" id="70_xta7b"]
 [ext_resource type="Texture2D" uid="uid://ccl4dcdgdvq75" path="res://graphics/particles/water/ice_3.png" id="71_b57m2"]
 [ext_resource type="Texture2D" uid="uid://cur4mjy3ev262" path="res://graphics/particles/water/ice_4.png" id="72_rsoyn"]
+[ext_resource type="Script" uid="uid://cmdxg5os2o7br" path="res://scripts/shaders/weather_particle_field.gd" id="73_b57m2"]
 [ext_resource type="PackedScene" uid="uid://blb38hmic2jvq" path="res://prefabs/overworld/test_camera.tscn" id="91_2ah0r"]
 
 [sub_resource type="Resource" id="Resource_4wyrg"]
@@ -497,9 +498,9 @@ size = Vector2(30, 14)
 shader = ExtResource("68_0lb2e")
 shader_parameter/weather_direction_angle_degrees = 73.0
 shader_parameter/weather_direction_angle_rand_range = 2.0
-shader_parameter/speed = 13.0
-shader_parameter/horizontalDensity = 16
-shader_parameter/verticalDensity = 18
+shader_parameter/speed = 15.0
+shader_parameter/horizontalDensity = 20
+shader_parameter/verticalDensity = 24
 shader_parameter/positionRandRange = 120.0
 shader_parameter/particle1 = ExtResource("4_pu025")
 shader_parameter/particle2 = ExtResource("70_xta7b")
@@ -3192,6 +3193,7 @@ offset_top = -5105.0
 offset_right = 1985.0
 offset_bottom = -253.0
 texture = SubResource("PlaceholderTexture2D_xta7b")
+script = ExtResource("73_b57m2")
 
 [node name="EnemySpawners" type="Node" parent="."]
 
