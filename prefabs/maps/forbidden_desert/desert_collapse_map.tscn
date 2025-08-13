@@ -1,8 +1,10 @@
-[gd_scene load_steps=11 format=4 uid="uid://c4k5b5pm2bnp4"]
+[gd_scene load_steps=13 format=4 uid="uid://c4k5b5pm2bnp4"]
 
 [ext_resource type="Script" uid="uid://vg00rfnn3346" path="res://scripts/overworld/map_script.gd" id="1_0tily"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_g6jc4"]
+[ext_resource type="PackedScene" uid="uid://6i3blakgy4j0" path="res://prefabs/overworld/weather_particle_field.tscn" id="3_e11tw"]
 [ext_resource type="PackedScene" uid="uid://ckjsms2r3k2jv" path="res://prefabs/overworld/cutscene_trigger.tscn" id="3_kyvlw"]
+[ext_resource type="Material" uid="uid://di5gqd1dclblj" path="res://gamedata/materials/sand_weather_particle_field_material.tres" id="4_e74lw"]
 [ext_resource type="Script" uid="uid://fpa08p2kb0ts" path="res://scripts/cutscenes/cutscene.gd" id="5_d3qrq"]
 [ext_resource type="PackedScene" uid="uid://d3rsvv5iihm7t" path="res://prefabs/overworld/warp_zone.tscn" id="5_rq0t0"]
 [ext_resource type="Resource" uid="uid://vfw5dc7mtds" path="res://gamedata/cutscenes/forbidden_desert/player_collapse.tres" id="6_xl14y"]
@@ -69,6 +71,13 @@ tile_set = ExtResource("2_g6jc4")
 modulate = Color(1, 1, 1, 0)
 use_parent_material = true
 tile_set = ExtResource("2_g6jc4")
+
+[node name="WeatherParticleField" parent="TilemapRoot" instance=ExtResource("3_e11tw")]
+material = ExtResource("4_e74lw")
+offset_left = -336.0
+offset_top = -272.0
+offset_right = 1028.0
+offset_bottom = 464.0
 
 [node name="OneTileWideNav" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_hwgpv")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=144 format=4 uid="uid://d4i0j6b3bb4rt"]
+[gd_scene load_steps=146 format=4 uid="uid://d4i0j6b3bb4rt"]
 
 [ext_resource type="Script" uid="uid://vg00rfnn3346" path="res://scripts/overworld/map_script.gd" id="1_frkjt"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_y8mli"]
@@ -21,8 +21,10 @@
 [ext_resource type="SpriteFrames" uid="uid://chwjmt00er1wn" path="res://graphics/structures/anim_floating_stone_column.tres" id="17_vfs48"]
 [ext_resource type="PackedScene" uid="uid://qx5fovogo7h3" path="res://prefabs/entities/enemy_spawner.tscn" id="18_gn0fh"]
 [ext_resource type="Script" uid="uid://dioty4gjx3hdu" path="res://scripts/overworld/overworld_enemy/spawner_data.gd" id="19_17bg4"]
+[ext_resource type="PackedScene" uid="uid://6i3blakgy4j0" path="res://prefabs/overworld/weather_particle_field.tscn" id="19_w0j7g"]
 [ext_resource type="Resource" uid="uid://bhg4i01ukcdvd" path="res://gamedata/combatants/rat/rat.tres" id="20_blwto"]
 [ext_resource type="Resource" uid="uid://btnde87dlhjhu" path="res://gamedata/combatants/soot_spider/soot_spider.tres" id="20_ed52f"]
+[ext_resource type="Material" uid="uid://p8kmpy04r4mb" path="res://gamedata/materials/ash_weather_particle_field_material.tres" id="20_lda65"]
 [ext_resource type="Script" uid="uid://dga8cpwmm0j6h" path="res://scripts/battle/weighted_things/weighted_combatants.gd" id="21_bd3a7"]
 [ext_resource type="Resource" uid="uid://bwg8cky4fu6ri" path="res://gamedata/combatants/mystic_fox/mystic_fox.tres" id="22_6qat3"]
 [ext_resource type="Script" uid="uid://bvnw0ab8d80ti" path="res://scripts/overworld/overworld_enemy/random_encounter_level_stage.gd" id="23_x0rpw"]
@@ -75,7 +77,7 @@ priority = -1
 storyRequirements = Array[ExtResource("10_8swpe")]([])
 autoApplyState = false
 
-[sub_resource type="Resource" id="Resource_aa8k6"]
+[sub_resource type="Resource" id="Resource_lda65"]
 script = ExtResource("13_ol66b")
 saveName = "npc"
 spriteState = "default"
@@ -105,7 +107,7 @@ priority = -1
 storyRequirements = Array[ExtResource("10_8swpe")]([])
 autoApplyState = false
 
-[sub_resource type="Resource" id="Resource_lda65"]
+[sub_resource type="Resource" id="Resource_38ixq"]
 script = ExtResource("13_ol66b")
 saveName = "npc"
 spriteState = "default"
@@ -739,7 +741,7 @@ spriteStatesDict = Dictionary[String, ExtResource("9_qmgxs")]({
 "default": SubResource("Resource_d7oin")
 })
 spawnRequirements = ExtResource("12_riy1g")
-data = SubResource("Resource_aa8k6")
+data = SubResource("Resource_lda65")
 
 [node name="NPCSprite" parent="TilemapRoot/ChainLegionSoldier1" index="0"]
 sprite_frames = ExtResource("14_cved2")
@@ -760,7 +762,7 @@ spriteStatesDict = Dictionary[String, ExtResource("9_qmgxs")]({
 "default": SubResource("Resource_w0j7g")
 })
 spawnRequirements = ExtResource("12_riy1g")
-data = SubResource("Resource_lda65")
+data = SubResource("Resource_38ixq")
 
 [node name="NPCSprite" parent="TilemapRoot/ChainLegionSoldier2" index="0"]
 sprite_frames = ExtResource("15_ypepm")
@@ -783,6 +785,20 @@ sprite_frames = ExtResource("17_vfs48")
 
 [node name="Collision" parent="TilemapRoot/FloatingRockColumnDecoration10" index="1"]
 position = Vector2(0, 14)
+
+[node name="WeatherParticleField" parent="TilemapRoot" instance=ExtResource("19_w0j7g")]
+material = ExtResource("20_lda65")
+offset_left = -304.0
+offset_top = -368.0
+offset_right = 1210.0
+offset_bottom = 818.0
+
+[node name="WeatherParticleField2" parent="TilemapRoot" instance=ExtResource("19_w0j7g")]
+material = ExtResource("20_lda65")
+offset_left = -304.0
+offset_top = -368.0
+offset_right = 777.0
+offset_bottom = 950.0
 
 [node name="EnemySpawner" parent="." node_paths=PackedStringArray("tilemap") instance=ExtResource("18_gn0fh")]
 position = Vector2(254, 102)

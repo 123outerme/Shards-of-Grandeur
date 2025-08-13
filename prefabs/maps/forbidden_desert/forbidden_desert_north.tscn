@@ -1,4 +1,4 @@
-[gd_scene load_steps=291 format=4 uid="uid://qxj11axffa4k"]
+[gd_scene load_steps=293 format=4 uid="uid://qxj11axffa4k"]
 
 [ext_resource type="Script" uid="uid://vg00rfnn3346" path="res://scripts/overworld/map_script.gd" id="1_3dey3"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_7i8qa"]
@@ -33,6 +33,8 @@
 [ext_resource type="Resource" uid="uid://dm3g1qy72w0lg" path="res://gamedata/combatants/lithosaurus/lithosaurus.tres" id="16_0i17k"]
 [ext_resource type="Resource" uid="uid://0qma1pdmr3vo" path="res://gamedata/combatants/mirage/mirage.tres" id="17_mw1lr"]
 [ext_resource type="PackedScene" uid="uid://d3rsvv5iihm7t" path="res://prefabs/overworld/warp_zone.tscn" id="18_etsbx"]
+[ext_resource type="PackedScene" uid="uid://6i3blakgy4j0" path="res://prefabs/overworld/weather_particle_field.tscn" id="20_ik20v"]
+[ext_resource type="Material" uid="uid://di5gqd1dclblj" path="res://gamedata/materials/sand_weather_particle_field_material.tres" id="21_1lsdk"]
 [ext_resource type="PackedScene" uid="uid://b1u1r7encrpgs" path="res://prefabs/overworld/camera_hold_zone.tscn" id="21_exyyq"]
 [ext_resource type="Script" uid="uid://bvnw0ab8d80ti" path="res://scripts/overworld/overworld_enemy/random_encounter_level_stage.gd" id="28_iyks6"]
 [ext_resource type="PackedScene" uid="uid://cm5yegguv62vn" path="res://prefabs/overworld/enemy_deaggro_zone.tscn" id="35_pf670"]
@@ -1590,6 +1592,13 @@ saveName = "desert_north_memshard_1"
 position = Vector2(-629, -434)
 pickedUpItem = SubResource("Resource_esdqm")
 saveName = "desert_north_fruit_1"
+
+[node name="WeatherParticleField" parent="TilemapRoot" instance=ExtResource("20_ik20v")]
+material = ExtResource("21_1lsdk")
+offset_left = -1406.0
+offset_top = -1320.0
+offset_right = 1502.0
+offset_bottom = 866.0
 
 [node name="NomadCampWarpZone" parent="." instance=ExtResource("18_etsbx")]
 position = Vector2(-96, 772)

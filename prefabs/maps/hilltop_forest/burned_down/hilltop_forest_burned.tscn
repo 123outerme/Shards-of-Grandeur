@@ -1,4 +1,4 @@
-[gd_scene load_steps=101 format=4 uid="uid://digivf1opqsj8"]
+[gd_scene load_steps=103 format=4 uid="uid://digivf1opqsj8"]
 
 [ext_resource type="Script" uid="uid://vg00rfnn3346" path="res://scripts/overworld/map_script.gd" id="1_wyxfu"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_he5en"]
@@ -6,8 +6,10 @@
 [ext_resource type="PackedScene" uid="uid://qx5fovogo7h3" path="res://prefabs/entities/enemy_spawner.tscn" id="3_re2p5"]
 [ext_resource type="Script" uid="uid://dioty4gjx3hdu" path="res://scripts/overworld/overworld_enemy/spawner_data.gd" id="4_4cp5i"]
 [ext_resource type="Resource" uid="uid://c4xbbgvrpi0w3" path="res://gamedata/ground_items/hilltop_forest/hilltop_kindling.tres" id="4_ru7bg"]
+[ext_resource type="PackedScene" uid="uid://6i3blakgy4j0" path="res://prefabs/overworld/weather_particle_field.tscn" id="5_6mvke"]
 [ext_resource type="Resource" uid="uid://ta4xvquq2dev" path="res://gamedata/combatants/tree_bear/tree_bear.tres" id="5_ibrvy"]
 [ext_resource type="Script" uid="uid://dga8cpwmm0j6h" path="res://scripts/battle/weighted_things/weighted_combatants.gd" id="6_1kwfo"]
+[ext_resource type="Material" uid="uid://p8kmpy04r4mb" path="res://gamedata/materials/ash_weather_particle_field_material.tres" id="6_qx0mi"]
 [ext_resource type="Resource" uid="uid://xgwynsla8o42" path="res://gamedata/items/weapon/kindling.tres" id="6_v21v5"]
 [ext_resource type="Resource" uid="uid://bhg4i01ukcdvd" path="res://gamedata/combatants/rat/rat.tres" id="7_ye5kr"]
 [ext_resource type="Resource" uid="uid://bl888qwjxp3nx" path="res://gamedata/combatants/tree_bear/evolutions/inferno_bear/inferno_bear_equipment.tres" id="8_q2le3"]
@@ -518,6 +520,13 @@ tile_set = ExtResource("2_he5en")
 position = Vector2(-832, 46)
 pickedUpItem = ExtResource("4_ru7bg")
 saveName = "hilltop_kindling"
+
+[node name="WeatherParticleField" parent="TilemapRoot" instance=ExtResource("5_6mvke")]
+material = ExtResource("6_qx0mi")
+offset_left = -1232.0
+offset_top = -449.0
+offset_right = 1184.0
+offset_bottom = 720.0
 
 [node name="EnemySpawner" parent="." node_paths=PackedStringArray("tilemap") instance=ExtResource("3_re2p5")]
 position = Vector2(-659, 398)

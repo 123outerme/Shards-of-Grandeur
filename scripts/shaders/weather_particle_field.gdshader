@@ -17,7 +17,7 @@ uniform float speed = 10.0;
 
 /** Range at which the `speed` will randomly vary based on the specific particle
 */
-uniform float speed_rand_range = 0.5;
+//uniform float speed_rand_range = 0.5;
 
 /** Density in the X direction of the particles on the screen
 */
@@ -60,6 +60,22 @@ uniform int particleScale = 1;
 varying vec2 vertex_position;
 varying float motionAngleRad;
 
+highp vec2 floatHashVec2ToVec2(in highp vec2 f) {
+    uint fx = fixZero(f.x);
+    uint fy = fixZero(f.y);
+
+    highp uint h = 2u; // 2 outputs
+
+    h = hashUint(h + fx, MAGIC_NUMBERS[0]);
+    h = hashUint(h + fy, MAGIC_NUMBERS[1]);
+
+    return vec2(
+        uintTo01Float(hashUint(h + fx, MAGIC_NUMBERS[0])),
+        uintTo01Float(hashUint(h + fy, MAGIC_NUMBERS[1]))
+    );
+}
+
+/*
 highp vec3 floatHashVec2ToVec3(in highp vec2 f) {
     uint fx = fixZero(f.x);
     uint fy = fixZero(f.y);
@@ -75,6 +91,7 @@ highp vec3 floatHashVec2ToVec3(in highp vec2 f) {
         uintTo01Float(hashUint(h, MAGIC_NUMBERS[2]))
     );
 }
+//*/
 
 void vertex() {
 	vertex_position = VERTEX;
@@ -95,7 +112,7 @@ void fragment() {
 				int((pixelPos.y + timeOffset.y) / float(cellDims.y))
 			);
 			
-			highp vec3 randVec3 = floatHashVec2ToVec3(vec2(cellPos));
+			highp vec2 randVector = floatHashVec2ToVec2(vec2(cellPos));
 			
 			// note: doesn't work; causes weird artifacts on the particles as they cross cell boundaries
 			//float finalAngleRad = motionAngleRad + ((randVec3.z - 0.5) * weather_direction_angle_rand_range * PI / 180.0);
@@ -117,8 +134,8 @@ void fragment() {
 			
 			//*
 			if (
-				int(floor(pixelPos.x + timeOffset.x)) % cellDims.x == (int(round(randVec3.x * positionRandRange)) % cellDims.x) && 
-				int(floor(pixelPos.y + timeOffset.y)) % cellDims.y == (int(round(randVec3.y * positionRandRange)) % cellDims.y)
+				int(floor(pixelPos.x + timeOffset.x)) % cellDims.x == (int(round(randVector.x * positionRandRange)) % cellDims.x) && 
+				int(floor(pixelPos.y + timeOffset.y)) % cellDims.y == (int(round(randVector.y * positionRandRange)) % cellDims.y)
 			) {
 				uint particleIdx = uintHashVec2ToFloat(vec2(cellPos)) % 4u;
 				vec2 particleUV = vec2(floor(x / float(particleScale)), floor(y / float(particleScale)));

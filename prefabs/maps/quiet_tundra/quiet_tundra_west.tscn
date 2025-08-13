@@ -1,4 +1,4 @@
-[gd_scene load_steps=453 format=4 uid="uid://d3yjxfcekoxn0"]
+[gd_scene load_steps=447 format=4 uid="uid://d3yjxfcekoxn0"]
 
 [ext_resource type="Script" uid="uid://vg00rfnn3346" path="res://scripts/overworld/map_script.gd" id="1_yf525"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_wgf4x"]
@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://do1yjhijgbid3" path="res://prefabs/entities/simple_puzzle_decoration.tscn" id="4_8hka6"]
 [ext_resource type="Script" uid="uid://bwcja16pmp3mf" path="res://scripts/npcs/npc_sprite_state.gd" id="4_8htmm"]
 [ext_resource type="PackedScene" uid="uid://b1u1r7encrpgs" path="res://prefabs/overworld/camera_hold_zone.tscn" id="4_n3iar"]
-[ext_resource type="Texture2D" uid="uid://cqbc4t7b7hg58" path="res://graphics/particles/water/ice_1.png" id="4_pu025"]
 [ext_resource type="PackedScene" uid="uid://d3rsvv5iihm7t" path="res://prefabs/overworld/warp_zone.tscn" id="5_46r8r"]
 [ext_resource type="SpriteFrames" uid="uid://clqgmpaluch0c" path="res://graphics/animations/a_melee_merchant.tres" id="5_a0boj"]
 [ext_resource type="Resource" uid="uid://lkn8spj54mxr" path="res://gamedata/puzzles/quiet_tundra/blob_statue_puzzle.tres" id="5_ejdgh"]
@@ -90,12 +89,8 @@
 [ext_resource type="Texture2D" uid="uid://yk538nfavrs3" path="res://graphics/structures/igloo.png" id="59_3sd1n"]
 [ext_resource type="Resource" uid="uid://bxtm6w8y0luma" path="res://gamedata/ground_items/quiet_tundra/tundra_west_prismatic_boon.tres" id="62_kii16"]
 [ext_resource type="Resource" uid="uid://bhg4i01ukcdvd" path="res://gamedata/combatants/rat/rat.tres" id="64_a63kb"]
-[ext_resource type="Shader" uid="uid://tskr2ifqjlfj" path="res://scripts/shaders/weather_particle_field.gdshader" id="68_0lb2e"]
-[ext_resource type="Texture2D" uid="uid://bs6mahpieyhkw" path="res://graphics/particles/water/ice_2.png" id="70_xta7b"]
-[ext_resource type="Texture2D" uid="uid://ccl4dcdgdvq75" path="res://graphics/particles/water/ice_3.png" id="71_b57m2"]
-[ext_resource type="Texture2D" uid="uid://cur4mjy3ev262" path="res://graphics/particles/water/ice_4.png" id="72_rsoyn"]
-[ext_resource type="Script" uid="uid://cmdxg5os2o7br" path="res://scripts/shaders/weather_particle_field.gd" id="73_b57m2"]
-[ext_resource type="Texture2D" uid="uid://dawvnypyiwh4u" path="res://graphics/ui/transparent.png" id="73_rsoyn"]
+[ext_resource type="PackedScene" uid="uid://6i3blakgy4j0" path="res://prefabs/overworld/weather_particle_field.tscn" id="68_pu025"]
+[ext_resource type="Material" uid="uid://c13ri0lotilgi" path="res://gamedata/materials/snow_weather_particle_field_material.tres" id="69_13ign"]
 [ext_resource type="PackedScene" uid="uid://blb38hmic2jvq" path="res://prefabs/overworld/test_camera.tscn" id="91_2ah0r"]
 
 [sub_resource type="Resource" id="Resource_4wyrg"]
@@ -494,22 +489,6 @@ metadata/_custom_type_script = "uid://bjesn36acj0uh"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_swa6l"]
 size = Vector2(30, 14)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_x105b"]
-shader = ExtResource("68_0lb2e")
-shader_parameter/weather_direction_angle_degrees = 73.0
-shader_parameter/weather_direction_angle_rand_range = 2.0
-shader_parameter/speed = 15.0
-shader_parameter/speed_rand_range = 0.5
-shader_parameter/horizontalDensity = 20
-shader_parameter/verticalDensity = 24
-shader_parameter/positionRandRange = 120.0
-shader_parameter/particle1 = ExtResource("4_pu025")
-shader_parameter/particle2 = ExtResource("70_xta7b")
-shader_parameter/particle3 = ExtResource("71_b57m2")
-shader_parameter/particle4 = ExtResource("72_rsoyn")
-shader_parameter/particleDims = Vector2i(2, 2)
-shader_parameter/particleScale = 1
 
 [sub_resource type="Resource" id="Resource_0f81w"]
 script = ExtResource("15_p7apj")
@@ -3185,15 +3164,12 @@ storyRequirements = Array[ExtResource("7_qkweq")]([SubResource("Resource_pefdf")
 position = Vector2(0, 5)
 shape = SubResource("RectangleShape2D_swa6l")
 
-[node name="Snow" type="TextureRect" parent="TilemapRoot"]
-z_index = 1
-material = SubResource("ShaderMaterial_x105b")
+[node name="Snow" parent="TilemapRoot" instance=ExtResource("68_pu025")]
+material = ExtResource("69_13ign")
 offset_left = -334.0
 offset_top = -5105.0
 offset_right = 1985.0
 offset_bottom = -253.0
-texture = ExtResource("73_rsoyn")
-script = ExtResource("73_b57m2")
 
 [node name="EnemySpawners" type="Node" parent="."]
 

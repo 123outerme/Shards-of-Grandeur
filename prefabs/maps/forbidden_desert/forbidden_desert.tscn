@@ -1,4 +1,4 @@
-[gd_scene load_steps=241 format=4 uid="uid://ds7a44n0mcb01"]
+[gd_scene load_steps=243 format=4 uid="uid://ds7a44n0mcb01"]
 
 [ext_resource type="Script" uid="uid://vg00rfnn3346" path="res://scripts/overworld/map_script.gd" id="1_f3ods"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_rhxjp"]
@@ -30,6 +30,8 @@
 [ext_resource type="Resource" uid="uid://qq710006qo2e" path="res://gamedata/items/healing/potion.tres" id="17_dmnye"]
 [ext_resource type="Resource" uid="uid://dm3g1qy72w0lg" path="res://gamedata/combatants/lithosaurus/lithosaurus.tres" id="18_a7e3l"]
 [ext_resource type="Resource" uid="uid://cra0rgrw4ujhn" path="res://gamedata/combatants/mesa_golem/mesa_golem.tres" id="20_e4wjj"]
+[ext_resource type="PackedScene" uid="uid://6i3blakgy4j0" path="res://prefabs/overworld/weather_particle_field.tscn" id="21_6nxlg"]
+[ext_resource type="Material" uid="uid://di5gqd1dclblj" path="res://gamedata/materials/sand_weather_particle_field_material.tres" id="22_56hn4"]
 [ext_resource type="Script" uid="uid://bvnw0ab8d80ti" path="res://scripts/overworld/overworld_enemy/random_encounter_level_stage.gd" id="25_yqdxd"]
 [ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="28_6r7pf"]
 [ext_resource type="Script" uid="uid://fw22o8hbosnk" path="res://scripts/inventory/inventory_slot.gd" id="31_fcrbo"]
@@ -1176,7 +1178,7 @@ prereqPlacesVisited = Array[String]([])
 prereqSpecialBattles = Array[String]([])
 prereqDefeatedEnemies = Array[String]([])
 prereqPuzzles = Array[String]([])
-prereqPuzzleStates = {}
+prereqPuzzleStates = Dictionary[String, Array]({})
 prereqDiscoveredEvolutions = Array[String]([])
 prereqHavingFollowers = Array[String]([])
 prereqHasItems = Array[ExtResource("31_fcrbo")]([])
@@ -1187,7 +1189,7 @@ invalidAfterDialogues = Array[String]([])
 invalidAfterVistingPlaces = Array[String]([])
 invalidAfterSpecialBattles = Array[String]([])
 invalidAfterSolvingPuzzles = Array[String]([])
-invalidFromPuzzleStates = {}
+invalidFromPuzzleStates = Dictionary[String, Array]({})
 invalidFromHavingFollowers = Array[String]([])
 invalidFromHavingItems = Array[ExtResource("31_fcrbo")]([])
 
@@ -1333,6 +1335,13 @@ saveName = "desert_desert_fruit_3"
 position = Vector2(-260, -9)
 pickedUpItem = SubResource("Resource_skeju")
 saveName = "desert_desert_fruit_4"
+
+[node name="WeatherParticleField" parent="TilemapRoot" instance=ExtResource("21_6nxlg")]
+material = ExtResource("22_56hn4")
+offset_left = -1955.0
+offset_top = -1388.0
+offset_right = 976.0
+offset_bottom = 1476.0
 
 [node name="EnemySpawner" parent="." node_paths=PackedStringArray("tilemap") instance=ExtResource("6_xw4oq")]
 position = Vector2(568, -462)
@@ -1684,34 +1693,40 @@ shape = SubResource("RectangleShape2D_ah4yh")
 position = Vector2(0, 43)
 
 [node name="OneTileWideNav" type="NavigationRegion2D" parent="."]
+visible = false
 modulate = Color(1, 1, 1, 0)
 navigation_polygon = SubResource("NavigationPolygon_hwgpv")
 
 [node name="TwoTilesWideNav1" type="NavigationRegion2D" parent="."]
+visible = false
 modulate = Color(1, 1, 1, 0)
 position = Vector2(0, 277)
 navigation_polygon = SubResource("NavigationPolygon_xk45p")
 navigation_layers = 2
 
 [node name="TwoTilesWideNav2" type="NavigationRegion2D" parent="."]
+visible = false
 modulate = Color(1, 1, 1, 0)
 position = Vector2(0, 1591)
 navigation_polygon = SubResource("NavigationPolygon_matm6")
 navigation_layers = 2
 
 [node name="TwoTilesWideNav3" type="NavigationRegion2D" parent="."]
+visible = false
 modulate = Color(1, 1, 1, 0)
 position = Vector2(-1762, 1591)
 navigation_polygon = SubResource("NavigationPolygon_fa165")
 navigation_layers = 2
 
 [node name="TwoTilesWideNav4" type="NavigationRegion2D" parent="."]
+visible = false
 modulate = Color(1, 1, 1, 0)
 position = Vector2(-1762, 277)
 navigation_polygon = SubResource("NavigationPolygon_4im88")
 navigation_layers = 2
 
 [node name="ThreeTilesWideNav" type="NavigationRegion2D" parent="."]
+visible = false
 modulate = Color(1, 1, 1, 0)
 navigation_polygon = SubResource("NavigationPolygon_8fg56")
 navigation_layers = 4

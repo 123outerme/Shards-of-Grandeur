@@ -1,4 +1,4 @@
-extends TextureRect
+extends ColorRect
 class_name WeatherParticleField
 
 func _ready() -> void:

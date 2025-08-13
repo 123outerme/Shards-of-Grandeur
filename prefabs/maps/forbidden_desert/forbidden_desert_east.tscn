@@ -1,4 +1,4 @@
-[gd_scene load_steps=246 format=4 uid="uid://bcrxu04acy0or"]
+[gd_scene load_steps=248 format=4 uid="uid://bcrxu04acy0or"]
 
 [ext_resource type="Script" uid="uid://vg00rfnn3346" path="res://scripts/overworld/map_script.gd" id="1_aweo5"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_2v0rj"]
@@ -42,6 +42,8 @@
 [ext_resource type="SpriteFrames" uid="uid://28idy1aoh440" path="res://graphics/animations/a_dragon.tres" id="27_frf1a"]
 [ext_resource type="Resource" uid="uid://msc76enduo5l" path="res://gamedata/cutscenes/forbidden_desert/desert_east_dragon1_survive.tres" id="28_ct8qx"]
 [ext_resource type="Resource" uid="uid://csdxsrxjaby7w" path="res://gamedata/cutscenes/forbidden_desert/desert_east_dragon1_encounter.tres" id="28_qdh6o"]
+[ext_resource type="PackedScene" uid="uid://6i3blakgy4j0" path="res://prefabs/overworld/weather_particle_field.tscn" id="29_1i4u7"]
+[ext_resource type="Material" uid="uid://di5gqd1dclblj" path="res://gamedata/materials/sand_weather_particle_field_material.tres" id="30_5wdkc"]
 [ext_resource type="Resource" uid="uid://bokbigb7xuvvh" path="res://gamedata/cutscenes/forbidden_desert/desert_east_cave_turnback.tres" id="31_beumq"]
 [ext_resource type="PackedScene" uid="uid://bmaqkuubonmf2" path="res://prefabs/entities/animated_decoration.tscn" id="32_ifu68"]
 [ext_resource type="Resource" uid="uid://cbuuri2nj43a" path="res://gamedata/cutscenes/forbidden_desert/desert_east_sidearea_rescue_turnback.tres" id="33_1qv80"]
@@ -92,7 +94,7 @@ invalidFromPuzzleStates = Dictionary[String, Array]({})
 invalidFromHavingFollowers = Array[String]([])
 invalidFromHavingItems = Array[ExtResource("6_43c8t")]([])
 
-[sub_resource type="Resource" id="Resource_geliy"]
+[sub_resource type="Resource" id="Resource_oyacr"]
 script = ExtResource("4_ts6ro")
 saveName = "npc"
 spriteState = "collapsed"
@@ -122,7 +124,7 @@ priority = -1
 storyRequirements = Array[ExtResource("6_1p87e")]([])
 autoApplyState = false
 
-[sub_resource type="Resource" id="Resource_5wdkc"]
+[sub_resource type="Resource" id="Resource_typvl"]
 script = ExtResource("4_ts6ro")
 saveName = "npc"
 spriteState = "default"
@@ -1296,16 +1298,12 @@ saveName = "nomad2_desert_east"
 followerId = "elder_nomad2"
 loadFlipH = true
 spriteState = "collapsed"
-stateSpritesDict = Dictionary[String, SpriteFrames]({
-"collapsed": ExtResource("4_j42rk"),
-"default": ExtResource("5_tspdh")
-})
 spriteStatesDict = Dictionary[String, ExtResource("6_geliy")]({
 "collapsed": SubResource("Resource_1i4u7"),
 "default": SubResource("Resource_g60up")
 })
 spawnRequirements = SubResource("Resource_jr0x0")
-data = SubResource("Resource_geliy")
+data = SubResource("Resource_oyacr")
 dialogueEntries = Array[ExtResource("7_kjrd8")]([ExtResource("9_pfacr"), ExtResource("10_1ft2r")])
 
 [node name="NPCSprite" parent="TilemapRoot/Nomad2" index="0"]
@@ -1332,7 +1330,7 @@ spriteStatesDict = Dictionary[String, ExtResource("6_geliy")]({
 "default": SubResource("Resource_jdw7p")
 })
 spriteSize = Vector2i(48, 48)
-data = SubResource("Resource_5wdkc")
+data = SubResource("Resource_typvl")
 dialogueEntries = Array[ExtResource("7_kjrd8")]([ExtResource("27_4t5e0")])
 facesPlayer = false
 
@@ -1397,6 +1395,13 @@ texture = SubResource("AtlasTexture_qm4cm")
 [node name="CollisionShape2D" parent="TilemapRoot/SandWallDecoration/Collision" index="0"]
 position = Vector2(0, 3)
 shape = SubResource("RectangleShape2D_jk250")
+
+[node name="WeatherParticleField" parent="TilemapRoot" instance=ExtResource("29_1i4u7")]
+material = ExtResource("30_5wdkc")
+offset_left = -739.0
+offset_top = -842.0
+offset_right = 2997.0
+offset_bottom = 1088.0
 
 [node name="EnemySpawner" parent="." node_paths=PackedStringArray("tilemap") instance=ExtResource("6_flo5u")]
 position = Vector2(-5, -50)
