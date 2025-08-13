@@ -9,7 +9,7 @@ uniform float weather_direction_angle_degrees = 45.0;
 
 /** NOTE: not currently functional. The angle range (in degrees) at which `weather_direction_angle_degrees` will randomly vary per particle
 */
-uniform float weather_direction_angle_rand_range = 2.0;
+//uniform float weather_direction_angle_rand_range = 2.0;
 
 /** Speed at which the weather particles move in the chosen direction
 */
@@ -19,13 +19,9 @@ uniform float speed = 10.0;
 */
 //uniform float speed_rand_range = 0.5;
 
-/** Density in the X direction of the particles on the screen
+/** Spacing (in pixels) between individual particles; approximate density of particles
 */
-uniform int horizontalDensity = 4;
-
-/** Density in the Y direction of the particles on the screen
-*/
-uniform int verticalDensity = 4;
+uniform ivec2 particleSpacing = ivec2(4, 4);
 
 /** The max distance (in pixels) that each particle may be randomly displaced in a particular direction; a translation overflowing the particle's cell will wrap around
 */
@@ -100,16 +96,15 @@ void vertex() {
 
 void fragment() {
 	vec4 color = COLOR;
+	ivec2 cellDims = particleSpacing + particleDims * particleScale;
+	vec2 timeOffset = vec2(cos(motionAngleRad), sin(motionAngleRad)) * TIME * speed;
 
 	for(float x = 0.0; x < float(particleDims.x * particleScale); x++) {
 		for (float y = 0.0; y < float(particleDims.y * particleScale); y++) {
 			vec2 pixelPos = vertex_position - vec2(x, y);
-			ivec2 cellDims = ivec2(horizontalDensity + particleDims.x * particleScale, verticalDensity + particleDims.y * particleScale);
-			vec2 timeOffset = vec2(cos(motionAngleRad), sin(motionAngleRad)) * TIME * speed;
-			
 			ivec2 cellPos = ivec2(
-				int((pixelPos.x + timeOffset.x) / float(cellDims.x)),
-				int((pixelPos.y + timeOffset.y) / float(cellDims.y))
+				int(floor(pixelPos.x + timeOffset.x) / float(cellDims.x)),
+				int(floor(pixelPos.y + timeOffset.y) / float(cellDims.y))
 			);
 			
 			highp vec2 randVector = floatHashVec2ToVec2(vec2(cellPos));
@@ -127,15 +122,15 @@ void fragment() {
 				);
 				//* /
 				//color = vec4(randVec3, 1);
-				//color = vec4(cellPos.x % 2 == 0 ? 1.0 : 0.0, cellPos.y % 2 == 0 ? 1.0 : 0.0, 0, 1);
+				color = vec4(cellPos.x % 2 == 0 ? 1.0 : 0.0, cellPos.y % 2 == 0 ? 1.0 : 0.0, 0, 0.5);
 				//color = vec4(finalCellPos.x % 2 == 0 ? 1.0 : 0.0, finalCellPos.y % 2 == 0 ? 1.0 : 0.0, 0, 1);
 			}
 			//*/
 			
 			//*
 			if (
-				int(floor(pixelPos.x + timeOffset.x)) % cellDims.x == (int(round(randVector.x * positionRandRange)) % cellDims.x) && 
-				int(floor(pixelPos.y + timeOffset.y)) % cellDims.y == (int(round(randVector.y * positionRandRange)) % cellDims.y)
+				int(floor(pixelPos.x + timeOffset.x) - round(randVector.x * positionRandRange)) % cellDims.x == 0 &&
+				int(floor(pixelPos.y + timeOffset.y) - round(randVector.y * positionRandRange)) % cellDims.y == 0
 			) {
 				uint particleIdx = uintHashVec2ToFloat(vec2(cellPos)) % 4u;
 				vec2 particleUV = vec2(floor(x / float(particleScale)), floor(y / float(particleScale)));
