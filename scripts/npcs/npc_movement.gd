@@ -60,12 +60,12 @@ func _physics_process(delta):
 			var flip: bool = NPC.facesRight # if right-facing, flip when moving left
 			if NPC.walkBackwards:
 				flip = not flip # if walking backwards and would flip, don't
-			NPC.npcSprite.flip_h = flip
+			NPC.flip_h = flip
 		if vel.x > max_speed * 0.1 * delta:
 			var flip: bool = not NPC.facesRight # if right-facing, don't flip when moving right
 			if NPC.walkBackwards:
 				flip = not flip # if walking backwards and would flip, don't
-			NPC.npcSprite.flip_h = flip
+			NPC.flip_h = flip
 		if vel.length_squared() > 0:
 			if NPC.walkBackwards:
 				NPC.npcSprite.play_backwards('walk')
@@ -169,8 +169,10 @@ func _on_target_reached():
 	if not followerMode and not returnToFollowerHome and selectedTarget < len(targetPoints):
 		reachedTarget = true
 		afterMoveWaitAccum = 0
+		''' I think this is OK to take out; the next _physics_process() frame will update target pos
 		if targetPoints[selectedTarget].pauseSecs <= 0:
 			update_target_pos()
+		'''
 	elif returnToFollowerHome:
 		returnToFollowerHome = false
 		NPC.npcSprite.play(NPC.get_stand_animation())
@@ -181,8 +183,10 @@ func _on_navigation_finished():
 	if not followerMode and not returnToFollowerHome and selectedTarget < len(targetPoints):
 		reachedTarget = true
 		afterMoveWaitAccum = 0
+		''' I think this is OK to take out; the next _physics_process() frame will update target pos
 		if targetPoints[selectedTarget].pauseSecs <= 0:
 			update_target_pos()
+		'''
 	elif returnToFollowerHome:
 		returnToFollowerHome = false
 		NPC.npcSprite.play(NPC.get_stand_animation())

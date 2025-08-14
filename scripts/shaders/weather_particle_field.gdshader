@@ -106,9 +106,9 @@ void fragment() {
 				int(floor(pixelPos.x + timeOffset.x) / float(cellDims.x)),
 				int(floor(pixelPos.y + timeOffset.y) / float(cellDims.y))
 			);
-			
+
 			highp vec2 randVector = floatHashVec2ToVec2(vec2(cellPos));
-			
+
 			// note: doesn't work; causes weird artifacts on the particles as they cross cell boundaries
 			//float finalAngleRad = motionAngleRad + ((randVec3.z - 0.5) * weather_direction_angle_rand_range * PI / 180.0);
 			//vec2 finalTimeOffset = vec2(cos(finalAngleRad), sin(finalAngleRad)) * TIME * speed;
@@ -126,7 +126,7 @@ void fragment() {
 				//color = vec4(finalCellPos.x % 2 == 0 ? 1.0 : 0.0, finalCellPos.y % 2 == 0 ? 1.0 : 0.0, 0, 1);
 			}
 			//*/
-			
+
 			//*
 			if (
 				int(floor(pixelPos.x + timeOffset.x) - round(randVector.x * positionRandRange)) % cellDims.x == 0 &&
@@ -152,6 +152,6 @@ void fragment() {
 			//*/
 		}
 	}
-	
+
 	COLOR = color;
 }

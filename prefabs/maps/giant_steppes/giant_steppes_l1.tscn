@@ -1,4 +1,4 @@
-[gd_scene load_steps=80 format=4 uid="uid://drbsfhefdewe5"]
+[gd_scene load_steps=87 format=4 uid="uid://drbsfhefdewe5"]
 
 [ext_resource type="Script" uid="uid://vg00rfnn3346" path="res://scripts/overworld/map_script.gd" id="1_tdh71"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_iwy47"]
@@ -27,13 +27,16 @@
 [ext_resource type="PackedScene" uid="uid://ckjsms2r3k2jv" path="res://prefabs/overworld/cutscene_trigger.tscn" id="14_0n6sp"]
 [ext_resource type="Resource" uid="uid://c7nfpg33hkxbw" path="res://gamedata/dialogue/giant_steppes/signs/gis_inn_sign.tres" id="14_1iokg"]
 [ext_resource type="SpriteFrames" uid="uid://d2twvpugfcflu" path="res://graphics/structures/a_energy_wall_speaker.tres" id="14_dv8db"]
+[ext_resource type="Resource" uid="uid://cqjui1xpyc2xy" path="res://gamedata/dialogue/giant_steppes/warlock1/warlock1_1.tres" id="15_iqugw"]
 [ext_resource type="Script" uid="uid://fpa08p2kb0ts" path="res://scripts/cutscenes/cutscene.gd" id="15_t0jvn"]
 [ext_resource type="Resource" uid="uid://crn83e34kus13" path="res://gamedata/dialogue/giant_steppes/signs/gis_trading_post_sign.tres" id="16_4hkxj"]
 [ext_resource type="Resource" uid="uid://btqsykfbbhfiv" path="res://gamedata/cutscenes/giant_steppes/giant_steppes_arrive.tres" id="16_vvtkq"]
 [ext_resource type="SpriteFrames" uid="uid://dliedtl5d221b" path="res://graphics/structures/a_energy_wall.tres" id="17_qw8te"]
 [ext_resource type="PackedScene" uid="uid://bmaqkuubonmf2" path="res://prefabs/entities/animated_decoration.tscn" id="18_1iokg"]
 [ext_resource type="Resource" uid="uid://ded2gogbnwnnt" path="res://gamedata/dialogue/giant_steppes/warlock_agent/agent_training_block_demo_end.tres" id="19_m7m11"]
+[ext_resource type="Script" uid="uid://bhe5dt53rj7mf" path="res://scripts/npcs/npc_move_point.gd" id="21_tnovd"]
 [ext_resource type="Resource" uid="uid://bf7be5r483rl8" path="res://gamedata/cutscenes/giant_steppes/gis_demo_block.tres" id="25_68q3o"]
+[ext_resource type="PackedScene" uid="uid://blb38hmic2jvq" path="res://prefabs/overworld/test_camera.tscn" id="37_2ixtn"]
 
 [sub_resource type="Resource" id="Resource_2yuxa"]
 script = ExtResource("6_4hkxj")
@@ -157,6 +160,34 @@ dialogueLine = -1
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ku0es"]
 size = Vector2(22, 11)
+
+[sub_resource type="Resource" id="Resource_fecqu"]
+script = ExtResource("21_tnovd")
+position = Vector2(600, -88)
+relativeToCurrentPos = false
+pauseSecs = 0.0
+metadata/_custom_type_script = "uid://bhe5dt53rj7mf"
+
+[sub_resource type="Resource" id="Resource_d0k41"]
+script = ExtResource("21_tnovd")
+position = Vector2(616, -96)
+relativeToCurrentPos = false
+pauseSecs = 0.0
+metadata/_custom_type_script = "uid://bhe5dt53rj7mf"
+
+[sub_resource type="Resource" id="Resource_jnqfi"]
+script = ExtResource("21_tnovd")
+position = Vector2(632, -88)
+relativeToCurrentPos = false
+pauseSecs = 0.0
+metadata/_custom_type_script = "uid://bhe5dt53rj7mf"
+
+[sub_resource type="Resource" id="Resource_m15ju"]
+script = ExtResource("21_tnovd")
+position = Vector2(616, -80)
+relativeToCurrentPos = false
+pauseSecs = 0.0
+metadata/_custom_type_script = "uid://bhe5dt53rj7mf"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_diebl"]
 size = Vector2(30, 23)
@@ -447,10 +478,13 @@ saveName = "giant_steppes_l1_azure_boon"
 
 [node name="Warlock1" parent="TilemapRoot" instance=ExtResource("4_upbwq")]
 position = Vector2(150, -332)
+displayName = "Warlock"
+saveName = "giant_steppes_warlock1"
 spriteStatesDict = Dictionary[String, ExtResource("6_4hkxj")]({
 "default": SubResource("Resource_2yuxa")
 })
 data = SubResource("Resource_hmq42")
+dialogueEntries = Array[ExtResource("8_0aigu")]([ExtResource("15_iqugw")])
 
 [node name="NPCSprite" parent="TilemapRoot/Warlock1" index="0"]
 sprite_frames = ExtResource("6_f378v")
@@ -509,7 +543,7 @@ dialogueEntries = Array[ExtResource("8_0aigu")]([ExtResource("9_b2mwp")])
 
 [node name="NPCSprite" parent="TilemapRoot/IceHound" index="0"]
 sprite_frames = ExtResource("8_ku0es")
-animation = &"attack_affinity"
+animation = &"walk"
 offset = Vector2(-4, -8)
 
 [node name="TalkAlertSprite" parent="TilemapRoot/IceHound/NPCSprite" index="0"]
@@ -518,6 +552,12 @@ position = Vector2(-1, -14)
 [node name="ColliderShape" parent="TilemapRoot/IceHound" index="1"]
 position = Vector2(-1, 1.5)
 shape = SubResource("RectangleShape2D_ku0es")
+
+[node name="NavAgent" parent="TilemapRoot/IceHound" index="2"]
+targetPoints = Array[ExtResource("21_tnovd")]([SubResource("Resource_fecqu"), SubResource("Resource_d0k41"), SubResource("Resource_jnqfi"), SubResource("Resource_m15ju")])
+loops = -1
+waitsForMoveTrigger = false
+stepSfxCooldownSecs = 0.38
 
 [node name="TalkAreaShape" parent="TilemapRoot/IceHound/TalkArea" index="0"]
 position = Vector2(-1, 1.5)
@@ -836,6 +876,9 @@ navigation_layers = 2
 visible = false
 navigation_polygon = SubResource("NavigationPolygon_8fg56")
 navigation_layers = 4
+
+[node name="TestCamera" parent="." instance=ExtResource("37_2ixtn")]
+position = Vector2(611, -78)
 
 [editable path="TilemapRoot/Warlock1"]
 [editable path="TilemapRoot/WarlockAgent"]
