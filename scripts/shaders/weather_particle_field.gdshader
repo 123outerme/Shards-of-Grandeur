@@ -71,6 +71,13 @@ highp vec2 floatHashVec2ToVec2(in highp vec2 f) {
     );
 }
 
+/** It seems that in my testing, -1 % 3 == -1, not 2 (on at least my hardware); this fixes that portably
+ See: https://www.geeksforgeeks.org/c/modulus-on-negative-numbers/
+*/
+int negativeOkModulus(int a, int b) {
+	return ((a % b) + b) % b;
+}
+
 /*
 highp vec3 floatHashVec2ToVec3(in highp vec2 f) {
     uint fx = fixZero(f.x);
@@ -97,59 +104,59 @@ void vertex() {
 void fragment() {
 	vec4 color = COLOR;
 	ivec2 cellDims = particleSpacing + particleDims * particleScale;
-	vec2 timeOffset = vec2(cos(motionAngleRad), sin(motionAngleRad)) * TIME * speed;
+	highp vec2 timeOffset = vec2(cos(motionAngleRad), sin(motionAngleRad)) * TIME * speed;
+	
+	vec2 posInTime = vertex_position + timeOffset;
+	
+	vec2 cellPos = vec2(
+		floor(floor(posInTime.x) / float(cellDims.x)),
+		floor(floor(posInTime.y) / float(cellDims.y))
+	);
 
-	for(float x = 0.0; x < float(particleDims.x * particleScale); x++) {
-		for (float y = 0.0; y < float(particleDims.y * particleScale); y++) {
-			vec2 pixelPos = vertex_position - vec2(x, y);
-			ivec2 cellPos = ivec2(
-				int(floor(pixelPos.x + timeOffset.x) / float(cellDims.x)),
-				int(floor(pixelPos.y + timeOffset.y) / float(cellDims.y))
-			);
+	highp vec2 randVector = floatHashVec2ToVec2(cellPos);
+	
+	/* note: doesn't work; causes weird artifacts on the particles as they cross cell boundaries
+	float finalAngleRad = motionAngleRad + ((randVector.z - 0.5) * weather_direction_angle_rand_range * PI / 180.0);
+	vec2 finalTimeOffset = vec2(cos(finalAngleRad), sin(finalAngleRad)) * TIME * speed;
+	//*/
 
-			highp vec2 randVector = floatHashVec2ToVec2(vec2(cellPos));
+	// mod particleSpacing + 1 so that the pixel right on the right/bottom edge of the cell is kept; otherwise it cycles at that x/y position back to the 0 coordinate
+	ivec2 particlePosInCell = ivec2(int(floor(randVector.x * positionRandRange)) % (particleSpacing.x + 1), int(floor(randVector.y * positionRandRange)) % (particleSpacing.y + 1));
+	//ivec2 particlePosInCell = ivec2(0 % (particleSpacing.x + 1), 0 % (particleSpacing.y + 1)); // TESTING
+	vec2 particlePos = cellPos * vec2(cellDims) + vec2(particlePosInCell);
 
-			// note: doesn't work; causes weird artifacts on the particles as they cross cell boundaries
-			//float finalAngleRad = motionAngleRad + ((randVec3.z - 0.5) * weather_direction_angle_rand_range * PI / 180.0);
-			//vec2 finalTimeOffset = vec2(cos(finalAngleRad), sin(finalAngleRad)) * TIME * speed;
-			/* TESTING
-			if (color.a == 0.0) {
-				//color = vec4(pixelPos + finalTimeOffset - floor(pixelPos + finalTimeOffset), 0, 1);
-				/*
-				ivec2 finalCellPos = ivec2(
-					int((pixelPos.x + finalTimeOffset.x) / float(cellDims.x)),
-					int((pixelPos.y + finalTimeOffset.y) / float(cellDims.y))
-				);
-				//* /
-				//color = vec4(randVec3, 1);
-				color = vec4(cellPos.x % 2 == 0 ? 1.0 : 0.0, cellPos.y % 2 == 0 ? 1.0 : 0.0, 0, 0.5);
-				//color = vec4(finalCellPos.x % 2 == 0 ? 1.0 : 0.0, finalCellPos.y % 2 == 0 ? 1.0 : 0.0, 0, 1);
-			}
-			//*/
 
-			//*
-			if (
-				int(floor(pixelPos.x + timeOffset.x) - round(randVector.x * positionRandRange)) % cellDims.x == 0 &&
-				int(floor(pixelPos.y + timeOffset.y) - round(randVector.y * positionRandRange)) % cellDims.y == 0
-			) {
-				uint particleIdx = uintHashVec2ToFloat(vec2(cellPos)) % 4u;
-				vec2 particleUV = vec2(floor(x / float(particleScale)), floor(y / float(particleScale)));
-				switch (particleIdx) {
-					case 0u:
-						color = texture(particle1, particleUV);
-						break;
-					case 1u:
-						color = texture(particle2, particleUV);
-						break;
-					case 2u:
-						color = texture(particle3, particleUV);
-						break;
-					case 3u:
-						color = texture(particle4, particleUV);
-						break;
-				}
-			}
-			//*/
+
+	/* TESTING
+	if (color.a == 0.0) {
+		vec2 dist = vec2(float(abs(particlePos.x - posInTime.x)), float(abs(particlePos.y - posInTime.y))) / vec2(cellDims);
+		color = vec4(negativeOkModulus(int(floor(cellPos.x)), 2) == 0 ? 1.0 : 0.0, negativeOkModulus(int(floor(cellPos.y)), 2) == 0 ? 1.0 : 0.0, length(dist), 0.5);
+		//color = vec4(finalCellPos.x % 2 == 0 ? 1.0 : 0.0, finalCellPos.y % 2 == 0 ? 1.0 : 0.0, 0, 1);
+	}
+	//*/
+
+	// if this position is within the selected particle's position for this cell: render a particle
+	if (
+		posInTime.x >= particlePos.x &&
+		posInTime.x <= particlePos.x + float(particleDims.x * particleScale) && 
+		posInTime.y >= particlePos.y &&
+		posInTime.y <= particlePos.y + float(particleDims.y * particleScale)
+	) {
+		uint particleIdx = uintHashVec2ToFloat(cellPos) % 4u;
+		vec2 particleUV = vec2(float(int(posInTime.x - particlePos.x) / particleScale), float(int(posInTime.y - particlePos.y) / particleScale));
+		switch (particleIdx) {
+			case 0u:
+				color = texture(particle1, particleUV);
+				break;
+			case 1u:
+				color = texture(particle2, particleUV);
+				break;
+			case 2u:
+				color = texture(particle3, particleUV);
+				break;
+			case 3u:
+				color = texture(particle4, particleUV);
+				break;
 		}
 	}
 
