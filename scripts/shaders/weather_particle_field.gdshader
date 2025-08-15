@@ -27,6 +27,14 @@ uniform ivec2 particleSpacing = ivec2(4, 4);
 */
 uniform float positionRandRange = 3;
 
+/** Amplitude of X/Y components of particle drift
+*/
+//uniform vec2 particleDriftAmplitude = vec2(0, 0); // NOTE: has issues with wrapping around in a cell
+
+/** Frequency of X/Y components of particle drift (radians/sec)
+*/
+//uniform vec2 particleDriftFrequency = vec2(0, 0); // NOTE: has issues with wrapping around in a cell
+
 /** A particle texture to use here
 */
 uniform sampler2D particle1;
@@ -123,7 +131,7 @@ void fragment() {
 	// mod particleSpacing + 1 so that the pixel right on the right/bottom edge of the cell is kept; otherwise it cycles at that x/y position back to the 0 coordinate
 	ivec2 particlePosInCell = ivec2(int(floor(randVector.x * positionRandRange)) % (particleSpacing.x + 1), int(floor(randVector.y * positionRandRange)) % (particleSpacing.y + 1));
 	//ivec2 particlePosInCell = ivec2(0 % (particleSpacing.x + 1), 0 % (particleSpacing.y + 1)); // TESTING
-	vec2 particlePos = cellPos * vec2(cellDims) + vec2(particlePosInCell);
+	vec2 particlePos = cellPos * vec2(cellDims) + vec2(particlePosInCell); //+ vec2(cos(TIME * particleDriftFrequency.x), sin(TIME * particleDriftFrequency.x)) * particleDriftAmplitude;
 
 	/* TESTING
 	if (color.a == 0.0) {

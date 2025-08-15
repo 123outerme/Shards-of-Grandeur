@@ -11,13 +11,6 @@ var battlefieldShadeAnim: BattlefieldShadeAnim = null
 func _ready() -> void:
 	color = Color(0, 0, 0, 0)
 
-## Default shade z-index. Sets shade below combatants by default, unless combatants are set to be explicitly below
-func set_shade_above_combatants() -> void:
-	z_index = 1
-
-func set_shade_below_combatants() -> void:
-	z_index = 0
-
 func do_battlefield_shade_anim(shadeAnim: BattlefieldShadeAnim, callback: Callable = Callable()) -> void:
 	if shadeAnim == null:
 		if battlefieldShadeAnim != null:

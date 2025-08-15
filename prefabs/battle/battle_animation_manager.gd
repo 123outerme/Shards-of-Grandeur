@@ -779,7 +779,7 @@ func play_combatant_event_text(combatantNode: CombatantNode, text: String, calla
 
 ## combatant will always be above shade
 func set_combatant_above_shade(combatantNode: CombatantNode) -> void:
-	combatantNode.z_index = originalCombatantZIndices[combatantNode.battlePosition] + 4
+	combatantNode.z_index = originalCombatantZIndices[combatantNode.battlePosition] + battlefieldShade.z_index
 	combatantNode.targetOfMoveAnimation = true
 	combatantNode.update_rune_sprites(false)
 

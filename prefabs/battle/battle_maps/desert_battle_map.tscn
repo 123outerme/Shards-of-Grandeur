@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=4 uid="uid://fjfraluuqvid"]
+[gd_scene load_steps=4 format=4 uid="uid://fjfraluuqvid"]
 
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="1_5i22m"]
+[ext_resource type="PackedScene" uid="uid://6i3blakgy4j0" path="res://prefabs/overworld/weather_particle_field.tscn" id="2_rql40"]
+[ext_resource type="Material" uid="uid://di5gqd1dclblj" path="res://gamedata/materials/sand_weather_particle_field_material.tres" id="3_wo58f"]
 
 [node name="TilemapRoot" type="Node2D"]
 
@@ -26,3 +28,11 @@ tile_set = ExtResource("1_5i22m")
 use_parent_material = true
 tile_map_data = PackedByteArray("AAD5////AQADAAIAAAAGAPv/AQAEAAIAAAA=")
 tile_set = ExtResource("1_5i22m")
+
+[node name="WeatherParticleField" parent="." instance=ExtResource("2_rql40")]
+z_index = 4
+material = ExtResource("3_wo58f")
+offset_left = -160.0
+offset_top = -112.0
+offset_right = 160.0
+offset_bottom = 96.0
