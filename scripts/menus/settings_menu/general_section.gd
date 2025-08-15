@@ -38,6 +38,8 @@ var allFramerateTextSelected: bool = false
 
 @onready var bgMotionButton: CheckButton = get_node('Control/VBoxContainer/BackgroundMotionControl/BackgroundMotionLabel/BackgroundMotionButton')
 
+@onready var weatherParticlesButton: CheckButton = get_node('Control/VBoxContainer/WeatherParticlesControl/WeatherParticlesLabel/WeatherParticlesButton')
+
 @onready var battleAnimsButton: CheckButton = get_node('Control/VBoxContainer/BattleAnimsControl/BattleAnimsLabel/BattleAnimsButton')
 
 @onready var touchJoystickTypeControl: Control = get_node('Control/VBoxContainer/TouchJoystickTypeControl')
@@ -110,6 +112,7 @@ func toggle_section(toggle: bool):
 		runToggleButton.button_pressed = SettingsHandler.gameSettings.toggleRun
 		screenShakeButton.button_pressed = SettingsHandler.gameSettings.screenShake
 		bgMotionButton.button_pressed = SettingsHandler.gameSettings.backgroundMotion
+		weatherParticlesButton.button_pressed = SettingsHandler.gameSettings.disableWeatherParticles
 		battleAnimsButton.button_pressed = SettingsHandler.gameSettings.battleAnims
 		deadzoneSlider.value = roundi(SettingsHandler.gameSettings.deadzone * 100)
 		touchJoystickTypeToggleButton.text = GameSettings.touch_joystick_type_to_string(SettingsHandler.gameSettings.touchJoystickType)
@@ -124,6 +127,7 @@ func toggle_section(toggle: bool):
 		sectionToggleButton.focus_neighbor_right = sectionToggleButton.get_path_to(onscreenKeyboardButton)
 		runToggleButton.focus_neighbor_left = runToggleButton.get_path_to(sectionToggleButton)
 		bgMotionButton.focus_neighbor_left = bgMotionButton.get_path_to(sectionToggleButton)
+		weatherParticlesButton.focus_neighbor_left = weatherParticlesButton.get_path_to(sectionToggleButton)
 		battleAnimsButton.focus_neighbor_left = battleAnimsButton.get_path_to(sectionToggleButton)
 		screenShakeButton.focus_neighbor_left = screenShakeButton.get_path_to(sectionToggleButton)
 		touchJoystickTypeToggleButton.focus_neighbor_left = touchJoystickTypeToggleButton.get_path_to(sectionToggleButton)

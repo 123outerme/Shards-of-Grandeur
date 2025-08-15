@@ -125,8 +125,6 @@ void fragment() {
 	//ivec2 particlePosInCell = ivec2(0 % (particleSpacing.x + 1), 0 % (particleSpacing.y + 1)); // TESTING
 	vec2 particlePos = cellPos * vec2(cellDims) + vec2(particlePosInCell);
 
-
-
 	/* TESTING
 	if (color.a == 0.0) {
 		vec2 dist = vec2(float(abs(particlePos.x - posInTime.x)), float(abs(particlePos.y - posInTime.y))) / vec2(cellDims);
