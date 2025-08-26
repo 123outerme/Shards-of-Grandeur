@@ -113,16 +113,16 @@ void fragment() {
 	vec4 color = COLOR;
 	ivec2 cellDims = particleSpacing + particleDims * particleScale;
 	highp vec2 timeOffset = vec2(cos(motionAngleRad), sin(motionAngleRad)) * TIME * speed;
-	
+
 	vec2 posInTime = vertex_position + timeOffset;
-	
+
 	vec2 cellPos = vec2(
 		floor(floor(posInTime.x) / float(cellDims.x)),
 		floor(floor(posInTime.y) / float(cellDims.y))
 	);
 
 	highp vec2 randVector = floatHashVec2ToVec2(cellPos);
-	
+
 	/* note: doesn't work; causes weird artifacts on the particles as they cross cell boundaries
 	float finalAngleRad = motionAngleRad + ((randVector.z - 0.5) * weather_direction_angle_rand_range * PI / 180.0);
 	vec2 finalTimeOffset = vec2(cos(finalAngleRad), sin(finalAngleRad)) * TIME * speed;
@@ -144,7 +144,7 @@ void fragment() {
 	// if this position is within the selected particle's position for this cell: render a particle
 	if (
 		posInTime.x >= particlePos.x &&
-		posInTime.x <= particlePos.x + float(particleDims.x * particleScale) && 
+		posInTime.x <= particlePos.x + float(particleDims.x * particleScale) &&
 		posInTime.y >= particlePos.y &&
 		posInTime.y <= particlePos.y + float(particleDims.y * particleScale)
 	) {
