@@ -93,7 +93,7 @@ func spawn_enemy() -> void:
 		enemy = overworldEnemyScene.instantiate()
 		enemy.disabled = true
 		enemy.spawner = self
-		enemy.enemyData = OverworldEnemyData.new(enemyEncounter.combatant1, Vector2.ZERO, false, enemyEncounter, false)
+		enemy.enemyData = OverworldEnemyData.new(enemyEncounter.combatant1.copy(), Vector2.ZERO, false, enemyEncounter, false)
 		enemy.homePoint = position
 		enemy.patrolRange = enemyPatrolRange
 		enemy.despawnRange = enemyDespawnRange
