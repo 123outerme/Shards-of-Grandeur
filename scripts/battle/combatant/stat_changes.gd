@@ -375,7 +375,7 @@ func get_keyword_multiplier_texts() -> Array[StatMultiplierText]:
 	for keyword: String in keywordMultipliers.keys():
 		if keywordMultipliers[keyword] != 1.0:
 			texts.append( \
-				StatMultiplierText.new(keyword, 0, keywordMultipliers[keyword]) \
+				StatMultiplierText.new(keyword + ' Dmg', 0, keywordMultipliers[keyword]) \
 			)
 	return texts
 

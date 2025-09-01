@@ -116,7 +116,8 @@ func _unhandled_input(event):
 		get_viewport().set_input_as_handled()
 		toggle()
 	
-	if visible and (event.is_action_pressed('game_tab_left') or event.is_action_pressed('game_tab_right')):
+	if visible and (event.is_action_pressed('game_tab_left') or event.is_action_pressed('game_tab_right')) and \
+			not (equipPanel.visible or statResetPanel.visible or itemDetailsPanel.visible or itemUsePanel.visible or shardLearnPanel.visible or itemConfirmPanel.visible or itemCountChoosePanel.visible):
 		get_viewport().set_input_as_handled()
 		var selectedTypeIdx: int = FILTER_BUTTON_TYPES_ORDER.find(selectedFilter)
 		var direction: int = -1 if event.is_action_pressed('game_tab_left') else 1

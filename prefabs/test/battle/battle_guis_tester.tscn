@@ -1,0 +1,371 @@
+[gd_scene load_steps=71 format=3 uid="uid://duog0pv0pyf2o"]
+
+[ext_resource type="Script" uid="uid://bgjhxc1vp6s6o" path="res://prefabs/test/battle/battle_guis_tester.gd" id="1_32hus"]
+[ext_resource type="Resource" uid="uid://dfd6upveebcdv" path="res://gamedata/combatants/dragon/dragon.tres" id="2_3tbtt"]
+[ext_resource type="Script" uid="uid://dyckeornewpwi" path="res://scripts/battle/combatant.gd" id="2_4m7l3"]
+[ext_resource type="PackedScene" uid="uid://c4ir6fh3a3alo" path="res://gamescenes/battle.tscn" id="2_dre3n"]
+[ext_resource type="Script" uid="uid://dga8cpwmm0j6h" path="res://scripts/battle/weighted_things/weighted_combatants.gd" id="2_qsrki"]
+[ext_resource type="Script" uid="uid://bvnw0ab8d80ti" path="res://scripts/overworld/overworld_enemy/random_encounter_level_stage.gd" id="3_1rfbt"]
+[ext_resource type="Script" uid="uid://dvivnpdo5ga72" path="res://scripts/battle/combatant/stat_changes.gd" id="3_lasgb"]
+[ext_resource type="Resource" uid="uid://bhg4i01ukcdvd" path="res://gamedata/combatants/rat/rat.tres" id="4_7yxom"]
+[ext_resource type="Script" uid="uid://dllqv5vxrou7r" path="res://scripts/overworld/overworld_enemy/random_encounter.gd" id="4_43nnv"]
+[ext_resource type="Script" uid="uid://flaq3s0m3pf2" path="res://scripts/reward/reward.gd" id="4_ypvhw"]
+[ext_resource type="Script" uid="uid://cjr0rqx4qkjxb" path="res://scripts/battle/battle_scene/battle_state.gd" id="5_8qfha"]
+[ext_resource type="Resource" uid="uid://byb2678day0jv" path="res://gamedata/combatants/sea_wyrm/sea_wyrm.tres" id="5_lu4ji"]
+[ext_resource type="Resource" uid="uid://dpdygiw5b5e47" path="res://gamedata/combatants/dragon/dragon_ai.tres" id="7_3tbtt"]
+[ext_resource type="Resource" uid="uid://cx6h8xnss3tpk" path="res://gamedata/combatants/dragon/dragon_rewards.tres" id="8_7yxom"]
+[ext_resource type="Script" uid="uid://c8dxuthm1qd7s" path="res://scripts/battle/combatant/stats.gd" id="9_lu4ji"]
+[ext_resource type="Resource" uid="uid://mj8m21sd3moj" path="res://gamedata/combatants/dragon/dragon_evolutions.tres" id="10_ndn67"]
+[ext_resource type="Resource" uid="uid://blpifx5qrqya5" path="res://gamedata/combatants/dragon/dragon_effectiveness.tres" id="11_s6tce"]
+[ext_resource type="Script" uid="uid://biq3088m28kr2" path="res://scripts/battle/combatant/rune.gd" id="12_6gybf"]
+[ext_resource type="Resource" uid="uid://bmjv8myy78i10" path="res://gamedata/combatants/dragon/dragon_sprite.tres" id="13_q1mce"]
+[ext_resource type="Resource" uid="uid://bn2mx500twghp" path="res://gamedata/combatants/dragon/dragon_stat_alloc_strategy.tres" id="14_r0otg"]
+[ext_resource type="Resource" uid="uid://bnsb3lh67aygs" path="res://gamedata/combatants/dragon/dragon_movepool.tres" id="15_s6gcx"]
+[ext_resource type="Script" uid="uid://dx4lnh4driy7a" path="res://scripts/battle/combatant/move.gd" id="16_smxvb"]
+[ext_resource type="Resource" uid="uid://djd8jqk4tr3ll" path="res://gamedata/combatants/dragon/dragon_stat_growth.tres" id="17_0i88m"]
+[ext_resource type="Resource" uid="uid://c15i72ewcdht3" path="res://gamedata/combatants/dragon/dragon_equipment.tres" id="18_w5trt"]
+[ext_resource type="Resource" uid="uid://dw06544cpkf3" path="res://gamedata/combatants/rat/rat_ai.tres" id="19_vbct2"]
+[ext_resource type="Resource" uid="uid://cfbfojr1nlivh" path="res://gamedata/combatants/rat/rat_rewards.tres" id="20_gqday"]
+[ext_resource type="Resource" uid="uid://70qiovvsvg0s" path="res://gamedata/combatants/rat/rat_evolutions.tres" id="21_1alo4"]
+[ext_resource type="Resource" uid="uid://n2ifthv07pc1" path="res://gamedata/combatants/rat/rat_effectiveness.tres" id="22_6jjw1"]
+[ext_resource type="Resource" uid="uid://b6gpqdsyrjms1" path="res://gamedata/combatants/rat/rat_sprite.tres" id="23_jsvg8"]
+[ext_resource type="Resource" uid="uid://q32jpxfoyuer" path="res://gamedata/combatants/rat/rat_stat_alloc_strategy.tres" id="24_xp0g1"]
+[ext_resource type="Resource" uid="uid://r5nfn065bsw4" path="res://gamedata/combatants/rat/rat_movepool.tres" id="25_pwnsk"]
+[ext_resource type="Resource" uid="uid://c63oatk8g1jh6" path="res://gamedata/combatants/rat/rat_stat_growth.tres" id="26_bg7wv"]
+[ext_resource type="Resource" uid="uid://lsqontnk0grj" path="res://gamedata/combatants/rat/rat_equipment.tres" id="27_0qijn"]
+[ext_resource type="Resource" uid="uid://b75q4jb24n4wg" path="res://gamedata/combatants/sea_wyrm/sea_wyrm_ai.tres" id="28_jnfav"]
+[ext_resource type="Resource" uid="uid://e6iuo48rie2x" path="res://gamedata/combatants/sea_wyrm/sea_wyrm_rewards.tres" id="29_qsr6e"]
+[ext_resource type="Resource" uid="uid://dqf3nex544mko" path="res://gamedata/combatants/sea_wyrm/sea_wyrm_evolutions.tres" id="30_y7hdt"]
+[ext_resource type="Resource" uid="uid://dtmft36iyyr0m" path="res://gamedata/combatants/sea_wyrm/sea_wyrm_effectiveness.tres" id="31_rk5ax"]
+[ext_resource type="Resource" uid="uid://c17niy10xw810" path="res://gamedata/combatants/sea_wyrm/sea_wyrm_sprite.tres" id="32_qhmp6"]
+[ext_resource type="Resource" uid="uid://g88mq0jtiava" path="res://gamedata/combatants/sea_wyrm/sea_wyrm_stat_alloc_strategy.tres" id="33_qqu4c"]
+[ext_resource type="Resource" uid="uid://87x3xe5ra5ua" path="res://gamedata/combatants/sea_wyrm/sea_wyrm_movepool.tres" id="34_o1nji"]
+[ext_resource type="Resource" uid="uid://c57bvbdfw6v6g" path="res://gamedata/combatants/sea_wyrm/sea_wyrm_stat_growth.tres" id="35_1eumj"]
+[ext_resource type="Resource" uid="uid://dhwvrn6ocsvik" path="res://gamedata/combatants/sea_wyrm/sea_wyrm_equipment.tres" id="36_6pdvm"]
+[ext_resource type="Resource" uid="uid://ddbx7btl312ii" path="res://gamedata/combatants/player/player_evolutions.tres" id="37_j50tr"]
+[ext_resource type="Resource" uid="uid://bcyc6jiut3ng3" path="res://gamedata/combatants/player/player_effectiveness.tres" id="38_j5j8e"]
+[ext_resource type="Resource" uid="uid://dvr8s8ujdy6f1" path="res://gamedata/combatants/player/player_sprite.tres" id="39_ihv4v"]
+[ext_resource type="Resource" uid="uid://crei2j1v6q4jn" path="res://gamedata/moves/slice/slice.tres" id="40_ryjb6"]
+[ext_resource type="Resource" uid="uid://b7fwd75mauun" path="res://gamedata/moves/mage_blast/mage_blast.tres" id="41_v6opr"]
+[ext_resource type="Resource" uid="uid://c3gi5b7ajoi3t" path="res://gamedata/moves/hydro_barrier/hydro_barrier.tres" id="42_bijnb"]
+[ext_resource type="Resource" uid="uid://bxl2vxndu4e56" path="res://gamedata/moves/whirlwind_slash/whirlwind_slash.tres" id="43_tkt04"]
+[ext_resource type="Script" uid="uid://cwh7p05135w7q" path="res://scripts/battle/combatant/movepool.gd" id="44_d1mf8"]
+[ext_resource type="Resource" uid="uid://ddxdw8fyirruw" path="res://gamedata/combatants/player/player_stat_growth.tres" id="45_sr1yr"]
+[ext_resource type="AudioStream" uid="uid://dnfsxipd2v2xo" path="res://audio/music/battle/battletheme_uvutudx_demo.mp3" id="48_iuoxb"]
+[ext_resource type="AudioStream" uid="uid://c7d7pycfjgo44" path="res://audio/music/battle/newbattlethemev2.mp3" id="49_e0iah"]
+[ext_resource type="Script" uid="uid://1kibgfap86bm" path="res://scripts/overworld/map_entry.gd" id="50_rpc4s"]
+[ext_resource type="PackedScene" uid="uid://dmc2ox37dega8" path="res://prefabs/audio/audio_handler.tscn" id="55_7yxom"]
+
+[sub_resource type="Resource" id="Resource_ndn67"]
+script = ExtResource("2_qsrki")
+combatant = ExtResource("4_7yxom")
+weight = 1.0
+metadata/_custom_type_script = "uid://dga8cpwmm0j6h"
+
+[sub_resource type="Resource" id="Resource_s6tce"]
+script = ExtResource("2_qsrki")
+combatant = ExtResource("5_lu4ji")
+weight = 1.0
+metadata/_custom_type_script = "uid://dga8cpwmm0j6h"
+
+[sub_resource type="Resource" id="Resource_qsc5d"]
+script = ExtResource("4_43nnv")
+combatantsMinLevel = 1
+combatantsMaxLevel = 1
+combatantsLvToPlayerLvRatio = 1.0
+levelStages = Array[ExtResource("3_1rfbt")]([])
+combatant2Options = Array[ExtResource("2_qsrki")]([SubResource("Resource_ndn67")])
+combatant3Options = Array[ExtResource("2_qsrki")]([SubResource("Resource_s6tce")])
+combatant1 = ExtResource("2_3tbtt")
+specialRules = 0
+customWinText = ""
+battleMapPath = ""
+metadata/_custom_type_script = "uid://dllqv5vxrou7r"
+
+[sub_resource type="Resource" id="Resource_8fkj1"]
+script = ExtResource("9_lu4ji")
+displayName = "Dragon"
+saveName = "dragon"
+level = 1
+experience = 0
+maxHp = 50
+physAttack = 1
+magicAttack = 1
+resistance = 1
+affinity = 1
+speed = 1
+statPts = 0
+statGrowth = ExtResource("17_0i88m")
+moves = Array[ExtResource("16_smxvb")]([])
+movepool = ExtResource("15_s6gcx")
+
+[sub_resource type="Resource" id="Resource_hfudy"]
+script = ExtResource("2_4m7l3")
+sprite = ExtResource("13_q1mce")
+nickname = ""
+stats = SubResource("Resource_8fkj1")
+evolutions = ExtResource("10_ndn67")
+evolutionStats = Dictionary[String, ExtResource("9_lu4ji")]({})
+minionStatAllocMode = -1
+currentHp = -1
+orbs = 0
+runes = Array[ExtResource("12_6gybf")]([])
+triggeredRunes = Array[ExtResource("12_6gybf")]([])
+triggeredRunesDmg = Array[int]([])
+triggeredRunesStatus = Array[bool]([])
+friendship = 0.0
+maxFriendship = 30.0
+fullyAttuned = false
+version = ""
+ai = ExtResource("7_3tbtt")
+aiType = 1
+damageAggroType = 3
+strategy = 1
+aiOverrideWeight = 0.15
+moveEffectiveness = ExtResource("11_s6tce")
+weightedEquipment = ExtResource("18_w5trt")
+dropTable = ExtResource("8_7yxom")
+statAllocationStrategy = ExtResource("14_r0otg")
+downed = false
+battleStorageHp = -1
+battleStorageOrbs = -1
+
+[sub_resource type="Resource" id="Resource_hula1"]
+script = ExtResource("9_lu4ji")
+displayName = "Rat"
+saveName = "rat"
+level = 1
+experience = 0
+maxHp = 38
+physAttack = 1
+magicAttack = 1
+resistance = 1
+affinity = 1
+speed = 1
+statPts = 0
+statGrowth = ExtResource("26_bg7wv")
+moves = Array[ExtResource("16_smxvb")]([])
+movepool = ExtResource("25_pwnsk")
+
+[sub_resource type="Resource" id="Resource_tco8a"]
+script = ExtResource("2_4m7l3")
+sprite = ExtResource("23_jsvg8")
+nickname = ""
+stats = SubResource("Resource_hula1")
+evolutions = ExtResource("21_1alo4")
+evolutionStats = Dictionary[String, ExtResource("9_lu4ji")]({})
+minionStatAllocMode = -1
+currentHp = -1
+orbs = 0
+runes = Array[ExtResource("12_6gybf")]([])
+triggeredRunes = Array[ExtResource("12_6gybf")]([])
+triggeredRunesDmg = Array[int]([])
+triggeredRunesStatus = Array[bool]([])
+friendship = 0.0
+maxFriendship = 30.0
+fullyAttuned = false
+version = ""
+ai = ExtResource("19_vbct2")
+aiType = 1
+damageAggroType = 0
+strategy = 0
+aiOverrideWeight = 0.35
+moveEffectiveness = ExtResource("22_6jjw1")
+weightedEquipment = ExtResource("27_0qijn")
+dropTable = ExtResource("20_gqday")
+statAllocationStrategy = ExtResource("24_xp0g1")
+downed = false
+battleStorageHp = -1
+battleStorageOrbs = -1
+
+[sub_resource type="Resource" id="Resource_olhs8"]
+script = ExtResource("9_lu4ji")
+displayName = "Sea Wyrm"
+saveName = "sea_wyrm"
+level = 1
+experience = 0
+maxHp = 50
+physAttack = 1
+magicAttack = 1
+resistance = 1
+affinity = 1
+speed = 1
+statPts = 0
+statGrowth = ExtResource("35_1eumj")
+moves = Array[ExtResource("16_smxvb")]([])
+movepool = ExtResource("34_o1nji")
+
+[sub_resource type="Resource" id="Resource_6syux"]
+script = ExtResource("2_4m7l3")
+sprite = ExtResource("32_qhmp6")
+nickname = ""
+stats = SubResource("Resource_olhs8")
+evolutions = ExtResource("30_y7hdt")
+evolutionStats = Dictionary[String, ExtResource("9_lu4ji")]({})
+minionStatAllocMode = -1
+currentHp = -1
+orbs = 0
+runes = Array[ExtResource("12_6gybf")]([])
+triggeredRunes = Array[ExtResource("12_6gybf")]([])
+triggeredRunesDmg = Array[int]([])
+triggeredRunesStatus = Array[bool]([])
+friendship = 0.0
+maxFriendship = 30.0
+fullyAttuned = false
+version = ""
+ai = ExtResource("28_jnfav")
+aiType = 1
+damageAggroType = 1
+strategy = 0
+aiOverrideWeight = 0.25
+moveEffectiveness = ExtResource("31_rk5ax")
+weightedEquipment = ExtResource("36_6pdvm")
+dropTable = ExtResource("29_qsr6e")
+statAllocationStrategy = ExtResource("33_qqu4c")
+downed = false
+battleStorageHp = -1
+battleStorageOrbs = -1
+
+[sub_resource type="Resource" id="Resource_ykece"]
+script = ExtResource("2_4m7l3")
+sprite = ExtResource("13_q1mce")
+nickname = ""
+stats = SubResource("Resource_8fkj1")
+evolutions = ExtResource("10_ndn67")
+evolutionStats = Dictionary[String, ExtResource("9_lu4ji")]({})
+minionStatAllocMode = -1
+currentHp = -1
+orbs = 0
+runes = Array[ExtResource("12_6gybf")]([])
+triggeredRunes = Array[ExtResource("12_6gybf")]([])
+triggeredRunesDmg = Array[int]([])
+triggeredRunesStatus = Array[bool]([])
+friendship = 0.0
+maxFriendship = 30.0
+fullyAttuned = false
+version = ""
+ai = ExtResource("7_3tbtt")
+aiType = 1
+damageAggroType = 3
+strategy = 1
+aiOverrideWeight = 0.15
+moveEffectiveness = ExtResource("11_s6tce")
+weightedEquipment = ExtResource("18_w5trt")
+dropTable = ExtResource("8_7yxom")
+statAllocationStrategy = ExtResource("14_r0otg")
+downed = false
+battleStorageHp = -1
+battleStorageOrbs = -1
+
+[sub_resource type="Resource" id="Resource_xmc4s"]
+script = ExtResource("44_d1mf8")
+pool = Array[ExtResource("16_smxvb")]([ExtResource("40_ryjb6"), ExtResource("41_v6opr"), ExtResource("42_bijnb"), ExtResource("43_tkt04")])
+signatureMoves = Array[ExtResource("16_smxvb")]([])
+preferredMove1Role = 0
+preferredMove1DmgType = -1
+preferredMove1Element = 0
+preferredMove2Role = 0
+preferredMove2DmgType = -1
+preferredMove2Element = 0
+preferredMove3Role = 0
+preferredMove3DmgType = -1
+preferredMove3Element = 0
+preferredMove4Role = 0
+preferredMove4DmgType = -1
+preferredMove4Element = 0
+
+[sub_resource type="Resource" id="Resource_x3k1c"]
+script = ExtResource("9_lu4ji")
+displayName = "Player"
+saveName = "player"
+level = 1
+experience = 0
+maxHp = 50
+physAttack = 1
+magicAttack = 1
+resistance = 1
+affinity = 1
+speed = 1
+statPts = 0
+statGrowth = ExtResource("45_sr1yr")
+moves = Array[ExtResource("16_smxvb")]([ExtResource("40_ryjb6"), ExtResource("41_v6opr"), ExtResource("42_bijnb"), ExtResource("43_tkt04")])
+movepool = SubResource("Resource_xmc4s")
+
+[sub_resource type="Resource" id="Resource_06asw"]
+script = ExtResource("2_4m7l3")
+sprite = ExtResource("39_ihv4v")
+nickname = ""
+stats = SubResource("Resource_x3k1c")
+evolutions = ExtResource("37_j50tr")
+evolutionStats = Dictionary[String, ExtResource("9_lu4ji")]({})
+minionStatAllocMode = -1
+currentHp = -1
+orbs = 0
+runes = Array[ExtResource("12_6gybf")]([])
+triggeredRunes = Array[ExtResource("12_6gybf")]([])
+triggeredRunesDmg = Array[int]([])
+triggeredRunesStatus = Array[bool]([])
+friendship = 0.0
+maxFriendship = 30.0
+fullyAttuned = false
+version = ""
+aiType = 0
+damageAggroType = 0
+strategy = 0
+aiOverrideWeight = 0.0
+moveEffectiveness = ExtResource("38_j5j8e")
+downed = false
+battleStorageHp = -1
+battleStorageOrbs = -1
+
+[sub_resource type="Resource" id="Resource_fxhmh"]
+script = ExtResource("5_8qfha")
+playerCombatant = SubResource("Resource_06asw")
+minionCombatant = SubResource("Resource_ykece")
+enemyCombatant1 = SubResource("Resource_hfudy")
+enemyCombatant2 = SubResource("Resource_tco8a")
+enemyCombatant3 = SubResource("Resource_6syux")
+randomEnemy2Id = -1
+randomEnemy3Id = -1
+menu = 2
+prevMenu = 1
+commandingMinion = false
+moveEffectType = 0
+fobButtonEnabled = true
+calcdStateStrings = Array[String]([])
+calcdStateCombatants = Array[ExtResource("2_4m7l3")]([])
+calcdStateDamage = Array[int]([])
+calcdStateDamageEffectiveness = Array[float]([])
+calcdStateStatBoosts = Array[ExtResource("3_lasgb")]([])
+calcdStateEquipmentProcd = []
+statusEffDamagedCombatants = Array[ExtResource("2_4m7l3")]([])
+calcdStateIndex = 0
+battleMapPath = ""
+battleMusic = ExtResource("48_iuoxb")
+playerEscaped = false
+turnNumber = 1
+turnList = Array[ExtResource("2_4m7l3")]([])
+rewards = Array[ExtResource("4_ypvhw")]([])
+metadata/_custom_type_script = "uid://cjr0rqx4qkjxb"
+
+[sub_resource type="Resource" id="Resource_fp6ak"]
+script = ExtResource("50_rpc4s")
+path = "abc"
+battleMapName = "forest_battle_map"
+battleMusic = Array[AudioStream]([ExtResource("48_iuoxb"), ExtResource("49_e0iah")])
+isRecoverLocation = false
+recoverPosition = Vector2(0, 0)
+metadata/_custom_type_script = "uid://1kibgfap86bm"
+
+[node name="BattleGuisTester" type="Node2D"]
+script = ExtResource("1_32hus")
+encounter = SubResource("Resource_qsc5d")
+battleState = SubResource("Resource_fxhmh")
+playerCombatant = SubResource("Resource_06asw")
+mapEntry = SubResource("Resource_fp6ak")
+map = "hilltop_forest_east"
+playerOrbs = 3
+
+[node name="Battle" parent="." instance=ExtResource("2_dre3n")]
+
+[node name="AudioHandler" parent="." instance=ExtResource("55_7yxom")]

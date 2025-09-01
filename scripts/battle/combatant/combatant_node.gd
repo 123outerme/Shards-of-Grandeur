@@ -229,11 +229,12 @@ func update_hp_tag():
 		hpDrainTween.parallel().tween_property(hpProgressBar, 'tint_progress', Combatant.get_hp_bar_color(curHp, combatant.stats.maxHp), 1)
 		hpDrainTween.finished.connect(_on_hp_drain_tween_finished)
 	
+	var combatantSizePlusMargin: Vector2 = combatant.get_idle_size() + Vector2(14, 14)
 	#hpTag.size.x = (lvText.size.x + hpText.size.x) * lvText.scale.x + 8 # magic number
 	if leftSide:
-		hpTag.position = Vector2(-1 * hpTag.size.x - selectCombatantBtn.size.x * 0.5 - 2, -0.5 * hpTag.size.y)
+		hpTag.position = Vector2(-1 * hpTag.size.x - combatantSizePlusMargin.x * 0.5 - 2, -0.5 * hpTag.size.y)
 	else:
-		hpTag.position = Vector2(selectCombatantBtn.size.x * 0.5 + 2, -0.5 * hpTag.size.y)
+		hpTag.position = Vector2(combatantSizePlusMargin.x * 0.5 + 2, -0.5 * hpTag.size.y)
 	
 	#if ((unlockSurgeRequirements == null or unlockSurgeRequirements.is_valid()) and leftSide) or ((Combatant.useSurgeReqs == null or Combatant.useSurgeReqs.is_valid()) and not leftSide):
 		#orbDisplay.visible = true
@@ -259,16 +260,21 @@ func update_select_btn(showing: bool, disable: bool = false):
 		
 	selectCombatantBtn.visible = showing
 	selectCombatantBtn.disabled = disable
-	selectCombatantBtn.z_index = 1 if selectCombatantBtn.button_pressed else 0
+	#selectCombatantBtn.z_index = 1 if selectCombatantBtn.button_pressed else 0
+	selectCombatantBtn.z_index = 1
 	
-	selectCombatantBtn.size = combatant.get_idle_size() + Vector2(14, 14) # set size of selecting button to sprite size + 8px
+	var combatantSizePlusMargin: Vector2 = combatant.get_idle_size() + Vector2(14, 14)
+	#selectCombatantBtn.size = combatantSizePlusMargin # set size of selecting button to sprite size + 8px
 	
 	# button has to bottom out at the combatant's feet position, and the top must be at the top of the idle boundaries
-	selectCombatantBtn.position = -0.5 * selectCombatantBtn.size # center button
-	selectCombatantBtn.position.y -= combatant.get_idle_size().y / 2 - 6
+	#selectCombatantBtn.position = -0.5 * selectCombatantBtn.size # center button
+	#selectCombatantBtn.position.y -= combatant.get_idle_size().y / 2 - 6
 	
+	# NOTE: the below was already commented out before commenting out the above
 	# update the position to be centered on the combatant's idle sprite boundaries (not its center of mass)
 	#selectCombatantBtn.position += animatedSprite.offset + (combatant.get_idle_size() / 2)
+	selectCombatantBtn.position.x = (0.5 if leftSide else -0.5) * combatantSizePlusMargin.x - 0.5 * selectCombatantBtn.size.x
+	selectCombatantBtn.position.y = selectCombatantBtn.size.y * -0.5
 
 func update_rune_sprites(createNew: bool = true, createTriggered: bool = false, playCreatedTriggeredRunes: bool = false) -> void:
 	if combatant == null or not is_alive():
@@ -390,7 +396,7 @@ func set_focus_top_combatant_node_neighbor(combatantNode: CombatantNode):
 	
 func set_selected(selected: bool = true):
 	selectCombatantBtn.button_pressed = selected
-	selectCombatantBtn.z_index = 1 if selected else 0
+	#selectCombatantBtn.z_index = 1 if selected else 0
 	selectCombatantBtn._on_pressed_update_texture()
 	
 func is_selected() -> bool:
@@ -666,7 +672,7 @@ func _fade_out_finished():
 	modulate = Color(1,1,1,1)
 
 func _on_select_combatant_btn_toggled(button_pressed: bool) -> void:
-	selectCombatantBtn.z_index = 1 if button_pressed else 0
+	#selectCombatantBtn.z_index = 1 if button_pressed else 0
 	toggled.emit(button_pressed, self)
 
 func _on_click_combatant_btn_pressed():

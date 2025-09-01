@@ -53,6 +53,10 @@ func _unhandled_input(event):
 	if visible and event.is_action_pressed("game_decline") and is_textbox_complete() and PlayerFinder.player.makingChoice:
 		get_viewport().set_input_as_handled()
 		select_decline_choice()
+	
+	if visible and (event.is_action_pressed('game_tab_left') or event.is_action_pressed('game_tab_right')) and is_textbox_complete() and PlayerFinder.player.makingChoice:
+		get_viewport().set_input_as_handled()
+		focus_next_choice(-1 if event.is_action_pressed('game_tab_left') else 1)
 
 func _exit_tree():
 	SceneLoader.audioHandler.stop_sfx(textScrollSfx)
@@ -306,6 +310,15 @@ func select_decline_choice():
 		if dialogueChoices[choicesDialogueItemIdxs[idx]].isDeclineChoice:
 			_select_choice(idx)
 			return
+
+func focus_next_choice(direction: int):
+	if not PlayerFinder.player.makingChoice or dialogueItem == null:
+		return
+	var buttons: Array[Node] = buttonContainer.get_children()
+	var focusedIdx = buttons.find(lastChoiceFocused)
+	
+	focusedIdx = wrapi(focusedIdx + direction, 0, len(buttons))
+	buttons[focusedIdx].grab_focus()
 
 func _viewport_focus_changed(control):
 	var buttons: Array[Node] = buttonContainer.get_children()

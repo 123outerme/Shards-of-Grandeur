@@ -683,8 +683,16 @@ func restore_dialogue(npc: NPCScript):
 		textBox.show_text_instant()
 
 func show_all_talk_alert_sprites():
-	for candidate in talkNPCcandidates:
-		candidate.talkAlertSprite.visible = true
+	for candidate: NPCScript in talkNPCcandidates:
+		if len(candidate.data.dialogueItems) > 0:
+			candidate.talkAlertSprite.visible = true
+	
+	''' TODO: (this is triggered when the cutscene ends) Does the below need to be done, or do the Interactable implementations all handle it themselves?
+	for interactableCandidate: Interactable in interactables:
+		if interactableCandidate.has_dialogue():
+			pass
+	'''
+
 
 func restore_interactable_dialogue(dialogues: Array[InteractableDialogue]):
 	await get_tree().process_frame # wait for nearby interactables to register with the player

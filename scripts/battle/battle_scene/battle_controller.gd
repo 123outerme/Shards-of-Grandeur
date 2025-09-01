@@ -57,7 +57,7 @@ func _ready():
 		SaveHandler.load_data(PlayerResources.battleSaveFolder)
 	call_deferred('load_into_battle')
 	
-func load_into_battle():
+func load_into_battle(saveAfterLoad: bool = true):
 	if SceneLoader.curMapEntry == null:
 		var worldLocation: WorldLocation = MapLoader.get_world_location_for_name(PlayerResources.playerInfo.map)
 		SceneLoader.curMapEntry = worldLocation.maps[len(worldLocation.maps) - 1]
@@ -351,7 +351,8 @@ func load_into_battle():
 	shadeTween.tween_property(shade, 'modulate', Color(1, 1, 1, 0), 0.5)
 	shadeTween.finished.connect(_fade_in_finish)
 	battleUI.set_menu_state(state.menu, false)
-	SaveHandler.save_data()
+	if saveAfterLoad:
+		SaveHandler.save_data()
 	
 func summon_minion(minionName: String, shard: Item = null):
 	state.usedShard = shard
