@@ -58,7 +58,7 @@ func load_inventory_slot_panel():
 	equipButton.disabled = inBattle
 	
 	trashButton.visible = not isShopItem
-	trashButton.disabled = not (inventorySlot.item.consumable or inventorySlot.item.equippable) or isEquipped
+	trashButton.disabled = not (inventorySlot.item.consumable and inventorySlot.item.trashable) or isEquipped
 	
 	buyButton.visible = isShopItem and not isPlayerItem
 	

@@ -10,6 +10,7 @@ signal back_pressed
 var combatant: Combatant = null
 var evolution: Evolution = null
 var inTutorial: bool = false
+
 var evolutionListItemPanel = load('res://prefabs/ui/inventory/evolution_list_item_panel.tscn')
 
 @onready var shardSprite: Sprite2D = get_node("Panel/ShardSpriteControl/ShardSprite")
@@ -17,6 +18,7 @@ var evolutionListItemPanel = load('res://prefabs/ui/inventory/evolution_list_ite
 @onready var movePoolPanel: MovePoolPanel = get_node("Panel/MovePoolPanel")
 @onready var evolutionScrollContainer: ScrollContainer = get_node('Panel/EvolutionScrollContainer')
 @onready var evoHboxContainer: HBoxContainer = get_node('Panel/EvolutionScrollContainer/EvolutionHboxContainer')
+@onready var boxContainerScroller: BoxContainerScroller = get_node('Panel/BoxContainerScroller')
 @onready var moveDetailsPanel: MoveDetailsPanel = get_node("MoveDetailsPanel")
 @onready var backButton: Button = get_node("Panel/BackButton")
 
@@ -156,7 +158,7 @@ func _deferred_evo_list_item_panel_connect(evoItemPanel: EvolutionListItemPanel,
 	evoItemPanel.selectButton.button_pressed = evoItemPanel.evolution == evolution
 	
 	evoItemPanel.selectButton.focus_neighbor_bottom = evoItemPanel.selectButton.get_path_to(movePoolPanel.firstMovePanel.learnButton)
-	evoItemPanel.selectButton.focus_neighbor_right = '.'
+	#evoItemPanel.selectButton.focus_neighbor_right = '.'
 	evoItemPanel.selectButton.focus_neighbor_top = evoItemPanel.selectButton.get_path_to(backButton)
 	if evolution == evoItemPanel.evolution:
 		movePoolPanel.firstMovePanel.detailsButton.focus_neighbor_top = movePoolPanel.firstMovePanel.detailsButton.get_path_to(evoItemPanel.selectButton)
@@ -164,13 +166,34 @@ func _deferred_evo_list_item_panel_connect(evoItemPanel: EvolutionListItemPanel,
 		if movePoolPanel.firstMovePanel == null: # if no moves: make it focus the evo select button
 			backButton.focus_neighbor_top = backButton.get_path_to(evoItemPanel.selectButton)
 		backButton.focus_neighbor_bottom = backButton.get_path_to(evoItemPanel.selectButton)
+	# NOTE: effects of removing the below remain untested...
+	''' connect left/right focus neighbors:
+	# betting on automatic focus neighbors now, since box container scroller is present
 	if lastPanel != null:
 		evoItemPanel.selectButton.focus_neighbor_left = evoItemPanel.selectButton.get_path_to(lastPanel.selectButton)
 		lastPanel.selectButton.focus_neighbor_right = lastPanel.selectButton.get_path_to(evoItemPanel.selectButton)
 	else:
 		evoItemPanel.selectButton.focus_neighbor_left = '.'
+	'''
 
 func _on_evolution_list_item_panel_selected(panel: EvolutionListItemPanel) -> void:
 	evolution = panel.evolution
 	load_shard_learn_panel(false, false)
 	evolution_switched.emit(evolution)
+
+func _on_box_container_scroller_scroll_buttons_updated() -> void:
+	# NOTE: untested...
+	if boxContainerScroller.visible:
+		if movePoolPanel.firstMovePanel != null:
+			boxContainerScroller.connect_scroll_left_bottom_neighbor(movePoolPanel.firstMovePanel.detailsButton)
+			boxContainerScroller.connect_scroll_right_bottom_neighbor(movePoolPanel.firstMovePanel.detailsButton)
+		else:
+			boxContainerScroller.connect_scroll_left_bottom_neighbor(backButton)
+			boxContainerScroller.connect_scroll_right_bottom_neighbor(backButton)
+	else:
+		if movePoolPanel.firstMovePanel != null:
+			movePoolPanel.firstMovePanel.detailsButton.focus_neighbor_top = ''
+		else:
+			backButton.focus_neighbor_top = ''
+		if SceneLoader.mainGame.lastFocusedControl == boxContainerScroller.scrollLeftBtn or SceneLoader.mainGame.lastFocusedControl == boxContainerScroller.scrollRightBtn:
+			initial_focus()

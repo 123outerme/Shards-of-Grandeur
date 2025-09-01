@@ -746,7 +746,7 @@ func _on_item_count_choose_panel_panel_closed(count: int, backPressed: bool) -> 
 		ItemCountChoosePanel.CountChooseReason.TRASH:
 			if not backPressed:
 				var last = PlayerResources.inventory.trash_item(lastSlotInteracted, count)
-				PlayerResources.playerInfo.gold += roundi(count * lastSlotInteracted.item.cost * 0.5)
+				PlayerResources.playerInfo.gold += max(0, roundi(count * lastSlotInteracted.item.cost * 0.5))
 				load_inventory_panel(last)
 				if last:
 					lastSlotInteracted = null

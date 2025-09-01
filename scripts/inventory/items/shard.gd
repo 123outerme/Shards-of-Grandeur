@@ -10,14 +10,15 @@ func _init(
 	i_itemDescription = "",
 	i_cost = 0,
 	i_maxCount = 5,
-	i_usable = true,
-	i_battleUsable = true,
-	i_consumable = true,
-	i_equippable = false,
+	i_usable: bool = true,
+	i_battleUsable: bool = true,
+	i_consumable: bool = true,
+	i_equippable: bool = false,
+	i_trashable: bool = true,
 	i_targets = BattleCommand.Targets.NONE,
 	i_combatantSaveName = '',
 ):
-	super._init(i_sprite, i_name, i_type, i_itemDescription, i_cost, i_maxCount, i_usable, i_battleUsable, i_consumable, i_equippable, i_targets)
+	super(i_sprite, i_name, i_type, i_itemDescription, i_cost, i_maxCount, i_usable, i_battleUsable, i_consumable, i_equippable, i_trashable, i_targets)
 	combatantSaveName = i_combatantSaveName
 
 func use(_target: Combatant):

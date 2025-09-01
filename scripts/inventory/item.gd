@@ -42,6 +42,7 @@ static func type_to_string(t: Type) -> String:
 @export var battleUsable: bool = true
 @export var consumable: bool = true
 @export var equippable: bool = false
+@export var trashable: bool = true
 @export var battleTargets: BattleCommand.Targets = BattleCommand.Targets.SELF
 
 func _init(
@@ -51,10 +52,11 @@ func _init(
 	i_itemDescription = "",
 	i_cost = 0,
 	i_maxCount = 0,
-	i_usable = true,
-	i_battleUsable = true,
-	i_consumable = true,
-	i_equippable = false,
+	i_usable: bool = true,
+	i_battleUsable: bool = true,
+	i_consumable: bool = true,
+	i_equippable: bool = false,
+	i_trashable: bool = true,
 	i_targets = BattleCommand.Targets.SELF,
 ):
 	itemSprite = i_sprite
@@ -67,6 +69,7 @@ func _init(
 	battleUsable = i_battleUsable
 	consumable = i_consumable
 	equippable = i_equippable
+	trashable = i_trashable
 	battleTargets = i_targets
 
 func use(_target: Combatant):

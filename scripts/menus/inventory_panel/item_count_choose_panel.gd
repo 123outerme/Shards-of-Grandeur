@@ -147,7 +147,7 @@ func update_gold_count_label() -> void:
 			goldCountLabel.text += TextUtils.num_to_comma_string(cost)
 			goldVerbLabel.text = '[right]Sell for[/right]'
 		CountChooseReason.TRASH:
-			goldCountLabel.text += TextUtils.num_to_comma_string(roundi(cost * 0.5))
+			goldCountLabel.text += TextUtils.num_to_comma_string(max(0, roundi(cost * 0.5)))
 			goldVerbLabel.text = '[right]Recoup[/right]'
 	goldCountLabel.text += '?'
 

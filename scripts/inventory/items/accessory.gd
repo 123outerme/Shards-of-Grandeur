@@ -10,14 +10,15 @@ func _init(
 	i_itemDescription = "",
 	i_cost = 0,
 	i_maxCount = 1,
-	i_usable = false,
-	i_battleUsable = false,
-	i_consumable = false,
-	i_equippable = true,
+	i_usable: bool = false,
+	i_battleUsable: bool = false,
+	i_consumable: bool = false,
+	i_equippable: bool = true,
+	i_trashable: bool = false,
 	i_targets = BattleCommand.Targets.NONE,
 	i_bonusOrbs = 0,
 ):
-	super._init(i_sprite, i_name, i_type, i_itemDescription, i_cost, i_maxCount, i_usable, i_battleUsable, i_consumable, i_equippable, i_targets)
+	super(i_sprite, i_name, i_type, i_itemDescription, i_cost, i_maxCount, i_usable, i_battleUsable, i_consumable, i_equippable, i_trashable, i_targets)
 	bonusOrbs = i_bonusOrbs
 
 func get_use_message(_target: Combatant) -> String:

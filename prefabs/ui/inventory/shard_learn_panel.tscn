@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dmj1y0ptr5di5"]
+[gd_scene load_steps=10 format=3 uid="uid://dmj1y0ptr5di5"]
 
 [ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://themes/root_theme.tres" id="1_7lyj1"]
 [ext_resource type="Script" uid="uid://erobs0yhnfki" path="res://scripts/menus/inventory_panel/shard_learn_panel.gd" id="2_v8r8a"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://caulhsqfxcmcu" path="res://prefabs/ui/stats/move_pool_panel.tscn" id="5_nxxmf"]
 [ext_resource type="PackedScene" uid="uid://b0s2dmndrj7t7" path="res://prefabs/ui/stats/move_details_panel.tscn" id="6_atxhp"]
 [ext_resource type="Script" uid="uid://cqu8qkicb5n1f" path="res://scripts/menus/scroll_better_follow.gd" id="6_lbx7y"]
+[ext_resource type="PackedScene" uid="uid://bdaddlnr5cve" path="res://prefabs/ui/box_container_scroller.tscn" id="6_n7vcq"]
 [ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="7_st60c"]
 
 [node name="ShardLearnPanel" type="Control"]
@@ -67,9 +68,9 @@ custom_minimum_size = Vector2(0, 72)
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_left = 8.0
+offset_left = 56.0
 offset_top = 73.0
-offset_right = -8.0
+offset_right = -56.0
 offset_bottom = 145.0
 grow_horizontal = 2
 script = ExtResource("6_lbx7y")
@@ -79,6 +80,16 @@ boxContainer = NodePath("EvolutionHboxContainer")
 layout_mode = 2
 size_flags_horizontal = 3
 alignment = 1
+
+[node name="BoxContainerScroller" parent="Panel" node_paths=PackedStringArray("scrollContainer", "bailoutFocusControl") instance=ExtResource("6_n7vcq")]
+layout_mode = 1
+offset_left = 8.0
+offset_top = 81.0
+offset_right = -8.0
+offset_bottom = -511.0
+scrollContainer = NodePath("../EvolutionScrollContainer")
+scrollPx = 400
+bailoutFocusControl = NodePath("../BackButton")
 
 [node name="MovePoolPanel" parent="Panel" instance=ExtResource("5_nxxmf")]
 layout_mode = 1
@@ -114,6 +125,7 @@ text = "Back"
 visible = false
 
 [connection signal="visibility_changed" from="Panel/EvolutionScrollContainer" to="Panel/EvolutionScrollContainer" method="_on_visibility_changed"]
+[connection signal="scroll_buttons_updated" from="Panel/BoxContainerScroller" to="." method="_on_box_container_scroller_scroll_buttons_updated"]
 [connection signal="details_button_clicked" from="Panel/MovePoolPanel" to="." method="_on_move_pool_panel_details_button_clicked"]
 [connection signal="learn_button_clicked" from="Panel/MovePoolPanel" to="." method="_on_move_pool_panel_learn_button_clicked"]
 [connection signal="pressed" from="Panel/BackButton" to="." method="_on_back_button_pressed"]

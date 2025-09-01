@@ -72,7 +72,7 @@ func _process(delta):
 		else:
 			if SceneLoader.audioHandler != null:
 				SceneLoader.audioHandler.stop_sfx(textScrollSfx)
-			if is_textbox_complete():
+			if is_textbox_complete() and not ReadySprite.visible:
 				add_choices()
 				ReadySprite.visible = true
 
@@ -159,7 +159,7 @@ func add_choices():
 		return
 	var dialogueLines: Array[String] = dialogueItem.get_lines()
 	if PlayerFinder.player.makingChoice \
-			or TextBoxText.text != TextUtils.substitute_playername(dialogueLines[len(dialogueLines) - 1]):
+			or TextBoxText.text != TextUtils.rich_text_substitute(dialogueLines[len(dialogueLines) - 1], Vector2i(32, 32)):
 		return
 	
 	delete_choices()

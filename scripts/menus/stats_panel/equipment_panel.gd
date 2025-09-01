@@ -3,6 +3,7 @@ class_name EquipmentPanel
 
 signal attempt_equip_weapon
 signal attempt_equip_armor
+signal attempt_equip_accessory
 
 @export var weapon: Weapon = null
 @export var armor: Armor = null
@@ -104,10 +105,22 @@ func _on_armor_sprite_pressed():
 	else:
 		attempt_equip_armor.emit()
 
+func _on_accessory_sprite_pressed() -> void:
+	if accessory != null:
+		itemDetailsPanel.item = accessory
+		itemDetailsPanel.visible = true
+		itemDetailsPanel.load_item_details()
+	if statsPanel != null:
+			statsPanel.backButton.disabled = true
+	else:
+		attempt_equip_accessory.emit()
+	
 func _on_item_details_panel_back_pressed():
 	if itemDetailsPanel.item == armor:
 		armorSprite.grab_focus()
-	else:
+	elif itemDetailsPanel.item == weapon:
 		weaponSprite.grab_focus()
+	else:
+		accessorySprite.grab_focus()
 	if statsPanel != null:
 			statsPanel.backButton.disabled = false

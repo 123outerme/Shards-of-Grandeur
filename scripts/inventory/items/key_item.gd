@@ -20,16 +20,17 @@ func _init(
 	i_itemDescription = "",
 	i_cost = 0,
 	i_maxCount = 0,
-	i_usable = true,
-	i_battleUsable = false,
-	i_consumable = false,
-	i_equippable = false,
+	i_usable: bool = true,
+	i_battleUsable: bool = false,
+	i_consumable: bool = false,
+	i_equippable: bool = false,
+	i_trashable: bool = false,
 	i_targets = BattleCommand.Targets.SELF,
 	i_keyItemType = KeyItemType.STORY_ITEM,
 	i_useMsg = '',
 	i_effectText = '',
 ):
-	super(i_sprite, i_name, i_type, i_itemDescription, i_cost, i_maxCount, i_usable, i_battleUsable, i_consumable, i_equippable, i_targets)
+	super(i_sprite, i_name, i_type, i_itemDescription, i_cost, i_maxCount, i_usable, i_battleUsable, i_consumable, i_equippable, i_trashable, i_targets)
 	keyItemType = i_keyItemType
 	useMessage = i_useMsg
 	effectText = i_effectText

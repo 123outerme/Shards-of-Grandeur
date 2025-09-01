@@ -110,8 +110,9 @@ func _unhandled_input(event):
 		var selectedIdx: int = tabbedViewContainer.get_tab_idx_from_control(selectedTab)
 		var direction: int = -1 if event.is_action_pressed('game_tab_left') else 1
 		# if going to a tab that's hidden; jump one more instead
-		if (selectedIdx + direction == TabbedViewTab.NEW_MOVES and not newMovesPanel.visible) \
-				or (selectedIdx + direction == TabbedViewTab.BATTLE_BOOSTS and not battleBoonsControl.visible):
+		
+		if (wrapi(selectedIdx + direction, 0, tabbedViewContainer.get_tab_count()) == TabbedViewTab.NEW_MOVES and not newMovesPanel.visible) \
+				or (wrapi(selectedIdx + direction, 0, tabbedViewContainer.get_tab_count()) == TabbedViewTab.BATTLE_BOOSTS and not battleBoonsControl.visible):
 			direction *= 2
 		# get next filter button to the left (negative)/right (positive) that's not disabled (wrapping around)
 		var newTabIdx: int = wrapi(selectedIdx + direction, 0, tabbedViewContainer.get_tab_count())
