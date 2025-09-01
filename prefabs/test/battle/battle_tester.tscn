@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=3 uid="uid://vgmb5l1ihc2p"]
+[gd_scene load_steps=62 format=3 uid="uid://vgmb5l1ihc2p"]
 
 [ext_resource type="Script" uid="uid://ba1n20fjtp4k5" path="res://prefabs/test/battle/battle_tester.gd" id="1_7scea"]
 [ext_resource type="Resource" uid="uid://0qma1pdmr3vo" path="res://gamedata/combatants/mirage/mirage.tres" id="2_bwnp0"]
@@ -22,7 +22,7 @@
 [ext_resource type="Script" uid="uid://byp0t0da4gqvn" path="res://scripts/battle/combatant/runes/damage_rune.gd" id="19_afxxh"]
 [ext_resource type="Script" uid="uid://o561gt86qn0r" path="res://prefabs/test/battle/mock_battle_ui.gd" id="19_kmf14"]
 [ext_resource type="Resource" uid="uid://b2bgowbjm3h46" path="res://gamedata/moves/burning_heart/rune/trigger_sprite_rune_burning_heart_charge.tres" id="20_1btmh"]
-[ext_resource type="Script" uid="uid://cky0q11dkk4kj" path="res://scripts/battle/status_effects/reflect.gd" id="20_cl2mb"]
+[ext_resource type="Script" uid="uid://cb5exn7dcp5o7" path="res://scripts/battle/status_effects/bleed.gd" id="20_evxqu"]
 [ext_resource type="Script" uid="uid://spinf5kv548q" path="res://scripts/battle/weighted_things/weighted_stat_category.gd" id="20_jje8i"]
 [ext_resource type="Script" uid="uid://b1w8kitcsyx7d" path="res://scripts/battle/combatant/stat_allocation_strategies/weighted_random_allocation_strategy.gd" id="21_6efxx"]
 [ext_resource type="PackedScene" uid="uid://dmc2ox37dega8" path="res://prefabs/audio/audio_handler.tscn" id="21_y6pws"]
@@ -34,7 +34,6 @@
 [ext_resource type="Resource" uid="uid://cntmieslwj8h1" path="res://gamedata/moves/searing_rune/rune/trigger_sprite_rune_searing_rune_charge.tres" id="28_w0nhl"]
 [ext_resource type="Resource" uid="uid://bcx60u36qshvn" path="res://gamedata/combatants/player/player.tres" id="28_yubvn"]
 [ext_resource type="Resource" uid="uid://b6n834o6wy5o7" path="res://gamedata/moves/reckless_pact/reckless_pact.tres" id="32_cl2mb"]
-[ext_resource type="Script" uid="uid://c4g8cps6yo76w" path="res://scripts/battle/status_effects/interception.gd" id="32_kwrsi"]
 [ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="33_snsqx"]
 [ext_resource type="Resource" uid="uid://bdb03a6ibprre" path="res://gamedata/moves/rat_race/rat_race.tres" id="34_evxqu"]
 [ext_resource type="Script" uid="uid://dohairjlp4nco" path="res://scripts/battle/status_effects/element_burn.gd" id="36_kwrsi"]
@@ -118,13 +117,13 @@ weight = 0.1
 script = ExtResource("21_6efxx")
 categories = Array[ExtResource("20_jje8i")]([SubResource("Resource_3cd3y"), SubResource("Resource_wm2w7"), SubResource("Resource_pl5yt"), SubResource("Resource_1i7gf")])
 
-[sub_resource type="Resource" id="Resource_5gppg"]
-script = ExtResource("20_cl2mb")
-type = 8
+[sub_resource type="Resource" id="Resource_kwrsi"]
+script = ExtResource("20_evxqu")
+type = 2
 potency = 1
 overwritesOtherStatuses = false
 turnsLeft = 3
-metadata/_custom_type_script = "uid://cky0q11dkk4kj"
+metadata/_custom_type_script = "uid://cb5exn7dcp5o7"
 
 [sub_resource type="Resource" id="Resource_spqei"]
 script = ExtResource("19_afxxh")
@@ -182,12 +181,13 @@ randomNums = Array[float]([0.5])
 selfRandomNum = -1.0
 decisionsRandomNum = -1.0
 
-[sub_resource type="Resource" id="Resource_f67c7"]
-script = ExtResource("32_kwrsi")
-type = 9
+[sub_resource type="Resource" id="Resource_5gppg"]
+script = ExtResource("20_evxqu")
+type = 2
 potency = 1
-overwritesOtherStatuses = true
-turnsLeft = 5
+overwritesOtherStatuses = false
+turnsLeft = 3
+metadata/_custom_type_script = "uid://cb5exn7dcp5o7"
 
 [sub_resource type="Resource" id="Resource_mx2w5"]
 script = ExtResource("9_jd22b")
@@ -200,6 +200,14 @@ randomNums = Array[float]([0.0])
 selfRandomNum = -1.0
 decisionsRandomNum = -1.0
 
+[sub_resource type="Resource" id="Resource_f67c7"]
+script = ExtResource("20_evxqu")
+type = 2
+potency = 1
+overwritesOtherStatuses = false
+turnsLeft = 3
+metadata/_custom_type_script = "uid://cb5exn7dcp5o7"
+
 [sub_resource type="Resource" id="Resource_2nv1k"]
 script = ExtResource("9_jd22b")
 type = 1
@@ -210,6 +218,14 @@ targetPositions = Array[String](["Ally"])
 randomNums = Array[float]([0.5])
 selfRandomNum = -1.0
 decisionsRandomNum = -1.0
+
+[sub_resource type="Resource" id="Resource_jgum1"]
+script = ExtResource("20_evxqu")
+type = 0
+potency = 0
+overwritesOtherStatuses = false
+turnsLeft = 0
+metadata/_custom_type_script = "uid://cb5exn7dcp5o7"
 
 [sub_resource type="Resource" id="Resource_hmp4c"]
 script = ExtResource("9_jd22b")
@@ -243,13 +259,15 @@ playerLv = 22
 playerOrbs = 3
 playerCommand = SubResource("Resource_snunq")
 playerStatAllocStrat = SubResource("Resource_h5dco")
-playerStatus = SubResource("Resource_5gppg")
+playerStatus = SubResource("Resource_kwrsi")
 playerRunes = Array[ExtResource("17_mfbgk")]([SubResource("Resource_spqei"), SubResource("Resource_xsbc3"), SubResource("Resource_0al0g")])
 playerRuneCasterPositions = Array[String](["Ally", "Center", "Center"])
 minionCommand = SubResource("Resource_el0wh")
-minionStatus = SubResource("Resource_f67c7")
+minionStatus = SubResource("Resource_5gppg")
 enemy1Command = SubResource("Resource_mx2w5")
+enemy1Status = SubResource("Resource_f67c7")
 enemy2Command = SubResource("Resource_2nv1k")
+enemy2Status = SubResource("Resource_jgum1")
 enemy3Command = SubResource("Resource_hmp4c")
 enemy3Status = SubResource("Resource_lf1pv")
 globalMarker = NodePath("BattleAnimationManager/GlobalMarker")

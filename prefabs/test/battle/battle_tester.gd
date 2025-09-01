@@ -150,7 +150,7 @@ func _ready():
 	reset_intermediate_state_strs()
 	turnExecutor.update_turn_text()
 	await nextButton.pressed
-	while not turnExecutor.advance_precalcd_text():
+	while not turnExecutor.advance_precalcd_text(BattleCommand.ApplyTiming.AFTER_ROUND):
 		await nextButton.pressed
 	nextButton.visible = false
 

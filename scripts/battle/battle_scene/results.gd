@@ -32,6 +32,13 @@ func _on_ok_button_pressed(queued: bool = false) -> void:
 	
 	ignoreOkPressed = true
 	if battleUI.menuState == BattleState.Menu.PRE_BATTLE or battleUI.menuState == BattleState.Menu.PRE_ROUND or battleUI.menuState == BattleState.Menu.POST_ROUND:
+		var timing: BattleCommand.ApplyTiming = BattleCommand.ApplyTiming.AFTER_ROUND
+		match battleUI.menuState:
+			BattleState.Menu.PRE_BATTLE:
+				timing = BattleCommand.ApplyTiming.BEFORE_BATTLE
+			BattleState.Menu.PRE_ROUND:
+				timing = BattleCommand.ApplyTiming.BEFORE_ROUND
+		
 		# if no win has been determined yet, check on this post-battle results display step
 		if result == WinCon.TurnResult.NOTHING and battleUI.menuState == BattleState.Menu.POST_ROUND:
 			result = PlayerResources.playerInfo.encounter.get_win_con_result(battleUI.battleController.get_all_combatant_nodes(), battleUI.battleController.state)
@@ -44,7 +51,7 @@ func _on_ok_button_pressed(queued: bool = false) -> void:
 				#ignoreOkPressed = false
 				animFinished = true
 				okBtn.disabled = false
-		var finalPrecalcdText: bool = battleUI.battleController.turnExecutor.advance_precalcd_text() # if was final
+		var finalPrecalcdText: bool = battleUI.battleController.turnExecutor.advance_precalcd_text(timing) # if was final
 		# COMMENTED OUT update the combatant stats to battle storage vars
 		#for combatantNode: CombatantNode in battleUI.battleController.get_all_combatant_nodes():
 			#combatantNode.update_current_tag_stats(updateFromStorage)

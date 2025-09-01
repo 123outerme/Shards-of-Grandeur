@@ -337,7 +337,16 @@ func calculate_intermediate_state_strings(allCombatantNodes: Array[CombatantNode
 					battleController.state.calcdStateDamage.append(dmg)
 					battleController.state.calcdStateDamageEffectiveness.append(dmgEffectiveness)
 
-func advance_precalcd_text() -> bool:
+func advance_precalcd_text(timing: BattleCommand.ApplyTiming) -> bool:
+	# clear/update runes of current precalc'd text subject (to fix each passing post-round cycle potentially triggering the rune anim multiple times)
+	var subjectNode: CombatantNode = null
+	for cNode: CombatantNode in battleUI.battleController.get_all_combatant_nodes():
+		if cNode.combatant == battleUI.battleController.state.calcdStateCombatants[battleUI.battleController.state.calcdStateIndex]:
+			subjectNode = cNode
+			break
+	if subjectNode != null and subjectNode.combatant != null:
+		subjectNode.combatant.update_runes([], battleUI.battleController.state, timing)
+
 	battleController.state.calcdStateIndex += 1
 	update_turn_text()
 	return battleController.state.calcdStateIndex >= len(battleController.state.calcdStateStrings)

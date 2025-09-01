@@ -120,7 +120,7 @@ func _ready():
 		
 		reset_intermediate_state_strs()
 		turnExecutor.update_turn_text()
-		while not turnExecutor.advance_precalcd_text():
+		while not turnExecutor.advance_precalcd_text(BattleCommand.ApplyTiming.AFTER_ROUND):
 			pass # advance precalcd text
 		result = PlayerResources.playerInfo.encounter.get_win_con_result(get_all_combatant_nodes(), state)
 		for combatantNode: CombatantNode in get_all_combatant_nodes():
