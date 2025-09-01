@@ -1,0 +1,331 @@
+[gd_scene load_steps=46 format=3 uid="uid://b6so5mde7vquj"]
+
+[ext_resource type="Script" uid="uid://thg5n3s0442x" path="res://prefabs/test/battle/battle_rewards_tester.gd" id="1_r2sjq"]
+[ext_resource type="Resource" uid="uid://bhg4i01ukcdvd" path="res://gamedata/combatants/rat/rat.tres" id="2_byi35"]
+[ext_resource type="Script" uid="uid://cxdjuosnjdmdm" path="res://scripts/battle/battle_scene/battle_ui.gd" id="2_pfv3j"]
+[ext_resource type="PackedScene" uid="uid://bk5magi8dnwgj" path="res://prefabs/battle/battle_animation_manager.tscn" id="2_rlm31"]
+[ext_resource type="Script" uid="uid://dga8cpwmm0j6h" path="res://scripts/battle/weighted_things/weighted_combatants.gd" id="3_0mmq8"]
+[ext_resource type="Script" uid="uid://bvnw0ab8d80ti" path="res://scripts/overworld/overworld_enemy/random_encounter_level_stage.gd" id="4_hn5s7"]
+[ext_resource type="Script" uid="uid://dllqv5vxrou7r" path="res://scripts/overworld/overworld_enemy/random_encounter.gd" id="5_aj37f"]
+[ext_resource type="Script" uid="uid://dyckeornewpwi" path="res://scripts/battle/combatant.gd" id="6_mav5l"]
+[ext_resource type="Script" uid="uid://dvivnpdo5ga72" path="res://scripts/battle/combatant/stat_changes.gd" id="7_d2jn7"]
+[ext_resource type="Resource" uid="uid://dw06544cpkf3" path="res://gamedata/combatants/rat/rat_ai.tres" id="8_8rlxh"]
+[ext_resource type="Script" uid="uid://flaq3s0m3pf2" path="res://scripts/reward/reward.gd" id="8_05204"]
+[ext_resource type="Resource" uid="uid://cfbfojr1nlivh" path="res://gamedata/combatants/rat/rat_rewards.tres" id="9_1kn1d"]
+[ext_resource type="Script" uid="uid://cjr0rqx4qkjxb" path="res://scripts/battle/battle_scene/battle_state.gd" id="9_beusi"]
+[ext_resource type="Script" uid="uid://c8dxuthm1qd7s" path="res://scripts/battle/combatant/stats.gd" id="10_18fwv"]
+[ext_resource type="Resource" uid="uid://70qiovvsvg0s" path="res://gamedata/combatants/rat/rat_evolutions.tres" id="11_0ubsw"]
+[ext_resource type="Resource" uid="uid://n2ifthv07pc1" path="res://gamedata/combatants/rat/rat_effectiveness.tres" id="12_6sthq"]
+[ext_resource type="Script" uid="uid://biq3088m28kr2" path="res://scripts/battle/combatant/rune.gd" id="13_nv10q"]
+[ext_resource type="Resource" uid="uid://b6gpqdsyrjms1" path="res://gamedata/combatants/rat/rat_sprite.tres" id="14_2vgn5"]
+[ext_resource type="Resource" uid="uid://q32jpxfoyuer" path="res://gamedata/combatants/rat/rat_stat_alloc_strategy.tres" id="15_ljfpb"]
+[ext_resource type="Resource" uid="uid://r5nfn065bsw4" path="res://gamedata/combatants/rat/rat_movepool.tres" id="16_a0wjm"]
+[ext_resource type="Script" uid="uid://dx4lnh4driy7a" path="res://scripts/battle/combatant/move.gd" id="17_xnh7e"]
+[ext_resource type="Resource" uid="uid://c63oatk8g1jh6" path="res://gamedata/combatants/rat/rat_stat_growth.tres" id="18_rtpcv"]
+[ext_resource type="Resource" uid="uid://lsqontnk0grj" path="res://gamedata/combatants/rat/rat_equipment.tres" id="19_4l62p"]
+[ext_resource type="Resource" uid="uid://ddbx7btl312ii" path="res://gamedata/combatants/player/player_evolutions.tres" id="20_kcdte"]
+[ext_resource type="Resource" uid="uid://bcyc6jiut3ng3" path="res://gamedata/combatants/player/player_effectiveness.tres" id="21_hxi86"]
+[ext_resource type="Resource" uid="uid://dvr8s8ujdy6f1" path="res://gamedata/combatants/player/player_sprite.tres" id="22_yyht6"]
+[ext_resource type="Resource" uid="uid://crei2j1v6q4jn" path="res://gamedata/moves/slice/slice.tres" id="23_7a5yr"]
+[ext_resource type="Resource" uid="uid://b7fwd75mauun" path="res://gamedata/moves/mage_blast/mage_blast.tres" id="24_55k6g"]
+[ext_resource type="Script" uid="uid://cwh7p05135w7q" path="res://scripts/battle/combatant/movepool.gd" id="25_pgfdw"]
+[ext_resource type="Resource" uid="uid://ddxdw8fyirruw" path="res://gamedata/combatants/player/player_stat_growth.tres" id="26_ngcfd"]
+
+[sub_resource type="Resource" id="Resource_bpm3d"]
+script = ExtResource("3_0mmq8")
+combatant = ExtResource("2_byi35")
+weight = 0.85
+metadata/_custom_type_script = "uid://dga8cpwmm0j6h"
+
+[sub_resource type="Resource" id="Resource_rn3mw"]
+script = ExtResource("3_0mmq8")
+weight = 0.15
+metadata/_custom_type_script = "uid://dga8cpwmm0j6h"
+
+[sub_resource type="Resource" id="Resource_ocvby"]
+script = ExtResource("3_0mmq8")
+combatant = ExtResource("2_byi35")
+weight = 0.85
+metadata/_custom_type_script = "uid://dga8cpwmm0j6h"
+
+[sub_resource type="Resource" id="Resource_y70me"]
+script = ExtResource("3_0mmq8")
+weight = 0.15
+metadata/_custom_type_script = "uid://dga8cpwmm0j6h"
+
+[sub_resource type="Resource" id="Resource_2papi"]
+script = ExtResource("5_aj37f")
+combatantsMinLevel = 26
+combatantsMaxLevel = 28
+combatantsLvToPlayerLvRatio = 1.0
+levelStages = Array[ExtResource("4_hn5s7")]([])
+combatant2Options = Array[ExtResource("3_0mmq8")]([SubResource("Resource_bpm3d"), SubResource("Resource_rn3mw")])
+combatant3Options = Array[ExtResource("3_0mmq8")]([SubResource("Resource_ocvby"), SubResource("Resource_y70me")])
+combatant1 = ExtResource("2_byi35")
+specialRules = 0
+customWinText = ""
+battleMapPath = ""
+metadata/_custom_type_script = "uid://dllqv5vxrou7r"
+
+[sub_resource type="Resource" id="Resource_1kn1d"]
+script = ExtResource("10_18fwv")
+displayName = "Rat"
+saveName = "rat"
+level = 27
+experience = 0
+maxHp = 38
+physAttack = 1
+magicAttack = 1
+resistance = 1
+affinity = 1
+speed = 1
+statPts = 0
+statGrowth = ExtResource("18_rtpcv")
+moves = Array[ExtResource("17_xnh7e")]([])
+movepool = ExtResource("16_a0wjm")
+
+[sub_resource type="Resource" id="Resource_fxmej"]
+script = ExtResource("6_mav5l")
+sprite = ExtResource("14_2vgn5")
+nickname = ""
+stats = SubResource("Resource_1kn1d")
+evolutions = ExtResource("11_0ubsw")
+evolutionStats = Dictionary[String, ExtResource("10_18fwv")]({})
+minionStatAllocMode = -1
+currentHp = -1
+orbs = 0
+runes = Array[ExtResource("13_nv10q")]([])
+triggeredRunes = Array[ExtResource("13_nv10q")]([])
+triggeredRunesDmg = Array[int]([])
+triggeredRunesStatus = Array[bool]([])
+friendship = 0.0
+maxFriendship = 30.0
+fullyAttuned = false
+version = ""
+ai = ExtResource("8_8rlxh")
+aiType = 1
+damageAggroType = 0
+strategy = 0
+aiOverrideWeight = 0.35
+moveEffectiveness = ExtResource("12_6sthq")
+weightedEquipment = ExtResource("19_4l62p")
+dropTable = ExtResource("9_1kn1d")
+statAllocationStrategy = ExtResource("15_ljfpb")
+downed = false
+battleStorageHp = -1
+battleStorageOrbs = -1
+
+[sub_resource type="Resource" id="Resource_18fwv"]
+script = ExtResource("10_18fwv")
+displayName = "Rat"
+saveName = "rat"
+level = 27
+experience = 0
+maxHp = 38
+physAttack = 1
+magicAttack = 1
+resistance = 1
+affinity = 1
+speed = 1
+statPts = 0
+statGrowth = ExtResource("18_rtpcv")
+moves = Array[ExtResource("17_xnh7e")]([])
+movepool = ExtResource("16_a0wjm")
+
+[sub_resource type="Resource" id="Resource_c6cpu"]
+script = ExtResource("6_mav5l")
+sprite = ExtResource("14_2vgn5")
+nickname = ""
+stats = SubResource("Resource_18fwv")
+evolutions = ExtResource("11_0ubsw")
+evolutionStats = Dictionary[String, ExtResource("10_18fwv")]({})
+minionStatAllocMode = -1
+currentHp = -1
+orbs = 0
+runes = Array[ExtResource("13_nv10q")]([])
+triggeredRunes = Array[ExtResource("13_nv10q")]([])
+triggeredRunesDmg = Array[int]([])
+triggeredRunesStatus = Array[bool]([])
+friendship = 0.0
+maxFriendship = 30.0
+fullyAttuned = false
+version = ""
+ai = ExtResource("8_8rlxh")
+aiType = 1
+damageAggroType = 0
+strategy = 0
+aiOverrideWeight = 0.35
+moveEffectiveness = ExtResource("12_6sthq")
+weightedEquipment = ExtResource("19_4l62p")
+dropTable = ExtResource("9_1kn1d")
+statAllocationStrategy = ExtResource("15_ljfpb")
+downed = false
+battleStorageHp = -1
+battleStorageOrbs = -1
+
+[sub_resource type="Resource" id="Resource_8rlxh"]
+script = ExtResource("10_18fwv")
+displayName = "Rat"
+saveName = "rat"
+level = 24
+experience = 0
+maxHp = 38
+physAttack = 1
+magicAttack = 1
+resistance = 1
+affinity = 1
+speed = 1
+statPts = 0
+statGrowth = ExtResource("18_rtpcv")
+moves = Array[ExtResource("17_xnh7e")]([])
+movepool = ExtResource("16_a0wjm")
+
+[sub_resource type="Resource" id="Resource_tj4xp"]
+script = ExtResource("6_mav5l")
+sprite = ExtResource("14_2vgn5")
+nickname = ""
+stats = SubResource("Resource_8rlxh")
+evolutions = ExtResource("11_0ubsw")
+evolutionStats = Dictionary[String, ExtResource("10_18fwv")]({})
+minionStatAllocMode = -1
+currentHp = -1
+orbs = 0
+runes = Array[ExtResource("13_nv10q")]([])
+triggeredRunes = Array[ExtResource("13_nv10q")]([])
+triggeredRunesDmg = Array[int]([])
+triggeredRunesStatus = Array[bool]([])
+friendship = 0.0
+maxFriendship = 30.0
+fullyAttuned = false
+version = ""
+ai = ExtResource("8_8rlxh")
+aiType = 1
+damageAggroType = 0
+strategy = 0
+aiOverrideWeight = 0.35
+moveEffectiveness = ExtResource("12_6sthq")
+weightedEquipment = ExtResource("19_4l62p")
+dropTable = ExtResource("9_1kn1d")
+statAllocationStrategy = ExtResource("15_ljfpb")
+downed = false
+battleStorageHp = -1
+battleStorageOrbs = -1
+
+[sub_resource type="Resource" id="Resource_r8nno"]
+script = ExtResource("25_pgfdw")
+pool = Array[ExtResource("17_xnh7e")]([ExtResource("23_7a5yr"), ExtResource("24_55k6g")])
+signatureMoves = Array[ExtResource("17_xnh7e")]([])
+preferredMove1Role = 0
+preferredMove1DmgType = -1
+preferredMove1Element = 0
+preferredMove2Role = 0
+preferredMove2DmgType = -1
+preferredMove2Element = 0
+preferredMove3Role = 0
+preferredMove3DmgType = -1
+preferredMove3Element = 0
+preferredMove4Role = 0
+preferredMove4DmgType = -1
+preferredMove4Element = 0
+
+[sub_resource type="Resource" id="Resource_76rba"]
+script = ExtResource("10_18fwv")
+displayName = "Player"
+saveName = "player"
+level = 24
+experience = 0
+maxHp = 50
+physAttack = 1
+magicAttack = 1
+resistance = 1
+affinity = 1
+speed = 1
+statPts = 0
+statGrowth = ExtResource("26_ngcfd")
+moves = Array[ExtResource("17_xnh7e")]([ExtResource("23_7a5yr"), ExtResource("24_55k6g")])
+movepool = SubResource("Resource_r8nno")
+
+[sub_resource type="Resource" id="Resource_16eui"]
+script = ExtResource("6_mav5l")
+sprite = ExtResource("22_yyht6")
+nickname = ""
+stats = SubResource("Resource_76rba")
+evolutions = ExtResource("20_kcdte")
+evolutionStats = Dictionary[String, ExtResource("10_18fwv")]({})
+minionStatAllocMode = -1
+currentHp = -1
+orbs = 0
+runes = Array[ExtResource("13_nv10q")]([])
+triggeredRunes = Array[ExtResource("13_nv10q")]([])
+triggeredRunesDmg = Array[int]([])
+triggeredRunesStatus = Array[bool]([])
+friendship = 0.0
+maxFriendship = 30.0
+fullyAttuned = false
+version = ""
+aiType = 0
+damageAggroType = 0
+strategy = 0
+aiOverrideWeight = 0.0
+moveEffectiveness = ExtResource("21_hxi86")
+downed = false
+battleStorageHp = -1
+battleStorageOrbs = -1
+
+[sub_resource type="Resource" id="Resource_ri23x"]
+script = ExtResource("9_beusi")
+playerCombatant = SubResource("Resource_16eui")
+minionCombatant = SubResource("Resource_tj4xp")
+enemyCombatant1 = SubResource("Resource_fxmej")
+enemyCombatant2 = SubResource("Resource_c6cpu")
+randomEnemy2Id = -1
+randomEnemy3Id = -1
+menu = 0
+prevMenu = 0
+commandingMinion = false
+moveEffectType = 0
+fobButtonEnabled = true
+calcdStateStrings = Array[String]([])
+calcdStateCombatants = Array[ExtResource("6_mav5l")]([])
+calcdStateDamage = Array[int]([])
+calcdStateDamageEffectiveness = Array[float]([])
+calcdStateStatBoosts = Array[ExtResource("7_d2jn7")]([])
+calcdStateEquipmentProcd = []
+statusEffDamagedCombatants = Array[ExtResource("6_mav5l")]([])
+calcdStateIndex = 0
+battleMapPath = ""
+playerEscaped = false
+turnNumber = 1
+turnList = Array[ExtResource("6_mav5l")]([])
+rewards = Array[ExtResource("8_05204")]([])
+metadata/_custom_type_script = "uid://cjr0rqx4qkjxb"
+
+[node name="BattleRewardsTester" type="Node2D" node_paths=PackedStringArray("globalMarker")]
+script = ExtResource("1_r2sjq")
+encounter = SubResource("Resource_2papi")
+state = SubResource("Resource_ri23x")
+globalMarker = NodePath("Marker2D")
+
+[node name="BattleAnimationManager" parent="." instance=ExtResource("2_rlm31")]
+position = Vector2(0, -88)
+scale = Vector2(4, 4)
+
+[node name="BattleCam" type="Camera2D" parent="." node_paths=PackedStringArray("battleController")]
+script = ExtResource("2_pfv3j")
+battleController = NodePath("..")
+
+[node name="RewardsVBox" type="VBoxContainer" parent="BattleCam"]
+custom_minimum_size = Vector2(0, 170)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -472.0
+offset_top = 2.0
+offset_right = 472.0
+offset_bottom = 172.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="."]

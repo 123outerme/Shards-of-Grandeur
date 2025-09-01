@@ -231,8 +231,8 @@ func load_into_battle(saveAfterLoad: bool = true):
 							enemyCombatant2.combatant.stats.equippedArmor = combatantOption.weightedEquipment.weightedEquipment[equipmentIdx].armor
 							enemyCombatant2.combatant.stats.equippedWeapon = combatantOption.weightedEquipment.weightedEquipment[equipmentIdx].weapon
 							enemyCombatant2.combatant.stats.equippedAccessory = combatantOption.weightedEquipment.weightedEquipment[equipmentIdx].accessory
-						else:
-							enemyCombatant2.combatant.pick_equipment()
+					else:
+						enemyCombatant2.combatant.pick_equipment()
 			if enemyCombatant2.combatant != null:
 				if enemyCombatant2.combatant.get_evolution() != null:
 					enemyCombatant2.combatant.switch_evolution(enemyCombatant2.combatant.get_evolution(), null)

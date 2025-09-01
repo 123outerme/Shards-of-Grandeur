@@ -57,8 +57,10 @@ func _ready():
 		combatant.stats.equippedWeapon = enemyData.encounter.combatant1Weapon
 		combatant.stats.equippedAccessory = enemyData.encounter.combatant1Accessory
 	var evolution: Evolution = combatant.get_evolution()
+	''' NOTE: don't even need to do this, switching evolution does not affect overworld sprite calc'ing
 	if combatant.get_evolution() != null:
 		combatant.switch_evolution(evolution, null)
+	'''
 	enemySprite.sprite_frames = combatant.get_sprite_frames()
 	facesRight = combatant.get_sprite_obj().spriteFacesRight
 	enemySprite.flip_h = facesRight
