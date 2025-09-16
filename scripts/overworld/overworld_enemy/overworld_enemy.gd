@@ -78,12 +78,20 @@ func _ready():
 		encounterColliderOffset = combatantOverworld.encounterCollisionCenter
 		spriteOffset = combatantOverworld.encounterSpriteOffset
 		
-		var colliderRect: RectangleShape2D = collisionShape.shape as RectangleShape2D
+		var colliderRect: RectangleShape2D = RectangleShape2D.new()
 		colliderRect.size = combatantOverworld.encounterCollisionSize - Vector2(1, 1) # 1 px smaller than encounter collider
+		collisionShape.shape = colliderRect
 		collisionShape.position = encounterColliderOffset
-		var encounterColliderRect: RectangleShape2D = encounterColliderShape.shape as RectangleShape2D
+		
+		var encounterColliderRect: RectangleShape2D = RectangleShape2D.new()
 		encounterColliderRect.size = combatantOverworld.encounterCollisionSize
+		encounterColliderShape.shape = encounterColliderRect
 		encounterColliderShape.position = encounterColliderOffset
+		
+		var chaseRangeCircle: CircleShape2D = CircleShape2D.new()
+		chaseRangeCircle.radius = chaseRange
+		chaseRangeShape.shape = chaseRangeCircle
+		
 		enemySprite.offset = spriteOffset
 	
 	position = get_point_around_home() # throw out position and load from random point near home
