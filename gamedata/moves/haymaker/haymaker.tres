@@ -9,75 +9,30 @@
 
 [sub_resource type="Resource" id="Resource_5fbii"]
 script = ExtResource("2_ehx7g")
-physAttackIncrease = 0
-magicAttackIncrease = 0
-affinityIncrease = 0
-resistanceIncrease = 0
-speedIncrease = 0
 physAttackMultiplier = 1.05
-magicAttackMultiplier = 1.0
-affinityMultiplier = 1.0
 resistanceMultiplier = 0.9
-speedMultiplier = 1.0
-elementMultipliers = Array[ExtResource("2_cba2w")]([])
-keywordMultipliers = Dictionary[String, float]({})
 
 [sub_resource type="Resource" id="Resource_om766"]
 script = ExtResource("1_5lf5w")
 role = 1
 keywords = Array[String](["Martial Arts"])
-orbChange = 0
 power = 60
-lifesteal = 0.0
-selfHpSacrifice = 0.0
-priority = 0
 targets = 5
 selfStatChanges = SubResource("Resource_5fbii")
-selfGetsStatus = false
-statusChance = 0.0
-statusRequiredForTargetStatChanges = false
 
 [sub_resource type="Resource" id="Resource_bb7ec"]
 script = ExtResource("2_ehx7g")
-physAttackIncrease = 0
-magicAttackIncrease = 0
-affinityIncrease = 0
-resistanceIncrease = 0
-speedIncrease = 0
 physAttackMultiplier = 1.1
-magicAttackMultiplier = 1.0
-affinityMultiplier = 1.0
 resistanceMultiplier = 0.85
-speedMultiplier = 1.0
-elementMultipliers = Array[ExtResource("2_cba2w")]([])
-keywordMultipliers = Dictionary[String, float]({})
 
 [sub_resource type="Resource" id="Resource_ikvgf"]
 script = ExtResource("2_ehx7g")
-physAttackIncrease = 0
-magicAttackIncrease = 0
-affinityIncrease = 0
-resistanceIncrease = 0
-speedIncrease = 0
-physAttackMultiplier = 1.0
-magicAttackMultiplier = 1.0
 affinityMultiplier = 0.98
-resistanceMultiplier = 1.0
-speedMultiplier = 1.0
-elementMultipliers = Array[ExtResource("2_cba2w")]([])
-keywordMultipliers = Dictionary[String, float]({})
 
 [sub_resource type="Resource" id="Resource_tqwf3"]
 script = ExtResource("5_ou1yv")
 powerPerOrb = 5
-lifestealPerOrb = 0.0
-selfHpSacrificePerOrb = 0.0
 selfStatChangesPerOrb = SubResource("Resource_ikvgf")
-weakThresholdOrbs = 0
-strongThresholdOrbs = 0
-overwhelmingThresholdOrbs = 0
-additionalStatusTurnsPerOrb = 0.0
-additionalStatusChancePerOrb = 0.0
 
 [sub_resource type="Resource" id="Resource_837x4"]
 script = ExtResource("1_5lf5w")
@@ -85,22 +40,14 @@ role = 1
 keywords = Array[String](["Martial Arts"])
 orbChange = -3
 power = 70
-lifesteal = 0.0
-selfHpSacrifice = 0.0
-priority = 0
 targets = 5
 selfStatChanges = SubResource("Resource_bb7ec")
-selfGetsStatus = false
-statusChance = 0.0
-statusRequiredForTargetStatChanges = false
 surgeChanges = SubResource("Resource_tqwf3")
 
 [resource]
 script = ExtResource("1_a3hii")
 moveName = "Haymaker"
 requiredLv = 9
-category = 0
-element = 0
 chargeEffect = SubResource("Resource_om766")
 surgeEffect = SubResource("Resource_837x4")
 description = "A strike performed from a purely aggressive stance, aiming for the knockout."

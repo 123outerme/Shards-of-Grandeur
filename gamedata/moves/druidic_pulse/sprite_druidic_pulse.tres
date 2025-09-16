@@ -17,62 +17,25 @@ point_count = 1
 [sub_resource type="Resource" id="Resource_sahyu"]
 script = ExtResource("1_wgc14")
 annotation = "set up the position near the user"
-animation = ""
 duration = 0.1
-speed = 1.0
-opacity = 1.0
-spritePivot = Vector2(0, 0)
 relativeTo = 2
 position = Vector2(8, 0)
 offset = 1
 xCurve = SubResource("Curve_anov5")
 yCurve = SubResource("Curve_5w0gj")
-rotate = false
-rotateToFace = 1
-rotateToFacePosition = Vector2(0, 0)
-rotateToFaceOffset = 0
-trackRotationTarget = false
-randomizeSfxPitch = false
-emitCompleteOnStart = false
 
 [sub_resource type="Resource" id="Resource_lm1ba"]
 script = ExtResource("1_wgc14")
 annotation = "play the gather animation on the user"
 animation = "druidic_pulse_gather"
 duration = 1.167
-speed = 1.0
-opacity = 1.0
-spritePivot = Vector2(0, 0)
-relativeTo = 5
-position = Vector2(0, 0)
-offset = 0
-rotate = false
-rotateToFace = 1
-rotateToFacePosition = Vector2(0, 0)
-rotateToFaceOffset = 0
-trackRotationTarget = false
 sfx = ExtResource("2_2etof")
-randomizeSfxPitch = false
-emitCompleteOnStart = false
 
 [sub_resource type="Resource" id="Resource_p3se7"]
 script = ExtResource("1_wgc14")
 annotation = "pause for a beat with no affinity energy being shown"
 animation = "default"
 duration = 0.5
-speed = 1.0
-opacity = 1.0
-spritePivot = Vector2(0, 0)
-relativeTo = 5
-position = Vector2(0, 0)
-offset = 0
-rotate = false
-rotateToFace = 1
-rotateToFacePosition = Vector2(0, 0)
-rotateToFaceOffset = 0
-trackRotationTarget = false
-randomizeSfxPitch = false
-emitCompleteOnStart = false
 
 [sub_resource type="Curve" id="Curve_kc27u"]
 _data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
@@ -87,48 +50,18 @@ script = ExtResource("1_wgc14")
 annotation = "send out the bird towards the target"
 animation = "druidic_pulse_bird"
 duration = 1.2
-speed = 1.0
-opacity = 1.0
-spritePivot = Vector2(0, 0)
 relativeTo = 1
-position = Vector2(0, 0)
-offset = 0
 xCurve = SubResource("Curve_kc27u")
 yCurve = SubResource("Curve_poo3q")
-rotate = false
-rotateToFace = 1
-rotateToFacePosition = Vector2(0, 0)
-rotateToFaceOffset = 0
-trackRotationTarget = false
-randomizeSfxPitch = false
-emitCompleteOnStart = false
 
 [sub_resource type="Resource" id="Resource_gmtow"]
 script = ExtResource("1_wgc14")
 annotation = "play hit particles on the target and make the bird impact"
 animation = "druidic_pulse_bird_impact"
-duration = 1.0
-speed = 1.0
-opacity = 1.0
-spritePivot = Vector2(0, 0)
-relativeTo = 5
-position = Vector2(0, 0)
-offset = 0
-rotate = false
-rotateToFace = 1
-rotateToFacePosition = Vector2(0, 0)
-rotateToFaceOffset = 0
-trackRotationTarget = false
 particles = ExtResource("3_ernue")
-randomizeSfxPitch = false
-emitCompleteOnStart = false
 
 [resource]
 script = ExtResource("1_bt8wo")
 spriteFrames = ExtResource("5_352e4")
-centerSprite = true
 maxSize = Vector2(16, 20)
 frames = Array[ExtResource("1_wgc14")]([SubResource("Resource_sahyu"), SubResource("Resource_lm1ba"), SubResource("Resource_p3se7"), SubResource("Resource_o51if"), SubResource("Resource_gmtow")])
-delayedUntilReposition = false
-playsOnImpactFrame = true
-onePerTarget = true

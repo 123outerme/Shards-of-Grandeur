@@ -18,67 +18,24 @@ script = ExtResource("1_s62os")
 annotation = "Position animation"
 animation = "default"
 duration = 0.1
-speed = 1.0
-opacity = 1.0
-spritePivot = Vector2(0, 0)
 relativeTo = 1
-position = Vector2(0, 0)
-offset = 0
 xCurve = SubResource("Curve_ecwmc")
 yCurve = SubResource("Curve_sg828")
-rotate = false
-rotateToFace = 1
-rotateToFacePosition = Vector2(0, 0)
-rotateToFaceOffset = 0
-trackRotationTarget = false
-randomizeSfxPitch = false
-emitCompleteOnStart = false
 
 [sub_resource type="Resource" id="Resource_jwk2i"]
 script = ExtResource("1_s62os")
 annotation = "Play Amp Reflexes sprite animation"
 animation = "amp_reflexes"
 duration = 1.167
-speed = 1.0
-opacity = 1.0
-spritePivot = Vector2(0, 0)
-relativeTo = 5
-position = Vector2(0, 0)
-offset = 0
-rotate = false
-rotateToFace = 1
-rotateToFacePosition = Vector2(0, 0)
-rotateToFaceOffset = 0
-trackRotationTarget = false
-randomizeSfxPitch = false
-emitCompleteOnStart = false
 
 [sub_resource type="Resource" id="Resource_dsnpd"]
 script = ExtResource("1_s62os")
 annotation = "Play the after-charge particle effects"
 animation = "default"
 duration = 1.25
-speed = 1.0
-opacity = 1.0
-spritePivot = Vector2(0, 0)
-relativeTo = 5
-position = Vector2(0, 0)
-offset = 0
-rotate = false
-rotateToFace = 1
-rotateToFacePosition = Vector2(0, 0)
-rotateToFaceOffset = 0
-trackRotationTarget = false
 particles = ExtResource("3_uwo7i")
-randomizeSfxPitch = false
-emitCompleteOnStart = false
 
 [resource]
 script = ExtResource("1_gc5sv")
 spriteFrames = ExtResource("2_m8trg")
-centerSprite = true
-maxSize = Vector2(16, 16)
 frames = Array[ExtResource("1_s62os")]([SubResource("Resource_fxs6l"), SubResource("Resource_jwk2i"), SubResource("Resource_dsnpd")])
-delayedUntilReposition = false
-playsOnImpactFrame = true
-onePerTarget = true

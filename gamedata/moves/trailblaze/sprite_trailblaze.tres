@@ -17,21 +17,11 @@ script = ExtResource("1_brsp6")
 annotation = "setup attack position"
 animation = "default"
 duration = 0.1
-speed = 1.0
-opacity = 1.0
-spritePivot = Vector2(0, 0)
 relativeTo = 2
 position = Vector2(10, 0)
 offset = 1
 xCurve = SubResource("Curve_sqfok")
 yCurve = SubResource("Curve_04r0k")
-rotate = false
-rotateToFace = 1
-rotateToFacePosition = Vector2(0, 0)
-rotateToFaceOffset = 0
-trackRotationTarget = false
-randomizeSfxPitch = false
-emitCompleteOnStart = false
 
 [sub_resource type="Curve" id="Curve_lc8yb"]
 _data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
@@ -45,22 +35,10 @@ point_count = 2
 script = ExtResource("1_brsp6")
 annotation = "Shoot the firebird at the target"
 animation = "trailblaze"
-duration = 1.0
 speed = 80.0
-opacity = 1.0
-spritePivot = Vector2(0, 0)
 relativeTo = 1
-position = Vector2(0, 0)
-offset = 0
 xCurve = SubResource("Curve_lc8yb")
 yCurve = SubResource("Curve_5gn2c")
-rotate = false
-rotateToFace = 1
-rotateToFacePosition = Vector2(0, 0)
-rotateToFaceOffset = 0
-trackRotationTarget = false
-randomizeSfxPitch = false
-emitCompleteOnStart = false
 
 [sub_resource type="Curve" id="Curve_scvk5"]
 _data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
@@ -73,49 +51,22 @@ point_count = 2
 [sub_resource type="Resource" id="Resource_d6hoa"]
 script = ExtResource("1_brsp6")
 annotation = "with consistent speed, move the firebird offscreen and fade out"
-animation = ""
-duration = 1.0
 speed = 80.0
 opacity = 0.0
-spritePivot = Vector2(0, 0)
 relativeTo = 1
 position = Vector2(48, 0)
 offset = 2
 xCurve = SubResource("Curve_scvk5")
 yCurve = SubResource("Curve_03wcw")
-rotate = false
-rotateToFace = 1
-rotateToFacePosition = Vector2(0, 0)
-rotateToFaceOffset = 0
-trackRotationTarget = false
-randomizeSfxPitch = false
-emitCompleteOnStart = false
 
 [sub_resource type="Resource" id="Resource_beemc"]
 script = ExtResource("1_brsp6")
 annotation = "stop the animation (firebird loops)"
 animation = "#stop"
 duration = 0.1
-speed = 1.0
 opacity = 0.0
-spritePivot = Vector2(0, 0)
-relativeTo = 5
-position = Vector2(0, 0)
-offset = 0
-rotate = false
-rotateToFace = 1
-rotateToFacePosition = Vector2(0, 0)
-rotateToFaceOffset = 0
-trackRotationTarget = false
-randomizeSfxPitch = false
-emitCompleteOnStart = false
 
 [resource]
 script = ExtResource("1_qupaf")
 spriteFrames = ExtResource("2_0cgoh")
-centerSprite = true
-maxSize = Vector2(16, 16)
 frames = Array[ExtResource("1_brsp6")]([SubResource("Resource_set4u"), SubResource("Resource_swt7i"), SubResource("Resource_d6hoa"), SubResource("Resource_beemc")])
-delayedUntilReposition = false
-playsOnImpactFrame = true
-onePerTarget = true

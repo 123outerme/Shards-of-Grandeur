@@ -9,97 +9,42 @@
 
 [sub_resource type="Resource" id="Resource_rh8y6"]
 script = ExtResource("2_fogyp")
-physAttackIncrease = 0
-magicAttackIncrease = 0
-affinityIncrease = 0
-resistanceIncrease = 0
-speedIncrease = 0
-physAttackMultiplier = 1.0
-magicAttackMultiplier = 1.0
-affinityMultiplier = 1.0
 resistanceMultiplier = 1.05
-speedMultiplier = 1.0
-elementMultipliers = Array[ExtResource("2_vhb67")]([])
-keywordMultipliers = Dictionary[String, float]({})
 
 [sub_resource type="Resource" id="Resource_sx202"]
 script = ExtResource("1_5r4um")
 role = 1
-keywords = Array[String]([])
 orbChange = 1
 power = 50
-lifesteal = 0.0
-selfHpSacrifice = 0.0
-priority = 0
 targets = 5
 selfStatChanges = SubResource("Resource_rh8y6")
-selfGetsStatus = false
-statusChance = 0.0
-statusRequiredForTargetStatChanges = false
 
 [sub_resource type="Resource" id="Resource_hqrkf"]
 script = ExtResource("2_fogyp")
-physAttackIncrease = 0
-magicAttackIncrease = 0
-affinityIncrease = 0
-resistanceIncrease = 0
-speedIncrease = 0
-physAttackMultiplier = 1.0
-magicAttackMultiplier = 1.0
-affinityMultiplier = 1.0
 resistanceMultiplier = 1.15
-speedMultiplier = 1.0
-elementMultipliers = Array[ExtResource("2_vhb67")]([])
-keywordMultipliers = Dictionary[String, float]({})
 
 [sub_resource type="Resource" id="Resource_dsh65"]
 script = ExtResource("2_fogyp")
-physAttackIncrease = 0
-magicAttackIncrease = 0
-affinityIncrease = 0
-resistanceIncrease = 0
-speedIncrease = 0
-physAttackMultiplier = 1.0
-magicAttackMultiplier = 1.0
-affinityMultiplier = 1.0
 resistanceMultiplier = 0.95
-speedMultiplier = 1.0
-elementMultipliers = Array[ExtResource("2_vhb67")]([])
-keywordMultipliers = Dictionary[String, float]({})
 
 [sub_resource type="Resource" id="Resource_n7ue1"]
 script = ExtResource("5_wwwgo")
 powerPerOrb = 2
-lifestealPerOrb = 0.0
-selfHpSacrificePerOrb = 0.0
 targetStatChangesPerOrb = SubResource("Resource_dsh65")
-weakThresholdOrbs = 0
-strongThresholdOrbs = 0
-overwhelmingThresholdOrbs = 0
-additionalStatusTurnsPerOrb = 0.0
-additionalStatusChancePerOrb = 0.0
 
 [sub_resource type="Resource" id="Resource_6fj78"]
 script = ExtResource("1_5r4um")
 role = 1
-keywords = Array[String]([])
 orbChange = -4
 power = 65
-lifesteal = 0.0
-selfHpSacrifice = 0.0
-priority = 0
 targets = 5
 selfStatChanges = SubResource("Resource_hqrkf")
-selfGetsStatus = false
-statusChance = 0.0
-statusRequiredForTargetStatChanges = false
 surgeChanges = SubResource("Resource_n7ue1")
 
 [resource]
 script = ExtResource("1_4syhy")
 moveName = "Burrow Strike"
 requiredLv = 9
-category = 0
 element = 5
 chargeEffect = SubResource("Resource_sx202")
 surgeEffect = SubResource("Resource_6fj78")

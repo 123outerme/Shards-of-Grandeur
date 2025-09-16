@@ -9,26 +9,12 @@
 script = ExtResource("1_a67we")
 role = 1
 keywords = Array[String](["Martial Arts"])
-orbChange = 0
 power = 60
-lifesteal = 0.0
-selfHpSacrifice = 0.0
-priority = 0
 targets = 5
-selfGetsStatus = false
-statusChance = 0.0
-statusRequiredForTargetStatChanges = false
 
 [sub_resource type="Resource" id="Resource_c543x"]
 script = ExtResource("3_hpj8l")
 powerPerOrb = 5
-lifestealPerOrb = 0.0
-selfHpSacrificePerOrb = 0.0
-weakThresholdOrbs = 0
-strongThresholdOrbs = 0
-overwhelmingThresholdOrbs = 0
-additionalStatusTurnsPerOrb = 0.0
-additionalStatusChancePerOrb = 0.0
 
 [sub_resource type="Resource" id="Resource_uoqyo"]
 script = ExtResource("1_a67we")
@@ -36,20 +22,13 @@ role = 1
 keywords = Array[String](["Martial Arts"])
 orbChange = -3
 power = 70
-lifesteal = 0.0
-selfHpSacrifice = 0.0
-priority = 0
 targets = 5
-selfGetsStatus = false
-statusChance = 0.0
-statusRequiredForTargetStatChanges = false
 surgeChanges = SubResource("Resource_c543x")
 
 [resource]
 script = ExtResource("1_s10ad")
 moveName = "Wicked Kicks"
 requiredLv = 19
-category = 0
 element = 7
 chargeEffect = SubResource("Resource_wtma5")
 surgeEffect = SubResource("Resource_uoqyo")

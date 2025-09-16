@@ -10,73 +10,30 @@
 [sub_resource type="Resource" id="Resource_kqmld"]
 script = ExtResource("1_p8plv")
 role = 1
-keywords = Array[String]([])
 orbChange = 1
 power = 45
-lifesteal = 0.0
-selfHpSacrifice = 0.0
-priority = 0
 targets = 5
-selfGetsStatus = false
-statusChance = 0.0
-statusRequiredForTargetStatChanges = false
 
 [sub_resource type="Resource" id="Resource_v7bnd"]
 script = ExtResource("4_l5d2c")
-physAttackIncrease = 0
-magicAttackIncrease = 0
-affinityIncrease = 0
-resistanceIncrease = 0
-speedIncrease = 0
-physAttackMultiplier = 1.0
-magicAttackMultiplier = 1.0
-affinityMultiplier = 1.0
-resistanceMultiplier = 1.0
 speedMultiplier = 0.95
-elementMultipliers = Array[ExtResource("5_gicvd")]([])
-keywordMultipliers = Dictionary[String, float]({})
 
 [sub_resource type="Resource" id="Resource_ridcq"]
 script = ExtResource("4_2rncp")
 powerPerOrb = 2
-lifestealPerOrb = 0.0
-selfHpSacrificePerOrb = 0.0
 targetStatChangesPerOrb = SubResource("Resource_v7bnd")
-weakThresholdOrbs = 0
-strongThresholdOrbs = 0
-overwhelmingThresholdOrbs = 0
-additionalStatusTurnsPerOrb = 0.0
-additionalStatusChancePerOrb = 0.0
 
 [sub_resource type="Resource" id="Resource_dkj6s"]
 script = ExtResource("4_l5d2c")
-physAttackIncrease = 0
-magicAttackIncrease = 0
-affinityIncrease = 0
-resistanceIncrease = 0
-speedIncrease = 0
-physAttackMultiplier = 1.0
-magicAttackMultiplier = 1.0
-affinityMultiplier = 1.0
-resistanceMultiplier = 1.0
 speedMultiplier = 0.95
-elementMultipliers = Array[ExtResource("5_gicvd")]([])
-keywordMultipliers = Dictionary[String, float]({})
 
 [sub_resource type="Resource" id="Resource_ps5jb"]
 script = ExtResource("1_p8plv")
 role = 2
-keywords = Array[String]([])
 orbChange = -4
 power = 55
-lifesteal = 0.0
-selfHpSacrifice = 0.0
-priority = 0
 targets = 6
 targetStatChanges = SubResource("Resource_dkj6s")
-selfGetsStatus = false
-statusChance = 0.0
-statusRequiredForTargetStatChanges = false
 surgeChanges = SubResource("Resource_ridcq")
 
 [resource]

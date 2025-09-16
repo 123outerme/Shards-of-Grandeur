@@ -9,75 +9,28 @@
 
 [sub_resource type="Resource" id="Resource_qbqk2"]
 script = ExtResource("3_eyng0")
-physAttackIncrease = 0
-magicAttackIncrease = 0
-affinityIncrease = 0
-resistanceIncrease = 0
-speedIncrease = 0
-physAttackMultiplier = 1.0
-magicAttackMultiplier = 1.0
-affinityMultiplier = 1.0
-resistanceMultiplier = 1.0
 speedMultiplier = 0.7
-elementMultipliers = Array[ExtResource("2_n8h4y")]([])
-keywordMultipliers = Dictionary[String, float]({})
 
 [sub_resource type="Resource" id="Resource_wjhal"]
 script = ExtResource("1_3h2nt")
 role = 4
 keywords = Array[String](["Ice"])
 orbChange = 1
-power = 0
-lifesteal = 0.0
-selfHpSacrifice = 0.0
-priority = 0
 targets = 5
 targetStatChanges = SubResource("Resource_qbqk2")
-selfGetsStatus = false
-statusChance = 0.0
-statusRequiredForTargetStatChanges = false
 
 [sub_resource type="Resource" id="Resource_uq60a"]
 script = ExtResource("3_eyng0")
-physAttackIncrease = 0
-magicAttackIncrease = 0
-affinityIncrease = 0
-resistanceIncrease = 0
-speedIncrease = 0
-physAttackMultiplier = 1.0
-magicAttackMultiplier = 1.0
-affinityMultiplier = 1.0
-resistanceMultiplier = 1.0
 speedMultiplier = 0.95
-elementMultipliers = Array[ExtResource("2_n8h4y")]([])
-keywordMultipliers = Dictionary[String, float]({})
 
 [sub_resource type="Resource" id="Resource_5ipkw"]
 script = ExtResource("5_xvx1p")
 powerPerOrb = 5
-lifestealPerOrb = 0.0
-selfHpSacrificePerOrb = 0.0
 targetStatChangesPerOrb = SubResource("Resource_uq60a")
-weakThresholdOrbs = 0
-strongThresholdOrbs = 0
-overwhelmingThresholdOrbs = 0
-additionalStatusTurnsPerOrb = 0.0
-additionalStatusChancePerOrb = 0.0
 
 [sub_resource type="Resource" id="Resource_trno8"]
 script = ExtResource("3_eyng0")
-physAttackIncrease = 0
-magicAttackIncrease = 0
-affinityIncrease = 0
-resistanceIncrease = 0
-speedIncrease = 0
-physAttackMultiplier = 1.0
-magicAttackMultiplier = 1.0
-affinityMultiplier = 1.0
-resistanceMultiplier = 1.0
 speedMultiplier = 0.65
-elementMultipliers = Array[ExtResource("2_n8h4y")]([])
-keywordMultipliers = Dictionary[String, float]({})
 
 [sub_resource type="Resource" id="Resource_t0g0c"]
 script = ExtResource("1_3h2nt")
@@ -85,14 +38,8 @@ role = 1
 keywords = Array[String](["Ice"])
 orbChange = -1
 power = 40
-lifesteal = 0.0
-selfHpSacrifice = 0.0
-priority = 0
 targets = 5
 targetStatChanges = SubResource("Resource_trno8")
-selfGetsStatus = false
-statusChance = 0.0
-statusRequiredForTargetStatChanges = false
 surgeChanges = SubResource("Resource_5ipkw")
 
 [resource]

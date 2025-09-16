@@ -9,48 +9,29 @@
 [sub_resource type="Resource" id="Resource_c482t"]
 script = ExtResource("2_jlbld")
 element = 2
-power = 0.0
-attackerStat = 0.0
-attackerLv = 1
-damageTriggered = false
 type = 11
 potency = 1
-overwritesOtherStatuses = false
 turnsLeft = 4
 
 [sub_resource type="Resource" id="Resource_3242j"]
 script = ExtResource("1_6ewji")
 role = 1
-keywords = Array[String]([])
 orbChange = 1
 power = 45
-lifesteal = 0.0
-selfHpSacrifice = 0.0
-priority = 0
 targets = 5
 statusEffect = SubResource("Resource_c482t")
-selfGetsStatus = false
 statusChance = 0.65
-statusRequiredForTargetStatChanges = false
 
 [sub_resource type="Resource" id="Resource_ppkad"]
 script = ExtResource("2_jlbld")
 element = 2
-power = 0.0
-attackerStat = 0.0
-attackerLv = 1
-damageTriggered = false
 type = 11
 potency = 1
-overwritesOtherStatuses = false
 turnsLeft = 4
 
 [sub_resource type="Resource" id="Resource_fypmj"]
 script = ExtResource("5_6rr5l")
 powerPerOrb = 2
-lifestealPerOrb = 0.0
-selfHpSacrificePerOrb = 0.0
-weakThresholdOrbs = 0
 strongThresholdOrbs = 5
 overwhelmingThresholdOrbs = 7
 additionalStatusTurnsPerOrb = 0.5
@@ -59,17 +40,11 @@ additionalStatusChancePerOrb = 0.01
 [sub_resource type="Resource" id="Resource_5n1cl"]
 script = ExtResource("1_6ewji")
 role = 1
-keywords = Array[String]([])
 orbChange = -3
 power = 60
-lifesteal = 0.0
-selfHpSacrifice = 0.0
-priority = 0
 targets = 5
 statusEffect = SubResource("Resource_ppkad")
-selfGetsStatus = false
 statusChance = 0.75
-statusRequiredForTargetStatChanges = false
 surgeChanges = SubResource("Resource_fypmj")
 
 [resource]

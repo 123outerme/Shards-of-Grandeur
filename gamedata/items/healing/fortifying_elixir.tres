@@ -7,33 +7,15 @@
 
 [sub_resource type="Resource" id="Resource_moo4a"]
 script = ExtResource("3_vxwjo")
-physAttackIncrease = 0
-magicAttackIncrease = 0
-affinityIncrease = 0
-resistanceIncrease = 0
-speedIncrease = 0
-physAttackMultiplier = 1.0
-magicAttackMultiplier = 1.0
-affinityMultiplier = 1.0
 resistanceMultiplier = 1.25
-speedMultiplier = 1.0
-elementMultipliers = Array[ExtResource("3_qqkar")]([])
-keywordMultipliers = Dictionary[String, float]({})
 
 [resource]
 script = ExtResource("1_pmcmt")
 healBy = 60
-statusStrengthHeal = 0
 statChanges = SubResource("Resource_moo4a")
 itemSprite = ExtResource("1_jydks")
 itemName = "Fortifying Elixir"
-itemType = 0
 itemDescription = "This special elixir fortifies the user's defenses by a noticeable amount, as well as providing some amount of healing. "
 cost = 10
 maxCount = 20
-usable = true
-battleUsable = true
-consumable = true
-equippable = false
-trashable = true
 battleTargets = 3

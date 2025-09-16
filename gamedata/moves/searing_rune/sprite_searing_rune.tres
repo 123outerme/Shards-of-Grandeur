@@ -17,23 +17,12 @@ point_count = 1
 [sub_resource type="Resource" id="Resource_3flhu"]
 script = ExtResource("1_32qeh")
 annotation = "set up position near target"
-animation = ""
 duration = 0.1
-speed = 1.0
-opacity = 1.0
-spritePivot = Vector2(0, 0)
 relativeTo = 1
 position = Vector2(-32, 0)
 offset = 1
 xCurve = SubResource("Curve_ra4rx")
 yCurve = SubResource("Curve_6yb25")
-rotate = false
-rotateToFace = 1
-rotateToFacePosition = Vector2(0, 0)
-rotateToFaceOffset = 0
-trackRotationTarget = false
-randomizeSfxPitch = false
-emitCompleteOnStart = false
 
 [sub_resource type="Curve" id="Curve_sw1sa"]
 _data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
@@ -48,49 +37,17 @@ script = ExtResource("1_32qeh")
 annotation = "send fire at target"
 animation = "burning_rune_move"
 duration = 0.5
-speed = 1.0
-opacity = 1.0
-spritePivot = Vector2(0, 0)
 relativeTo = 1
-position = Vector2(0, 0)
-offset = 0
 xCurve = SubResource("Curve_sw1sa")
 yCurve = SubResource("Curve_61lsm")
-rotate = false
-rotateToFace = 1
-rotateToFacePosition = Vector2(0, 0)
-rotateToFaceOffset = 0
-trackRotationTarget = false
 sfx = ExtResource("2_wfpih")
-randomizeSfxPitch = false
-emitCompleteOnStart = false
 
 [sub_resource type="Resource" id="Resource_1qwmh"]
 script = ExtResource("1_32qeh")
 annotation = "play the remainer of the move anim, sfx"
-animation = ""
-duration = 1.0
-speed = 1.0
-opacity = 1.0
-spritePivot = Vector2(0, 0)
-relativeTo = 5
-position = Vector2(0, 0)
-offset = 0
-rotate = false
-rotateToFace = 1
-rotateToFacePosition = Vector2(0, 0)
-rotateToFaceOffset = 0
-trackRotationTarget = false
 particles = ExtResource("3_tq3ob")
-randomizeSfxPitch = false
-emitCompleteOnStart = false
 
 [resource]
 script = ExtResource("2_2x1n1")
 spriteFrames = ExtResource("3_kfobr")
-centerSprite = true
-maxSize = Vector2(16, 16)
 frames = Array[ExtResource("1_32qeh")]([SubResource("Resource_3flhu"), SubResource("Resource_1rh6g"), SubResource("Resource_1qwmh")])
-delayedUntilReposition = false
-playsOnImpactFrame = true
-onePerTarget = true

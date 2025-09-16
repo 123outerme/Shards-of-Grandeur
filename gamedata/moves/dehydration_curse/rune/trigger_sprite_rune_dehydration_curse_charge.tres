@@ -18,47 +18,20 @@ script = ExtResource("1_hcv2p")
 annotation = "move to combatant's top-center"
 animation = "dehydration_curse_rune"
 duration = 0.5
-speed = 1.0
-opacity = 1.0
-spritePivot = Vector2(0, 0)
 relativeTo = 1
 position = Vector2(0, -6)
 offset = 4
 xCurve = SubResource("Curve_xhen1")
 yCurve = SubResource("Curve_otrvn")
-rotate = false
-rotateToFace = 1
-rotateToFacePosition = Vector2(0, 0)
-rotateToFaceOffset = 0
-trackRotationTarget = false
-randomizeSfxPitch = false
-emitCompleteOnStart = false
 
 [sub_resource type="Resource" id="Resource_n3k0y"]
 script = ExtResource("1_hcv2p")
 annotation = "play trigger animation"
 animation = "dehydration_curse_rune_trigger"
-duration = 1.0
-speed = 1.0
-opacity = 1.0
-spritePivot = Vector2(0, 0)
-relativeTo = 5
-position = Vector2(0, 0)
-offset = 0
-rotate = false
-rotateToFace = 1
-rotateToFacePosition = Vector2(0, 0)
-rotateToFaceOffset = 0
-trackRotationTarget = false
-randomizeSfxPitch = false
-emitCompleteOnStart = false
 
 [resource]
 script = ExtResource("2_mbhg7")
 spriteFrames = ExtResource("3_y8yx2")
-centerSprite = true
 maxSize = Vector2(16, 48)
 frames = Array[ExtResource("1_hcv2p")]([SubResource("Resource_pc7vr"), SubResource("Resource_n3k0y")])
-delayedUntilReposition = false
 playsOnImpactFrame = false
-onePerTarget = true

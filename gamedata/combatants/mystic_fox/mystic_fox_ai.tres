@@ -12,42 +12,30 @@
 
 [sub_resource type="Resource" id="Resource_hqo2s"]
 script = ExtResource("2_ydo5v")
-healLayer = false
-subLayers = Array[ExtResource("3_wph02")]([])
 weight = 0.7
 
 [sub_resource type="Resource" id="Resource_431dc"]
 script = ExtResource("3_xwejb")
 aggroStrategy = 2
-subLayers = Array[ExtResource("3_wph02")]([])
 weight = 0.4
 
 [sub_resource type="Resource" id="Resource_jwofu"]
 script = ExtResource("4_1tnq7")
-subLayers = Array[ExtResource("3_wph02")]([])
 weight = 0.3
 
 [sub_resource type="Resource" id="Resource_0yeyu"]
 script = ExtResource("5_cdy0y")
-mostOrbsWeight = 1.15
-subLayers = Array[ExtResource("3_wph02")]([])
 weight = 0.3
 
 [sub_resource type="Resource" id="Resource_whfr3"]
 script = ExtResource("4_g4diu")
-subLayers = Array[ExtResource("3_wph02")]([])
 weight = 0.25
 
 [sub_resource type="Resource" id="Resource_xei7e"]
 script = ExtResource("5_mre25")
-signatureWeight = 1.25
-subLayers = Array[ExtResource("3_wph02")]([])
 weight = 0.35
 
 [resource]
 script = ExtResource("2_1kqtx")
 layers = Array[ExtResource("1_ouetf")]([SubResource("Resource_hqo2s"), SubResource("Resource_431dc"), SubResource("Resource_jwofu"), SubResource("Resource_0yeyu"), SubResource("Resource_whfr3"), SubResource("Resource_xei7e")])
-orbSpendStrategy = 0
 stalenessTolerance = 1.3
-lastMovesEffect = 0
-timesUsedLastMove = 0

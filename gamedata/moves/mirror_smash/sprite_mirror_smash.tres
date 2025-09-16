@@ -16,23 +16,12 @@ point_count = 1
 [sub_resource type="Resource" id="Resource_uer5k"]
 script = ExtResource("1_ro3or")
 annotation = "position sprite at target"
-animation = ""
 duration = 0.1
-speed = 1.0
-opacity = 1.0
-spritePivot = Vector2(0, 0)
 relativeTo = 1
 position = Vector2(-8, 0)
 offset = 1
 xCurve = SubResource("Curve_uer5k")
 yCurve = SubResource("Curve_08f03")
-rotate = false
-rotateToFace = 1
-rotateToFacePosition = Vector2(0, 0)
-rotateToFaceOffset = 0
-trackRotationTarget = false
-randomizeSfxPitch = false
-emitCompleteOnStart = false
 metadata/_custom_type_script = "uid://n71lfdnd5xrr"
 
 [sub_resource type="Resource" id="Resource_08f03"]
@@ -40,29 +29,13 @@ script = ExtResource("1_ro3or")
 annotation = "play mirror smash anim"
 animation = "mirror_smash"
 duration = 2.333
-speed = 1.0
-opacity = 1.0
-spritePivot = Vector2(0, 0)
-relativeTo = 5
-position = Vector2(0, 0)
-offset = 0
-rotate = false
-rotateToFace = 1
-rotateToFacePosition = Vector2(0, 0)
-rotateToFaceOffset = 0
-trackRotationTarget = false
 sfx = ExtResource("2_08f03")
-randomizeSfxPitch = false
-emitCompleteOnStart = false
 metadata/_custom_type_script = "uid://n71lfdnd5xrr"
 
 [resource]
 script = ExtResource("2_uer5k")
 spriteFrames = ExtResource("3_uer5k")
-centerSprite = true
 maxSize = Vector2(32, 24)
 frames = Array[ExtResource("1_ro3or")]([SubResource("Resource_uer5k"), SubResource("Resource_08f03")])
 delayedUntilReposition = true
-playsOnImpactFrame = true
-onePerTarget = true
 metadata/_custom_type_script = "uid://mk6loduurcg4"

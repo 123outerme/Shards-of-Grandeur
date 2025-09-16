@@ -8,30 +8,19 @@
 
 [sub_resource type="Resource" id="Resource_cefic"]
 script = ExtResource("1_g36bd")
-startSecs = 0.0
-lastsSecs = -1.0
 color = Color(0.254902, 0.231373, 0.223529, 0.34902)
 fadeInSecs = 2.0
-fadeOutSecs = 0.25
 metadata/_custom_type_script = "uid://c8pibqehmw101"
 
 [sub_resource type="Resource" id="Resource_duemk"]
 script = ExtResource("1_g36bd")
-startSecs = 0.0
-lastsSecs = -1.0
 color = Color(0.254902, 0.231373, 0.223529, 0.470588)
 fadeInSecs = 2.0
-fadeOutSecs = 0.25
 metadata/_custom_type_script = "uid://c8pibqehmw101"
 
 [resource]
 script = ExtResource("2_g36bd")
 combatantAnimation = "attack_magic"
-makesContact = false
-makesContactTarget = 1
-makesContactPosOffset = Vector2(0, 0)
-hideUserHpTag = false
-hideTargetHpTag = false
 chargeMoveSprites = Array[ExtResource("1_34h1l")]([ExtResource("3_cefic"), ExtResource("4_duemk")])
 surgeMoveSprites = Array[ExtResource("1_34h1l")]([ExtResource("3_cefic"), ExtResource("4_duemk")])
 chargeBattlefieldShade = SubResource("Resource_cefic")

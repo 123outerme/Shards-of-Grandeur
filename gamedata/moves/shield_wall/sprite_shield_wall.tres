@@ -16,23 +16,14 @@ point_count = 1
 [sub_resource type="Resource" id="Resource_hn1pt"]
 script = ExtResource("1_jv6sp")
 annotation = "move to in front of user"
-animation = ""
 duration = -1.0
 speed = 0.0
-opacity = 1.0
-spritePivot = Vector2(0, 0)
 relativeTo = 2
 position = Vector2(4, 1)
 offset = 1
 xCurve = SubResource("Curve_u5ygj")
 yCurve = SubResource("Curve_8p7lj")
-rotate = false
 rotateToFace = 0
-rotateToFacePosition = Vector2(0, 0)
-rotateToFaceOffset = 0
-trackRotationTarget = false
-randomizeSfxPitch = false
-emitCompleteOnStart = false
 
 [sub_resource type="Curve" id="Curve_g7g7b"]
 _data = [Vector2(0, 0), 0.0, 3.54667, 0, 1, Vector2(0.281955, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 1.66019e-07, 0.0, 1, 0]
@@ -44,32 +35,19 @@ point_count = 3
 
 [sub_resource type="Resource" id="Resource_osppb"]
 script = ExtResource("1_jv6sp")
-annotation = ""
 animation = "shield_wall"
 duration = 1.35
 speed = 0.0
-opacity = 1.0
-spritePivot = Vector2(0, 0)
 relativeTo = 2
 position = Vector2(10, -1)
 offset = 1
 xCurve = SubResource("Curve_g7g7b")
 yCurve = SubResource("Curve_yhcss")
-rotate = false
 rotateToFace = 0
-rotateToFacePosition = Vector2(0, 0)
-rotateToFaceOffset = 0
-trackRotationTarget = false
 particles = ExtResource("2_ru6js")
-randomizeSfxPitch = false
-emitCompleteOnStart = false
 
 [resource]
 script = ExtResource("1_3wcs7")
 spriteFrames = ExtResource("2_g2ms5")
-centerSprite = true
-maxSize = Vector2(16, 16)
 frames = Array[ExtResource("1_jv6sp")]([SubResource("Resource_hn1pt"), SubResource("Resource_osppb")])
-delayedUntilReposition = false
 playsOnImpactFrame = false
-onePerTarget = true

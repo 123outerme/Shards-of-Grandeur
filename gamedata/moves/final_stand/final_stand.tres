@@ -10,45 +10,24 @@
 
 [sub_resource type="Resource" id="Resource_7iads"]
 script = ExtResource("2_baesr")
-lowestHp = -1
 type = 12
 potency = 1
-overwritesOtherStatuses = false
 turnsLeft = 3
 
 [sub_resource type="Resource" id="Resource_b5e27"]
 script = ExtResource("1_0cctw")
 role = 3
-keywords = Array[String]([])
 orbChange = 1
-power = 0
-lifesteal = 0.0
-selfHpSacrifice = 0.0
-priority = 0
-targets = 1
 statusEffect = SubResource("Resource_7iads")
 selfGetsStatus = true
 statusChance = 1.0
-statusRequiredForTargetStatChanges = false
 
 [sub_resource type="Resource" id="Resource_xuku3"]
 script = ExtResource("5_v7pr4")
-physAttackIncrease = 0
-magicAttackIncrease = 0
-affinityIncrease = 0
-resistanceIncrease = 0
-speedIncrease = 0
-physAttackMultiplier = 1.0
-magicAttackMultiplier = 1.0
-affinityMultiplier = 1.0
 resistanceMultiplier = 1.2
-speedMultiplier = 1.0
-elementMultipliers = Array[ExtResource("5_3stas")]([])
-keywordMultipliers = Dictionary[String, float]({})
 
 [sub_resource type="Resource" id="Resource_rb7vo"]
 script = ExtResource("2_baesr")
-lowestHp = -1
 type = 12
 potency = 2
 overwritesOtherStatuses = true
@@ -56,46 +35,22 @@ turnsLeft = 3
 
 [sub_resource type="Resource" id="Resource_17g5n"]
 script = ExtResource("5_v7pr4")
-physAttackIncrease = 0
-magicAttackIncrease = 0
-affinityIncrease = 0
-resistanceIncrease = 0
-speedIncrease = 0
-physAttackMultiplier = 1.0
-magicAttackMultiplier = 1.0
-affinityMultiplier = 1.0
 resistanceMultiplier = 1.05
-speedMultiplier = 1.0
-elementMultipliers = Array[ExtResource("5_3stas")]([])
-keywordMultipliers = Dictionary[String, float]({})
 
 [sub_resource type="Resource" id="Resource_rlqap"]
 script = ExtResource("6_wdoau")
-powerPerOrb = 0
-lifestealPerOrb = 0.0
-selfHpSacrificePerOrb = 0.0
 selfStatChangesPerOrb = SubResource("Resource_17g5n")
-weakThresholdOrbs = 0
-strongThresholdOrbs = 0
 overwhelmingThresholdOrbs = 6
 additionalStatusTurnsPerOrb = 0.5
-additionalStatusChancePerOrb = 0.0
 
 [sub_resource type="Resource" id="Resource_45sq7"]
 script = ExtResource("1_0cctw")
 role = 3
-keywords = Array[String]([])
 orbChange = -3
-power = 0
-lifesteal = 0.0
-selfHpSacrifice = 0.0
-priority = 0
-targets = 1
 selfStatChanges = SubResource("Resource_xuku3")
 statusEffect = SubResource("Resource_rb7vo")
 selfGetsStatus = true
 statusChance = 1.0
-statusRequiredForTargetStatChanges = false
 surgeChanges = SubResource("Resource_rlqap")
 
 [resource]
@@ -103,7 +58,6 @@ script = ExtResource("1_e3fdj")
 moveName = "Final Stand"
 requiredLv = 7
 category = 2
-element = 0
 chargeEffect = SubResource("Resource_b5e27")
 surgeEffect = SubResource("Resource_45sq7")
 description = "If this is your finest hour, then act like it! Stand against all damage, and refuse to be defeated."

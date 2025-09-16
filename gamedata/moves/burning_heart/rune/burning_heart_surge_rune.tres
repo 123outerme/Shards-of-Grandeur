@@ -9,57 +9,23 @@
 
 [sub_resource type="Resource" id="Resource_l5d3b"]
 script = ExtResource("3_wlk2o")
-physAttackIncrease = 0
-magicAttackIncrease = 0
-affinityIncrease = 0
-resistanceIncrease = 0
-speedIncrease = 0
-physAttackMultiplier = 1.0
-magicAttackMultiplier = 1.0
-affinityMultiplier = 1.0
 resistanceMultiplier = 1.05
-speedMultiplier = 1.0
-elementMultipliers = Array[ExtResource("2_xtriu")]([])
-keywordMultipliers = Dictionary[String, float]({})
 
 [sub_resource type="Resource" id="Resource_cabe8"]
 script = ExtResource("3_wlk2o")
-physAttackIncrease = 0
-magicAttackIncrease = 0
-affinityIncrease = 0
-resistanceIncrease = 0
-speedIncrease = 0
-physAttackMultiplier = 1.0
-magicAttackMultiplier = 1.0
-affinityMultiplier = 1.0
 resistanceMultiplier = 1.05
-speedMultiplier = 1.0
-elementMultipliers = Array[ExtResource("2_xtriu")]([])
-keywordMultipliers = Dictionary[String, float]({})
 
 [sub_resource type="Resource" id="Resource_ghmer"]
 script = ExtResource("4_7olm8")
 powerPerOrb = -2
-lifestealPerOrb = 0.0
-selfHpSacrificePerOrb = 0.0
 targetStatChangesPerOrb = SubResource("Resource_cabe8")
-weakThresholdOrbs = 0
-strongThresholdOrbs = 0
-overwhelmingThresholdOrbs = 0
-additionalStatusTurnsPerOrb = 0.0
-additionalStatusChancePerOrb = 0.0
 
 [resource]
 script = ExtResource("1_s336e")
-triggerElement = 0
-triggerCategory = -1
-isHealRune = false
-previousHp = -1
 orbChange = 1
 category = 2
 element = 2
 power = -40
-lifesteal = 0.0
 statChanges = SubResource("Resource_l5d3b")
 surgeChanges = SubResource("Resource_ghmer")
 runeSpriteAnim = ExtResource("1_6kf54")

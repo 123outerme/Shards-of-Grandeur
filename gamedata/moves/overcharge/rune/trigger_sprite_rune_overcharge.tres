@@ -11,19 +11,10 @@ script = ExtResource("1_3xlrw")
 annotation = "start above target"
 animation = "default"
 duration = 0.1
-speed = 1.0
 opacity = 0.0
-spritePivot = Vector2(0, 0)
 relativeTo = 1
 position = Vector2(0, -6)
 offset = 4
-rotate = false
-rotateToFace = 1
-rotateToFacePosition = Vector2(0, 0)
-rotateToFaceOffset = 0
-trackRotationTarget = false
-randomizeSfxPitch = false
-emitCompleteOnStart = false
 metadata/_custom_type_script = "uid://n71lfdnd5xrr"
 
 [sub_resource type="Resource" id="Resource_vnspi"]
@@ -31,19 +22,6 @@ script = ExtResource("1_3xlrw")
 annotation = "fade in while playing rune anim"
 animation = "rune"
 duration = 0.333
-speed = 1.0
-opacity = 1.0
-spritePivot = Vector2(0, 0)
-relativeTo = 5
-position = Vector2(0, 0)
-offset = 0
-rotate = false
-rotateToFace = 1
-rotateToFacePosition = Vector2(0, 0)
-rotateToFaceOffset = 0
-trackRotationTarget = false
-randomizeSfxPitch = false
-emitCompleteOnStart = false
 metadata/_custom_type_script = "uid://n71lfdnd5xrr"
 
 [sub_resource type="Curve" id="Curve_gp0gu"]
@@ -57,23 +35,9 @@ point_count = 2
 [sub_resource type="Resource" id="Resource_sgp12"]
 script = ExtResource("1_3xlrw")
 annotation = "stay faded in for another loop and 2 frames as it moves to center of target"
-animation = ""
-duration = 1.0
-speed = 1.0
-opacity = 1.0
-spritePivot = Vector2(0, 0)
 relativeTo = 1
-position = Vector2(0, 0)
-offset = 0
 xCurve = SubResource("Curve_gp0gu")
 yCurve = SubResource("Curve_vnspi")
-rotate = false
-rotateToFace = 1
-rotateToFacePosition = Vector2(0, 0)
-rotateToFaceOffset = 0
-trackRotationTarget = false
-randomizeSfxPitch = false
-emitCompleteOnStart = false
 metadata/_custom_type_script = "uid://n71lfdnd5xrr"
 
 [sub_resource type="Resource" id="Resource_vjrrn"]
@@ -81,50 +45,18 @@ script = ExtResource("1_3xlrw")
 annotation = "play trigger anim"
 animation = "rune_trigger_charge"
 duration = 1.167
-speed = 1.0
-opacity = 1.0
-spritePivot = Vector2(0, 0)
-relativeTo = 5
-position = Vector2(0, 0)
-offset = 0
-rotate = false
-rotateToFace = 1
-rotateToFacePosition = Vector2(0, 0)
-rotateToFaceOffset = 0
-trackRotationTarget = false
 sfx = ExtResource("2_dngp6")
-randomizeSfxPitch = false
-emitCompleteOnStart = false
 metadata/_custom_type_script = "uid://n71lfdnd5xrr"
 
 [sub_resource type="Resource" id="Resource_3xlrw"]
 script = ExtResource("1_3xlrw")
 annotation = "play particles"
-animation = ""
-duration = 1.0
-speed = 1.0
-opacity = 1.0
-spritePivot = Vector2(0, 0)
-relativeTo = 5
-position = Vector2(0, 0)
-offset = 0
-rotate = false
-rotateToFace = 1
-rotateToFacePosition = Vector2(0, 0)
-rotateToFaceOffset = 0
-trackRotationTarget = false
 particles = ExtResource("3_dngp6")
-randomizeSfxPitch = false
-emitCompleteOnStart = false
 metadata/_custom_type_script = "uid://n71lfdnd5xrr"
 
 [resource]
 script = ExtResource("3_a1nre")
 spriteFrames = ExtResource("4_yg2wg")
-centerSprite = true
 maxSize = Vector2(32, 32)
 frames = Array[ExtResource("1_3xlrw")]([SubResource("Resource_gp0gu"), SubResource("Resource_vnspi"), SubResource("Resource_sgp12"), SubResource("Resource_vjrrn"), SubResource("Resource_3xlrw")])
-delayedUntilReposition = false
-playsOnImpactFrame = true
-onePerTarget = true
 metadata/_custom_type_script = "uid://mk6loduurcg4"

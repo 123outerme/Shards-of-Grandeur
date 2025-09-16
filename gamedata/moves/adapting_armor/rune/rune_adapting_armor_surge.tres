@@ -10,51 +10,26 @@
 
 [sub_resource type="Resource" id="Resource_tdwnn"]
 script = ExtResource("4_goke4")
-physAttackIncrease = 0
-magicAttackIncrease = 0
-affinityIncrease = 0
-resistanceIncrease = 0
-speedIncrease = 0
-physAttackMultiplier = 1.0
-magicAttackMultiplier = 1.0
 affinityMultiplier = 1.1
 resistanceMultiplier = 1.15
-speedMultiplier = 1.0
-elementMultipliers = Array[ExtResource("3_y30xc")]([])
-keywordMultipliers = Dictionary[String, float]({})
 metadata/_custom_type_script = "uid://dvivnpdo5ga72"
 
 [sub_resource type="Resource" id="Resource_1nvkv"]
 script = ExtResource("5_roqf4")
 type = 8
 potency = 1
-overwritesOtherStatuses = false
 turnsLeft = 3
 metadata/_custom_type_script = "uid://cky0q11dkk4kj"
 
 [sub_resource type="Resource" id="Resource_8gnwu"]
 script = ExtResource("6_8afwq")
-powerPerOrb = 0
-lifestealPerOrb = 0.0
-selfHpSacrificePerOrb = 0.0
-weakThresholdOrbs = 0
 strongThresholdOrbs = 5
 overwhelmingThresholdOrbs = 8
 additionalStatusTurnsPerOrb = 0.25
-additionalStatusChancePerOrb = 0.0
 metadata/_custom_type_script = "uid://cvjnh0a2q6sat"
 
 [resource]
 script = ExtResource("2_wcjta")
-triggerElement = 0
-triggerCategory = -1
-isHealRune = false
-previousHp = -1
-orbChange = 0
-category = 0
-element = 0
-power = 0
-lifesteal = 0.0
 statChanges = SubResource("Resource_tdwnn")
 statusEffect = SubResource("Resource_1nvkv")
 surgeChanges = SubResource("Resource_8gnwu")

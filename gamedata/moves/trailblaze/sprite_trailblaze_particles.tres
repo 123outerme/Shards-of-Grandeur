@@ -18,21 +18,11 @@ script = ExtResource("1_mwqs8")
 annotation = "mirror visible sprite (start at user)"
 animation = "default"
 duration = 0.1
-speed = 1.0
-opacity = 1.0
-spritePivot = Vector2(0, 0)
 relativeTo = 2
 position = Vector2(10, 0)
 offset = 1
 xCurve = SubResource("Curve_t1d1q")
 yCurve = SubResource("Curve_ru7u8")
-rotate = false
-rotateToFace = 1
-rotateToFacePosition = Vector2(0, 0)
-rotateToFaceOffset = 0
-trackRotationTarget = false
-randomizeSfxPitch = false
-emitCompleteOnStart = false
 
 [sub_resource type="Curve" id="Curve_hlmo5"]
 _data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
@@ -45,50 +35,17 @@ point_count = 2
 [sub_resource type="Resource" id="Resource_7t66a"]
 script = ExtResource("1_mwqs8")
 annotation = "mirror visible sprite (move to target)"
-animation = ""
-duration = 1.0
 speed = 80.0
-opacity = 1.0
-spritePivot = Vector2(0, 0)
 relativeTo = 1
-position = Vector2(0, 0)
-offset = 0
 xCurve = SubResource("Curve_hlmo5")
 yCurve = SubResource("Curve_l4h01")
-rotate = false
-rotateToFace = 1
-rotateToFacePosition = Vector2(0, 0)
-rotateToFaceOffset = 0
-trackRotationTarget = false
-randomizeSfxPitch = false
-emitCompleteOnStart = false
 
 [sub_resource type="Resource" id="Resource_3t6yv"]
 script = ExtResource("1_mwqs8")
 annotation = "play particles for lifetime of particles on top of target"
-animation = ""
-duration = 1.0
-speed = 1.0
-opacity = 1.0
-spritePivot = Vector2(0, 0)
-relativeTo = 5
-position = Vector2(0, 0)
-offset = 0
-rotate = false
-rotateToFace = 1
-rotateToFacePosition = Vector2(0, 0)
-rotateToFaceOffset = 0
-trackRotationTarget = false
 particles = ExtResource("2_okgq6")
-randomizeSfxPitch = false
-emitCompleteOnStart = false
 
 [resource]
 script = ExtResource("1_p5g5f")
 spriteFrames = ExtResource("2_qyoal")
-centerSprite = true
-maxSize = Vector2(16, 16)
 frames = Array[ExtResource("1_mwqs8")]([SubResource("Resource_v21uc"), SubResource("Resource_7t66a"), SubResource("Resource_3t6yv")])
-delayedUntilReposition = false
-playsOnImpactFrame = true
-onePerTarget = true

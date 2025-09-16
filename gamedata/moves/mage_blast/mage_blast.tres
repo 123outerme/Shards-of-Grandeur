@@ -10,81 +10,36 @@
 [sub_resource type="Resource" id="Resource_pdanh"]
 script = ExtResource("1_exwjn")
 role = 1
-keywords = Array[String]([])
 orbChange = 1
 power = 45
-lifesteal = 0.0
-selfHpSacrifice = 0.0
-priority = 0
 targets = 5
-selfGetsStatus = false
-statusChance = 0.0
-statusRequiredForTargetStatChanges = false
 
 [sub_resource type="Resource" id="Resource_efv06"]
 script = ExtResource("2_p7si0")
-physAttackIncrease = 0
-magicAttackIncrease = 0
-affinityIncrease = 0
-resistanceIncrease = 0
-speedIncrease = 0
-physAttackMultiplier = 1.0
 magicAttackMultiplier = 1.2
-affinityMultiplier = 1.0
 resistanceMultiplier = 1.1
-speedMultiplier = 1.0
-elementMultipliers = Array[ExtResource("4_nbpn6")]([])
-keywordMultipliers = Dictionary[String, float]({})
 
 [sub_resource type="Resource" id="Resource_282np"]
 script = ExtResource("2_p7si0")
-physAttackIncrease = 0
-magicAttackIncrease = 0
-affinityIncrease = 0
-resistanceIncrease = 0
-speedIncrease = 0
-physAttackMultiplier = 1.0
 magicAttackMultiplier = 1.05
-affinityMultiplier = 1.0
-resistanceMultiplier = 1.0
-speedMultiplier = 1.0
-elementMultipliers = Array[ExtResource("4_nbpn6")]([])
-keywordMultipliers = Dictionary[String, float]({})
 
 [sub_resource type="Resource" id="Resource_brnn3"]
 script = ExtResource("5_o5lg5")
-powerPerOrb = 0
-lifestealPerOrb = 0.0
-selfHpSacrificePerOrb = 0.0
 selfStatChangesPerOrb = SubResource("Resource_282np")
-weakThresholdOrbs = 0
-strongThresholdOrbs = 0
-overwhelmingThresholdOrbs = 0
-additionalStatusTurnsPerOrb = 0.0
-additionalStatusChancePerOrb = 0.0
 
 [sub_resource type="Resource" id="Resource_0wnah"]
 script = ExtResource("1_exwjn")
 role = 1
-keywords = Array[String]([])
 orbChange = -3
 power = 65
-lifesteal = 0.0
-selfHpSacrifice = 0.0
-priority = 0
 targets = 5
 selfStatChanges = SubResource("Resource_efv06")
-selfGetsStatus = false
-statusChance = 0.0
-statusRequiredForTargetStatChanges = false
 surgeChanges = SubResource("Resource_brnn3")
 
 [resource]
 script = ExtResource("1_l6s6y")
 moveName = "Mage Blast"
-requiredLv = 1
 category = 1
-element = 0
 chargeEffect = SubResource("Resource_pdanh")
 surgeEffect = SubResource("Resource_0wnah")
 description = "The users conjures a single blast of magic power to hurl at an unsuspecting foe."

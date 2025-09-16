@@ -17,23 +17,14 @@ point_count = 1
 [sub_resource type="Resource" id="Resource_5hlir"]
 script = ExtResource("1_xy2u7")
 annotation = "start above target"
-animation = ""
 duration = -1.0
 speed = 0.0
-opacity = 1.0
-spritePivot = Vector2(0, 0)
 relativeTo = 1
 position = Vector2(0, -16)
 offset = 4
 xCurve = SubResource("Curve_fxksf")
 yCurve = SubResource("Curve_ygiry")
-rotate = false
 rotateToFace = 0
-rotateToFacePosition = Vector2(0, 0)
-rotateToFaceOffset = 0
-trackRotationTarget = false
-randomizeSfxPitch = false
-emitCompleteOnStart = false
 
 [sub_resource type="Curve" id="Curve_b5ljx"]
 _data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
@@ -47,23 +38,12 @@ point_count = 2
 script = ExtResource("1_xy2u7")
 annotation = "Strike towards target"
 animation = "thunderstrike"
-duration = 1.0
 speed = 70.0
-opacity = 1.0
-spritePivot = Vector2(0, 0)
 relativeTo = 1
-position = Vector2(0, 0)
-offset = 0
 xCurve = SubResource("Curve_b5ljx")
 yCurve = SubResource("Curve_myeuy")
-rotate = false
 rotateToFace = 0
-rotateToFacePosition = Vector2(0, 0)
-rotateToFaceOffset = 0
-trackRotationTarget = false
 particles = ExtResource("2_6gyiu")
-randomizeSfxPitch = false
-emitCompleteOnStart = false
 
 [sub_resource type="Curve" id="Curve_suvw5"]
 
@@ -72,31 +52,14 @@ emitCompleteOnStart = false
 [sub_resource type="Resource" id="Resource_1ymfm"]
 script = ExtResource("1_xy2u7")
 annotation = "play particles"
-animation = ""
-duration = 1.0
 speed = 0.0
-opacity = 1.0
-spritePivot = Vector2(0, 0)
-relativeTo = 5
-position = Vector2(0, 0)
-offset = 0
 xCurve = SubResource("Curve_suvw5")
 yCurve = SubResource("Curve_e7ikw")
-rotate = false
 rotateToFace = 0
-rotateToFacePosition = Vector2(0, 0)
-rotateToFaceOffset = 0
-trackRotationTarget = false
 particles = ExtResource("3_ji8co")
-randomizeSfxPitch = false
-emitCompleteOnStart = false
 
 [resource]
 script = ExtResource("1_8f5wq")
 spriteFrames = ExtResource("2_bmsbo")
-centerSprite = true
 maxSize = Vector2(16, 32)
 frames = Array[ExtResource("1_xy2u7")]([SubResource("Resource_5hlir"), SubResource("Resource_glaes"), SubResource("Resource_1ymfm")])
-delayedUntilReposition = false
-playsOnImpactFrame = true
-onePerTarget = true

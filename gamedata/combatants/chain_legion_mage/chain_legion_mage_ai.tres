@@ -15,56 +15,38 @@
 [sub_resource type="Resource" id="Resource_ydg3i"]
 script = ExtResource("3_bn75a")
 aggroStrategy = 1
-subLayers = Array[ExtResource("3_133cb")]([])
 weight = 0.35
 
 [sub_resource type="Resource" id="Resource_utlmt"]
 script = ExtResource("2_56eys")
-healLayer = false
 subLayers = Array[ExtResource("3_133cb")]([SubResource("Resource_ydg3i")])
 weight = 0.7
 
 [sub_resource type="Resource" id="Resource_byqbi"]
 script = ExtResource("4_qa465")
-buffStrategy = 1
-subLayers = Array[ExtResource("3_133cb")]([])
 weight = 0.3
 
 [sub_resource type="Resource" id="Resource_60rw7"]
 script = ExtResource("5_e2d4t")
-subLayers = Array[ExtResource("3_133cb")]([])
 weight = 0.25
 
 [sub_resource type="Resource" id="Resource_ftix1"]
 script = ExtResource("6_pmvvl")
-mostOrbsWeight = 1.15
-subLayers = Array[ExtResource("3_133cb")]([])
 weight = 0.3
 
 [sub_resource type="Resource" id="Resource_ayjmu"]
 script = ExtResource("7_q4tiq")
-triggerWeight = 1.25
-setWeight = 1.15
-healPowerWeight = 0.7
-damagePowerWeight = 1.0
-subLayers = Array[ExtResource("3_133cb")]([])
 weight = 0.45
 
 [sub_resource type="Resource" id="Resource_ga2xn"]
 script = ExtResource("6_cbgmw")
-subLayers = Array[ExtResource("3_133cb")]([])
 weight = 0.3
 
 [sub_resource type="Resource" id="Resource_g87ao"]
 script = ExtResource("7_atkso")
-signatureWeight = 1.25
-subLayers = Array[ExtResource("3_133cb")]([])
 weight = 0.3
 
 [resource]
 script = ExtResource("2_i6xj5")
 layers = Array[ExtResource("1_lb1gk")]([SubResource("Resource_utlmt"), SubResource("Resource_byqbi"), SubResource("Resource_60rw7"), SubResource("Resource_ftix1"), SubResource("Resource_ayjmu"), SubResource("Resource_ga2xn"), SubResource("Resource_g87ao")])
 orbSpendStrategy = 1
-stalenessTolerance = 1.4
-lastMovesEffect = 0
-timesUsedLastMove = 0

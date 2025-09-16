@@ -18,67 +18,24 @@ script = ExtResource("1_32bf6")
 annotation = "set position to target"
 animation = "default"
 duration = 0.1
-speed = 1.0
-opacity = 1.0
-spritePivot = Vector2(0, 0)
 relativeTo = 1
-position = Vector2(0, 0)
 offset = 1
 xCurve = SubResource("Curve_ddku3")
 yCurve = SubResource("Curve_jadmr")
-rotate = false
-rotateToFace = 1
-rotateToFacePosition = Vector2(0, 0)
-rotateToFaceOffset = 0
-trackRotationTarget = false
-randomizeSfxPitch = false
-emitCompleteOnStart = false
 
 [sub_resource type="Resource" id="Resource_widsk"]
 script = ExtResource("1_32bf6")
 annotation = "play wicked kicks animation"
 animation = "wicked_kicks"
 duration = 0.167
-speed = 1.0
-opacity = 1.0
-spritePivot = Vector2(0, 0)
-relativeTo = 5
-position = Vector2(0, 0)
-offset = 0
-rotate = false
-rotateToFace = 1
-rotateToFacePosition = Vector2(0, 0)
-rotateToFaceOffset = 0
-trackRotationTarget = false
-randomizeSfxPitch = false
-emitCompleteOnStart = false
 
 [sub_resource type="Resource" id="Resource_nbeqy"]
 script = ExtResource("1_32bf6")
-annotation = ""
-animation = ""
 duration = 0.833
-speed = 1.0
-opacity = 1.0
-spritePivot = Vector2(0, 0)
-relativeTo = 5
-position = Vector2(0, 0)
-offset = 0
-rotate = false
-rotateToFace = 1
-rotateToFacePosition = Vector2(0, 0)
-rotateToFaceOffset = 0
-trackRotationTarget = false
 particles = ExtResource("2_edcq5")
-randomizeSfxPitch = false
-emitCompleteOnStart = false
 
 [resource]
 script = ExtResource("1_yhys0")
 spriteFrames = ExtResource("3_saugg")
-centerSprite = true
 maxSize = Vector2(32, 16)
 frames = Array[ExtResource("1_32bf6")]([SubResource("Resource_txseh"), SubResource("Resource_widsk"), SubResource("Resource_nbeqy")])
-delayedUntilReposition = false
-playsOnImpactFrame = true
-onePerTarget = true

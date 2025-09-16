@@ -19,21 +19,9 @@ script = ExtResource("1_ud31t")
 annotation = "initialize position"
 animation = "default"
 duration = 0.1
-speed = 1.0
-opacity = 1.0
-spritePivot = Vector2(0, 0)
 relativeTo = 4
-position = Vector2(0, 0)
-offset = 0
 xCurve = SubResource("Curve_q2esu")
 yCurve = SubResource("Curve_r5t6f")
-rotate = false
-rotateToFace = 1
-rotateToFacePosition = Vector2(0, 0)
-rotateToFaceOffset = 0
-trackRotationTarget = false
-randomizeSfxPitch = false
-emitCompleteOnStart = false
 
 [sub_resource type="Curve" id="Curve_x7h3x"]
 _data = [Vector2(0, 0), 0.0, 1.22911, 0, 1, Vector2(0.697368, 0.857143), 0.578191, 0.578191, 0, 0, Vector2(1, 1), 0.47205, 0.0, 1, 0]
@@ -48,22 +36,12 @@ script = ExtResource("1_ud31t")
 annotation = "Let the fireball drift towards the opponent"
 animation = "torch"
 duration = 0.667
-speed = 1.0
-opacity = 1.0
-spritePivot = Vector2(0, 0)
 relativeTo = 1
 position = Vector2(-2, 0)
 offset = 1
 xCurve = SubResource("Curve_x7h3x")
 yCurve = SubResource("Curve_1xbjv")
-rotate = false
-rotateToFace = 1
-rotateToFacePosition = Vector2(0, 0)
-rotateToFaceOffset = 0
-trackRotationTarget = false
 sfx = ExtResource("2_ndgk4")
-randomizeSfxPitch = false
-emitCompleteOnStart = false
 
 [sub_resource type="Curve" id="Curve_sq0em"]
 
@@ -72,24 +50,9 @@ emitCompleteOnStart = false
 [sub_resource type="Resource" id="Resource_6ns1y"]
 script = ExtResource("1_ud31t")
 annotation = "blast the opponent"
-animation = ""
-duration = 1.0
-speed = 1.0
-opacity = 1.0
-spritePivot = Vector2(0, 0)
-relativeTo = 5
-position = Vector2(0, 0)
-offset = 0
 xCurve = SubResource("Curve_sq0em")
 yCurve = SubResource("Curve_mqeva")
-rotate = false
-rotateToFace = 1
-rotateToFacePosition = Vector2(0, 0)
-rotateToFaceOffset = 0
-trackRotationTarget = false
 particles = ExtResource("2_uh61c")
-randomizeSfxPitch = false
-emitCompleteOnStart = false
 
 [sub_resource type="Curve" id="Curve_hkje7"]
 _data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
@@ -102,49 +65,20 @@ point_count = 2
 [sub_resource type="Resource" id="Resource_sajhg"]
 script = ExtResource("1_ud31t")
 annotation = "let the fireball evaporate and drift straight backwards"
-animation = ""
 duration = 0.333
-speed = 1.0
-opacity = 1.0
-spritePivot = Vector2(0, 0)
-relativeTo = 5
 position = Vector2(-4, 0)
-offset = 0
 xCurve = SubResource("Curve_hkje7")
 yCurve = SubResource("Curve_cdn28")
-rotate = false
-rotateToFace = 1
-rotateToFacePosition = Vector2(0, 0)
-rotateToFaceOffset = 0
-trackRotationTarget = false
-randomizeSfxPitch = false
-emitCompleteOnStart = false
 
 [sub_resource type="Resource" id="Resource_de2ru"]
 script = ExtResource("1_ud31t")
 annotation = "wait for particles to disappear"
 animation = "default"
 duration = 0.2
-speed = 1.0
-opacity = 1.0
-spritePivot = Vector2(0, 0)
-relativeTo = 5
-position = Vector2(0, 0)
-offset = 0
-rotate = false
-rotateToFace = 1
-rotateToFacePosition = Vector2(0, 0)
-rotateToFaceOffset = 0
-trackRotationTarget = false
-randomizeSfxPitch = false
-emitCompleteOnStart = false
 
 [resource]
 script = ExtResource("2_yxmkl")
 spriteFrames = ExtResource("3_lbdvb")
-centerSprite = true
 maxSize = Vector2(34, 13)
 frames = Array[ExtResource("1_ud31t")]([SubResource("Resource_313o7"), SubResource("Resource_3f6fl"), SubResource("Resource_6ns1y"), SubResource("Resource_sajhg"), SubResource("Resource_de2ru")])
 delayedUntilReposition = true
-playsOnImpactFrame = true
-onePerTarget = true

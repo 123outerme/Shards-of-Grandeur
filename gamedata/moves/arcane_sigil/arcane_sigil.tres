@@ -11,96 +11,38 @@
 
 [sub_resource type="Resource" id="Resource_skwjd"]
 script = ExtResource("3_o1eae")
-physAttackIncrease = 0
-magicAttackIncrease = 0
-affinityIncrease = 0
-resistanceIncrease = 0
-speedIncrease = 0
-physAttackMultiplier = 1.0
 magicAttackMultiplier = 1.15
-affinityMultiplier = 1.0
-resistanceMultiplier = 1.0
-speedMultiplier = 1.0
-elementMultipliers = Array[ExtResource("2_lq8ow")]([])
-keywordMultipliers = Dictionary[String, float]({})
 metadata/_custom_type_script = "uid://dvivnpdo5ga72"
 
 [sub_resource type="Resource" id="Resource_4j55f"]
 script = ExtResource("1_00l4n")
 role = 3
-keywords = Array[String]([])
 orbChange = 1
-power = 0
-lifesteal = 0.0
-selfHpSacrifice = 0.0
-priority = 0
-targets = 1
 targetStatChanges = SubResource("Resource_skwjd")
-selfGetsStatus = false
-statusChance = 0.0
-statusRequiredForTargetStatChanges = false
 rune = ExtResource("1_4q5v1")
 metadata/_custom_type_script = "uid://drwve0pkx3g5o"
 
 [sub_resource type="Resource" id="Resource_d5v3p"]
 script = ExtResource("3_o1eae")
-physAttackIncrease = 0
-magicAttackIncrease = 0
-affinityIncrease = 0
-resistanceIncrease = 0
-speedIncrease = 0
-physAttackMultiplier = 1.0
 magicAttackMultiplier = 1.02
-affinityMultiplier = 1.0
-resistanceMultiplier = 1.0
-speedMultiplier = 1.0
-elementMultipliers = Array[ExtResource("2_lq8ow")]([])
-keywordMultipliers = Dictionary[String, float]({})
 metadata/_custom_type_script = "uid://dvivnpdo5ga72"
 
 [sub_resource type="Resource" id="Resource_4q5v1"]
 script = ExtResource("6_skwjd")
-powerPerOrb = 0
-lifestealPerOrb = 0.0
-selfHpSacrificePerOrb = 0.0
 targetStatChangesPerOrb = SubResource("Resource_d5v3p")
-weakThresholdOrbs = 0
-strongThresholdOrbs = 0
-overwhelmingThresholdOrbs = 0
-additionalStatusTurnsPerOrb = 0.0
-additionalStatusChancePerOrb = 0.0
 metadata/_custom_type_script = "uid://cvjnh0a2q6sat"
 
 [sub_resource type="Resource" id="Resource_o1eae"]
 script = ExtResource("3_o1eae")
-physAttackIncrease = 0
-magicAttackIncrease = 0
-affinityIncrease = 0
-resistanceIncrease = 0
-speedIncrease = 0
-physAttackMultiplier = 1.0
 magicAttackMultiplier = 1.35
-affinityMultiplier = 1.0
-resistanceMultiplier = 1.0
-speedMultiplier = 1.0
-elementMultipliers = Array[ExtResource("2_lq8ow")]([])
-keywordMultipliers = Dictionary[String, float]({})
 metadata/_custom_type_script = "uid://dvivnpdo5ga72"
 
 [sub_resource type="Resource" id="Resource_lq8ow"]
 script = ExtResource("1_00l4n")
 role = 3
-keywords = Array[String]([])
 orbChange = -4
-power = 0
-lifesteal = 0.0
-selfHpSacrifice = 0.0
-priority = 0
 targets = 3
 targetStatChanges = SubResource("Resource_o1eae")
-selfGetsStatus = false
-statusChance = 0.0
-statusRequiredForTargetStatChanges = false
 rune = ExtResource("5_o1eae")
 surgeChanges = SubResource("Resource_4q5v1")
 metadata/_custom_type_script = "uid://drwve0pkx3g5o"
@@ -110,7 +52,6 @@ script = ExtResource("1_urm5e")
 moveName = "Arcane Sigil"
 requiredLv = 20
 category = 1
-element = 0
 chargeEffect = SubResource("Resource_4j55f")
 surgeEffect = SubResource("Resource_lq8ow")
 description = "Draw a glyph in the air to summon more Magic power. Physical attacks into the glyph activate it again!"

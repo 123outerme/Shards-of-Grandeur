@@ -10,66 +10,37 @@
 
 [sub_resource type="Resource" id="Resource_jiacd"]
 script = ExtResource("2_xl77p")
-physAttackIncrease = 0
-magicAttackIncrease = 0
-affinityIncrease = 0
-resistanceIncrease = 0
-speedIncrease = 0
-physAttackMultiplier = 1.0
-magicAttackMultiplier = 1.0
-affinityMultiplier = 1.0
 resistanceMultiplier = 0.95
-speedMultiplier = 1.0
-elementMultipliers = Array[ExtResource("2_hms1m")]([])
-keywordMultipliers = Dictionary[String, float]({})
 
 [sub_resource type="Resource" id="Resource_33f2b"]
 script = ExtResource("1_uoik0")
 role = 1
-keywords = Array[String]([])
 orbChange = 1
 power = 55
-lifesteal = 0.0
-selfHpSacrifice = 0.0
-priority = 0
 targets = 5
 targetStatChanges = SubResource("Resource_jiacd")
-selfGetsStatus = false
-statusChance = 0.0
-statusRequiredForTargetStatChanges = false
 
 [sub_resource type="Resource" id="Resource_ytas6"]
 script = ExtResource("2_dx3ob")
 type = 10
 potency = 1
-overwritesOtherStatuses = false
 turnsLeft = 3
 
 [sub_resource type="Resource" id="Resource_syv26"]
 script = ExtResource("6_ul0fw")
 powerPerOrb = 4
-lifestealPerOrb = 0.0
-selfHpSacrificePerOrb = 0.0
-weakThresholdOrbs = 0
 strongThresholdOrbs = 3
 overwhelmingThresholdOrbs = 5
-additionalStatusTurnsPerOrb = 0.0
 additionalStatusChancePerOrb = 0.02
 
 [sub_resource type="Resource" id="Resource_e2qrf"]
 script = ExtResource("1_uoik0")
 role = 1
-keywords = Array[String]([])
 orbChange = -2
 power = 65
-lifesteal = 0.0
-selfHpSacrifice = 0.0
-priority = 0
 targets = 5
 statusEffect = SubResource("Resource_ytas6")
-selfGetsStatus = false
 statusChance = 0.85
-statusRequiredForTargetStatChanges = false
 surgeChanges = SubResource("Resource_syv26")
 
 [resource]

@@ -9,18 +9,7 @@
 
 [sub_resource type="Resource" id="Resource_yx4rg"]
 script = ExtResource("3_0xggv")
-physAttackIncrease = 0
-magicAttackIncrease = 0
-affinityIncrease = 0
-resistanceIncrease = 0
-speedIncrease = 0
-physAttackMultiplier = 1.0
-magicAttackMultiplier = 1.0
-affinityMultiplier = 1.0
-resistanceMultiplier = 1.0
 speedMultiplier = 0.85
-elementMultipliers = Array[ExtResource("2_rkmxs")]([])
-keywordMultipliers = Dictionary[String, float]({})
 metadata/_custom_type_script = "uid://dvivnpdo5ga72"
 
 [sub_resource type="Resource" id="Resource_xb5ms"]
@@ -29,59 +18,24 @@ role = 1
 keywords = Array[String](["Ice"])
 orbChange = 1
 power = 50
-lifesteal = 0.0
-selfHpSacrifice = 0.0
-priority = 0
 targets = 5
 targetStatChanges = SubResource("Resource_yx4rg")
-selfGetsStatus = false
-statusChance = 0.0
-statusRequiredForTargetStatChanges = false
 metadata/_custom_type_script = "uid://drwve0pkx3g5o"
 
 [sub_resource type="Resource" id="Resource_11yvk"]
 script = ExtResource("3_0xggv")
-physAttackIncrease = 0
-magicAttackIncrease = 0
-affinityIncrease = 0
-resistanceIncrease = 0
-speedIncrease = 0
-physAttackMultiplier = 1.0
-magicAttackMultiplier = 1.0
-affinityMultiplier = 1.0
-resistanceMultiplier = 1.0
 speedMultiplier = 0.95
-elementMultipliers = Array[ExtResource("2_rkmxs")]([])
-keywordMultipliers = Dictionary[String, float]({})
 metadata/_custom_type_script = "uid://dvivnpdo5ga72"
 
 [sub_resource type="Resource" id="Resource_sahqu"]
 script = ExtResource("6_ksnad")
 powerPerOrb = 4
-lifestealPerOrb = 0.0
-selfHpSacrificePerOrb = 0.0
 targetStatChangesPerOrb = SubResource("Resource_11yvk")
-weakThresholdOrbs = 0
-strongThresholdOrbs = 0
-overwhelmingThresholdOrbs = 0
-additionalStatusTurnsPerOrb = 0.0
-additionalStatusChancePerOrb = 0.0
 metadata/_custom_type_script = "uid://cvjnh0a2q6sat"
 
 [sub_resource type="Resource" id="Resource_mmor0"]
 script = ExtResource("3_0xggv")
-physAttackIncrease = 0
-magicAttackIncrease = 0
-affinityIncrease = 0
-resistanceIncrease = 0
-speedIncrease = 0
-physAttackMultiplier = 1.0
-magicAttackMultiplier = 1.0
-affinityMultiplier = 1.0
-resistanceMultiplier = 1.0
 speedMultiplier = 0.75
-elementMultipliers = Array[ExtResource("2_rkmxs")]([])
-keywordMultipliers = Dictionary[String, float]({})
 metadata/_custom_type_script = "uid://dvivnpdo5ga72"
 
 [sub_resource type="Resource" id="Resource_fqkuv"]
@@ -90,14 +44,8 @@ role = 1
 keywords = Array[String](["Ice"])
 orbChange = -2
 power = 60
-lifesteal = 0.0
-selfHpSacrifice = 0.0
-priority = 0
 targets = 5
 targetStatChanges = SubResource("Resource_mmor0")
-selfGetsStatus = false
-statusChance = 0.0
-statusRequiredForTargetStatChanges = false
 surgeChanges = SubResource("Resource_sahqu")
 metadata/_custom_type_script = "uid://drwve0pkx3g5o"
 
@@ -105,7 +53,6 @@ metadata/_custom_type_script = "uid://drwve0pkx3g5o"
 script = ExtResource("5_4326p")
 moveName = "Frost Bite"
 requiredLv = 17
-category = 0
 element = 1
 chargeEffect = SubResource("Resource_xb5ms")
 surgeEffect = SubResource("Resource_fqkuv")

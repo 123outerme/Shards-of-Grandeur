@@ -18,86 +18,31 @@ script = ExtResource("1_0ukwr")
 annotation = "Position attack before target"
 animation = "default"
 duration = 0.1
-speed = 1.0
-opacity = 1.0
-spritePivot = Vector2(0, 0)
 relativeTo = 1
-position = Vector2(0, 0)
 offset = 1
 xCurve = SubResource("Curve_sfxyi")
 yCurve = SubResource("Curve_v33ga")
-rotate = false
-rotateToFace = 1
-rotateToFacePosition = Vector2(0, 0)
-rotateToFaceOffset = 0
-trackRotationTarget = false
-randomizeSfxPitch = false
-emitCompleteOnStart = false
 
 [sub_resource type="Resource" id="Resource_382cc"]
 script = ExtResource("1_0ukwr")
 annotation = "Play the first part of the swing"
 animation = "haymaker"
 duration = 0.333
-speed = 1.0
-opacity = 1.0
-spritePivot = Vector2(0, 0)
-relativeTo = 5
-position = Vector2(0, 0)
-offset = 0
-rotate = false
-rotateToFace = 1
-rotateToFacePosition = Vector2(0, 0)
-rotateToFaceOffset = 0
-trackRotationTarget = false
-randomizeSfxPitch = false
-emitCompleteOnStart = false
 
 [sub_resource type="Resource" id="Resource_8fesv"]
 script = ExtResource("1_0ukwr")
 annotation = "Play the hitstop part with particles"
-animation = ""
 duration = 0.5
-speed = 1.0
-opacity = 1.0
-spritePivot = Vector2(0, 0)
-relativeTo = 5
-position = Vector2(0, 0)
-offset = 0
-rotate = false
-rotateToFace = 1
-rotateToFacePosition = Vector2(0, 0)
-rotateToFaceOffset = 0
-trackRotationTarget = false
 particles = ExtResource("2_ivcef")
-randomizeSfxPitch = false
-emitCompleteOnStart = false
 
 [sub_resource type="Resource" id="Resource_xnq77"]
 script = ExtResource("1_0ukwr")
 annotation = "Continue with the followthrough"
-animation = ""
 duration = 0.5
-speed = 1.0
-opacity = 1.0
-spritePivot = Vector2(0, 0)
-relativeTo = 5
-position = Vector2(0, 0)
-offset = 0
-rotate = false
-rotateToFace = 1
-rotateToFacePosition = Vector2(0, 0)
-rotateToFaceOffset = 0
-trackRotationTarget = false
-randomizeSfxPitch = false
-emitCompleteOnStart = false
 
 [resource]
 script = ExtResource("1_13pvw")
 spriteFrames = ExtResource("2_c35jn")
-centerSprite = true
 maxSize = Vector2(18, 16)
 frames = Array[ExtResource("1_0ukwr")]([SubResource("Resource_cvggm"), SubResource("Resource_382cc"), SubResource("Resource_8fesv"), SubResource("Resource_xnq77")])
 delayedUntilReposition = true
-playsOnImpactFrame = true
-onePerTarget = true

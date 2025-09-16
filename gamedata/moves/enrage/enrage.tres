@@ -8,7 +8,6 @@
 
 [sub_resource type="Resource" id="Resource_2tc3s"]
 script = ExtResource("2_4mb4e")
-lastAdjustedDmg = 0
 type = 3
 potency = 1
 overwritesOtherStatuses = true
@@ -17,21 +16,13 @@ turnsLeft = 5
 [sub_resource type="Resource" id="Resource_uga40"]
 script = ExtResource("1_d0qm6")
 role = 4
-keywords = Array[String]([])
 orbChange = 2
-power = 0
-lifesteal = 0.0
-selfHpSacrifice = 0.0
-priority = 0
 targets = 10
 statusEffect = SubResource("Resource_2tc3s")
-selfGetsStatus = false
 statusChance = 0.75
-statusRequiredForTargetStatChanges = false
 
 [sub_resource type="Resource" id="Resource_yrret"]
 script = ExtResource("2_4mb4e")
-lastAdjustedDmg = 0
 type = 3
 potency = 2
 overwritesOtherStatuses = true
@@ -40,28 +31,15 @@ turnsLeft = 3
 [sub_resource type="Resource" id="Resource_diw52"]
 script = ExtResource("5_rme74")
 powerPerOrb = 5
-lifestealPerOrb = 0.0
-selfHpSacrificePerOrb = 0.0
-weakThresholdOrbs = 0
-strongThresholdOrbs = 0
-overwhelmingThresholdOrbs = 0
-additionalStatusTurnsPerOrb = 0.0
 additionalStatusChancePerOrb = 0.05
 
 [sub_resource type="Resource" id="Resource_8t8bc"]
 script = ExtResource("1_d0qm6")
 role = 4
-keywords = Array[String]([])
 orbChange = -2
-power = 0
-lifesteal = 0.0
-selfHpSacrifice = 0.0
-priority = 0
 targets = 6
 statusEffect = SubResource("Resource_yrret")
-selfGetsStatus = false
 statusChance = 0.85
-statusRequiredForTargetStatChanges = false
 surgeChanges = SubResource("Resource_diw52")
 
 [resource]
@@ -69,7 +47,6 @@ script = ExtResource("1_jvcdk")
 moveName = "Enrage"
 requiredLv = 5
 category = 2
-element = 0
 chargeEffect = SubResource("Resource_uga40")
 surgeEffect = SubResource("Resource_8t8bc")
 description = "The user turns the target's flow of energy into a chaotic tide, causing the target to become enraged and reckless."

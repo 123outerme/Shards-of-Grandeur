@@ -15,23 +15,13 @@ point_count = 1
 [sub_resource type="Resource" id="Resource_f2mpk"]
 script = ExtResource("1_qmbqe")
 annotation = "setup pos at front of combatant"
-animation = ""
 duration = 0.1
-speed = 1.0
 opacity = 0.0
-spritePivot = Vector2(0, 0)
 relativeTo = 1
 position = Vector2(4, 0)
 offset = 1
 xCurve = SubResource("Curve_f2mpk")
 yCurve = SubResource("Curve_4uey2")
-rotate = false
-rotateToFace = 1
-rotateToFacePosition = Vector2(0, 0)
-rotateToFaceOffset = 0
-trackRotationTarget = false
-randomizeSfxPitch = false
-emitCompleteOnStart = false
 metadata/_custom_type_script = "uid://n71lfdnd5xrr"
 
 [sub_resource type="Curve" id="Curve_c747i"]
@@ -47,41 +37,17 @@ script = ExtResource("1_qmbqe")
 annotation = "drift forward while fading in"
 animation = "rune"
 duration = 0.75
-speed = 1.0
-opacity = 1.0
-spritePivot = Vector2(0, 0)
 relativeTo = 1
 position = Vector2(8, 0)
 offset = 1
 xCurve = SubResource("Curve_c747i")
 yCurve = SubResource("Curve_f3whx")
-rotate = false
-rotateToFace = 1
-rotateToFacePosition = Vector2(0, 0)
-rotateToFaceOffset = 0
-trackRotationTarget = false
-randomizeSfxPitch = false
-emitCompleteOnStart = false
 metadata/_custom_type_script = "uid://n71lfdnd5xrr"
 
 [sub_resource type="Resource" id="Resource_c747i"]
 script = ExtResource("1_qmbqe")
 annotation = "hold here and play the anim"
-animation = ""
 duration = 0.5
-speed = 1.0
-opacity = 1.0
-spritePivot = Vector2(0, 0)
-relativeTo = 5
-position = Vector2(0, 0)
-offset = 0
-rotate = false
-rotateToFace = 1
-rotateToFacePosition = Vector2(0, 0)
-rotateToFaceOffset = 0
-trackRotationTarget = false
-randomizeSfxPitch = false
-emitCompleteOnStart = false
 metadata/_custom_type_script = "uid://n71lfdnd5xrr"
 
 [sub_resource type="Curve" id="Curve_f3gym"]
@@ -95,32 +61,17 @@ point_count = 2
 [sub_resource type="Resource" id="Resource_f3whx"]
 script = ExtResource("1_qmbqe")
 annotation = "drift back and fade back"
-animation = ""
 duration = 0.75
-speed = 1.0
 opacity = 0.0
-spritePivot = Vector2(0, 0)
 relativeTo = 1
-position = Vector2(0, 0)
 offset = 1
 xCurve = SubResource("Curve_f3gym")
 yCurve = SubResource("Curve_3jyiy")
-rotate = false
-rotateToFace = 1
-rotateToFacePosition = Vector2(0, 0)
-rotateToFaceOffset = 0
-trackRotationTarget = false
-randomizeSfxPitch = false
-emitCompleteOnStart = false
 metadata/_custom_type_script = "uid://n71lfdnd5xrr"
 
 [resource]
 script = ExtResource("2_lmms5")
 spriteFrames = ExtResource("3_f2mpk")
-centerSprite = true
 maxSize = Vector2(32, 32)
 frames = Array[ExtResource("1_qmbqe")]([SubResource("Resource_f2mpk"), SubResource("Resource_4uey2"), SubResource("Resource_c747i"), SubResource("Resource_f3whx")])
-delayedUntilReposition = false
-playsOnImpactFrame = true
-onePerTarget = true
 metadata/_custom_type_script = "uid://mk6loduurcg4"

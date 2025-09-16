@@ -19,41 +19,16 @@ script = ExtResource("1_m1itd")
 annotation = "Set up initial position"
 animation = "default"
 duration = 0.1
-speed = 1.0
-opacity = 1.0
-spritePivot = Vector2(0, 0)
 relativeTo = 1
-position = Vector2(0, 0)
-offset = 0
 xCurve = SubResource("Curve_mjddi")
 yCurve = SubResource("Curve_wjybu")
-rotate = false
-rotateToFace = 1
-rotateToFacePosition = Vector2(0, 0)
-rotateToFaceOffset = 0
-trackRotationTarget = false
-randomizeSfxPitch = false
-emitCompleteOnStart = false
 
 [sub_resource type="Resource" id="Resource_8tsbp"]
 script = ExtResource("1_m1itd")
 annotation = "Play swarm animation"
 animation = "rat_swarm"
 duration = 1.75
-speed = 1.0
-opacity = 1.0
-spritePivot = Vector2(0, 0)
-relativeTo = 5
-position = Vector2(0, 0)
-offset = 0
-rotate = false
-rotateToFace = 1
-rotateToFacePosition = Vector2(0, 0)
-rotateToFaceOffset = 0
-trackRotationTarget = false
 sfx = ExtResource("2_6caep")
-randomizeSfxPitch = false
-emitCompleteOnStart = false
 
 [sub_resource type="Curve" id="Curve_a315f"]
 
@@ -64,22 +39,9 @@ script = ExtResource("1_m1itd")
 annotation = "play particles"
 animation = "default"
 duration = 0.125
-speed = 1.0
-opacity = 1.0
-spritePivot = Vector2(0, 0)
-relativeTo = 5
-position = Vector2(0, 0)
-offset = 0
 xCurve = SubResource("Curve_a315f")
 yCurve = SubResource("Curve_lj0kh")
-rotate = false
-rotateToFace = 1
-rotateToFacePosition = Vector2(0, 0)
-rotateToFaceOffset = 0
-trackRotationTarget = false
 particles = ExtResource("3_2dwpx")
-randomizeSfxPitch = false
-emitCompleteOnStart = false
 
 [sub_resource type="Curve" id="Curve_6w1eg"]
 
@@ -90,28 +52,12 @@ script = ExtResource("1_m1itd")
 annotation = "hide the end of the animation and wait for the particles to be over (0.625 seconds + buffer period)"
 animation = "default"
 duration = 0.625
-speed = 1.0
-opacity = 1.0
-spritePivot = Vector2(0, 0)
-relativeTo = 5
-position = Vector2(0, 0)
-offset = 0
 xCurve = SubResource("Curve_6w1eg")
 yCurve = SubResource("Curve_im2ae")
-rotate = false
-rotateToFace = 1
-rotateToFacePosition = Vector2(0, 0)
-rotateToFaceOffset = 0
-trackRotationTarget = false
-randomizeSfxPitch = false
-emitCompleteOnStart = false
 
 [resource]
 script = ExtResource("2_be0gq")
 spriteFrames = ExtResource("3_hpd7h")
-centerSprite = true
 maxSize = Vector2(80, 48)
 frames = Array[ExtResource("1_m1itd")]([SubResource("Resource_dxagl"), SubResource("Resource_8tsbp"), SubResource("Resource_na5r4"), SubResource("Resource_wgupu")])
-delayedUntilReposition = false
 playsOnImpactFrame = false
-onePerTarget = true

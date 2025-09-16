@@ -17,47 +17,20 @@ script = ExtResource("1_rk8vw")
 annotation = "position at target"
 animation = "default"
 duration = 0.1
-speed = 1.0
-opacity = 1.0
-spritePivot = Vector2(0, 0)
 relativeTo = 1
-position = Vector2(0, 0)
-offset = 0
 xCurve = SubResource("Curve_qcj0f")
 yCurve = SubResource("Curve_mgo3w")
-rotate = false
-rotateToFace = 1
-rotateToFacePosition = Vector2(0, 0)
-rotateToFaceOffset = 0
-trackRotationTarget = false
-randomizeSfxPitch = false
-emitCompleteOnStart = false
 
 [sub_resource type="Resource" id="Resource_bj38n"]
 script = ExtResource("1_rk8vw")
 annotation = "play purify animation"
 animation = "purify"
 duration = 2.0
-speed = 1.0
-opacity = 1.0
-spritePivot = Vector2(0, 0)
-relativeTo = 5
-position = Vector2(0, 0)
-offset = 0
-rotate = false
-rotateToFace = 1
-rotateToFacePosition = Vector2(0, 0)
-rotateToFaceOffset = 0
-trackRotationTarget = false
-randomizeSfxPitch = false
-emitCompleteOnStart = false
 
 [resource]
 script = ExtResource("2_mn4a1")
 spriteFrames = ExtResource("3_i64wm")
-centerSprite = true
 maxSize = Vector2(24, 24)
 frames = Array[ExtResource("1_rk8vw")]([SubResource("Resource_f0bst"), SubResource("Resource_bj38n")])
 delayedUntilReposition = true
 playsOnImpactFrame = false
-onePerTarget = true

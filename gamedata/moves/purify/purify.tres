@@ -10,7 +10,6 @@
 
 [sub_resource type="Resource" id="Resource_3hn4e"]
 script = ExtResource("2_4j3rh")
-type = 0
 potency = 1
 overwritesOtherStatuses = true
 turnsLeft = 1
@@ -18,82 +17,38 @@ turnsLeft = 1
 [sub_resource type="Resource" id="Resource_wrm73"]
 script = ExtResource("1_k6lxr")
 role = 3
-keywords = Array[String]([])
 orbChange = 2
-power = 0
-lifesteal = 0.0
-selfHpSacrifice = 0.0
-priority = 0
 targets = 9
 statusEffect = SubResource("Resource_3hn4e")
-selfGetsStatus = false
 statusChance = 1.0
-statusRequiredForTargetStatChanges = false
 
 [sub_resource type="Resource" id="Resource_ll2l8"]
 script = ExtResource("2_4j3rh")
-type = 0
 potency = 2
 overwritesOtherStatuses = true
 turnsLeft = 1
 
 [sub_resource type="Resource" id="Resource_jwlbp"]
 script = ExtResource("6_21com")
-physAttackIncrease = 0
-magicAttackIncrease = 0
-affinityIncrease = 0
-resistanceIncrease = 0
-speedIncrease = 0
-physAttackMultiplier = 1.0
-magicAttackMultiplier = 1.0
 affinityMultiplier = 1.05
-resistanceMultiplier = 1.0
-speedMultiplier = 1.0
-elementMultipliers = Array[ExtResource("5_h5j05")]([])
-keywordMultipliers = Dictionary[String, float]({})
 
 [sub_resource type="Resource" id="Resource_wntts"]
 script = ExtResource("4_ca8cu")
-powerPerOrb = 0
-lifestealPerOrb = 0.0
-selfHpSacrificePerOrb = 0.0
 targetStatChangesPerOrb = SubResource("Resource_jwlbp")
-weakThresholdOrbs = 0
-strongThresholdOrbs = 0
 overwhelmingThresholdOrbs = 4
-additionalStatusTurnsPerOrb = 0.0
-additionalStatusChancePerOrb = 0.0
 
 [sub_resource type="Resource" id="Resource_htqmu"]
 script = ExtResource("6_21com")
-physAttackIncrease = 0
-magicAttackIncrease = 0
-affinityIncrease = 0
-resistanceIncrease = 0
-speedIncrease = 0
-physAttackMultiplier = 1.0
-magicAttackMultiplier = 1.0
 affinityMultiplier = 1.1
-resistanceMultiplier = 1.0
-speedMultiplier = 1.0
-elementMultipliers = Array[ExtResource("5_h5j05")]([])
-keywordMultipliers = Dictionary[String, float]({})
 
 [sub_resource type="Resource" id="Resource_vogu5"]
 script = ExtResource("1_k6lxr")
 role = 3
-keywords = Array[String]([])
 orbChange = -2
-power = 0
-lifesteal = 0.0
-selfHpSacrifice = 0.0
-priority = 0
 targets = 9
 targetStatChanges = SubResource("Resource_htqmu")
 statusEffect = SubResource("Resource_ll2l8")
-selfGetsStatus = false
 statusChance = 1.0
-statusRequiredForTargetStatChanges = false
 surgeChanges = SubResource("Resource_wntts")
 
 [resource]

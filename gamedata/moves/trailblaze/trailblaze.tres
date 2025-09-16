@@ -10,16 +10,9 @@
 [sub_resource type="Resource" id="Resource_6jobn"]
 script = ExtResource("1_n7b8c")
 role = 1
-keywords = Array[String]([])
 orbChange = 2
 power = 35
-lifesteal = 0.0
-selfHpSacrifice = 0.0
-priority = 0
 targets = 5
-selfGetsStatus = false
-statusChance = 0.0
-statusRequiredForTargetStatChanges = false
 
 [sub_resource type="Resource" id="Resource_amddl"]
 script = ExtResource("4_4vbse")
@@ -28,67 +21,31 @@ multiplier = 1.15
 
 [sub_resource type="Resource" id="Resource_bqaiy"]
 script = ExtResource("4_v0gqq")
-physAttackIncrease = 0
-magicAttackIncrease = 0
-affinityIncrease = 0
-resistanceIncrease = 0
-speedIncrease = 0
-physAttackMultiplier = 1.0
-magicAttackMultiplier = 1.0
-affinityMultiplier = 1.0
-resistanceMultiplier = 1.0
 speedMultiplier = 1.1
 elementMultipliers = Array[ExtResource("4_4vbse")]([SubResource("Resource_amddl")])
-keywordMultipliers = Dictionary[String, float]({})
 
 [sub_resource type="Resource" id="Resource_mjjhp"]
 script = ExtResource("4_v0gqq")
-physAttackIncrease = 0
-magicAttackIncrease = 0
-affinityIncrease = 0
-resistanceIncrease = 0
-speedIncrease = 0
-physAttackMultiplier = 1.0
-magicAttackMultiplier = 1.0
-affinityMultiplier = 1.0
-resistanceMultiplier = 1.0
 speedMultiplier = 1.05
-elementMultipliers = Array[ExtResource("4_4vbse")]([])
-keywordMultipliers = Dictionary[String, float]({})
 
 [sub_resource type="Resource" id="Resource_0ejj1"]
 script = ExtResource("5_4dbkl")
 powerPerOrb = 5
-lifestealPerOrb = 0.0
-selfHpSacrificePerOrb = 0.0
 selfStatChangesPerOrb = SubResource("Resource_mjjhp")
-weakThresholdOrbs = 0
-strongThresholdOrbs = 0
-overwhelmingThresholdOrbs = 0
-additionalStatusTurnsPerOrb = 0.0
-additionalStatusChancePerOrb = 0.0
 
 [sub_resource type="Resource" id="Resource_dfiex"]
 script = ExtResource("1_n7b8c")
 role = 1
-keywords = Array[String]([])
 orbChange = -4
 power = 50
-lifesteal = 0.0
-selfHpSacrifice = 0.0
-priority = 0
 targets = 5
 selfStatChanges = SubResource("Resource_bqaiy")
-selfGetsStatus = false
-statusChance = 0.0
-statusRequiredForTargetStatChanges = false
 surgeChanges = SubResource("Resource_0ejj1")
 
 [resource]
 script = ExtResource("1_cyu5v")
 moveName = "Trailblaze"
 requiredLv = 11
-category = 0
 element = 2
 chargeEffect = SubResource("Resource_6jobn")
 surgeEffect = SubResource("Resource_dfiex")

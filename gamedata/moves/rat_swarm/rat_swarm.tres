@@ -9,97 +9,42 @@
 
 [sub_resource type="Resource" id="Resource_stvka"]
 script = ExtResource("3_e8yd8")
-physAttackIncrease = 0
-magicAttackIncrease = 0
-affinityIncrease = 0
-resistanceIncrease = 0
-speedIncrease = 0
 physAttackMultiplier = 1.03
-magicAttackMultiplier = 1.0
-affinityMultiplier = 1.0
-resistanceMultiplier = 1.0
-speedMultiplier = 1.0
-elementMultipliers = Array[ExtResource("2_yicoa")]([])
-keywordMultipliers = Dictionary[String, float]({})
 
 [sub_resource type="Resource" id="Resource_i7fgx"]
 script = ExtResource("1_jvp0f")
 role = 1
-keywords = Array[String]([])
 orbChange = 1
 power = 50
-lifesteal = 0.0
-selfHpSacrifice = 0.0
-priority = 0
 targets = 5
 selfStatChanges = SubResource("Resource_stvka")
-selfGetsStatus = false
-statusChance = 0.0
-statusRequiredForTargetStatChanges = false
 
 [sub_resource type="Resource" id="Resource_0q8ib"]
 script = ExtResource("3_e8yd8")
-physAttackIncrease = 0
-magicAttackIncrease = 0
-affinityIncrease = 0
-resistanceIncrease = 0
-speedIncrease = 0
 physAttackMultiplier = 1.06
-magicAttackMultiplier = 1.0
-affinityMultiplier = 1.0
-resistanceMultiplier = 1.0
-speedMultiplier = 1.0
-elementMultipliers = Array[ExtResource("2_yicoa")]([])
-keywordMultipliers = Dictionary[String, float]({})
 
 [sub_resource type="Resource" id="Resource_18rkq"]
 script = ExtResource("3_e8yd8")
-physAttackIncrease = 0
-magicAttackIncrease = 0
-affinityIncrease = 0
-resistanceIncrease = 0
-speedIncrease = 0
 physAttackMultiplier = 1.02
-magicAttackMultiplier = 1.0
-affinityMultiplier = 1.0
-resistanceMultiplier = 1.0
-speedMultiplier = 1.0
-elementMultipliers = Array[ExtResource("2_yicoa")]([])
-keywordMultipliers = Dictionary[String, float]({})
 
 [sub_resource type="Resource" id="Resource_wnqx0"]
 script = ExtResource("6_i2wrk")
 powerPerOrb = 5
-lifestealPerOrb = 0.0
-selfHpSacrificePerOrb = 0.0
 selfStatChangesPerOrb = SubResource("Resource_18rkq")
-weakThresholdOrbs = 0
-strongThresholdOrbs = 0
-overwhelmingThresholdOrbs = 0
-additionalStatusTurnsPerOrb = 0.0
-additionalStatusChancePerOrb = 0.0
 
 [sub_resource type="Resource" id="Resource_gy56i"]
 script = ExtResource("1_jvp0f")
 role = 1
-keywords = Array[String]([])
 orbChange = -3
 power = 60
-lifesteal = 0.0
-selfHpSacrifice = 0.0
-priority = 0
 targets = 5
 selfStatChanges = SubResource("Resource_0q8ib")
-selfGetsStatus = false
-statusChance = 0.0
-statusRequiredForTargetStatChanges = false
 surgeChanges = SubResource("Resource_wnqx0")
 
 [resource]
 script = ExtResource("1_s3atn")
 moveName = "Rat Swarm"
 requiredLv = 14
-category = 0
 element = 7
 chargeEffect = SubResource("Resource_i7fgx")
 surgeEffect = SubResource("Resource_gy56i")

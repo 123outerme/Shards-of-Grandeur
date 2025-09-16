@@ -10,20 +10,9 @@
 script = ExtResource("1_x3xxt")
 annotation = "move so bottom of sprite is at target's feet"
 animation = "default"
-duration = 1.0
-speed = 1.0
-opacity = 1.0
-spritePivot = Vector2(0, 0)
 relativeTo = 1
 position = Vector2(0, -16)
 offset = 8
-rotate = false
-rotateToFace = 1
-rotateToFacePosition = Vector2(0, 0)
-rotateToFaceOffset = 0
-trackRotationTarget = false
-randomizeSfxPitch = false
-emitCompleteOnStart = false
 metadata/_custom_type_script = "uid://n71lfdnd5xrr"
 
 [sub_resource type="Resource" id="Resource_8ue1e"]
@@ -31,50 +20,20 @@ script = ExtResource("1_x3xxt")
 annotation = "play icicle drop anim"
 animation = "icicle_drop"
 duration = 1.333
-speed = 1.0
-opacity = 1.0
-spritePivot = Vector2(0, 0)
-relativeTo = 5
-position = Vector2(0, 0)
-offset = 0
-rotate = false
-rotateToFace = 1
-rotateToFacePosition = Vector2(0, 0)
-rotateToFaceOffset = 0
-trackRotationTarget = false
 sfx = ExtResource("2_nthxj")
-randomizeSfxPitch = false
-emitCompleteOnStart = false
 metadata/_custom_type_script = "uid://n71lfdnd5xrr"
 
 [sub_resource type="Resource" id="Resource_nthxj"]
 script = ExtResource("1_x3xxt")
 annotation = "start playing particle effects"
-animation = ""
 duration = 1.333
-speed = 1.0
-opacity = 1.0
-spritePivot = Vector2(0, 0)
-relativeTo = 5
-position = Vector2(0, 0)
-offset = 0
-rotate = false
-rotateToFace = 1
-rotateToFacePosition = Vector2(0, 0)
-rotateToFaceOffset = 0
-trackRotationTarget = false
 particles = ExtResource("2_8ue1e")
-randomizeSfxPitch = false
-emitCompleteOnStart = false
 metadata/_custom_type_script = "uid://n71lfdnd5xrr"
 
 [resource]
 script = ExtResource("2_mnbk2")
 spriteFrames = ExtResource("3_mnbk2")
-centerSprite = true
 maxSize = Vector2(16, 32)
 frames = Array[ExtResource("1_x3xxt")]([SubResource("Resource_mnbk2"), SubResource("Resource_8ue1e"), SubResource("Resource_nthxj")])
-delayedUntilReposition = false
 playsOnImpactFrame = false
-onePerTarget = true
 metadata/_custom_type_script = "uid://mk6loduurcg4"

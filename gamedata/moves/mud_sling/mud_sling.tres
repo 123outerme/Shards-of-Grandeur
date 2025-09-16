@@ -8,44 +8,31 @@
 
 [sub_resource type="Resource" id="Resource_lrjx5"]
 script = ExtResource("2_85gag")
-lastAdjustedDmg = 0
 type = 3
 potency = 1
-overwritesOtherStatuses = false
 turnsLeft = 3
 metadata/_custom_type_script = "uid://m4ui8a70p15x"
 
 [sub_resource type="Resource" id="Resource_3mqyq"]
 script = ExtResource("1_4vx61")
 role = 1
-keywords = Array[String]([])
 orbChange = 1
 power = 50
-lifesteal = 0.0
-selfHpSacrifice = 0.0
-priority = 0
 targets = 5
 statusEffect = SubResource("Resource_lrjx5")
-selfGetsStatus = false
 statusChance = 0.7
-statusRequiredForTargetStatChanges = false
 metadata/_custom_type_script = "uid://drwve0pkx3g5o"
 
 [sub_resource type="Resource" id="Resource_3yx75"]
 script = ExtResource("2_85gag")
-lastAdjustedDmg = 0
 type = 3
 potency = 1
-overwritesOtherStatuses = false
 turnsLeft = 4
 metadata/_custom_type_script = "uid://m4ui8a70p15x"
 
 [sub_resource type="Resource" id="Resource_qj6ye"]
 script = ExtResource("3_85gag")
 powerPerOrb = 3
-lifestealPerOrb = 0.0
-selfHpSacrificePerOrb = 0.0
-weakThresholdOrbs = 0
 strongThresholdOrbs = 4
 overwhelmingThresholdOrbs = 6
 additionalStatusTurnsPerOrb = 0.5
@@ -55,17 +42,11 @@ metadata/_custom_type_script = "uid://cvjnh0a2q6sat"
 [sub_resource type="Resource" id="Resource_ig6i1"]
 script = ExtResource("1_4vx61")
 role = 1
-keywords = Array[String]([])
 orbChange = -2
 power = 60
-lifesteal = 0.0
-selfHpSacrifice = 0.0
-priority = 0
 targets = 5
 statusEffect = SubResource("Resource_3yx75")
-selfGetsStatus = false
 statusChance = 0.8
-statusRequiredForTargetStatChanges = false
 surgeChanges = SubResource("Resource_qj6ye")
 metadata/_custom_type_script = "uid://drwve0pkx3g5o"
 
@@ -73,7 +54,6 @@ metadata/_custom_type_script = "uid://drwve0pkx3g5o"
 script = ExtResource("1_htyxs")
 moveName = "Mud-Sling"
 requiredLv = 25
-category = 0
 element = 5
 chargeEffect = SubResource("Resource_3mqyq")
 surgeEffect = SubResource("Resource_ig6i1")

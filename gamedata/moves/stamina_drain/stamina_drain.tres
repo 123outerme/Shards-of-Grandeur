@@ -12,72 +12,40 @@
 script = ExtResource("3_wetfp")
 type = 1
 potency = 1
-overwritesOtherStatuses = false
 turnsLeft = 2
 
 [sub_resource type="Resource" id="Resource_pl5fx"]
 script = ExtResource("1_f7jf4")
 role = 4
-keywords = Array[String]([])
 orbChange = 1
-power = 0
-lifesteal = 0.0
-selfHpSacrifice = 0.0
-priority = 0
 targets = 5
 statusEffect = SubResource("Resource_ea11q")
-selfGetsStatus = false
 statusChance = 0.95
-statusRequiredForTargetStatChanges = false
 
 [sub_resource type="Resource" id="Resource_jjwvm"]
 script = ExtResource("3_wetfp")
 type = 1
 potency = 1
-overwritesOtherStatuses = false
 turnsLeft = 3
 
 [sub_resource type="Resource" id="Resource_fhayy"]
 script = ExtResource("6_82bdc")
-physAttackIncrease = 0
-magicAttackIncrease = 0
-affinityIncrease = 0
-resistanceIncrease = 0
-speedIncrease = 0
-physAttackMultiplier = 1.0
-magicAttackMultiplier = 1.0
-affinityMultiplier = 1.0
-resistanceMultiplier = 1.0
 speedMultiplier = 1.05
-elementMultipliers = Array[ExtResource("6_bdvvm")]([])
-keywordMultipliers = Dictionary[String, float]({})
 
 [sub_resource type="Resource" id="Resource_onqfx"]
 script = ExtResource("5_b53h7")
-powerPerOrb = 0
-lifestealPerOrb = 0.0
-selfHpSacrificePerOrb = 0.0
 selfStatChangesPerOrb = SubResource("Resource_fhayy")
-weakThresholdOrbs = 0
 strongThresholdOrbs = 4
 overwhelmingThresholdOrbs = 5
 additionalStatusTurnsPerOrb = 0.5
-additionalStatusChancePerOrb = 0.0
 
 [sub_resource type="Resource" id="Resource_l4tnr"]
 script = ExtResource("1_f7jf4")
 role = 4
-keywords = Array[String]([])
 orbChange = -2
-power = 0
-lifesteal = 0.0
-selfHpSacrifice = 0.0
-priority = 0
 targets = 6
 statusEffect = SubResource("Resource_jjwvm")
-selfGetsStatus = false
 statusChance = 1.0
-statusRequiredForTargetStatChanges = false
 surgeChanges = SubResource("Resource_onqfx")
 
 [resource]

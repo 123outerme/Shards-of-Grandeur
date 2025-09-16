@@ -10,56 +10,38 @@
 script = ExtResource("2_5rand")
 type = 4
 potency = 1
-overwritesOtherStatuses = false
 turnsLeft = 3
 
 [sub_resource type="Resource" id="Resource_lgh2w"]
 script = ExtResource("1_yxwtp")
 role = 1
-keywords = Array[String]([])
 orbChange = 1
 power = 45
-lifesteal = 0.0
-selfHpSacrifice = 0.0
-priority = 0
 targets = 5
 statusEffect = SubResource("Resource_cjnxt")
-selfGetsStatus = false
 statusChance = 0.6
-statusRequiredForTargetStatChanges = false
 
 [sub_resource type="Resource" id="Resource_uen0b"]
 script = ExtResource("2_5rand")
 type = 4
 potency = 1
-overwritesOtherStatuses = false
 turnsLeft = 4
 
 [sub_resource type="Resource" id="Resource_08v3b"]
 script = ExtResource("5_dqxa7")
 powerPerOrb = 2
-lifestealPerOrb = 0.0
-selfHpSacrificePerOrb = 0.0
-weakThresholdOrbs = 0
 strongThresholdOrbs = 3
 overwhelmingThresholdOrbs = 6
-additionalStatusTurnsPerOrb = 0.0
 additionalStatusChancePerOrb = 0.02
 
 [sub_resource type="Resource" id="Resource_p76cm"]
 script = ExtResource("1_yxwtp")
 role = 1
-keywords = Array[String]([])
 orbChange = -1
 power = 55
-lifesteal = 0.0
-selfHpSacrifice = 0.0
-priority = 0
 targets = 5
 statusEffect = SubResource("Resource_uen0b")
-selfGetsStatus = false
 statusChance = 0.7
-statusRequiredForTargetStatChanges = false
 surgeChanges = SubResource("Resource_08v3b")
 
 [resource]
@@ -67,7 +49,6 @@ script = ExtResource("1_6hls1")
 moveName = "Draining Bolt"
 requiredLv = 4
 category = 1
-element = 0
 chargeEffect = SubResource("Resource_lgh2w")
 surgeEffect = SubResource("Resource_p76cm")
 description = "The user conjures a strong bolt of magic that Weakens the target."

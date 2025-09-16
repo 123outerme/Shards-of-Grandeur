@@ -12,88 +12,44 @@
 script = ExtResource("2_nhrva")
 type = 8
 potency = 1
-overwritesOtherStatuses = false
 turnsLeft = 5
 
 [sub_resource type="Resource" id="Resource_wb86m"]
 script = ExtResource("1_i21gg")
 role = 3
-keywords = Array[String]([])
 orbChange = 2
-power = 0
-lifesteal = 0.0
-selfHpSacrifice = 0.0
-priority = 0
 targets = 3
 statusEffect = SubResource("Resource_0lnbj")
-selfGetsStatus = false
 statusChance = 1.0
-statusRequiredForTargetStatChanges = false
 
 [sub_resource type="Resource" id="Resource_3s1di"]
 script = ExtResource("2_nhrva")
 type = 8
 potency = 2
-overwritesOtherStatuses = false
 turnsLeft = 6
 
 [sub_resource type="Resource" id="Resource_fykny"]
 script = ExtResource("5_sxhyu")
-physAttackIncrease = 0
-magicAttackIncrease = 0
-affinityIncrease = 0
-resistanceIncrease = 0
-speedIncrease = 0
-physAttackMultiplier = 1.0
-magicAttackMultiplier = 1.0
-affinityMultiplier = 1.0
 resistanceMultiplier = 1.02
-speedMultiplier = 1.0
-elementMultipliers = Array[ExtResource("6_sd53o")]([])
-keywordMultipliers = Dictionary[String, float]({})
 
 [sub_resource type="Resource" id="Resource_p2diw"]
 script = ExtResource("4_hbhho")
-powerPerOrb = 0
-lifestealPerOrb = 0.0
-selfHpSacrificePerOrb = 0.0
 targetStatChangesPerOrb = SubResource("Resource_fykny")
-weakThresholdOrbs = 0
-strongThresholdOrbs = 0
 overwhelmingThresholdOrbs = 5
 additionalStatusTurnsPerOrb = 0.25
-additionalStatusChancePerOrb = 0.0
 
 [sub_resource type="Resource" id="Resource_k4hjk"]
 script = ExtResource("5_sxhyu")
-physAttackIncrease = 0
-magicAttackIncrease = 0
-affinityIncrease = 0
-resistanceIncrease = 0
-speedIncrease = 0
-physAttackMultiplier = 1.0
-magicAttackMultiplier = 1.0
-affinityMultiplier = 1.0
 resistanceMultiplier = 1.1
-speedMultiplier = 1.0
-elementMultipliers = Array[ExtResource("6_sd53o")]([])
-keywordMultipliers = Dictionary[String, float]({})
 
 [sub_resource type="Resource" id="Resource_y1g75"]
 script = ExtResource("1_i21gg")
 role = 3
-keywords = Array[String]([])
 orbChange = -3
-power = 0
-lifesteal = 0.0
-selfHpSacrifice = 0.0
-priority = 0
 targets = 4
 targetStatChanges = SubResource("Resource_k4hjk")
 statusEffect = SubResource("Resource_3s1di")
-selfGetsStatus = false
 statusChance = 1.0
-statusRequiredForTargetStatChanges = false
 surgeChanges = SubResource("Resource_p2diw")
 
 [resource]

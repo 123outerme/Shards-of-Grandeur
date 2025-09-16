@@ -15,23 +15,13 @@ point_count = 1
 [sub_resource type="Resource" id="Resource_r2sox"]
 script = ExtResource("1_lnl5y")
 annotation = "set up position top-front of combatant while faded out"
-animation = ""
 duration = 0.1
-speed = 1.0
 opacity = 0.0
-spritePivot = Vector2(0, 0)
 relativeTo = 1
 position = Vector2(0, -6)
 offset = 5
 xCurve = SubResource("Curve_2je6x")
 yCurve = SubResource("Curve_823kv")
-rotate = false
-rotateToFace = 1
-rotateToFacePosition = Vector2(0, 0)
-rotateToFaceOffset = 0
-trackRotationTarget = false
-randomizeSfxPitch = false
-emitCompleteOnStart = false
 
 [sub_resource type="Curve" id="Curve_w0h4d"]
 _data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
@@ -46,21 +36,11 @@ script = ExtResource("1_lnl5y")
 annotation = "move to center while fading in"
 animation = "rune"
 duration = 0.5
-speed = 1.0
-opacity = 1.0
-spritePivot = Vector2(0, 0)
 relativeTo = 1
 position = Vector2(0, -8)
 offset = 4
 xCurve = SubResource("Curve_w0h4d")
 yCurve = SubResource("Curve_tqc0a")
-rotate = false
-rotateToFace = 1
-rotateToFacePosition = Vector2(0, 0)
-rotateToFaceOffset = 0
-trackRotationTarget = false
-randomizeSfxPitch = false
-emitCompleteOnStart = false
 
 [sub_resource type="Curve" id="Curve_53dpr"]
 _data = [Vector2(0, 0), 0.0, 1.33333, 0, 1, Vector2(0.75, 1), 0.212873, 0.0, 0, 0]
@@ -73,23 +53,12 @@ point_count = 2
 [sub_resource type="Resource" id="Resource_7r7tb"]
 script = ExtResource("1_lnl5y")
 annotation = "move to behind"
-animation = ""
 duration = 0.667
-speed = 1.0
-opacity = 1.0
-spritePivot = Vector2(0, 0)
 relativeTo = 1
 position = Vector2(0, -6)
 offset = 6
 xCurve = SubResource("Curve_53dpr")
 yCurve = SubResource("Curve_asb3m")
-rotate = false
-rotateToFace = 1
-rotateToFacePosition = Vector2(0, 0)
-rotateToFaceOffset = 0
-trackRotationTarget = false
-randomizeSfxPitch = false
-emitCompleteOnStart = false
 
 [sub_resource type="Curve" id="Curve_0pmtw"]
 _data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
@@ -102,23 +71,12 @@ point_count = 4
 [sub_resource type="Resource" id="Resource_6htiy"]
 script = ExtResource("1_lnl5y")
 annotation = "move from behind to center"
-animation = ""
 duration = 0.5
-speed = 1.0
-opacity = 1.0
-spritePivot = Vector2(0, 0)
 relativeTo = 1
 position = Vector2(0, -8)
 offset = 4
 xCurve = SubResource("Curve_0pmtw")
 yCurve = SubResource("Curve_p3ntg")
-rotate = false
-rotateToFace = 1
-rotateToFacePosition = Vector2(0, 0)
-rotateToFaceOffset = 0
-trackRotationTarget = false
-randomizeSfxPitch = false
-emitCompleteOnStart = false
 
 [sub_resource type="Curve" id="Curve_nbc2i"]
 _data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
@@ -131,30 +89,16 @@ point_count = 2
 [sub_resource type="Resource" id="Resource_rex06"]
 script = ExtResource("1_lnl5y")
 annotation = "move to the front and slowly fade out"
-animation = ""
 duration = 0.5
-speed = 1.0
 opacity = 0.0
-spritePivot = Vector2(0, 0)
 relativeTo = 1
 position = Vector2(0, -6)
 offset = 5
 xCurve = SubResource("Curve_nbc2i")
 yCurve = SubResource("Curve_krnss")
-rotate = false
-rotateToFace = 1
-rotateToFacePosition = Vector2(0, 0)
-rotateToFaceOffset = 0
-trackRotationTarget = false
-randomizeSfxPitch = false
-emitCompleteOnStart = false
 
 [resource]
 script = ExtResource("2_1y1qo")
 spriteFrames = ExtResource("3_xmnoq")
-centerSprite = true
 maxSize = Vector2(32, 32)
 frames = Array[ExtResource("1_lnl5y")]([SubResource("Resource_r2sox"), SubResource("Resource_ohj67"), SubResource("Resource_7r7tb"), SubResource("Resource_6htiy"), SubResource("Resource_rex06")])
-delayedUntilReposition = false
-playsOnImpactFrame = true
-onePerTarget = true
