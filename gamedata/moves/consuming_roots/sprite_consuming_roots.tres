@@ -19,87 +19,32 @@ script = ExtResource("1_ik5qq")
 annotation = "position into place"
 animation = "default"
 duration = 0.1
-speed = 1.0
-opacity = 1.0
-spritePivot = Vector2(0, 0)
 relativeTo = 1
 position = Vector2(-6, 0)
 offset = 1
 xCurve = SubResource("Curve_aghtp")
 yCurve = SubResource("Curve_cxw1x")
-rotate = false
-rotateToFace = 1
-rotateToFacePosition = Vector2(0, 0)
-rotateToFaceOffset = 0
-trackRotationTarget = false
-randomizeSfxPitch = false
-emitCompleteOnStart = false
 
 [sub_resource type="Resource" id="Resource_y62ns"]
 script = ExtResource("1_ik5qq")
 annotation = "start the roots"
 animation = "consuming_roots"
 duration = 0.75
-speed = 1.0
-opacity = 1.0
-spritePivot = Vector2(0, 0)
-relativeTo = 5
-position = Vector2(0, 0)
-offset = 0
-rotate = false
-rotateToFace = 1
-rotateToFacePosition = Vector2(0, 0)
-rotateToFaceOffset = 0
-trackRotationTarget = false
-randomizeSfxPitch = false
-emitCompleteOnStart = false
 
 [sub_resource type="Resource" id="Resource_3hb0m"]
 script = ExtResource("1_ik5qq")
 annotation = "play draining particle fx"
-animation = ""
 duration = 1.25
-speed = 1.0
-opacity = 1.0
-spritePivot = Vector2(0, 0)
-relativeTo = 5
-position = Vector2(0, 0)
-offset = 0
-rotate = false
-rotateToFace = 1
-rotateToFacePosition = Vector2(0, 0)
-rotateToFaceOffset = 0
-trackRotationTarget = false
 particles = ExtResource("2_jxqph")
-randomizeSfxPitch = false
-emitCompleteOnStart = false
 
 [sub_resource type="Resource" id="Resource_2flan"]
 script = ExtResource("1_ik5qq")
 annotation = "wait for roots to disintegrate"
-animation = ""
 duration = 0.75
-speed = 1.0
-opacity = 1.0
-spritePivot = Vector2(0, 0)
-relativeTo = 5
-position = Vector2(0, 0)
-offset = 0
-rotate = false
-rotateToFace = 1
-rotateToFacePosition = Vector2(0, 0)
-rotateToFaceOffset = 0
-trackRotationTarget = false
 sfx = ExtResource("3_mnu7f")
-randomizeSfxPitch = false
-emitCompleteOnStart = false
 
 [resource]
 script = ExtResource("1_sxg1x")
 spriteFrames = ExtResource("2_7ysho")
-centerSprite = true
-maxSize = Vector2(16, 16)
 frames = Array[ExtResource("1_ik5qq")]([SubResource("Resource_ggyak"), SubResource("Resource_y62ns"), SubResource("Resource_3hb0m"), SubResource("Resource_2flan")])
 delayedUntilReposition = true
-playsOnImpactFrame = true
-onePerTarget = true

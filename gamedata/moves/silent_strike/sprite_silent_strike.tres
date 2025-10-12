@@ -16,23 +16,14 @@ point_count = 1
 [sub_resource type="Resource" id="Resource_s8uks"]
 script = ExtResource("1_27dfa")
 annotation = "position at user"
-animation = ""
 duration = -1.0
 speed = 0.0
-opacity = 1.0
-spritePivot = Vector2(0, 0)
 relativeTo = 2
 position = Vector2(6, 0)
 offset = 1
 xCurve = SubResource("Curve_l367e")
 yCurve = SubResource("Curve_bbibc")
-rotate = false
 rotateToFace = 0
-rotateToFacePosition = Vector2(0, 0)
-rotateToFaceOffset = 0
-trackRotationTarget = false
-randomizeSfxPitch = false
-emitCompleteOnStart = false
 
 [sub_resource type="Curve" id="Curve_koh7w"]
 _data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
@@ -48,21 +39,11 @@ annotation = "jab at target"
 animation = "silent_strike_jab"
 duration = 0.667
 speed = 0.0
-opacity = 1.0
-spritePivot = Vector2(0, 0)
 relativeTo = 1
-position = Vector2(0, 0)
-offset = 0
 xCurve = SubResource("Curve_koh7w")
 yCurve = SubResource("Curve_8ty6i")
-rotate = false
 rotateToFace = 0
-rotateToFacePosition = Vector2(0, 0)
-rotateToFaceOffset = 0
-trackRotationTarget = false
 particles = ExtResource("2_fla04")
-randomizeSfxPitch = false
-emitCompleteOnStart = false
 
 [sub_resource type="Curve" id="Curve_ubgf0"]
 _data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
@@ -79,27 +60,16 @@ annotation = "retreat attacking limb and splash out affinity particles
 animation = "silent_strike_back"
 duration = 0.5
 speed = 0.0
-opacity = 1.0
-spritePivot = Vector2(0, 0)
 relativeTo = 2
 position = Vector2(-6, 0)
 offset = 1
 xCurve = SubResource("Curve_ubgf0")
 yCurve = SubResource("Curve_eooqn")
-rotate = false
 rotateToFace = 0
-rotateToFacePosition = Vector2(0, 0)
-rotateToFaceOffset = 0
-trackRotationTarget = false
-randomizeSfxPitch = false
-emitCompleteOnStart = false
 
 [resource]
 script = ExtResource("1_q2jbu")
 spriteFrames = ExtResource("2_5qctn")
-centerSprite = true
 maxSize = Vector2(13, 5)
 frames = Array[ExtResource("1_27dfa")]([SubResource("Resource_s8uks"), SubResource("Resource_xudpp"), SubResource("Resource_h0g8l")])
 delayedUntilReposition = true
-playsOnImpactFrame = true
-onePerTarget = true
