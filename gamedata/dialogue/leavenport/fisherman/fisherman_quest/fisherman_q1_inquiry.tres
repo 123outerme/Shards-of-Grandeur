@@ -13,67 +13,24 @@
 script = ExtResource("2_hiplf")
 choiceBtn = "Nope."
 leadsTo = ExtResource("1_udqkj")
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("4_usbdy")]([])
-repeatsItem = false
-buttonDims = Vector2(80, 40)
-turnsInQuest = ""
 isDeclineChoice = true
 
 [sub_resource type="Resource" id="Resource_po0o8"]
 script = ExtResource("2_hiplf")
 choiceBtn = "I'll Help!"
 leadsTo = ExtResource("3_gmlt3")
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("4_usbdy")]([])
-repeatsItem = false
-buttonDims = Vector2(80, 40)
-turnsInQuest = ""
-isDeclineChoice = false
 
 [sub_resource type="Resource" id="Resource_r0s6k"]
 script = ExtResource("4_whcov")
 lines = Array[String](["As a matter of fact, nothing's biting! I've tried the usual fixes, but nothing's helped. It's getting on my nerves.", "I'll tell you, nothing gets the fish to bite better than one of the bugs in a Storm Swarm. Too bad those things bite back!", "Say, you look pretty well equipped to take on a Swarm, do you think you could come back with one of those bugs for me?"])
-minShowSecs = Array[float]([])
 animation = "talk"
-speakerOverride = ""
-actorAnimation = ""
-animateActorTreePath = ""
-animateActorIsPlayer = false
 choices = Array[ExtResource("2_hiplf")]([SubResource("Resource_8ebaf"), SubResource("Resource_po0o8")])
 
 [sub_resource type="Resource" id="Resource_68uqv"]
 script = ExtResource("6_l3g1i")
-minAct = 0
-maxAct = -1
-prereqQuests = Array[String]([])
-prereqCutscenes = Array[String]([])
-prereqDialogues = Array[String]([])
-prereqPlacesVisited = Array[String]([])
-prereqSpecialBattles = Array[String]([])
-prereqDefeatedEnemies = Array[String]([])
-prereqPuzzles = Array[String]([])
-prereqPuzzleStates = Dictionary[String, Array]({})
-prereqDiscoveredEvolutions = Array[String]([])
-prereqHavingFollowers = Array[String]([])
-prereqHasItems = Array[ExtResource("8_3u186")]([])
-invalidAfterCompletingQuests = Array[String]([])
-invalidAfterFailingQuests = Array[String]([])
-invalidAfterCutscenes = Array[String]([])
 invalidAfterDialogues = Array[String](["lp_fisherman#lp_fisherman_start_quest"])
-invalidAfterVistingPlaces = Array[String]([])
-invalidAfterSpecialBattles = Array[String]([])
-invalidAfterSolvingPuzzles = Array[String]([])
-invalidFromPuzzleStates = Dictionary[String, Array]({})
-invalidFromHavingFollowers = Array[String]([])
-invalidFromHavingItems = Array[ExtResource("8_3u186")]([])
 
 [resource]
 script = ExtResource("5_b8nte")
-entryId = ""
 items = Array[ExtResource("4_whcov")]([SubResource("Resource_r0s6k")])
 storyRequirements = SubResource("Resource_68uqv")
-ordStoryRequirements = Array[ExtResource("6_l3g1i")]([])
-closesDialogue = false
-fullHealsPlayer = false
-annotation = ""

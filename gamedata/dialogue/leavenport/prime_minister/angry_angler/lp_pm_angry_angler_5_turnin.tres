@@ -12,40 +12,20 @@
 script = ExtResource("2_f60ie")
 choiceBtn = "Hold On..."
 leadsTo = ExtResource("3_r0me7")
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("3_tu4ma")]([])
-repeatsItem = false
-buttonDims = Vector2(80, 40)
-turnsInQuest = ""
 isDeclineChoice = true
 
 [sub_resource type="Resource" id="Resource_oohoi"]
 script = ExtResource("2_f60ie")
 choiceBtn = "Okay!"
 leadsTo = ExtResource("4_8qgw8")
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("3_tu4ma")]([])
-repeatsItem = false
-buttonDims = Vector2(80, 40)
 turnsInQuest = "Angry Angler#Renewable Wood"
-isDeclineChoice = false
 
 [sub_resource type="Resource" id="Resource_l0y4d"]
 script = ExtResource("1_6m6ul")
 lines = Array[String](["Here, take these seeds and plant them on the other side of the river bank. They grow instantly, so once they sprout, you can chop them down.", "There's a few distinct holes in the ground where you can do this. I don't want you tearing up the lush swamp grass."])
-minShowSecs = Array[float]([])
 animation = "talk"
-speakerOverride = ""
-actorAnimation = ""
-animateActorTreePath = ""
-animateActorIsPlayer = false
 choices = Array[ExtResource("2_f60ie")]([SubResource("Resource_ort4i"), SubResource("Resource_oohoi")])
 
 [resource]
 script = ExtResource("3_jkml8")
-entryId = ""
 items = Array[ExtResource("1_6m6ul")]([SubResource("Resource_l0y4d")])
-ordStoryRequirements = Array[ExtResource("2_q3xpr")]([])
-closesDialogue = false
-fullHealsPlayer = false
-annotation = ""

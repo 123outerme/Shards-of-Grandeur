@@ -10,40 +10,20 @@
 [sub_resource type="Resource" id="Resource_gk2tp"]
 script = ExtResource("2_78ax1")
 choiceBtn = "Wait..."
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("3_ghhv0")]([])
-repeatsItem = false
-buttonDims = Vector2(80, 40)
-turnsInQuest = ""
 isDeclineChoice = true
 
 [sub_resource type="Resource" id="Resource_smu2m"]
 script = ExtResource("2_78ax1")
 choiceBtn = "Thank You."
 leadsTo = ExtResource("4_2gt8m")
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("3_ghhv0")]([])
-repeatsItem = false
-buttonDims = Vector2(80, 40)
 turnsInQuest = "Angry Angler#Sea Wyrms in Retreat"
-isDeclineChoice = false
 
 [sub_resource type="Resource" id="Resource_eqkf8"]
 script = ExtResource("1_egvpd")
 lines = Array[String](["Well done, @. I am satisfied with your service on behalf of Leavenport. Here, your efforts have earned you this reward."])
-minShowSecs = Array[float]([])
 animation = "talk"
-speakerOverride = ""
-actorAnimation = ""
-animateActorTreePath = ""
-animateActorIsPlayer = false
 choices = Array[ExtResource("2_78ax1")]([SubResource("Resource_gk2tp"), SubResource("Resource_smu2m")])
 
 [resource]
 script = ExtResource("3_flql7")
-entryId = ""
 items = Array[ExtResource("1_egvpd")]([SubResource("Resource_eqkf8")])
-ordStoryRequirements = Array[ExtResource("2_vq7hr")]([])
-closesDialogue = false
-fullHealsPlayer = false
-annotation = ""

@@ -14,11 +14,8 @@
 [sub_resource type="Resource" id="Resource_y3f5m"]
 script = ExtResource("6_g3ir4")
 value = Vector2(756, -46)
-actorTreePath = ""
 isPlayer = true
 propertyName = "position"
-easeType = 2
-transitionType = 0
 
 [sub_resource type="Resource" id="Resource_kva28"]
 script = ExtResource("1_e08vi")
@@ -26,67 +23,29 @@ frameLength = 0.5
 annotation = "line up the player in front of the ship"
 actorTweens = Array[ExtResource("5_e3yww")]([SubResource("Resource_y3f5m")])
 actorAnims = Array[ExtResource("3_5imxr")]([ExtResource("4_tbqib")])
-actorAnimSets = Array[ExtResource("2_iry5b")]([])
-actorFaceTargets = Array[ExtResource("4_aejrh")]([])
-dialogues = Array[ExtResource("6_gbd2j")]([])
-playSfxs = Array[AudioStream]([])
-snapshotActorPaths = Array[String]([])
-restoreSnapshotActorPaths = Array[String]([])
-endTextBoxPauses = true
-shakeCamForDuration = false
-endHoldCamera = false
-endFade = 0
-endFadeLength = 0.0
-healsPlayer = false
-addsFollowerId = ""
-removesFollowerId = ""
-endStartsShardLearnTutorial = false
 
 [sub_resource type="Resource" id="Resource_lou26"]
 script = ExtResource("6_g3ir4")
 value = Vector2(798, -46)
-actorTreePath = ""
 isPlayer = true
 propertyName = "position"
-easeType = 2
-transitionType = 0
 
 [sub_resource type="Resource" id="Resource_pcf5u"]
 script = ExtResource("1_e08vi")
 frameLength = 0.75
 annotation = "walk the player into the boat"
 actorTweens = Array[ExtResource("5_e3yww")]([SubResource("Resource_lou26")])
-actorAnims = Array[ExtResource("3_5imxr")]([])
-actorAnimSets = Array[ExtResource("2_iry5b")]([])
-actorFaceTargets = Array[ExtResource("4_aejrh")]([])
-dialogues = Array[ExtResource("6_gbd2j")]([])
-playSfxs = Array[AudioStream]([])
-snapshotActorPaths = Array[String]([])
-restoreSnapshotActorPaths = Array[String]([])
-endTextBoxPauses = true
-shakeCamForDuration = false
-endHoldCamera = false
-endFade = 0
-endFadeLength = 0.0
-healsPlayer = false
-addsFollowerId = ""
-removesFollowerId = ""
-endStartsShardLearnTutorial = false
 
 [sub_resource type="Resource" id="Resource_s5fab"]
 script = ExtResource("3_5imxr")
 actorTreePath = "TilemapRoot/Skipper"
-isPlayer = false
 animation = "walk"
 
 [sub_resource type="Resource" id="Resource_u4ffc"]
 script = ExtResource("6_g3ir4")
 value = Vector2(759, -46)
 actorTreePath = "TilemapRoot/Skipper"
-isPlayer = false
 propertyName = "position"
-easeType = 2
-transitionType = 0
 
 [sub_resource type="Resource" id="Resource_hwyhs"]
 script = ExtResource("1_e08vi")
@@ -94,255 +53,111 @@ frameLength = 0.5
 annotation = "walk the Skipper to be aligned with the boat"
 actorTweens = Array[ExtResource("5_e3yww")]([SubResource("Resource_u4ffc")])
 actorAnims = Array[ExtResource("3_5imxr")]([SubResource("Resource_s5fab"), ExtResource("9_arww7")])
-actorAnimSets = Array[ExtResource("2_iry5b")]([])
-actorFaceTargets = Array[ExtResource("4_aejrh")]([])
-dialogues = Array[ExtResource("6_gbd2j")]([])
-playSfxs = Array[AudioStream]([])
-snapshotActorPaths = Array[String]([])
-restoreSnapshotActorPaths = Array[String]([])
-endTextBoxPauses = true
-shakeCamForDuration = false
-endHoldCamera = false
-endFade = 0
-endFadeLength = 0.0
-healsPlayer = false
-addsFollowerId = ""
-removesFollowerId = ""
-endStartsShardLearnTutorial = false
 
 [sub_resource type="Resource" id="Resource_lvwjp"]
 script = ExtResource("4_aejrh")
-actorTreePath = ""
 isPlayer = true
 targetTreePath = "TilemapRoot/Skipper"
-targetPosition = Vector2(0, 0)
-targetIsPlayer = false
 
 [sub_resource type="Resource" id="Resource_x0oav"]
 script = ExtResource("6_g3ir4")
 value = Vector2(781, -46)
 actorTreePath = "TilemapRoot/Skipper"
-isPlayer = false
 propertyName = "position"
-easeType = 2
-transitionType = 0
 
 [sub_resource type="Resource" id="Resource_vq6u4"]
 script = ExtResource("1_e08vi")
 frameLength = 0.5
 annotation = "walk the Skipper onto the boat, have the player face him"
 actorTweens = Array[ExtResource("5_e3yww")]([SubResource("Resource_x0oav")])
-actorAnims = Array[ExtResource("3_5imxr")]([])
-actorAnimSets = Array[ExtResource("2_iry5b")]([])
 actorFaceTargets = Array[ExtResource("4_aejrh")]([SubResource("Resource_lvwjp")])
-dialogues = Array[ExtResource("6_gbd2j")]([])
-playSfxs = Array[AudioStream]([])
-snapshotActorPaths = Array[String]([])
-restoreSnapshotActorPaths = Array[String]([])
-endTextBoxPauses = true
-shakeCamForDuration = false
-endHoldCamera = false
-endFade = 0
-endFadeLength = 0.0
-healsPlayer = false
-addsFollowerId = ""
-removesFollowerId = ""
-endStartsShardLearnTutorial = false
 
 [sub_resource type="Resource" id="Resource_6pybt"]
 script = ExtResource("3_5imxr")
 actorTreePath = "TilemapRoot/Skipper"
-isPlayer = false
 animation = "stand"
 
 [sub_resource type="Resource" id="Resource_w7wis"]
 script = ExtResource("1_e08vi")
 frameLength = 0.5
 annotation = "make the Skipper stand; pause for a beat"
-actorTweens = Array[ExtResource("5_e3yww")]([])
 actorAnims = Array[ExtResource("3_5imxr")]([SubResource("Resource_6pybt")])
-actorAnimSets = Array[ExtResource("2_iry5b")]([])
-actorFaceTargets = Array[ExtResource("4_aejrh")]([])
-dialogues = Array[ExtResource("6_gbd2j")]([])
-playSfxs = Array[AudioStream]([])
-snapshotActorPaths = Array[String]([])
-restoreSnapshotActorPaths = Array[String]([])
-endTextBoxPauses = true
-shakeCamForDuration = false
-endHoldCamera = false
-endFade = 0
-endFadeLength = 0.0
-healsPlayer = false
-addsFollowerId = ""
-removesFollowerId = ""
-endStartsShardLearnTutorial = false
 
 [sub_resource type="Resource" id="Resource_0c0tk"]
 script = ExtResource("6_g3ir4")
 value = Vector2(798, -170)
-actorTreePath = ""
 isPlayer = true
 propertyName = "position"
-easeType = 2
-transitionType = 0
 
 [sub_resource type="Resource" id="Resource_3e1xf"]
 script = ExtResource("6_g3ir4")
 value = Vector2(781, -170)
 actorTreePath = "TilemapRoot/Skipper"
-isPlayer = false
 propertyName = "position"
-easeType = 2
-transitionType = 0
 
 [sub_resource type="Resource" id="Resource_08hde"]
 script = ExtResource("6_g3ir4")
 value = Vector2(789, -177)
 actorTreePath = "TilemapRoot/SkipperBoatDecorations"
-isPlayer = false
 propertyName = "position"
-easeType = 2
-transitionType = 0
 
 [sub_resource type="Resource" id="Resource_s7d0a"]
 script = ExtResource("1_e08vi")
-frameLength = 1.0
 annotation = "move the boat, Skipper, and player all at the same time"
 actorTweens = Array[ExtResource("5_e3yww")]([SubResource("Resource_0c0tk"), SubResource("Resource_3e1xf"), SubResource("Resource_08hde")])
-actorAnims = Array[ExtResource("3_5imxr")]([])
-actorAnimSets = Array[ExtResource("2_iry5b")]([])
-actorFaceTargets = Array[ExtResource("4_aejrh")]([])
-dialogues = Array[ExtResource("6_gbd2j")]([])
-playSfxs = Array[AudioStream]([])
-snapshotActorPaths = Array[String]([])
-restoreSnapshotActorPaths = Array[String]([])
-endTextBoxPauses = true
-shakeCamForDuration = false
-endHoldCamera = false
 endFade = 1
 endFadeLength = 0.5
-healsPlayer = false
-addsFollowerId = ""
-removesFollowerId = ""
-endStartsShardLearnTutorial = false
 
 [sub_resource type="Resource" id="Resource_gop0f"]
 script = ExtResource("6_g3ir4")
 value = Vector2(798, -232)
-actorTreePath = ""
 isPlayer = true
 propertyName = "position"
-easeType = 2
-transitionType = 0
 
 [sub_resource type="Resource" id="Resource_n5cye"]
 script = ExtResource("6_g3ir4")
 value = Vector2(781, -232)
 actorTreePath = "TilemapRoot/Skipper"
-isPlayer = false
 propertyName = "position"
-easeType = 2
-transitionType = 0
 
 [sub_resource type="Resource" id="Resource_qrvpy"]
 script = ExtResource("6_g3ir4")
 value = Vector2(789, -239)
 actorTreePath = "TilemapRoot/SkipperBoatDecorations"
-isPlayer = false
 propertyName = "position"
-easeType = 2
-transitionType = 0
 
 [sub_resource type="Resource" id="Resource_45tgs"]
 script = ExtResource("1_e08vi")
 frameLength = 0.5
 annotation = "fade out while maintaining the same motion"
 actorTweens = Array[ExtResource("5_e3yww")]([SubResource("Resource_gop0f"), SubResource("Resource_n5cye"), SubResource("Resource_qrvpy")])
-actorAnims = Array[ExtResource("3_5imxr")]([])
-actorAnimSets = Array[ExtResource("2_iry5b")]([])
-actorFaceTargets = Array[ExtResource("4_aejrh")]([])
-dialogues = Array[ExtResource("6_gbd2j")]([])
-playSfxs = Array[AudioStream]([])
-snapshotActorPaths = Array[String]([])
-restoreSnapshotActorPaths = Array[String]([])
-endTextBoxPauses = true
-shakeCamForDuration = false
-endHoldCamera = false
-endFade = 0
-endFadeLength = 0.0
-healsPlayer = false
-addsFollowerId = ""
-removesFollowerId = ""
-endStartsShardLearnTutorial = false
 
 [sub_resource type="Resource" id="Resource_pjqj1"]
 script = ExtResource("6_g3ir4")
 value = Vector2(759, -60)
 actorTreePath = "TilemapRoot/Skipper"
-isPlayer = false
 propertyName = "position"
-easeType = 2
-transitionType = 0
 
 [sub_resource type="Resource" id="Resource_tshxn"]
 script = ExtResource("1_e08vi")
 frameLength = 0.2
 annotation = "move the skipper back to his usual spot for continuity (but the boat pos isn't saved so it's ok)"
 actorTweens = Array[ExtResource("5_e3yww")]([SubResource("Resource_pjqj1")])
-actorAnims = Array[ExtResource("3_5imxr")]([])
-actorAnimSets = Array[ExtResource("2_iry5b")]([])
-actorFaceTargets = Array[ExtResource("4_aejrh")]([])
-dialogues = Array[ExtResource("6_gbd2j")]([])
-playSfxs = Array[AudioStream]([])
-snapshotActorPaths = Array[String]([])
-restoreSnapshotActorPaths = Array[String]([])
-endTextBoxPauses = true
-shakeCamForDuration = false
-endHoldCamera = false
-endFade = 0
-endFadeLength = 0.0
-healsPlayer = false
-addsFollowerId = ""
-removesFollowerId = ""
-endStartsShardLearnTutorial = false
 
 [sub_resource type="Resource" id="Resource_4pdln"]
 script = ExtResource("6_g3ir4")
 value = Vector2(789, -331)
-actorTreePath = ""
 isPlayer = true
 propertyName = "position"
-easeType = 2
-transitionType = 0
 
 [sub_resource type="Resource" id="Resource_g6pvt"]
 script = ExtResource("1_e08vi")
 frameLength = 0.2
 annotation = "Move the player into the warp zone"
 actorTweens = Array[ExtResource("5_e3yww")]([SubResource("Resource_4pdln")])
-actorAnims = Array[ExtResource("3_5imxr")]([])
-actorAnimSets = Array[ExtResource("2_iry5b")]([])
-actorFaceTargets = Array[ExtResource("4_aejrh")]([])
-dialogues = Array[ExtResource("6_gbd2j")]([])
-playSfxs = Array[AudioStream]([])
-snapshotActorPaths = Array[String]([])
-restoreSnapshotActorPaths = Array[String]([])
-endTextBoxPauses = true
-shakeCamForDuration = false
-endHoldCamera = false
-endFade = 0
-endFadeLength = 0.0
-healsPlayer = false
-addsFollowerId = ""
-removesFollowerId = ""
-endStartsShardLearnTutorial = false
 
 [resource]
 script = ExtResource("2_wo83k")
 cutsceneFrames = Array[ExtResource("1_e08vi")]([SubResource("Resource_kva28"), SubResource("Resource_pcf5u"), SubResource("Resource_hwyhs"), SubResource("Resource_vq6u4"), SubResource("Resource_w7wis"), SubResource("Resource_s7d0a"), SubResource("Resource_45tgs"), SubResource("Resource_tshxn"), SubResource("Resource_g6pvt")])
 saveName = "board_lp_ship_river"
-unlockCameraHoldAfter = true
-activateActorsBefore = Array[String]([])
-deactivateActorsAfter = Array[String]([])
-tempDisabledAfter = false
 notes = "Embark on the boat in Leavenport, heading to the leaven_river_boat map"

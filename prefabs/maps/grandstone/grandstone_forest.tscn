@@ -55,31 +55,11 @@
 script = ExtResource("4_v6jr2")
 id = "default"
 priority = -1
-storyRequirements = Array[ExtResource("5_5wmah")]([])
-autoApplyState = false
 
 [sub_resource type="Resource" id="Resource_v6jr2"]
 script = ExtResource("4_bksdu")
 saveName = "npc"
-spriteState = "default"
-animation = "stand"
 position = Vector2(-352, -338)
-flipH = false
-visible = true
-selectedTarget = 0
-loops = 0
-disableMovement = false
-previousDisableMove = false
-afterMoveWaitAccum = 0.0
-followerHomePosition = Vector2(0, 0)
-followingPlayer = false
-followerHomeSet = false
-combatMode = false
-version = ""
-dialogueItems = []
-dialogueIndex = -1
-dialogueItemIdx = -1
-dialogueLine = -1
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_saq08"]
 size = Vector2(16, 6)
@@ -92,49 +72,24 @@ script = ExtResource("4_v6jr2")
 id = "default"
 priority = -1
 spriteFrames = ExtResource("9_ram5l")
-storyRequirements = Array[ExtResource("5_5wmah")]([])
-autoApplyState = false
 
 [sub_resource type="Resource" id="Resource_3hhc4"]
 script = ExtResource("4_v6jr2")
 id = "marble_cart"
-priority = 0
 spriteFrames = ExtResource("10_ydxns")
-storyRequirements = Array[ExtResource("5_5wmah")]([])
-autoApplyState = false
 metadata/_custom_type_script = "uid://bwcja16pmp3mf"
 
 [sub_resource type="Resource" id="Resource_oe77o"]
 script = ExtResource("4_v6jr2")
 id = "shards_cart"
-priority = 0
 spriteFrames = ExtResource("11_85ta7")
-storyRequirements = Array[ExtResource("5_5wmah")]([])
-autoApplyState = false
 metadata/_custom_type_script = "uid://bwcja16pmp3mf"
 
 [sub_resource type="Resource" id="Resource_5wmah"]
 script = ExtResource("4_bksdu")
 saveName = "npc"
 spriteState = "marble_cart"
-animation = "stand"
 position = Vector2(-648, -295)
-flipH = false
-visible = true
-selectedTarget = 0
-loops = 0
-disableMovement = false
-previousDisableMove = false
-afterMoveWaitAccum = 0.0
-followerHomePosition = Vector2(0, 0)
-followingPlayer = false
-followerHomeSet = false
-combatMode = false
-version = ""
-dialogueItems = []
-dialogueIndex = -1
-dialogueItemIdx = -1
-dialogueLine = -1
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5q24h"]
 size = Vector2(64, 14)
@@ -146,31 +101,11 @@ size = Vector2(34, 32)
 script = ExtResource("4_v6jr2")
 id = "default"
 priority = -1
-storyRequirements = Array[ExtResource("5_5wmah")]([])
-autoApplyState = false
 
 [sub_resource type="Resource" id="Resource_u2mfi"]
 script = ExtResource("4_bksdu")
 saveName = "npc"
-spriteState = "default"
-animation = "stand"
 position = Vector2(-600, -291)
-flipH = false
-visible = true
-selectedTarget = 0
-loops = 0
-disableMovement = false
-previousDisableMove = false
-afterMoveWaitAccum = 0.0
-followerHomePosition = Vector2(0, 0)
-followingPlayer = false
-followerHomeSet = false
-combatMode = false
-version = ""
-dialogueItems = []
-dialogueIndex = -1
-dialogueItemIdx = -1
-dialogueLine = -1
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_hwgpv"]
 vertices = PackedVector2Array(-215, -804, -217, -804, -217, -809, -215, -809, -391, -852, -405.438, -852, -405.93, -857, -391, -857, -183, -852, -185, -852, -185, -857, -183, -857, -215, -900, -217, -900, -217, -905, -215, -905, -407, -916, -409, -916, -409, -921, -407, -921, -391, -948, -393, -948, -393, -953, -391, -953, -375, -964, -377, -964, -377, -969, -375, -969, -231, -964, -233, -964, -233, -985, -231, -985, -407, -980, -409, -980, -409, -1001, -407, -1001, -183, -980, -185, -980, -185, -985, -183, -985, -423, -180, -537, -180, -505, -186, -423, -196, -12, 451, -12, 434, -7, 407, -7, 519, -534, -186, -105, 380, -105, 278, -23.9375, 229.062, -23, 228.922, -23, 407, -36, 434, -537, -196, -534, -205, -39, 227.18, -105, 259, -252, -253, -248.273, -244, -279, -244, -276, -253, 56.0625, -794.938, 57, -795.07, 57, -761, 55, -777, -55.9375, -442.938, -55, -443.07, -55, -436, -71, -436, -263.938, -218.938, -263, -219.07, -263, -89, -249, 44, -167.938, -10.9375, -167, -11.0703, -167, -9, -233, 60, -249, 60, -599.938, -314.938, -599, -315.07, -599, -313, -601, -313, -71, -444.82, -217, 124, -217, 116.922, -215.938, 117.062, -201, 124, -202.578, 115.148, 55, -795.07, -361, -116, -361, -139.07, -359.938, -138.938, -345, -116, -601, -315.07, -185, -457, -185, -475.07, -183.938, -474.938, -39, -452, -41.8672, -452, -40.2734, -468, -39, -468, -103, -356, -105.867, -356, -104.273, -372, -103, -372, -247, -228, -249.867, -228, -247, -292, -252, -270, -487.938, -282.938, -505, -205, -503, -284.82, 41, 677, 41, 777.633, -41, 772.773, 26, 677, 25, 647, 26, 661.383, -41, 652, 9, 615, -346.578, -140.852, -938.594, -212, -939.297, -281, -777, -281, -617, -212, -297, -660, -263, -729, -231, -729, -231, -713, -281, -644, -297, -644, -215, -713, -215, -697, -265, -628, -281, -628, -199, -697, -199, -681, -183, -681, -183, -649, -249, -612, -265, -612, -233, -596, -167, -649, -167, -633, -217, -580, -233, -580, -151, -633, -151, -601, -201, -532, -217, -532, -135, -601, -135, -585, -185, -516, -201, -516, -119, -585, -119, -569, -168.273, -500, -185, -500, -103, -569, -103, -553, -7, -516, -57, -553, -57, -569, -41, -569, 9, -532, 9, -516, -41, -601, -25, -601, 41, -580, 25, -548, -25, -617, -9, -617, -9, -633, 7, -633, 57, -596, 57, -580, 89, -676, 73, -644, 7, -729, 23, -729, 89, -697, 23, -745, 39, -745, 73, -729, 39, -777, 73, -761, 89, -729, 105, -697, 105, -676, 89, -644, 73, -596, 41, -548, 25, -532, -7, -500, -23, -500, -23, -468, -170.578, -476.852, -71, -420, -87, -420, -87, -372, -201, -441, -135, -372, -135, -340, -183, -340, -217, -409, -217, -441, -183, -324, -215, -324, -215, -308, -231, -308, -281, -393, -281, -409, -313, -377, -231, -292, -329, -361, -329, -84, -247, -89, -247, -57, -313, -20, -329, -20, -231, -57, -231, -41, -215, -41, -215, -25, -265, 28, -313, 28, -183, -25, -183, -12.8203, -265, 44, -151, -9, -151, 7, -217, 76, -233, 76, -135, 7, -135, 23, -200.273, 92, -217, 92, -119, 23, -119, 103, -185, 140, -103, 103, -103, 119, -87, 119, -87, 130, -100, 130, -76, 147, -76, 135, -71, 135, -71, 151, -137, 236, -153, 204, -55, 151, -55, 183, -39, 183, 9, 519, -57, 636, -73, 604, 25, 615, 41, 647, 41, 658.047, -57, 652, -73, 636, -89, 604, -89, 476, -36, 451, -105, 476, -121, 380, -121, 284, -153, 236, -169, 204, -169, 172, -100, 147, -185, 172, -201, 140, -345, -84, -279, -220.82, -344.273, -164, -361, -164, -361, -212, -474.578, -284.852, -407, -212, -407, -196, -617, -196, -551, -297, -777, -297, -681, -297, -681, -313, -551, -313, -503, -297, -441, -297, -441, -313, -393, -313, -393, -329, -361, -329, -361, -345, -345, -345, -276, -270, -345, -361, -329, -377, -313, -393, -201, -457, -249, -596, -313, -660, -313, -676, -329, -676, -329, -692, -263, -1011.39, -345, -692, -345, -1012, -361, -1012, -361, -1014.11, -473.367, -297, -134, 278, -137, 284, -134, 259, -71, -468)
@@ -202,8 +137,6 @@ agent_radius = 23.0
 [sub_resource type="Resource" id="Resource_tb0s7"]
 script = ExtResource("4_7mlkb")
 spawnerId = "gs_forest_1"
-disabled = false
-spawnedLastEncounter = false
 
 [sub_resource type="Resource" id="Resource_4gmrj"]
 script = ExtResource("6_khbhl")
@@ -237,14 +170,9 @@ weight = 0.3
 script = ExtResource("7_e8kg4")
 combatantsMinLevel = 17
 combatantsMaxLevel = 19
-combatantsLvToPlayerLvRatio = 1.0
-levelStages = Array[ExtResource("21_77mmf")]([])
 combatant2Options = Array[ExtResource("6_khbhl")]([SubResource("Resource_4gmrj"), SubResource("Resource_u5pjs"), SubResource("Resource_fnbj8")])
 combatant3Options = Array[ExtResource("6_khbhl")]([SubResource("Resource_7aorw"), SubResource("Resource_pqwv8"), SubResource("Resource_1kuhh")])
 combatant1 = ExtResource("7_vjpd4")
-specialRules = 0
-customWinText = ""
-battleMapPath = ""
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hj1aw"]
 size = Vector2(144, 216)
@@ -252,8 +180,6 @@ size = Vector2(144, 216)
 [sub_resource type="Resource" id="Resource_b7bd5"]
 script = ExtResource("4_7mlkb")
 spawnerId = "gs_forest_2"
-disabled = false
-spawnedLastEncounter = false
 
 [sub_resource type="Resource" id="Resource_4kp6e"]
 script = ExtResource("6_khbhl")
@@ -287,14 +213,9 @@ weight = 0.3
 script = ExtResource("7_e8kg4")
 combatantsMinLevel = 17
 combatantsMaxLevel = 19
-combatantsLvToPlayerLvRatio = 1.0
-levelStages = Array[ExtResource("21_77mmf")]([])
 combatant2Options = Array[ExtResource("6_khbhl")]([SubResource("Resource_4kp6e"), SubResource("Resource_fl6s7"), SubResource("Resource_le563")])
 combatant3Options = Array[ExtResource("6_khbhl")]([SubResource("Resource_y18bq"), SubResource("Resource_gdrqs"), SubResource("Resource_knupg")])
 combatant1 = ExtResource("17_35igi")
-specialRules = 0
-customWinText = ""
-battleMapPath = ""
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2a2n7"]
 size = Vector2(199, 254)
@@ -302,8 +223,6 @@ size = Vector2(199, 254)
 [sub_resource type="Resource" id="Resource_noj17"]
 script = ExtResource("4_7mlkb")
 spawnerId = "gs_forest_3"
-disabled = false
-spawnedLastEncounter = false
 
 [sub_resource type="Resource" id="Resource_wxw2h"]
 script = ExtResource("6_khbhl")
@@ -337,14 +256,9 @@ weight = 0.3
 script = ExtResource("7_e8kg4")
 combatantsMinLevel = 17
 combatantsMaxLevel = 19
-combatantsLvToPlayerLvRatio = 1.0
-levelStages = Array[ExtResource("21_77mmf")]([])
 combatant2Options = Array[ExtResource("6_khbhl")]([SubResource("Resource_wxw2h"), SubResource("Resource_2ce50"), SubResource("Resource_4stsc")])
 combatant3Options = Array[ExtResource("6_khbhl")]([SubResource("Resource_bocj4"), SubResource("Resource_ad8of"), SubResource("Resource_0t8eg")])
 combatant1 = ExtResource("5_8xexo")
-specialRules = 0
-customWinText = ""
-battleMapPath = ""
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4uq71"]
 size = Vector2(197, 179)
@@ -352,8 +266,6 @@ size = Vector2(197, 179)
 [sub_resource type="Resource" id="Resource_cvq4e"]
 script = ExtResource("4_7mlkb")
 spawnerId = "gs_forest_5"
-disabled = false
-spawnedLastEncounter = false
 
 [sub_resource type="Resource" id="Resource_u4gxb"]
 script = ExtResource("6_khbhl")
@@ -387,14 +299,9 @@ weight = 0.3
 script = ExtResource("7_e8kg4")
 combatantsMinLevel = 17
 combatantsMaxLevel = 18
-combatantsLvToPlayerLvRatio = 1.0
-levelStages = Array[ExtResource("21_77mmf")]([])
 combatant2Options = Array[ExtResource("6_khbhl")]([SubResource("Resource_u4gxb"), SubResource("Resource_4q6x1"), SubResource("Resource_qw4yo")])
 combatant3Options = Array[ExtResource("6_khbhl")]([SubResource("Resource_vc0hu"), SubResource("Resource_ujp5t"), SubResource("Resource_hm4dg")])
 combatant1 = ExtResource("8_0bvno")
-specialRules = 0
-customWinText = ""
-battleMapPath = ""
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ot16n"]
 size = Vector2(316, 199)
@@ -402,8 +309,6 @@ size = Vector2(316, 199)
 [sub_resource type="Resource" id="Resource_yxig0"]
 script = ExtResource("4_7mlkb")
 spawnerId = "gs_forest_6"
-disabled = false
-spawnedLastEncounter = false
 
 [sub_resource type="Resource" id="Resource_i8bpg"]
 script = ExtResource("6_khbhl")
@@ -437,14 +342,9 @@ weight = 0.3
 script = ExtResource("7_e8kg4")
 combatantsMinLevel = 17
 combatantsMaxLevel = 18
-combatantsLvToPlayerLvRatio = 1.0
-levelStages = Array[ExtResource("21_77mmf")]([])
 combatant2Options = Array[ExtResource("6_khbhl")]([SubResource("Resource_i8bpg"), SubResource("Resource_tqxu7"), SubResource("Resource_87dc6")])
 combatant3Options = Array[ExtResource("6_khbhl")]([SubResource("Resource_taijo"), SubResource("Resource_ae2wk"), SubResource("Resource_8wt0x")])
 combatant1 = ExtResource("17_35igi")
-specialRules = 0
-customWinText = ""
-battleMapPath = ""
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_velws"]
 size = Vector2(259, 194)
@@ -452,8 +352,6 @@ size = Vector2(259, 194)
 [sub_resource type="Resource" id="Resource_7rvks"]
 script = ExtResource("4_7mlkb")
 spawnerId = "gs_forest_7"
-disabled = false
-spawnedLastEncounter = false
 
 [sub_resource type="Resource" id="Resource_qe2v2"]
 script = ExtResource("6_khbhl")
@@ -492,14 +390,9 @@ weight = 0.3
 script = ExtResource("7_e8kg4")
 combatantsMinLevel = 16
 combatantsMaxLevel = 18
-combatantsLvToPlayerLvRatio = 1.0
-levelStages = Array[ExtResource("21_77mmf")]([])
 combatant2Options = Array[ExtResource("6_khbhl")]([SubResource("Resource_qe2v2"), SubResource("Resource_og2up"), SubResource("Resource_p4pc0")])
 combatant3Options = Array[ExtResource("6_khbhl")]([SubResource("Resource_5116e"), SubResource("Resource_p1sdn"), SubResource("Resource_8t1s7"), SubResource("Resource_7f2r3")])
 combatant1 = ExtResource("8_0bvno")
-specialRules = 0
-customWinText = ""
-battleMapPath = ""
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3lkuo"]
 size = Vector2(198, 272)
@@ -511,7 +404,7 @@ size = Vector2(96, 8)
 size = Vector2(96, 8)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1hr3u"]
-size = Vector2(8, 96)
+size = Vector2(8, 112)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6i5yb"]
 size = Vector2(102, 75)
@@ -776,11 +669,11 @@ useHorizontalOffset = true
 shape = SubResource("RectangleShape2D_5jup4")
 
 [node name="QuarryWarpZone" parent="." instance=ExtResource("10_uekmv")]
-position = Vector2(-864, -256)
-warpEnabled = false
+position = Vector2(-864, -248)
+mapName = "grandstone_quarry_entrance"
+mapPos = Vector2(542, 24)
 
 [node name="WarpArea" parent="QuarryWarpZone" index="0"]
-position = Vector2(0, 16)
 shape = SubResource("RectangleShape2D_1hr3u")
 
 [node name="CameraHoldZone" parent="." instance=ExtResource("11_xwxnj")]
@@ -810,6 +703,7 @@ shape = SubResource("RectangleShape2D_rq58p")
 [node name="QuarryCutsceneTrigger" parent="." instance=ExtResource("28_dptko")]
 position = Vector2(-773, -295)
 cutscenes = Array[ExtResource("29_5824o")]([ExtResource("30_gxywi")])
+disabled = true
 
 [node name="CollisionShape2D" parent="QuarryCutsceneTrigger" index="0"]
 position = Vector2(0, 45.5)

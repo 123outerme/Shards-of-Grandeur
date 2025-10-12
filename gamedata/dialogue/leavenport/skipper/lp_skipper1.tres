@@ -17,72 +17,27 @@
 [sub_resource type="Resource" id="Resource_dil3q"]
 script = ExtResource("1_an67t")
 choiceBtn = "Fare Thee Well!"
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("5_6ht4f")]([])
-repeatsItem = false
-buttonDims = Vector2(80, 40)
-turnsInQuest = ""
 isDeclineChoice = true
 
 [sub_resource type="Resource" id="Resource_5e45y"]
 script = ExtResource("9_7tw7j")
-minAct = 0
-maxAct = -1
 prereqQuests = Array[String](["Angry Angler"])
-prereqCutscenes = Array[String]([])
-prereqDialogues = Array[String]([])
-prereqPlacesVisited = Array[String]([])
-prereqSpecialBattles = Array[String]([])
-prereqDefeatedEnemies = Array[String]([])
-prereqPuzzles = Array[String]([])
-prereqPuzzleStates = Dictionary[String, Array]({})
-prereqDiscoveredEvolutions = Array[String]([])
-prereqHavingFollowers = Array[String]([])
-prereqHasItems = Array[ExtResource("10_3f8qa")]([])
-invalidAfterCompletingQuests = Array[String]([])
-invalidAfterFailingQuests = Array[String]([])
-invalidAfterCutscenes = Array[String]([])
-invalidAfterDialogues = Array[String]([])
-invalidAfterVistingPlaces = Array[String]([])
-invalidAfterSpecialBattles = Array[String]([])
-invalidAfterSolvingPuzzles = Array[String]([])
-invalidFromPuzzleStates = Dictionary[String, Array]({})
-invalidFromHavingFollowers = Array[String]([])
-invalidFromHavingItems = Array[ExtResource("10_3f8qa")]([])
 
 [sub_resource type="Resource" id="Resource_v8id0"]
 script = ExtResource("1_an67t")
 choiceBtn = "Set Sail!"
 storyRequirements = SubResource("Resource_5e45y")
 leadsTo = ExtResource("6_bt5mi")
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("5_6ht4f")]([])
-repeatsItem = false
-buttonDims = Vector2(80, 40)
-turnsInQuest = ""
-isDeclineChoice = false
 
 [sub_resource type="Resource" id="Resource_a0eyl"]
 script = ExtResource("1_an67t")
 choiceBtn = "Boathouse?"
 leadsTo = ExtResource("2_d0fn4")
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("5_6ht4f")]([])
-repeatsItem = false
-buttonDims = Vector2(80, 40)
-turnsInQuest = ""
-isDeclineChoice = false
 
 [sub_resource type="Resource" id="Resource_uic50"]
 script = ExtResource("1_an67t")
 choiceBtn = "Have Any Work?"
 leadsTo = ExtResource("3_r5rpe")
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("5_6ht4f")]([])
-repeatsItem = false
-buttonDims = Vector2(80, 40)
-turnsInQuest = ""
-isDeclineChoice = false
 
 [sub_resource type="Resource" id="Resource_ipmqy"]
 script = ExtResource("5_6ht4f")
@@ -102,68 +57,28 @@ weight = 0.33
 [sub_resource type="Resource" id="Resource_w3sj1"]
 script = ExtResource("1_an67t")
 choiceBtn = "Have Any Sea Stories?"
-returnsToParentId = ""
 randomDialogues = Array[ExtResource("5_6ht4f")]([SubResource("Resource_ipmqy"), SubResource("Resource_j5mue"), SubResource("Resource_0nwhi")])
-repeatsItem = false
-buttonDims = Vector2(80, 40)
-turnsInQuest = ""
-isDeclineChoice = false
 
 [sub_resource type="Resource" id="Resource_0ncei"]
 script = ExtResource("8_hemmw")
 lines = Array[String](["Well, hello again @! What brings you around?"])
-minShowSecs = Array[float]([])
 animation = "talk"
-speakerOverride = ""
-actorAnimation = ""
-animateActorTreePath = ""
-animateActorIsPlayer = false
 choices = Array[ExtResource("1_an67t")]([SubResource("Resource_dil3q"), SubResource("Resource_v8id0"), SubResource("Resource_a0eyl"), SubResource("Resource_uic50"), SubResource("Resource_w3sj1")])
 
 [sub_resource type="Resource" id="Resource_py0f3"]
 script = ExtResource("9_7tw7j")
-minAct = 0
-maxAct = -1
 prereqQuests = Array[String](["Angry Angler#Birds of a Feather"])
-prereqCutscenes = Array[String]([])
-prereqDialogues = Array[String]([])
-prereqPlacesVisited = Array[String]([])
-prereqSpecialBattles = Array[String]([])
-prereqDefeatedEnemies = Array[String]([])
-prereqPuzzles = Array[String]([])
-prereqPuzzleStates = Dictionary[String, Array]({})
-prereqDiscoveredEvolutions = Array[String]([])
-prereqHavingFollowers = Array[String]([])
-prereqHasItems = Array[ExtResource("10_3f8qa")]([])
-invalidAfterCompletingQuests = Array[String]([])
-invalidAfterFailingQuests = Array[String]([])
-invalidAfterCutscenes = Array[String]([])
-invalidAfterDialogues = Array[String]([])
-invalidAfterVistingPlaces = Array[String]([])
-invalidAfterSpecialBattles = Array[String]([])
-invalidAfterSolvingPuzzles = Array[String]([])
-invalidFromPuzzleStates = Dictionary[String, Array]({})
-invalidFromHavingFollowers = Array[String]([])
-invalidFromHavingItems = Array[ExtResource("10_3f8qa")]([])
 
 [sub_resource type="Resource" id="Resource_i2ey1"]
 script = ExtResource("10_i837e")
 alternativeDialogueItems = Array[ExtResource("8_hemmw")]([SubResource("Resource_0ncei")])
 alternativeStoryReqs = Array[ExtResource("9_7tw7j")]([SubResource("Resource_py0f3")])
 lines = Array[String](["Welcome to the Boathouse, landlubber."])
-minShowSecs = Array[float]([])
 animation = "talk"
-speakerOverride = ""
-actorAnimation = ""
-animateActorTreePath = ""
-animateActorIsPlayer = false
 choices = Array[ExtResource("1_an67t")]([SubResource("Resource_dil3q"), SubResource("Resource_v8id0"), SubResource("Resource_a0eyl"), SubResource("Resource_uic50"), SubResource("Resource_w3sj1")])
 
 [resource]
 script = ExtResource("9_8jgaa")
 entryId = "lp_skipper1"
 items = Array[ExtResource("8_hemmw")]([SubResource("Resource_i2ey1")])
-ordStoryRequirements = Array[ExtResource("9_7tw7j")]([])
-closesDialogue = false
-fullHealsPlayer = false
 annotation = "Don't forget: StoryReqsDialogueItem has multiple copies of choices array (one in base obj, one in nested DialogueItems), if you're going to add more items, decide if they should be added to each copy"

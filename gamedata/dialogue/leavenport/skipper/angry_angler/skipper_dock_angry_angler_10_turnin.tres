@@ -12,40 +12,20 @@
 script = ExtResource("2_dwjj0")
 choiceBtn = "Not Yet!"
 leadsTo = ExtResource("3_1valc")
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("3_hianc")]([])
-repeatsItem = false
-buttonDims = Vector2(80, 40)
-turnsInQuest = ""
 isDeclineChoice = true
 
 [sub_resource type="Resource" id="Resource_ksybl"]
 script = ExtResource("2_dwjj0")
 choiceBtn = "Let's Go!"
 leadsTo = ExtResource("5_ttkr1")
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("3_hianc")]([])
-repeatsItem = false
-buttonDims = Vector2(80, 40)
 turnsInQuest = "Angry Angler#Danger on the Leaven River"
-isDeclineChoice = false
 
 [sub_resource type="Resource" id="Resource_avj6k"]
 script = ExtResource("1_uaxrf")
 lines = Array[String](["I think you got enough of the scaly beasts! I can wrest the boat free of the rest and we'll get out of here. Ready?"])
-minShowSecs = Array[float]([])
 animation = "talk"
-speakerOverride = ""
-actorAnimation = ""
-animateActorTreePath = ""
-animateActorIsPlayer = false
 choices = Array[ExtResource("2_dwjj0")]([SubResource("Resource_pscdx"), SubResource("Resource_ksybl")])
 
 [resource]
 script = ExtResource("3_b4275")
-entryId = ""
 items = Array[ExtResource("1_uaxrf")]([SubResource("Resource_avj6k")])
-ordStoryRequirements = Array[ExtResource("2_xqf37")]([])
-closesDialogue = false
-fullHealsPlayer = false
-annotation = ""

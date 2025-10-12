@@ -10,40 +10,21 @@
 [sub_resource type="Resource" id="Resource_fms5u"]
 script = ExtResource("2_agwjt")
 choiceBtn = "Wait..."
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("3_mpv4c")]([])
-repeatsItem = false
-buttonDims = Vector2(80, 40)
-turnsInQuest = ""
 isDeclineChoice = true
 
 [sub_resource type="Resource" id="Resource_4yuai"]
 script = ExtResource("2_agwjt")
 choiceBtn = "\"Quill\" Do!"
 leadsTo = ExtResource("4_gphjq")
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("3_mpv4c")]([])
-repeatsItem = false
-buttonDims = Vector2(80, 40)
 turnsInQuest = "Angry Angler#Waterproofing"
-isDeclineChoice = false
 
 [sub_resource type="Resource" id="Resource_rucrk"]
 script = ExtResource("1_18ygx")
 lines = Array[String](["Oh, fit as a fiddle, we are! I'll quickly slather this goop on, but in the meantime, I'll need one last thing.", "There can be no Captain of this vessel without a quill. I'll need to record our journey in the Captain's Log, of course!", "Cloud Gull feathers make excellent quills. Could you bring me two feathers for this?"])
-minShowSecs = Array[float]([])
 animation = "talk"
-speakerOverride = ""
-actorAnimation = ""
-animateActorTreePath = ""
-animateActorIsPlayer = false
 choices = Array[ExtResource("2_agwjt")]([SubResource("Resource_fms5u"), SubResource("Resource_4yuai")])
 
 [resource]
 script = ExtResource("3_whyx0")
-entryId = ""
 items = Array[ExtResource("1_18ygx")]([SubResource("Resource_rucrk")])
-ordStoryRequirements = Array[ExtResource("2_aymh1")]([])
 closesDialogue = true
-fullHealsPlayer = false
-annotation = ""

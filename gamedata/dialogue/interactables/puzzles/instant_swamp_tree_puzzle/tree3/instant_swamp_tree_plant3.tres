@@ -12,44 +12,21 @@
 [sub_resource type="Resource" id="Resource_xja5b"]
 script = ExtResource("2_yhls4")
 choiceBtn = "Never Mind..."
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("3_0fsgs")]([])
-repeatsItem = false
-buttonDims = Vector2(80, 40)
-turnsInQuest = ""
 isDeclineChoice = true
 
 [sub_resource type="Resource" id="Resource_yo507"]
 script = ExtResource("6_8rm34")
 puzzle = ExtResource("5_fborr")
 puzzleStateIndex = 2
-acceptsSolve = false
 setsState = "planted"
 choiceBtn = "Yes."
 leadsTo = ExtResource("4_6nhit")
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("3_0fsgs")]([])
-repeatsItem = false
-buttonDims = Vector2(80, 40)
-turnsInQuest = ""
-isDeclineChoice = false
 
 [sub_resource type="Resource" id="Resource_31e6k"]
 script = ExtResource("1_hsljo")
 lines = Array[String](["Should I plant some seeds here?"])
-minShowSecs = Array[float]([])
-animation = ""
-speakerOverride = ""
-actorAnimation = ""
-animateActorTreePath = ""
-animateActorIsPlayer = false
 choices = Array[ExtResource("2_yhls4")]([SubResource("Resource_xja5b"), SubResource("Resource_yo507")])
 
 [resource]
 script = ExtResource("8_2w7qh")
-entryId = ""
 items = Array[ExtResource("1_hsljo")]([SubResource("Resource_31e6k")])
-ordStoryRequirements = Array[ExtResource("7_ltu6d")]([])
-closesDialogue = false
-fullHealsPlayer = false
-annotation = ""

@@ -7,32 +7,15 @@
 
 [sub_resource type="Resource" id="Resource_5bina"]
 script = ExtResource("3_ehfe2")
-physAttackIncrease = 0
-magicAttackIncrease = 0
-affinityIncrease = 0
-resistanceIncrease = 0
-speedIncrease = 0
-physAttackMultiplier = 1.0
-magicAttackMultiplier = 1.0
 affinityMultiplier = 1.3
-resistanceMultiplier = 1.0
-speedMultiplier = 1.0
-elementMultipliers = Array[ExtResource("3_6bs61")]([])
-keywordMultipliers = Dictionary[String, float]({})
 
 [resource]
 script = ExtResource("1_1r83c")
 healBy = 60
-statusStrengthHeal = 0
 statChanges = SubResource("Resource_5bina")
 itemSprite = ExtResource("1_47oii")
 itemName = "Natural Remedy"
-itemType = 0
 itemDescription = "This blend of ground plants, herbs, and spices tastes bitter and earthy, but it definitely beats dying. The natural ingredients boost the drinker's Affinity energy and provides a little healing."
 cost = 10
 maxCount = 20
-usable = true
-battleUsable = true
-consumable = true
-equippable = false
 battleTargets = 3

@@ -12,40 +12,20 @@
 script = ExtResource("2_7s4jh")
 choiceBtn = "Wait..."
 leadsTo = ExtResource("3_a4vtq")
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("3_utmgu")]([])
-repeatsItem = false
-buttonDims = Vector2(80, 40)
-turnsInQuest = ""
 isDeclineChoice = true
 
 [sub_resource type="Resource" id="Resource_mjpob"]
 script = ExtResource("2_7s4jh")
 choiceBtn = "Aye Aye!"
 leadsTo = ExtResource("5_hhwut")
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("3_utmgu")]([])
-repeatsItem = false
-buttonDims = Vector2(80, 40)
 turnsInQuest = "Angry Angler#See A Storied Sailor"
-isDeclineChoice = false
 
 [sub_resource type="Resource" id="Resource_jsm55"]
 script = ExtResource("1_wdsln")
 lines = Array[String](["There's the spirit, landlubber! We'll have to get started right away. First thing I'll need is some lumber to build the hull.", "Let's have you fetch lumber then... talk to the Prime Minister about that, we can't just chop down any old tree!"])
-minShowSecs = Array[float]([])
 animation = "talk"
-speakerOverride = ""
-actorAnimation = ""
-animateActorTreePath = ""
-animateActorIsPlayer = false
 choices = Array[ExtResource("2_7s4jh")]([SubResource("Resource_db8yu"), SubResource("Resource_mjpob")])
 
 [resource]
 script = ExtResource("3_i1hlb")
-entryId = ""
 items = Array[ExtResource("1_wdsln")]([SubResource("Resource_jsm55")])
-ordStoryRequirements = Array[ExtResource("2_5lqta")]([])
-closesDialogue = false
-fullHealsPlayer = false
-annotation = ""

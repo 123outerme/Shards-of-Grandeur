@@ -16,65 +16,26 @@
 script = ExtResource("1_i0rmj")
 speaker = "Solius"
 texts = Array[String](["@!! Get out of here!"])
-textboxSfxs = Array[AudioStream]([])
 speakerActorScenePath = "TilemapRoot/Solius"
-speakerActorIsPlayer = false
 speakerAnim = "battle_idle"
-speakerAnimScale = 3
-animSpeakerOffset = Vector2(0, 0)
 
 [sub_resource type="Resource" id="Resource_qf84f"]
 script = ExtResource("1_fvoc3")
 frameLength = 0.1
 annotation = "Have Solius call out, stop player walking"
-actorTweens = Array[ExtResource("6_04jv3")]([])
 actorAnims = Array[ExtResource("3_6nxsj")]([ExtResource("2_t2emd")])
-actorAnimSets = Array[ExtResource("2_mbw8c")]([])
-actorFaceTargets = Array[ExtResource("5_3vdye")]([])
 dialogues = Array[ExtResource("1_i0rmj")]([SubResource("Resource_2svxx")])
-playSfxs = Array[AudioStream]([])
-snapshotActorPaths = Array[String]([])
-restoreSnapshotActorPaths = Array[String]([])
-endTextBoxPauses = true
-shakeCamForDuration = false
-endHoldCamera = false
-endFade = 0
-endFadeLength = 0.0
-healsPlayer = false
-addsFollowerId = ""
-removesFollowerId = ""
-endStartsShardLearnTutorial = false
 
 [sub_resource type="Resource" id="Resource_b08mq"]
 script = ExtResource("1_fvoc3")
 frameLength = 0.1
 annotation = "Wait for the text box to be closed"
-actorTweens = Array[ExtResource("6_04jv3")]([])
-actorAnims = Array[ExtResource("3_6nxsj")]([])
-actorAnimSets = Array[ExtResource("2_mbw8c")]([])
-actorFaceTargets = Array[ExtResource("5_3vdye")]([])
-dialogues = Array[ExtResource("1_i0rmj")]([])
-playSfxs = Array[AudioStream]([])
-snapshotActorPaths = Array[String]([])
-restoreSnapshotActorPaths = Array[String]([])
-endTextBoxPauses = true
-shakeCamForDuration = false
-endHoldCamera = false
-endFade = 0
-endFadeLength = 0.0
-healsPlayer = false
-addsFollowerId = ""
-removesFollowerId = ""
-endStartsShardLearnTutorial = false
 
 [sub_resource type="Resource" id="Resource_kn75f"]
 script = ExtResource("3_v6af7")
 value = Vector2(1238, 540)
-actorTreePath = ""
 isPlayer = true
 propertyName = "position"
-easeType = 2
-transitionType = 0
 
 [sub_resource type="Resource" id="Resource_svnn4"]
 script = ExtResource("1_fvoc3")
@@ -82,84 +43,27 @@ frameLength = 1.25
 annotation = "Move the player away from the east exit"
 actorTweens = Array[ExtResource("6_04jv3")]([SubResource("Resource_kn75f")])
 actorAnims = Array[ExtResource("3_6nxsj")]([ExtResource("2_4qdpd")])
-actorAnimSets = Array[ExtResource("2_mbw8c")]([])
-actorFaceTargets = Array[ExtResource("5_3vdye")]([])
-dialogues = Array[ExtResource("1_i0rmj")]([])
-playSfxs = Array[AudioStream]([])
-snapshotActorPaths = Array[String]([])
-restoreSnapshotActorPaths = Array[String]([])
-endTextBoxPauses = true
-shakeCamForDuration = false
-endHoldCamera = false
-endFade = 0
-endFadeLength = 0.0
-healsPlayer = false
-addsFollowerId = ""
-removesFollowerId = ""
-endStartsShardLearnTutorial = false
 
 [sub_resource type="Resource" id="Resource_41kc0"]
 script = ExtResource("1_i0rmj")
 speaker = "@"
 texts = Array[String](["Solius is buying me time, I have to get back to Grandstone!"])
-textboxSfxs = Array[AudioStream]([])
-speakerActorScenePath = ""
 speakerActorIsPlayer = true
 speakerAnim = "stand"
-speakerAnimScale = 3
-animSpeakerOffset = Vector2(0, 0)
 
 [sub_resource type="Resource" id="Resource_iibfr"]
 script = ExtResource("1_fvoc3")
 frameLength = 0.1
 annotation = "Have the player talk again"
-actorTweens = Array[ExtResource("6_04jv3")]([])
 actorAnims = Array[ExtResource("3_6nxsj")]([ExtResource("2_t2emd")])
-actorAnimSets = Array[ExtResource("2_mbw8c")]([])
-actorFaceTargets = Array[ExtResource("5_3vdye")]([])
 dialogues = Array[ExtResource("1_i0rmj")]([SubResource("Resource_41kc0")])
-playSfxs = Array[AudioStream]([])
-snapshotActorPaths = Array[String]([])
-restoreSnapshotActorPaths = Array[String]([])
-endTextBoxPauses = true
-shakeCamForDuration = false
-endHoldCamera = false
-endFade = 0
-endFadeLength = 0.0
-healsPlayer = false
-addsFollowerId = ""
-removesFollowerId = ""
-endStartsShardLearnTutorial = false
 
 [sub_resource type="Resource" id="Resource_3lww1"]
 script = ExtResource("1_fvoc3")
 frameLength = 0.1
 annotation = "Wait for the text box to be closed"
-actorTweens = Array[ExtResource("6_04jv3")]([])
-actorAnims = Array[ExtResource("3_6nxsj")]([])
-actorAnimSets = Array[ExtResource("2_mbw8c")]([])
-actorFaceTargets = Array[ExtResource("5_3vdye")]([])
-dialogues = Array[ExtResource("1_i0rmj")]([])
-playSfxs = Array[AudioStream]([])
-snapshotActorPaths = Array[String]([])
-restoreSnapshotActorPaths = Array[String]([])
-endTextBoxPauses = true
-shakeCamForDuration = false
-endHoldCamera = false
-endFade = 0
-endFadeLength = 0.0
-healsPlayer = false
-addsFollowerId = ""
-removesFollowerId = ""
-endStartsShardLearnTutorial = false
 
 [resource]
 script = ExtResource("1_r6atd")
 cutsceneFrames = Array[ExtResource("1_fvoc3")]([SubResource("Resource_qf84f"), SubResource("Resource_b08mq"), SubResource("Resource_svnn4"), SubResource("Resource_iibfr"), SubResource("Resource_3lww1")])
-saveName = ""
 storyRequirements = ExtResource("11_2j7bb")
-unlockCameraHoldAfter = true
-activateActorsBefore = Array[String]([])
-deactivateActorsAfter = Array[String]([])
-tempDisabledAfter = false
-notes = ""

@@ -9,46 +9,14 @@
 [sub_resource type="Resource" id="Resource_qr21t"]
 script = ExtResource("1_l7rlh")
 lines = Array[String](["I'm raring to go, @! Let's keep pushing forward. I'll be with you when you're fighting the Chain Legion soldiers."])
-minShowSecs = Array[float]([])
 animation = "talk"
-speakerOverride = ""
-actorAnimation = ""
-animateActorTreePath = ""
-animateActorIsPlayer = false
-choices = Array[ExtResource("2_nrcdi")]([])
 
 [sub_resource type="Resource" id="Resource_lqjoo"]
 script = ExtResource("3_qal3o")
 minAct = 1
-maxAct = -1
-prereqQuests = Array[String]([])
-prereqCutscenes = Array[String]([])
-prereqDialogues = Array[String]([])
-prereqPlacesVisited = Array[String]([])
-prereqSpecialBattles = Array[String]([])
-prereqDefeatedEnemies = Array[String]([])
-prereqPuzzles = Array[String]([])
-prereqPuzzleStates = Dictionary[String, Array]({})
-prereqDiscoveredEvolutions = Array[String]([])
 prereqHavingFollowers = Array[String](["solius"])
-prereqHasItems = Array[ExtResource("5_unh1o")]([])
-invalidAfterCompletingQuests = Array[String]([])
-invalidAfterFailingQuests = Array[String]([])
-invalidAfterCutscenes = Array[String]([])
-invalidAfterDialogues = Array[String]([])
-invalidAfterVistingPlaces = Array[String]([])
-invalidAfterSpecialBattles = Array[String]([])
-invalidAfterSolvingPuzzles = Array[String]([])
-invalidFromPuzzleStates = Dictionary[String, Array]({})
-invalidFromHavingFollowers = Array[String]([])
-invalidFromHavingItems = Array[ExtResource("5_unh1o")]([])
 
 [resource]
 script = ExtResource("2_k1vuq")
-entryId = ""
 items = Array[ExtResource("1_l7rlh")]([SubResource("Resource_qr21t")])
 storyRequirements = SubResource("Resource_lqjoo")
-ordStoryRequirements = Array[ExtResource("3_qal3o")]([])
-closesDialogue = false
-fullHealsPlayer = false
-annotation = ""

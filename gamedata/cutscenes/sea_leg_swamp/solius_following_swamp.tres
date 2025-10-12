@@ -14,125 +14,45 @@
 [sub_resource type="Resource" id="Resource_07ota"]
 script = ExtResource("3_omk8b")
 actorTreePath = "TilemapRoot/Solius"
-isPlayer = false
 animation = "talk"
 
 [sub_resource type="Resource" id="Resource_t0dqq"]
 script = ExtResource("6_al7wt")
 speaker = "Solius"
 texts = Array[String](["Ok, let's head down to the Cave! I'll be by your side."])
-textboxSfxs = Array[AudioStream]([])
 speakerActorScenePath = "TilemapRoot/Solius"
-speakerActorIsPlayer = false
-speakerAnim = "talk"
-speakerAnimScale = 3
-animSpeakerOffset = Vector2(0, 0)
 
 [sub_resource type="Resource" id="Resource_mnicb"]
 script = ExtResource("1_ly6x8")
 frameLength = 0.1
 annotation = "set Solius to talk and follow the player"
-actorTweens = Array[ExtResource("5_lo14d")]([])
 actorAnims = Array[ExtResource("3_omk8b")]([ExtResource("4_usgmp"), SubResource("Resource_07ota")])
-actorAnimSets = Array[ExtResource("2_iiuia")]([])
-actorFaceTargets = Array[ExtResource("4_kqe3j")]([])
 dialogues = Array[ExtResource("6_al7wt")]([SubResource("Resource_t0dqq")])
-playSfxs = Array[AudioStream]([])
-snapshotActorPaths = Array[String]([])
-restoreSnapshotActorPaths = Array[String]([])
-endTextBoxPauses = true
-shakeCamForDuration = false
-endHoldCamera = false
-endFade = 0
-endFadeLength = 0.0
-healsPlayer = false
 addsFollowerId = "solius"
-removesFollowerId = ""
-endStartsShardLearnTutorial = false
 
 [sub_resource type="Resource" id="Resource_yppb2"]
 script = ExtResource("1_ly6x8")
 frameLength = 0.1
 annotation = "Wait for the textbox to be closed (half a second at least)"
-actorTweens = Array[ExtResource("5_lo14d")]([])
-actorAnims = Array[ExtResource("3_omk8b")]([])
-actorAnimSets = Array[ExtResource("2_iiuia")]([])
-actorFaceTargets = Array[ExtResource("4_kqe3j")]([])
-dialogues = Array[ExtResource("6_al7wt")]([])
-playSfxs = Array[AudioStream]([])
-snapshotActorPaths = Array[String]([])
-restoreSnapshotActorPaths = Array[String]([])
-endTextBoxPauses = true
-shakeCamForDuration = false
-endHoldCamera = false
-endFade = 0
-endFadeLength = 0.0
-healsPlayer = false
-addsFollowerId = ""
-removesFollowerId = ""
-endStartsShardLearnTutorial = false
 
 [sub_resource type="Resource" id="Resource_h3oq8"]
 script = ExtResource("3_omk8b")
 actorTreePath = "TilemapRoot/Solius"
-isPlayer = false
 animation = "stand"
 
 [sub_resource type="Resource" id="Resource_ytcn1"]
 script = ExtResource("1_ly6x8")
 frameLength = 0.5
 annotation = "wait 0.5s after textbox closed, make Solius stop talking"
-actorTweens = Array[ExtResource("5_lo14d")]([])
 actorAnims = Array[ExtResource("3_omk8b")]([SubResource("Resource_h3oq8")])
-actorAnimSets = Array[ExtResource("2_iiuia")]([])
-actorFaceTargets = Array[ExtResource("4_kqe3j")]([])
-dialogues = Array[ExtResource("6_al7wt")]([])
-playSfxs = Array[AudioStream]([])
-snapshotActorPaths = Array[String]([])
-restoreSnapshotActorPaths = Array[String]([])
-endTextBoxPauses = true
-shakeCamForDuration = false
-endHoldCamera = false
-endFade = 0
-endFadeLength = 0.0
-healsPlayer = false
-addsFollowerId = ""
-removesFollowerId = ""
-endStartsShardLearnTutorial = false
 
 [sub_resource type="Resource" id="Resource_ohdwh"]
 script = ExtResource("8_lwxl6")
-minAct = 0
 maxAct = 1
-prereqQuests = Array[String]([])
-prereqCutscenes = Array[String]([])
-prereqDialogues = Array[String]([])
-prereqPlacesVisited = Array[String]([])
-prereqSpecialBattles = Array[String]([])
-prereqDefeatedEnemies = Array[String]([])
-prereqPuzzles = Array[String]([])
-prereqPuzzleStates = Dictionary[String, Array]({})
-prereqDiscoveredEvolutions = Array[String]([])
-prereqHavingFollowers = Array[String]([])
-prereqHasItems = Array[ExtResource("9_xffhf")]([])
-invalidAfterCompletingQuests = Array[String]([])
-invalidAfterFailingQuests = Array[String]([])
 invalidAfterCutscenes = Array[String](["etreus_appears"])
-invalidAfterDialogues = Array[String]([])
-invalidAfterVistingPlaces = Array[String]([])
-invalidAfterSpecialBattles = Array[String]([])
-invalidAfterSolvingPuzzles = Array[String]([])
-invalidFromPuzzleStates = Dictionary[String, Array]({})
 invalidFromHavingFollowers = Array[String](["solius"])
-invalidFromHavingItems = Array[ExtResource("9_xffhf")]([])
 
 [resource]
 script = ExtResource("2_aqy4w")
 cutsceneFrames = Array[ExtResource("1_ly6x8")]([SubResource("Resource_mnicb"), SubResource("Resource_yppb2"), SubResource("Resource_ytcn1")])
-saveName = ""
 storyRequirements = SubResource("Resource_ohdwh")
-unlockCameraHoldAfter = true
-activateActorsBefore = Array[String]([])
-deactivateActorsAfter = Array[String]([])
-tempDisabledAfter = false
-notes = ""

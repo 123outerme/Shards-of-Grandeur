@@ -13,11 +13,6 @@
 [sub_resource type="Resource" id="Resource_v3nlh"]
 script = ExtResource("2_w5nje")
 choiceBtn = "No."
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("3_nvmif")]([])
-repeatsItem = false
-buttonDims = Vector2(80, 40)
-turnsInQuest = ""
 isDeclineChoice = true
 
 [sub_resource type="Resource" id="Resource_vidb0"]
@@ -29,29 +24,12 @@ setsState = "chopped_down"
 leadsToIfSolveFails = ExtResource("5_cnav3")
 choiceBtn = "Yes."
 leadsTo = ExtResource("4_1erid")
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("3_nvmif")]([])
-repeatsItem = false
-buttonDims = Vector2(80, 40)
-turnsInQuest = ""
-isDeclineChoice = false
 
 [sub_resource type="Resource" id="Resource_cu8e7"]
 script = ExtResource("1_me0tj")
 lines = Array[String](["Should I cut this tree down for some seaworthy lumber?"])
-minShowSecs = Array[float]([])
-animation = ""
-speakerOverride = ""
-actorAnimation = ""
-animateActorTreePath = ""
-animateActorIsPlayer = false
 choices = Array[ExtResource("2_w5nje")]([SubResource("Resource_v3nlh"), SubResource("Resource_vidb0")])
 
 [resource]
 script = ExtResource("9_r8yij")
-entryId = ""
 items = Array[ExtResource("1_me0tj")]([SubResource("Resource_cu8e7")])
-ordStoryRequirements = Array[ExtResource("8_tks5a")]([])
-closesDialogue = false
-fullHealsPlayer = false
-annotation = ""

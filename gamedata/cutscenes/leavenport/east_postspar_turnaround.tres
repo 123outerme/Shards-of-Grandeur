@@ -17,43 +17,20 @@
 script = ExtResource("1_6k1xv")
 speaker = "@"
 texts = Array[String](["I should go talk to Solius before heading in a random direction, since I don't know the way to the Cave."])
-textboxSfxs = Array[AudioStream]([])
-speakerActorScenePath = ""
 speakerActorIsPlayer = true
 speakerAnim = "stand"
-speakerAnimScale = 3
-animSpeakerOffset = Vector2(0, 0)
 
 [sub_resource type="Resource" id="Resource_ghfr8"]
 script = ExtResource("2_sh4ae")
 frameLength = 0.1
 annotation = "have the player speak"
-actorTweens = Array[ExtResource("5_vquhd")]([])
-actorAnims = Array[ExtResource("3_vhs51")]([])
-actorAnimSets = Array[ExtResource("2_my6hk")]([])
-actorFaceTargets = Array[ExtResource("4_eopvn")]([])
 dialogues = Array[ExtResource("1_6k1xv")]([SubResource("Resource_m7war")])
-playSfxs = Array[AudioStream]([])
-snapshotActorPaths = Array[String]([])
-restoreSnapshotActorPaths = Array[String]([])
-endTextBoxPauses = true
-shakeCamForDuration = false
-endHoldCamera = false
-endFade = 0
-endFadeLength = 0.0
-healsPlayer = false
-addsFollowerId = ""
-removesFollowerId = ""
-endStartsShardLearnTutorial = false
 
 [sub_resource type="Resource" id="Resource_i7gfo"]
 script = ExtResource("4_6r51u")
 value = Vector2(1238, 540)
-actorTreePath = ""
 isPlayer = true
 propertyName = "position"
-easeType = 2
-transitionType = 0
 
 [sub_resource type="Resource" id="Resource_mfoyy"]
 script = ExtResource("2_sh4ae")
@@ -61,77 +38,20 @@ frameLength = 1.25
 annotation = "Have the player move away from the exit"
 actorTweens = Array[ExtResource("5_vquhd")]([SubResource("Resource_i7gfo")])
 actorAnims = Array[ExtResource("3_vhs51")]([ExtResource("3_5fa85")])
-actorAnimSets = Array[ExtResource("2_my6hk")]([])
-actorFaceTargets = Array[ExtResource("4_eopvn")]([])
-dialogues = Array[ExtResource("1_6k1xv")]([])
-playSfxs = Array[AudioStream]([])
-snapshotActorPaths = Array[String]([])
-restoreSnapshotActorPaths = Array[String]([])
-endTextBoxPauses = true
-shakeCamForDuration = false
-endHoldCamera = false
-endFade = 0
-endFadeLength = 0.0
-healsPlayer = false
-addsFollowerId = ""
-removesFollowerId = ""
-endStartsShardLearnTutorial = false
 
 [sub_resource type="Resource" id="Resource_u3q2y"]
 script = ExtResource("2_sh4ae")
 frameLength = 0.1
 annotation = "wait for the text box to be closed and stop the player walk anim"
-actorTweens = Array[ExtResource("5_vquhd")]([])
 actorAnims = Array[ExtResource("3_vhs51")]([ExtResource("5_bpdn2")])
-actorAnimSets = Array[ExtResource("2_my6hk")]([])
-actorFaceTargets = Array[ExtResource("4_eopvn")]([])
-dialogues = Array[ExtResource("1_6k1xv")]([])
-playSfxs = Array[AudioStream]([])
-snapshotActorPaths = Array[String]([])
-restoreSnapshotActorPaths = Array[String]([])
-endTextBoxPauses = true
-shakeCamForDuration = false
-endHoldCamera = false
-endFade = 0
-endFadeLength = 0.0
-healsPlayer = false
-addsFollowerId = ""
-removesFollowerId = ""
-endStartsShardLearnTutorial = false
 
 [sub_resource type="Resource" id="Resource_whecf"]
 script = ExtResource("7_xqknd")
 minAct = 1
-maxAct = -1
-prereqQuests = Array[String]([])
-prereqCutscenes = Array[String]([])
-prereqDialogues = Array[String]([])
-prereqPlacesVisited = Array[String]([])
 prereqSpecialBattles = Array[String](["solius_spar"])
-prereqDefeatedEnemies = Array[String]([])
-prereqPuzzles = Array[String]([])
-prereqPuzzleStates = Dictionary[String, Array]({})
-prereqDiscoveredEvolutions = Array[String]([])
-prereqHavingFollowers = Array[String]([])
-prereqHasItems = Array[ExtResource("11_uahoj")]([])
-invalidAfterCompletingQuests = Array[String]([])
-invalidAfterFailingQuests = Array[String]([])
 invalidAfterCutscenes = Array[String](["solius_to_cave_path"])
-invalidAfterDialogues = Array[String]([])
-invalidAfterVistingPlaces = Array[String]([])
-invalidAfterSpecialBattles = Array[String]([])
-invalidAfterSolvingPuzzles = Array[String]([])
-invalidFromPuzzleStates = Dictionary[String, Array]({})
-invalidFromHavingFollowers = Array[String]([])
-invalidFromHavingItems = Array[ExtResource("11_uahoj")]([])
 
 [resource]
 script = ExtResource("6_idvc8")
 cutsceneFrames = Array[ExtResource("2_sh4ae")]([SubResource("Resource_ghfr8"), SubResource("Resource_mfoyy"), SubResource("Resource_u3q2y")])
-saveName = ""
 storyRequirements = SubResource("Resource_whecf")
-unlockCameraHoldAfter = true
-activateActorsBefore = Array[String]([])
-deactivateActorsAfter = Array[String]([])
-tempDisabledAfter = false
-notes = ""

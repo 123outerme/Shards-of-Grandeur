@@ -10,62 +10,33 @@
 [sub_resource type="Resource" id="Resource_415vx"]
 script = ExtResource("2_lvyk2")
 choiceBtn = "Solius is Missing!"
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("3_kkd07")]([])
-repeatsItem = false
-buttonDims = Vector2(80, 40)
-turnsInQuest = ""
 isDeclineChoice = true
 
 [sub_resource type="Resource" id="Resource_fd2vn"]
 script = ExtResource("1_24rgp")
 lines = Array[String](["Hello, @. You have a sorry look on your face, what can I help you with?"])
-minShowSecs = Array[float]([])
 animation = "talk"
-speakerOverride = ""
-actorAnimation = ""
-animateActorTreePath = ""
-animateActorIsPlayer = false
 choices = Array[ExtResource("2_lvyk2")]([SubResource("Resource_415vx")])
 
 [sub_resource type="Resource" id="Resource_5ktni"]
 script = ExtResource("1_24rgp")
 lines = Array[String](["Solius faced off against the Chain Legion, at the edge of the town... and I have his sword in my hand. He's missing.", "Do you have any idea where he might have gone?"])
-minShowSecs = Array[float]([])
 animation = "stand"
 speakerOverride = "@"
-actorAnimation = ""
-animateActorTreePath = ""
-animateActorIsPlayer = false
-choices = Array[ExtResource("2_lvyk2")]([])
 
 [sub_resource type="Resource" id="Resource_0ckks"]
 script = ExtResource("2_lvyk2")
 choiceBtn = "Thanks..."
 leadsTo = ExtResource("4_h8btb")
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("3_kkd07")]([])
-repeatsItem = false
-buttonDims = Vector2(80, 40)
-turnsInQuest = ""
 isDeclineChoice = true
 
 [sub_resource type="Resource" id="Resource_lvrcn"]
 script = ExtResource("1_24rgp")
 lines = Array[String](["No, @, I don't. When we chased the Chain Legion off, your friend in the red hood was not among them.", "I wish you the best on your search for him."])
-minShowSecs = Array[float]([])
 animation = "talk"
-speakerOverride = ""
-actorAnimation = ""
-animateActorTreePath = ""
-animateActorIsPlayer = false
 choices = Array[ExtResource("2_lvyk2")]([SubResource("Resource_0ckks")])
 
 [resource]
 script = ExtResource("3_hxeyq")
 entryId = "report_solius_missing"
 items = Array[ExtResource("1_24rgp")]([SubResource("Resource_fd2vn"), SubResource("Resource_5ktni"), SubResource("Resource_lvrcn")])
-ordStoryRequirements = Array[ExtResource("2_heht7")]([])
-closesDialogue = false
-fullHealsPlayer = false
-annotation = ""

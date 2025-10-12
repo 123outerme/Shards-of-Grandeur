@@ -7,32 +7,15 @@
 
 [sub_resource type="Resource" id="Resource_vexrg"]
 script = ExtResource("3_w4qcs")
-physAttackIncrease = 0
-magicAttackIncrease = 0
-affinityIncrease = 0
-resistanceIncrease = 0
-speedIncrease = 0
 physAttackMultiplier = 1.2
-magicAttackMultiplier = 1.0
-affinityMultiplier = 1.0
-resistanceMultiplier = 1.0
-speedMultiplier = 1.0
-elementMultipliers = Array[ExtResource("3_stmm3")]([])
-keywordMultipliers = Dictionary[String, float]({})
 
 [resource]
 script = ExtResource("1_7pvtx")
 healBy = 60
-statusStrengthHeal = 0
 statChanges = SubResource("Resource_vexrg")
 itemSprite = ExtResource("1_r8iwq")
 itemName = "Brawn Elixir"
-itemType = 0
 itemDescription = "This special elixir amps muscular strength by a noticeable amount, as well as providing some amount of healing. "
 cost = 10
 maxCount = 20
-usable = true
-battleUsable = true
-consumable = true
-equippable = false
 battleTargets = 3

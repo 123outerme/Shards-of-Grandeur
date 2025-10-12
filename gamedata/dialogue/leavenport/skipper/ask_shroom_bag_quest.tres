@@ -11,67 +11,23 @@
 [sub_resource type="Resource" id="Resource_a1x1w"]
 script = ExtResource("1_pj0gu")
 choiceBtn = "I'll Pass."
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("3_ollab")]([])
-repeatsItem = false
-buttonDims = Vector2(80, 40)
-turnsInQuest = ""
-isDeclineChoice = false
 
 [sub_resource type="Resource" id="Resource_s4ejb"]
 script = ExtResource("1_pj0gu")
 choiceBtn = "Aye Aye!"
 leadsTo = ExtResource("2_lmlka")
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("3_ollab")]([])
-repeatsItem = false
-buttonDims = Vector2(80, 40)
-turnsInQuest = ""
-isDeclineChoice = false
 
 [sub_resource type="Resource" id="Resource_vsjhp"]
 script = ExtResource("1_3h5nx")
 lines = Array[String](["Aye, as a matter of fact, I do. You see, inland of this fine port town, there lies a strange forest littered with mushrooms.", "At the end of the path we've cut through the forest, there lies a tree stump that fills your bag full of loot!", "... Well, it's not really monetary riches, really, it's mushrooms. And the last trade ship to leave here didn't have any!", "Would you take this empty bag to the forest and bring us back some delicious mushrooms? For this old sea dog?"])
-minShowSecs = Array[float]([])
 animation = "talk"
-speakerOverride = ""
-actorAnimation = ""
-animateActorTreePath = ""
-animateActorIsPlayer = false
 choices = Array[ExtResource("1_pj0gu")]([SubResource("Resource_a1x1w"), SubResource("Resource_s4ejb")])
 
 [sub_resource type="Resource" id="Resource_gkpie"]
 script = ExtResource("5_85h7r")
-minAct = 0
-maxAct = -1
-prereqQuests = Array[String]([])
-prereqCutscenes = Array[String]([])
-prereqDialogues = Array[String]([])
-prereqPlacesVisited = Array[String]([])
-prereqSpecialBattles = Array[String]([])
-prereqDefeatedEnemies = Array[String]([])
-prereqPuzzles = Array[String]([])
-prereqPuzzleStates = Dictionary[String, Array]({})
-prereqDiscoveredEvolutions = Array[String]([])
-prereqHavingFollowers = Array[String]([])
-prereqHasItems = Array[ExtResource("7_8cbxo")]([])
-invalidAfterCompletingQuests = Array[String]([])
-invalidAfterFailingQuests = Array[String]([])
-invalidAfterCutscenes = Array[String]([])
 invalidAfterDialogues = Array[String](["leavenport_skipper#start_shroom_quest"])
-invalidAfterVistingPlaces = Array[String]([])
-invalidAfterSpecialBattles = Array[String]([])
-invalidAfterSolvingPuzzles = Array[String]([])
-invalidFromPuzzleStates = Dictionary[String, Array]({})
-invalidFromHavingFollowers = Array[String]([])
-invalidFromHavingItems = Array[ExtResource("7_8cbxo")]([])
 
 [resource]
 script = ExtResource("2_j2hqy")
-entryId = ""
 items = Array[ExtResource("1_3h5nx")]([SubResource("Resource_vsjhp")])
 storyRequirements = SubResource("Resource_gkpie")
-ordStoryRequirements = Array[ExtResource("5_85h7r")]([])
-closesDialogue = false
-fullHealsPlayer = false
-annotation = ""

@@ -9,29 +9,15 @@
 [sub_resource type="Resource" id="Resource_yw75f"]
 script = ExtResource("2_cycdn")
 choiceBtn = "Oh, yeah, right."
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("3_2d1gt")]([])
-repeatsItem = false
-buttonDims = Vector2(80, 40)
-turnsInQuest = ""
 isDeclineChoice = true
 
 [sub_resource type="Resource" id="Resource_4cxn7"]
 script = ExtResource("1_omqva")
 lines = Array[String](["What are you looking at me for? It's that sea monster you should be worried about!"])
-minShowSecs = Array[float]([])
 animation = "talk"
-speakerOverride = ""
-actorAnimation = ""
-animateActorTreePath = ""
-animateActorIsPlayer = false
 choices = Array[ExtResource("2_cycdn")]([SubResource("Resource_yw75f")])
 
 [resource]
 script = ExtResource("3_ysale")
-entryId = ""
 items = Array[ExtResource("1_omqva")]([SubResource("Resource_4cxn7")])
-ordStoryRequirements = Array[ExtResource("2_23ubj")]([])
 closesDialogue = true
-fullHealsPlayer = false
-annotation = ""

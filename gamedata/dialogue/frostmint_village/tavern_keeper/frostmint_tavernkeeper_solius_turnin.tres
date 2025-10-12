@@ -10,11 +10,6 @@
 [sub_resource type="Resource" id="Resource_fyuf5"]
 script = ExtResource("2_twexk")
 choiceBtn = "Maybe Not Him..."
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("3_4htya")]([])
-repeatsItem = false
-buttonDims = Vector2(80, 40)
-turnsInQuest = ""
 isDeclineChoice = true
 metadata/_custom_type_script = "uid://bk6klhv2ls55w"
 
@@ -22,32 +17,17 @@ metadata/_custom_type_script = "uid://bk6klhv2ls55w"
 script = ExtResource("2_twexk")
 choiceBtn = "That's Him..."
 leadsTo = ExtResource("4_4htya")
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("3_4htya")]([])
-repeatsItem = false
-buttonDims = Vector2(80, 40)
 turnsInQuest = "A Lost Comrade#Village Inquiry"
-isDeclineChoice = false
 metadata/_custom_type_script = "uid://bk6klhv2ls55w"
 
 [sub_resource type="Resource" id="Resource_o1038"]
 script = ExtResource("1_dngok")
 lines = Array[String](["Yeah, he was missing a right arm. Missing a sword too. So beaten up, we thought he was going to succumb to the cold.", "But after a few nights of rest, straight, he woke up mostly better. Nothing could fix that arm, though.", "He said he was escaping capture by Steelspire, and, well, I guess by the state was in I believed him."])
-minShowSecs = Array[float]([])
 animation = "talk"
-speakerOverride = ""
-actorAnimation = ""
-animateActorTreePath = ""
-animateActorIsPlayer = false
 choices = Array[ExtResource("2_twexk")]([SubResource("Resource_fyuf5"), SubResource("Resource_hfbiq")])
 metadata/_custom_type_script = "uid://grt2yrupha8c"
 
 [resource]
 script = ExtResource("3_twexk")
-entryId = ""
 items = Array[ExtResource("1_dngok")]([SubResource("Resource_o1038")])
-ordStoryRequirements = Array[ExtResource("2_uex4x")]([])
-closesDialogue = false
-fullHealsPlayer = false
-annotation = ""
 metadata/_custom_type_script = "uid://1n6mppc7hmmf"

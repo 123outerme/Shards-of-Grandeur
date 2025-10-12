@@ -9,40 +9,20 @@
 [sub_resource type="Resource" id="Resource_sskbf"]
 script = ExtResource("2_1ff7o")
 choiceBtn = "Forget It..."
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("3_vy1h1")]([])
-repeatsItem = false
-buttonDims = Vector2(80, 40)
-turnsInQuest = ""
 isDeclineChoice = true
 
 [sub_resource type="Resource" id="Resource_5muwt"]
 script = ExtResource("2_1ff7o")
 choiceBtn = "Thanks, I'll Try."
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("3_vy1h1")]([])
-repeatsItem = false
-buttonDims = Vector2(80, 40)
 turnsInQuest = "A Lost Comrade#To The Town Hall"
-isDeclineChoice = false
 metadata/_custom_type_script = "uid://bk6klhv2ls55w"
 
 [sub_resource type="Resource" id="Resource_4l7an"]
 script = ExtResource("1_tj3ak")
 lines = Array[String](["My best guess is that Solius was captured by the Chain Legion and taken back to Steelspire.", "Or, it's possible, although unlikely, he escaped behind enemy lines and is hiding away from them.", "Either way, if you trace a path back to Steelspire, you very well may find him."])
-minShowSecs = Array[float]([])
 animation = "talk"
-speakerOverride = ""
-actorAnimation = ""
-animateActorTreePath = ""
-animateActorIsPlayer = false
 choices = Array[ExtResource("2_1ff7o")]([SubResource("Resource_sskbf"), SubResource("Resource_5muwt")])
 
 [resource]
 script = ExtResource("3_5ti0h")
-entryId = ""
 items = Array[ExtResource("1_tj3ak")]([SubResource("Resource_4l7an")])
-ordStoryRequirements = Array[ExtResource("2_7441h")]([])
-closesDialogue = false
-fullHealsPlayer = false
-annotation = ""

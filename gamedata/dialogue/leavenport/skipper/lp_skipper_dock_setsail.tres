@@ -11,39 +11,19 @@
 script = ExtResource("2_vewla")
 choiceBtn = "Never Mind."
 returnsToParentId = "lp_skipper1"
-randomDialogues = Array[ExtResource("3_ejlul")]([])
-repeatsItem = false
-buttonDims = Vector2(80, 40)
-turnsInQuest = ""
 isDeclineChoice = true
 
 [sub_resource type="Resource" id="Resource_l0acq"]
 script = ExtResource("2_vewla")
 choiceBtn = "Sea Wyrm Nest!"
 leadsTo = ExtResource("4_ajsls")
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("3_ejlul")]([])
-repeatsItem = false
-buttonDims = Vector2(80, 40)
-turnsInQuest = ""
-isDeclineChoice = false
 
 [sub_resource type="Resource" id="Resource_m1wja"]
 script = ExtResource("1_iqmjm")
 lines = Array[String](["Where shall we sail to, @?"])
-minShowSecs = Array[float]([])
 animation = "talk"
-speakerOverride = ""
-actorAnimation = ""
-animateActorTreePath = ""
-animateActorIsPlayer = false
 choices = Array[ExtResource("2_vewla")]([SubResource("Resource_7ri7j"), SubResource("Resource_l0acq")])
 
 [resource]
 script = ExtResource("3_itwal")
-entryId = ""
 items = Array[ExtResource("1_iqmjm")]([SubResource("Resource_m1wja")])
-ordStoryRequirements = Array[ExtResource("2_bamei")]([])
-closesDialogue = false
-fullHealsPlayer = false
-annotation = ""

@@ -11,67 +11,24 @@
 [sub_resource type="Resource" id="Resource_x3k55"]
 script = ExtResource("2_uhgas")
 choiceBtn = "Not Right Now."
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("3_7eeys")]([])
-repeatsItem = false
-buttonDims = Vector2(80, 40)
-turnsInQuest = ""
-isDeclineChoice = false
 
 [sub_resource type="Resource" id="Resource_414rn"]
 script = ExtResource("2_uhgas")
 choiceBtn = "Anchors Aweigh!"
 leadsTo = ExtResource("4_cafm5")
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("3_7eeys")]([])
-repeatsItem = false
-buttonDims = Vector2(80, 40)
-turnsInQuest = ""
-isDeclineChoice = false
 
 [sub_resource type="Resource" id="Resource_y4wpo"]
 script = ExtResource("1_pqb50")
 lines = Array[String](["I just barely rowed away with my life! But, I'll be no coward today.", "Will you set back out with me and take on the Sea Wyrms?"])
-minShowSecs = Array[float]([])
 animation = "talk"
-speakerOverride = ""
-actorAnimation = ""
-animateActorTreePath = ""
-animateActorIsPlayer = false
 choices = Array[ExtResource("2_uhgas")]([SubResource("Resource_x3k55"), SubResource("Resource_414rn")])
 
 [sub_resource type="Resource" id="Resource_rqe62"]
 script = ExtResource("2_pj13b")
-minAct = 0
-maxAct = -1
 prereqQuests = Array[String](["Angry Angler#Put Out To Sea"])
-prereqCutscenes = Array[String]([])
-prereqDialogues = Array[String]([])
-prereqPlacesVisited = Array[String]([])
-prereqSpecialBattles = Array[String]([])
-prereqDefeatedEnemies = Array[String]([])
-prereqPuzzles = Array[String]([])
-prereqPuzzleStates = Dictionary[String, Array]({})
-prereqDiscoveredEvolutions = Array[String]([])
-prereqHavingFollowers = Array[String]([])
-prereqHasItems = Array[ExtResource("4_aq11w")]([])
 invalidAfterCompletingQuests = Array[String](["Angry Angler#Danger on the Leaven River"])
-invalidAfterFailingQuests = Array[String]([])
-invalidAfterCutscenes = Array[String]([])
-invalidAfterDialogues = Array[String]([])
-invalidAfterVistingPlaces = Array[String]([])
-invalidAfterSpecialBattles = Array[String]([])
-invalidAfterSolvingPuzzles = Array[String]([])
-invalidFromPuzzleStates = Dictionary[String, Array]({})
-invalidFromHavingFollowers = Array[String]([])
-invalidFromHavingItems = Array[ExtResource("4_aq11w")]([])
 
 [resource]
 script = ExtResource("3_0lihn")
-entryId = ""
 items = Array[ExtResource("1_pqb50")]([SubResource("Resource_y4wpo")])
 storyRequirements = SubResource("Resource_rqe62")
-ordStoryRequirements = Array[ExtResource("2_pj13b")]([])
-closesDialogue = false
-fullHealsPlayer = false
-annotation = ""

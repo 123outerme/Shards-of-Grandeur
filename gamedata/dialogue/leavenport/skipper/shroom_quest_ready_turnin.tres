@@ -12,40 +12,20 @@
 script = ExtResource("1_d1kjm")
 choiceBtn = "Wait..."
 leadsTo = ExtResource("1_xv6yt")
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("4_cu6w2")]([])
-repeatsItem = false
-buttonDims = Vector2(80, 40)
-turnsInQuest = ""
 isDeclineChoice = true
 
 [sub_resource type="Resource" id="Resource_3p7vg"]
 script = ExtResource("1_d1kjm")
 choiceBtn = "Turn In"
 leadsTo = ExtResource("3_7anqt")
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("4_cu6w2")]([])
-repeatsItem = false
-buttonDims = Vector2(80, 40)
 turnsInQuest = "Shroom Zone#Return the Treasure"
-isDeclineChoice = false
 
 [sub_resource type="Resource" id="Resource_3vesa"]
 script = ExtResource("1_0c4f0")
 lines = Array[String](["I can tell, you've seen the 'shroomy grove, and you found that stump! Let me see the bag, and I'll reward you handsomely!"])
-minShowSecs = Array[float]([])
 animation = "talk"
-speakerOverride = ""
-actorAnimation = ""
-animateActorTreePath = ""
-animateActorIsPlayer = false
 choices = Array[ExtResource("1_d1kjm")]([SubResource("Resource_pfrtj"), SubResource("Resource_3p7vg")])
 
 [resource]
 script = ExtResource("1_3b7qy")
-entryId = ""
 items = Array[ExtResource("1_0c4f0")]([SubResource("Resource_3vesa")])
-ordStoryRequirements = Array[ExtResource("6_1aigb")]([])
-closesDialogue = false
-fullHealsPlayer = false
-annotation = ""

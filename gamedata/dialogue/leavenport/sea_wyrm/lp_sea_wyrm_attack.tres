@@ -11,67 +11,24 @@
 [sub_resource type="Resource" id="Resource_ono5o"]
 script = ExtResource("2_7ijdd")
 choiceBtn = "Hey, Easy..."
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("3_rmbkw")]([])
-repeatsItem = false
-buttonDims = Vector2(80, 40)
-turnsInQuest = ""
 isDeclineChoice = true
 
 [sub_resource type="Resource" id="Resource_yh3o2"]
 script = ExtResource("3_8pf3a")
-minAct = 0
-maxAct = -1
 prereqQuests = Array[String](["Angry Angler#Lunch on the Water"])
-prereqCutscenes = Array[String]([])
-prereqDialogues = Array[String]([])
-prereqPlacesVisited = Array[String]([])
-prereqSpecialBattles = Array[String]([])
-prereqDefeatedEnemies = Array[String]([])
-prereqPuzzles = Array[String]([])
-prereqPuzzleStates = Dictionary[String, Array]({})
-prereqDiscoveredEvolutions = Array[String]([])
-prereqHavingFollowers = Array[String]([])
-prereqHasItems = Array[ExtResource("5_kqugv")]([])
-invalidAfterCompletingQuests = Array[String]([])
-invalidAfterFailingQuests = Array[String]([])
-invalidAfterCutscenes = Array[String]([])
-invalidAfterDialogues = Array[String]([])
-invalidAfterVistingPlaces = Array[String]([])
-invalidAfterSpecialBattles = Array[String]([])
-invalidAfterSolvingPuzzles = Array[String]([])
-invalidFromPuzzleStates = Dictionary[String, Array]({})
-invalidFromHavingFollowers = Array[String]([])
-invalidFromHavingItems = Array[ExtResource("5_kqugv")]([])
 
 [sub_resource type="Resource" id="Resource_n012u"]
 script = ExtResource("2_7ijdd")
 choiceBtn = "Scram!"
 storyRequirements = SubResource("Resource_yh3o2")
 leadsTo = ExtResource("4_neaal")
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("3_rmbkw")]([])
-repeatsItem = false
-buttonDims = Vector2(80, 40)
-turnsInQuest = ""
-isDeclineChoice = false
 
 [sub_resource type="Resource" id="Resource_0oh0p"]
 script = ExtResource("1_6a5ne")
 lines = Array[String](["Wreeeeaaghh!!"])
-minShowSecs = Array[float]([])
 animation = "battle_idle"
-speakerOverride = ""
-actorAnimation = ""
-animateActorTreePath = ""
-animateActorIsPlayer = false
 choices = Array[ExtResource("2_7ijdd")]([SubResource("Resource_ono5o"), SubResource("Resource_n012u")])
 
 [resource]
 script = ExtResource("4_sa3g2")
-entryId = ""
 items = Array[ExtResource("1_6a5ne")]([SubResource("Resource_0oh0p")])
-ordStoryRequirements = Array[ExtResource("3_8pf3a")]([])
-closesDialogue = false
-fullHealsPlayer = false
-annotation = ""

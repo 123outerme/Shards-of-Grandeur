@@ -17,157 +17,57 @@
 [sub_resource type="Resource" id="Resource_h0ugr"]
 script = ExtResource("1_ekdxh")
 value = Vector2(754, -215)
-actorTreePath = ""
 isPlayer = true
 propertyName = "position"
-easeType = 2
-transitionType = 0
 
 [sub_resource type="Resource" id="Resource_0d4ji"]
 script = ExtResource("1_f8oo5")
-frameLength = 1.0
 annotation = "Move the player right next to Etreus. All combatants need to keep doing their battle idles"
 actorTweens = Array[ExtResource("5_khcm4")]([SubResource("Resource_h0ugr")])
 actorAnims = Array[ExtResource("4_i0ge6")]([ExtResource("4_3aln1")])
-actorAnimSets = Array[ExtResource("2_1ndas")]([])
-actorFaceTargets = Array[ExtResource("4_hfu1x")]([])
-dialogues = Array[ExtResource("3_rxqf0")]([])
-playSfxs = Array[AudioStream]([])
-snapshotActorPaths = Array[String]([])
-restoreSnapshotActorPaths = Array[String]([])
-endTextBoxPauses = true
-shakeCamForDuration = false
-endHoldCamera = false
-endFade = 0
-endFadeLength = 0.0
-healsPlayer = false
-addsFollowerId = ""
-removesFollowerId = ""
-endStartsShardLearnTutorial = false
 
 [sub_resource type="Resource" id="Resource_vmdkt"]
 script = ExtResource("4_i0ge6")
 actorTreePath = "TilemapRoot/Etreus"
-isPlayer = false
 animation = "talk"
 
 [sub_resource type="Resource" id="Resource_yh78m"]
 script = ExtResource("3_rxqf0")
 speaker = "Etreus"
 texts = Array[String](["Try all you like, @. Fate has already determined that the Cave belongs to Steelspire!"])
-textboxSfxs = Array[AudioStream]([])
 speakerActorScenePath = "TilemapRoot/Etreus"
-speakerActorIsPlayer = false
-speakerAnim = "talk"
-speakerAnimScale = 3
 animSpeakerOffset = Vector2(0, -4)
 
 [sub_resource type="Resource" id="Resource_30y1o"]
 script = ExtResource("1_f8oo5")
 frameLength = 0.1
 annotation = "Have Etreus taunt the player on rebattle"
-actorTweens = Array[ExtResource("5_khcm4")]([])
 actorAnims = Array[ExtResource("4_i0ge6")]([SubResource("Resource_vmdkt"), ExtResource("9_qn3tt")])
-actorAnimSets = Array[ExtResource("2_1ndas")]([])
-actorFaceTargets = Array[ExtResource("4_hfu1x")]([])
 dialogues = Array[ExtResource("3_rxqf0")]([SubResource("Resource_yh78m")])
-playSfxs = Array[AudioStream]([])
-snapshotActorPaths = Array[String]([])
-restoreSnapshotActorPaths = Array[String]([])
-endTextBoxPauses = true
-shakeCamForDuration = false
-endHoldCamera = false
-endFade = 0
-endFadeLength = 0.0
-healsPlayer = false
-addsFollowerId = ""
-removesFollowerId = ""
-endStartsShardLearnTutorial = false
 
 [sub_resource type="Resource" id="Resource_pyhcd"]
 script = ExtResource("1_f8oo5")
 frameLength = 0.1
 annotation = "Wait for the player to close the text box"
-actorTweens = Array[ExtResource("5_khcm4")]([])
-actorAnims = Array[ExtResource("4_i0ge6")]([])
-actorAnimSets = Array[ExtResource("2_1ndas")]([])
-actorFaceTargets = Array[ExtResource("4_hfu1x")]([])
-dialogues = Array[ExtResource("3_rxqf0")]([])
-playSfxs = Array[AudioStream]([])
-snapshotActorPaths = Array[String]([])
-restoreSnapshotActorPaths = Array[String]([])
-endTextBoxPauses = true
-shakeCamForDuration = false
-endHoldCamera = false
-endFade = 0
-endFadeLength = 0.0
-healsPlayer = false
-addsFollowerId = ""
-removesFollowerId = ""
-endStartsShardLearnTutorial = false
 
 [sub_resource type="Resource" id="Resource_7x8na"]
 script = ExtResource("4_i0ge6")
 actorTreePath = "TilemapRoot/Etreus"
-isPlayer = false
 animation = "stand"
 
 [sub_resource type="Resource" id="Resource_i5tv4"]
 script = ExtResource("1_f8oo5")
 frameLength = 0.1
 annotation = "Make etreus stand before rebattle starts"
-actorTweens = Array[ExtResource("5_khcm4")]([])
 actorAnims = Array[ExtResource("4_i0ge6")]([SubResource("Resource_7x8na")])
-actorAnimSets = Array[ExtResource("2_1ndas")]([])
-actorFaceTargets = Array[ExtResource("4_hfu1x")]([])
-dialogues = Array[ExtResource("3_rxqf0")]([])
-playSfxs = Array[AudioStream]([])
-snapshotActorPaths = Array[String]([])
-restoreSnapshotActorPaths = Array[String]([])
-endTextBoxPauses = true
-shakeCamForDuration = false
-endHoldCamera = false
-endFade = 0
-endFadeLength = 0.0
-healsPlayer = false
-addsFollowerId = ""
-removesFollowerId = ""
-endStartsShardLearnTutorial = false
 
 [sub_resource type="Resource" id="Resource_vqygd"]
 script = ExtResource("2_x2epl")
-minAct = 0
 maxAct = 5
-prereqQuests = Array[String]([])
-prereqCutscenes = Array[String]([])
-prereqDialogues = Array[String]([])
-prereqPlacesVisited = Array[String]([])
-prereqSpecialBattles = Array[String]([])
-prereqDefeatedEnemies = Array[String]([])
-prereqPuzzles = Array[String]([])
-prereqPuzzleStates = Dictionary[String, Array]({})
-prereqDiscoveredEvolutions = Array[String]([])
-prereqHavingFollowers = Array[String]([])
-prereqHasItems = Array[ExtResource("12_lh8d3")]([])
-invalidAfterCompletingQuests = Array[String]([])
-invalidAfterFailingQuests = Array[String]([])
-invalidAfterCutscenes = Array[String]([])
-invalidAfterDialogues = Array[String]([])
-invalidAfterVistingPlaces = Array[String]([])
 invalidAfterSpecialBattles = Array[String](["etreus_fight1"])
-invalidAfterSolvingPuzzles = Array[String]([])
-invalidFromPuzzleStates = Dictionary[String, Array]({})
-invalidFromHavingFollowers = Array[String]([])
-invalidFromHavingItems = Array[ExtResource("12_lh8d3")]([])
 
 [resource]
 script = ExtResource("1_f0ln1")
 cutsceneFrames = Array[ExtResource("1_f8oo5")]([SubResource("Resource_0d4ji"), SubResource("Resource_30y1o"), SubResource("Resource_pyhcd"), SubResource("Resource_i5tv4")])
-saveName = ""
 storyRequirements = SubResource("Resource_vqygd")
-unlockCameraHoldAfter = true
-activateActorsBefore = Array[String]([])
-deactivateActorsAfter = Array[String]([])
 staticEncounter = ExtResource("6_i4bem")
-tempDisabledAfter = false
-notes = ""

@@ -12,23 +12,14 @@ script = ExtResource("2_1rmv4")
 name = "Bag of Shrooms"
 description = "So, just set this bag down on a stump in the forest, and it will \"fill itself\"? Is that some kind of riddle?"
 locations = Array[int]([22])
-turnInLocations = Array[int]([])
 type = 5
-count = 1
 objectiveName = "fill_shroom_bag"
-turnInNames = Array[String]([])
-displayObjName = ""
-displayTurnInName = ""
 customStatusStr = "Place the Bag!"
-turnInDialogue = Array[ExtResource("3_wfowm")]([])
-inProgressDialogue = Array[ExtResource("3_wfowm")]([])
 
 [sub_resource type="Resource" id="Resource_bp31e"]
 script = ExtResource("3_hy7pm")
 experience = 150
 gold = 40
-itemCount = 1
-fullyAttuneCombatantSaveName = ""
 
 [sub_resource type="Resource" id="Resource_yxvju"]
 script = ExtResource("2_1rmv4")
@@ -38,12 +29,10 @@ reward = SubResource("Resource_bp31e")
 locations = Array[int]([30])
 turnInLocations = Array[int]([30])
 type = 1
-count = 1
 objectiveName = "Full Shroom Bag"
 turnInNames = Array[String](["leavenport_skipper", "lp_dock_skipper"])
 displayObjName = "Full Shroom Bag"
 displayTurnInName = "Skipper"
-customStatusStr = ""
 turnInDialogue = Array[ExtResource("3_wfowm")]([ExtResource("4_r010r")])
 inProgressDialogue = Array[ExtResource("3_wfowm")]([ExtResource("2_vj58d")])
 
@@ -52,5 +41,3 @@ script = ExtResource("1_sp8e4")
 questName = "Shroom Zone"
 description = "A weathered sea captain, a mysterious mushroom-y grove... what could it all be?"
 steps = Array[ExtResource("2_1rmv4")]([SubResource("Resource_bi47m"), SubResource("Resource_yxvju")])
-isMainQuest = false
-advanceActAfterComplete = false
