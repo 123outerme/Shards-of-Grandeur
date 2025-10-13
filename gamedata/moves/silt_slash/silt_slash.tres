@@ -9,95 +9,41 @@
 
 [sub_resource type="Resource" id="Resource_ykgjk"]
 script = ExtResource("3_m028m")
-physAttackIncrease = 0
-magicAttackIncrease = 0
-affinityIncrease = 0
-resistanceIncrease = 0
-speedIncrease = 0
-physAttackMultiplier = 1.0
-magicAttackMultiplier = 1.0
-affinityMultiplier = 1.0
 resistanceMultiplier = 0.95
-speedMultiplier = 1.0
-elementMultipliers = Array[ExtResource("2_4xk2d")]([])
-keywordMultipliers = Dictionary[String, float]({})
 metadata/_custom_type_script = "uid://dvivnpdo5ga72"
 
 [sub_resource type="Resource" id="Resource_c2aio"]
 script = ExtResource("1_1ntts")
 role = 1
-keywords = Array[String]([])
 orbChange = 1
 power = 40
-lifesteal = 0.0
-selfHpSacrifice = 0.0
-priority = 0
 targets = 5
 targetStatChanges = SubResource("Resource_ykgjk")
-selfGetsStatus = false
-statusChance = 0.0
-statusRequiredForTargetStatChanges = false
 metadata/_custom_type_script = "uid://drwve0pkx3g5o"
 
 [sub_resource type="Resource" id="Resource_4r56b"]
 script = ExtResource("3_m028m")
-physAttackIncrease = 0
-magicAttackIncrease = 0
-affinityIncrease = 0
-resistanceIncrease = 0
-speedIncrease = 0
-physAttackMultiplier = 1.0
-magicAttackMultiplier = 1.0
-affinityMultiplier = 1.0
 resistanceMultiplier = 0.98
-speedMultiplier = 1.0
-elementMultipliers = Array[ExtResource("2_4xk2d")]([])
-keywordMultipliers = Dictionary[String, float]({})
 metadata/_custom_type_script = "uid://dvivnpdo5ga72"
 
 [sub_resource type="Resource" id="Resource_tatrh"]
 script = ExtResource("5_m028m")
 powerPerOrb = 5
-lifestealPerOrb = 0.0
-selfHpSacrificePerOrb = 0.0
 targetStatChangesPerOrb = SubResource("Resource_4r56b")
-weakThresholdOrbs = 0
-strongThresholdOrbs = 0
-overwhelmingThresholdOrbs = 0
-additionalStatusTurnsPerOrb = 0.0
-additionalStatusChancePerOrb = 0.0
 metadata/_custom_type_script = "uid://cvjnh0a2q6sat"
 
 [sub_resource type="Resource" id="Resource_m028m"]
 script = ExtResource("3_m028m")
-physAttackIncrease = 0
-magicAttackIncrease = 0
-affinityIncrease = 0
-resistanceIncrease = 0
-speedIncrease = 0
-physAttackMultiplier = 1.0
-magicAttackMultiplier = 1.0
-affinityMultiplier = 1.0
 resistanceMultiplier = 0.92
-speedMultiplier = 1.0
-elementMultipliers = Array[ExtResource("2_4xk2d")]([])
-keywordMultipliers = Dictionary[String, float]({})
 metadata/_custom_type_script = "uid://dvivnpdo5ga72"
 
 [sub_resource type="Resource" id="Resource_4xk2d"]
 script = ExtResource("1_1ntts")
 role = 1
-keywords = Array[String]([])
 orbChange = -2
 power = 55
-lifesteal = 0.0
-selfHpSacrifice = 0.0
-priority = 0
 targets = 5
 targetStatChanges = SubResource("Resource_m028m")
-selfGetsStatus = false
-statusChance = 0.0
-statusRequiredForTargetStatChanges = false
 surgeChanges = SubResource("Resource_tatrh")
 metadata/_custom_type_script = "uid://drwve0pkx3g5o"
 
@@ -105,7 +51,6 @@ metadata/_custom_type_script = "uid://drwve0pkx3g5o"
 script = ExtResource("1_0afo5")
 moveName = "Silt Slash"
 requiredLv = 19
-category = 0
 element = 5
 chargeEffect = SubResource("Resource_c2aio")
 surgeEffect = SubResource("Resource_4xk2d")

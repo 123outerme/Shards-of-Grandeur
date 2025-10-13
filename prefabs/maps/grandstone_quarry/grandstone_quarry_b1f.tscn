@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://61lm3u3kbiwd"]
+[gd_scene load_steps=27 format=4 uid="uid://61lm3u3kbiwd"]
 
 [ext_resource type="Script" uid="uid://vg00rfnn3346" path="res://scripts/overworld/map_script.gd" id="1_cc5ra"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_cu5tj"]
@@ -10,6 +10,13 @@
 [ext_resource type="PackedScene" uid="uid://b1u1r7encrpgs" path="res://prefabs/overworld/camera_hold_zone.tscn" id="4_mbn4h"]
 [ext_resource type="SpriteFrames" uid="uid://dirmctruik1lh" path="res://graphics/animations/a_spelunker2.tres" id="5_6unhu"]
 [ext_resource type="PackedScene" uid="uid://cm5yegguv62vn" path="res://prefabs/overworld/enemy_deaggro_zone.tscn" id="7_hr8gb"]
+[ext_resource type="Script" uid="uid://dioty4gjx3hdu" path="res://scripts/overworld/overworld_enemy/spawner_data.gd" id="7_ssa1k"]
+[ext_resource type="Resource" uid="uid://cra0rgrw4ujhn" path="res://gamedata/combatants/mesa_golem/mesa_golem.tres" id="8_klsd6"]
+[ext_resource type="Script" uid="uid://dga8cpwmm0j6h" path="res://scripts/battle/weighted_things/weighted_combatants.gd" id="8_ofo47"]
+[ext_resource type="Script" uid="uid://bvnw0ab8d80ti" path="res://scripts/overworld/overworld_enemy/random_encounter_level_stage.gd" id="9_4rcjl"]
+[ext_resource type="Resource" uid="uid://cw71a6bensfkc" path="res://gamedata/items/accessory/mage_light.tres" id="9_fumoj"]
+[ext_resource type="Resource" uid="uid://bcxhstec14bpg" path="res://gamedata/combatants/mesa_golem/evolutions/miner_golem/miner_golem_equipment.tres" id="10_fumoj"]
+[ext_resource type="Script" uid="uid://dllqv5vxrou7r" path="res://scripts/overworld/overworld_enemy/random_encounter.gd" id="10_klsd6"]
 
 [sub_resource type="Resource" id="Resource_6unhu"]
 script = ExtResource("4_6unhu")
@@ -33,6 +40,18 @@ parsed_collision_mask = 1
 source_geometry_mode = 1
 source_geometry_group_name = &"NavigationGroup"
 agent_radius = 23.0
+
+[sub_resource type="Resource" id="Resource_sefbu"]
+script = ExtResource("7_ssa1k")
+spawnerId = "gs_quarry_b1f_1"
+metadata/_custom_type_script = "uid://dioty4gjx3hdu"
+
+[sub_resource type="Resource" id="Resource_fumoj"]
+script = ExtResource("10_klsd6")
+combatant1Equipment = ExtResource("10_fumoj")
+combatant1 = ExtResource("8_klsd6")
+combatant1Accessory = ExtResource("9_fumoj")
+metadata/_custom_type_script = "uid://dllqv5vxrou7r"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eigwi"]
 size = Vector2(130, 20)
@@ -119,6 +138,8 @@ navigation_layers = 4
 
 [node name="EnemySpawner" parent="." node_paths=PackedStringArray("tilemap") instance=ExtResource("3_eigwi")]
 position = Vector2(-130, 83)
+spawnerData = SubResource("Resource_sefbu")
+enemyEncounter = SubResource("Resource_fumoj")
 tilemap = NodePath("../TilemapRoot")
 
 [node name="EnemySpawner2" parent="." node_paths=PackedStringArray("tilemap") instance=ExtResource("3_eigwi")]

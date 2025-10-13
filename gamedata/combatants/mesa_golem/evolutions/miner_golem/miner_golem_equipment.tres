@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="CombatantEquipment" load_steps=9 format=3 uid="uid://bcxhstec14bpg"]
+
+[ext_resource type="Script" uid="uid://cynr2ijojwq5x" path="res://scripts/battle/combatant/combatant_equipment.gd" id="1_3npir"]
+[ext_resource type="Script" uid="uid://c0l5rf7mo6o3m" path="res://scripts/battle/weighted_things/weighted_equipment.gd" id="2_1huf2"]
+[ext_resource type="Resource" uid="uid://cw71a6bensfkc" path="res://gamedata/items/accessory/mage_light.tres" id="3_j4d73"]
+[ext_resource type="Resource" uid="uid://cupa36xfl2ydk" path="res://gamedata/items/weapon/strong_shovel.tres" id="4_lmdaq"]
+[ext_resource type="Resource" uid="uid://dtkqs2hnsyopd" path="res://gamedata/items/armor/mountaineer_boots.tres" id="5_4rdcm"]
+
+[sub_resource type="Resource" id="Resource_b50jq"]
+script = ExtResource("2_1huf2")
+accessory = ExtResource("3_j4d73")
+weight = 0.5
+metadata/_custom_type_script = "uid://c0l5rf7mo6o3m"
+
+[sub_resource type="Resource" id="Resource_jnt6r"]
+script = ExtResource("2_1huf2")
+weapon = ExtResource("4_lmdaq")
+accessory = ExtResource("3_j4d73")
+weight = 0.3
+metadata/_custom_type_script = "uid://c0l5rf7mo6o3m"
+
+[sub_resource type="Resource" id="Resource_38ycy"]
+script = ExtResource("2_1huf2")
+weapon = ExtResource("4_lmdaq")
+armor = ExtResource("5_4rdcm")
+accessory = ExtResource("3_j4d73")
+weight = 0.2
+metadata/_custom_type_script = "uid://c0l5rf7mo6o3m"
+
+[resource]
+script = ExtResource("1_3npir")
+weightedEquipment = Array[ExtResource("2_1huf2")]([SubResource("Resource_b50jq"), SubResource("Resource_jnt6r"), SubResource("Resource_38ycy")])
+metadata/_custom_type_script = "uid://cynr2ijojwq5x"
