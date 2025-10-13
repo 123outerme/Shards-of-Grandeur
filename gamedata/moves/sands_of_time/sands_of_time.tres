@@ -10,7 +10,6 @@
 script = ExtResource("2_rryiu")
 type = 10
 potency = 1
-overwritesOtherStatuses = false
 turnsLeft = 3
 
 [sub_resource type="Resource" id="Resource_mdsng"]
@@ -18,30 +17,18 @@ script = ExtResource("1_vbik0")
 role = 4
 keywords = Array[String](["Sand"])
 orbChange = 2
-power = 0
-lifesteal = 0.0
-selfHpSacrifice = 0.0
-priority = 0
 targets = 6
 statusEffect = SubResource("Resource_nmnms")
-selfGetsStatus = false
 statusChance = 0.6
-statusRequiredForTargetStatChanges = false
 
 [sub_resource type="Resource" id="Resource_vw80d"]
 script = ExtResource("2_rryiu")
 type = 10
 potency = 2
-overwritesOtherStatuses = false
 turnsLeft = 3
 
 [sub_resource type="Resource" id="Resource_x74r6"]
 script = ExtResource("4_8djgf")
-powerPerOrb = 0
-lifestealPerOrb = 0.0
-selfHpSacrificePerOrb = 0.0
-weakThresholdOrbs = 0
-strongThresholdOrbs = 0
 overwhelmingThresholdOrbs = 6
 additionalStatusTurnsPerOrb = 0.5
 additionalStatusChancePerOrb = 0.05
@@ -51,15 +38,9 @@ script = ExtResource("1_vbik0")
 role = 4
 keywords = Array[String](["Sand"])
 orbChange = -4
-power = 0
-lifesteal = 0.0
-selfHpSacrifice = 0.0
-priority = 0
 targets = 6
 statusEffect = SubResource("Resource_vw80d")
-selfGetsStatus = false
 statusChance = 0.75
-statusRequiredForTargetStatChanges = false
 surgeChanges = SubResource("Resource_x74r6")
 
 [resource]

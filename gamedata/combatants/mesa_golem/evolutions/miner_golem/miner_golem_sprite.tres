@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="CombatantSprite" load_steps=4 format=3 uid="uid://b0op05tfxkdnx"]
+
+[ext_resource type="Resource" uid="uid://bum00w3rebcof" path="res://gamedata/combatants/mesa_golem/evolutions/miner_golem/miner_golem_overworld.tres" id="1_4boiu"]
+[ext_resource type="Script" uid="uid://70gbsrstamsf" path="res://scripts/battle/combatant/combatant_sprite.gd" id="1_xbi5j"]
+[ext_resource type="SpriteFrames" uid="uid://gpysjnbafc80" path="res://graphics/animations/a_miner_golem.tres" id="2_4iavi"]
+
+[resource]
+script = ExtResource("1_xbi5j")
+spriteFrames = ExtResource("2_4iavi")
+combatantOverworld = ExtResource("1_4boiu")
+maxSize = Vector2(24, 24)
+idleSize = Vector2(16, 19)
+centerPosition = Vector2(12, 15)
+idleCanvasCenterPosition = Vector2(15, 15)
+feetPosition = Vector2(12, 23)
+headPosition = Vector2(12, 11)
+attackAffinityArrivalFrame = 2
+attackMagicArrivalFrame = 4
+attackPhysArrivalFrame = 4
+attackAffinityImpactFrame = 2
+attackMagicImpactFrame = 6
+attackPhysImpactFrame = 5
+metadata/_custom_type_script = "uid://70gbsrstamsf"

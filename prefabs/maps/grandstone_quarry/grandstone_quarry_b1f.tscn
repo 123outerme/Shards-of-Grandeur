@@ -11,9 +11,10 @@
 [ext_resource type="SpriteFrames" uid="uid://dirmctruik1lh" path="res://graphics/animations/a_spelunker2.tres" id="5_6unhu"]
 [ext_resource type="PackedScene" uid="uid://cm5yegguv62vn" path="res://prefabs/overworld/enemy_deaggro_zone.tscn" id="7_hr8gb"]
 
-[sub_resource type="Resource" id="Resource_ssa1k"]
+[sub_resource type="Resource" id="Resource_6unhu"]
 script = ExtResource("4_6unhu")
 saveName = "npc"
+position = Vector2(322, -102)
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_hwgpv"]
 parsed_collision_mask = 1
@@ -90,7 +91,7 @@ tile_set = ExtResource("2_cu5tj")
 position = Vector2(322, -102)
 displayName = "Spelunker"
 saveName = "gs_quarry_b1f_spelunker"
-data = SubResource("Resource_ssa1k")
+data = SubResource("Resource_6unhu")
 
 [node name="NPCSprite" parent="TilemapRoot/Spelunker" index="0"]
 sprite_frames = ExtResource("5_6unhu")

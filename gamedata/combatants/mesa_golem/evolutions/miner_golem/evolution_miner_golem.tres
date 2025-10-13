@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bajcategxhmyx" path="res://scripts/battle/combatant/evolution.gd" id="1_8mtdv"]
 [ext_resource type="Resource" uid="uid://ckmm6urcl7n3t" path="res://gamedata/combatants/mesa_golem/evolutions/miner_golem/miner_golem_ai.tres" id="1_j66yc"]
-[ext_resource type="Resource" uid="uid://dxsdq0nmvpyri" path="res://gamedata/combatants/missingno_sprite.tres" id="1_lj1ev"]
+[ext_resource type="Resource" uid="uid://b0op05tfxkdnx" path="res://gamedata/combatants/mesa_golem/evolutions/miner_golem/miner_golem_sprite.tres" id="2_j66yc"]
 [ext_resource type="Resource" uid="uid://cw71a6bensfkc" path="res://gamedata/items/accessory/mage_light.tres" id="2_m82i1"]
 [ext_resource type="Resource" uid="uid://bnvirucpq0u8d" path="res://gamedata/combatants/mesa_golem/evolutions/miner_golem/miner_golem_rewards.tres" id="3_w33o7"]
 [ext_resource type="Resource" uid="uid://gg6q4kuoqeeh" path="res://gamedata/combatants/mesa_golem/evolutions/miner_golem/miner_golem_effectiveness.tres" id="4_2j7dp"]
@@ -16,31 +16,18 @@
 script = ExtResource("5_eto5j")
 displayName = "Miner Golem"
 saveName = "mesa_golem"
-level = 1
-experience = 0
-maxHp = 50
-physAttack = 1
-magicAttack = 1
-resistance = 1
-affinity = 1
-speed = 1
-statPts = 0
 statGrowth = ExtResource("11_4vsow")
-moves = Array[ExtResource("4_jab5g")]([])
 movepool = ExtResource("8_k8id3")
 metadata/_custom_type_script = "uid://c8dxuthm1qd7s"
 
 [resource]
 script = ExtResource("1_8mtdv")
 evolutionSaveName = "miner_golem"
-combatantSprite = ExtResource("1_lj1ev")
+combatantSprite = ExtResource("2_j66yc")
 requiredAccessory = ExtResource("2_m82i1")
 stats = SubResource("Resource_ps74f")
 statAllocationStrategy = ExtResource("7_60bim")
 moveEffectiveness = ExtResource("4_2j7dp")
 ai = ExtResource("1_j66yc")
-aiType = 0
-aggroType = 0
-strategy = 0
 dropTable = ExtResource("3_w33o7")
 metadata/_custom_type_script = "uid://bajcategxhmyx"

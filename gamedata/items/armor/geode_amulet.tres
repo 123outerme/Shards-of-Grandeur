@@ -12,24 +12,13 @@ multiplier = 1.1
 
 [sub_resource type="Resource" id="Resource_ygibr"]
 script = ExtResource("4_kf1ao")
-physAttackIncrease = 0
-magicAttackIncrease = 0
-affinityIncrease = 0
 resistanceIncrease = 2
-speedIncrease = 0
-physAttackMultiplier = 1.0
-magicAttackMultiplier = 1.0
-affinityMultiplier = 1.0
-resistanceMultiplier = 1.0
-speedMultiplier = 1.0
 elementMultipliers = Array[ExtResource("3_juxip")]([SubResource("Resource_jope6")])
-keywordMultipliers = Dictionary[String, float]({})
 
 [resource]
 script = ExtResource("2_b82sv")
 statChanges = SubResource("Resource_ygibr")
 timing = 0
-bonusOrbs = 0
 itemSprite = ExtResource("1_qcwod")
 itemName = "Geode Amulet"
 itemType = 3
@@ -41,4 +30,3 @@ battleUsable = false
 consumable = false
 equippable = true
 trashable = false
-battleTargets = 1
