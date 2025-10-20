@@ -1,0 +1,25 @@
+[gd_resource type="SpriteFrames" load_steps=4 format=3 uid="uid://ci723skjkfhsh"]
+
+[ext_resource type="Texture2D" uid="uid://che2t57luhg5f" path="res://graphics/terrain/shard_interior.png" id="1_w4dlq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ha70s"]
+atlas = ExtResource("1_w4dlq")
+region = Rect2(80, 80, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kvs5s"]
+atlas = ExtResource("1_w4dlq")
+region = Rect2(96, 80, 16, 16)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ha70s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kvs5s")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]

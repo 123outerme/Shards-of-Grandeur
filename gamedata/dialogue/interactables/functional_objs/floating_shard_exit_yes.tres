@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=7 format=3 uid="uid://b3o5tf73b5aes"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_nmwmi"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_3b3df"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_hj7pt"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_3b3df"]
+[ext_resource type="Resource" uid="uid://bxo2787cmjcd6" path="res://gamedata/cutscenes/shard_dimension/leave_shard_dimension.tres" id="5_3b3df"]
+
+[sub_resource type="Resource" id="Resource_b4xbw"]
+script = ExtResource("1_nmwmi")
+lines = Array[String](["Farewell..."])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[resource]
+script = ExtResource("3_3b3df")
+items = Array[ExtResource("1_nmwmi")]([SubResource("Resource_b4xbw")])
+startsCutscene = ExtResource("5_3b3df")
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"

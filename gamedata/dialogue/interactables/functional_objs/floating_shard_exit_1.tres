@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=10 format=3 uid="uid://d2h76m1wqs53q"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_5qukk"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_jm5ei"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="3_gr7ni"]
+[ext_resource type="Script" uid="uid://b6oofnelefs8o" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_jm5ei"]
+[ext_resource type="Resource" uid="uid://b3o5tf73b5aes" path="res://gamedata/dialogue/interactables/functional_objs/floating_shard_exit_yes.tres" id="4_gr7ni"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="4_ivhp3"]
+
+[sub_resource type="Resource" id="Resource_gr7ni"]
+script = ExtResource("2_jm5ei")
+choiceBtn = "No."
+isDeclineChoice = true
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_jm5ei"]
+script = ExtResource("2_jm5ei")
+choiceBtn = "Yes, I'm Leaving."
+leadsTo = ExtResource("4_gr7ni")
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_e1qte"]
+script = ExtResource("1_5qukk")
+lines = Array[String](["@... do you wish to leave this place and return to your world?"])
+choices = Array[ExtResource("2_jm5ei")]([SubResource("Resource_gr7ni"), SubResource("Resource_jm5ei")])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[resource]
+script = ExtResource("4_ivhp3")
+items = Array[ExtResource("1_5qukk")]([SubResource("Resource_e1qte")])
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"
