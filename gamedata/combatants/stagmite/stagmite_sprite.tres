@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="CombatantSprite" load_steps=4 format=3 uid="uid://c73m6jdplnued"]
+
+[ext_resource type="Resource" uid="uid://bokp2aymsu51v" path="res://gamedata/combatants/stagmite/stagmite_overworld.tres" id="1_ngo5f"]
+[ext_resource type="Script" uid="uid://70gbsrstamsf" path="res://scripts/battle/combatant/combatant_sprite.gd" id="1_pn4rl"]
+[ext_resource type="SpriteFrames" uid="uid://b3pwopmqslcmj" path="res://graphics/animations/a_stagmite.tres" id="2_aeos4"]
+
+[resource]
+script = ExtResource("1_pn4rl")
+spriteFrames = ExtResource("2_aeos4")
+combatantOverworld = ExtResource("1_ngo5f")
+maxSize = Vector2(48, 32)
+idleSize = Vector2(35, 31)
+centerPosition = Vector2(24, 19)
+idleCanvasCenterPosition = Vector2(24, 19)
+feetPosition = Vector2(24, 31)
+headPosition = Vector2(12, 12)
+navigationLayer = 2
+metadata/_custom_type_script = "uid://70gbsrstamsf"

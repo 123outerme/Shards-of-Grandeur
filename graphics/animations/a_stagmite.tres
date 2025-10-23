@@ -1,0 +1,83 @@
+[gd_resource type="SpriteFrames" load_steps=8 format=3 uid="uid://b3pwopmqslcmj"]
+
+[ext_resource type="Texture2D" uid="uid://cc2q87nkcy016" path="res://graphics/characters/stagmite/stagmite_stand.png" id="1_ddnog"]
+[ext_resource type="Texture2D" uid="uid://cdnfj4mdnmgtu" path="res://graphics/characters/stagmite/stagmite_walk.png" id="2_uh1tt"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uh1tt"]
+atlas = ExtResource("1_ddnog")
+region = Rect2(0, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_idbjn"]
+atlas = ExtResource("2_uh1tt")
+region = Rect2(0, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0wioq"]
+atlas = ExtResource("2_uh1tt")
+region = Rect2(48, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ahyx2"]
+atlas = ExtResource("2_uh1tt")
+region = Rect2(96, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0k6fm"]
+atlas = ExtResource("2_uh1tt")
+region = Rect2(144, 0, 48, 32)
+
+[resource]
+animations = [{
+"frames": [],
+"loop": false,
+"name": &"attack_affinity",
+"speed": 6.0
+}, {
+"frames": [],
+"loop": false,
+"name": &"attack_magic",
+"speed": 6.0
+}, {
+"frames": [],
+"loop": false,
+"name": &"attack_phys",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uh1tt")
+}],
+"loop": true,
+"name": &"battle_idle",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": null
+}],
+"loop": true,
+"name": &"hide",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uh1tt")
+}],
+"loop": true,
+"name": &"stand",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_idbjn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0wioq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ahyx2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0k6fm")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 6.0
+}]

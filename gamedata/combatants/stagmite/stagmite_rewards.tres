@@ -1,0 +1,36 @@
+[gd_resource type="Resource" script_class="CombatantRewards" load_steps=9 format=3 uid="uid://ch6jqmoiwyulq"]
+
+[ext_resource type="Script" uid="uid://o0eqgjrxwybg" path="res://scripts/battle/combatant/combatant_rewards.gd" id="1_271pr"]
+[ext_resource type="Script" uid="uid://xmdasx5snbya" path="res://scripts/battle/weighted_things/weighted_reward.gd" id="2_xxi1f"]
+[ext_resource type="Resource" uid="uid://j0jxo1ntme4b" path="res://gamedata/items/shard/stagmite_shard.tres" id="3_k5o7a"]
+[ext_resource type="Script" uid="uid://flaq3s0m3pf2" path="res://scripts/reward/reward.gd" id="3_xxi1f"]
+
+[sub_resource type="Resource" id="Resource_k5o7a"]
+script = ExtResource("3_xxi1f")
+experience = 46
+gold = 12
+item = ExtResource("3_k5o7a")
+metadata/_custom_type_script = "uid://flaq3s0m3pf2"
+
+[sub_resource type="Resource" id="Resource_fhj3a"]
+script = ExtResource("2_xxi1f")
+reward = SubResource("Resource_k5o7a")
+weight = 0.85
+metadata/_custom_type_script = "uid://xmdasx5snbya"
+
+[sub_resource type="Resource" id="Resource_115qj"]
+script = ExtResource("3_xxi1f")
+experience = 46
+gold = 12
+metadata/_custom_type_script = "uid://flaq3s0m3pf2"
+
+[sub_resource type="Resource" id="Resource_dy6aq"]
+script = ExtResource("2_xxi1f")
+reward = SubResource("Resource_115qj")
+weight = 0.15
+metadata/_custom_type_script = "uid://xmdasx5snbya"
+
+[resource]
+script = ExtResource("1_271pr")
+weightedRewards = Array[ExtResource("2_xxi1f")]([SubResource("Resource_fhj3a"), SubResource("Resource_dy6aq")])
+metadata/_custom_type_script = "uid://o0eqgjrxwybg"

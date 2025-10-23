@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="MovePool" load_steps=5 format=3 uid="uid://q3rqgjbdysjj"]
+
+[ext_resource type="Script" uid="uid://dx4lnh4driy7a" path="res://scripts/battle/combatant/move.gd" id="1_g2f1e"]
+[ext_resource type="Script" uid="uid://cwh7p05135w7q" path="res://scripts/battle/combatant/movepool.gd" id="2_8m5u4"]
+[ext_resource type="Resource" uid="uid://crei2j1v6q4jn" path="res://gamedata/moves/slice/slice.tres" id="2_c4a8e"]
+[ext_resource type="Resource" uid="uid://ccaebtgjogv35" path="res://gamedata/moves/silt_slash/silt_slash.tres" id="3_0dyg0"]
+
+[resource]
+script = ExtResource("2_8m5u4")
+pool = Array[ExtResource("1_g2f1e")]([ExtResource("2_c4a8e"), ExtResource("3_0dyg0")])
+preferredMove1Role = 2
+preferredMove1DmgType = 0
+preferredMove1Element = 5
+preferredMove2Role = 1
+preferredMove2DmgType = 0
+preferredMove2Element = 5
+metadata/_custom_type_script = "uid://cwh7p05135w7q"
