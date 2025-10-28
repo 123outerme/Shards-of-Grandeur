@@ -13,33 +13,16 @@ multiplier = 1.1
 
 [sub_resource type="Resource" id="Resource_i1a4g"]
 script = ExtResource("4_nts1a")
-physAttackIncrease = 0
-magicAttackIncrease = 0
-affinityIncrease = 0
-resistanceIncrease = 0
-speedIncrease = 0
-physAttackMultiplier = 1.0
-magicAttackMultiplier = 1.0
-affinityMultiplier = 1.0
 resistanceMultiplier = 1.2
 speedMultiplier = 0.75
 elementMultipliers = Array[ExtResource("3_o1ptt")]([SubResource("Resource_jgo02")])
-keywordMultipliers = Dictionary[String, float]({})
 
 [sub_resource type="Resource" id="Resource_jtlm6"]
 script = ExtResource("1_reocm")
 role = 3
-keywords = Array[String]([])
 orbChange = 1
-power = 0
-lifesteal = 0.0
-selfHpSacrifice = 0.0
-priority = 0
 targets = 3
 targetStatChanges = SubResource("Resource_i1a4g")
-selfGetsStatus = false
-statusChance = 0.0
-statusRequiredForTargetStatChanges = false
 
 [sub_resource type="Resource" id="Resource_x34ub"]
 script = ExtResource("3_o1ptt")
@@ -48,30 +31,12 @@ multiplier = 1.02
 
 [sub_resource type="Resource" id="Resource_4xdbd"]
 script = ExtResource("4_nts1a")
-physAttackIncrease = 0
-magicAttackIncrease = 0
-affinityIncrease = 0
-resistanceIncrease = 0
-speedIncrease = 0
-physAttackMultiplier = 1.0
-magicAttackMultiplier = 1.0
-affinityMultiplier = 1.0
 resistanceMultiplier = 1.05
-speedMultiplier = 1.0
 elementMultipliers = Array[ExtResource("3_o1ptt")]([SubResource("Resource_x34ub")])
-keywordMultipliers = Dictionary[String, float]({})
 
 [sub_resource type="Resource" id="Resource_xkmvu"]
 script = ExtResource("6_auavx")
-powerPerOrb = 0
-lifestealPerOrb = 0.0
-selfHpSacrificePerOrb = 0.0
 targetStatChangesPerOrb = SubResource("Resource_4xdbd")
-weakThresholdOrbs = 0
-strongThresholdOrbs = 0
-overwhelmingThresholdOrbs = 0
-additionalStatusTurnsPerOrb = 0.0
-additionalStatusChancePerOrb = 0.0
 
 [sub_resource type="Resource" id="Resource_8xe22"]
 script = ExtResource("3_o1ptt")
@@ -80,39 +45,21 @@ multiplier = 1.15
 
 [sub_resource type="Resource" id="Resource_dv6sf"]
 script = ExtResource("4_nts1a")
-physAttackIncrease = 0
-magicAttackIncrease = 0
-affinityIncrease = 0
-resistanceIncrease = 0
-speedIncrease = 0
-physAttackMultiplier = 1.0
-magicAttackMultiplier = 1.0
-affinityMultiplier = 1.0
 resistanceMultiplier = 1.25
 speedMultiplier = 0.7
 elementMultipliers = Array[ExtResource("3_o1ptt")]([SubResource("Resource_8xe22")])
-keywordMultipliers = Dictionary[String, float]({})
 
 [sub_resource type="Resource" id="Resource_f0qp3"]
 script = ExtResource("1_reocm")
 role = 3
-keywords = Array[String]([])
 orbChange = -2
-power = 0
-lifesteal = 0.0
-selfHpSacrifice = 0.0
-priority = 0
 targets = 3
 targetStatChanges = SubResource("Resource_dv6sf")
-selfGetsStatus = false
-statusChance = 0.0
-statusRequiredForTargetStatChanges = false
 surgeChanges = SubResource("Resource_xkmvu")
 
 [resource]
 script = ExtResource("1_wgcs7")
 moveName = "Lithification"
-requiredLv = 1
 category = 1
 element = 5
 chargeEffect = SubResource("Resource_jtlm6")
