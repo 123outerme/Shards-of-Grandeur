@@ -35,7 +35,7 @@ func load_move_list_panel():
 		else:
 			itemPanel.connect_move_list_item_panel_top_neighbor(lastMovePanel)
 			itemPanel.set_buttons_bottom_neighbor('.')
-		if i < len(moves):
+		if i < len(moves) and moves[i] != null:
 			itemPanel.move = moves[i]
 			itemPanel.showNewMoveIndicator = levelUp and level == moves[i].requiredLv
 			if moves[i] != null:

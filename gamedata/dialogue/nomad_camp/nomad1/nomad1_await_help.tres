@@ -9,46 +9,16 @@
 [sub_resource type="Resource" id="Resource_7j05e"]
 script = ExtResource("1_2mvvf")
 lines = Array[String](["Take the path out of town to the east, we haven't checked for our elder that way yet!", "Please bring him back safely..."])
-minShowSecs = Array[float]([])
 animation = "talk"
-speakerOverride = ""
-actorAnimation = ""
-animateActorTreePath = ""
-animateActorIsPlayer = false
-choices = Array[ExtResource("2_7cvje")]([])
 
 [sub_resource type="Resource" id="Resource_5dr72"]
 script = ExtResource("3_eqx4j")
 minAct = 1
 maxAct = 1
 prereqQuests = Array[String](["The Radiant War Begins#Get Your Bearings"])
-prereqCutscenes = Array[String]([])
-prereqDialogues = Array[String]([])
-prereqPlacesVisited = Array[String]([])
-prereqSpecialBattles = Array[String]([])
-prereqDefeatedEnemies = Array[String]([])
-prereqPuzzles = Array[String]([])
-prereqPuzzleStates = Dictionary[String, Array]({})
-prereqDiscoveredEvolutions = Array[String]([])
-prereqHavingFollowers = Array[String]([])
-prereqHasItems = Array[ExtResource("5_c55jc")]([])
-invalidAfterCompletingQuests = Array[String]([])
-invalidAfterFailingQuests = Array[String]([])
 invalidAfterCutscenes = Array[String](["return_elder_nomad"])
-invalidAfterDialogues = Array[String]([])
-invalidAfterVistingPlaces = Array[String]([])
-invalidAfterSpecialBattles = Array[String]([])
-invalidAfterSolvingPuzzles = Array[String]([])
-invalidFromPuzzleStates = Dictionary[String, Array]({})
-invalidFromHavingFollowers = Array[String]([])
-invalidFromHavingItems = Array[ExtResource("5_c55jc")]([])
 
 [resource]
 script = ExtResource("2_jd25s")
-entryId = ""
 items = Array[ExtResource("1_2mvvf")]([SubResource("Resource_7j05e")])
 storyRequirements = SubResource("Resource_5dr72")
-ordStoryRequirements = Array[ExtResource("3_eqx4j")]([])
-closesDialogue = false
-fullHealsPlayer = false
-annotation = ""

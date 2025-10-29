@@ -10,52 +10,27 @@
 [sub_resource type="Resource" id="Resource_k6jb0"]
 script = ExtResource("2_n1vr6")
 choiceBtn = "I am @."
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("3_7hq1e")]([])
-repeatsItem = false
-buttonDims = Vector2(80, 40)
-turnsInQuest = ""
 isDeclineChoice = true
 
 [sub_resource type="Resource" id="Resource_bvu3l"]
 script = ExtResource("1_s04dm")
 lines = Array[String](["Oh thank you for helping, adventurer!", "... What is your name, actually?"])
-minShowSecs = Array[float]([])
 animation = "talk"
-speakerOverride = ""
-actorAnimation = ""
-animateActorTreePath = ""
-animateActorIsPlayer = false
 choices = Array[ExtResource("2_n1vr6")]([SubResource("Resource_k6jb0")])
 
 [sub_resource type="Resource" id="Resource_wlr84"]
 script = ExtResource("1_s04dm")
 lines = Array[String](["Well, thank you @. We're right here if you need any help or supplies! Please bring our elder back safely."])
-minShowSecs = Array[float]([])
 animation = "talk"
-speakerOverride = ""
-actorAnimation = ""
-animateActorTreePath = ""
-animateActorIsPlayer = false
-choices = Array[ExtResource("2_n1vr6")]([])
 
 [sub_resource type="Resource" id="Resource_fc5vl"]
 script = ExtResource("1_s04dm")
 lines = Array[String](["I'll bring him back, I promise.", "(\"Ruinous Cavern\"... Could there be another Radiant Cave mouth here?)"])
-minShowSecs = Array[float]([])
 animation = "stand"
 speakerOverride = "@"
-actorAnimation = ""
-animateActorTreePath = ""
-animateActorIsPlayer = false
-choices = Array[ExtResource("2_n1vr6")]([])
 
 [resource]
 script = ExtResource("2_g7od8")
 entryId = "elder_help"
 items = Array[ExtResource("1_s04dm")]([SubResource("Resource_bvu3l"), SubResource("Resource_wlr84"), SubResource("Resource_fc5vl")])
-ordStoryRequirements = Array[ExtResource("4_0nvxk")]([])
 startsQuest = ExtResource("4_4ucq6")
-closesDialogue = false
-fullHealsPlayer = false
-annotation = ""

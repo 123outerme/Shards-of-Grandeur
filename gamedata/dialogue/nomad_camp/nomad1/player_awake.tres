@@ -12,56 +12,22 @@
 script = ExtResource("2_l1y40")
 choiceBtn = "East?"
 leadsTo = ExtResource("3_u4i0u")
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("3_pctpy")]([])
-repeatsItem = false
-buttonDims = Vector2(80, 40)
-turnsInQuest = ""
 isDeclineChoice = true
 
 [sub_resource type="Resource" id="Resource_1fiux"]
 script = ExtResource("1_7wqtc")
 lines = Array[String](["We're looking for an older man, he left camp towards the east.", "He didn't go south, obviously, or we would have found him instead of you.", "Help us find our elder, please!"])
-minShowSecs = Array[float]([])
 animation = "talk"
-speakerOverride = ""
-actorAnimation = ""
-animateActorTreePath = ""
-animateActorIsPlayer = false
 choices = Array[ExtResource("2_l1y40")]([SubResource("Resource_as4xd")])
 
 [sub_resource type="Resource" id="Resource_6jb4g"]
 script = ExtResource("3_nxwmm")
 minAct = 1
 maxAct = 1
-prereqQuests = Array[String]([])
-prereqCutscenes = Array[String]([])
-prereqDialogues = Array[String]([])
-prereqPlacesVisited = Array[String]([])
-prereqSpecialBattles = Array[String]([])
-prereqDefeatedEnemies = Array[String]([])
-prereqPuzzles = Array[String]([])
-prereqPuzzleStates = Dictionary[String, Array]({})
-prereqDiscoveredEvolutions = Array[String]([])
-prereqHavingFollowers = Array[String]([])
-prereqHasItems = Array[ExtResource("7_ibk3q")]([])
-invalidAfterCompletingQuests = Array[String]([])
-invalidAfterFailingQuests = Array[String]([])
-invalidAfterCutscenes = Array[String]([])
 invalidAfterDialogues = Array[String](["nomad1#player_awake"])
-invalidAfterVistingPlaces = Array[String]([])
-invalidAfterSpecialBattles = Array[String]([])
-invalidAfterSolvingPuzzles = Array[String]([])
-invalidFromPuzzleStates = Dictionary[String, Array]({})
-invalidFromHavingFollowers = Array[String]([])
-invalidFromHavingItems = Array[ExtResource("7_ibk3q")]([])
 
 [resource]
 script = ExtResource("2_jxji5")
 entryId = "player_awake"
 items = Array[ExtResource("1_7wqtc")]([SubResource("Resource_1fiux")])
 storyRequirements = SubResource("Resource_6jb4g")
-ordStoryRequirements = Array[ExtResource("3_nxwmm")]([])
-closesDialogue = false
-fullHealsPlayer = false
-annotation = ""

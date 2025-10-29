@@ -9,31 +9,16 @@
 [sub_resource type="Resource" id="Resource_2pdy7"]
 script = ExtResource("1_sqob4")
 lines = Array[String](["Okay... here it goes."])
-minShowSecs = Array[float]([])
 animation = "talk"
-speakerOverride = ""
-actorAnimation = ""
-animateActorTreePath = ""
-animateActorIsPlayer = false
-choices = Array[ExtResource("2_oed7u")]([])
 
 [sub_resource type="Resource" id="Resource_fcij8"]
 script = ExtResource("1_sqob4")
 lines = Array[String](["..."])
-minShowSecs = Array[float]([])
 animation = "attack_affinity"
-speakerOverride = ""
-actorAnimation = ""
 animateActorTreePath = "attack_affinity"
 animateActorIsPlayer = true
-choices = Array[ExtResource("2_oed7u")]([])
 
 [resource]
 script = ExtResource("3_y62wj")
-entryId = ""
 items = Array[ExtResource("1_sqob4")]([SubResource("Resource_2pdy7"), SubResource("Resource_fcij8")])
-ordStoryRequirements = Array[ExtResource("3_pfjlt")]([])
 startsCutscene = ExtResource("4_bhklx")
-closesDialogue = false
-fullHealsPlayer = false
-annotation = ""
