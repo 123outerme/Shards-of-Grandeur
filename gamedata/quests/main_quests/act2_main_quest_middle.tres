@@ -9,32 +9,16 @@ script = ExtResource("2_ex5ee")
 name = "One Giant Steppes"
 description = "Make your way North to the Giant Steppes. The Warlocks seek an alliance with you in the Radiant War!"
 locations = Array[int]([50])
-turnInLocations = Array[int]([])
 type = 3
-count = 1
 objectiveName = "giant_steppes_arrive"
-turnInNames = Array[String]([])
-displayObjName = ""
-displayTurnInName = ""
 customStatusStr = "Arrive at Giant Steppes!"
-turnInDialogue = Array[ExtResource("3_e4sjh")]([])
-inProgressDialogue = Array[ExtResource("3_e4sjh")]([])
 
 [sub_resource type="Resource" id="Resource_7hikv"]
 script = ExtResource("2_ex5ee")
 name = "The Grand Hall"
 description = "You have been summoned to the Warlocks' Grand Hall! Hear what they have to say."
-locations = Array[int]([])
-turnInLocations = Array[int]([])
 type = 3
-count = 1
 objectiveName = "gis_grand_hall_meeting_1"
-turnInNames = Array[String]([])
-displayObjName = ""
-displayTurnInName = ""
-customStatusStr = ""
-turnInDialogue = Array[ExtResource("3_e4sjh")]([])
-inProgressDialogue = Array[ExtResource("3_e4sjh")]([])
 metadata/_custom_type_script = "uid://b3j2bj1p0bkq8"
 
 [sub_resource type="Resource" id="Resource_i7exl"]
@@ -42,33 +26,13 @@ script = ExtResource("2_ex5ee")
 name = "Warlock-in-Training"
 description = "You agreed to train with the Warlocks in order to team up against Steelspire! Work with the Stargazer and the Keeper of History."
 locations = Array[int]([50])
-turnInLocations = Array[int]([])
-type = 0
-count = 1
 objectiveName = "---"
-turnInNames = Array[String]([])
-displayObjName = ""
-displayTurnInName = ""
 customStatusStr = "???"
-turnInDialogue = Array[ExtResource("3_e4sjh")]([])
-inProgressDialogue = Array[ExtResource("3_e4sjh")]([])
 metadata/_custom_type_script = "uid://b3j2bj1p0bkq8"
 
 [sub_resource type="Resource" id="Resource_6lwe2"]
 script = ExtResource("2_ex5ee")
 name = "TBD"
-description = ""
-locations = Array[int]([])
-turnInLocations = Array[int]([])
-type = 0
-count = 1
-objectiveName = ""
-turnInNames = Array[String]([])
-displayObjName = ""
-displayTurnInName = ""
-customStatusStr = ""
-turnInDialogue = Array[ExtResource("3_e4sjh")]([])
-inProgressDialogue = Array[ExtResource("3_e4sjh")]([])
 metadata/_custom_type_script = "uid://b3j2bj1p0bkq8"
 
 [resource]
@@ -77,4 +41,3 @@ questName = "An Ancient Ally"
 description = "The Warlocks, a secluded society of magic, have offered to help you fight against the Chain Legion. Pursue this newly opened avenue!"
 steps = Array[ExtResource("2_ex5ee")]([SubResource("Resource_n5131"), SubResource("Resource_7hikv"), SubResource("Resource_i7exl"), SubResource("Resource_6lwe2")])
 isMainQuest = true
-advanceActAfterComplete = false

@@ -37,74 +37,17 @@
 [sub_resource type="Resource" id="Resource_c2gd7"]
 script = ExtResource("4_hem8p")
 minAct = 1
-maxAct = -1
 prereqQuests = Array[String](["A Nomadic Rescue#Back to Base Camp"])
-prereqCutscenes = Array[String]([])
-prereqDialogues = Array[String]([])
-prereqPlacesVisited = Array[String]([])
-prereqSpecialBattles = Array[String]([])
-prereqDefeatedEnemies = Array[String]([])
-prereqPuzzles = Array[String]([])
-prereqPuzzleStates = Dictionary[String, Array]({})
-prereqDiscoveredEvolutions = Array[String]([])
-prereqHavingFollowers = Array[String]([])
-prereqHasItems = Array[ExtResource("4_frg0a")]([])
-invalidAfterCompletingQuests = Array[String]([])
-invalidAfterFailingQuests = Array[String]([])
-invalidAfterCutscenes = Array[String]([])
-invalidAfterDialogues = Array[String]([])
-invalidAfterVistingPlaces = Array[String]([])
-invalidAfterSpecialBattles = Array[String]([])
-invalidAfterSolvingPuzzles = Array[String]([])
-invalidFromPuzzleStates = Dictionary[String, Array]({})
-invalidFromHavingFollowers = Array[String]([])
-invalidFromHavingItems = Array[ExtResource("4_frg0a")]([])
 
-[sub_resource type="Resource" id="Resource_kycru"]
+[sub_resource type="Resource" id="Resource_pqrbd"]
 script = ExtResource("4_w52o7")
 saveName = "npc"
-spriteState = "default"
-animation = "stand"
 position = Vector2(-52, -44)
-flipH = false
-visible = true
-selectedTarget = 0
-loops = 0
-disableMovement = false
-previousDisableMove = false
-afterMoveWaitAccum = 0.0
-followerHomePosition = Vector2(0, 0)
-followingPlayer = false
-followerHomeSet = false
-combatMode = false
-version = ""
-dialogueItems = []
-dialogueIndex = -1
-dialogueItemIdx = -1
-dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_q1h58"]
+[sub_resource type="Resource" id="Resource_xmrco"]
 script = ExtResource("4_w52o7")
 saveName = "npc"
-spriteState = "default"
-animation = "stand"
 position = Vector2(480, -320)
-flipH = false
-visible = true
-selectedTarget = 0
-loops = 0
-disableMovement = false
-previousDisableMove = false
-afterMoveWaitAccum = 0.0
-followerHomePosition = Vector2(0, 0)
-followingPlayer = false
-followerHomeSet = false
-combatMode = false
-version = ""
-dialogueItems = []
-dialogueIndex = -1
-dialogueItemIdx = -1
-dialogueLine = -1
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6d2fe"]
 size = Vector2(16, 6)
@@ -116,8 +59,6 @@ size = Vector2(24, 14)
 script = ExtResource("13_ei2lt")
 speaker = "Sign"
 dialogueEntry = ExtResource("12_sauue")
-savedItemIdx = 0
-savedTextIdx = 0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kvj11"]
 size = Vector2(24, 14)
@@ -129,31 +70,11 @@ size = Vector2(16, 6)
 script = ExtResource("13_ei2lt")
 speaker = "@"
 dialogueEntry = ExtResource("17_1bdjb")
-savedItemIdx = 0
-savedTextIdx = 0
 
-[sub_resource type="Resource" id="Resource_gr63f"]
+[sub_resource type="Resource" id="Resource_kycru"]
 script = ExtResource("4_w52o7")
 saveName = "npc"
-spriteState = "default"
-animation = "stand"
 position = Vector2(717, -338)
-flipH = false
-visible = true
-selectedTarget = 0
-loops = 0
-disableMovement = false
-previousDisableMove = false
-afterMoveWaitAccum = 0.0
-followerHomePosition = Vector2(0, 0)
-followingPlayer = false
-followerHomeSet = false
-combatMode = false
-version = ""
-dialogueItems = []
-dialogueIndex = -1
-dialogueItemIdx = -1
-dialogueLine = -1
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b54ps"]
 size = Vector2(16, 6)
@@ -161,74 +82,20 @@ size = Vector2(16, 6)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_00dxq"]
 size = Vector2(24, 14)
 
+[sub_resource type="Resource" id="Resource_q1h58"]
+script = ExtResource("4_w52o7")
+saveName = "npc"
+position = Vector2(883, -546)
+
+[sub_resource type="Resource" id="Resource_gr63f"]
+script = ExtResource("4_w52o7")
+saveName = "npc"
+position = Vector2(643, -514)
+
 [sub_resource type="Resource" id="Resource_dcblc"]
 script = ExtResource("4_w52o7")
 saveName = "npc"
-spriteState = "default"
-animation = "stand"
-position = Vector2(883, -546)
-flipH = false
-visible = true
-selectedTarget = 0
-loops = 0
-disableMovement = false
-previousDisableMove = false
-afterMoveWaitAccum = 0.0
-followerHomePosition = Vector2(0, 0)
-followingPlayer = false
-followerHomeSet = false
-combatMode = false
-version = ""
-dialogueItems = []
-dialogueIndex = -1
-dialogueItemIdx = -1
-dialogueLine = -1
-
-[sub_resource type="Resource" id="Resource_8mjr7"]
-script = ExtResource("4_w52o7")
-saveName = "npc"
-spriteState = "default"
-animation = "stand"
-position = Vector2(643, -514)
-flipH = false
-visible = true
-selectedTarget = 0
-loops = 0
-disableMovement = false
-previousDisableMove = false
-afterMoveWaitAccum = 0.0
-followerHomePosition = Vector2(0, 0)
-followingPlayer = false
-followerHomeSet = false
-combatMode = false
-version = ""
-dialogueItems = []
-dialogueIndex = -1
-dialogueItemIdx = -1
-dialogueLine = -1
-
-[sub_resource type="Resource" id="Resource_88lpt"]
-script = ExtResource("4_w52o7")
-saveName = "npc"
-spriteState = "default"
-animation = "stand"
 position = Vector2(717, 238)
-flipH = false
-visible = true
-selectedTarget = 0
-loops = 0
-disableMovement = false
-previousDisableMove = false
-afterMoveWaitAccum = 0.0
-followerHomePosition = Vector2(0, 0)
-followingPlayer = false
-followerHomeSet = false
-combatMode = false
-version = ""
-dialogueItems = []
-dialogueIndex = -1
-dialogueItemIdx = -1
-dialogueLine = -1
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nfl8c"]
 size = Vector2(16, 6)
@@ -236,51 +103,15 @@ size = Vector2(16, 6)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xlyn7"]
 size = Vector2(24, 14)
 
-[sub_resource type="Resource" id="Resource_b1t0j"]
+[sub_resource type="Resource" id="Resource_8mjr7"]
 script = ExtResource("4_w52o7")
 saveName = "npc"
-spriteState = "default"
-animation = "stand"
 position = Vector2(883, 30)
-flipH = false
-visible = true
-selectedTarget = 0
-loops = 0
-disableMovement = false
-previousDisableMove = false
-afterMoveWaitAccum = 0.0
-followerHomePosition = Vector2(0, 0)
-followingPlayer = false
-followerHomeSet = false
-combatMode = false
-version = ""
-dialogueItems = []
-dialogueIndex = -1
-dialogueItemIdx = -1
-dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_umiak"]
+[sub_resource type="Resource" id="Resource_88lpt"]
 script = ExtResource("4_w52o7")
 saveName = "npc"
-spriteState = "default"
-animation = "stand"
 position = Vector2(643, 62)
-flipH = false
-visible = true
-selectedTarget = 0
-loops = 0
-disableMovement = false
-previousDisableMove = false
-afterMoveWaitAccum = 0.0
-followerHomePosition = Vector2(0, 0)
-followingPlayer = false
-followerHomeSet = false
-combatMode = false
-version = ""
-dialogueItems = []
-dialogueIndex = -1
-dialogueItemIdx = -1
-dialogueLine = -1
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_hwgpv"]
 parsed_collision_mask = 1
@@ -348,7 +179,7 @@ position = Vector2(-52, -44)
 displayName = "Elder"
 saveName = "nomad2_hut"
 spawnRequirements = SubResource("Resource_c2gd7")
-data = SubResource("Resource_kycru")
+data = SubResource("Resource_pqrbd")
 dialogueEntries = Array[ExtResource("7_dtsyx")]([ExtResource("7_7105x")])
 
 [node name="NPCSprite" parent="TilemapRoot/Nomad2" index="0"]
@@ -368,7 +199,7 @@ visible = false
 [node name="Signpost" parent="TilemapRoot" instance=ExtResource("3_agm5n")]
 position = Vector2(480, -320)
 displayName = "Sign"
-data = SubResource("Resource_q1h58")
+data = SubResource("Resource_xmrco")
 dialogueEntries = Array[ExtResource("7_dtsyx")]([ExtResource("8_if42d")])
 facesPlayer = false
 
@@ -437,7 +268,7 @@ sprite_frames = ExtResource("17_b0vsa")
 [node name="GeneralStoreSign" parent="TilemapRoot" instance=ExtResource("3_agm5n")]
 position = Vector2(717, -338)
 displayName = "Sign"
-data = SubResource("Resource_gr63f")
+data = SubResource("Resource_kycru")
 dialogueEntries = Array[ExtResource("7_dtsyx")]([ExtResource("18_53qc7")])
 facesPlayer = false
 
@@ -471,7 +302,7 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 [node name="ArmorySign" parent="TilemapRoot" instance=ExtResource("3_agm5n")]
 position = Vector2(883, -546)
 displayName = "Sign"
-data = SubResource("Resource_dcblc")
+data = SubResource("Resource_q1h58")
 dialogueEntries = Array[ExtResource("7_dtsyx")]([ExtResource("20_u7mlx")])
 facesPlayer = false
 
@@ -505,7 +336,7 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 [node name="InnSign" parent="TilemapRoot" instance=ExtResource("3_agm5n")]
 position = Vector2(643, -514)
 displayName = "Sign"
-data = SubResource("Resource_8mjr7")
+data = SubResource("Resource_gr63f")
 dialogueEntries = Array[ExtResource("7_dtsyx")]([ExtResource("22_7mkxe")])
 facesPlayer = false
 
@@ -539,7 +370,7 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 [node name="BurnedGeneralStoreSign" parent="TilemapRoot" instance=ExtResource("3_agm5n")]
 position = Vector2(717, 238)
 displayName = "Sign"
-data = SubResource("Resource_88lpt")
+data = SubResource("Resource_dcblc")
 dialogueEntries = Array[ExtResource("7_dtsyx")]([ExtResource("18_53qc7")])
 facesPlayer = false
 
@@ -573,7 +404,7 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 [node name="BurnedArmorySign" parent="TilemapRoot" instance=ExtResource("3_agm5n")]
 position = Vector2(883, 30)
 displayName = "Sign"
-data = SubResource("Resource_b1t0j")
+data = SubResource("Resource_8mjr7")
 dialogueEntries = Array[ExtResource("7_dtsyx")]([ExtResource("20_u7mlx")])
 facesPlayer = false
 
@@ -607,7 +438,7 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 [node name="BurnedInnSign" parent="TilemapRoot" instance=ExtResource("3_agm5n")]
 position = Vector2(643, 62)
 displayName = "Sign"
-data = SubResource("Resource_umiak")
+data = SubResource("Resource_88lpt")
 dialogueEntries = Array[ExtResource("7_dtsyx")]([ExtResource("12_sauue")])
 facesPlayer = false
 
