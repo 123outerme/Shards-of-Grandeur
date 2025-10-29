@@ -10,19 +10,42 @@
 [sub_resource type="Resource" id="Resource_r4bx7"]
 script = ExtResource("2_nma1t")
 choiceBtn = "No Thanks"
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_l6wgj")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
 isDeclineChoice = true
 
 [sub_resource type="Resource" id="Resource_jd0ir"]
 script = ExtResource("4_nidgj")
 opensShop = true
+addsFollowerId = ""
+removesFollowerId = ""
 choiceBtn = "Shop"
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_l6wgj")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = false
 
 [sub_resource type="Resource" id="Resource_r4gx7"]
 script = ExtResource("1_dlmv8")
 lines = Array[String](["Welcome to our Supplies Corner. We don't have much, but I hope it helps!"])
+minShowSecs = Array[float]([])
 animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
 choices = Array[ExtResource("2_nma1t")]([SubResource("Resource_r4bx7"), SubResource("Resource_jd0ir")])
 
 [resource]
 script = ExtResource("2_61rnv")
+entryId = ""
 items = Array[ExtResource("1_dlmv8")]([SubResource("Resource_r4gx7")])
+ordStoryRequirements = Array[ExtResource("5_r7qnf")]([])
+closesDialogue = false
+fullHealsPlayer = false
+annotation = ""
