@@ -18,18 +18,30 @@ objectiveName = "inferno_bear"
 turnInNames = Array[String](["lance_standstill_foundry_burned"])
 displayObjName = "Inferno-Bear"
 displayTurnInName = "Lance"
+customStatusStr = ""
 turnInDialogue = Array[ExtResource("3_rysse")]([ExtResource("5_35u42")])
 inProgressDialogue = Array[ExtResource("3_rysse")]([ExtResource("4_cf535")])
 
 [sub_resource type="Resource" id="Resource_82t2o"]
 script = ExtResource("2_io756")
 name = "TBD"
+description = ""
+locations = Array[int]([])
+turnInLocations = Array[int]([])
 type = -1
+count = 1
 objectiveName = "---"
+turnInNames = Array[String]([])
+displayObjName = ""
+displayTurnInName = ""
 customStatusStr = "???"
+turnInDialogue = Array[ExtResource("3_rysse")]([])
+inProgressDialogue = Array[ExtResource("3_rysse")]([])
 
 [resource]
 script = ExtResource("1_ywcmt")
 questName = "Rebuild Standstill"
 description = "After the Chain Legion attacked Standstill, the once vibrant village has been reduced to rubble and ash... Grandstone must help them, and you must lead the aid!"
 steps = Array[ExtResource("2_io756")]([SubResource("Resource_yoc8b"), SubResource("Resource_82t2o")])
+isMainQuest = false
+advanceActAfterComplete = false

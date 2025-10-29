@@ -12,13 +12,23 @@ script = ExtResource("2_7evvs")
 name = "Go Home At Last"
 description = "Now that you've helped the Nomads, it is time to start once again on the road back to Grandstone."
 locations = Array[int]([10])
+turnInLocations = Array[int]([])
 type = 3
+count = 1
 objectiveName = "grandstone_arrive_from_desert"
+turnInNames = Array[String]([])
+displayObjName = ""
+displayTurnInName = ""
 customStatusStr = "Reach Grandstone!"
+turnInDialogue = Array[ExtResource("3_jht3b")]([])
+inProgressDialogue = Array[ExtResource("3_jht3b")]([])
 
 [sub_resource type="Resource" id="Resource_qd0dt"]
 script = ExtResource("4_npd1k")
 experience = 100
+gold = 0
+itemCount = 1
+fullyAttuneCombatantSaveName = ""
 
 [sub_resource type="Resource" id="Resource_v8nab"]
 script = ExtResource("2_7evvs")
@@ -27,33 +37,54 @@ description = "Dr. Ildran needs you to help restore the city, meanwhile Standsti
 reward = SubResource("Resource_qd0dt")
 locations = Array[int]([10])
 turnInLocations = Array[int]([10])
+type = 0
+count = 1
 objectiveName = "dr_ildran_gs_cracking#rescue_standstill"
 turnInNames = Array[String](["dr_ildran_gs_cracking"])
 displayObjName = "Dr. Ildran"
 displayTurnInName = "Dr. Ildran"
+customStatusStr = ""
+turnInDialogue = Array[ExtResource("3_jht3b")]([])
+inProgressDialogue = Array[ExtResource("3_jht3b")]([])
 
 [sub_resource type="Resource" id="Resource_1x80q"]
 script = ExtResource("2_7evvs")
 name = "Standstill Ablaze"
 description = "A town on fire... It's a tragedy."
 locations = Array[int]([20])
+turnInLocations = Array[int]([])
 type = 3
+count = 1
 objectiveName = "standstill_burned_enter"
+turnInNames = Array[String]([])
+displayObjName = ""
+displayTurnInName = ""
 customStatusStr = "Get to Standstill!"
+turnInDialogue = Array[ExtResource("3_jht3b")]([])
+inProgressDialogue = Array[ExtResource("3_jht3b")]([])
 
 [sub_resource type="Resource" id="Resource_dwyfj"]
 script = ExtResource("2_7evvs")
 name = "Might and Magic"
 description = "A group of Chain Legion Mages have descended on Standstill! Repel the attack, quickly!"
 locations = Array[int]([20])
+turnInLocations = Array[int]([])
 type = 3
+count = 1
 objectiveName = "standstill_defeated_helia"
+turnInNames = Array[String]([])
+displayObjName = ""
+displayTurnInName = ""
 customStatusStr = "Repel the Attackers!"
+turnInDialogue = Array[ExtResource("3_jht3b")]([])
+inProgressDialogue = Array[ExtResource("3_jht3b")]([])
 
 [sub_resource type="Resource" id="Resource_858ry"]
 script = ExtResource("4_npd1k")
 experience = 150
 gold = 20
+itemCount = 1
+fullyAttuneCombatantSaveName = ""
 
 [sub_resource type="Resource" id="Resource_rfapv"]
 script = ExtResource("2_7evvs")
@@ -62,10 +93,13 @@ description = "Lance wants to speak to you inside the Standstill Armory."
 reward = SubResource("Resource_858ry")
 locations = Array[int]([20])
 turnInLocations = Array[int]([20])
+type = 0
+count = 1
 objectiveName = "lance_standstill_foundry_burned#after_standstill_attack"
 turnInNames = Array[String](["lance_standstill_foundry_burned"])
 displayObjName = "Lance"
 displayTurnInName = "Lance"
+customStatusStr = ""
 turnInDialogue = Array[ExtResource("3_jht3b")]([ExtResource("5_f6sn4")])
 inProgressDialogue = Array[ExtResource("3_jht3b")]([ExtResource("5_k0fgh")])
 
@@ -75,3 +109,4 @@ questName = "Flames of Combat"
 description = "The Elder Nomad warned you that Standstill will soon face a devastating blaze. Will this Radiant War consume all in the flames, or is there some way to put out the fire for good?"
 steps = Array[ExtResource("2_7evvs")]([SubResource("Resource_vqv4w"), SubResource("Resource_v8nab"), SubResource("Resource_1x80q"), SubResource("Resource_dwyfj"), SubResource("Resource_rfapv")])
 isMainQuest = true
+advanceActAfterComplete = false

@@ -13,25 +13,53 @@
 script = ExtResource("2_h87rj")
 choiceBtn = "Not Ready..."
 leadsTo = ExtResource("3_u4r1m")
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_qhbsb")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
 isDeclineChoice = true
 
 [sub_resource type="Resource" id="Resource_earyf"]
 script = ExtResource("2_h87rj")
 choiceBtn = "Take Care."
 leadsTo = ExtResource("4_sox10")
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_qhbsb")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
 turnsInQuest = "Flames of Combat#They Must Go On"
+isDeclineChoice = false
 
 [sub_resource type="Resource" id="Resource_5aev2"]
 script = ExtResource("4_rbplu")
 opensShop = true
+addsFollowerId = ""
+removesFollowerId = ""
 choiceBtn = "Shop"
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_qhbsb")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = false
 
 [sub_resource type="Resource" id="Resource_k7i0c"]
 script = ExtResource("1_wa1uk")
 lines = Array[String](["Thanks for saving us, @. Now let's get you ready to leave. I'll sell you anything we've have from the Armory, whatever you need."])
+minShowSecs = Array[float]([])
 animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
 choices = Array[ExtResource("2_h87rj")]([SubResource("Resource_woaby"), SubResource("Resource_earyf"), SubResource("Resource_5aev2")])
 
 [resource]
 script = ExtResource("3_vuupd")
+entryId = ""
 items = Array[ExtResource("1_wa1uk")]([SubResource("Resource_k7i0c")])
+ordStoryRequirements = Array[ExtResource("2_lt233")]([])
+closesDialogue = false
+fullHealsPlayer = false
+annotation = ""

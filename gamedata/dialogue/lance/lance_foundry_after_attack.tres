@@ -13,42 +13,102 @@
 [sub_resource type="Resource" id="Resource_epa70"]
 script = ExtResource("1_m0ayl")
 lines = Array[String](["Alessia... she's the uniting force between all of us in Standstill.", "If she doesn't wake up, and soon, then there's no telling if we'll ever get this place back to normal."])
+minShowSecs = Array[float]([])
 animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_p413y")]([])
 
 [sub_resource type="Resource" id="Resource_4drwy"]
 script = ExtResource("1_m0ayl")
 lines = Array[String](["Without her teachings, I wouldn't be where I am today. I can keep the furnace hot now, all by myself.", "I smithed that complicated sword I told you about, and much more. You'll probably need all of it to end the war, now."])
+minShowSecs = Array[float]([])
 animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_p413y")]([])
 
 [sub_resource type="Resource" id="Resource_8w25r"]
 script = ExtResource("2_188u8")
+minAct = 0
+maxAct = -1
 prereqQuests = Array[String](["Apprenticeship"])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqPlacesVisited = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+prereqDefeatedEnemies = Array[String]([])
+prereqPuzzles = Array[String]([])
+prereqPuzzleStates = Dictionary[String, Array]({})
+prereqDiscoveredEvolutions = Array[String]([])
+prereqHavingFollowers = Array[String]([])
+prereqHasItems = Array[ExtResource("4_0h6kr")]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String]([])
+invalidAfterVistingPlaces = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromPuzzleStates = Dictionary[String, Array]({})
+invalidFromHavingFollowers = Array[String]([])
+invalidFromHavingItems = Array[ExtResource("4_0h6kr")]([])
 
 [sub_resource type="Resource" id="Resource_vqmi7"]
 script = ExtResource("4_ewqli")
 alternativeDialogueItems = Array[ExtResource("1_m0ayl")]([SubResource("Resource_4drwy")])
 alternativeStoryReqs = Array[ExtResource("2_188u8")]([SubResource("Resource_8w25r")])
 lines = Array[String](["I... couldn't get my act together before they came, and now I'm not sure we'll have a Forge for much longer.", "We're stocked up with enough gear to supply you, hopefully, but it would've paid to have taken things seriously."])
+minShowSecs = Array[float]([])
 animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_p413y")]([])
 
 [sub_resource type="Resource" id="Resource_52x4p"]
 script = ExtResource("2_p413y")
 choiceBtn = "I Must Go."
 leadsTo = ExtResource("7_xx1ue")
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("6_67aai")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
 isDeclineChoice = true
 
 [sub_resource type="Resource" id="Resource_b4cmp"]
 script = ExtResource("2_p413y")
 choiceBtn = "I'll Help."
 leadsTo = ExtResource("8_5nr37")
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("6_67aai")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = false
 
 [sub_resource type="Resource" id="Resource_42bfc"]
 script = ExtResource("1_m0ayl")
 lines = Array[String](["In any case, just... don't forget about us here in Standstill. To rebuild, we need Grandstone's help... I need your help."])
+minShowSecs = Array[float]([])
 animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
 choices = Array[ExtResource("2_p413y")]([SubResource("Resource_52x4p"), SubResource("Resource_b4cmp")])
 
 [resource]
 script = ExtResource("3_kb1q3")
 entryId = "after_standstill_attack"
 items = Array[ExtResource("1_m0ayl")]([SubResource("Resource_epa70"), SubResource("Resource_vqmi7"), SubResource("Resource_42bfc")])
+ordStoryRequirements = Array[ExtResource("2_188u8")]([])
+closesDialogue = false
+fullHealsPlayer = false
+annotation = ""

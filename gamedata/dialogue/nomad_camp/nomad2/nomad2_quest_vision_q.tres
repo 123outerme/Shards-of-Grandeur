@@ -10,26 +10,51 @@
 [sub_resource type="Resource" id="Resource_j1w56"]
 script = ExtResource("1_h6f0m")
 lines = Array[String](["This vision you had, from the Shard... what was it?"])
+minShowSecs = Array[float]([])
 animation = "stand"
 speakerOverride = "@"
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_gxmg1")]([])
 
 [sub_resource type="Resource" id="Resource_cbh70"]
 script = ExtResource("2_gxmg1")
 choiceBtn = "Wait..."
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_t3r1i")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
 isDeclineChoice = true
 
 [sub_resource type="Resource" id="Resource_u84hi"]
 script = ExtResource("2_gxmg1")
 choiceBtn = "Sure."
 leadsTo = ExtResource("4_rt4f5")
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("3_t3r1i")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
 turnsInQuest = "A Nomadic Rescue#Get Some Answers"
+isDeclineChoice = false
 
 [sub_resource type="Resource" id="Resource_kpbn8"]
 script = ExtResource("1_h6f0m")
 lines = Array[String](["With my Affinity, I think I can show you. Care to see?"])
+minShowSecs = Array[float]([])
 animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
 choices = Array[ExtResource("2_gxmg1")]([SubResource("Resource_cbh70"), SubResource("Resource_u84hi")])
 
 [resource]
 script = ExtResource("5_p4rw3")
+entryId = ""
 items = Array[ExtResource("1_h6f0m")]([SubResource("Resource_j1w56"), SubResource("Resource_kpbn8")])
+ordStoryRequirements = Array[ExtResource("5_rki6c")]([])
+closesDialogue = false
+fullHealsPlayer = false
+annotation = ""

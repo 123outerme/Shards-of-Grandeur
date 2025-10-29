@@ -9,14 +9,46 @@
 [sub_resource type="Resource" id="Resource_c25s2"]
 script = ExtResource("1_8ab53")
 lines = Array[String](["You found our Elder, @!", "We cannot thank you enough for helping us in our time of need.", "He has returned to his hut here, resting from his excursion."])
+minShowSecs = Array[float]([])
 animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_dccwp")]([])
 
 [sub_resource type="Resource" id="Resource_uythl"]
 script = ExtResource("4_c8n5m")
 minAct = 1
+maxAct = -1
+prereqQuests = Array[String]([])
 prereqCutscenes = Array[String](["return_elder_nomad"])
+prereqDialogues = Array[String]([])
+prereqPlacesVisited = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+prereqDefeatedEnemies = Array[String]([])
+prereqPuzzles = Array[String]([])
+prereqPuzzleStates = Dictionary[String, Array]({})
+prereqDiscoveredEvolutions = Array[String]([])
+prereqHavingFollowers = Array[String]([])
+prereqHasItems = Array[ExtResource("5_1n8rp")]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
+invalidAfterCutscenes = Array[String]([])
+invalidAfterDialogues = Array[String]([])
+invalidAfterVistingPlaces = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromPuzzleStates = Dictionary[String, Array]({})
+invalidFromHavingFollowers = Array[String]([])
+invalidFromHavingItems = Array[ExtResource("5_1n8rp")]([])
 
 [resource]
 script = ExtResource("2_fng4q")
+entryId = ""
 items = Array[ExtResource("1_8ab53")]([SubResource("Resource_c25s2")])
 storyRequirements = SubResource("Resource_uythl")
+ordStoryRequirements = Array[ExtResource("4_c8n5m")]([])
+closesDialogue = false
+fullHealsPlayer = false
+annotation = ""

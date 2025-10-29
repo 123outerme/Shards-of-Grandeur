@@ -12,14 +12,30 @@
 script = ExtResource("2_mjy24")
 choiceBtn = "I Will."
 leadsTo = ExtResource("3_l7rhf")
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("4_w2fow")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
+isDeclineChoice = false
 
 [sub_resource type="Resource" id="Resource_bm1w5"]
 script = ExtResource("1_im7px")
 lines = Array[String](["Thank you, @. The first thing I need is to restart the furnace, and these Inferno-Bears are getting a bit too close to the town.", "If you go out into the Hilltop Forest and defeat 3 Inferno-Bears, be sure to bring me back their charcoal.", "But, there's no point in rebuilding if they can just fly back over on their Airship and do it again. Defeat the Chain Legion, too... for us."])
+minShowSecs = Array[float]([])
 animation = "talk"
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
 choices = Array[ExtResource("2_mjy24")]([SubResource("Resource_26jgs")])
 
 [resource]
 script = ExtResource("6_tpflo")
+entryId = ""
 items = Array[ExtResource("1_im7px")]([SubResource("Resource_bm1w5")])
+ordStoryRequirements = Array[ExtResource("5_itiic")]([])
 startsQuest = ExtResource("7_4o67q")
+closesDialogue = false
+fullHealsPlayer = false
+annotation = ""

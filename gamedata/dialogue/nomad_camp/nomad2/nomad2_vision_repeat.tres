@@ -12,28 +12,69 @@
 [sub_resource type="Resource" id="Resource_xi5cf"]
 script = ExtResource("1_tkd1p")
 lines = Array[String](["Could you... show me this vision again?"])
+minShowSecs = Array[float]([])
 animation = "stand"
 speakerOverride = "@"
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
+choices = Array[ExtResource("2_266vp")]([])
 
 [sub_resource type="Resource" id="Resource_77bif"]
 script = ExtResource("2_266vp")
 choiceBtn = "Ready."
 leadsTo = ExtResource("3_jj13u")
+returnsToParentId = ""
+randomDialogues = Array[ExtResource("4_ikofk")]([])
+repeatsItem = false
+buttonDims = Vector2(80, 40)
+turnsInQuest = ""
 isDeclineChoice = true
 
 [sub_resource type="Resource" id="Resource_e8v7g"]
 script = ExtResource("1_tkd1p")
 lines = Array[String](["Certainly, are you ready?"])
+minShowSecs = Array[float]([])
+animation = ""
+speakerOverride = ""
+actorAnimation = ""
+animateActorTreePath = ""
+animateActorIsPlayer = false
 choices = Array[ExtResource("2_266vp")]([SubResource("Resource_77bif")])
 
 [sub_resource type="Resource" id="Resource_l6egd"]
 script = ExtResource("3_vfam7")
 minAct = 2
 maxAct = 2
+prereqQuests = Array[String]([])
+prereqCutscenes = Array[String]([])
+prereqDialogues = Array[String]([])
+prereqPlacesVisited = Array[String]([])
+prereqSpecialBattles = Array[String]([])
+prereqDefeatedEnemies = Array[String]([])
+prereqPuzzles = Array[String]([])
+prereqPuzzleStates = Dictionary[String, Array]({})
+prereqDiscoveredEvolutions = Array[String]([])
+prereqHavingFollowers = Array[String]([])
+prereqHasItems = Array[ExtResource("8_4k86e")]([])
+invalidAfterCompletingQuests = Array[String]([])
+invalidAfterFailingQuests = Array[String]([])
 invalidAfterCutscenes = Array[String](["standstill_burned_enter"])
+invalidAfterDialogues = Array[String]([])
+invalidAfterVistingPlaces = Array[String]([])
+invalidAfterSpecialBattles = Array[String]([])
+invalidAfterSolvingPuzzles = Array[String]([])
+invalidFromPuzzleStates = Dictionary[String, Array]({})
+invalidFromHavingFollowers = Array[String]([])
+invalidFromHavingItems = Array[ExtResource("8_4k86e")]([])
 
 [resource]
 script = ExtResource("2_wh3w5")
+entryId = ""
 items = Array[ExtResource("1_tkd1p")]([SubResource("Resource_xi5cf"), SubResource("Resource_e8v7g")])
 storyRequirements = SubResource("Resource_l6egd")
+ordStoryRequirements = Array[ExtResource("3_vfam7")]([])
 startsCutscene = ExtResource("4_auu83")
+closesDialogue = false
+fullHealsPlayer = false
+annotation = ""
