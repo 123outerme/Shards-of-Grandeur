@@ -8,51 +8,22 @@
 [sub_resource type="Resource" id="Resource_d1uvs"]
 script = ExtResource("1_5t6re")
 annotation = "set up position at target"
-animation = ""
 duration = 0.1
-speed = 1.0
-opacity = 1.0
-spritePivot = Vector2(0, 0)
 relativeTo = 1
 position = Vector2(0, -8)
 offset = 4
-rotate = false
-rotateToFace = 1
-rotateToFacePosition = Vector2(0, 0)
-rotateToFaceOffset = 0
-trackRotationTarget = false
-randomizeSfxPitch = false
-emitCompleteOnStart = false
 metadata/_custom_type_script = "uid://n71lfdnd5xrr"
 
 [sub_resource type="Resource" id="Resource_fvs07"]
 script = ExtResource("1_5t6re")
 annotation = "play cinders particles"
-animation = ""
 duration = 3.0
-speed = 1.0
-opacity = 1.0
-spritePivot = Vector2(0, 0)
-relativeTo = 5
-position = Vector2(0, 0)
-offset = 0
-rotate = false
-rotateToFace = 1
-rotateToFacePosition = Vector2(0, 0)
-rotateToFaceOffset = 0
-trackRotationTarget = false
 particles = ExtResource("2_d1uvs")
-randomizeSfxPitch = false
-emitCompleteOnStart = false
 metadata/_custom_type_script = "uid://n71lfdnd5xrr"
 
 [resource]
 script = ExtResource("2_taoup")
 spriteFrames = ExtResource("3_taoup")
-centerSprite = true
-maxSize = Vector2(16, 16)
 frames = Array[ExtResource("1_5t6re")]([SubResource("Resource_d1uvs"), SubResource("Resource_fvs07")])
-delayedUntilReposition = false
 playsOnImpactFrame = false
-onePerTarget = true
 metadata/_custom_type_script = "uid://mk6loduurcg4"
