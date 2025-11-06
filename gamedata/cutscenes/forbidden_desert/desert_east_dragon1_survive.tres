@@ -21,297 +21,135 @@
 [sub_resource type="Resource" id="Resource_r7ekr"]
 script = ExtResource("3_eeuyi")
 actorTreePath = "TilemapRoot/Dragon"
-isPlayer = false
 animation = "battle_idle"
 
 [sub_resource type="Resource" id="Resource_f3t80"]
 script = ExtResource("6_wd8k4")
 speaker = "Dragon"
 texts = Array[String](["Wroaaaaughh!!"])
-textboxSfxs = Array[AudioStream]([])
 speakerActorScenePath = "TilemapRoot/Dragon"
-speakerActorIsPlayer = false
 speakerAnim = "battle_idle"
 speakerAnimScale = 1
-animSpeakerOffset = Vector2(0, 0)
 
 [sub_resource type="Resource" id="Resource_y7oio"]
 script = ExtResource("1_kd7fi")
 frameLength = 0.1
 annotation = "The Dragon roars again"
-actorTweens = Array[ExtResource("5_8atbn")]([])
 actorAnims = Array[ExtResource("3_eeuyi")]([SubResource("Resource_r7ekr")])
-actorAnimSets = Array[ExtResource("2_45r0i")]([])
-actorFaceTargets = Array[ExtResource("4_bnkgo")]([])
 dialogues = Array[ExtResource("6_wd8k4")]([SubResource("Resource_f3t80")])
-playSfxs = Array[AudioStream]([])
-snapshotActorPaths = Array[String]([])
-restoreSnapshotActorPaths = Array[String]([])
-endTextBoxPauses = true
-shakeCamForDuration = false
-endHoldCamera = false
-endFade = 0
-endFadeLength = 0.0
-healsPlayer = false
-addsFollowerId = ""
-removesFollowerId = ""
-endStartsShardLearnTutorial = false
 
 [sub_resource type="Resource" id="Resource_o0wm5"]
 script = ExtResource("7_6nb1q")
 value = true
-actorTreePath = ""
 isPlayer = true
 propertyName = "walkBackwards"
-easeType = 2
-transitionType = 0
 
 [sub_resource type="Resource" id="Resource_o0ya7"]
 script = ExtResource("1_kd7fi")
 frameLength = 0.1
 annotation = "Wait for the text box to be closed and setup player for backwards walking"
 actorTweens = Array[ExtResource("5_8atbn")]([SubResource("Resource_o0wm5")])
-actorAnims = Array[ExtResource("3_eeuyi")]([])
-actorAnimSets = Array[ExtResource("2_45r0i")]([])
-actorFaceTargets = Array[ExtResource("4_bnkgo")]([])
-dialogues = Array[ExtResource("6_wd8k4")]([])
-playSfxs = Array[AudioStream]([])
-snapshotActorPaths = Array[String]([])
-restoreSnapshotActorPaths = Array[String]([])
-endTextBoxPauses = true
-shakeCamForDuration = false
-endHoldCamera = false
-endFade = 0
-endFadeLength = 0.0
-healsPlayer = false
-addsFollowerId = ""
-removesFollowerId = ""
-endStartsShardLearnTutorial = false
 
 [sub_resource type="Resource" id="Resource_6mhp1"]
 script = ExtResource("8_p2ll8")
 value = Vector2(1061, -495)
-actorTreePath = ""
 isPlayer = true
 propertyName = "position"
-easeType = 2
-transitionType = 0
 
 [sub_resource type="Resource" id="Resource_gu1dh"]
 script = ExtResource("1_kd7fi")
-frameLength = 1.0
 annotation = "The player retreats back to right next to the elder"
 actorTweens = Array[ExtResource("5_8atbn")]([SubResource("Resource_6mhp1")])
 actorAnims = Array[ExtResource("3_eeuyi")]([ExtResource("8_o0ptk")])
-actorAnimSets = Array[ExtResource("2_45r0i")]([])
-actorFaceTargets = Array[ExtResource("4_bnkgo")]([])
-dialogues = Array[ExtResource("6_wd8k4")]([])
-playSfxs = Array[AudioStream]([])
-snapshotActorPaths = Array[String]([])
-restoreSnapshotActorPaths = Array[String]([])
-endTextBoxPauses = true
-shakeCamForDuration = false
-endHoldCamera = false
-endFade = 0
-endFadeLength = 0.0
-healsPlayer = false
-addsFollowerId = ""
-removesFollowerId = ""
-endStartsShardLearnTutorial = false
 
 [sub_resource type="Resource" id="Resource_tn60u"]
 script = ExtResource("2_45r0i")
 actorTreePath = "TilemapRoot/Nomad2"
-isPlayer = false
-spriteState = "default"
 
 [sub_resource type="Resource" id="Resource_n78y0"]
 script = ExtResource("3_eeuyi")
 actorTreePath = "TilemapRoot/Nomad2"
-isPlayer = false
 animation = "collapsed"
 
 [sub_resource type="Resource" id="Resource_ijl6r"]
 script = ExtResource("7_6nb1q")
-value = false
-actorTreePath = ""
 isPlayer = true
 propertyName = "walkBackwards"
-easeType = 2
-transitionType = 0
 
 [sub_resource type="Resource" id="Resource_bdckp"]
 script = ExtResource("1_kd7fi")
-frameLength = 1.0
 annotation = "pause for suspense and disable backwards walking, switch elder sprite state and keep playing collapsed anim"
 actorTweens = Array[ExtResource("5_8atbn")]([SubResource("Resource_ijl6r")])
 actorAnims = Array[ExtResource("3_eeuyi")]([ExtResource("10_ikixo"), SubResource("Resource_n78y0")])
 actorAnimSets = Array[ExtResource("2_45r0i")]([SubResource("Resource_tn60u")])
-actorFaceTargets = Array[ExtResource("4_bnkgo")]([])
-dialogues = Array[ExtResource("6_wd8k4")]([])
-playSfxs = Array[AudioStream]([])
-snapshotActorPaths = Array[String]([])
-restoreSnapshotActorPaths = Array[String]([])
-endTextBoxPauses = true
-shakeCamForDuration = false
-endHoldCamera = false
-endFade = 0
-endFadeLength = 0.0
-healsPlayer = false
-addsFollowerId = ""
-removesFollowerId = ""
-endStartsShardLearnTutorial = false
 
 [sub_resource type="Resource" id="Resource_2kdeg"]
 script = ExtResource("3_eeuyi")
 actorTreePath = "TilemapRoot/Nomad2"
-isPlayer = false
 animation = "rise"
 
 [sub_resource type="Resource" id="Resource_iit2j"]
 script = ExtResource("1_kd7fi")
 frameLength = 2.01
 annotation = "the elder rises"
-actorTweens = Array[ExtResource("5_8atbn")]([])
 actorAnims = Array[ExtResource("3_eeuyi")]([SubResource("Resource_2kdeg")])
-actorAnimSets = Array[ExtResource("2_45r0i")]([])
-actorFaceTargets = Array[ExtResource("4_bnkgo")]([])
-dialogues = Array[ExtResource("6_wd8k4")]([])
-playSfxs = Array[AudioStream]([])
-snapshotActorPaths = Array[String]([])
-restoreSnapshotActorPaths = Array[String]([])
-endTextBoxPauses = true
-shakeCamForDuration = false
-endHoldCamera = false
-endFade = 0
-endFadeLength = 0.0
-healsPlayer = false
-addsFollowerId = ""
-removesFollowerId = ""
-endStartsShardLearnTutorial = false
 
 [sub_resource type="Resource" id="Resource_sud3s"]
 script = ExtResource("3_eeuyi")
 actorTreePath = "TilemapRoot/Nomad2"
-isPlayer = false
 animation = "talk"
 
 [sub_resource type="Resource" id="Resource_sxxmv"]
 script = ExtResource("4_bnkgo")
 actorTreePath = "TilemapRoot/Nomad2"
-isPlayer = false
-targetTreePath = ""
-targetPosition = Vector2(0, 0)
 targetIsPlayer = true
 
 [sub_resource type="Resource" id="Resource_7pa3d"]
 script = ExtResource("6_wd8k4")
 speaker = "Elder"
 texts = Array[String](["I'd stand back, adventurer...!"])
-textboxSfxs = Array[AudioStream]([])
 speakerActorScenePath = "TilemapRoot/Nomad2"
-speakerActorIsPlayer = false
-speakerAnim = "talk"
-speakerAnimScale = 3
-animSpeakerOffset = Vector2(0, 0)
 
 [sub_resource type="Resource" id="Resource_nj2yl"]
 script = ExtResource("1_kd7fi")
 frameLength = 0.1
 annotation = "The elder stands and speaks, facing the player"
-actorTweens = Array[ExtResource("5_8atbn")]([])
 actorAnims = Array[ExtResource("3_eeuyi")]([SubResource("Resource_sud3s")])
-actorAnimSets = Array[ExtResource("2_45r0i")]([])
 actorFaceTargets = Array[ExtResource("4_bnkgo")]([SubResource("Resource_sxxmv")])
 dialogues = Array[ExtResource("6_wd8k4")]([SubResource("Resource_7pa3d")])
-playSfxs = Array[AudioStream]([])
-snapshotActorPaths = Array[String]([])
-restoreSnapshotActorPaths = Array[String]([])
-endTextBoxPauses = true
-shakeCamForDuration = false
-endHoldCamera = false
-endFade = 0
-endFadeLength = 0.0
-healsPlayer = false
-addsFollowerId = ""
-removesFollowerId = ""
-endStartsShardLearnTutorial = false
 
 [sub_resource type="Resource" id="Resource_df8hu"]
 script = ExtResource("1_kd7fi")
 frameLength = 0.1
 annotation = "wait for the textbox to be closed"
-actorTweens = Array[ExtResource("5_8atbn")]([])
-actorAnims = Array[ExtResource("3_eeuyi")]([])
-actorAnimSets = Array[ExtResource("2_45r0i")]([])
-actorFaceTargets = Array[ExtResource("4_bnkgo")]([])
-dialogues = Array[ExtResource("6_wd8k4")]([])
-playSfxs = Array[AudioStream]([])
-snapshotActorPaths = Array[String]([])
-restoreSnapshotActorPaths = Array[String]([])
-endTextBoxPauses = true
-shakeCamForDuration = false
-endHoldCamera = false
-endFade = 0
-endFadeLength = 0.0
-healsPlayer = false
-addsFollowerId = ""
-removesFollowerId = ""
-endStartsShardLearnTutorial = false
 
 [sub_resource type="Resource" id="Resource_5oq78"]
 script = ExtResource("4_bnkgo")
-actorTreePath = ""
 isPlayer = true
 targetTreePath = "TilemapRoot/Nomad2"
-targetPosition = Vector2(0, 0)
-targetIsPlayer = false
 
 [sub_resource type="Resource" id="Resource_i236k"]
 script = ExtResource("1_kd7fi")
 frameLength = 0.5
 annotation = "The player turns to face the elder and pauses briefly, holding camera for next Frame"
-actorTweens = Array[ExtResource("5_8atbn")]([])
-actorAnims = Array[ExtResource("3_eeuyi")]([])
-actorAnimSets = Array[ExtResource("2_45r0i")]([])
 actorFaceTargets = Array[ExtResource("4_bnkgo")]([SubResource("Resource_5oq78")])
-dialogues = Array[ExtResource("6_wd8k4")]([])
-playSfxs = Array[AudioStream]([])
-snapshotActorPaths = Array[String]([])
-restoreSnapshotActorPaths = Array[String]([])
-endTextBoxPauses = true
-shakeCamForDuration = false
 endHoldCamera = true
-endFade = 0
-endFadeLength = 0.0
-healsPlayer = false
-addsFollowerId = ""
-removesFollowerId = ""
-endStartsShardLearnTutorial = false
 
 [sub_resource type="Resource" id="Resource_jho1f"]
 script = ExtResource("3_eeuyi")
 actorTreePath = "TilemapRoot/AffinityAttack"
-isPlayer = false
 animation = "default"
 
 [sub_resource type="Resource" id="Resource_i2106"]
 script = ExtResource("8_p2ll8")
 value = Vector2(1061, -466)
-actorTreePath = ""
 isPlayer = true
 propertyName = "position"
-easeType = 2
-transitionType = 0
 
 [sub_resource type="Resource" id="Resource_1o0s2"]
 script = ExtResource("7_6nb1q")
-value = false
 actorTreePath = "TilemapRoot/AffinityAttack"
-isPlayer = false
 propertyName = "invisible"
-easeType = 2
-transitionType = 0
 
 [sub_resource type="Resource" id="Resource_i8tg1"]
 script = ExtResource("1_kd7fi")
@@ -319,76 +157,41 @@ frameLength = 0.3
 annotation = "The player dodges off to one side. prepare the affinity attack"
 actorTweens = Array[ExtResource("5_8atbn")]([SubResource("Resource_i2106"), SubResource("Resource_1o0s2")])
 actorAnims = Array[ExtResource("3_eeuyi")]([ExtResource("11_34aiu"), SubResource("Resource_jho1f")])
-actorAnimSets = Array[ExtResource("2_45r0i")]([])
-actorFaceTargets = Array[ExtResource("4_bnkgo")]([])
-dialogues = Array[ExtResource("6_wd8k4")]([])
-playSfxs = Array[AudioStream]([])
-snapshotActorPaths = Array[String]([])
-restoreSnapshotActorPaths = Array[String]([])
-endTextBoxPauses = true
-shakeCamForDuration = false
 endHoldCamera = true
-endFade = 0
-endFadeLength = 0.0
-healsPlayer = false
-addsFollowerId = ""
-removesFollowerId = ""
-endStartsShardLearnTutorial = false
 
 [sub_resource type="Resource" id="Resource_vpwsj"]
 script = ExtResource("3_eeuyi")
 actorTreePath = "TilemapRoot/Nomad2"
-isPlayer = false
 animation = "attack_affinity"
 
 [sub_resource type="Resource" id="Resource_2ury6"]
 script = ExtResource("3_eeuyi")
 actorTreePath = "TilemapRoot/AffinityAttack"
-isPlayer = false
 animation = "sandblast"
 
 [sub_resource type="Resource" id="Resource_twfcf"]
 script = ExtResource("3_eeuyi")
 actorTreePath = "TilemapRoot/Dragon"
-isPlayer = false
 animation = "walk"
 
 [sub_resource type="Resource" id="Resource_drvhl"]
 script = ExtResource("1_kd7fi")
 frameLength = 1.5
 annotation = "The elder uses an affinity attack and the dragon starts flying in reaction"
-actorTweens = Array[ExtResource("5_8atbn")]([])
 actorAnims = Array[ExtResource("3_eeuyi")]([SubResource("Resource_vpwsj"), SubResource("Resource_2ury6"), ExtResource("10_ikixo"), SubResource("Resource_twfcf")])
-actorAnimSets = Array[ExtResource("2_45r0i")]([])
-actorFaceTargets = Array[ExtResource("4_bnkgo")]([])
-dialogues = Array[ExtResource("6_wd8k4")]([])
 playSfxs = Array[AudioStream]([ExtResource("12_072xi")])
-snapshotActorPaths = Array[String]([])
-restoreSnapshotActorPaths = Array[String]([])
-endTextBoxPauses = true
-shakeCamForDuration = false
 endHoldCamera = true
-endFade = 0
-endFadeLength = 0.0
-healsPlayer = false
-addsFollowerId = ""
-removesFollowerId = ""
-endStartsShardLearnTutorial = false
 
 [sub_resource type="Resource" id="Resource_52uq4"]
 script = ExtResource("3_eeuyi")
 actorTreePath = "TilemapRoot/AffinityAttack"
-isPlayer = false
 animation = "default"
 
 [sub_resource type="Resource" id="Resource_3e6bs"]
 script = ExtResource("7_6nb1q")
 value = true
 actorTreePath = "TilemapRoot/AffinityAttack"
-isPlayer = false
 propertyName = "invisible"
-easeType = 2
-transitionType = 0
 
 [sub_resource type="Resource" id="Resource_6neey"]
 script = ExtResource("1_kd7fi")
@@ -396,113 +199,46 @@ frameLength = 1.5
 annotation = "wait for the elder's attack anim to finish, plus 0.5s"
 actorTweens = Array[ExtResource("5_8atbn")]([SubResource("Resource_3e6bs")])
 actorAnims = Array[ExtResource("3_eeuyi")]([SubResource("Resource_52uq4")])
-actorAnimSets = Array[ExtResource("2_45r0i")]([])
-actorFaceTargets = Array[ExtResource("4_bnkgo")]([])
-dialogues = Array[ExtResource("6_wd8k4")]([])
-playSfxs = Array[AudioStream]([])
-snapshotActorPaths = Array[String]([])
-restoreSnapshotActorPaths = Array[String]([])
-endTextBoxPauses = true
-shakeCamForDuration = false
 endHoldCamera = true
-endFade = 0
-endFadeLength = 0.0
-healsPlayer = false
-addsFollowerId = ""
-removesFollowerId = ""
-endStartsShardLearnTutorial = false
 
 [sub_resource type="Resource" id="Resource_xl31o"]
 script = ExtResource("3_eeuyi")
 actorTreePath = "TilemapRoot/Dragon"
-isPlayer = false
 animation = "walk"
 
 [sub_resource type="Resource" id="Resource_vpl6n"]
 script = ExtResource("6_wd8k4")
 speaker = "Dragon"
 texts = Array[String](["Screeeeaaaghh!!"])
-textboxSfxs = Array[AudioStream]([])
 speakerActorScenePath = "TilemapRoot/Dragon"
-speakerActorIsPlayer = false
 speakerAnim = "walk"
 speakerAnimScale = 1
-animSpeakerOffset = Vector2(0, 0)
 
 [sub_resource type="Resource" id="Resource_ref47"]
 script = ExtResource("1_kd7fi")
 frameLength = 0.1
 annotation = "the dragon screeches"
-actorTweens = Array[ExtResource("5_8atbn")]([])
 actorAnims = Array[ExtResource("3_eeuyi")]([SubResource("Resource_xl31o")])
-actorAnimSets = Array[ExtResource("2_45r0i")]([])
-actorFaceTargets = Array[ExtResource("4_bnkgo")]([])
 dialogues = Array[ExtResource("6_wd8k4")]([SubResource("Resource_vpl6n")])
-playSfxs = Array[AudioStream]([])
-snapshotActorPaths = Array[String]([])
-restoreSnapshotActorPaths = Array[String]([])
-endTextBoxPauses = true
-shakeCamForDuration = false
 endHoldCamera = true
-endFade = 0
-endFadeLength = 0.0
-healsPlayer = false
-addsFollowerId = ""
-removesFollowerId = ""
-endStartsShardLearnTutorial = false
 
 [sub_resource type="Resource" id="Resource_aw7ei"]
 script = ExtResource("1_kd7fi")
 frameLength = 0.1
 annotation = "wait for the textbox to be closed"
-actorTweens = Array[ExtResource("5_8atbn")]([])
-actorAnims = Array[ExtResource("3_eeuyi")]([])
-actorAnimSets = Array[ExtResource("2_45r0i")]([])
-actorFaceTargets = Array[ExtResource("4_bnkgo")]([])
-dialogues = Array[ExtResource("6_wd8k4")]([])
-playSfxs = Array[AudioStream]([])
-snapshotActorPaths = Array[String]([])
-restoreSnapshotActorPaths = Array[String]([])
-endTextBoxPauses = true
-shakeCamForDuration = false
 endHoldCamera = true
-endFade = 0
-endFadeLength = 0.0
-healsPlayer = false
-addsFollowerId = ""
-removesFollowerId = ""
-endStartsShardLearnTutorial = false
 
 [sub_resource type="Resource" id="Resource_ro473"]
 script = ExtResource("8_p2ll8")
 value = Vector2(1260, -529)
 actorTreePath = "TilemapRoot/Dragon"
-isPlayer = false
 propertyName = "position"
-easeType = 2
-transitionType = 0
 
 [sub_resource type="Resource" id="Resource_bn68s"]
 script = ExtResource("1_kd7fi")
-frameLength = 1.0
 annotation = "The dragon flies off quickly"
 actorTweens = Array[ExtResource("5_8atbn")]([SubResource("Resource_ro473")])
-actorAnims = Array[ExtResource("3_eeuyi")]([])
-actorAnimSets = Array[ExtResource("2_45r0i")]([])
-actorFaceTargets = Array[ExtResource("4_bnkgo")]([])
-dialogues = Array[ExtResource("6_wd8k4")]([])
-playSfxs = Array[AudioStream]([])
-snapshotActorPaths = Array[String]([])
-restoreSnapshotActorPaths = Array[String]([])
-endTextBoxPauses = true
-shakeCamForDuration = false
 endHoldCamera = true
-endFade = 0
-endFadeLength = 0.0
-healsPlayer = false
-addsFollowerId = ""
-removesFollowerId = ""
-endStartsShardLearnTutorial = false
 
 [sub_resource type="Resource" id="Resource_qiwqx"]
 script = ExtResource("12_nbv28")
@@ -511,40 +247,18 @@ linearInterp = true
 [sub_resource type="Resource" id="Resource_ghud0"]
 script = ExtResource("13_txxg2")
 movementCurve = SubResource("Resource_qiwqx")
-finalPos = Vector2(0, 0)
 relative = true
 
 [sub_resource type="Resource" id="Resource_t6mg6"]
 script = ExtResource("1_kd7fi")
-frameLength = 1.0
 annotation = "The camera re-centers on the player"
-actorTweens = Array[ExtResource("5_8atbn")]([])
-actorAnims = Array[ExtResource("3_eeuyi")]([])
-actorAnimSets = Array[ExtResource("2_45r0i")]([])
-actorFaceTargets = Array[ExtResource("4_bnkgo")]([])
-dialogues = Array[ExtResource("6_wd8k4")]([])
-playSfxs = Array[AudioStream]([])
-snapshotActorPaths = Array[String]([])
-restoreSnapshotActorPaths = Array[String]([])
-endTextBoxPauses = true
-shakeCamForDuration = false
-endHoldCamera = false
 cameraMovement = SubResource("Resource_ghud0")
-endFade = 0
-endFadeLength = 0.0
-healsPlayer = false
-addsFollowerId = ""
-removesFollowerId = ""
-endStartsShardLearnTutorial = false
 
 [sub_resource type="Resource" id="Resource_y046p"]
 script = ExtResource("8_p2ll8")
 value = Vector2(1061, -495)
-actorTreePath = ""
 isPlayer = true
 propertyName = "position"
-easeType = 2
-transitionType = 0
 
 [sub_resource type="Resource" id="Resource_vcdu6"]
 script = ExtResource("1_kd7fi")
@@ -552,246 +266,92 @@ frameLength = 0.6
 annotation = "The player walks over towards the elder"
 actorTweens = Array[ExtResource("5_8atbn")]([SubResource("Resource_y046p")])
 actorAnims = Array[ExtResource("3_eeuyi")]([ExtResource("8_o0ptk")])
-actorAnimSets = Array[ExtResource("2_45r0i")]([])
-actorFaceTargets = Array[ExtResource("4_bnkgo")]([])
-dialogues = Array[ExtResource("6_wd8k4")]([])
-playSfxs = Array[AudioStream]([])
-snapshotActorPaths = Array[String]([])
-restoreSnapshotActorPaths = Array[String]([])
-endTextBoxPauses = true
-shakeCamForDuration = false
-endHoldCamera = false
-endFade = 0
-endFadeLength = 0.0
-healsPlayer = false
-addsFollowerId = ""
-removesFollowerId = ""
-endStartsShardLearnTutorial = false
 
 [sub_resource type="Resource" id="Resource_6kns2"]
 script = ExtResource("3_eeuyi")
 actorTreePath = "TilemapRoot/Nomad2"
-isPlayer = false
 animation = "talk"
 
 [sub_resource type="Resource" id="Resource_dc4i5"]
 script = ExtResource("4_bnkgo")
-actorTreePath = ""
 isPlayer = true
 targetTreePath = "TilemapRoot/Nomad2"
-targetPosition = Vector2(0, 0)
-targetIsPlayer = false
 
 [sub_resource type="Resource" id="Resource_4ovy8"]
 script = ExtResource("6_wd8k4")
 speaker = "Elder"
 texts = Array[String](["Thank you for saving me, adventurer. What's your name?"])
-textboxSfxs = Array[AudioStream]([])
 speakerActorScenePath = "TilemapRoot/Nomad2"
-speakerActorIsPlayer = false
-speakerAnim = "talk"
-speakerAnimScale = 3
-animSpeakerOffset = Vector2(0, 0)
 
 [sub_resource type="Resource" id="Resource_mt0qu"]
 script = ExtResource("1_kd7fi")
 frameLength = 0.1
 annotation = "The player stops and faces the elder, he speaks"
-actorTweens = Array[ExtResource("5_8atbn")]([])
 actorAnims = Array[ExtResource("3_eeuyi")]([ExtResource("10_ikixo"), SubResource("Resource_6kns2")])
-actorAnimSets = Array[ExtResource("2_45r0i")]([])
 actorFaceTargets = Array[ExtResource("4_bnkgo")]([SubResource("Resource_dc4i5")])
 dialogues = Array[ExtResource("6_wd8k4")]([SubResource("Resource_4ovy8")])
-playSfxs = Array[AudioStream]([])
-snapshotActorPaths = Array[String]([])
-restoreSnapshotActorPaths = Array[String]([])
-endTextBoxPauses = true
-shakeCamForDuration = false
-endHoldCamera = false
-endFade = 0
-endFadeLength = 0.0
-healsPlayer = false
-addsFollowerId = ""
-removesFollowerId = ""
-endStartsShardLearnTutorial = false
 
 [sub_resource type="Resource" id="Resource_o10rx"]
 script = ExtResource("1_kd7fi")
 frameLength = 0.1
 annotation = "Wait for textbox to be closed"
-actorTweens = Array[ExtResource("5_8atbn")]([])
-actorAnims = Array[ExtResource("3_eeuyi")]([])
-actorAnimSets = Array[ExtResource("2_45r0i")]([])
-actorFaceTargets = Array[ExtResource("4_bnkgo")]([])
-dialogues = Array[ExtResource("6_wd8k4")]([])
-playSfxs = Array[AudioStream]([])
-snapshotActorPaths = Array[String]([])
-restoreSnapshotActorPaths = Array[String]([])
-endTextBoxPauses = true
-shakeCamForDuration = false
-endHoldCamera = false
-endFade = 0
-endFadeLength = 0.0
-healsPlayer = false
-addsFollowerId = ""
-removesFollowerId = ""
-endStartsShardLearnTutorial = false
 
 [sub_resource type="Resource" id="Resource_ianif"]
 script = ExtResource("6_wd8k4")
 speaker = "@"
 texts = Array[String](["I'm @. I was rescued by your people in the desert, and I'm here to repay the favor."])
-textboxSfxs = Array[AudioStream]([])
-speakerActorScenePath = ""
 speakerActorIsPlayer = true
 speakerAnim = "stand"
-speakerAnimScale = 3
-animSpeakerOffset = Vector2(0, 0)
 
 [sub_resource type="Resource" id="Resource_o4rda"]
 script = ExtResource("1_kd7fi")
 frameLength = 0.1
 annotation = "The player replies with your name"
-actorTweens = Array[ExtResource("5_8atbn")]([])
-actorAnims = Array[ExtResource("3_eeuyi")]([])
-actorAnimSets = Array[ExtResource("2_45r0i")]([])
-actorFaceTargets = Array[ExtResource("4_bnkgo")]([])
 dialogues = Array[ExtResource("6_wd8k4")]([SubResource("Resource_ianif")])
-playSfxs = Array[AudioStream]([])
-snapshotActorPaths = Array[String]([])
-restoreSnapshotActorPaths = Array[String]([])
-endTextBoxPauses = true
-shakeCamForDuration = false
-endHoldCamera = false
-endFade = 0
-endFadeLength = 0.0
-healsPlayer = false
-addsFollowerId = ""
-removesFollowerId = ""
-endStartsShardLearnTutorial = false
 
 [sub_resource type="Resource" id="Resource_kgfor"]
 script = ExtResource("3_eeuyi")
 actorTreePath = "TilemapRoot/Nomad2"
-isPlayer = false
 animation = "stand"
 
 [sub_resource type="Resource" id="Resource_7s4ne"]
 script = ExtResource("1_kd7fi")
 frameLength = 0.1
 annotation = "wait for the textbox to be closed"
-actorTweens = Array[ExtResource("5_8atbn")]([])
 actorAnims = Array[ExtResource("3_eeuyi")]([SubResource("Resource_kgfor")])
-actorAnimSets = Array[ExtResource("2_45r0i")]([])
-actorFaceTargets = Array[ExtResource("4_bnkgo")]([])
-dialogues = Array[ExtResource("6_wd8k4")]([])
-playSfxs = Array[AudioStream]([])
-snapshotActorPaths = Array[String]([])
-restoreSnapshotActorPaths = Array[String]([])
-endTextBoxPauses = true
-shakeCamForDuration = false
-endHoldCamera = false
-endFade = 0
-endFadeLength = 0.0
-healsPlayer = false
-addsFollowerId = ""
-removesFollowerId = ""
-endStartsShardLearnTutorial = false
 
 [sub_resource type="Resource" id="Resource_nvpuc"]
 script = ExtResource("3_eeuyi")
 actorTreePath = "TilemapRoot/Nomad2"
-isPlayer = false
 animation = "talk"
 
 [sub_resource type="Resource" id="Resource_xs6ct"]
 script = ExtResource("6_wd8k4")
 speaker = "Elder"
 texts = Array[String](["Well, we're not out of this just yet! You can take care of the monsters on the way back to Camp.", "I just chased off the biggest one, so I'll let you handle the rest."])
-textboxSfxs = Array[AudioStream]([])
 speakerActorScenePath = "TilemapRoot/Nomad2"
-speakerActorIsPlayer = false
-speakerAnim = "talk"
-speakerAnimScale = 3
-animSpeakerOffset = Vector2(0, 0)
 
 [sub_resource type="Resource" id="Resource_nrao0"]
 script = ExtResource("1_kd7fi")
 frameLength = 0.1
 annotation = "The elder says he needs an escort"
-actorTweens = Array[ExtResource("5_8atbn")]([])
 actorAnims = Array[ExtResource("3_eeuyi")]([SubResource("Resource_nvpuc")])
-actorAnimSets = Array[ExtResource("2_45r0i")]([])
-actorFaceTargets = Array[ExtResource("4_bnkgo")]([])
 dialogues = Array[ExtResource("6_wd8k4")]([SubResource("Resource_xs6ct")])
-playSfxs = Array[AudioStream]([])
-snapshotActorPaths = Array[String]([])
-restoreSnapshotActorPaths = Array[String]([])
-endTextBoxPauses = true
-shakeCamForDuration = false
-endHoldCamera = false
-endFade = 0
-endFadeLength = 0.0
-healsPlayer = false
 addsFollowerId = "elder_nomad2"
-removesFollowerId = ""
-endStartsShardLearnTutorial = false
 
 [sub_resource type="Resource" id="Resource_fnxo7"]
 script = ExtResource("1_kd7fi")
 frameLength = 0.1
 annotation = "Wait for the textbox to be closed"
-actorTweens = Array[ExtResource("5_8atbn")]([])
-actorAnims = Array[ExtResource("3_eeuyi")]([])
-actorAnimSets = Array[ExtResource("2_45r0i")]([])
-actorFaceTargets = Array[ExtResource("4_bnkgo")]([])
-dialogues = Array[ExtResource("6_wd8k4")]([])
-playSfxs = Array[AudioStream]([])
-snapshotActorPaths = Array[String]([])
-restoreSnapshotActorPaths = Array[String]([])
-endTextBoxPauses = true
-shakeCamForDuration = false
-endHoldCamera = false
-endFade = 0
-endFadeLength = 0.0
-healsPlayer = false
-addsFollowerId = ""
-removesFollowerId = ""
-endStartsShardLearnTutorial = false
 
 [sub_resource type="Resource" id="Resource_r0vy1"]
 script = ExtResource("3_1o5eq")
-minAct = 0
-maxAct = -1
-prereqQuests = Array[String]([])
-prereqCutscenes = Array[String]([])
-prereqDialogues = Array[String]([])
-prereqPlacesVisited = Array[String]([])
 prereqSpecialBattles = Array[String](["dragon1"])
-prereqDefeatedEnemies = Array[String]([])
-prereqPuzzles = Array[String]([])
-prereqPuzzleStates = Dictionary[String, Array]({})
-prereqDiscoveredEvolutions = Array[String]([])
-prereqHavingFollowers = Array[String]([])
-prereqHasItems = Array[ExtResource("15_sl26r")]([])
-invalidAfterCompletingQuests = Array[String]([])
-invalidAfterFailingQuests = Array[String]([])
 invalidAfterCutscenes = Array[String](["dragon1_survive"])
-invalidAfterDialogues = Array[String]([])
-invalidAfterVistingPlaces = Array[String]([])
-invalidAfterSpecialBattles = Array[String]([])
-invalidAfterSolvingPuzzles = Array[String]([])
-invalidFromPuzzleStates = Dictionary[String, Array]({})
-invalidFromHavingFollowers = Array[String]([])
-invalidFromHavingItems = Array[ExtResource("15_sl26r")]([])
 
 [resource]
 script = ExtResource("2_04xm3")
 cutsceneFrames = Array[ExtResource("1_kd7fi")]([SubResource("Resource_y7oio"), SubResource("Resource_o0ya7"), SubResource("Resource_gu1dh"), SubResource("Resource_bdckp"), SubResource("Resource_iit2j"), SubResource("Resource_nj2yl"), SubResource("Resource_df8hu"), SubResource("Resource_i236k"), SubResource("Resource_i8tg1"), SubResource("Resource_drvhl"), SubResource("Resource_6neey"), SubResource("Resource_ref47"), SubResource("Resource_aw7ei"), SubResource("Resource_bn68s"), SubResource("Resource_t6mg6"), SubResource("Resource_vcdu6"), SubResource("Resource_mt0qu"), SubResource("Resource_o10rx"), SubResource("Resource_o4rda"), SubResource("Resource_7s4ne"), SubResource("Resource_nrao0"), SubResource("Resource_fnxo7")])
 saveName = "dragon1_survive"
 storyRequirements = SubResource("Resource_r0vy1")
-unlockCameraHoldAfter = true
-activateActorsBefore = Array[String]([])
 deactivateActorsAfter = Array[String](["TilemapRoot/Dragon"])
-tempDisabledAfter = false
-notes = ""

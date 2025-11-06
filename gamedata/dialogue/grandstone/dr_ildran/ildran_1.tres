@@ -12,56 +12,23 @@
 script = ExtResource("1_v0asj")
 choiceBtn = "Yes, But --"
 leadsTo = ExtResource("1_vdf26")
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("4_hkpgx")]([])
-repeatsItem = false
 buttonDims = Vector2(250, 40)
-turnsInQuest = ""
-isDeclineChoice = false
 
 [sub_resource type="Resource" id="Resource_hyn0o"]
 script = ExtResource("1_hnnn5")
 lines = Array[String](["Welcome back, @. Thank you for going to Standstill for me. Did you bring the Shards back?"])
-minShowSecs = Array[float]([])
 animation = "talk"
-speakerOverride = ""
-actorAnimation = ""
-animateActorTreePath = ""
-animateActorIsPlayer = false
 choices = Array[ExtResource("1_v0asj")]([SubResource("Resource_spjfx")])
 
 [sub_resource type="Resource" id="Resource_ofou4"]
 script = ExtResource("2_5xb1c")
 minAct = 1
 maxAct = 1
-prereqQuests = Array[String]([])
 prereqCutscenes = Array[String](["arrive_grandstone"])
-prereqDialogues = Array[String]([])
-prereqPlacesVisited = Array[String]([])
-prereqSpecialBattles = Array[String]([])
-prereqDefeatedEnemies = Array[String]([])
-prereqPuzzles = Array[String]([])
-prereqPuzzleStates = Dictionary[String, Array]({})
-prereqDiscoveredEvolutions = Array[String]([])
-prereqHavingFollowers = Array[String]([])
-prereqHasItems = Array[ExtResource("7_ooxw1")]([])
-invalidAfterCompletingQuests = Array[String]([])
-invalidAfterFailingQuests = Array[String]([])
-invalidAfterCutscenes = Array[String]([])
 invalidAfterDialogues = Array[String](["grandstone_dr_ildran#dr_ildran_cave_gone"])
-invalidAfterVistingPlaces = Array[String]([])
-invalidAfterSpecialBattles = Array[String]([])
-invalidAfterSolvingPuzzles = Array[String]([])
-invalidFromPuzzleStates = Dictionary[String, Array]({})
-invalidFromHavingFollowers = Array[String]([])
-invalidFromHavingItems = Array[ExtResource("7_ooxw1")]([])
 
 [resource]
 script = ExtResource("1_7xivm")
 entryId = "dr_ildran_1"
 items = Array[ExtResource("1_hnnn5")]([SubResource("Resource_hyn0o")])
 storyRequirements = SubResource("Resource_ofou4")
-ordStoryRequirements = Array[ExtResource("2_5xb1c")]([])
-closesDialogue = false
-fullHealsPlayer = false
-annotation = ""

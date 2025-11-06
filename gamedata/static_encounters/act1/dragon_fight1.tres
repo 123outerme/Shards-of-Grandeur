@@ -17,39 +17,23 @@
 script = ExtResource("2_leily")
 experience = 100
 gold = 20
-itemCount = 1
-fullyAttuneCombatantSaveName = ""
 
 [sub_resource type="Resource" id="Resource_aui8p"]
 script = ExtResource("2_leily")
 experience = 130
 gold = 30
 item = ExtResource("10_p55te")
-itemCount = 1
-fullyAttuneCombatantSaveName = ""
 
 [sub_resource type="Resource" id="Resource_8ehk7"]
 script = ExtResource("9_p5b7j")
 minTurns = 8
 staticTotalDefeatRewards = Array[ExtResource("2_leily")]([SubResource("Resource_aui8p")])
 winText = "You survived the battle!"
-loseText = "You were defeated..."
-escapeText = "You escaped successfully!"
 
 [resource]
 script = ExtResource("3_y6hm3")
 combatant1Level = 24
 combatant1Moves = Array[ExtResource("1_6nlll")]([ExtResource("4_aaffr"), ExtResource("5_0y4br"), ExtResource("6_nj4rb"), ExtResource("7_7bksr")])
-combatant1ShardSummoned = false
-combatant2Level = 1
-combatant2Moves = Array[ExtResource("1_6nlll")]([])
-combatant2ShardSummoned = false
-combatant3Level = 1
-combatant3Moves = Array[ExtResource("1_6nlll")]([])
-combatant3ShardSummoned = false
-autoAllyLevel = 1
-autoAllyMoves = Array[ExtResource("1_6nlll")]([])
-autoAllyShardSummoned = false
 specialBattleId = "dragon1"
 bossBattle = true
 canEscape = false
@@ -58,7 +42,5 @@ useStaticRewards = true
 battleMusic = ExtResource("2_q75ij")
 combatant1 = ExtResource("3_3db0c")
 combatant1StatAllocStrat = ExtResource("4_26adn")
-specialRules = 0
 winCon = SubResource("Resource_8ehk7")
 customWinText = "\"Wrauuughhhhh...!\""
-battleMapPath = ""

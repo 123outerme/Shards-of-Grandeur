@@ -10,47 +10,14 @@
 [sub_resource type="Resource" id="Resource_u453b"]
 script = ExtResource("1_bsrw1")
 lines = Array[String](["Wraaaaaaugghhh!!"])
-minShowSecs = Array[float]([])
 animation = "battle_idle"
-speakerOverride = ""
-actorAnimation = ""
-animateActorTreePath = ""
-animateActorIsPlayer = false
-choices = Array[ExtResource("2_ajskf")]([])
 
 [sub_resource type="Resource" id="Resource_f6ufg"]
 script = ExtResource("5_0i37u")
-minAct = 0
-maxAct = -1
-prereqQuests = Array[String]([])
-prereqCutscenes = Array[String]([])
-prereqDialogues = Array[String]([])
-prereqPlacesVisited = Array[String]([])
-prereqSpecialBattles = Array[String]([])
-prereqDefeatedEnemies = Array[String]([])
-prereqPuzzles = Array[String]([])
-prereqPuzzleStates = Dictionary[String, Array]({})
-prereqDiscoveredEvolutions = Array[String]([])
-prereqHavingFollowers = Array[String]([])
-prereqHasItems = Array[ExtResource("6_m515t")]([])
-invalidAfterCompletingQuests = Array[String]([])
-invalidAfterFailingQuests = Array[String]([])
-invalidAfterCutscenes = Array[String]([])
-invalidAfterDialogues = Array[String]([])
-invalidAfterVistingPlaces = Array[String]([])
 invalidAfterSpecialBattles = Array[String](["dragon1"])
-invalidAfterSolvingPuzzles = Array[String]([])
-invalidFromPuzzleStates = Dictionary[String, Array]({})
-invalidFromHavingFollowers = Array[String]([])
-invalidFromHavingItems = Array[ExtResource("6_m515t")]([])
 
 [resource]
 script = ExtResource("3_gl441")
-entryId = ""
 items = Array[ExtResource("1_bsrw1")]([SubResource("Resource_u453b")])
 storyRequirements = SubResource("Resource_f6ufg")
-ordStoryRequirements = Array[ExtResource("5_0i37u")]([])
-closesDialogue = false
-fullHealsPlayer = false
 startsStaticEncounter = ExtResource("4_se4vu")
-annotation = ""

@@ -54,10 +54,7 @@
 [sub_resource type="Resource" id="Resource_1i4u7"]
 script = ExtResource("6_geliy")
 id = "collapsed"
-priority = 0
 spriteFrames = ExtResource("4_j42rk")
-storyRequirements = Array[ExtResource("6_1p87e")]([])
-autoApplyState = false
 metadata/_custom_type_script = "uid://bwcja16pmp3mf"
 
 [sub_resource type="Resource" id="Resource_g60up"]
@@ -65,87 +62,26 @@ script = ExtResource("6_geliy")
 id = "default"
 priority = -1
 spriteFrames = ExtResource("5_tspdh")
-storyRequirements = Array[ExtResource("6_1p87e")]([])
-autoApplyState = false
 
 [sub_resource type="Resource" id="Resource_jr0x0"]
 script = ExtResource("6_1p87e")
-minAct = 0
-maxAct = -1
-prereqQuests = Array[String]([])
-prereqCutscenes = Array[String]([])
-prereqDialogues = Array[String]([])
-prereqPlacesVisited = Array[String]([])
-prereqSpecialBattles = Array[String]([])
-prereqDefeatedEnemies = Array[String]([])
-prereqPuzzles = Array[String]([])
-prereqPuzzleStates = Dictionary[String, Array]({})
-prereqDiscoveredEvolutions = Array[String]([])
-prereqHavingFollowers = Array[String]([])
-prereqHasItems = Array[ExtResource("6_43c8t")]([])
-invalidAfterCompletingQuests = Array[String]([])
-invalidAfterFailingQuests = Array[String]([])
 invalidAfterCutscenes = Array[String](["return_elder_nomad"])
-invalidAfterDialogues = Array[String]([])
-invalidAfterVistingPlaces = Array[String]([])
-invalidAfterSpecialBattles = Array[String]([])
-invalidAfterSolvingPuzzles = Array[String]([])
-invalidFromPuzzleStates = Dictionary[String, Array]({})
-invalidFromHavingFollowers = Array[String]([])
-invalidFromHavingItems = Array[ExtResource("6_43c8t")]([])
 
-[sub_resource type="Resource" id="Resource_oyacr"]
+[sub_resource type="Resource" id="Resource_5wdkc"]
 script = ExtResource("4_ts6ro")
 saveName = "npc"
 spriteState = "collapsed"
-animation = "stand"
 position = Vector2(1044, -498)
-flipH = false
-visible = true
-selectedTarget = 0
-loops = 0
-disableMovement = false
-previousDisableMove = false
-afterMoveWaitAccum = 0.0
-followerHomePosition = Vector2(0, 0)
-followingPlayer = false
-followerHomeSet = false
-combatMode = false
-version = ""
-dialogueItems = []
-dialogueIndex = -1
-dialogueItemIdx = -1
-dialogueLine = -1
 
 [sub_resource type="Resource" id="Resource_jdw7p"]
 script = ExtResource("6_geliy")
 id = "default"
 priority = -1
-storyRequirements = Array[ExtResource("6_1p87e")]([])
-autoApplyState = false
 
-[sub_resource type="Resource" id="Resource_typvl"]
+[sub_resource type="Resource" id="Resource_oyacr"]
 script = ExtResource("4_ts6ro")
 saveName = "npc"
-spriteState = "default"
-animation = "stand"
 position = Vector2(1260, -529)
-flipH = false
-visible = true
-selectedTarget = 0
-loops = 0
-disableMovement = false
-previousDisableMove = false
-afterMoveWaitAccum = 0.0
-followerHomePosition = Vector2(0, 0)
-followingPlayer = false
-followerHomeSet = false
-combatMode = false
-version = ""
-dialogueItems = []
-dialogueIndex = -1
-dialogueItemIdx = -1
-dialogueLine = -1
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6p1cx"]
 size = Vector2(44, 24)
@@ -156,29 +92,17 @@ size = Vector2(23, 30)
 [sub_resource type="Resource" id="Resource_rci2n"]
 script = ExtResource("8_6o8d6")
 item = ExtResource("7_q484k")
-wasPickedUp = false
-speaker = ""
 dialogueEntry = ExtResource("7_bxud8")
-savedItemIdx = 0
-savedTextIdx = 0
 
 [sub_resource type="Resource" id="Resource_rt8fg"]
 script = ExtResource("8_6o8d6")
 item = ExtResource("17_ehlfh")
-wasPickedUp = false
-speaker = ""
 dialogueEntry = ExtResource("17_eq2sn")
-savedItemIdx = 0
-savedTextIdx = 0
 
 [sub_resource type="Resource" id="Resource_sgnf1"]
 script = ExtResource("8_6o8d6")
 item = ExtResource("11_l6utv")
-wasPickedUp = false
-speaker = ""
 dialogueEntry = ExtResource("10_my0nn")
-savedItemIdx = 0
-savedTextIdx = 0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3wtpt"]
 atlas = ExtResource("21_q0kss")
@@ -187,37 +111,11 @@ region = Rect2(48, 128, 16, 16)
 [sub_resource type="Resource" id="Resource_r78bv"]
 script = ExtResource("8_6o8d6")
 item = ExtResource("23_7p7k4")
-wasPickedUp = false
-speaker = ""
 dialogueEntry = ExtResource("22_ays86")
-savedItemIdx = 0
-savedTextIdx = 0
 
 [sub_resource type="Resource" id="Resource_p2v4c"]
 script = ExtResource("6_1p87e")
-minAct = 0
-maxAct = -1
-prereqQuests = Array[String]([])
-prereqCutscenes = Array[String]([])
-prereqDialogues = Array[String]([])
-prereqPlacesVisited = Array[String]([])
-prereqSpecialBattles = Array[String]([])
-prereqDefeatedEnemies = Array[String]([])
-prereqPuzzles = Array[String]([])
-prereqPuzzleStates = Dictionary[String, Array]({})
-prereqDiscoveredEvolutions = Array[String]([])
-prereqHavingFollowers = Array[String]([])
-prereqHasItems = Array[ExtResource("6_43c8t")]([])
-invalidAfterCompletingQuests = Array[String]([])
-invalidAfterFailingQuests = Array[String]([])
 invalidAfterCutscenes = Array[String](["dragon1_survive"])
-invalidAfterDialogues = Array[String]([])
-invalidAfterVistingPlaces = Array[String]([])
-invalidAfterSpecialBattles = Array[String]([])
-invalidAfterSolvingPuzzles = Array[String]([])
-invalidFromPuzzleStates = Dictionary[String, Array]({})
-invalidFromHavingFollowers = Array[String]([])
-invalidFromHavingItems = Array[ExtResource("6_43c8t")]([])
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qm4cm"]
 atlas = ExtResource("21_q0kss")
@@ -229,8 +127,6 @@ size = Vector2(28, 150)
 [sub_resource type="Resource" id="Resource_25gdd"]
 script = ExtResource("14_75u7d")
 spawnerId = "desert_east_1"
-disabled = false
-spawnedLastEncounter = false
 
 [sub_resource type="Resource" id="Resource_rp467"]
 script = ExtResource("16_1ful6")
@@ -264,14 +160,9 @@ weight = 0.3
 script = ExtResource("17_hdwwf")
 combatantsMinLevel = 13
 combatantsMaxLevel = 15
-combatantsLvToPlayerLvRatio = 1.0
-levelStages = Array[ExtResource("35_tpj76")]([])
 combatant2Options = Array[ExtResource("16_1ful6")]([SubResource("Resource_rp467"), SubResource("Resource_74dd3"), SubResource("Resource_tfcrg")])
 combatant3Options = Array[ExtResource("16_1ful6")]([SubResource("Resource_630bb"), SubResource("Resource_5hyax"), SubResource("Resource_ehurx")])
 combatant1 = ExtResource("15_28mfe")
-specialRules = 0
-customWinText = ""
-battleMapPath = ""
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2fy23"]
 size = Vector2(185, 241)
@@ -279,8 +170,6 @@ size = Vector2(185, 241)
 [sub_resource type="Resource" id="Resource_dkqbj"]
 script = ExtResource("14_75u7d")
 spawnerId = "desert_east_2"
-disabled = false
-spawnedLastEncounter = false
 
 [sub_resource type="Resource" id="Resource_el1wc"]
 script = ExtResource("16_1ful6")
@@ -319,14 +208,9 @@ weight = 0.2
 script = ExtResource("17_hdwwf")
 combatantsMinLevel = 14
 combatantsMaxLevel = 15
-combatantsLvToPlayerLvRatio = 1.0
-levelStages = Array[ExtResource("35_tpj76")]([])
 combatant2Options = Array[ExtResource("16_1ful6")]([SubResource("Resource_el1wc"), SubResource("Resource_l5ddk"), SubResource("Resource_vllab")])
 combatant3Options = Array[ExtResource("16_1ful6")]([SubResource("Resource_jso4i"), SubResource("Resource_634s0"), SubResource("Resource_ufe4a"), SubResource("Resource_yot05")])
 combatant1 = ExtResource("17_hncb7")
-specialRules = 0
-customWinText = ""
-battleMapPath = ""
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_11wvc"]
 size = Vector2(210, 199)
@@ -334,8 +218,6 @@ size = Vector2(210, 199)
 [sub_resource type="Resource" id="Resource_1usoh"]
 script = ExtResource("14_75u7d")
 spawnerId = "desert_east_3"
-disabled = false
-spawnedLastEncounter = false
 
 [sub_resource type="Resource" id="Resource_700g5"]
 script = ExtResource("16_1ful6")
@@ -369,14 +251,9 @@ weight = 0.3
 script = ExtResource("17_hdwwf")
 combatantsMinLevel = 14
 combatantsMaxLevel = 16
-combatantsLvToPlayerLvRatio = 1.0
-levelStages = Array[ExtResource("35_tpj76")]([])
 combatant2Options = Array[ExtResource("16_1ful6")]([SubResource("Resource_700g5"), SubResource("Resource_db7mw"), SubResource("Resource_fqcav")])
 combatant3Options = Array[ExtResource("16_1ful6")]([SubResource("Resource_ufyof"), SubResource("Resource_iq2nt"), SubResource("Resource_2ihbx")])
 combatant1 = ExtResource("17_hncb7")
-specialRules = 0
-customWinText = ""
-battleMapPath = ""
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8qf5w"]
 size = Vector2(277, 206)
@@ -384,8 +261,6 @@ size = Vector2(277, 206)
 [sub_resource type="Resource" id="Resource_fte80"]
 script = ExtResource("14_75u7d")
 spawnerId = "desert_east_4"
-disabled = false
-spawnedLastEncounter = false
 
 [sub_resource type="Resource" id="Resource_x6pyj"]
 script = ExtResource("16_1ful6")
@@ -424,14 +299,9 @@ weight = 0.3
 script = ExtResource("17_hdwwf")
 combatantsMinLevel = 14
 combatantsMaxLevel = 16
-combatantsLvToPlayerLvRatio = 1.0
-levelStages = Array[ExtResource("35_tpj76")]([])
 combatant2Options = Array[ExtResource("16_1ful6")]([SubResource("Resource_x6pyj"), SubResource("Resource_sqm2a"), SubResource("Resource_d26v0")])
 combatant3Options = Array[ExtResource("16_1ful6")]([SubResource("Resource_2jed1"), SubResource("Resource_c81ha"), SubResource("Resource_2ujam"), SubResource("Resource_ybrxf")])
 combatant1 = ExtResource("18_r5te7")
-specialRules = 0
-customWinText = ""
-battleMapPath = ""
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iuyhg"]
 size = Vector2(257, 183)
@@ -439,8 +309,6 @@ size = Vector2(257, 183)
 [sub_resource type="Resource" id="Resource_sig85"]
 script = ExtResource("14_75u7d")
 spawnerId = "desert_east_5"
-disabled = false
-spawnedLastEncounter = false
 
 [sub_resource type="Resource" id="Resource_156r6"]
 script = ExtResource("16_1ful6")
@@ -474,14 +342,9 @@ weight = 0.3
 script = ExtResource("17_hdwwf")
 combatantsMinLevel = 15
 combatantsMaxLevel = 16
-combatantsLvToPlayerLvRatio = 1.0
-levelStages = Array[ExtResource("35_tpj76")]([])
 combatant2Options = Array[ExtResource("16_1ful6")]([SubResource("Resource_156r6"), SubResource("Resource_vhw0e"), SubResource("Resource_q5cuc")])
 combatant3Options = Array[ExtResource("16_1ful6")]([SubResource("Resource_gwbad"), SubResource("Resource_bdhbo"), SubResource("Resource_j7lj7")])
 combatant1 = ExtResource("18_wmoer")
-specialRules = 0
-customWinText = ""
-battleMapPath = ""
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vvigc"]
 size = Vector2(245, 196)
@@ -489,8 +352,6 @@ size = Vector2(245, 196)
 [sub_resource type="Resource" id="Resource_t65b8"]
 script = ExtResource("14_75u7d")
 spawnerId = "desert_east_6"
-disabled = false
-spawnedLastEncounter = false
 
 [sub_resource type="Resource" id="Resource_fjvac"]
 script = ExtResource("16_1ful6")
@@ -524,14 +385,9 @@ weight = 0.3
 script = ExtResource("17_hdwwf")
 combatantsMinLevel = 14
 combatantsMaxLevel = 15
-combatantsLvToPlayerLvRatio = 1.0
-levelStages = Array[ExtResource("35_tpj76")]([])
 combatant2Options = Array[ExtResource("16_1ful6")]([SubResource("Resource_fjvac"), SubResource("Resource_nj3h0"), SubResource("Resource_ydrq0")])
 combatant3Options = Array[ExtResource("16_1ful6")]([SubResource("Resource_kd1qe"), SubResource("Resource_px2ar"), SubResource("Resource_hsb8d")])
 combatant1 = ExtResource("18_r5te7")
-specialRules = 0
-customWinText = ""
-battleMapPath = ""
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cu33u"]
 size = Vector2(269, 176)
@@ -539,8 +395,6 @@ size = Vector2(269, 176)
 [sub_resource type="Resource" id="Resource_3oswi"]
 script = ExtResource("14_75u7d")
 spawnerId = "desert_east_7"
-disabled = false
-spawnedLastEncounter = false
 
 [sub_resource type="Resource" id="Resource_i4rnp"]
 script = ExtResource("16_1ful6")
@@ -561,14 +415,9 @@ weight = 1.0
 script = ExtResource("17_hdwwf")
 combatantsMinLevel = 16
 combatantsMaxLevel = 18
-combatantsLvToPlayerLvRatio = 1.0
-levelStages = Array[ExtResource("35_tpj76")]([])
 combatant2Options = Array[ExtResource("16_1ful6")]([SubResource("Resource_i4rnp"), SubResource("Resource_gn3fu")])
 combatant3Options = Array[ExtResource("16_1ful6")]([SubResource("Resource_t0p74")])
 combatant1 = ExtResource("17_hncb7")
-specialRules = 0
-customWinText = ""
-battleMapPath = ""
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0utjn"]
 size = Vector2(308, 195)
@@ -576,8 +425,6 @@ size = Vector2(308, 195)
 [sub_resource type="Resource" id="Resource_e5saf"]
 script = ExtResource("14_75u7d")
 spawnerId = "desert_east_8"
-disabled = false
-spawnedLastEncounter = false
 
 [sub_resource type="Resource" id="Resource_hcbqk"]
 script = ExtResource("16_1ful6")
@@ -611,14 +458,9 @@ weight = 0.3
 script = ExtResource("17_hdwwf")
 combatantsMinLevel = 14
 combatantsMaxLevel = 15
-combatantsLvToPlayerLvRatio = 1.0
-levelStages = Array[ExtResource("35_tpj76")]([])
 combatant2Options = Array[ExtResource("16_1ful6")]([SubResource("Resource_hcbqk"), SubResource("Resource_csm3d"), SubResource("Resource_yk7n7")])
 combatant3Options = Array[ExtResource("16_1ful6")]([SubResource("Resource_x5sdf"), SubResource("Resource_a6sov"), SubResource("Resource_6vkof")])
 combatant1 = ExtResource("15_28mfe")
-specialRules = 0
-customWinText = ""
-battleMapPath = ""
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f7kdu"]
 size = Vector2(289, 194)
@@ -626,8 +468,6 @@ size = Vector2(289, 194)
 [sub_resource type="Resource" id="Resource_fcn3i"]
 script = ExtResource("14_75u7d")
 spawnerId = "desert_east_9"
-disabled = false
-spawnedLastEncounter = false
 
 [sub_resource type="Resource" id="Resource_66f0s"]
 script = ExtResource("16_1ful6")
@@ -661,14 +501,9 @@ weight = 0.25
 script = ExtResource("17_hdwwf")
 combatantsMinLevel = 14
 combatantsMaxLevel = 16
-combatantsLvToPlayerLvRatio = 1.0
-levelStages = Array[ExtResource("35_tpj76")]([])
 combatant2Options = Array[ExtResource("16_1ful6")]([SubResource("Resource_66f0s"), SubResource("Resource_aaj3y"), SubResource("Resource_gjipu")])
 combatant3Options = Array[ExtResource("16_1ful6")]([SubResource("Resource_j7u0j"), SubResource("Resource_fgy6a"), SubResource("Resource_jagdf")])
 combatant1 = ExtResource("18_r5te7")
-specialRules = 0
-customWinText = ""
-battleMapPath = ""
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2vusc"]
 size = Vector2(311, 231)
@@ -676,8 +511,6 @@ size = Vector2(311, 231)
 [sub_resource type="Resource" id="Resource_7nsod"]
 script = ExtResource("14_75u7d")
 spawnerId = "desert_east_10"
-disabled = false
-spawnedLastEncounter = false
 
 [sub_resource type="Resource" id="Resource_a08eu"]
 script = ExtResource("16_1ful6")
@@ -711,14 +544,9 @@ weight = 0.25
 script = ExtResource("17_hdwwf")
 combatantsMinLevel = 14
 combatantsMaxLevel = 16
-combatantsLvToPlayerLvRatio = 1.0
-levelStages = Array[ExtResource("35_tpj76")]([])
 combatant2Options = Array[ExtResource("16_1ful6")]([SubResource("Resource_a08eu"), SubResource("Resource_y2kf1"), SubResource("Resource_4446t")])
 combatant3Options = Array[ExtResource("16_1ful6")]([SubResource("Resource_j8ekl"), SubResource("Resource_jden3"), SubResource("Resource_mfar0")])
 combatant1 = ExtResource("17_hncb7")
-specialRules = 0
-customWinText = ""
-battleMapPath = ""
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_873c3"]
 size = Vector2(253, 183)
@@ -726,8 +554,6 @@ size = Vector2(253, 183)
 [sub_resource type="Resource" id="Resource_xraco"]
 script = ExtResource("14_75u7d")
 spawnerId = "desert_east_11"
-disabled = false
-spawnedLastEncounter = false
 
 [sub_resource type="Resource" id="Resource_t3eps"]
 script = ExtResource("16_1ful6")
@@ -745,11 +571,9 @@ weight = 0.2
 
 [sub_resource type="Resource" id="Resource_4krrs"]
 script = ExtResource("16_1ful6")
-weight = 0.0
 
 [sub_resource type="Resource" id="Resource_xkft0"]
 script = ExtResource("16_1ful6")
-weight = 0.0
 
 [sub_resource type="Resource" id="Resource_mapfr"]
 script = ExtResource("16_1ful6")
@@ -759,14 +583,9 @@ weight = 0.2
 script = ExtResource("17_hdwwf")
 combatantsMinLevel = 14
 combatantsMaxLevel = 16
-combatantsLvToPlayerLvRatio = 1.0
-levelStages = Array[ExtResource("35_tpj76")]([])
 combatant2Options = Array[ExtResource("16_1ful6")]([SubResource("Resource_t3eps"), SubResource("Resource_h0fkc"), SubResource("Resource_rfq01")])
 combatant3Options = Array[ExtResource("16_1ful6")]([SubResource("Resource_4krrs"), SubResource("Resource_xkft0"), SubResource("Resource_mapfr")])
 combatant1 = ExtResource("15_28mfe")
-specialRules = 0
-customWinText = ""
-battleMapPath = ""
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xv46m"]
 size = Vector2(333, 225)
@@ -774,8 +593,6 @@ size = Vector2(333, 225)
 [sub_resource type="Resource" id="Resource_7yihq"]
 script = ExtResource("14_75u7d")
 spawnerId = "desert_east_12"
-disabled = false
-spawnedLastEncounter = false
 
 [sub_resource type="Resource" id="Resource_1dwjo"]
 script = ExtResource("16_1ful6")
@@ -809,14 +626,9 @@ weight = 0.2
 script = ExtResource("17_hdwwf")
 combatantsMinLevel = 14
 combatantsMaxLevel = 16
-combatantsLvToPlayerLvRatio = 1.0
-levelStages = Array[ExtResource("35_tpj76")]([])
 combatant2Options = Array[ExtResource("16_1ful6")]([SubResource("Resource_1dwjo"), SubResource("Resource_c6cw7"), SubResource("Resource_4hmtm")])
 combatant3Options = Array[ExtResource("16_1ful6")]([SubResource("Resource_l2ou2"), SubResource("Resource_vmjel"), SubResource("Resource_7n8dp")])
 combatant1 = ExtResource("17_hncb7")
-specialRules = 0
-customWinText = ""
-battleMapPath = ""
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8nopg"]
 size = Vector2(319, 257)
@@ -824,8 +636,6 @@ size = Vector2(319, 257)
 [sub_resource type="Resource" id="Resource_glmdi"]
 script = ExtResource("14_75u7d")
 spawnerId = "desert_east_13"
-disabled = false
-spawnedLastEncounter = false
 
 [sub_resource type="Resource" id="Resource_vc4y8"]
 script = ExtResource("16_1ful6")
@@ -835,7 +645,6 @@ weight = 0.7
 [sub_resource type="Resource" id="Resource_8his8"]
 script = ExtResource("16_1ful6")
 combatant = ExtResource("15_28mfe")
-weight = 0.0
 
 [sub_resource type="Resource" id="Resource_t25bo"]
 script = ExtResource("16_1ful6")
@@ -859,14 +668,9 @@ weight = 0.2
 script = ExtResource("17_hdwwf")
 combatantsMinLevel = 15
 combatantsMaxLevel = 16
-combatantsLvToPlayerLvRatio = 1.0
-levelStages = Array[ExtResource("35_tpj76")]([])
 combatant2Options = Array[ExtResource("16_1ful6")]([SubResource("Resource_vc4y8"), SubResource("Resource_8his8"), SubResource("Resource_t25bo")])
 combatant3Options = Array[ExtResource("16_1ful6")]([SubResource("Resource_m6i1w"), SubResource("Resource_bwnsh"), SubResource("Resource_kjdcw")])
 combatant1 = ExtResource("18_wmoer")
-specialRules = 0
-customWinText = ""
-battleMapPath = ""
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ue0k7"]
 size = Vector2(288, 190)
@@ -874,8 +678,6 @@ size = Vector2(288, 190)
 [sub_resource type="Resource" id="Resource_2rvcf"]
 script = ExtResource("14_75u7d")
 spawnerId = "desert_east_14"
-disabled = false
-spawnedLastEncounter = false
 
 [sub_resource type="Resource" id="Resource_j0y1r"]
 script = ExtResource("16_1ful6")
@@ -885,7 +687,6 @@ weight = 0.5
 [sub_resource type="Resource" id="Resource_g7u44"]
 script = ExtResource("16_1ful6")
 combatant = ExtResource("21_rcpll")
-weight = 0.0
 
 [sub_resource type="Resource" id="Resource_4twol"]
 script = ExtResource("16_1ful6")
@@ -899,7 +700,6 @@ weight = 0.4
 [sub_resource type="Resource" id="Resource_p1wu6"]
 script = ExtResource("16_1ful6")
 combatant = ExtResource("18_r5te7")
-weight = 0.0
 
 [sub_resource type="Resource" id="Resource_h7edd"]
 script = ExtResource("16_1ful6")
@@ -909,23 +709,15 @@ weight = 0.2
 script = ExtResource("17_hdwwf")
 combatantsMinLevel = 14
 combatantsMaxLevel = 16
-combatantsLvToPlayerLvRatio = 1.0
-levelStages = Array[ExtResource("35_tpj76")]([])
 combatant2Options = Array[ExtResource("16_1ful6")]([SubResource("Resource_j0y1r"), SubResource("Resource_g7u44"), SubResource("Resource_4twol")])
 combatant3Options = Array[ExtResource("16_1ful6")]([SubResource("Resource_g4l2v"), SubResource("Resource_p1wu6"), SubResource("Resource_h7edd")])
 combatant1 = ExtResource("18_r5te7")
-specialRules = 0
-customWinText = ""
-battleMapPath = ""
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qxx8x"]
 size = Vector2(278, 193)
 
 [sub_resource type="Resource" id="Resource_ijrki"]
 script = ExtResource("14_75u7d")
-spawnerId = ""
-disabled = false
-spawnedLastEncounter = false
 
 [sub_resource type="Resource" id="Resource_kphcn"]
 script = ExtResource("16_1ful6")
@@ -969,14 +761,9 @@ weight = 0.2
 script = ExtResource("17_hdwwf")
 combatantsMinLevel = 15
 combatantsMaxLevel = 16
-combatantsLvToPlayerLvRatio = 1.0
-levelStages = Array[ExtResource("35_tpj76")]([])
 combatant2Options = Array[ExtResource("16_1ful6")]([SubResource("Resource_kphcn"), SubResource("Resource_06key"), SubResource("Resource_562do"), SubResource("Resource_lf0ra")])
 combatant3Options = Array[ExtResource("16_1ful6")]([SubResource("Resource_rnaio"), SubResource("Resource_l76y4"), SubResource("Resource_a7b8r"), SubResource("Resource_fmagd")])
 combatant1 = ExtResource("18_r5te7")
-specialRules = 0
-customWinText = ""
-battleMapPath = ""
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eijq4"]
 size = Vector2(279, 221)
@@ -984,8 +771,6 @@ size = Vector2(279, 221)
 [sub_resource type="Resource" id="Resource_w8mx5"]
 script = ExtResource("14_75u7d")
 spawnerId = "desert_east_16"
-disabled = false
-spawnedLastEncounter = false
 
 [sub_resource type="Resource" id="Resource_cvfc0"]
 script = ExtResource("16_1ful6")
@@ -1024,14 +809,9 @@ weight = 0.2
 script = ExtResource("17_hdwwf")
 combatantsMinLevel = 15
 combatantsMaxLevel = 16
-combatantsLvToPlayerLvRatio = 1.0
-levelStages = Array[ExtResource("35_tpj76")]([])
 combatant2Options = Array[ExtResource("16_1ful6")]([SubResource("Resource_cvfc0"), SubResource("Resource_jeab6"), SubResource("Resource_nlt0f"), SubResource("Resource_eqjca")])
 combatant3Options = Array[ExtResource("16_1ful6")]([SubResource("Resource_pdr8m"), SubResource("Resource_0at0r"), SubResource("Resource_6p1u8")])
 combatant1 = ExtResource("15_28mfe")
-specialRules = 0
-customWinText = ""
-battleMapPath = ""
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_08q6b"]
 size = Vector2(299, 275)
@@ -1039,8 +819,6 @@ size = Vector2(299, 275)
 [sub_resource type="Resource" id="Resource_qcxcp"]
 script = ExtResource("14_75u7d")
 spawnerId = "desert_east_17"
-disabled = false
-spawnedLastEncounter = false
 
 [sub_resource type="Resource" id="Resource_6ip3c"]
 script = ExtResource("16_1ful6")
@@ -1079,14 +857,9 @@ weight = 0.2
 script = ExtResource("17_hdwwf")
 combatantsMinLevel = 15
 combatantsMaxLevel = 17
-combatantsLvToPlayerLvRatio = 1.0
-levelStages = Array[ExtResource("35_tpj76")]([])
 combatant2Options = Array[ExtResource("16_1ful6")]([SubResource("Resource_6ip3c"), SubResource("Resource_1xwua"), SubResource("Resource_k7xju"), SubResource("Resource_61cth")])
 combatant3Options = Array[ExtResource("16_1ful6")]([SubResource("Resource_myitu"), SubResource("Resource_167gk"), SubResource("Resource_r1357")])
 combatant1 = ExtResource("15_28mfe")
-specialRules = 0
-customWinText = ""
-battleMapPath = ""
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eccyq"]
 size = Vector2(367, 272)
@@ -1094,8 +867,6 @@ size = Vector2(367, 272)
 [sub_resource type="Resource" id="Resource_y6ypy"]
 script = ExtResource("14_75u7d")
 spawnerId = "desert_east_18"
-disabled = false
-spawnedLastEncounter = false
 
 [sub_resource type="Resource" id="Resource_faajt"]
 script = ExtResource("16_1ful6")
@@ -1129,14 +900,9 @@ weight = 0.2
 script = ExtResource("17_hdwwf")
 combatantsMinLevel = 14
 combatantsMaxLevel = 16
-combatantsLvToPlayerLvRatio = 1.0
-levelStages = Array[ExtResource("35_tpj76")]([])
 combatant2Options = Array[ExtResource("16_1ful6")]([SubResource("Resource_faajt"), SubResource("Resource_jo4iw"), SubResource("Resource_1y0pc")])
 combatant3Options = Array[ExtResource("16_1ful6")]([SubResource("Resource_ae7lg"), SubResource("Resource_mvbn4"), SubResource("Resource_g5nle")])
 combatant1 = ExtResource("17_hncb7")
-specialRules = 0
-customWinText = ""
-battleMapPath = ""
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_icaq7"]
 size = Vector2(279, 182)
@@ -1266,7 +1032,7 @@ tile_set = ExtResource("2_2v0rj")
 [node name="Paths" type="TileMapLayer" parent="TilemapRoot" groups=["NavigationGroup"]]
 z_index = -19
 use_parent_material = true
-tile_map_data = PackedByteArray("AADn//3/GAABAAcAAADo//3/GAABAAcAAADp//3/GAABAAcAAADp//7/GAABAAgAAADo//7/GAABAAgAAADn//7/GAABAAgAAADn//z/GAABAAYAAADo//z/GAABAAYAAADp//z/GAABAAYAAADq//z/GAABAAYAAADq//3/GAABAAcAAADq//7/GAABAAgAAADr//3/GAABAAcAAADr//z/GAABAAYAAADr//7/GAABAAgAAADs//7/GAACAAgAAADs//3/GAADAAcAAADs//z/GAABAAYAAADj//z/GAABAAYAAADj//3/GAABAAcAAADj//7/GAABAAgAAADk//z/GAABAAYAAADk//3/GAABAAcAAADk//7/GAABAAgAAADl//z/GAABAAYAAADl//3/GAABAAcAAADl//7/GAABAAgAAADm//z/GAABAAYAAADm//3/GAABAAcAAADm//7/GAABAAgAAADf//z/GAABAAYAAADf//3/GAABAAcAAADf//7/GAABAAgAAADg//z/GAABAAYAAADg//3/GAABAAcAAADg//7/GAABAAgAAADh//z/GAABAAYAAADh//3/GAABAAcAAADh//7/GAABAAgAAADi//z/GAABAAYAAADi//3/GAABAAcAAADi//7/GAABAAgAAADb//z/GAABAAYAAADb//3/GAABAAcAAADb//7/GAABAAgAAADc//z/GAABAAYAAADc//3/GAABAAcAAADc//7/GAABAAgAAADd//z/GAABAAYAAADd//3/GAABAAcAAADd//7/GAABAAgAAADe//z/GAABAAYAAADe//3/GAABAAcAAADe//7/GAABAAgAAADY//z/GAABAAYAAADY//3/GAABAAcAAADY//7/GAABAAgAAADZ//z/GAABAAYAAADZ//3/GAABAAcAAADZ//7/GAABAAgAAADa//z/GAABAAYAAADa//3/GAABAAcAAADa//7/GAABAAgAAADU//z/GAABAAYAAADU//3/GAABAAcAAADU//7/GAABAAgAAADV//z/GAABAAYAAADV//3/GAABAAcAAADV//7/GAABAAgAAADW//z/GAABAAYAAADW//3/GAABAAcAAADW//7/GAABAAgAAADX//z/GAABAAYAAADX//3/GAABAAcAAADX//7/GAABAAgAAADS//z/GAABAAYAAADS//3/GAABAAcAAADS//7/GAABAAgAAADT//z/GAABAAYAAADT//3/GAABAAcAAADT//7/GAABAAgAAAA+AOH/GAAAAAYAAAA+AOL/GAAAAAcAAAA+AOP/GAAAAAcAAAA+AOT/GAAAAAgAAAA/AOD/GAAAAAYAAAA/AOH/GAAEAAgAAAA/AOT/GAAEAAcAAAA/AOX/GAAAAAgAAABAAN//GAAAAAYAAABAAOD/GAAEAAgAAABAAOX/GAAEAAcAAABAAOb/GAAAAAgAAABBAN//GAABAAYAAABBAOL/DAAAAAMAAABBAOP/DAAAAAQAAABBAOb/GAABAAgAAABCAN//GAABAAYAAABCAOL/DAABAAMAAABCAOP/DAABAAQAAABCAOb/GAABAAgAAABDAN//GAABAAYAAABDAOL/DAACAAMAAABDAOP/DAACAAQAAABDAOb/GAABAAgAAABEAN//GAACAAYAAABEAOD/GAADAAgAAABEAOX/GAADAAcAAABEAOb/GAACAAgAAABFAOD/GAACAAYAAABFAOH/GAADAAgAAABFAOT/GAADAAcAAABFAOX/GAACAAgAAABGAOH/GAACAAYAAABGAOL/GAACAAcAAABGAOP/GAACAAcAAABGAOT/GAACAAgAAADt//3/GAABAAgAAADt//z/GAABAAYAAADu//z/GAABAAYAAADv//z/GAABAAYAAADw//z/GAACAAYAAADw//3/GAACAAcAAADv//3/GAABAAcAAADu//3/GAAEAAcAAADv//7/GAABAAgAAADw//7/GAACAAgAAADu//7/GAAAAAgAAADz//3/GAAAAAgAAAD0//3/GAABAAgAAAD1//3/GAABAAgAAAD2//3/GAABAAgAAAD3//3/GAABAAgAAAD4//3/GAACAAgAAAD3//z/GAABAAYAAAD2//z/GAABAAYAAAD1//z/GAABAAYAAAD0//z/GAABAAYAAADz//z/GAAAAAYAAAD4//z/GAACAAYAAAD+//3/GAAAAAgAAAD///z/GAAEAAgAAAAAAPz/GAADAAcAAAAAAPv/GAAEAAgAAAABAPv/GAADAAcAAAABAPr/GAAEAAgAAAAAAPr/GAAAAAYAAAD///v/GAAAAAYAAAD+//z/GAAAAAYAAAACAPr/GAADAAcAAAACAPn/GAABAAYAAAABAPz/GAACAAgAAAADAPn/GAACAAYAAAADAPr/GAACAAgAAAACAPv/GAACAAgAAAABAPn/GAAAAAYAAAD///3/GAABAAgAAAAAAP3/GAACAAgAAAAHAPz/GAAAAAYAAAAIAPz/GAABAAYAAAAJAPz/GAAEAAgAAAAJAPv/GAAAAAYAAAAKAPv/GAABAAYAAAALAPv/GAABAAYAAAALAPz/GAABAAcAAAAMAPz/GAABAAcAAAANAPz/GAADAAgAAAAOAPz/GAABAAYAAAAPAP3/GAADAAcAAAAOAP3/GAABAAcAAAANAP3/GAABAAcAAAAMAP3/GAABAAcAAAALAP3/GAABAAcAAAAKAP3/GAAEAAcAAAAJAP3/GAABAAgAAAAIAP3/GAABAAgAAAAHAP3/GAAAAAgAAAAKAPz/GAABAAcAAAAPAPz/GAAEAAgAAAAQAPz/GAABAAcAAAAQAP3/GAABAAgAAAAMAP7/GAABAAgAAAALAP7/GAABAAgAAAARAP3/GAACAAgAAAARAPz/GAACAAcAAAAMAPv/GAABAAYAAAANAPv/GAACAAYAAAAPAPv/GAAAAAYAAAAQAPv/GAABAAYAAAARAPv/GAACAAYAAAANAP7/GAABAAgAAAAOAP7/GAABAAgAAAAPAP7/GAACAAgAAAAKAP7/GAAAAAgAAAAVAP3/GAAAAAgAAAAWAP3/GAABAAgAAAAXAP3/GAABAAgAAAAXAPz/GAAEAAgAAAAYAPz/GAABAAcAAAAZAPz/GAABAAcAAAAaAPz/GAADAAcAAAAbAPz/GAABAAgAAAAbAPv/GAABAAcAAAAcAPv/GAADAAcAAAAdAPv/GAABAAgAAAAdAPr/GAABAAcAAAAeAPr/GAADAAcAAAAeAPn/GAABAAcAAAAfAPj/GAABAAcAAAAfAPf/GAABAAcAAAAfAPb/GAADAAgAAAAeAPb/GAAAAAcAAAAeAPX/GAAAAAYAAAAdAPf/GAAAAAYAAAAdAPj/GAAEAAgAAAAcAPj/GAAAAAYAAAAcAPn/GAAEAAgAAAAbAPn/GAABAAYAAAAbAPr/GAABAAcAAAAaAPv/GAAEAAgAAAAZAPv/GAABAAYAAAAWAPz/GAABAAYAAAAVAPz/GAAAAAYAAAAYAP3/GAABAAgAAAAZAP3/GAABAAgAAAAaAP3/GAACAAgAAAAcAPr/GAABAAcAAAAdAPn/GAABAAcAAAAeAPj/GAABAAcAAAAeAPf/GAAEAAgAAAAfAPX/GAACAAYAAAAfAPn/GAADAAcAAAAgAPn/GAACAAgAAAAgAPj/GAACAAcAAAAgAPf/GAACAAcAAAAgAPb/GAACAAYAAAAfAPr/GAACAAgAAAAeAPv/GAACAAgAAAAaAPn/GAAAAAYAAAAaAPr/GAAAAAcAAAAcAPz/GAACAAgAAAAYAPv/GAABAAYAAAAXAPv/GAAAAAYAAAAgAOz/GAAEAAcAAAAfAOv/GAAEAAcAAAAfAOr/GAADAAgAAAAeAOr/GAAAAAcAAAAeAOn/GAAEAAcAAAAeAOj/GAABAAcAAAAdAOf/GAAAAAcAAAAdAOb/GAAAAAYAAAAeAOb/GAAEAAgAAAAeAOX/GAAAAAcAAAAfAOX/GAABAAcAAAAfAOb/GAADAAcAAAAfAOf/GAACAAcAAAAfAOj/GAACAAcAAAAfAOn/GAACAAcAAAAdAOn/GAAAAAgAAAAdAOj/GAAAAAcAAAAeAOf/GAABAAcAAAAeAOv/GAAAAAgAAAAgAOv/GAADAAgAAAAgAOr/GAACAAYAAAAhAOz/GAACAAcAAAAgAO3/GAAAAAgAAAAhAO3/GAACAAgAAAAhAOv/GAACAAYAAAAfAOz/GAAAAAgAAAAgAOX/GAACAAcAAAAgAOb/GAACAAgAAAAfAOT/GAAEAAgAAAAfAOP/GAAAAAYAAAAgAOP/GAACAAYAAAAgAOT/GAACAAcAAAAIAPb/GAAAAAgAAAAJAPX/GAACAAcAAAAJAPT/GAADAAcAAAAKAPP/GAACAAcAAAAKAPL/GAACAAYAAAAJAPL/GAAAAAYAAAAJAPP/GAAEAAgAAAAIAPP/GAAAAAYAAAAIAPT/GAAAAAcAAAAIAPX/GAAAAAcAAAAJAPb/GAACAAgAAAAKAPT/GAACAAgAAAAHAOf/GAAAAAYAAAAIAOf/GAABAAYAAAAIAOj/GAAEAAcAAAAJAOj/GAACAAcAAAAJAOn/GAADAAgAAAAJAOr/GAAEAAcAAAAKAOr/GAACAAcAAAAKAOv/GAACAAgAAAAJAOv/GAAAAAgAAAAIAOr/GAAAAAgAAAAIAOn/GAAAAAcAAAAHAOj/GAAAAAgAAAAJAOf/GAACAAYAAAAAAOH/GAAAAAYAAAABAOH/GAACAAYAAAABAOL/GAADAAgAAAACAOL/GAABAAYAAAACAOP/GAAEAAcAAAADAOP/GAADAAgAAAADAOT/GAAEAAcAAAAEAOT/GAACAAcAAAACAOT/GAAAAAgAAAABAOP/GAABAAgAAAAAAOP/GAAAAAgAAAAAAOL/GAAAAAcAAAADAOL/GAACAAYAAAAEAOX/GAACAAgAAAADAOX/GAAAAAgAAAAEAOP/GAACAAYAAAAdAAsAGAACAAYAAAAdAAwAGAACAAcAAAAdAA0AGAADAAgAAAAdAA4AGAABAAcAAAAdAA8AGAADAAcAAAAcAA8AGAAEAAgAAAAcABAAGAADAAcAAAAcAA4AGAAAAAcAAAAcAA0AGAAAAAcAAAAcAAwAGAAAAAcAAAAcAAsAGAAAAAYAAAAbABAAGAAEAAgAAAAbABEAGAADAAcAAAAaABEAGAAEAAgAAAAeAA0AGAACAAYAAAAeAA4AGAADAAgAAAAfAA4AGAABAAYAAAAfAA8AGAAEAAcAAAAgAA8AGAADAAgAAAAgABAAGAABAAgAAAAhABAAGAABAAgAAAAiABAAGAAEAAcAAAAiABEAGAAAAAgAAAAjABEAGAAEAAcAAAAkABEAGAADAAgAAAAfABAAGAAAAAgAAAAeAA8AGAABAAgAAAAiAA8AGAABAAYAAAAhAA8AGAABAAYAAAAjABAAGAADAAgAAAAlABEAGAACAAYAAAAlABIAGAACAAgAAAAkABIAGAABAAgAAAAjABIAGAAAAAgAAAAgAA4AGAACAAYAAAAZABEAGAAAAAYAAAAZABIAGAAEAAgAAAAYABIAGAAAAAYAAAAaABIAGAADAAcAAAAbABIAGAACAAgAAAAcABEAGAACAAgAAAAbAA8AGAAAAAYAAAAdABAAGAACAAgAAAAYABMAGAAAAAgAAAAZABMAGAABAAgAAAAaABMAGAACAAgAAAAUABcAGAACAAYAAAATABgAGAADAAcAAAATABkAGAACAAgAAAASABkAGAADAAcAAAASABoAGAACAAcAAAASABsAGAACAAgAAAARABsAGAADAAcAAAARABwAGAACAAcAAAARAB0AGAACAAgAAAATAB8AGAAAAAgAAAAQAB0AGAAAAAgAAAAQABwAGAAAAAcAAAAQABsAGAAAAAcAAAARABoAGAAEAAgAAAATABcAGAABAAYAAAASABcAGAAAAAYAAAASABgAGAAEAAgAAAARABgAGAAAAAYAAAARABkAGAAAAAcAAAAQABoAGAAAAAYAAAATAB4AGAAAAAYAAAAUAB4AGAABAAYAAAAVAB4AGAABAAYAAAAUAB8AGAABAAgAAAAVAB8AGAAEAAcAAAAWAB4AGAACAAYAAAAWAB8AGAADAAgAAAAWACAAGAABAAgAAAAVACAAGAAAAAgAAAAXAB8AGAACAAYAAAAXACAAGAACAAgAAAAUABgAGAACAAgAAAA3ACUAGAAAAAcAAAA3ACYAGAAAAAgAAAA4ACYAGAABAAgAAAA4ACUAGAADAAgAAAA3ACQAGAAAAAYAAAA1ACIAGAAAAAgAAAA2ACIAGAABAAgAAAA2ACEAGAABAAcAAAA3ACEAGAADAAcAAAA4ACEAGAACAAgAAAA4ACAAGAADAAcAAAA5ACAAGAACAAgAAAA5AB8AGAADAAcAAAA3ACIAGAACAAgAAAA1ACEAGAAAAAcAAAA1ACAAGAAAAAYAAAA2ACAAGAABAAYAAAA4AB8AGAAEAAgAAAA4AB4AGAAAAAYAAAA3ACAAGAAEAAgAAAA5AB4AGAABAAYAAAA6AB4AGAACAAYAAAA6AB8AGAACAAgAAAA3AB8AGAAAAAYAAAA5ACUAGAABAAYAAAA4ACQAGAACAAYAAAA5ACYAGAAEAAcAAAA6ACUAGAACAAYAAAA6ACYAGAADAAgAAAA6ACcAGAABAAgAAAA5ACcAGAAAAAgAAAA7ACcAGAACAAgAAAA7ACYAGAACAAYAAAAwABEAGAABAAgAAAAxABAAGAADAAcAAAAyABAAGAABAAgAAAAyAA8AGAABAAYAAAAzAA8AGAABAAYAAAA0AA8AGAACAAYAAAA0ABAAGAADAAgAAAA1ABAAGAABAAYAAAA1ABEAGAAEAAcAAAA2ABEAGAADAAgAAAA2ABIAGAABAAgAAAA3ABIAGAACAAgAAAA1ABIAGAAAAAgAAAA0ABEAGAABAAgAAAAzABEAGAAAAAgAAAAzABAAGAAEAAcAAAAxAA8AGAABAAYAAAAwABAAGAAEAAgAAAAvABAAGAAAAAYAAAAwAA8AGAAAAAYAAAAxABEAGAACAAgAAAAvABEAGAAAAAgAAAA3ABEAGAACAAYAAAA2ABAAGAACAAYAAABjAAEAGAAEAAgAAABjAAIAGAADAAcAAABiAAIAGAAEAAgAAABiAAMAGAADAAcAAABhAAMAGAAAAAcAAABgAAQAGAAAAAYAAABfAAUAGAAAAAYAAABfAAYAGAAEAAgAAABeAAYAGAAAAAYAAABeAAcAGAAEAAgAAABeAAgAGAABAAcAAABdAAgAGAAAAAcAAABdAAkAGAAAAAgAAABfAAcAGAABAAcAAABgAAYAGAABAAcAAABhAAYAGAABAAcAAABiAAYAGAABAAcAAABiAAUAGAADAAgAAABlAAYAGAABAAYAAABmAAYAGAABAAYAAABnAAYAGAABAAYAAABoAAYAGAABAAYAAABpAAYAGAAEAAgAAABqAAYAGAABAAcAAABrAAYAGAADAAgAAABsAAYAGAABAAYAAABtAAYAGAACAAYAAABiAAcAGAAEAAcAAABjAAcAGAABAAcAAABkAAcAGAABAAcAAABlAAcAGAADAAcAAABmAAcAGAABAAgAAABnAAcAGAABAAgAAABoAAcAGAABAAgAAABpAAcAGAABAAgAAABqAAcAGAABAAgAAABkAAYAGAADAAgAAABjAAYAGAABAAcAAABrAAcAGAABAAgAAABtAAcAGAACAAgAAABsAAcAGAABAAgAAABpAAUAGAAAAAcAAABpAAQAGAAAAAYAAABqAAUAGAADAAgAAABqAAQAGAACAAYAAABrAAUAGAACAAYAAABiAAgAGAAAAAgAAABjAAgAGAABAAgAAABkAAgAGAABAAgAAABlAAgAGAACAAgAAABhAAUAGAABAAcAAABhAAQAGAAEAAgAAABiAAQAGAACAAcAAABiAAEAGAAAAAYAAABgAAUAGAAEAAgAAABgAAcAGAADAAcAAABhAAcAGAABAAgAAABfAAgAGAADAAcAAABeAAkAGAABAAgAAABgAAgAGAACAAgAAABfAAkAGAACAAgAAABdAAcAGAAAAAYAAABjAAMAGAACAAgAAABkAAEAGAADAAcAAABkAAAAGAAEAAgAAABkAP//GAAAAAYAAABhAAIAGAAAAAYAAABlAAAAGAACAAcAAABlAP//GAACAAYAAABkAAIAGAACAAgAAABlAAEAGAACAAgAAABjAAAAGAAAAAYAAAB5AAUAGAAEAAgAAAB5AAQAGAAAAAYAAAB6AAQAGAABAAYAAAB7AAQAGAAEAAgAAAB7AAMAGAAAAAYAAAB8AAMAGAAEAAgAAAB9AAIAGAABAAYAAAB+AAIAGAAEAAgAAAB/AAIAGAADAAcAAAB/AAEAGAABAAYAAACAAAEAGAABAAYAAACAAAIAGAABAAgAAAB/AAMAGAACAAgAAAB+AAMAGAABAAgAAAB9AAQAGAACAAgAAAB8AAQAGAADAAcAAAB8AAUAGAACAAgAAAB7AAUAGAABAAgAAAB6AAUAGAADAAcAAAB6AAYAGAACAAgAAAB5AAYAGAABAAgAAAB4AAYAGAAAAAgAAAB9AAMAGAADAAcAAACBAAIAGAABAAgAAACCAAEAGAACAAYAAACCAAIAGAACAAgAAACBAAEAGAABAAYAAAB4AAUAGAAAAAYAAACPAAIAGAAEAAgAAACQAAIAGAADAAcAAACRAAIAGAABAAgAAACRAAEAGAABAAYAAACSAAEAGAABAAYAAACTAAEAGAAEAAgAAACTAAAAGAAAAAYAAACUAAAAGAABAAYAAACVAAAAGAABAAYAAACQAAEAGAABAAYAAACPAAEAGAAAAAYAAACOAAIAGAABAAYAAACNAAIAGAABAAYAAACUAAEAGAADAAcAAACVAAEAGAABAAgAAACWAAAAGAACAAYAAACOAAMAGAABAAgAAACNAAMAGAABAAgAAACMAAIAGAAAAAYAAACPAAMAGAABAAgAAACSAAIAGAABAAgAAACTAAIAGAABAAgAAACUAAIAGAACAAgAAACWAAEAGAACAAgAAACMAAMAGAAAAAgAAABtAPb/GAACAAYAAABsAPb/GAABAAYAAABsAPf/GAADAAcAAABrAPf/GAAEAAgAAABqAPf/GAAAAAYAAABrAPb/GAAAAAYAAABqAPj/GAAAAAgAAABrAPj/GAABAAgAAABsAPj/GAACAAgAAABtAPf/GAACAAgAAABKABYAGAAAAAgAAABLABYAGAABAAgAAABLABUAGAAEAAgAAABMABUAGAADAAcAAABKABUAGAAAAAYAAABMABYAGAACAAgAAABLABQAGAAAAAYAAABMABQAGAABAAYAAABNABQAGAACAAYAAABNABUAGAACAAgAAABjAAUAGAABAAYAAABkAAUAGAACAAYAAABTABEAGAAAAAgAAABTABAAGAAAAAYAAABUABAAGAAEAAgAAABUAA8AGAAAAAYAAABVAA8AGAAEAAgAAABUABEAGAABAAgAAABWAA8AGAACAAcAAABWABAAGAACAAgAAABVABAAGAADAAcAAABVAA4AGAAAAAYAAABWAA4AGAACAAYAAABVABEAGAACAAgAAAAjACQAGAABAAcAAAAkACQAGAADAAgAAAAlACQAGAABAAYAAAAmACQAGAABAAYAAAAnACQAGAABAAYAAAAnACUAGAADAAcAAAAoACUAGAACAAgAAAAmACUAGAABAAcAAAAlACUAGAAEAAcAAAAkACUAGAABAAgAAAAjACUAGAABAAgAAAAiACUAGAADAAcAAAAhACUAGAAEAAgAAAAhACQAGAAAAAYAAAAiACQAGAAEAAgAAAAoACQAGAACAAYAAAAkACMAGAACAAcAAAAkACIAGAADAAcAAAAjACIAGAAAAAcAAAAjACEAGAAAAAYAAAAkACEAGAABAAYAAAAlACEAGAACAAYAAAAlACIAGAACAAgAAAAjACMAGAAEAAgAAAAiACMAGAAAAAYAAAAlACYAGAAAAAgAAAAmACYAGAABAAgAAAAnACYAGAACAAgAAAAiACYAGAACAAgAAAAhACYAGAABAAgAAAAgACYAGAAAAAgAAAAgACUAGAAAAAYAAAAuACQAGAAAAAYAAAAvACQAGAABAAYAAAAvACUAGAABAAgAAAAuACUAGAAAAAgAAAAwACQAGAACAAYAAAAwACUAGAACAAgAAAA8ABUAGAAAAAYAAAA9ABUAGAABAAYAAAA9ABYAGAABAAgAAAA8ABYAGAAAAAgAAAA+ABYAGAAEAAcAAAA+ABUAGAABAAYAAAA/ABUAGAACAAYAAAA/ABYAGAADAAgAAAA/ABcAGAABAAgAAAA+ABcAGAAAAAgAAABAABYAGAACAAYAAABAABcAGAACAAgAAAAmAOD/GAAAAAYAAAAnAOD/GAABAAYAAAAnAOH/GAAEAAcAAAAoAOH/GAADAAgAAAAoAOL/GAABAAgAAAAnAOL/GAAAAAgAAAAmAOH/GAAAAAgAAAAoAOD/GAACAAYAAAApAOL/GAACAAgAAAApAOH/GAACAAYAAABEACsAGAAAAAYAAABFACsAGAABAAYAAABFACwAGAAEAAcAAABGACwAGAADAAgAAABGAC0AGAAEAAcAAABHAC0AGAADAAgAAABHAC4AGAAEAAcAAABIAC4AGAACAAcAAABIAC8AGAACAAgAAABHAC8AGAAAAAgAAABGAC4AGAAAAAgAAABHACwAGAACAAYAAABEACwAGAAAAAgAAABFAC0AGAAAAAgAAABGACsAGAACAAYAAABIAC0AGAACAAYAAABJADYAGAAAAAYAAABJADcAGAAEAAgAAABKADcAGAACAAcAAABIADcAGAAAAAYAAABJADgAGAABAAcAAABKADgAGAACAAcAAABJADkAGAABAAgAAABIADkAGAAAAAgAAABKADkAGAACAAgAAABIADgAGAAAAAcAAABKADYAGAACAAYAAABIADIAGAAAAAYAAABIADMAGAAAAAgAAABJADMAGAACAAgAAABJADIAGAACAAYAAAAuAOT/GAAAAAgAAAAvAOT/GAABAAgAAAAwAOT/GAABAAgAAAAxAOT/GAABAAgAAAAyAOT/GAABAAgAAAAzAOP/GAAEAAgAAAAzAOT/GAABAAgAAAA0AOH/GAAAAAcAAAA0AOL/GAAEAAgAAAA0AOP/GAABAAcAAAA1AOH/GAADAAcAAAA1AOL/GAACAAcAAAA1AOP/GAACAAcAAAA2AOD/GAAEAAgAAAA2AOH/GAABAAgAAAA3AOD/GAADAAcAAAA3AOH/GAACAAgAAAA4AOD/GAACAAgAAAAuAOP/GAAAAAYAAAAvAOP/GAABAAYAAAAwAOP/GAABAAYAAAAxAOP/GAABAAYAAAAyAOP/GAABAAYAAAAzAOL/GAAAAAYAAAA0AOD/GAAAAAYAAAA1AOD/GAABAAYAAAA2AN//GAAAAAYAAAA3AN//GAABAAYAAAA4AN//GAACAAYAAAA1AOX/GAAEAAcAAAA1AOb/GAAAAAgAAAA2AOX/GAADAAgAAAA2AOb/GAAEAAcAAAA2AOf/GAAAAAgAAAA3AOb/GAADAAgAAAA3AOf/GAABAAgAAAA4AOf/GAACAAgAAAA0AOX/GAAAAAgAAAA0AOT/GAAEAAcAAAA1AOT/GAADAAgAAAA2AOT/GAACAAYAAAA3AOX/GAACAAYAAAA4AOb/GAACAAYAAAAeAOT/GAAAAAYAAAA=")
+tile_map_data = PackedByteArray("AADn//3/GAABAAcAAADo//3/GAABAAcAAADp//3/GAABAAcAAADp//7/GAABAAgAAADo//7/GAABAAgAAADn//7/GAABAAgAAADn//z/GAABAAYAAADo//z/GAABAAYAAADp//z/GAABAAYAAADq//z/GAABAAYAAADq//3/GAABAAcAAADq//7/GAABAAgAAADr//3/GAABAAcAAADr//z/GAABAAYAAADr//7/GAABAAgAAADs//7/GAACAAgAAADs//3/GAADAAcAAADs//z/GAABAAYAAADj//z/GAABAAYAAADj//3/GAABAAcAAADj//7/GAABAAgAAADk//z/GAABAAYAAADk//3/GAABAAcAAADk//7/GAABAAgAAADl//z/GAABAAYAAADl//3/GAABAAcAAADl//7/GAABAAgAAADm//z/GAABAAYAAADm//3/GAABAAcAAADm//7/GAABAAgAAADf//z/GAABAAYAAADf//3/GAABAAcAAADf//7/GAABAAgAAADg//z/GAABAAYAAADg//3/GAABAAcAAADg//7/GAABAAgAAADh//z/GAABAAYAAADh//3/GAABAAcAAADh//7/GAABAAgAAADi//z/GAABAAYAAADi//3/GAABAAcAAADi//7/GAABAAgAAADb//z/GAABAAYAAADb//3/GAABAAcAAADb//7/GAABAAgAAADc//z/GAABAAYAAADc//3/GAABAAcAAADc//7/GAABAAgAAADd//z/GAABAAYAAADd//3/GAABAAcAAADd//7/GAABAAgAAADe//z/GAABAAYAAADe//3/GAABAAcAAADe//7/GAABAAgAAADY//z/GAABAAYAAADY//3/GAABAAcAAADY//7/GAABAAgAAADZ//z/GAABAAYAAADZ//3/GAABAAcAAADZ//7/GAABAAgAAADa//z/GAABAAYAAADa//3/GAABAAcAAADa//7/GAABAAgAAADU//z/GAABAAYAAADU//3/GAABAAcAAADU//7/GAABAAgAAADV//z/GAABAAYAAADV//3/GAABAAcAAADV//7/GAABAAgAAADW//z/GAABAAYAAADW//3/GAABAAcAAADW//7/GAABAAgAAADX//z/GAABAAYAAADX//3/GAABAAcAAADX//7/GAABAAgAAADS//z/GAABAAYAAADS//3/GAABAAcAAADS//7/GAABAAgAAADT//z/GAABAAYAAADT//3/GAABAAcAAADT//7/GAABAAgAAAA+AOH/GAAAAAYAAAA+AOL/GAAAAAcAAAA+AOP/GAAAAAcAAAA+AOT/GAAAAAgAAAA/AOD/GAAAAAYAAAA/AOH/GAAEAAgAAAA/AOT/GAAEAAcAAAA/AOX/GAAAAAgAAABAAN//GAAAAAYAAABAAOD/GAAEAAgAAABAAOX/GAAEAAcAAABAAOb/GAAAAAgAAABBAN//GAABAAYAAABBAOL/DAAAAAMAAABBAOP/DAAAAAQAAABBAOb/GAABAAgAAABCAN//GAABAAYAAABCAOL/DAABAAMAAABCAOP/DAABAAQAAABCAOb/GAABAAgAAABDAN//GAABAAYAAABDAOL/DAACAAMAAABDAOP/DAACAAQAAABDAOb/GAABAAgAAABEAN//GAACAAYAAABEAOD/GAADAAgAAABEAOX/GAADAAcAAABEAOb/GAACAAgAAABFAOD/GAACAAYAAABFAOH/GAADAAgAAABFAOT/GAADAAcAAABFAOX/GAACAAgAAABGAOH/GAACAAYAAABGAOL/GAACAAcAAABGAOP/GAACAAcAAABGAOT/GAACAAgAAADt//3/GAABAAgAAADt//z/GAABAAYAAADu//z/GAABAAYAAADv//z/GAABAAYAAADw//z/GAACAAYAAADw//3/GAACAAcAAADv//3/GAABAAcAAADu//3/GAAEAAcAAADv//7/GAABAAgAAADw//7/GAACAAgAAADu//7/GAAAAAgAAADz//3/GAAAAAgAAAD0//3/GAABAAgAAAD1//3/GAABAAgAAAD2//3/GAABAAgAAAD3//3/GAABAAgAAAD4//3/GAACAAgAAAD3//z/GAABAAYAAAD2//z/GAABAAYAAAD1//z/GAABAAYAAAD0//z/GAABAAYAAADz//z/GAAAAAYAAAD4//z/GAACAAYAAAD+//3/GAAAAAgAAAD///z/GAAEAAgAAAAAAPz/GAADAAcAAAAAAPv/GAAEAAgAAAABAPv/GAADAAcAAAABAPr/GAAEAAgAAAAAAPr/GAAAAAYAAAD///v/GAAAAAYAAAD+//z/GAAAAAYAAAACAPr/GAADAAcAAAACAPn/GAABAAYAAAABAPz/GAACAAgAAAADAPn/GAACAAYAAAADAPr/GAACAAgAAAACAPv/GAACAAgAAAABAPn/GAAAAAYAAAD///3/GAABAAgAAAAAAP3/GAACAAgAAAAHAPz/GAAAAAYAAAAIAPz/GAABAAYAAAAJAPz/GAAEAAgAAAAJAPv/GAAAAAYAAAAKAPv/GAABAAYAAAALAPv/GAABAAYAAAALAPz/GAABAAcAAAAMAPz/GAABAAcAAAANAPz/GAADAAgAAAAOAPz/GAABAAYAAAAPAP3/GAADAAcAAAAOAP3/GAABAAcAAAANAP3/GAABAAcAAAAMAP3/GAABAAcAAAALAP3/GAABAAcAAAAKAP3/GAAEAAcAAAAJAP3/GAABAAgAAAAIAP3/GAABAAgAAAAHAP3/GAAAAAgAAAAKAPz/GAABAAcAAAAPAPz/GAAEAAgAAAAQAPz/GAABAAcAAAAQAP3/GAABAAgAAAAMAP7/GAABAAgAAAALAP7/GAABAAgAAAARAP3/GAACAAgAAAARAPz/GAACAAcAAAAMAPv/GAABAAYAAAANAPv/GAACAAYAAAAPAPv/GAAAAAYAAAAQAPv/GAABAAYAAAARAPv/GAACAAYAAAANAP7/GAABAAgAAAAOAP7/GAABAAgAAAAPAP7/GAACAAgAAAAKAP7/GAAAAAgAAAAVAP3/GAAAAAgAAAAWAP3/GAABAAgAAAAXAP3/GAABAAgAAAAXAPz/GAAEAAgAAAAYAPz/GAABAAcAAAAZAPz/GAABAAcAAAAaAPz/GAADAAcAAAAbAPz/GAABAAgAAAAbAPv/GAABAAcAAAAcAPv/GAADAAcAAAAdAPv/GAABAAgAAAAdAPr/GAABAAcAAAAeAPr/GAADAAcAAAAeAPn/GAABAAcAAAAfAPj/GAABAAcAAAAfAPf/GAABAAcAAAAfAPb/GAADAAgAAAAeAPb/GAAAAAcAAAAeAPX/GAAAAAYAAAAdAPf/GAAAAAYAAAAdAPj/GAAEAAgAAAAcAPj/GAAAAAYAAAAcAPn/GAAEAAgAAAAbAPn/GAABAAYAAAAbAPr/GAABAAcAAAAaAPv/GAAEAAgAAAAZAPv/GAABAAYAAAAWAPz/GAABAAYAAAAVAPz/GAAAAAYAAAAYAP3/GAABAAgAAAAZAP3/GAABAAgAAAAaAP3/GAACAAgAAAAcAPr/GAABAAcAAAAdAPn/GAABAAcAAAAeAPj/GAABAAcAAAAeAPf/GAAEAAgAAAAfAPX/GAACAAYAAAAfAPn/GAADAAcAAAAgAPn/GAACAAgAAAAgAPj/GAACAAcAAAAgAPf/GAACAAcAAAAgAPb/GAACAAYAAAAfAPr/GAACAAgAAAAeAPv/GAACAAgAAAAaAPn/GAAAAAYAAAAaAPr/GAAAAAcAAAAcAPz/GAACAAgAAAAYAPv/GAABAAYAAAAXAPv/GAAAAAYAAAAgAOz/GAAEAAcAAAAfAOv/GAAEAAcAAAAfAOr/GAADAAgAAAAeAOr/GAAAAAcAAAAeAOn/GAAEAAcAAAAeAOj/GAABAAcAAAAdAOf/GAAAAAcAAAAdAOb/GAAAAAYAAAAeAOb/GAAEAAgAAAAeAOX/GAAAAAcAAAAfAOX/GAABAAcAAAAfAOb/GAADAAcAAAAfAOf/GAACAAcAAAAfAOj/GAACAAcAAAAfAOn/GAACAAcAAAAdAOn/GAAAAAgAAAAdAOj/GAAAAAcAAAAeAOf/GAABAAcAAAAeAOv/GAAAAAgAAAAgAOv/GAADAAgAAAAgAOr/GAACAAYAAAAhAOz/GAACAAcAAAAgAO3/GAAAAAgAAAAhAO3/GAACAAgAAAAhAOv/GAACAAYAAAAfAOz/GAAAAAgAAAAgAOX/GAACAAcAAAAgAOb/GAACAAgAAAAfAOT/GAAEAAgAAAAfAOP/GAAAAAYAAAAgAOP/GAACAAYAAAAgAOT/GAACAAcAAAAIAPb/GAAAAAgAAAAJAPX/GAACAAcAAAAJAPT/GAADAAcAAAAKAPP/GAACAAcAAAAKAPL/GAACAAYAAAAJAPL/GAAAAAYAAAAJAPP/GAAEAAgAAAAIAPP/GAAAAAYAAAAIAPT/GAAAAAcAAAAIAPX/GAAAAAcAAAAJAPb/GAACAAgAAAAKAPT/GAACAAgAAAAHAOf/GAAAAAYAAAAIAOf/GAABAAYAAAAIAOj/GAAEAAcAAAAJAOj/GAACAAcAAAAJAOn/GAADAAgAAAAJAOr/GAAEAAcAAAAKAOr/GAACAAcAAAAKAOv/GAACAAgAAAAJAOv/GAAAAAgAAAAIAOr/GAAAAAgAAAAIAOn/GAAAAAcAAAAHAOj/GAAAAAgAAAAJAOf/GAACAAYAAAAAAOH/GAAAAAYAAAABAOH/GAACAAYAAAABAOL/GAADAAgAAAACAOL/GAABAAYAAAACAOP/GAAEAAcAAAADAOP/GAADAAgAAAADAOT/GAAEAAcAAAAEAOT/GAACAAcAAAACAOT/GAAAAAgAAAABAOP/GAABAAgAAAAAAOP/GAAAAAgAAAAAAOL/GAAAAAcAAAADAOL/GAACAAYAAAAEAOX/GAACAAgAAAADAOX/GAAAAAgAAAAEAOP/GAACAAYAAAAdAAsAGAACAAYAAAAdAAwAGAACAAcAAAAdAA0AGAADAAgAAAAdAA4AGAABAAcAAAAdAA8AGAADAAcAAAAcAA8AGAAEAAgAAAAcABAAGAADAAcAAAAcAA4AGAAAAAcAAAAcAA0AGAAAAAcAAAAcAAwAGAAAAAcAAAAcAAsAGAAAAAYAAAAbABAAGAAEAAgAAAAbABEAGAADAAcAAAAaABEAGAAEAAgAAAAeAA0AGAACAAYAAAAeAA4AGAADAAgAAAAfAA4AGAABAAYAAAAfAA8AGAAEAAcAAAAgAA8AGAADAAgAAAAgABAAGAABAAgAAAAhABAAGAABAAgAAAAiABAAGAAEAAcAAAAiABEAGAAAAAgAAAAjABEAGAAEAAcAAAAkABEAGAADAAgAAAAfABAAGAAAAAgAAAAeAA8AGAABAAgAAAAiAA8AGAABAAYAAAAhAA8AGAABAAYAAAAjABAAGAADAAgAAAAlABEAGAACAAYAAAAlABIAGAACAAgAAAAkABIAGAABAAgAAAAjABIAGAAAAAgAAAAgAA4AGAACAAYAAAAZABEAGAAAAAYAAAAZABIAGAAEAAgAAAAYABIAGAAAAAYAAAAaABIAGAADAAcAAAAbABIAGAACAAgAAAAcABEAGAACAAgAAAAbAA8AGAAAAAYAAAAdABAAGAACAAgAAAAYABMAGAAAAAgAAAAZABMAGAABAAgAAAAaABMAGAACAAgAAAAUABcAGAACAAYAAAATABgAGAADAAcAAAATABkAGAACAAgAAAASABkAGAADAAcAAAASABoAGAACAAcAAAASABsAGAACAAgAAAARABsAGAADAAcAAAARABwAGAACAAcAAAARAB0AGAACAAgAAAATAB8AGAAAAAgAAAAQAB0AGAAAAAgAAAAQABwAGAAAAAcAAAAQABsAGAAAAAcAAAARABoAGAAEAAgAAAATABcAGAABAAYAAAASABcAGAAAAAYAAAASABgAGAAEAAgAAAARABgAGAAAAAYAAAARABkAGAAAAAcAAAAQABoAGAAAAAYAAAATAB4AGAAAAAYAAAAUAB4AGAABAAYAAAAVAB4AGAABAAYAAAAUAB8AGAABAAgAAAAVAB8AGAAEAAcAAAAWAB4AGAACAAYAAAAWAB8AGAADAAgAAAAWACAAGAABAAgAAAAVACAAGAAAAAgAAAAXAB8AGAACAAYAAAAXACAAGAACAAgAAAAUABgAGAACAAgAAAA3ACUAGAAAAAcAAAA3ACYAGAAAAAgAAAA4ACYAGAABAAgAAAA4ACUAGAADAAgAAAA3ACQAGAAAAAYAAAA1ACIAGAAAAAgAAAA2ACIAGAABAAgAAAA2ACEAGAABAAcAAAA3ACEAGAADAAcAAAA4ACEAGAACAAgAAAA4ACAAGAADAAcAAAA5ACAAGAACAAgAAAA5AB8AGAADAAcAAAA3ACIAGAACAAgAAAA1ACEAGAAAAAcAAAA1ACAAGAAAAAYAAAA2ACAAGAABAAYAAAA4AB8AGAAEAAgAAAA4AB4AGAAAAAYAAAA3ACAAGAAEAAgAAAA5AB4AGAABAAYAAAA6AB4AGAACAAYAAAA6AB8AGAACAAgAAAA3AB8AGAAAAAYAAAA5ACUAGAABAAYAAAA4ACQAGAACAAYAAAA5ACYAGAAEAAcAAAA6ACUAGAACAAYAAAA6ACYAGAADAAgAAAA6ACcAGAABAAgAAAA5ACcAGAAAAAgAAAA7ACcAGAACAAgAAAA7ACYAGAACAAYAAAAwABEAGAABAAgAAAAxABAAGAADAAcAAAAyABAAGAABAAgAAAAyAA8AGAABAAYAAAAzAA8AGAABAAYAAAA0AA8AGAACAAYAAAA0ABAAGAADAAgAAAA1ABAAGAABAAYAAAA1ABEAGAAEAAcAAAA2ABEAGAADAAgAAAA2ABIAGAABAAgAAAA3ABIAGAACAAgAAAA1ABIAGAAAAAgAAAA0ABEAGAABAAgAAAAzABEAGAAAAAgAAAAzABAAGAAEAAcAAAAxAA8AGAABAAYAAAAwABAAGAAEAAgAAAAvABAAGAAAAAYAAAAwAA8AGAAAAAYAAAAxABEAGAACAAgAAAAvABEAGAAAAAgAAAA3ABEAGAACAAYAAAA2ABAAGAACAAYAAABjAAEAGAAEAAgAAABjAAIAGAADAAcAAABiAAIAGAAEAAgAAABiAAMAGAADAAcAAABhAAMAGAAAAAcAAABgAAQAGAAAAAYAAABfAAUAGAAAAAYAAABfAAYAGAAEAAgAAABeAAYAGAAAAAYAAABeAAcAGAAEAAgAAABeAAgAGAABAAcAAABdAAgAGAAAAAcAAABdAAkAGAAAAAgAAABfAAcAGAABAAcAAABgAAYAGAABAAcAAABhAAYAGAABAAcAAABiAAYAGAABAAcAAABiAAUAGAADAAgAAABlAAYAGAABAAYAAABmAAYAGAABAAYAAABnAAYAGAABAAYAAABoAAYAGAABAAYAAABpAAYAGAAEAAgAAABqAAYAGAABAAcAAABrAAYAGAADAAgAAABsAAYAGAABAAYAAABtAAYAGAACAAYAAABiAAcAGAAEAAcAAABjAAcAGAABAAcAAABkAAcAGAABAAcAAABlAAcAGAADAAcAAABmAAcAGAABAAgAAABnAAcAGAABAAgAAABoAAcAGAABAAgAAABpAAcAGAABAAgAAABqAAcAGAABAAgAAABkAAYAGAADAAgAAABjAAYAGAABAAcAAABrAAcAGAABAAgAAABtAAcAGAACAAgAAABsAAcAGAABAAgAAABpAAUAGAAAAAcAAABpAAQAGAAAAAYAAABqAAUAGAADAAgAAABqAAQAGAACAAYAAABrAAUAGAACAAYAAABiAAgAGAAAAAgAAABjAAgAGAABAAgAAABkAAgAGAABAAgAAABlAAgAGAACAAgAAABhAAUAGAABAAcAAABhAAQAGAAEAAgAAABiAAQAGAACAAcAAABiAAEAGAAAAAYAAABgAAUAGAAEAAgAAABgAAcAGAADAAcAAABhAAcAGAABAAgAAABfAAgAGAADAAcAAABeAAkAGAABAAgAAABgAAgAGAACAAgAAABfAAkAGAACAAgAAABdAAcAGAAAAAYAAABjAAMAGAACAAgAAABkAAEAGAADAAcAAABkAAAAGAAEAAgAAABkAP//GAAAAAYAAABhAAIAGAAAAAYAAABlAAAAGAACAAcAAABlAP//GAACAAYAAABkAAIAGAACAAgAAABlAAEAGAACAAgAAABjAAAAGAAAAAYAAAB5AAUAGAAEAAgAAAB5AAQAGAAAAAYAAAB6AAQAGAABAAYAAAB7AAQAGAAEAAgAAAB7AAMAGAAAAAYAAAB8AAMAGAAEAAgAAAB9AAIAGAABAAYAAAB+AAIAGAAEAAgAAAB/AAIAGAADAAcAAAB/AAEAGAABAAYAAACAAAEAGAABAAYAAACAAAIAGAABAAgAAAB/AAMAGAACAAgAAAB+AAMAGAABAAgAAAB9AAQAGAACAAgAAAB8AAQAGAADAAcAAAB8AAUAGAACAAgAAAB7AAUAGAABAAgAAAB6AAUAGAADAAcAAAB6AAYAGAACAAgAAAB5AAYAGAABAAgAAAB4AAYAGAAAAAgAAAB9AAMAGAADAAcAAACBAAIAGAABAAgAAACCAAEAGAACAAYAAACCAAIAGAACAAgAAACBAAEAGAABAAYAAAB4AAUAGAAAAAYAAACPAAIAGAAEAAgAAACQAAIAGAADAAcAAACRAAIAGAABAAgAAACRAAEAGAABAAYAAACSAAEAGAABAAYAAACTAAEAGAAEAAgAAACTAAAAGAAAAAYAAACUAAAAGAABAAYAAACVAAAAGAABAAYAAACQAAEAGAABAAYAAACPAAEAGAAAAAYAAACOAAIAGAABAAYAAACNAAIAGAABAAYAAACUAAEAGAADAAcAAACVAAEAGAABAAgAAACWAAAAGAACAAYAAACOAAMAGAABAAgAAACNAAMAGAABAAgAAACMAAIAGAAAAAYAAACPAAMAGAABAAgAAACSAAIAGAABAAgAAACTAAIAGAABAAgAAACUAAIAGAACAAgAAACWAAEAGAACAAgAAACMAAMAGAAAAAgAAABtAPb/GAACAAYAAABsAPb/GAABAAYAAABsAPf/GAADAAcAAABrAPf/GAAEAAgAAABqAPf/GAAAAAYAAABrAPb/GAAAAAYAAABqAPj/GAAAAAgAAABrAPj/GAABAAgAAABsAPj/GAACAAgAAABtAPf/GAACAAgAAABKABYAGAAAAAgAAABLABYAGAABAAgAAABLABUAGAAEAAgAAABMABUAGAADAAcAAABKABUAGAAAAAYAAABMABYAGAACAAgAAABLABQAGAAAAAYAAABMABQAGAABAAYAAABNABQAGAACAAYAAABNABUAGAACAAgAAABjAAUAGAABAAYAAABkAAUAGAACAAYAAABTABEAGAAAAAgAAABTABAAGAAAAAYAAABUABAAGAAEAAgAAABUAA8AGAAAAAYAAABVAA8AGAAEAAgAAABUABEAGAABAAgAAABWAA8AGAACAAcAAABWABAAGAACAAgAAABVABAAGAADAAcAAABVAA4AGAAAAAYAAABWAA4AGAACAAYAAABVABEAGAACAAgAAAAjACQAGAABAAcAAAAkACQAGAADAAgAAAAlACQAGAABAAYAAAAmACQAGAABAAYAAAAnACQAGAABAAYAAAAnACUAGAADAAcAAAAoACUAGAACAAgAAAAmACUAGAABAAcAAAAlACUAGAAEAAcAAAAkACUAGAABAAgAAAAjACUAGAABAAgAAAAiACUAGAADAAcAAAAhACUAGAAEAAgAAAAhACQAGAAAAAYAAAAiACQAGAAEAAgAAAAoACQAGAACAAYAAAAkACMAGAACAAcAAAAkACIAGAADAAcAAAAjACIAGAAAAAcAAAAjACEAGAAAAAYAAAAkACEAGAABAAYAAAAlACEAGAACAAYAAAAlACIAGAACAAgAAAAjACMAGAAEAAgAAAAiACMAGAAAAAYAAAAlACYAGAAAAAgAAAAmACYAGAABAAgAAAAnACYAGAACAAgAAAAiACYAGAACAAgAAAAhACYAGAABAAgAAAAgACYAGAAAAAgAAAAgACUAGAAAAAYAAAAuACQAGAAAAAYAAAAvACQAGAABAAYAAAAvACUAGAABAAgAAAAuACUAGAAAAAgAAAAwACQAGAACAAYAAAAwACUAGAACAAgAAAA8ABUAGAAAAAYAAAA9ABUAGAABAAYAAAA9ABYAGAABAAgAAAA8ABYAGAAAAAgAAAA+ABYAGAAEAAcAAAA+ABUAGAABAAYAAAA/ABUAGAACAAYAAAA/ABYAGAADAAgAAAA/ABcAGAABAAgAAAA+ABcAGAAAAAgAAABAABYAGAACAAYAAABAABcAGAACAAgAAAAmAOD/GAAAAAYAAAAnAOD/GAABAAYAAAAnAOH/GAAEAAcAAAAoAOH/GAADAAgAAAAoAOL/GAABAAgAAAAnAOL/GAAAAAgAAAAmAOH/GAAAAAgAAAAoAOD/GAACAAYAAAApAOL/GAACAAgAAAApAOH/GAACAAYAAABEACsAGAAAAAYAAABFACsAGAABAAYAAABFACwAGAAEAAcAAABGACwAGAADAAgAAABGAC0AGAAEAAcAAABHAC0AGAADAAgAAABHAC4AGAAEAAcAAABIAC4AGAACAAcAAABIAC8AGAACAAgAAABHAC8AGAAAAAgAAABGAC4AGAAAAAgAAABHACwAGAACAAYAAABEACwAGAAAAAgAAABFAC0AGAAAAAgAAABGACsAGAACAAYAAABIAC0AGAACAAYAAABJADYAGAAAAAYAAABJADcAGAAEAAgAAABKADcAGAACAAcAAABIADcAGAAAAAYAAABJADgAGAABAAcAAABKADgAGAACAAcAAABJADkAGAABAAgAAABIADkAGAAAAAgAAABKADkAGAACAAgAAABIADgAGAAAAAcAAABKADYAGAACAAYAAABIADIAGAAAAAYAAABIADMAGAAAAAgAAABJADMAGAACAAgAAABJADIAGAACAAYAAAAuAOT/GAAAAAgAAAAvAOT/GAABAAgAAAAwAOT/GAABAAgAAAAxAOT/GAABAAgAAAAyAOT/GAABAAgAAAAzAOP/GAAEAAgAAAAzAOT/GAABAAgAAAA0AOH/GAAAAAcAAAA0AOL/GAAEAAgAAAA0AOP/GAABAAcAAAA1AOH/GAADAAcAAAA1AOL/GAACAAcAAAA1AOP/GAACAAcAAAA2AOD/GAAEAAgAAAA2AOH/GAABAAgAAAA3AOD/GAADAAcAAAA3AOH/GAACAAgAAAA4AOD/GAACAAgAAAAuAOP/GAAAAAYAAAAvAOP/GAABAAYAAAAwAOP/GAABAAYAAAAxAOP/GAABAAYAAAAyAOP/GAABAAYAAAAzAOL/GAAAAAYAAAA0AOD/GAAAAAYAAAA1AOD/GAABAAYAAAA2AN//GAAAAAYAAAA3AN//GAABAAYAAAA4AN//GAACAAYAAAA1AOX/GAAEAAcAAAA1AOb/GAAAAAgAAAA2AOX/GAADAAgAAAA2AOb/GAAEAAcAAAA2AOf/GAAAAAgAAAA3AOb/GAADAAgAAAA3AOf/GAABAAgAAAA4AOf/GAACAAgAAAA0AOX/GAAAAAgAAAA0AOT/GAAEAAcAAAA1AOT/GAADAAgAAAA2AOT/GAACAAYAAAA3AOX/GAACAAYAAAA4AOb/GAACAAYAAAAeAOT/GAAAAAYAAAAaABAAGAAAAAYAAAAjAA8AGAACAAYAAAAkABAAGAACAAYAAAA=")
 tile_set = ExtResource("2_2v0rj")
 
 [node name="Midground" type="TileMapLayer" parent="TilemapRoot" groups=["NavigationGroup"]]
@@ -1303,7 +1069,7 @@ spriteStatesDict = Dictionary[String, ExtResource("6_geliy")]({
 "default": SubResource("Resource_g60up")
 })
 spawnRequirements = SubResource("Resource_jr0x0")
-data = SubResource("Resource_oyacr")
+data = SubResource("Resource_5wdkc")
 dialogueEntries = Array[ExtResource("7_kjrd8")]([ExtResource("9_pfacr"), ExtResource("10_1ft2r")])
 
 [node name="NPCSprite" parent="TilemapRoot/Nomad2" index="0"]
@@ -1330,7 +1096,7 @@ spriteStatesDict = Dictionary[String, ExtResource("6_geliy")]({
 "default": SubResource("Resource_jdw7p")
 })
 spriteSize = Vector2i(48, 48)
-data = SubResource("Resource_typvl")
+data = SubResource("Resource_oyacr")
 dialogueEntries = Array[ExtResource("7_kjrd8")]([ExtResource("27_4t5e0")])
 facesPlayer = false
 

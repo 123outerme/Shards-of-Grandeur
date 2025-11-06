@@ -12,75 +12,23 @@
 script = ExtResource("2_dnry1")
 choiceBtn = "But You Do, Don't You?"
 leadsTo = ExtResource("1_jymbl")
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("4_yor8d")]([])
-repeatsItem = false
 buttonDims = Vector2(400, 40)
-turnsInQuest = ""
-isDeclineChoice = false
 
 [sub_resource type="Resource" id="Resource_eejiw"]
 script = ExtResource("3_w1s02")
 lines = Array[String](["So you're looking for a play called \"My Father, The Insect\"?", "...", "Do you know where you are right now?", "That's right, the Grandstone Repository. The greatest collection of magical knowledge in this fair city, I may add.", "The most prestigious, most complete library this side of the continent.", "Do we have a silly little play about insects?! Why would you even bother asking that?!"])
-minShowSecs = Array[float]([])
 animation = "talk"
-speakerOverride = ""
-actorAnimation = ""
-animateActorTreePath = ""
-animateActorIsPlayer = false
 choices = Array[ExtResource("2_dnry1")]([SubResource("Resource_pmn3h")])
 
 [sub_resource type="Resource" id="Resource_p84ud"]
 script = ExtResource("5_u75v5")
-minAct = 0
-maxAct = -1
-prereqQuests = Array[String]([])
-prereqCutscenes = Array[String]([])
 prereqDialogues = Array[String](["gs_actor_cracking#play_script_quest_start"])
-prereqPlacesVisited = Array[String]([])
-prereqSpecialBattles = Array[String]([])
-prereqDefeatedEnemies = Array[String]([])
-prereqPuzzles = Array[String]([])
-prereqPuzzleStates = Dictionary[String, Array]({})
-prereqDiscoveredEvolutions = Array[String]([])
-prereqHavingFollowers = Array[String]([])
-prereqHasItems = Array[ExtResource("6_8ci23")]([])
-invalidAfterCompletingQuests = Array[String]([])
-invalidAfterFailingQuests = Array[String]([])
-invalidAfterCutscenes = Array[String]([])
 invalidAfterDialogues = Array[String](["grandstone_librarian#gs_librarian_has_script"])
-invalidAfterVistingPlaces = Array[String]([])
-invalidAfterSpecialBattles = Array[String]([])
-invalidAfterSolvingPuzzles = Array[String]([])
-invalidFromPuzzleStates = Dictionary[String, Array]({})
-invalidFromHavingFollowers = Array[String]([])
-invalidFromHavingItems = Array[ExtResource("6_8ci23")]([])
 
 [sub_resource type="Resource" id="Resource_0070a"]
 script = ExtResource("5_u75v5")
-minAct = 0
-maxAct = -1
-prereqQuests = Array[String]([])
-prereqCutscenes = Array[String]([])
 prereqDialogues = Array[String](["grandstone_actor#play_script_quest_start"])
-prereqPlacesVisited = Array[String]([])
-prereqSpecialBattles = Array[String]([])
-prereqDefeatedEnemies = Array[String]([])
-prereqPuzzles = Array[String]([])
-prereqPuzzleStates = Dictionary[String, Array]({})
-prereqDiscoveredEvolutions = Array[String]([])
-prereqHavingFollowers = Array[String]([])
-prereqHasItems = Array[ExtResource("6_8ci23")]([])
-invalidAfterCompletingQuests = Array[String]([])
-invalidAfterFailingQuests = Array[String]([])
-invalidAfterCutscenes = Array[String]([])
 invalidAfterDialogues = Array[String](["grandstone_librarian#gs_librarian_has_script"])
-invalidAfterVistingPlaces = Array[String]([])
-invalidAfterSpecialBattles = Array[String]([])
-invalidAfterSolvingPuzzles = Array[String]([])
-invalidFromPuzzleStates = Dictionary[String, Array]({})
-invalidFromHavingFollowers = Array[String]([])
-invalidFromHavingItems = Array[ExtResource("6_8ci23")]([])
 
 [resource]
 script = ExtResource("4_1msl6")
@@ -88,6 +36,3 @@ entryId = "gs_librarian_sass"
 items = Array[ExtResource("3_w1s02")]([SubResource("Resource_eejiw")])
 storyRequirements = SubResource("Resource_0070a")
 ordStoryRequirements = Array[ExtResource("5_u75v5")]([SubResource("Resource_p84ud")])
-closesDialogue = false
-fullHealsPlayer = false
-annotation = ""

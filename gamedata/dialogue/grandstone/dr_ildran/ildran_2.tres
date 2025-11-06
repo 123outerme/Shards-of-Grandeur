@@ -10,51 +10,26 @@
 [sub_resource type="Resource" id="Resource_uuw07"]
 script = ExtResource("1_njfq6")
 choiceBtn = "But --"
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("3_rvk0r")]([])
-repeatsItem = false
 buttonDims = Vector2(120, 40)
-turnsInQuest = ""
-isDeclineChoice = false
 
 [sub_resource type="Resource" id="Resource_ad8p3"]
 script = ExtResource("2_h2504")
 lines = Array[String](["Excellent. Now that we have control of the Radiant Cavern we can begin our work at once. I will need you to stay here for a while and help me with my research."])
-minShowSecs = Array[float]([])
 animation = "talk"
-speakerOverride = ""
-actorAnimation = ""
-animateActorTreePath = ""
-animateActorIsPlayer = false
 choices = Array[ExtResource("1_njfq6")]([SubResource("Resource_uuw07")])
 
 [sub_resource type="Resource" id="Resource_bmflf"]
 script = ExtResource("1_njfq6")
 choiceBtn = "The Cave is Gone!"
 leadsTo = ExtResource("3_bk7p4")
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("3_rvk0r")]([])
-repeatsItem = false
 buttonDims = Vector2(320, 40)
-turnsInQuest = ""
-isDeclineChoice = false
 
 [sub_resource type="Resource" id="Resource_jgm22"]
 script = ExtResource("2_h2504")
 lines = Array[String](["Brave @, I know you wish to go sightseeing, but we are on the cusp of a real breakthrough and I need someone to power the Mana Furnace while I focus the Shards' power!"])
-minShowSecs = Array[float]([])
 animation = "talk"
-speakerOverride = ""
-actorAnimation = ""
-animateActorTreePath = ""
-animateActorIsPlayer = false
 choices = Array[ExtResource("1_njfq6")]([SubResource("Resource_bmflf")])
 
 [resource]
 script = ExtResource("4_ktsfs")
-entryId = ""
 items = Array[ExtResource("2_h2504")]([SubResource("Resource_ad8p3"), SubResource("Resource_jgm22")])
-ordStoryRequirements = Array[ExtResource("5_yw4td")]([])
-closesDialogue = false
-fullHealsPlayer = false
-annotation = ""

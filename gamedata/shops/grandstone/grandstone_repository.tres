@@ -15,46 +15,21 @@
 script = ExtResource("3_cb1xu")
 sinceVersion = "0.0.5"
 item = ExtResource("2_1j8gs")
-count = 1
 
 [sub_resource type="Resource" id="Resource_hubwb"]
 script = ExtResource("6_obqxd")
 minAct = 2
-maxAct = -1
-prereqQuests = Array[String]([])
-prereqCutscenes = Array[String]([])
-prereqDialogues = Array[String]([])
-prereqPlacesVisited = Array[String]([])
-prereqSpecialBattles = Array[String]([])
-prereqDefeatedEnemies = Array[String]([])
-prereqPuzzles = Array[String]([])
-prereqPuzzleStates = Dictionary[String, Array]({})
-prereqDiscoveredEvolutions = Array[String]([])
-prereqHavingFollowers = Array[String]([])
-prereqHasItems = Array[ExtResource("5_cv70g")]([])
-invalidAfterCompletingQuests = Array[String]([])
-invalidAfterFailingQuests = Array[String]([])
-invalidAfterCutscenes = Array[String]([])
-invalidAfterDialogues = Array[String]([])
-invalidAfterVistingPlaces = Array[String]([])
-invalidAfterSpecialBattles = Array[String]([])
-invalidAfterSolvingPuzzles = Array[String]([])
-invalidFromPuzzleStates = Dictionary[String, Array]({})
-invalidFromHavingFollowers = Array[String]([])
-invalidFromHavingItems = Array[ExtResource("5_cv70g")]([])
 
 [sub_resource type="Resource" id="Resource_6j7fy"]
 script = ExtResource("3_cb1xu")
 storyRequirements = SubResource("Resource_hubwb")
 sinceVersion = "0.2.3"
 item = ExtResource("4_vadv0")
-count = 1
 
 [sub_resource type="Resource" id="Resource_kxnab"]
 script = ExtResource("3_cb1xu")
 sinceVersion = "0.0.5"
 item = ExtResource("4_tt5kk")
-count = 1
 
 [sub_resource type="Resource" id="Resource_8odg6"]
 script = ExtResource("3_cb1xu")
@@ -76,5 +51,4 @@ count = 3
 
 [resource]
 script = ExtResource("1_i3wyr")
-id = ""
 shopItemSlots = Array[ExtResource("3_cb1xu")]([SubResource("Resource_yljok"), SubResource("Resource_6j7fy"), SubResource("Resource_kxnab"), SubResource("Resource_8odg6"), SubResource("Resource_6yyoa"), SubResource("Resource_tbg57")])
