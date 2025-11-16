@@ -1,0 +1,127 @@
+[gd_resource type="Resource" script_class="Cutscene" load_steps=27 format=3 uid="uid://bd4bqrt3k8ru2"]
+
+[ext_resource type="Script" uid="uid://cqpl74uk8cjo0" path="res://scripts/cutscenes/cutscene_frame.gd" id="1_qlos5"]
+[ext_resource type="Script" uid="uid://fpa08p2kb0ts" path="res://scripts/cutscenes/cutscene.gd" id="2_6vfvs"]
+[ext_resource type="Script" uid="uid://cg21ocaokyfnx" path="res://scripts/cutscenes/actor_anim_set.gd" id="2_iqb3n"]
+[ext_resource type="Script" uid="uid://dy2r6h7mhh2oc" path="res://scripts/cutscenes/actor_sprite_anim.gd" id="3_1ht5r"]
+[ext_resource type="Script" uid="uid://8oxtwxpqllgd" path="res://scripts/cutscenes/actor_face_target.gd" id="4_0x13r"]
+[ext_resource type="Resource" uid="uid://dcphj1dtjg3mr" path="res://gamedata/cutscenes/reused/player_stand_anim.tres" id="4_1ht5r"]
+[ext_resource type="Script" uid="uid://g5p5b4jsf6bs" path="res://scripts/cutscenes/actor_tween.gd" id="5_m3ln3"]
+[ext_resource type="Script" uid="uid://jcu0gq2ns4in" path="res://scripts/cutscenes/cutscene_dialogue.gd" id="6_w6ndc"]
+[ext_resource type="Resource" uid="uid://bhhs2axr1n15b" path="res://gamedata/cutscenes/reused/player_walk_anim.tres" id="8_m3ln3"]
+[ext_resource type="Script" uid="uid://b5d2qgg22dgbw" path="res://scripts/cutscenes/tweens/tween_vector2.gd" id="9_w6ndc"]
+
+[sub_resource type="Resource" id="Resource_m3ln3"]
+script = ExtResource("3_1ht5r")
+actorTreePath = "TilemapRoot/Spelunker1"
+animation = "talk"
+metadata/_custom_type_script = "uid://dy2r6h7mhh2oc"
+
+[sub_resource type="Resource" id="Resource_0x13r"]
+script = ExtResource("4_0x13r")
+isPlayer = true
+targetTreePath = "TilemapRoot/Spelunker1"
+metadata/_custom_type_script = "uid://8oxtwxpqllgd"
+
+[sub_resource type="Resource" id="Resource_1ht5r"]
+script = ExtResource("4_0x13r")
+actorTreePath = "TilemapRoot/Spelunker1"
+targetIsPlayer = true
+metadata/_custom_type_script = "uid://8oxtwxpqllgd"
+
+[sub_resource type="Resource" id="Resource_w6ndc"]
+script = ExtResource("6_w6ndc")
+speaker = "Spelunker"
+texts = Array[String](["Hey, @! What are you doing here?"])
+speakerActorScenePath = "TilemapRoot/Spelunker1"
+metadata/_custom_type_script = "uid://jcu0gq2ns4in"
+
+[sub_resource type="Resource" id="Resource_mvdqr"]
+script = ExtResource("1_qlos5")
+frameLength = 0.1
+annotation = "the player stops, the spelunker hails them"
+actorAnims = Array[ExtResource("3_1ht5r")]([ExtResource("4_1ht5r"), SubResource("Resource_m3ln3")])
+actorFaceTargets = Array[ExtResource("4_0x13r")]([SubResource("Resource_0x13r"), SubResource("Resource_1ht5r")])
+dialogues = Array[ExtResource("6_w6ndc")]([SubResource("Resource_w6ndc")])
+metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
+
+[sub_resource type="Resource" id="Resource_k1bm6"]
+script = ExtResource("1_qlos5")
+frameLength = 0.1
+annotation = "wait for dialogue to end"
+metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
+
+[sub_resource type="Resource" id="Resource_ltuqn"]
+script = ExtResource("3_1ht5r")
+actorTreePath = "TilemapRoot/Spelunker1"
+animation = "stand"
+metadata/_custom_type_script = "uid://dy2r6h7mhh2oc"
+
+[sub_resource type="Resource" id="Resource_m2rg2"]
+script = ExtResource("9_w6ndc")
+value = Vector2(-225, 612)
+actorTreePath = "position"
+isPlayer = true
+metadata/_custom_type_script = "uid://b5d2qgg22dgbw"
+
+[sub_resource type="Resource" id="Resource_jarmb"]
+script = ExtResource("1_qlos5")
+frameLength = 0.5
+annotation = "the player walks closer"
+actorTweens = Array[ExtResource("5_m3ln3")]([SubResource("Resource_m2rg2")])
+actorAnims = Array[ExtResource("3_1ht5r")]([ExtResource("8_m3ln3"), SubResource("Resource_ltuqn")])
+metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
+
+[sub_resource type="Resource" id="Resource_tgjjc"]
+script = ExtResource("3_1ht5r")
+actorTreePath = "TilemapRoot/Spelunker1"
+animation = "talk"
+metadata/_custom_type_script = "uid://dy2r6h7mhh2oc"
+
+[sub_resource type="Resource" id="Resource_rdft6"]
+script = ExtResource("6_w6ndc")
+speaker = "Spelunker"
+texts = Array[String]([""])
+speakerActorScenePath = "TilemapRoot/Spelunker1"
+metadata/_custom_type_script = "uid://jcu0gq2ns4in"
+
+[sub_resource type="Resource" id="Resource_u73aq"]
+script = ExtResource("1_qlos5")
+frameLength = 0.1
+annotation = "the player stops, the spelunker resumes talking"
+actorAnims = Array[ExtResource("3_1ht5r")]([ExtResource("4_1ht5r"), SubResource("Resource_tgjjc")])
+dialogues = Array[ExtResource("6_w6ndc")]([SubResource("Resource_rdft6")])
+metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
+
+[sub_resource type="Resource" id="Resource_y75r7"]
+script = ExtResource("1_qlos5")
+frameLength = 0.1
+annotation = "wait for dialogue to end"
+metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
+
+[sub_resource type="Resource" id="Resource_ydltj"]
+script = ExtResource("9_w6ndc")
+value = Vector2(-182, 600)
+isPlayer = true
+propertyName = "position"
+metadata/_custom_type_script = "uid://b5d2qgg22dgbw"
+
+[sub_resource type="Resource" id="Resource_55af0"]
+script = ExtResource("1_qlos5")
+frameLength = 0.5
+annotation = "player walks back"
+actorTweens = Array[ExtResource("5_m3ln3")]([SubResource("Resource_ydltj")])
+actorAnims = Array[ExtResource("3_1ht5r")]([ExtResource("8_m3ln3")])
+metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
+
+[sub_resource type="Resource" id="Resource_uutxy"]
+script = ExtResource("1_qlos5")
+frameLength = 0.1
+annotation = "player stands"
+actorAnims = Array[ExtResource("3_1ht5r")]([ExtResource("4_1ht5r")])
+metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
+
+[resource]
+script = ExtResource("2_6vfvs")
+cutsceneFrames = Array[ExtResource("1_qlos5")]([SubResource("Resource_mvdqr"), SubResource("Resource_k1bm6"), SubResource("Resource_jarmb"), SubResource("Resource_u73aq"), SubResource("Resource_y75r7"), SubResource("Resource_55af0"), SubResource("Resource_uutxy")])
+metadata/_custom_type_script = "uid://fpa08p2kb0ts"

@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://3p04p4v5i6vf"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_01a4b"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_di7ev"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_eiy4m"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_di7ev"]
+
+[sub_resource type="Resource" id="Resource_1xkky"]
+script = ExtResource("1_01a4b")
+lines = Array[String](["This mote of magic is one of the Spelunkers' Mage-Lights! It looks like it'll be useful at this depth of the quarry..."])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[resource]
+script = ExtResource("3_di7ev")
+items = Array[ExtResource("1_01a4b")]([SubResource("Resource_1xkky")])
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"

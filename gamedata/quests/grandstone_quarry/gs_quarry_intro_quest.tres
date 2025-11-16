@@ -1,0 +1,55 @@
+[gd_resource type="Resource" script_class="Quest" load_steps=9 format=3 uid="uid://djtn6hvl2oh06"]
+
+[ext_resource type="Script" uid="uid://bnw42uegqk4wp" path="res://scripts/quests/quest.gd" id="1_0r156"]
+[ext_resource type="Script" uid="uid://b3j2bj1p0bkq8" path="res://scripts/quests/quest_step.gd" id="2_ap2j5"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_ap2j5"]
+
+[sub_resource type="Resource" id="Resource_2v7wy"]
+script = ExtResource("2_ap2j5")
+name = "A Miner Problem"
+description = "The Miner Golems that usually work alongside the Spelunkers are acting strange... Set them straight!"
+locations = Array[int]([12])
+type = 2
+count = 3
+objectiveName = "miner_golem"
+displayObjName = "Miner Golem"
+metadata/_custom_type_script = "uid://b3j2bj1p0bkq8"
+
+[sub_resource type="Resource" id="Resource_ap2j5"]
+script = ExtResource("2_ap2j5")
+name = "Mage-Light The Way"
+description = "It's hard to see in the quarry, and even harder the deeper you go. Find a Mage-Light somewhere around here!"
+locations = Array[int]([12])
+type = 6
+objectiveName = "Mage-Light"
+displayObjName = "Mage-Light"
+metadata/_custom_type_script = "uid://b3j2bj1p0bkq8"
+
+[sub_resource type="Resource" id="Resource_aafm8"]
+script = ExtResource("2_ap2j5")
+name = "Stagmite "
+type = 2
+objectiveName = "stagmite"
+displayObjName = "Stagmite"
+metadata/_custom_type_script = "uid://b3j2bj1p0bkq8"
+
+[sub_resource type="Resource" id="Resource_1docg"]
+script = ExtResource("2_ap2j5")
+name = "Rehydrate"
+type = 1
+count = 2
+objectiveName = "Quenching Water"
+displayObjName = "Quenching Water"
+displayTurnInName = "Quarry B2F Spelunker"
+metadata/_custom_type_script = "uid://b3j2bj1p0bkq8"
+
+[sub_resource type="Resource" id="Resource_6gpwm"]
+script = ExtResource("2_ap2j5")
+metadata/_custom_type_script = "uid://b3j2bj1p0bkq8"
+
+[resource]
+script = ExtResource("1_0r156")
+questName = "Quarry Quandary"
+description = "The Grandstone Quarry mines for marble to keep up the city's many fracturing buildings. Help them out!"
+steps = Array[ExtResource("2_ap2j5")]([SubResource("Resource_2v7wy"), SubResource("Resource_ap2j5"), SubResource("Resource_aafm8"), SubResource("Resource_1docg"), SubResource("Resource_6gpwm")])
+metadata/_custom_type_script = "uid://bnw42uegqk4wp"
