@@ -1,4 +1,4 @@
-[gd_scene load_steps=84 format=4 uid="uid://b7bahcx27w7y7"]
+[gd_scene load_steps=200 format=4 uid="uid://b7bahcx27w7y7"]
 
 [ext_resource type="Script" uid="uid://vg00rfnn3346" path="res://scripts/overworld/map_script.gd" id="1_cc5ra"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_cu5tj"]
@@ -38,6 +38,7 @@ size = Vector2(128, 128)
 [sub_resource type="Resource" id="Resource_pdibe"]
 script = ExtResource("8_j0um0")
 saveName = "npc"
+position = Vector2(-243, 612)
 
 [sub_resource type="Resource" id="Resource_xe817"]
 script = ExtResource("5_lw2nd")
@@ -301,11 +302,674 @@ metadata/_custom_type_script = "uid://dllqv5vxrou7r"
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jolbs"]
 size = Vector2(144, 159)
 
+[sub_resource type="Resource" id="Resource_jeial"]
+script = ExtResource("5_lw2nd")
+spawnerId = "gs_quarry_b2f_6"
+metadata/_custom_type_script = "uid://dioty4gjx3hdu"
+
+[sub_resource type="Resource" id="Resource_j0ei1"]
+script = ExtResource("7_40h8a")
+combatant = ExtResource("12_ajjdn")
+weight = 0.85
+metadata/_custom_type_script = "uid://dga8cpwmm0j6h"
+
+[sub_resource type="Resource" id="Resource_e0wfn"]
+script = ExtResource("7_40h8a")
+weight = 0.15
+metadata/_custom_type_script = "uid://dga8cpwmm0j6h"
+
+[sub_resource type="Resource" id="Resource_mvn8r"]
+script = ExtResource("7_40h8a")
+combatant = ExtResource("12_ajjdn")
+weight = 0.8
+metadata/_custom_type_script = "uid://dga8cpwmm0j6h"
+
+[sub_resource type="Resource" id="Resource_78ch7"]
+script = ExtResource("7_40h8a")
+weight = 0.2
+metadata/_custom_type_script = "uid://dga8cpwmm0j6h"
+
+[sub_resource type="Resource" id="Resource_k81k6"]
+script = ExtResource("9_ajjdn")
+combatantsMinLevel = 21
+combatantsMaxLevel = 23
+combatant2Options = Array[ExtResource("7_40h8a")]([SubResource("Resource_j0ei1"), SubResource("Resource_e0wfn")])
+combatant3Options = Array[ExtResource("7_40h8a")]([SubResource("Resource_mvn8r"), SubResource("Resource_78ch7")])
+combatant1 = ExtResource("12_ajjdn")
+metadata/_custom_type_script = "uid://dllqv5vxrou7r"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k81k6"]
+size = Vector2(190, 101)
+
+[sub_resource type="Resource" id="Resource_1dpyn"]
+script = ExtResource("5_lw2nd")
+spawnerId = "gs_quarry_b2f_7"
+metadata/_custom_type_script = "uid://dioty4gjx3hdu"
+
+[sub_resource type="Resource" id="Resource_c1lj7"]
+script = ExtResource("7_40h8a")
+combatant = ExtResource("10_4yasx")
+weightedEquipment = ExtResource("13_xe50x")
+weight = 0.5
+metadata/_custom_type_script = "uid://dga8cpwmm0j6h"
+
+[sub_resource type="Resource" id="Resource_5ibn8"]
+script = ExtResource("7_40h8a")
+combatant = ExtResource("14_txpb0")
+weight = 0.25
+metadata/_custom_type_script = "uid://dga8cpwmm0j6h"
+
+[sub_resource type="Resource" id="Resource_rkr2v"]
+script = ExtResource("7_40h8a")
+weight = 0.25
+metadata/_custom_type_script = "uid://dga8cpwmm0j6h"
+
+[sub_resource type="Resource" id="Resource_dgimy"]
+script = ExtResource("7_40h8a")
+combatant = ExtResource("14_txpb0")
+weight = 0.4
+metadata/_custom_type_script = "uid://dga8cpwmm0j6h"
+
+[sub_resource type="Resource" id="Resource_5t611"]
+script = ExtResource("7_40h8a")
+combatant = ExtResource("6_m8uov")
+weight = 0.4
+metadata/_custom_type_script = "uid://dga8cpwmm0j6h"
+
+[sub_resource type="Resource" id="Resource_ygia7"]
+script = ExtResource("7_40h8a")
+weight = 0.2
+metadata/_custom_type_script = "uid://dga8cpwmm0j6h"
+
+[sub_resource type="Resource" id="Resource_iuo72"]
+script = ExtResource("9_ajjdn")
+combatantsMinLevel = 21
+combatantsMaxLevel = 23
+combatant2Options = Array[ExtResource("7_40h8a")]([SubResource("Resource_c1lj7"), SubResource("Resource_5ibn8"), SubResource("Resource_rkr2v")])
+combatant3Options = Array[ExtResource("7_40h8a")]([SubResource("Resource_dgimy"), SubResource("Resource_5t611"), SubResource("Resource_ygia7")])
+combatant1 = ExtResource("10_4yasx")
+combatant1Accessory = ExtResource("11_ajjdn")
+metadata/_custom_type_script = "uid://dllqv5vxrou7r"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iuo72"]
+size = Vector2(265, 180)
+
+[sub_resource type="Resource" id="Resource_0m6tq"]
+script = ExtResource("5_lw2nd")
+spawnerId = "gs_quarry_b2f_8"
+metadata/_custom_type_script = "uid://dioty4gjx3hdu"
+
+[sub_resource type="Resource" id="Resource_5gbuo"]
+script = ExtResource("7_40h8a")
+combatant = ExtResource("6_m8uov")
+weight = 0.4
+metadata/_custom_type_script = "uid://dga8cpwmm0j6h"
+
+[sub_resource type="Resource" id="Resource_rinnb"]
+script = ExtResource("7_40h8a")
+combatant = ExtResource("10_4yasx")
+weightedEquipment = ExtResource("13_xe50x")
+weight = 0.35
+metadata/_custom_type_script = "uid://dga8cpwmm0j6h"
+
+[sub_resource type="Resource" id="Resource_hc4op"]
+script = ExtResource("7_40h8a")
+weight = 0.25
+metadata/_custom_type_script = "uid://dga8cpwmm0j6h"
+
+[sub_resource type="Resource" id="Resource_j0fqd"]
+script = ExtResource("7_40h8a")
+combatant = ExtResource("6_m8uov")
+weight = 0.5
+metadata/_custom_type_script = "uid://dga8cpwmm0j6h"
+
+[sub_resource type="Resource" id="Resource_scdtw"]
+script = ExtResource("7_40h8a")
+combatant = ExtResource("13_8hl5u")
+weight = 0.3
+metadata/_custom_type_script = "uid://dga8cpwmm0j6h"
+
+[sub_resource type="Resource" id="Resource_rrc8h"]
+script = ExtResource("7_40h8a")
+weight = 0.2
+metadata/_custom_type_script = "uid://dga8cpwmm0j6h"
+
+[sub_resource type="Resource" id="Resource_hcfnv"]
+script = ExtResource("9_ajjdn")
+combatantsMinLevel = 21
+combatantsMaxLevel = 23
+combatant2Options = Array[ExtResource("7_40h8a")]([SubResource("Resource_5gbuo"), SubResource("Resource_rinnb"), SubResource("Resource_hc4op")])
+combatant3Options = Array[ExtResource("7_40h8a")]([SubResource("Resource_j0fqd"), SubResource("Resource_scdtw"), SubResource("Resource_rrc8h")])
+combatant1 = ExtResource("6_m8uov")
+metadata/_custom_type_script = "uid://dllqv5vxrou7r"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hcfnv"]
+size = Vector2(186, 144)
+
+[sub_resource type="Resource" id="Resource_3yap4"]
+script = ExtResource("5_lw2nd")
+spawnerId = "gs_quarry_b2f_9"
+metadata/_custom_type_script = "uid://dioty4gjx3hdu"
+
+[sub_resource type="Resource" id="Resource_qeflk"]
+script = ExtResource("7_40h8a")
+combatant = ExtResource("6_m8uov")
+weight = 0.45
+metadata/_custom_type_script = "uid://dga8cpwmm0j6h"
+
+[sub_resource type="Resource" id="Resource_rgqkv"]
+script = ExtResource("7_40h8a")
+combatant = ExtResource("10_4yasx")
+weightedEquipment = ExtResource("13_xe50x")
+weight = 0.35
+metadata/_custom_type_script = "uid://dga8cpwmm0j6h"
+
+[sub_resource type="Resource" id="Resource_81mp1"]
+script = ExtResource("7_40h8a")
+weight = 0.2
+metadata/_custom_type_script = "uid://dga8cpwmm0j6h"
+
+[sub_resource type="Resource" id="Resource_m02pr"]
+script = ExtResource("7_40h8a")
+combatant = ExtResource("6_m8uov")
+weight = 0.5
+metadata/_custom_type_script = "uid://dga8cpwmm0j6h"
+
+[sub_resource type="Resource" id="Resource_vu0u4"]
+script = ExtResource("7_40h8a")
+combatant = ExtResource("14_txpb0")
+weight = 0.25
+metadata/_custom_type_script = "uid://dga8cpwmm0j6h"
+
+[sub_resource type="Resource" id="Resource_ld77f"]
+script = ExtResource("7_40h8a")
+weight = 0.25
+metadata/_custom_type_script = "uid://dga8cpwmm0j6h"
+
+[sub_resource type="Resource" id="Resource_k2amy"]
+script = ExtResource("9_ajjdn")
+combatantsMinLevel = 21
+combatantsMaxLevel = 23
+combatant2Options = Array[ExtResource("7_40h8a")]([SubResource("Resource_qeflk"), SubResource("Resource_rgqkv"), SubResource("Resource_81mp1")])
+combatant3Options = Array[ExtResource("7_40h8a")]([SubResource("Resource_m02pr"), SubResource("Resource_vu0u4"), SubResource("Resource_ld77f")])
+combatant1 = ExtResource("6_m8uov")
+metadata/_custom_type_script = "uid://dllqv5vxrou7r"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2hclh"]
+size = Vector2(201, 210)
+
+[sub_resource type="Resource" id="Resource_cs5el"]
+script = ExtResource("5_lw2nd")
+spawnerId = "gs_quarry_b2f_10"
+metadata/_custom_type_script = "uid://dioty4gjx3hdu"
+
+[sub_resource type="Resource" id="Resource_ogfot"]
+script = ExtResource("7_40h8a")
+combatant = ExtResource("13_8hl5u")
+weight = 0.4
+metadata/_custom_type_script = "uid://dga8cpwmm0j6h"
+
+[sub_resource type="Resource" id="Resource_1vy8n"]
+script = ExtResource("7_40h8a")
+combatant = ExtResource("6_m8uov")
+weight = 0.4
+metadata/_custom_type_script = "uid://dga8cpwmm0j6h"
+
+[sub_resource type="Resource" id="Resource_1xg0w"]
+script = ExtResource("7_40h8a")
+weight = 0.2
+metadata/_custom_type_script = "uid://dga8cpwmm0j6h"
+
+[sub_resource type="Resource" id="Resource_hthll"]
+script = ExtResource("7_40h8a")
+combatant = ExtResource("13_8hl5u")
+weight = 0.45
+metadata/_custom_type_script = "uid://dga8cpwmm0j6h"
+
+[sub_resource type="Resource" id="Resource_gkw42"]
+script = ExtResource("7_40h8a")
+combatant = ExtResource("6_m8uov")
+weight = 0.3
+metadata/_custom_type_script = "uid://dga8cpwmm0j6h"
+
+[sub_resource type="Resource" id="Resource_wd42f"]
+script = ExtResource("7_40h8a")
+weight = 0.25
+metadata/_custom_type_script = "uid://dga8cpwmm0j6h"
+
 [sub_resource type="Resource" id="Resource_24b2t"]
 script = ExtResource("9_ajjdn")
 combatantsMinLevel = 21
 combatantsMaxLevel = 23
+combatant2Options = Array[ExtResource("7_40h8a")]([SubResource("Resource_ogfot"), SubResource("Resource_1vy8n"), SubResource("Resource_1xg0w")])
+combatant3Options = Array[ExtResource("7_40h8a")]([SubResource("Resource_hthll"), SubResource("Resource_gkw42"), SubResource("Resource_wd42f")])
+combatant1 = ExtResource("13_8hl5u")
 metadata/_custom_type_script = "uid://dllqv5vxrou7r"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t8xwe"]
+size = Vector2(276, 197)
+
+[sub_resource type="Resource" id="Resource_xm675"]
+script = ExtResource("5_lw2nd")
+spawnerId = "gs_quarry_b2f_11"
+metadata/_custom_type_script = "uid://dioty4gjx3hdu"
+
+[sub_resource type="Resource" id="Resource_hjtmp"]
+script = ExtResource("7_40h8a")
+combatant = ExtResource("10_4yasx")
+weightedEquipment = ExtResource("13_xe50x")
+weight = 0.45
+metadata/_custom_type_script = "uid://dga8cpwmm0j6h"
+
+[sub_resource type="Resource" id="Resource_wrgtd"]
+script = ExtResource("7_40h8a")
+combatant = ExtResource("13_8hl5u")
+weight = 0.35
+metadata/_custom_type_script = "uid://dga8cpwmm0j6h"
+
+[sub_resource type="Resource" id="Resource_if0oh"]
+script = ExtResource("7_40h8a")
+weight = 0.2
+metadata/_custom_type_script = "uid://dga8cpwmm0j6h"
+
+[sub_resource type="Resource" id="Resource_mysmm"]
+script = ExtResource("7_40h8a")
+combatant = ExtResource("10_4yasx")
+weightedEquipment = ExtResource("13_xe50x")
+weight = 0.5
+metadata/_custom_type_script = "uid://dga8cpwmm0j6h"
+
+[sub_resource type="Resource" id="Resource_unbcc"]
+script = ExtResource("7_40h8a")
+combatant = ExtResource("13_8hl5u")
+weight = 0.25
+metadata/_custom_type_script = "uid://dga8cpwmm0j6h"
+
+[sub_resource type="Resource" id="Resource_j3n30"]
+script = ExtResource("7_40h8a")
+weight = 0.25
+metadata/_custom_type_script = "uid://dga8cpwmm0j6h"
+
+[sub_resource type="Resource" id="Resource_be28l"]
+script = ExtResource("9_ajjdn")
+combatantsMinLevel = 21
+combatantsMaxLevel = 23
+combatant2Options = Array[ExtResource("7_40h8a")]([SubResource("Resource_hjtmp"), SubResource("Resource_wrgtd"), SubResource("Resource_if0oh")])
+combatant3Options = Array[ExtResource("7_40h8a")]([SubResource("Resource_mysmm"), SubResource("Resource_unbcc"), SubResource("Resource_j3n30")])
+combatant1 = ExtResource("10_4yasx")
+combatant1Accessory = ExtResource("11_ajjdn")
+metadata/_custom_type_script = "uid://dllqv5vxrou7r"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s38ra"]
+size = Vector2(261, 235)
+
+[sub_resource type="Resource" id="Resource_rur8y"]
+script = ExtResource("5_lw2nd")
+spawnerId = "gs_quarry_b2f_12"
+metadata/_custom_type_script = "uid://dioty4gjx3hdu"
+
+[sub_resource type="Resource" id="Resource_445ki"]
+script = ExtResource("7_40h8a")
+combatant = ExtResource("12_ajjdn")
+weight = 0.85
+metadata/_custom_type_script = "uid://dga8cpwmm0j6h"
+
+[sub_resource type="Resource" id="Resource_j7gh1"]
+script = ExtResource("7_40h8a")
+weight = 0.15
+metadata/_custom_type_script = "uid://dga8cpwmm0j6h"
+
+[sub_resource type="Resource" id="Resource_2rqg8"]
+script = ExtResource("7_40h8a")
+combatant = ExtResource("12_ajjdn")
+metadata/_custom_type_script = "uid://dga8cpwmm0j6h"
+
+[sub_resource type="Resource" id="Resource_q1xdm"]
+script = ExtResource("7_40h8a")
+weight = 0.2
+metadata/_custom_type_script = "uid://dga8cpwmm0j6h"
+
+[sub_resource type="Resource" id="Resource_8m21k"]
+script = ExtResource("9_ajjdn")
+combatantsMinLevel = 22
+combatantsMaxLevel = 23
+combatant2Options = Array[ExtResource("7_40h8a")]([SubResource("Resource_445ki"), SubResource("Resource_j7gh1")])
+combatant3Options = Array[ExtResource("7_40h8a")]([SubResource("Resource_2rqg8"), SubResource("Resource_q1xdm")])
+combatant1 = ExtResource("12_ajjdn")
+metadata/_custom_type_script = "uid://dllqv5vxrou7r"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_28vep"]
+size = Vector2(272, 195)
+
+[sub_resource type="Resource" id="Resource_r4rtc"]
+script = ExtResource("5_lw2nd")
+spawnerId = "gs_quarry_b2f_13"
+metadata/_custom_type_script = "uid://dioty4gjx3hdu"
+
+[sub_resource type="Resource" id="Resource_28vep"]
+script = ExtResource("7_40h8a")
+combatant = ExtResource("12_ajjdn")
+weight = 0.85
+metadata/_custom_type_script = "uid://dga8cpwmm0j6h"
+
+[sub_resource type="Resource" id="Resource_qiu22"]
+script = ExtResource("7_40h8a")
+weight = 0.15
+metadata/_custom_type_script = "uid://dga8cpwmm0j6h"
+
+[sub_resource type="Resource" id="Resource_a1leo"]
+script = ExtResource("7_40h8a")
+combatant = ExtResource("12_ajjdn")
+weight = 0.8
+metadata/_custom_type_script = "uid://dga8cpwmm0j6h"
+
+[sub_resource type="Resource" id="Resource_e4ta1"]
+script = ExtResource("7_40h8a")
+weight = 0.2
+metadata/_custom_type_script = "uid://dga8cpwmm0j6h"
+
+[sub_resource type="Resource" id="Resource_t8rkc"]
+script = ExtResource("9_ajjdn")
+combatantsMinLevel = 22
+combatantsMaxLevel = 23
+combatant2Options = Array[ExtResource("7_40h8a")]([SubResource("Resource_28vep"), SubResource("Resource_qiu22")])
+combatant3Options = Array[ExtResource("7_40h8a")]([SubResource("Resource_a1leo"), SubResource("Resource_e4ta1")])
+combatant1 = ExtResource("12_ajjdn")
+metadata/_custom_type_script = "uid://dllqv5vxrou7r"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xpi8p"]
+size = Vector2(226, 193)
+
+[sub_resource type="Resource" id="Resource_2usyk"]
+script = ExtResource("5_lw2nd")
+spawnerId = "gs_quarry_b2f_14"
+metadata/_custom_type_script = "uid://dioty4gjx3hdu"
+
+[sub_resource type="Resource" id="Resource_avohy"]
+script = ExtResource("7_40h8a")
+combatant = ExtResource("15_txpb0")
+weight = 0.8
+metadata/_custom_type_script = "uid://dga8cpwmm0j6h"
+
+[sub_resource type="Resource" id="Resource_ifp0g"]
+script = ExtResource("7_40h8a")
+weight = 0.2
+metadata/_custom_type_script = "uid://dga8cpwmm0j6h"
+
+[sub_resource type="Resource" id="Resource_djaah"]
+script = ExtResource("7_40h8a")
+combatant = ExtResource("15_txpb0")
+weight = 0.75
+metadata/_custom_type_script = "uid://dga8cpwmm0j6h"
+
+[sub_resource type="Resource" id="Resource_5ikh4"]
+script = ExtResource("7_40h8a")
+weight = 0.25
+metadata/_custom_type_script = "uid://dga8cpwmm0j6h"
+
+[sub_resource type="Resource" id="Resource_0dc37"]
+script = ExtResource("9_ajjdn")
+combatantsMinLevel = 22
+combatantsMaxLevel = 23
+combatant2Options = Array[ExtResource("7_40h8a")]([SubResource("Resource_avohy"), SubResource("Resource_ifp0g")])
+combatant3Options = Array[ExtResource("7_40h8a")]([SubResource("Resource_djaah"), SubResource("Resource_5ikh4")])
+combatant1 = ExtResource("15_txpb0")
+metadata/_custom_type_script = "uid://dllqv5vxrou7r"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0dc37"]
+size = Vector2(165, 187)
+
+[sub_resource type="Resource" id="Resource_ewfbg"]
+script = ExtResource("5_lw2nd")
+spawnerId = "gs_quarry_b2f_15"
+metadata/_custom_type_script = "uid://dioty4gjx3hdu"
+
+[sub_resource type="Resource" id="Resource_xpi8p"]
+script = ExtResource("7_40h8a")
+combatant = ExtResource("14_txpb0")
+weight = 0.45
+metadata/_custom_type_script = "uid://dga8cpwmm0j6h"
+
+[sub_resource type="Resource" id="Resource_yoqw5"]
+script = ExtResource("7_40h8a")
+combatant = ExtResource("10_4yasx")
+weightedEquipment = ExtResource("13_xe50x")
+weight = 0.35
+metadata/_custom_type_script = "uid://dga8cpwmm0j6h"
+
+[sub_resource type="Resource" id="Resource_56jhp"]
+script = ExtResource("7_40h8a")
+weight = 0.2
+metadata/_custom_type_script = "uid://dga8cpwmm0j6h"
+
+[sub_resource type="Resource" id="Resource_x0ls0"]
+script = ExtResource("7_40h8a")
+combatant = ExtResource("14_txpb0")
+weight = 0.4
+metadata/_custom_type_script = "uid://dga8cpwmm0j6h"
+
+[sub_resource type="Resource" id="Resource_31726"]
+script = ExtResource("7_40h8a")
+combatant = ExtResource("10_4yasx")
+weightedEquipment = ExtResource("13_xe50x")
+weight = 0.25
+metadata/_custom_type_script = "uid://dga8cpwmm0j6h"
+
+[sub_resource type="Resource" id="Resource_yul6g"]
+script = ExtResource("7_40h8a")
+combatant = ExtResource("15_txpb0")
+weight = 0.1
+metadata/_custom_type_script = "uid://dga8cpwmm0j6h"
+
+[sub_resource type="Resource" id="Resource_36agq"]
+script = ExtResource("7_40h8a")
+weight = 0.25
+metadata/_custom_type_script = "uid://dga8cpwmm0j6h"
+
+[sub_resource type="Resource" id="Resource_ybuh5"]
+script = ExtResource("9_ajjdn")
+combatantsMinLevel = 22
+combatantsMaxLevel = 23
+combatant2Options = Array[ExtResource("7_40h8a")]([SubResource("Resource_xpi8p"), SubResource("Resource_yoqw5"), SubResource("Resource_56jhp")])
+combatant3Options = Array[ExtResource("7_40h8a")]([SubResource("Resource_x0ls0"), SubResource("Resource_31726"), SubResource("Resource_yul6g"), SubResource("Resource_36agq")])
+combatant1 = ExtResource("14_txpb0")
+metadata/_custom_type_script = "uid://dllqv5vxrou7r"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wx5kv"]
+size = Vector2(197, 161)
+
+[sub_resource type="Resource" id="Resource_5f6uy"]
+script = ExtResource("5_lw2nd")
+spawnerId = "gs_quarry_b2f_16"
+metadata/_custom_type_script = "uid://dioty4gjx3hdu"
+
+[sub_resource type="Resource" id="Resource_ichrq"]
+script = ExtResource("7_40h8a")
+combatant = ExtResource("10_4yasx")
+weightedEquipment = ExtResource("13_xe50x")
+weight = 0.45
+metadata/_custom_type_script = "uid://dga8cpwmm0j6h"
+
+[sub_resource type="Resource" id="Resource_dcnpk"]
+script = ExtResource("7_40h8a")
+combatant = ExtResource("14_txpb0")
+weight = 0.35
+metadata/_custom_type_script = "uid://dga8cpwmm0j6h"
+
+[sub_resource type="Resource" id="Resource_3003a"]
+script = ExtResource("7_40h8a")
+metadata/_custom_type_script = "uid://dga8cpwmm0j6h"
+
+[sub_resource type="Resource" id="Resource_3bu4j"]
+script = ExtResource("7_40h8a")
+combatant = ExtResource("10_4yasx")
+weightedEquipment = ExtResource("13_xe50x")
+weight = 0.4
+metadata/_custom_type_script = "uid://dga8cpwmm0j6h"
+
+[sub_resource type="Resource" id="Resource_u4olu"]
+script = ExtResource("7_40h8a")
+combatant = ExtResource("6_m8uov")
+weight = 0.4
+metadata/_custom_type_script = "uid://dga8cpwmm0j6h"
+
+[sub_resource type="Resource" id="Resource_v3cgg"]
+script = ExtResource("7_40h8a")
+metadata/_custom_type_script = "uid://dga8cpwmm0j6h"
+
+[sub_resource type="Resource" id="Resource_wx5kv"]
+script = ExtResource("9_ajjdn")
+combatantsMinLevel = 22
+combatantsMaxLevel = 23
+combatant2Options = Array[ExtResource("7_40h8a")]([SubResource("Resource_ichrq"), SubResource("Resource_dcnpk"), SubResource("Resource_3003a")])
+combatant3Options = Array[ExtResource("7_40h8a")]([SubResource("Resource_3bu4j"), SubResource("Resource_u4olu"), SubResource("Resource_v3cgg")])
+combatant1 = ExtResource("10_4yasx")
+combatant1Accessory = ExtResource("11_ajjdn")
+metadata/_custom_type_script = "uid://dllqv5vxrou7r"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hd7od"]
+size = Vector2(168, 256)
+
+[sub_resource type="Resource" id="Resource_em3sx"]
+script = ExtResource("5_lw2nd")
+spawnerId = "gs_quarry_b2f_17"
+metadata/_custom_type_script = "uid://dioty4gjx3hdu"
+
+[sub_resource type="Resource" id="Resource_io25e"]
+script = ExtResource("7_40h8a")
+combatant = ExtResource("12_ajjdn")
+weight = 0.85
+metadata/_custom_type_script = "uid://dga8cpwmm0j6h"
+
+[sub_resource type="Resource" id="Resource_7mvgh"]
+script = ExtResource("7_40h8a")
+weight = 0.15
+metadata/_custom_type_script = "uid://dga8cpwmm0j6h"
+
+[sub_resource type="Resource" id="Resource_o42gk"]
+script = ExtResource("7_40h8a")
+combatant = ExtResource("12_ajjdn")
+weight = 0.8
+metadata/_custom_type_script = "uid://dga8cpwmm0j6h"
+
+[sub_resource type="Resource" id="Resource_fsntw"]
+script = ExtResource("7_40h8a")
+weight = 0.2
+metadata/_custom_type_script = "uid://dga8cpwmm0j6h"
+
+[sub_resource type="Resource" id="Resource_aq7w2"]
+script = ExtResource("9_ajjdn")
+combatantsMinLevel = 22
+combatantsMaxLevel = 23
+combatant2Options = Array[ExtResource("7_40h8a")]([SubResource("Resource_io25e"), SubResource("Resource_7mvgh")])
+combatant3Options = Array[ExtResource("7_40h8a")]([SubResource("Resource_o42gk"), SubResource("Resource_fsntw")])
+combatant1 = ExtResource("12_ajjdn")
+metadata/_custom_type_script = "uid://dllqv5vxrou7r"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_biokn"]
+size = Vector2(184, 242)
+
+[sub_resource type="Resource" id="Resource_f2aac"]
+script = ExtResource("5_lw2nd")
+spawnerId = "gs_quarry_b2f_18"
+metadata/_custom_type_script = "uid://dioty4gjx3hdu"
+
+[sub_resource type="Resource" id="Resource_1smu0"]
+script = ExtResource("7_40h8a")
+combatant = ExtResource("6_m8uov")
+weight = 0.5
+metadata/_custom_type_script = "uid://dga8cpwmm0j6h"
+
+[sub_resource type="Resource" id="Resource_6rpe6"]
+script = ExtResource("7_40h8a")
+combatant = ExtResource("10_4yasx")
+weightedEquipment = ExtResource("13_xe50x")
+weight = 0.3
+metadata/_custom_type_script = "uid://dga8cpwmm0j6h"
+
+[sub_resource type="Resource" id="Resource_v5u7l"]
+script = ExtResource("7_40h8a")
+metadata/_custom_type_script = "uid://dga8cpwmm0j6h"
+
+[sub_resource type="Resource" id="Resource_5r6n2"]
+script = ExtResource("7_40h8a")
+combatant = ExtResource("6_m8uov")
+weight = 0.4
+metadata/_custom_type_script = "uid://dga8cpwmm0j6h"
+
+[sub_resource type="Resource" id="Resource_7nmex"]
+script = ExtResource("7_40h8a")
+combatant = ExtResource("13_8hl5u")
+weight = 0.35
+metadata/_custom_type_script = "uid://dga8cpwmm0j6h"
+
+[sub_resource type="Resource" id="Resource_3loms"]
+script = ExtResource("7_40h8a")
+weight = 0.25
+metadata/_custom_type_script = "uid://dga8cpwmm0j6h"
+
+[sub_resource type="Resource" id="Resource_a2mv4"]
+script = ExtResource("9_ajjdn")
+combatantsMinLevel = 22
+combatantsMaxLevel = 24
+combatant2Options = Array[ExtResource("7_40h8a")]([SubResource("Resource_1smu0"), SubResource("Resource_6rpe6"), SubResource("Resource_v5u7l")])
+combatant3Options = Array[ExtResource("7_40h8a")]([SubResource("Resource_5r6n2"), SubResource("Resource_7nmex"), SubResource("Resource_3loms")])
+combatant1 = ExtResource("6_m8uov")
+metadata/_custom_type_script = "uid://dllqv5vxrou7r"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f5alt"]
+size = Vector2(262, 166)
+
+[sub_resource type="Resource" id="Resource_r7dpp"]
+script = ExtResource("5_lw2nd")
+spawnerId = "gs_quarry_b2f_19"
+metadata/_custom_type_script = "uid://dioty4gjx3hdu"
+
+[sub_resource type="Resource" id="Resource_vptfj"]
+script = ExtResource("7_40h8a")
+combatant = ExtResource("6_m8uov")
+weight = 0.45
+metadata/_custom_type_script = "uid://dga8cpwmm0j6h"
+
+[sub_resource type="Resource" id="Resource_ewh3o"]
+script = ExtResource("7_40h8a")
+weight = 0.35
+metadata/_custom_type_script = "uid://dga8cpwmm0j6h"
+
+[sub_resource type="Resource" id="Resource_c2oqc"]
+script = ExtResource("7_40h8a")
+weight = 0.2
+metadata/_custom_type_script = "uid://dga8cpwmm0j6h"
+
+[sub_resource type="Resource" id="Resource_my3he"]
+script = ExtResource("7_40h8a")
+combatant = ExtResource("10_4yasx")
+weightedEquipment = ExtResource("13_xe50x")
+weight = 0.4
+metadata/_custom_type_script = "uid://dga8cpwmm0j6h"
+
+[sub_resource type="Resource" id="Resource_eo2fq"]
+script = ExtResource("7_40h8a")
+combatant = ExtResource("6_m8uov")
+weight = 0.35
+metadata/_custom_type_script = "uid://dga8cpwmm0j6h"
+
+[sub_resource type="Resource" id="Resource_wantx"]
+script = ExtResource("7_40h8a")
+weight = 0.25
+metadata/_custom_type_script = "uid://dga8cpwmm0j6h"
+
+[sub_resource type="Resource" id="Resource_3id78"]
+script = ExtResource("9_ajjdn")
+combatantsMinLevel = 21
+combatantsMaxLevel = 23
+combatant2Options = Array[ExtResource("7_40h8a")]([SubResource("Resource_vptfj"), SubResource("Resource_ewh3o"), SubResource("Resource_c2oqc")])
+combatant3Options = Array[ExtResource("7_40h8a")]([SubResource("Resource_my3he"), SubResource("Resource_eo2fq"), SubResource("Resource_wantx")])
+combatant1 = ExtResource("6_m8uov")
+metadata/_custom_type_script = "uid://dllqv5vxrou7r"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8hs72"]
+size = Vector2(281, 268)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pbvkj"]
 size = Vector2(1, 1)
@@ -492,60 +1156,143 @@ shape = SubResource("RectangleShape2D_jolbs")
 
 [node name="EnemySpawner6" parent="." node_paths=PackedStringArray("tilemap") instance=ExtResource("4_q1hfw")]
 position = Vector2(-607, -85)
+spawnerData = SubResource("Resource_jeial")
+enemyEncounter = SubResource("Resource_k81k6")
 tilemap = NodePath("../TilemapRoot")
+
+[node name="SpawnShape" parent="EnemySpawner6/SpawnArea" index="0"]
+position = Vector2(0, 3.5)
+shape = SubResource("RectangleShape2D_k81k6")
 
 [node name="EnemySpawner7" parent="." node_paths=PackedStringArray("tilemap") instance=ExtResource("4_q1hfw")]
 position = Vector2(-992, 88)
+spawnerData = SubResource("Resource_1dpyn")
+enemyEncounter = SubResource("Resource_iuo72")
 tilemap = NodePath("../TilemapRoot")
+
+[node name="SpawnShape" parent="EnemySpawner7/SpawnArea" index="0"]
+position = Vector2(-0.5, 6)
+shape = SubResource("RectangleShape2D_iuo72")
 
 [node name="EnemySpawner8" parent="." node_paths=PackedStringArray("tilemap") instance=ExtResource("4_q1hfw")]
 position = Vector2(-877, -118)
+spawnerData = SubResource("Resource_0m6tq")
+enemyEncounter = SubResource("Resource_hcfnv")
 tilemap = NodePath("../TilemapRoot")
+
+[node name="SpawnShape" parent="EnemySpawner8/SpawnArea" index="0"]
+position = Vector2(1, 0)
+shape = SubResource("RectangleShape2D_hcfnv")
 
 [node name="EnemySpawner9" parent="." node_paths=PackedStringArray("tilemap") instance=ExtResource("4_q1hfw")]
 position = Vector2(-146, 271)
+spawnerData = SubResource("Resource_3yap4")
+enemyEncounter = SubResource("Resource_k2amy")
 tilemap = NodePath("../TilemapRoot")
+
+[node name="SpawnShape" parent="EnemySpawner9/SpawnArea" index="0"]
+position = Vector2(8.5, 1)
+shape = SubResource("RectangleShape2D_2hclh")
 
 [node name="EnemySpawner10" parent="." node_paths=PackedStringArray("tilemap") instance=ExtResource("4_q1hfw")]
 position = Vector2(256, 406)
+spawnerData = SubResource("Resource_cs5el")
 enemyEncounter = SubResource("Resource_24b2t")
 tilemap = NodePath("../TilemapRoot")
 
+[node name="SpawnShape" parent="EnemySpawner10/SpawnArea" index="0"]
+position = Vector2(-5, 0.5)
+shape = SubResource("RectangleShape2D_t8xwe")
+
 [node name="EnemySpawner11" parent="." node_paths=PackedStringArray("tilemap") instance=ExtResource("4_q1hfw")]
 position = Vector2(537, 427)
+spawnerData = SubResource("Resource_xm675")
+enemyEncounter = SubResource("Resource_be28l")
 tilemap = NodePath("../TilemapRoot")
+
+[node name="SpawnShape" parent="EnemySpawner11/SpawnArea" index="0"]
+position = Vector2(0.5, -40.5)
+shape = SubResource("RectangleShape2D_s38ra")
 
 [node name="EnemySpawner12" parent="." node_paths=PackedStringArray("tilemap") instance=ExtResource("4_q1hfw")]
 position = Vector2(871, 478)
+spawnerData = SubResource("Resource_rur8y")
+enemyEncounter = SubResource("Resource_8m21k")
 tilemap = NodePath("../TilemapRoot")
+
+[node name="SpawnShape" parent="EnemySpawner12/SpawnArea" index="0"]
+position = Vector2(-13, -39.5)
+shape = SubResource("RectangleShape2D_28vep")
 
 [node name="EnemySpawner13" parent="." node_paths=PackedStringArray("tilemap") instance=ExtResource("4_q1hfw")]
 position = Vector2(670, 126)
+spawnerData = SubResource("Resource_r4rtc")
+enemyEncounter = SubResource("Resource_t8rkc")
 tilemap = NodePath("../TilemapRoot")
+
+[node name="SpawnShape" parent="EnemySpawner13/SpawnArea" index="0"]
+position = Vector2(8, -6.5)
+shape = SubResource("RectangleShape2D_xpi8p")
 
 [node name="EnemySpawner14" parent="." node_paths=PackedStringArray("tilemap") instance=ExtResource("4_q1hfw")]
 position = Vector2(905, 21)
+spawnerData = SubResource("Resource_2usyk")
+enemyEncounter = SubResource("Resource_0dc37")
 tilemap = NodePath("../TilemapRoot")
+
+[node name="SpawnShape" parent="EnemySpawner14/SpawnArea" index="0"]
+position = Vector2(-10.5, 1.5)
+shape = SubResource("RectangleShape2D_0dc37")
 
 [node name="EnemySpawner15" parent="." node_paths=PackedStringArray("tilemap") instance=ExtResource("4_q1hfw")]
 position = Vector2(1082, 457)
+spawnerData = SubResource("Resource_ewfbg")
+enemyEncounter = SubResource("Resource_ybuh5")
 tilemap = NodePath("../TilemapRoot")
+
+[node name="SpawnShape" parent="EnemySpawner15/SpawnArea" index="0"]
+position = Vector2(-5.5, -1.5)
+shape = SubResource("RectangleShape2D_wx5kv")
 
 [node name="EnemySpawner16" parent="." node_paths=PackedStringArray("tilemap") instance=ExtResource("4_q1hfw")]
 position = Vector2(-6, 633)
+spawnerData = SubResource("Resource_5f6uy")
+enemyEncounter = SubResource("Resource_wx5kv")
 tilemap = NodePath("../TilemapRoot")
+
+[node name="SpawnShape" parent="EnemySpawner16/SpawnArea" index="0"]
+position = Vector2(-10, -8)
+shape = SubResource("RectangleShape2D_hd7od")
 
 [node name="EnemySpawner17" parent="." node_paths=PackedStringArray("tilemap") instance=ExtResource("4_q1hfw")]
 position = Vector2(-308, 847)
+spawnerData = SubResource("Resource_em3sx")
+enemyEncounter = SubResource("Resource_aq7w2")
 tilemap = NodePath("../TilemapRoot")
 
+[node name="SpawnShape" parent="EnemySpawner17/SpawnArea" index="0"]
+position = Vector2(17, -2)
+shape = SubResource("RectangleShape2D_biokn")
+
 [node name="EnemySpawner18" parent="." node_paths=PackedStringArray("tilemap") instance=ExtResource("4_q1hfw")]
-position = Vector2(-898, 892)
+position = Vector2(-703, 943)
+spawnerData = SubResource("Resource_f2aac")
+enemyEncounter = SubResource("Resource_a2mv4")
 tilemap = NodePath("../TilemapRoot")
+
+[node name="SpawnShape" parent="EnemySpawner18/SpawnArea" index="0"]
+position = Vector2(4, 1)
+shape = SubResource("RectangleShape2D_f5alt")
 
 [node name="EnemySpawner19" parent="." node_paths=PackedStringArray("tilemap") instance=ExtResource("4_q1hfw")]
 position = Vector2(369, 797)
+spawnerData = SubResource("Resource_r7dpp")
+enemyEncounter = SubResource("Resource_3id78")
 tilemap = NodePath("../TilemapRoot")
+
+[node name="SpawnShape" parent="EnemySpawner19/SpawnArea" index="0"]
+position = Vector2(28.5, 1)
+shape = SubResource("RectangleShape2D_8hs72")
 
 [node name="EnemySpawner20" parent="." node_paths=PackedStringArray("tilemap") instance=ExtResource("4_q1hfw")]
 position = Vector2(780, 1012)
@@ -628,6 +1375,20 @@ position = Vector2(-757, 546)
 [editable path="EnemySpawner3"]
 [editable path="EnemySpawner4"]
 [editable path="EnemySpawner5"]
+[editable path="EnemySpawner6"]
+[editable path="EnemySpawner7"]
+[editable path="EnemySpawner8"]
+[editable path="EnemySpawner9"]
+[editable path="EnemySpawner10"]
+[editable path="EnemySpawner11"]
+[editable path="EnemySpawner12"]
+[editable path="EnemySpawner13"]
+[editable path="EnemySpawner14"]
+[editable path="EnemySpawner15"]
+[editable path="EnemySpawner16"]
+[editable path="EnemySpawner17"]
+[editable path="EnemySpawner18"]
+[editable path="EnemySpawner19"]
 [editable path="B1FWarpZone"]
 [editable path="EnemyDeaggroZone"]
 [editable path="MinibossBlockCutsceneTrigger"]
