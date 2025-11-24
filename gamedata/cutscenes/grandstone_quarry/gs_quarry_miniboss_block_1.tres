@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Cutscene" load_steps=27 format=3 uid="uid://bd4bqrt3k8ru2"]
+[gd_resource type="Resource" script_class="Cutscene" load_steps=29 format=3 uid="uid://bd4bqrt3k8ru2"]
 
 [ext_resource type="Script" uid="uid://cqpl74uk8cjo0" path="res://scripts/cutscenes/cutscene_frame.gd" id="1_qlos5"]
 [ext_resource type="Script" uid="uid://fpa08p2kb0ts" path="res://scripts/cutscenes/cutscene.gd" id="2_6vfvs"]
@@ -10,6 +10,8 @@
 [ext_resource type="Script" uid="uid://jcu0gq2ns4in" path="res://scripts/cutscenes/cutscene_dialogue.gd" id="6_w6ndc"]
 [ext_resource type="Resource" uid="uid://bhhs2axr1n15b" path="res://gamedata/cutscenes/reused/player_walk_anim.tres" id="8_m3ln3"]
 [ext_resource type="Script" uid="uid://b5d2qgg22dgbw" path="res://scripts/cutscenes/tweens/tween_vector2.gd" id="9_w6ndc"]
+[ext_resource type="Script" uid="uid://b2hl18fkjkvkw" path="res://scripts/cutscenes/story_reqs_cutscene_dialogue.gd" id="10_mvdqr"]
+[ext_resource type="Script" uid="uid://dlifax6y4uci3" path="res://scripts/cutscenes/cutscene_dialogue_alternative.gd" id="11_k1bm6"]
 
 [sub_resource type="Resource" id="Resource_m3ln3"]
 script = ExtResource("3_1ht5r")
@@ -79,11 +81,11 @@ animation = "talk"
 metadata/_custom_type_script = "uid://dy2r6h7mhh2oc"
 
 [sub_resource type="Resource" id="Resource_rdft6"]
-script = ExtResource("6_w6ndc")
+script = ExtResource("10_mvdqr")
 speaker = "Spelunker"
-texts = Array[String]([""])
+texts = Array[String](["There's a monster down this path, don't go yet!", "You will need ... TODO/TBD"])
 speakerActorScenePath = "TilemapRoot/Spelunker1"
-metadata/_custom_type_script = "uid://jcu0gq2ns4in"
+metadata/_custom_type_script = "uid://b2hl18fkjkvkw"
 
 [sub_resource type="Resource" id="Resource_u73aq"]
 script = ExtResource("1_qlos5")

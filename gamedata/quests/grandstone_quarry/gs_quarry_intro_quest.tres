@@ -27,8 +27,10 @@ metadata/_custom_type_script = "uid://b3j2bj1p0bkq8"
 
 [sub_resource type="Resource" id="Resource_aafm8"]
 script = ExtResource("2_ap2j5")
-name = "Stagmite "
+name = "Stagmite Stampede"
+description = "These Stagmites are causing problems for the Spelunkers! Thin the herd, just a little."
 type = 2
+count = 3
 objectiveName = "stagmite"
 displayObjName = "Stagmite"
 metadata/_custom_type_script = "uid://b3j2bj1p0bkq8"
@@ -36,15 +38,24 @@ metadata/_custom_type_script = "uid://b3j2bj1p0bkq8"
 [sub_resource type="Resource" id="Resource_1docg"]
 script = ExtResource("2_ap2j5")
 name = "Rehydrate"
+description = "Bring the Spelunker in the Quarry some Quenching Water, he is parched!"
 type = 1
 count = 2
 objectiveName = "Quenching Water"
+turnInNames = Array[String](["quarry_b2f_spelunker1"])
 displayObjName = "Quenching Water"
 displayTurnInName = "Quarry B2F Spelunker"
 metadata/_custom_type_script = "uid://b3j2bj1p0bkq8"
 
 [sub_resource type="Resource" id="Resource_6gpwm"]
 script = ExtResource("2_ap2j5")
+name = "The Titan"
+description = "A Titanic problem has appeared in the quarry! Best to defeat it before it brings the roof down!"
+type = 4
+objectiveName = "titan_quarry_b2f_encounter"
+turnInNames = Array[String](["gs_quarry_entrance_foreman"])
+displayObjName = "Titan"
+displayTurnInName = "Quarry Foreman"
 metadata/_custom_type_script = "uid://b3j2bj1p0bkq8"
 
 [resource]
