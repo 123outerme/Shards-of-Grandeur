@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="CombatantSprite" load_steps=4 format=3 uid="uid://c1oyxy607s7cd"]
+
+[ext_resource type="Resource" uid="uid://dxvj888hj2a6r" path="res://gamedata/combatants/titan/titan_overworld.tres" id="1_4c548"]
+[ext_resource type="Script" uid="uid://70gbsrstamsf" path="res://scripts/battle/combatant/combatant_sprite.gd" id="1_b8xol"]
+[ext_resource type="SpriteFrames" uid="uid://bx4c316fjewph" path="res://graphics/animations/a_titan.tres" id="2_kvbf1"]
+
+[resource]
+script = ExtResource("1_b8xol")
+spriteFrames = ExtResource("2_kvbf1")
+combatantOverworld = ExtResource("1_4c548")
+maxSize = Vector2(32, 48)
+idleSize = Vector2(26, 39)
+centerPosition = Vector2(17, 24)
+idleCanvasCenterPosition = Vector2(17, 24)
+feetPosition = Vector2(17, 46)
+headPosition = Vector2(10, 14)
+navigationLayer = 4
+metadata/_custom_type_script = "uid://70gbsrstamsf"

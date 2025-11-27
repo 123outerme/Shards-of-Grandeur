@@ -1,0 +1,26 @@
+[gd_resource type="SpriteFrames" load_steps=3 format=3 uid="uid://bx4c316fjewph"]
+
+[ext_resource type="Texture2D" uid="uid://bftkdqohu7a2g" path="res://graphics/characters/titan/titan_stand.png" id="1_hxs6i"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j20d1"]
+atlas = ExtResource("1_hxs6i")
+region = Rect2(0, 0, 32, 48)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": null
+}],
+"loop": true,
+"name": &"hide",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j20d1")
+}],
+"loop": true,
+"name": &"stand",
+"speed": 5.0
+}]

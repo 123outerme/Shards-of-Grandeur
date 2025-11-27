@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="Combatant" load_steps=15 format=3 uid="uid://1d33s7xyld3s"]
+
+[ext_resource type="Script" uid="uid://c8dxuthm1qd7s" path="res://scripts/battle/combatant/stats.gd" id="1_6qprd"]
+[ext_resource type="Resource" uid="uid://bb3gn7hykwp4t" path="res://gamedata/combatants/titan/titan_ai.tres" id="1_wk53m"]
+[ext_resource type="Script" uid="uid://biq3088m28kr2" path="res://scripts/battle/combatant/rune.gd" id="2_da0fs"]
+[ext_resource type="Resource" uid="uid://livt6kpac1a1" path="res://gamedata/combatants/titan/titan_rewards.tres" id="2_l6frc"]
+[ext_resource type="Script" uid="uid://dyckeornewpwi" path="res://scripts/battle/combatant.gd" id="3_kxge2"]
+[ext_resource type="Resource" uid="uid://kwnao548vk1o" path="res://gamedata/combatants/titan/titan_evolutions.tres" id="4_cgpeu"]
+[ext_resource type="Resource" uid="uid://c1oyxy607s7cd" path="res://gamedata/combatants/titan/titan_sprite.tres" id="4_da0fs"]
+[ext_resource type="Resource" uid="uid://q84kyhyvciwf" path="res://gamedata/combatants/titan/titan_effectiveness.tres" id="5_cip0g"]
+[ext_resource type="Script" uid="uid://dx4lnh4driy7a" path="res://scripts/battle/combatant/move.gd" id="5_kxge2"]
+[ext_resource type="Resource" uid="uid://cdbnps8c1unl6" path="res://gamedata/combatants/titan/titan_stat_alloc_strategy.tres" id="9_n8vh4"]
+[ext_resource type="Resource" uid="uid://dxmwh5xneaerp" path="res://gamedata/combatants/titan/titan_movepool.tres" id="10_jgfh0"]
+[ext_resource type="Resource" uid="uid://dacbxnwwye376" path="res://gamedata/combatants/titan/titan_stat_growth.tres" id="12_gtv7f"]
+[ext_resource type="Resource" uid="uid://cmvl2rhr7da0p" path="res://gamedata/combatants/titan/titan_equipment.tres" id="13_6er8w"]
+
+[sub_resource type="Resource" id="Resource_dehd5"]
+script = ExtResource("1_6qprd")
+displayName = "Titan"
+saveName = "titan"
+statGrowth = ExtResource("12_gtv7f")
+movepool = ExtResource("10_jgfh0")
+metadata/_custom_type_script = "uid://c8dxuthm1qd7s"
+
+[resource]
+script = ExtResource("3_kxge2")
+sprite = ExtResource("4_da0fs")
+stats = SubResource("Resource_dehd5")
+evolutions = ExtResource("4_cgpeu")
+ai = ExtResource("1_wk53m")
+moveEffectiveness = ExtResource("5_cip0g")
+weightedEquipment = ExtResource("13_6er8w")
+dropTable = ExtResource("2_l6frc")
+statAllocationStrategy = ExtResource("9_n8vh4")
+metadata/_custom_type_script = "uid://dyckeornewpwi"

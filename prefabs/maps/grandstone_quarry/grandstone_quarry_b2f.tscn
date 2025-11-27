@@ -1,4 +1,4 @@
-[gd_scene load_steps=203 format=4 uid="uid://b7bahcx27w7y7"]
+[gd_scene load_steps=206 format=4 uid="uid://b7bahcx27w7y7"]
 
 [ext_resource type="Script" uid="uid://vg00rfnn3346" path="res://scripts/overworld/map_script.gd" id="1_cc5ra"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_cu5tj"]
@@ -19,6 +19,7 @@
 [ext_resource type="SpriteFrames" uid="uid://dirmctruik1lh" path="res://graphics/animations/a_spelunker2.tres" id="9_7rok8"]
 [ext_resource type="Script" uid="uid://dllqv5vxrou7r" path="res://scripts/overworld/overworld_enemy/random_encounter.gd" id="9_ajjdn"]
 [ext_resource type="Resource" uid="uid://cra0rgrw4ujhn" path="res://gamedata/combatants/mesa_golem/mesa_golem.tres" id="10_4yasx"]
+[ext_resource type="SpriteFrames" uid="uid://bx4c316fjewph" path="res://graphics/animations/a_titan.tres" id="10_8hs72"]
 [ext_resource type="Resource" uid="uid://cw71a6bensfkc" path="res://gamedata/items/accessory/mage_light.tres" id="11_ajjdn"]
 [ext_resource type="Resource" uid="uid://btnde87dlhjhu" path="res://gamedata/combatants/soot_spider/soot_spider.tres" id="12_ajjdn"]
 [ext_resource type="Resource" uid="uid://dm3g1qy72w0lg" path="res://gamedata/combatants/lithosaurus/lithosaurus.tres" id="13_8hl5u"]
@@ -44,6 +45,13 @@ position = Vector2(-243, 612)
 [sub_resource type="Resource" id="Resource_m4mds"]
 script = ExtResource("8_j0um0")
 saveName = "npc"
+position = Vector2(-952, 554)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oyukn"]
+size = Vector2(19, 22)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_saws7"]
+size = Vector2(25, 33)
 
 [sub_resource type="Resource" id="Resource_xe817"]
 script = ExtResource("5_lw2nd")
@@ -1127,7 +1135,20 @@ visible = false
 position = Vector2(-952, 554)
 displayName = "Titan"
 saveName = "titan_gs_quarry_b2f"
+loadFlipH = true
 data = SubResource("Resource_m4mds")
+
+[node name="NPCSprite" parent="TilemapRoot/Titan" index="0"]
+sprite_frames = ExtResource("10_8hs72")
+animation = &"stand"
+
+[node name="ColliderShape" parent="TilemapRoot/Titan" index="1"]
+position = Vector2(1.5, 11)
+shape = SubResource("RectangleShape2D_oyukn")
+
+[node name="TalkAreaShape" parent="TilemapRoot/Titan/TalkArea" index="0"]
+position = Vector2(1.5, 6.5)
+shape = SubResource("RectangleShape2D_saws7")
 
 [node name="MoveTrigger" parent="TilemapRoot/Titan" index="4"]
 visible = false
