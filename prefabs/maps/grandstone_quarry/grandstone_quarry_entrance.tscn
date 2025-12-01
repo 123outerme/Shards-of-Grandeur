@@ -1,15 +1,17 @@
-[gd_scene load_steps=16 format=4 uid="uid://dsqmg0tevwkip"]
+[gd_scene load_steps=18 format=4 uid="uid://dsqmg0tevwkip"]
 
 [ext_resource type="Script" uid="uid://vg00rfnn3346" path="res://scripts/overworld/map_script.gd" id="1_cicbu"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_3whso"]
 [ext_resource type="PackedScene" uid="uid://cdnsjlf3gwbkf" path="res://prefabs/entities/ground_item.tscn" id="3_jqha5"]
 [ext_resource type="PackedScene" uid="uid://bsalesakrx8yy" path="res://prefabs/entities/npc.tscn" id="4_fkpuy"]
-[ext_resource type="SpriteFrames" uid="uid://cy2mfewm30ym5" path="res://graphics/animations/a_spelunker1.tres" id="5_42a8r"]
+[ext_resource type="SpriteFrames" uid="uid://cyi7r7vlmajpd" path="res://graphics/animations/a_quarry_foreman.tres" id="5_42a8r"]
 [ext_resource type="Script" uid="uid://8t63d3un22ug" path="res://scripts/npcs/npc_data.gd" id="5_hiqvq"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="5_pawgn"]
 [ext_resource type="PackedScene" uid="uid://d3rsvv5iihm7t" path="res://prefabs/overworld/warp_zone.tscn" id="5_rvddn"]
 [ext_resource type="PackedScene" uid="uid://b1u1r7encrpgs" path="res://prefabs/overworld/camera_hold_zone.tscn" id="6_l25xb"]
+[ext_resource type="Resource" uid="uid://d3mttj27wg6qw" path="res://gamedata/dialogue/grandstone_quarry/foreman/gs_foreman_entrance_1.tres" id="6_qbhjq"]
 
-[sub_resource type="Resource" id="Resource_hiqvq"]
+[sub_resource type="Resource" id="Resource_pawgn"]
 script = ExtResource("5_hiqvq")
 saveName = "npc"
 position = Vector2(-127, -60)
@@ -91,11 +93,12 @@ tile_set = ExtResource("2_3whso")
 position = Vector2(-127, -60)
 displayName = "Foreman"
 saveName = "gs_quarry_entrance_foreman"
-data = SubResource("Resource_hiqvq")
+data = SubResource("Resource_pawgn")
+dialogueEntries = Array[ExtResource("5_pawgn")]([ExtResource("6_qbhjq")])
 
 [node name="NPCSprite" parent="TilemapRoot/Foreman" index="0"]
 sprite_frames = ExtResource("5_42a8r")
-animation = &"stand"
+animation = &"talk"
 
 [node name="ColliderShape" parent="TilemapRoot/Foreman" index="1"]
 position = Vector2(0, 3.5)

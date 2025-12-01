@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Cutscene" load_steps=29 format=3 uid="uid://bd4bqrt3k8ru2"]
+[gd_resource type="Resource" script_class="Cutscene" load_steps=36 format=3 uid="uid://bd4bqrt3k8ru2"]
 
 [ext_resource type="Script" uid="uid://cqpl74uk8cjo0" path="res://scripts/cutscenes/cutscene_frame.gd" id="1_qlos5"]
 [ext_resource type="Script" uid="uid://fpa08p2kb0ts" path="res://scripts/cutscenes/cutscene.gd" id="2_6vfvs"]
@@ -12,6 +12,8 @@
 [ext_resource type="Script" uid="uid://b5d2qgg22dgbw" path="res://scripts/cutscenes/tweens/tween_vector2.gd" id="9_w6ndc"]
 [ext_resource type="Script" uid="uid://b2hl18fkjkvkw" path="res://scripts/cutscenes/story_reqs_cutscene_dialogue.gd" id="10_mvdqr"]
 [ext_resource type="Script" uid="uid://dlifax6y4uci3" path="res://scripts/cutscenes/cutscene_dialogue_alternative.gd" id="11_k1bm6"]
+[ext_resource type="Script" uid="uid://fw22o8hbosnk" path="res://scripts/inventory/inventory_slot.gd" id="13_jarmb"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="14_ltuqn"]
 
 [sub_resource type="Resource" id="Resource_m3ln3"]
 script = ExtResource("3_1ht5r")
@@ -80,10 +82,35 @@ actorTreePath = "TilemapRoot/Spelunker1"
 animation = "talk"
 metadata/_custom_type_script = "uid://dy2r6h7mhh2oc"
 
+[sub_resource type="Resource" id="Resource_blxsm"]
+script = ExtResource("14_ltuqn")
+prereqQuests = Array[String](["Quarry Quandary#Mage-Light The Way"])
+metadata/_custom_type_script = "uid://bjesn36acj0uh"
+
+[sub_resource type="Resource" id="Resource_2kff2"]
+script = ExtResource("11_k1bm6")
+storyRequirements = Array[ExtResource("14_ltuqn")]([SubResource("Resource_blxsm")])
+speaker = "Spelunker"
+texts = Array[String](["There's a titanic monster down this path, don't go yet! The Stagmites around here are too feisty!", "If you defeat a couple, they should calm down, and I can keep the battleground clear while you take care of the monster."])
+speakerActorScenePath = "TilemapRoot/Spelunker1"
+metadata/_custom_type_script = "uid://dlifax6y4uci3"
+
+[sub_resource type="Resource" id="Resource_y35hs"]
+script = ExtResource("14_ltuqn")
+invalidAfterCompletingQuests = Array[String](["Quarry Quandary#A Miner Problem"])
+metadata/_custom_type_script = "uid://bjesn36acj0uh"
+
+[sub_resource type="Resource" id="Resource_ig12g"]
+script = ExtResource("11_k1bm6")
+storyRequirements = Array[ExtResource("14_ltuqn")]([SubResource("Resource_y35hs")])
+texts = Array[String](["There's a titanic monster down this path, don't go yet! You won't be able to see it in the cavern without a Mage-Light!", "You should be able to find a Mage-Light I previously cast floating around here somewhere... I think it was close to the stairs back up."])
+metadata/_custom_type_script = "uid://dlifax6y4uci3"
+
 [sub_resource type="Resource" id="Resource_rdft6"]
 script = ExtResource("10_mvdqr")
+storyReqsAlternatives = Array[ExtResource("11_k1bm6")]([SubResource("Resource_2kff2"), SubResource("Resource_ig12g")])
 speaker = "Spelunker"
-texts = Array[String](["There's a monster down this path, don't go yet!", "You will need ... TODO/TBD"])
+texts = Array[String](["There's a titanic monster down this path, don't go yet! The Miner Golems are threatening to bring down the quarry!", "If they get too wild and knock down too many walls, it could cave in! Do something!"])
 speakerActorScenePath = "TilemapRoot/Spelunker1"
 metadata/_custom_type_script = "uid://b2hl18fkjkvkw"
 
@@ -123,7 +150,13 @@ annotation = "player stands"
 actorAnims = Array[ExtResource("3_1ht5r")]([ExtResource("4_1ht5r")])
 metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
 
+[sub_resource type="Resource" id="Resource_ck6h4"]
+script = ExtResource("14_ltuqn")
+invalidAfterCompletingQuests = Array[String](["Quarry Quandary#Stagmite Stampede"])
+metadata/_custom_type_script = "uid://bjesn36acj0uh"
+
 [resource]
 script = ExtResource("2_6vfvs")
 cutsceneFrames = Array[ExtResource("1_qlos5")]([SubResource("Resource_mvdqr"), SubResource("Resource_k1bm6"), SubResource("Resource_jarmb"), SubResource("Resource_u73aq"), SubResource("Resource_y75r7"), SubResource("Resource_55af0"), SubResource("Resource_uutxy")])
+storyRequirements = SubResource("Resource_ck6h4")
 metadata/_custom_type_script = "uid://fpa08p2kb0ts"
