@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=10 format=3 uid="uid://b7jr6cqm5n60m"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_jqjii"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_bn41v"]
+[ext_resource type="Script" uid="uid://b6oofnelefs8o" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_bn41v"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="3_t4f4j"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="4_asrn6"]
+[ext_resource type="Resource" uid="uid://yscec52y5bd6" path="res://gamedata/dialogue/grandstone_quarry/spelunker_b2f/quarry_spelunker_b2f_defeat_titan_after_turnin.tres" id="4_t4f4j"]
+
+[sub_resource type="Resource" id="Resource_t4f4j"]
+script = ExtResource("2_bn41v")
+choiceBtn = "Wait..."
+isDeclineChoice = true
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_asrn6"]
+script = ExtResource("2_bn41v")
+choiceBtn = "I Sure Did."
+leadsTo = ExtResource("4_t4f4j")
+turnsInQuest = "Quarry Quandary#The Titan"
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_3s8ou"]
+script = ExtResource("1_jqjii")
+lines = Array[String](["Wow... you really did it! You defeated that Titan!"])
+animation = "talk"
+choices = Array[ExtResource("2_bn41v")]([SubResource("Resource_t4f4j"), SubResource("Resource_asrn6")])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[resource]
+script = ExtResource("4_asrn6")
+items = Array[ExtResource("1_jqjii")]([SubResource("Resource_3s8ou")])
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"

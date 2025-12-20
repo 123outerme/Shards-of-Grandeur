@@ -12,52 +12,18 @@
 [sub_resource type="Resource" id="Resource_7a43y"]
 script = ExtResource("1_x3c18")
 lines = Array[String](["You're right, biped. What's lost is lost. My crown, my kingdom, and even some of my kin.", "However, I will have to rebuild anyways. If you would take pity on me, please help me in this endeavour."])
-minShowSecs = Array[float]([])
 animation = "talk"
-speakerOverride = ""
-actorAnimation = ""
-animateActorTreePath = ""
-animateActorIsPlayer = false
-choices = Array[ExtResource("2_nofh2")]([])
 metadata/_custom_type_script = "uid://grt2yrupha8c"
 
 [sub_resource type="Resource" id="Resource_bi5nc"]
 script = ExtResource("1_x3c18")
 lines = Array[String](["I will look past my animosity for you, crown-stealer, if you enter into an alliance with my kingdom."])
-minShowSecs = Array[float]([])
 animation = "talk"
-speakerOverride = ""
-actorAnimation = ""
-animateActorTreePath = ""
-animateActorIsPlayer = false
-choices = Array[ExtResource("2_nofh2")]([])
 metadata/_custom_type_script = "uid://grt2yrupha8c"
 
 [sub_resource type="Resource" id="Resource_4ifsb"]
 script = ExtResource("2_vrxox")
-minAct = 0
-maxAct = -1
-prereqQuests = Array[String]([])
-prereqCutscenes = Array[String]([])
-prereqDialogues = Array[String]([])
-prereqPlacesVisited = Array[String]([])
 prereqSpecialBattles = Array[String](["king_rat_encounter"])
-prereqDefeatedEnemies = Array[String]([])
-prereqPuzzles = Array[String]([])
-prereqPuzzleStates = Dictionary[String, Array]({})
-prereqDiscoveredEvolutions = Array[String]([])
-prereqHavingFollowers = Array[String]([])
-prereqHasItems = Array[ExtResource("4_7a43y")]([])
-invalidAfterCompletingQuests = Array[String]([])
-invalidAfterFailingQuests = Array[String]([])
-invalidAfterCutscenes = Array[String]([])
-invalidAfterDialogues = Array[String]([])
-invalidAfterVistingPlaces = Array[String]([])
-invalidAfterSpecialBattles = Array[String]([])
-invalidAfterSolvingPuzzles = Array[String]([])
-invalidFromPuzzleStates = Dictionary[String, Array]({})
-invalidFromHavingFollowers = Array[String]([])
-invalidFromHavingItems = Array[ExtResource("4_7a43y")]([])
 metadata/_custom_type_script = "uid://bjesn36acj0uh"
 
 [sub_resource type="Resource" id="Resource_wem2r"]
@@ -65,45 +31,24 @@ script = ExtResource("4_nofh2")
 alternativeDialogueItems = Array[ExtResource("1_x3c18")]([SubResource("Resource_bi5nc")])
 alternativeStoryReqs = Array[ExtResource("2_vrxox")]([SubResource("Resource_4ifsb")])
 lines = Array[String](["I will look past my animosity for your kind, if you enter into an alliance with my kingdom."])
-minShowSecs = Array[float]([])
 animation = "talk"
-speakerOverride = ""
-actorAnimation = ""
-animateActorTreePath = ""
-animateActorIsPlayer = false
-choices = Array[ExtResource("2_nofh2")]([])
 metadata/_custom_type_script = "uid://fsrd48o26kgo"
 
 [sub_resource type="Resource" id="Resource_rfoe7"]
 script = ExtResource("2_nofh2")
 choiceBtn = "Deal."
 leadsTo = ExtResource("6_bi5nc")
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("6_wem2r")]([])
-repeatsItem = false
-buttonDims = Vector2(80, 40)
-turnsInQuest = ""
 isDeclineChoice = true
 metadata/_custom_type_script = "uid://bk6klhv2ls55w"
 
 [sub_resource type="Resource" id="Resource_s3v2l"]
 script = ExtResource("1_x3c18")
 lines = Array[String](["I will need to reforge my crown, but the first order of business is to win back my subjects.", "Two of them are still wandering in the tundra. I would ask that you speak with them, and convince them to return.", "What say you?"])
-minShowSecs = Array[float]([])
 animation = "talk"
-speakerOverride = ""
-actorAnimation = ""
-animateActorTreePath = ""
-animateActorIsPlayer = false
 choices = Array[ExtResource("2_nofh2")]([SubResource("Resource_rfoe7")])
 metadata/_custom_type_script = "uid://grt2yrupha8c"
 
 [resource]
 script = ExtResource("3_nofh2")
-entryId = ""
 items = Array[ExtResource("1_x3c18")]([SubResource("Resource_7a43y"), SubResource("Resource_wem2r"), SubResource("Resource_s3v2l")])
-ordStoryRequirements = Array[ExtResource("2_vrxox")]([])
-closesDialogue = false
-fullHealsPlayer = false
-annotation = ""
 metadata/_custom_type_script = "uid://1n6mppc7hmmf"

@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://bib600yuawmne"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_dpk38"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_dnern"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_niysu"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_niysu"]
+
+[sub_resource type="Resource" id="Resource_36h5x"]
+script = ExtResource("1_dpk38")
+lines = Array[String](["Gee, thanks @! I think I'll have one now!", "Glug glug glug...", "Wow, that really did quench me. Well, on you go now! Be sure to beat that monster real good!"])
+animation = "talk"
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[resource]
+script = ExtResource("3_niysu")
+items = Array[ExtResource("1_dpk38")]([SubResource("Resource_36h5x")])
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"

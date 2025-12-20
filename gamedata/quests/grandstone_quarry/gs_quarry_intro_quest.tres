@@ -1,8 +1,13 @@
-[gd_resource type="Resource" script_class="Quest" load_steps=9 format=3 uid="uid://djtn6hvl2oh06"]
+[gd_resource type="Resource" script_class="Quest" load_steps=15 format=3 uid="uid://djtn6hvl2oh06"]
 
 [ext_resource type="Script" uid="uid://bnw42uegqk4wp" path="res://scripts/quests/quest.gd" id="1_0r156"]
 [ext_resource type="Script" uid="uid://b3j2bj1p0bkq8" path="res://scripts/quests/quest_step.gd" id="2_ap2j5"]
 [ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_ap2j5"]
+[ext_resource type="Resource" uid="uid://dn0qav5ruggbt" path="res://gamedata/dialogue/grandstone_quarry/spelunker_b2f/quarry_spelunker_b2f_thirsty.tres" id="4_2v7wy"]
+[ext_resource type="Resource" uid="uid://bt6khckgcs8js" path="res://gamedata/dialogue/grandstone_quarry/spelunker_b2f/quarry_spelunker_b2f_defeat_titan.tres" id="5_1docg"]
+[ext_resource type="Resource" uid="uid://b7jr6cqm5n60m" path="res://gamedata/dialogue/grandstone_quarry/spelunker_b2f/quarry_spelunker_b2f_defeat_titan_turnin.tres" id="6_6gpwm"]
+[ext_resource type="Resource" uid="uid://7h8gbku3jqak" path="res://gamedata/dialogue/grandstone_quarry/foreman/intro_quest/gs_foreman_intro_quest_debrief.tres" id="7_kbl7p"]
+[ext_resource type="Resource" uid="uid://bwjf26oh8s1t5" path="res://gamedata/dialogue/grandstone_quarry/foreman/intro_quest/gs_foreman_intro_quest_debrief_turnin.tres" id="8_fkdwh"]
 
 [sub_resource type="Resource" id="Resource_2v7wy"]
 script = ExtResource("2_ap2j5")
@@ -29,6 +34,7 @@ metadata/_custom_type_script = "uid://b3j2bj1p0bkq8"
 script = ExtResource("2_ap2j5")
 name = "Stagmite Stampede"
 description = "These Stagmites are causing problems for the Spelunkers! Thin the herd, just a little."
+locations = Array[int]([12])
 type = 2
 count = 3
 objectiveName = "stagmite"
@@ -39,28 +45,47 @@ metadata/_custom_type_script = "uid://b3j2bj1p0bkq8"
 script = ExtResource("2_ap2j5")
 name = "Spelunker's Thirsty!"
 description = "Bring the Spelunker in the Quarry some Quenching Water, he is parched!"
+locations = Array[int]([12])
+turnInLocations = Array[int]([12])
 type = 1
 count = 2
 objectiveName = "Quenching Water"
 turnInNames = Array[String](["quarry_b2f_spelunker1"])
 displayObjName = "Quenching Water"
 displayTurnInName = "Quarry B2F Spelunker"
+turnInDialogue = Array[ExtResource("3_ap2j5")]([ExtResource("4_2v7wy")])
+inProgressDialogue = Array[ExtResource("3_ap2j5")]([ExtResource("4_2v7wy")])
 metadata/_custom_type_script = "uid://b3j2bj1p0bkq8"
 
 [sub_resource type="Resource" id="Resource_6gpwm"]
 script = ExtResource("2_ap2j5")
 name = "The Titan"
 description = "A Titanic problem has appeared in the quarry! Best to defeat it before it brings the roof down!"
+locations = Array[int]([12])
+turnInLocations = Array[int]([12])
 type = 4
 objectiveName = "titan_quarry_b2f_encounter"
 turnInNames = Array[String](["gs_quarry_entrance_foreman"])
 displayObjName = "Titan"
+displayTurnInName = "Quarry Spelunker"
+turnInDialogue = Array[ExtResource("3_ap2j5")]([ExtResource("6_6gpwm")])
+inProgressDialogue = Array[ExtResource("3_ap2j5")]([ExtResource("5_1docg")])
+metadata/_custom_type_script = "uid://b3j2bj1p0bkq8"
+
+[sub_resource type="Resource" id="Resource_kbl7p"]
+script = ExtResource("2_ap2j5")
+name = "See the Foreman"
+locations = Array[int]([12])
+turnInLocations = Array[int]([12])
+displayObjName = "Quarry Foreman"
 displayTurnInName = "Quarry Foreman"
+turnInDialogue = Array[ExtResource("3_ap2j5")]([ExtResource("8_fkdwh")])
+inProgressDialogue = Array[ExtResource("3_ap2j5")]([ExtResource("7_kbl7p")])
 metadata/_custom_type_script = "uid://b3j2bj1p0bkq8"
 
 [resource]
 script = ExtResource("1_0r156")
 questName = "Quarry Quandary"
 description = "The Grandstone Quarry mines for marble to keep up the city's many fracturing buildings. Help them out!"
-steps = Array[ExtResource("2_ap2j5")]([SubResource("Resource_2v7wy"), SubResource("Resource_ap2j5"), SubResource("Resource_aafm8"), SubResource("Resource_1docg"), SubResource("Resource_6gpwm")])
+steps = Array[ExtResource("2_ap2j5")]([SubResource("Resource_2v7wy"), SubResource("Resource_ap2j5"), SubResource("Resource_aafm8"), SubResource("Resource_1docg"), SubResource("Resource_6gpwm"), SubResource("Resource_kbl7p")])
 metadata/_custom_type_script = "uid://bnw42uegqk4wp"

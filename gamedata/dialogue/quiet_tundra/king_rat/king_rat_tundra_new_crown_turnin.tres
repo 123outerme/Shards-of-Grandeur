@@ -12,22 +12,12 @@
 script = ExtResource("2_mswl0")
 choiceBtn = "Nothing..."
 leadsTo = ExtResource("3_lgkxi")
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("3_cbc8v")]([])
-repeatsItem = false
-buttonDims = Vector2(80, 40)
-turnsInQuest = ""
-isDeclineChoice = false
 metadata/_custom_type_script = "uid://bk6klhv2ls55w"
 
 [sub_resource type="Resource" id="Resource_lgkxi"]
 script = ExtResource("2_mswl0")
 choiceBtn = "The Smith Accepted."
 leadsTo = ExtResource("5_lgkxi")
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("3_cbc8v")]([])
-repeatsItem = false
-buttonDims = Vector2(80, 40)
 turnsInQuest = "The Crownless King#A New Crown"
 isDeclineChoice = true
 metadata/_custom_type_script = "uid://bk6klhv2ls55w"
@@ -35,21 +25,11 @@ metadata/_custom_type_script = "uid://bk6klhv2ls55w"
 [sub_resource type="Resource" id="Resource_cbc8v"]
 script = ExtResource("1_msl62")
 lines = Array[String](["Hello, friend. What news do you bring from Frostmint Village?"])
-minShowSecs = Array[float]([])
 animation = "talk"
-speakerOverride = ""
-actorAnimation = ""
-animateActorTreePath = ""
-animateActorIsPlayer = false
 choices = Array[ExtResource("2_mswl0")]([SubResource("Resource_mswl0"), SubResource("Resource_lgkxi")])
 metadata/_custom_type_script = "uid://grt2yrupha8c"
 
 [resource]
 script = ExtResource("3_mswl0")
-entryId = ""
 items = Array[ExtResource("1_msl62")]([SubResource("Resource_cbc8v")])
-ordStoryRequirements = Array[ExtResource("2_onexd")]([])
-closesDialogue = false
-fullHealsPlayer = false
-annotation = ""
 metadata/_custom_type_script = "uid://1n6mppc7hmmf"

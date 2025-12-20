@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=10 format=3 uid="uid://dn0qav5ruggbt"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_hhnh8"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_bhfid"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_ydj0h"]
+[ext_resource type="Script" uid="uid://b6oofnelefs8o" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_8a8k8"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_ydj0h"]
+[ext_resource type="Resource" uid="uid://bib600yuawmne" path="res://gamedata/dialogue/grandstone_quarry/spelunker_b2f/quarry_spelunker_b2f_thirsty_turn_in.tres" id="4_8a8k8"]
+
+[sub_resource type="Resource" id="Resource_cjht5"]
+script = ExtResource("2_ydj0h")
+choiceBtn = "Be Right Back."
+isDeclineChoice = true
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_rg0bb"]
+script = ExtResource("2_ydj0h")
+leadsTo = ExtResource("4_8a8k8")
+turnsInQuest = "Quarry Quandary#Spelunker's Thirsty!"
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_8a8k8"]
+script = ExtResource("1_hhnh8")
+lines = Array[String](["Oh, I need something to drink now... I've been working too hard.", "Before you go on to fight that monster, could you get me some Quenching Water? All of the other Spelunkers are on vacation..."])
+animation = "talk"
+choices = Array[ExtResource("2_ydj0h")]([SubResource("Resource_cjht5"), SubResource("Resource_rg0bb")])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[resource]
+script = ExtResource("3_ydj0h")
+items = Array[ExtResource("1_hhnh8")]([SubResource("Resource_8a8k8")])
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"

@@ -15,11 +15,6 @@ script = ExtResource("1_l0jfk")
 lines = Array[String](["...", "First my subjects, frozen in Shards, used as experiments..."])
 minShowSecs = Array[float]([0.5, 0.5])
 animation = "talk"
-speakerOverride = ""
-actorAnimation = ""
-animateActorTreePath = ""
-animateActorIsPlayer = false
-choices = Array[ExtResource("2_ryayd")]([])
 metadata/_custom_type_script = "uid://grt2yrupha8c"
 
 [sub_resource type="Resource" id="Resource_413v6"]
@@ -27,38 +22,11 @@ script = ExtResource("1_l0jfk")
 lines = Array[String](["Then my crown, stolen in combat and coronated onto the subservient Minion of the victor..."])
 minShowSecs = Array[float]([0.5])
 animation = "talk"
-speakerOverride = ""
-actorAnimation = ""
-animateActorTreePath = ""
-animateActorIsPlayer = false
-choices = Array[ExtResource("2_ryayd")]([])
 metadata/_custom_type_script = "uid://grt2yrupha8c"
 
 [sub_resource type="Resource" id="Resource_ovyil"]
 script = ExtResource("2_h02tw")
-minAct = 0
-maxAct = -1
-prereqQuests = Array[String]([])
-prereqCutscenes = Array[String]([])
-prereqDialogues = Array[String]([])
-prereqPlacesVisited = Array[String]([])
-prereqSpecialBattles = Array[String]([])
-prereqDefeatedEnemies = Array[String]([])
-prereqPuzzles = Array[String]([])
-prereqPuzzleStates = Dictionary[String, Array]({})
 prereqDiscoveredEvolutions = Array[String](["rat#prince_rat"])
-prereqHavingFollowers = Array[String]([])
-prereqHasItems = Array[ExtResource("4_s0fyv")]([])
-invalidAfterCompletingQuests = Array[String]([])
-invalidAfterFailingQuests = Array[String]([])
-invalidAfterCutscenes = Array[String]([])
-invalidAfterDialogues = Array[String]([])
-invalidAfterVistingPlaces = Array[String]([])
-invalidAfterSpecialBattles = Array[String]([])
-invalidAfterSolvingPuzzles = Array[String]([])
-invalidFromPuzzleStates = Dictionary[String, Array]({})
-invalidFromHavingFollowers = Array[String]([])
-invalidFromHavingItems = Array[ExtResource("4_s0fyv")]([])
 metadata/_custom_type_script = "uid://bjesn36acj0uh"
 
 [sub_resource type="Resource" id="Resource_w8f3i"]
@@ -68,38 +36,11 @@ alternativeStoryReqs = Array[ExtResource("2_h02tw")]([SubResource("Resource_ovyi
 lines = Array[String](["Then my crown, lost in combat to a biped..."])
 minShowSecs = Array[float]([0.5])
 animation = "talk"
-speakerOverride = ""
-actorAnimation = ""
-animateActorTreePath = ""
-animateActorIsPlayer = false
-choices = Array[ExtResource("2_ryayd")]([])
 metadata/_custom_type_script = "uid://fsrd48o26kgo"
 
 [sub_resource type="Resource" id="Resource_ef4sm"]
 script = ExtResource("2_h02tw")
-minAct = 0
-maxAct = -1
-prereqQuests = Array[String]([])
-prereqCutscenes = Array[String]([])
-prereqDialogues = Array[String]([])
-prereqPlacesVisited = Array[String]([])
 prereqSpecialBattles = Array[String](["king_rat_encounter"])
-prereqDefeatedEnemies = Array[String]([])
-prereqPuzzles = Array[String]([])
-prereqPuzzleStates = Dictionary[String, Array]({})
-prereqDiscoveredEvolutions = Array[String]([])
-prereqHavingFollowers = Array[String]([])
-prereqHasItems = Array[ExtResource("4_s0fyv")]([])
-invalidAfterCompletingQuests = Array[String]([])
-invalidAfterFailingQuests = Array[String]([])
-invalidAfterCutscenes = Array[String]([])
-invalidAfterDialogues = Array[String]([])
-invalidAfterVistingPlaces = Array[String]([])
-invalidAfterSpecialBattles = Array[String]([])
-invalidAfterSolvingPuzzles = Array[String]([])
-invalidFromPuzzleStates = Dictionary[String, Array]({})
-invalidFromHavingFollowers = Array[String]([])
-invalidFromHavingItems = Array[ExtResource("4_s0fyv")]([])
 metadata/_custom_type_script = "uid://bjesn36acj0uh"
 
 [sub_resource type="Resource" id="Resource_y1maa"]
@@ -109,22 +50,12 @@ alternativeStoryReqs = Array[ExtResource("2_h02tw")]([SubResource("Resource_ef4s
 lines = Array[String](["Then my crown, scattered to the forest floor by invading bipeds..."])
 minShowSecs = Array[float]([0.5])
 animation = "talk"
-speakerOverride = ""
-actorAnimation = ""
-animateActorTreePath = ""
-animateActorIsPlayer = false
-choices = Array[ExtResource("2_ryayd")]([])
 metadata/_custom_type_script = "uid://fsrd48o26kgo"
 
 [sub_resource type="Resource" id="Resource_q1thj"]
 script = ExtResource("2_ryayd")
 choiceBtn = "Not Really."
 leadsTo = ExtResource("6_ef4sm")
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("6_ff2yx")]([])
-repeatsItem = false
-buttonDims = Vector2(80, 40)
-turnsInQuest = ""
 isDeclineChoice = true
 metadata/_custom_type_script = "uid://bk6klhv2ls55w"
 
@@ -132,12 +63,7 @@ metadata/_custom_type_script = "uid://bk6klhv2ls55w"
 script = ExtResource("2_ryayd")
 choiceBtn = "You're Still King."
 leadsTo = ExtResource("8_y1maa")
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("6_ff2yx")]([])
-repeatsItem = false
-buttonDims = Vector2(80, 40)
 turnsInQuest = "The Crownless King#Duel Before the Throne"
-isDeclineChoice = false
 metadata/_custom_type_script = "uid://bk6klhv2ls55w"
 
 [sub_resource type="Resource" id="Resource_ff2yx"]
@@ -145,19 +71,10 @@ script = ExtResource("1_l0jfk")
 lines = Array[String](["Then, my home and kingdom, burned up in flames...", "And now my pride, finally shattered.", "Really, what sort of king am I? Many of my subjects have already abandoned me, amidst my folly.", "I am not fit to lead."])
 minShowSecs = Array[float]([0.5])
 animation = "talk"
-speakerOverride = ""
-actorAnimation = ""
-animateActorTreePath = ""
-animateActorIsPlayer = false
 choices = Array[ExtResource("2_ryayd")]([SubResource("Resource_q1thj"), SubResource("Resource_mpvsk")])
 metadata/_custom_type_script = "uid://grt2yrupha8c"
 
 [resource]
 script = ExtResource("3_ryayd")
-entryId = ""
 items = Array[ExtResource("1_l0jfk")]([SubResource("Resource_s0fyv"), SubResource("Resource_y1maa"), SubResource("Resource_ff2yx")])
-ordStoryRequirements = Array[ExtResource("2_h02tw")]([])
-closesDialogue = false
-fullHealsPlayer = false
-annotation = ""
 metadata/_custom_type_script = "uid://1n6mppc7hmmf"

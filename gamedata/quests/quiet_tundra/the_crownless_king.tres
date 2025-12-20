@@ -16,9 +16,6 @@
 [sub_resource type="Resource" id="Resource_8n570"]
 script = ExtResource("5_e87w4")
 experience = 200
-gold = 0
-itemCount = 1
-fullyAttuneCombatantSaveName = ""
 metadata/_custom_type_script = "uid://flaq3s0m3pf2"
 
 [sub_resource type="Resource" id="Resource_iodx2"]
@@ -29,12 +26,10 @@ reward = SubResource("Resource_8n570")
 locations = Array[int]([51])
 turnInLocations = Array[int]([51])
 type = 4
-count = 1
 objectiveName = "usurped_king_rat_encounter"
 turnInNames = Array[String](["king_rat_tundra_west"])
 displayObjName = "Usurped King Rat"
 displayTurnInName = "Usurped King Rat"
-customStatusStr = ""
 turnInDialogue = Array[ExtResource("3_5o8i1")]([ExtResource("5_f1odc")])
 inProgressDialogue = Array[ExtResource("3_5o8i1")]([ExtResource("4_xs01p")])
 metadata/_custom_type_script = "uid://b3j2bj1p0bkq8"
@@ -43,8 +38,6 @@ metadata/_custom_type_script = "uid://b3j2bj1p0bkq8"
 script = ExtResource("5_e87w4")
 experience = 100
 gold = 10
-itemCount = 1
-fullyAttuneCombatantSaveName = ""
 metadata/_custom_type_script = "uid://flaq3s0m3pf2"
 
 [sub_resource type="Resource" id="Resource_5o8i1"]
@@ -55,10 +48,8 @@ reward = SubResource("Resource_wl1ip")
 locations = Array[int]([51])
 turnInLocations = Array[int]([51])
 type = 5
-count = 1
 objectiveName = "convince_rat_subjects"
 turnInNames = Array[String](["king_rat_tundra_west"])
-displayObjName = ""
 displayTurnInName = "King Rat"
 customStatusStr = "Convince Both Rats!"
 turnInDialogue = Array[ExtResource("3_5o8i1")]([ExtResource("7_jfs2c")])
@@ -74,20 +65,13 @@ turnInLocations = Array[int]([51])
 type = 2
 count = 3
 objectiveName = "scout_penguin"
-turnInNames = Array[String]([])
 displayObjName = "Scout Penguin"
-displayTurnInName = ""
-customStatusStr = ""
-turnInDialogue = Array[ExtResource("3_5o8i1")]([])
-inProgressDialogue = Array[ExtResource("3_5o8i1")]([])
 metadata/_custom_type_script = "uid://b3j2bj1p0bkq8"
 
 [sub_resource type="Resource" id="Resource_3jl6i"]
 script = ExtResource("5_e87w4")
 experience = 220
 gold = 15
-itemCount = 1
-fullyAttuneCombatantSaveName = ""
 metadata/_custom_type_script = "uid://flaq3s0m3pf2"
 
 [sub_resource type="Resource" id="Resource_ibg1x"]
@@ -97,13 +81,10 @@ description = "After defeating some enemy Scout Penguins, return to the King Rat
 reward = SubResource("Resource_3jl6i")
 locations = Array[int]([51])
 turnInLocations = Array[int]([51])
-type = 0
-count = 1
 objectiveName = "king_rat_tundra_west#penguins_defeated"
 turnInNames = Array[String](["king_rat_tundra_west"])
 displayObjName = "King Rat"
 displayTurnInName = "King Rat"
-customStatusStr = ""
 turnInDialogue = Array[ExtResource("3_5o8i1")]([ExtResource("9_jafpe")])
 inProgressDialogue = Array[ExtResource("3_5o8i1")]([ExtResource("8_jfs2c")])
 metadata/_custom_type_script = "uid://b3j2bj1p0bkq8"
@@ -111,9 +92,6 @@ metadata/_custom_type_script = "uid://b3j2bj1p0bkq8"
 [sub_resource type="Resource" id="Resource_8yvs6"]
 script = ExtResource("5_e87w4")
 experience = 125
-gold = 0
-itemCount = 1
-fullyAttuneCombatantSaveName = ""
 metadata/_custom_type_script = "uid://flaq3s0m3pf2"
 
 [sub_resource type="Resource" id="Resource_jfs2c"]
@@ -123,13 +101,10 @@ description = "With new homes built, it's time to forge a new crown. The King Ra
 reward = SubResource("Resource_8yvs6")
 locations = Array[int]([55])
 turnInLocations = Array[int]([51])
-type = 0
-count = 1
 objectiveName = "frostmint_smith_forge#king_rat_crown_job"
 turnInNames = Array[String](["king_rat_tundra_west"])
 displayObjName = "Frostmint Smith"
 displayTurnInName = "King Rat"
-customStatusStr = ""
 turnInDialogue = Array[ExtResource("3_5o8i1")]([ExtResource("11_e87w4")])
 inProgressDialogue = Array[ExtResource("3_5o8i1")]([ExtResource("10_jafpe")])
 metadata/_custom_type_script = "uid://b3j2bj1p0bkq8"
@@ -139,33 +114,16 @@ script = ExtResource("2_5o8i1")
 name = "Quarry of Minerals"
 description = "The Frostmint Smith needs plenty of raw gold to forge the crown from. Grandstone's quarry might be the place to acquire such metals!"
 locations = Array[int]([12])
-turnInLocations = Array[int]([])
-type = 0
-count = 1
+turnInLocations = Array[int]([12])
 objectiveName = "TBD"
-turnInNames = Array[String]([])
-displayObjName = "Grandstone Foreman"
-displayTurnInName = "TBD"
-customStatusStr = ""
-turnInDialogue = Array[ExtResource("3_5o8i1")]([])
-inProgressDialogue = Array[ExtResource("3_5o8i1")]([])
+displayObjName = "Quarry Foreman"
+displayTurnInName = "Quarry Foreman"
 metadata/_custom_type_script = "uid://b3j2bj1p0bkq8"
 
 [sub_resource type="Resource" id="Resource_jafpe"]
 script = ExtResource("2_5o8i1")
 name = "TBD"
-description = ""
-locations = Array[int]([])
-turnInLocations = Array[int]([])
-type = 0
-count = 1
 objectiveName = "---"
-turnInNames = Array[String]([])
-displayObjName = ""
-displayTurnInName = ""
-customStatusStr = ""
-turnInDialogue = Array[ExtResource("3_5o8i1")]([])
-inProgressDialogue = Array[ExtResource("3_5o8i1")]([])
 metadata/_custom_type_script = "uid://b3j2bj1p0bkq8"
 
 [resource]
@@ -173,6 +131,4 @@ script = ExtResource("1_j7i3x")
 questName = "The Crownless King"
 description = "Where's your crown, King of the Rats?"
 steps = Array[ExtResource("2_5o8i1")]([SubResource("Resource_iodx2"), SubResource("Resource_5o8i1"), SubResource("Resource_gb4qg"), SubResource("Resource_ibg1x"), SubResource("Resource_jfs2c"), SubResource("Resource_t0sud"), SubResource("Resource_jafpe")])
-isMainQuest = false
-advanceActAfterComplete = false
 metadata/_custom_type_script = "uid://bnw42uegqk4wp"

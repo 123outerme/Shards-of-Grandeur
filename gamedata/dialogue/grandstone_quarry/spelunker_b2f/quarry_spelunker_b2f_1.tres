@@ -1,9 +1,24 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=4 format=3 uid="uid://bmawoltcoyq2m"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=8 format=3 uid="uid://bmawoltcoyq2m"]
 
 [ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_bpart"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_4a4dw"]
 [ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_s1qkx"]
 [ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_fno7j"]
+[ext_resource type="Script" uid="uid://fw22o8hbosnk" path="res://scripts/inventory/inventory_slot.gd" id="4_pc844"]
+
+[sub_resource type="Resource" id="Resource_pc844"]
+script = ExtResource("1_bpart")
+lines = Array[String](["Wow, you made good work of that Titan! Now we can get back to mining the big pockets of marble sitting around here!"])
+animation = "talk"
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[sub_resource type="Resource" id="Resource_ojfjk"]
+script = ExtResource("2_s1qkx")
+prereqQuests = Array[String](["Quarry Quandary"])
+metadata/_custom_type_script = "uid://bjesn36acj0uh"
 
 [resource]
 script = ExtResource("3_fno7j")
+items = Array[ExtResource("1_bpart")]([SubResource("Resource_pc844")])
+ordStoryRequirements = Array[ExtResource("2_s1qkx")]([SubResource("Resource_ojfjk")])
 metadata/_custom_type_script = "uid://1n6mppc7hmmf"

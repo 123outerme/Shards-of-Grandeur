@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=8 format=3 uid="uid://yscec52y5bd6"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_ys278"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_e12w8"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_lolkb"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_lolkb"]
+[ext_resource type="Script" uid="uid://b6oofnelefs8o" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_mcef4"]
+
+[sub_resource type="Resource" id="Resource_i4i2r"]
+script = ExtResource("2_lolkb")
+choiceBtn = "I Will."
+isDeclineChoice = true
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_mcef4"]
+script = ExtResource("1_ys278")
+lines = Array[String](["Now I can get back to mining the big pockets of marble sitting around here. Grandstone is going to need it all...", "You should let the Foreman know we've solved the root problem here. He'll be very happy to hear!"])
+animation = "talk"
+choices = Array[ExtResource("2_lolkb")]([SubResource("Resource_i4i2r")])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[resource]
+script = ExtResource("3_lolkb")
+items = Array[ExtResource("1_ys278")]([SubResource("Resource_mcef4")])
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"

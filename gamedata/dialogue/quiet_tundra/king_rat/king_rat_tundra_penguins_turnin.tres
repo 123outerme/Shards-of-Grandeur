@@ -12,11 +12,6 @@
 script = ExtResource("2_5hct1")
 choiceBtn = "Not Done Yet..."
 leadsTo = ExtResource("3_bi4ls")
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("3_nyfxx")]([])
-repeatsItem = false
-buttonDims = Vector2(80, 40)
-turnsInQuest = ""
 isDeclineChoice = true
 metadata/_custom_type_script = "uid://bk6klhv2ls55w"
 
@@ -24,32 +19,16 @@ metadata/_custom_type_script = "uid://bk6klhv2ls55w"
 script = ExtResource("2_5hct1")
 choiceBtn = "I Sure Did!"
 leadsTo = ExtResource("5_bi4ls")
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("3_nyfxx")]([])
-repeatsItem = false
-buttonDims = Vector2(80, 40)
-turnsInQuest = ""
-isDeclineChoice = false
 metadata/_custom_type_script = "uid://bk6klhv2ls55w"
 
 [sub_resource type="Resource" id="Resource_nyfxx"]
 script = ExtResource("1_8rvmr")
 lines = Array[String](["There, three igloos, nice and cozy! It seems like you fended off the Scout Penguins, friend."])
-minShowSecs = Array[float]([])
 animation = "talk"
-speakerOverride = ""
-actorAnimation = ""
-animateActorTreePath = ""
-animateActorIsPlayer = false
 choices = Array[ExtResource("2_5hct1")]([SubResource("Resource_bi4ls"), SubResource("Resource_5wk0m")])
 metadata/_custom_type_script = "uid://grt2yrupha8c"
 
 [resource]
 script = ExtResource("3_5hct1")
-entryId = ""
 items = Array[ExtResource("1_8rvmr")]([SubResource("Resource_nyfxx")])
-ordStoryRequirements = Array[ExtResource("2_s6nnc")]([])
-closesDialogue = false
-fullHealsPlayer = false
-annotation = ""
 metadata/_custom_type_script = "uid://1n6mppc7hmmf"

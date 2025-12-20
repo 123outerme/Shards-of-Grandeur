@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=11 format=3 uid="uid://bowmhnl8gmekp"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_5llja"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_8m7vu"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_wlhti"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_c2g0u"]
+[ext_resource type="Script" uid="uid://b6oofnelefs8o" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_yynmu"]
+[ext_resource type="Resource" uid="uid://djtn6hvl2oh06" path="res://gamedata/quests/grandstone_quarry/gs_quarry_intro_quest.tres" id="4_wlhti"]
+[ext_resource type="Script" uid="uid://fw22o8hbosnk" path="res://scripts/inventory/inventory_slot.gd" id="5_yynmu"]
+
+[sub_resource type="Resource" id="Resource_5jw7i"]
+script = ExtResource("2_8m7vu")
+choiceBtn = "Will Do!"
+isDeclineChoice = true
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_bct7s"]
+script = ExtResource("1_5llja")
+lines = Array[String](["Truth be told, we're having a real monster problem in the depths of the Quarry.", "Our Miner Golems, usually very cooperative, are rebelling against us and fighting the Spelunkers!", "They've joined in with all the other creatures, which are normally nothing more than a nuisance.", "Worst of all, some of the Spelunkers on the second level down have reported sightings of a gigantic monster!", "You're just the solution to this problem... You have my permission to go down there and beat them all!"])
+animation = "talk"
+choices = Array[ExtResource("2_8m7vu")]([SubResource("Resource_5jw7i")])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[sub_resource type="Resource" id="Resource_td1nb"]
+script = ExtResource("2_wlhti")
+invalidAfterCompletingQuests = Array[String](["Quarry Quandary#"])
+metadata/_custom_type_script = "uid://bjesn36acj0uh"
+
+[resource]
+script = ExtResource("3_c2g0u")
+items = Array[ExtResource("1_5llja")]([SubResource("Resource_bct7s")])
+ordStoryRequirements = Array[ExtResource("2_wlhti")]([SubResource("Resource_td1nb")])
+startsQuest = ExtResource("4_wlhti")
+closesDialogue = true
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"

@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=7 format=3 uid="uid://d17ujya8pxa7x"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_ibs77"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_4ljmv"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_uh6v5"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_4ljmv"]
+[ext_resource type="Resource" uid="uid://34aaf5b64hcx" path="res://gamedata/quests/grandstone_quarry/a_titanic_myth.tres" id="5_a7ksv"]
+
+[sub_resource type="Resource" id="Resource_i5xs5"]
+script = ExtResource("1_ibs77")
+lines = Array[String](["Great, I knew we could count on you. The Librarian can help you start your search."])
+animation = "talk"
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[resource]
+script = ExtResource("3_4ljmv")
+items = Array[ExtResource("1_ibs77")]([SubResource("Resource_i5xs5")])
+startsQuest = ExtResource("5_a7ksv")
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"

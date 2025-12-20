@@ -1,9 +1,39 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=4 format=3 uid="uid://d3mttj27wg6qw"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=12 format=3 uid="uid://d3mttj27wg6qw"]
 
 [ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_fwmdn"]
 [ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_qigu7"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_utjtm"]
 [ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_ceivl"]
+[ext_resource type="Script" uid="uid://b6oofnelefs8o" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_eh5nl"]
+[ext_resource type="Resource" uid="uid://bowmhnl8gmekp" path="res://gamedata/dialogue/grandstone_quarry/foreman/intro_quest/gs_foreman_intro_quest_start.tres" id="4_pmg1k"]
+[ext_resource type="Resource" uid="uid://by1ispaql27nq" path="res://gamedata/dialogue/grandstone_quarry/foreman/the_crownless_king/gs_foreman_crownless_king_gold.tres" id="5_lvesn"]
+
+[sub_resource type="Resource" id="Resource_pmg1k"]
+script = ExtResource("2_utjtm")
+choiceBtn = "Bye!"
+isDeclineChoice = true
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_lvesn"]
+script = ExtResource("2_utjtm")
+choiceBtn = "What's Going On Here?"
+leadsTo = ExtResource("4_pmg1k")
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_eh5nl"]
+script = ExtResource("2_utjtm")
+choiceBtn = "Extra Gold?"
+leadsTo = ExtResource("5_lvesn")
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_88b0e"]
+script = ExtResource("1_fwmdn")
+lines = Array[String](["Hi, @! What brings you by to the Grandstone Quarry?"])
+animation = "talk"
+choices = Array[ExtResource("2_utjtm")]([SubResource("Resource_pmg1k"), SubResource("Resource_lvesn"), SubResource("Resource_eh5nl")])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
 
 [resource]
 script = ExtResource("3_ceivl")
+items = Array[ExtResource("1_fwmdn")]([SubResource("Resource_88b0e")])
 metadata/_custom_type_script = "uid://1n6mppc7hmmf"
