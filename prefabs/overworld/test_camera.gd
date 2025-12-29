@@ -5,6 +5,7 @@ const WALK_SPEED = 80
 const RUN_SPEED = 120
 
 @export var lockMovement: bool = false
+@export var disableInputHandling: bool = false
 
 var fullscreenTimeout: float = 0
 var speed: float = WALK_SPEED
@@ -16,7 +17,7 @@ func _ready():
 		queue_free()
 
 func _physics_process(delta):
-	if not lockMovement:
+	if not lockMovement and not disableInputHandling:
 		var velocity: Vector2 = eight_dir_movement(Input.get_vector("move_left", "move_right", "move_up", "move_down")) * speed
 		position += velocity * delta
 	if fullscreenTimeout > 0:
@@ -42,6 +43,8 @@ func eight_dir_movement(input: Vector2) -> Vector2:
 	return output.normalized()
 
 func _unhandled_input(event: InputEvent) -> void:
+	if disableInputHandling:
+		return
 	if fullscreenTimeout <= 0 and event is InputEventKey and event.keycode == KEY_F11:
 		fullscreenTimeout = 1
 		SettingsHandler.gameSettings.fullscreen = not SettingsHandler.gameSettings.fullscreen

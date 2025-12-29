@@ -1,0 +1,50 @@
+[gd_scene load_steps=3 format=3 uid="uid://d0l37bxheuafr"]
+
+[ext_resource type="Script" uid="uid://gdn5rmpovsqb" path="res://prefabs/tools/dialogue_editor/dialogue_item_editor/dialogue_line_editor/dialogue_line_editor.gd" id="1_dv344"]
+[ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="2_1h4rj"]
+
+[node name="DialogueLineEditor" type="Control"]
+custom_minimum_size = Vector2(720, 120)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -560.0
+offset_bottom = -600.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_dv344")
+
+[node name="TextEdit" type="TextEdit" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -98.0
+grow_horizontal = 2
+grow_vertical = 2
+context_menu_enabled = false
+emoji_menu_enabled = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -92.0
+grow_horizontal = 0
+grow_vertical = 2
+alignment = 1
+
+[node name="PreviewButton" parent="VBoxContainer" instance=ExtResource("2_1h4rj")]
+layout_mode = 2
+text = "Preview"
+
+[node name="DeleteButton" parent="VBoxContainer" instance=ExtResource("2_1h4rj")]
+layout_mode = 2
+text = "Delete"
+
+[connection signal="text_changed" from="TextEdit" to="." method="_on_text_edit_text_changed"]
+[connection signal="pressed" from="VBoxContainer/PreviewButton" to="." method="_on_preview_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/DeleteButton" to="." method="_on_delete_button_pressed"]

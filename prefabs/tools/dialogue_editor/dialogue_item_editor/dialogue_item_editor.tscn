@@ -1,0 +1,75 @@
+[gd_scene load_steps=4 format=3 uid="uid://bhp0rj4q4pumr"]
+
+[ext_resource type="Script" uid="uid://d1kv6o4np3nhc" path="res://prefabs/tools/dialogue_editor/dialogue_item_editor/dialogue_item_editor.gd" id="1_pghx3"]
+[ext_resource type="Theme" uid="uid://dgitjg5ag10ai" path="res://themes/dialogue_text_box_button_hbox.tres" id="2_eovpd"]
+[ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="2_q6xmg"]
+
+[node name="DialogueItemEditor" type="Control"]
+custom_minimum_size = Vector2(720, 360)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -560.0
+offset_bottom = -360.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_pghx3")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -83.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+
+[node name="ScrollContainer2" type="ScrollContainer" parent="."]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -73.0
+offset_bottom = -33.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer2"]
+layout_mode = 2
+theme = ExtResource("2_eovpd")
+
+[node name="AddLineButton" parent="." instance=ExtResource("2_q6xmg")]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -4.0
+offset_top = -8.0
+offset_right = 4.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Add Line"
+
+[node name="EditChoicesButton" parent="." instance=ExtResource("2_q6xmg")]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -133.0
+offset_top = -29.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Edit Choices"
+
+[connection signal="pressed" from="AddLineButton" to="." method="_on_add_line_button_pressed"]
+[connection signal="pressed" from="EditChoicesButton" to="." method="_on_edit_choices_button_pressed"]

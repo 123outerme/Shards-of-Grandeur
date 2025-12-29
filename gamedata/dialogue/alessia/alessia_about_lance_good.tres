@@ -10,9 +10,6 @@
 [sub_resource type="Resource" id="Resource_5khg2"]
 script = ExtResource("1_wt23t")
 choiceBtn = "Maybe..."
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("3_p3xxn")]([])
-repeatsItem = false
 buttonDims = Vector2(120, 40)
 turnsInQuest = "alessia_1"
 isDeclineChoice = true
@@ -20,46 +17,15 @@ isDeclineChoice = true
 [sub_resource type="Resource" id="Resource_gfsrp"]
 script = ExtResource("1_uf18i")
 lines = Array[String](["I've been very proud of Lance recently. He's really taken to the craft like a a fire to tinder. Were you the spark?"])
-minShowSecs = Array[float]([])
 animation = "talk"
-speakerOverride = ""
-actorAnimation = ""
-animateActorTreePath = ""
-animateActorIsPlayer = false
 choices = Array[ExtResource("1_wt23t")]([SubResource("Resource_5khg2")])
 
 [sub_resource type="Resource" id="Resource_yf3q5"]
 script = ExtResource("2_va4h4")
-minAct = 0
 maxAct = 1
 prereqQuests = Array[String](["Apprenticeship"])
-prereqCutscenes = Array[String]([])
-prereqDialogues = Array[String]([])
-prereqPlacesVisited = Array[String]([])
-prereqSpecialBattles = Array[String]([])
-prereqDefeatedEnemies = Array[String]([])
-prereqPuzzles = Array[String]([])
-prereqPuzzleStates = Dictionary[String, Array]({})
-prereqDiscoveredEvolutions = Array[String]([])
-prereqHavingFollowers = Array[String]([])
-prereqHasItems = Array[ExtResource("6_02ucu")]([])
-invalidAfterCompletingQuests = Array[String]([])
-invalidAfterFailingQuests = Array[String]([])
-invalidAfterCutscenes = Array[String]([])
-invalidAfterDialogues = Array[String]([])
-invalidAfterVistingPlaces = Array[String]([])
-invalidAfterSpecialBattles = Array[String]([])
-invalidAfterSolvingPuzzles = Array[String]([])
-invalidFromPuzzleStates = Dictionary[String, Array]({})
-invalidFromHavingFollowers = Array[String]([])
-invalidFromHavingItems = Array[ExtResource("6_02ucu")]([])
 
 [resource]
 script = ExtResource("1_jqrxp")
-entryId = ""
 items = Array[ExtResource("1_uf18i")]([SubResource("Resource_gfsrp")])
 storyRequirements = SubResource("Resource_yf3q5")
-ordStoryRequirements = Array[ExtResource("2_va4h4")]([])
-closesDialogue = false
-fullHealsPlayer = false
-annotation = ""

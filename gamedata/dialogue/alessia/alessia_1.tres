@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=16 format=3 uid="uid://do80x2jnb0txk"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=16 format=3 uid="uid://udy2yycux2f7"]
 
 [ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="1_85x51"]
 [ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="1_p8lp3"]
@@ -13,91 +13,40 @@
 [sub_resource type="Resource" id="Resource_ksx8v"]
 script = ExtResource("1_p8lp3")
 choiceBtn = "Goodbye!"
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("3_x0fp8")]([])
-repeatsItem = false
 buttonDims = Vector2(160, 40)
-turnsInQuest = ""
 isDeclineChoice = true
 
 [sub_resource type="Resource" id="Resource_13ysc"]
 script = ExtResource("2_e6tgt")
 opensShop = true
-addsFollowerId = ""
-removesFollowerId = ""
 choiceBtn = "Shop"
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("3_x0fp8")]([])
-repeatsItem = false
 buttonDims = Vector2(120, 40)
-turnsInQuest = ""
-isDeclineChoice = false
 
 [sub_resource type="Resource" id="Resource_ne0k0"]
 script = ExtResource("1_p8lp3")
 choiceBtn = "Lance?"
 leadsTo = ExtResource("2_8mkm0")
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("3_x0fp8")]([])
-repeatsItem = false
 buttonDims = Vector2(160, 40)
-turnsInQuest = ""
-isDeclineChoice = false
 
 [sub_resource type="Resource" id="Resource_k2t4t"]
 script = ExtResource("1_p8lp3")
 choiceBtn = "Lance?"
 leadsTo = ExtResource("3_dhagt")
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("3_x0fp8")]([])
-repeatsItem = false
 buttonDims = Vector2(160, 40)
-turnsInQuest = ""
-isDeclineChoice = false
 
 [sub_resource type="Resource" id="Resource_al8nf"]
 script = ExtResource("1_tsnek")
 lines = Array[String](["What can I do for you, @?"])
-minShowSecs = Array[float]([])
 animation = "talk"
-speakerOverride = ""
-actorAnimation = ""
-animateActorTreePath = ""
-animateActorIsPlayer = false
 choices = Array[ExtResource("1_p8lp3")]([SubResource("Resource_ksx8v"), SubResource("Resource_13ysc"), SubResource("Resource_ne0k0"), SubResource("Resource_k2t4t")])
 
 [sub_resource type="Resource" id="Resource_rc6xt"]
 script = ExtResource("4_pitiy")
-minAct = 0
 maxAct = 2
-prereqQuests = Array[String]([])
-prereqCutscenes = Array[String]([])
 prereqDialogues = Array[String](["alessia_foundry#intro"])
-prereqPlacesVisited = Array[String]([])
-prereqSpecialBattles = Array[String]([])
-prereqDefeatedEnemies = Array[String]([])
-prereqPuzzles = Array[String]([])
-prereqPuzzleStates = Dictionary[String, Array]({})
-prereqDiscoveredEvolutions = Array[String]([])
-prereqHavingFollowers = Array[String]([])
-prereqHasItems = Array[ExtResource("9_w6bge")]([])
-invalidAfterCompletingQuests = Array[String]([])
-invalidAfterFailingQuests = Array[String]([])
-invalidAfterCutscenes = Array[String]([])
-invalidAfterDialogues = Array[String]([])
-invalidAfterVistingPlaces = Array[String]([])
-invalidAfterSpecialBattles = Array[String]([])
-invalidAfterSolvingPuzzles = Array[String]([])
-invalidFromPuzzleStates = Dictionary[String, Array]({})
-invalidFromHavingFollowers = Array[String]([])
-invalidFromHavingItems = Array[ExtResource("9_w6bge")]([])
 
 [resource]
 script = ExtResource("1_85x51")
 entryId = "alessia_1"
 items = Array[ExtResource("1_tsnek")]([SubResource("Resource_al8nf")])
 storyRequirements = SubResource("Resource_rc6xt")
-ordStoryRequirements = Array[ExtResource("4_pitiy")]([])
-closesDialogue = false
-fullHealsPlayer = false
-annotation = ""

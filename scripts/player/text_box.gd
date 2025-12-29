@@ -93,7 +93,8 @@ func set_textbox_text(text: String, speaker: String, lastItem: bool = true):
 	update_speaker_sprite()
 	delete_choices()
 	visible = true
-	PlayerFinder.player.overworldTouchControls.set_in_dialogue(true)
+	if PlayerFinder.player != null:
+		PlayerFinder.player.overworldTouchControls.set_in_dialogue(true)
 	ReadySprite.visible = false
 	lastDialogueItem = lastItem
 	if newSpeaker:
@@ -138,10 +139,14 @@ func update_speaker_sprite() -> void:
 		var spriteFrames: SpriteFrames = speakerSpriteFrames
 		var spriteScale: int = speakerSpriteScale
 		if speakerIsPlayer:
-			var playerSpriteFrames: SpriteFrames = PlayerFinder.player.get_sprite_frames()
+			var playerSpriteFrames: SpriteFrames = null
+			if PlayerFinder.player != null:
+				playerSpriteFrames = PlayerFinder.player.get_sprite_frames()
+			var playerSpriteObj: CombatantSprite = PlayerResources.playerInfo.combatant.get_sprite_obj()
+			if playerSpriteFrames == null:
+				playerSpriteFrames = playerSpriteObj.spriteFrames
 			if playerSpriteFrames != null:
 				spriteFrames = playerSpriteFrames
-			var playerSpriteObj: CombatantSprite = PlayerResources.playerInfo.combatant.get_sprite_obj()
 			# use idle size since `maxSize` means sprite's canvas size
 			var maxDimensionSize: float = max(playerSpriteObj.idleSize.x, playerSpriteObj.idleSize.y)
 			# scale of 3x if [16x16, 16x16], 1.5x if (16x16, 32x32], 1x if bigger than that
@@ -162,7 +167,7 @@ func add_choices():
 	if dialogueItem == null:
 		return
 	var dialogueLines: Array[String] = dialogueItem.get_lines()
-	if PlayerFinder.player.makingChoice \
+	if (PlayerFinder.player != null and PlayerFinder.player.makingChoice) \
 			or TextBoxText.text != TextUtils.rich_text_substitute(dialogueLines[len(dialogueLines) - 1], Vector2i(32, 32)):
 		return
 	
@@ -241,12 +246,13 @@ func add_choices():
 	
 	buttonContainer.custom_minimum_size.y = max(48, maxBtnHeight + 8)
 	
-	PlayerFinder.player.makingChoice = buttonIdx > 0
-	
+	if PlayerFinder.player != null:
+		PlayerFinder.player.makingChoice = buttonIdx > 0
 
 func delete_choices():
 	boxContainerScroller.bailoutFocusControl = null
-	PlayerFinder.player.makingChoice = false
+	if PlayerFinder.player != null:
+		PlayerFinder.player.makingChoice = false
 	for node in buttonContainer.get_children():
 		node.queue_free()
 		#var button: Button = get_node('Panel/HBoxContainer/Button' + String.num_int64(idx + 1))
@@ -281,7 +287,8 @@ func hide_textbox():
 	text_visible_chars_partial = 0
 	ReadySprite.visible = false
 	delete_choices()
-	PlayerFinder.player.overworldTouchControls.set_in_dialogue(false)
+	if PlayerFinder.player != null:
+		PlayerFinder.player.overworldTouchControls.set_in_dialogue(false)
 	speakerSpriteFrames = null
 	speakerIsPlayer = false
 	speakerSpriteScale = 3
@@ -330,7 +337,8 @@ func _viewport_focus_changed(control):
 	
 func _select_choice(idx: int):
 	#print(dialogueItem.get_choices()[idx].leadsTo.entryId, ' what is going on')
-	PlayerFinder.player.select_choice(dialogueItem.get_choices()[choicesDialogueItemIdxs[idx]])
+	if PlayerFinder.player != null:
+		PlayerFinder.player.select_choice(dialogueItem.get_choices()[choicesDialogueItemIdxs[idx]])
 	lastChoiceFocused = null
 
 func _on_box_container_scroller_visibility_changed() -> void:

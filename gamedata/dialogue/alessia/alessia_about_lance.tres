@@ -11,55 +11,21 @@
 script = ExtResource("1_gd7ha")
 choiceBtn = "Yeah..."
 returnsToParentId = "alessia_1"
-randomDialogues = Array[ExtResource("3_i2bft")]([])
-repeatsItem = false
-buttonDims = Vector2(80, 40)
-turnsInQuest = ""
 isDeclineChoice = true
 
 [sub_resource type="Resource" id="Resource_6ynpx"]
 script = ExtResource("1_t2r8a")
 lines = Array[String](["Lance is cutting it too close, that slacker... He needs to show me he's learned enough to be considered a master.", "If he can't keep the furnace hot, then he can't make a butter knife, let alone a blade strong enough to keep the monsters out of the town.", "I just hope he'll rise to the occasion and show me he means business."])
-minShowSecs = Array[float]([])
 animation = "talk"
-speakerOverride = ""
-actorAnimation = ""
-animateActorTreePath = ""
-animateActorIsPlayer = false
 choices = Array[ExtResource("1_gd7ha")]([SubResource("Resource_bemet")])
 
 [sub_resource type="Resource" id="Resource_k4lb2"]
 script = ExtResource("2_jhgt1")
-minAct = 0
 maxAct = 1
-prereqQuests = Array[String]([])
-prereqCutscenes = Array[String]([])
 prereqDialogues = Array[String](["lance_standstill#intro"])
-prereqPlacesVisited = Array[String]([])
-prereqSpecialBattles = Array[String]([])
-prereqDefeatedEnemies = Array[String]([])
-prereqPuzzles = Array[String]([])
-prereqPuzzleStates = Dictionary[String, Array]({})
-prereqDiscoveredEvolutions = Array[String]([])
-prereqHavingFollowers = Array[String]([])
-prereqHasItems = Array[ExtResource("6_dpij8")]([])
 invalidAfterCompletingQuests = Array[String](["Apprenticeship"])
-invalidAfterFailingQuests = Array[String]([])
-invalidAfterCutscenes = Array[String]([])
-invalidAfterDialogues = Array[String]([])
-invalidAfterVistingPlaces = Array[String]([])
-invalidAfterSpecialBattles = Array[String]([])
-invalidAfterSolvingPuzzles = Array[String]([])
-invalidFromPuzzleStates = Dictionary[String, Array]({})
-invalidFromHavingFollowers = Array[String]([])
-invalidFromHavingItems = Array[ExtResource("6_dpij8")]([])
 
 [resource]
 script = ExtResource("1_6ag4p")
-entryId = ""
 items = Array[ExtResource("1_t2r8a")]([SubResource("Resource_6ynpx")])
 storyRequirements = SubResource("Resource_k4lb2")
-ordStoryRequirements = Array[ExtResource("2_jhgt1")]([])
-closesDialogue = false
-fullHealsPlayer = false
-annotation = ""
