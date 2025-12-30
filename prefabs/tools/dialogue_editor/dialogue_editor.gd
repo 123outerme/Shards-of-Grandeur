@@ -13,10 +13,6 @@ enum ToolDialogueEditorMenuState {
 	CHOOSE_MAP, ## Choosing the map this DialogueEntry belongs to
 	CHOOSE_NPC, ## Choosing the NPC on this map this DialogueEntry belongs to
 	EDIT_ENTRY, ## menu for options of editing a DialogueEntry
-	CONFIGURE_ENTRY_SETTINGS, ## menu for configuring Entry settings
-	EDIT_CHOICES, ## menu for editing DialogueChoices on the DialogueItem
-	CONFIGURE_ITEM_SETTINGS, ## menu for configuring DialogueItem settings
-	CONFIGURE_CHOICE_SETTINGS, ## menu for configuring the settings of a DialogueChoice
 	SAVING_ENTRIES, ## menu for choosing where to save the dialogues (if necessary)
 }
 
@@ -32,14 +28,6 @@ static func menu_state_to_string(state: ToolDialogueEditorMenuState) -> String:
 			return 'Select NPC/Interactable Speaker'
 		ToolDialogueEditorMenuState.EDIT_ENTRY:
 			return 'Edit Entry'
-		ToolDialogueEditorMenuState.CONFIGURE_ENTRY_SETTINGS:
-			return 'Configure Entry'
-		ToolDialogueEditorMenuState.EDIT_CHOICES:
-			return 'Edit Choices'
-		ToolDialogueEditorMenuState.CONFIGURE_ITEM_SETTINGS:
-			return 'Configure DialogueItem'
-		ToolDialogueEditorMenuState.CONFIGURE_CHOICE_SETTINGS:
-			return 'Configure Choice'
 		ToolDialogueEditorMenuState.SAVING_ENTRIES:
 			return 'Save Dialogues'
 	return 'UNKNOWN_STATE'
@@ -49,8 +37,9 @@ enum ToolDialogueEditorButtonAction {
 	LOAD_ENTRY_ACTION,
 	CREATE_ENTRY_ACTION,
 	CONFIGURE_ENTRY_ACTION,
-	EDIT_ITEM_ACTION,
+	ADD_ITEM_ACTION,
 	SAVE_ACTION,
+	CLEAR_CHOICE_LEADS_TO_ACTION,
 }
 
 static func button_action_to_label(action: ToolDialogueEditorButtonAction) -> String:
@@ -63,10 +52,10 @@ static func button_action_to_label(action: ToolDialogueEditorButtonAction) -> St
 			return 'Load DialogueEntry'
 		ToolDialogueEditorButtonAction.CREATE_ENTRY_ACTION:
 			return 'Create DialogueEntry'
-		ToolDialogueEditorButtonAction.CONFIGURE_ENTRY_ACTION:
-			return 'Configure Entry'
-		ToolDialogueEditorButtonAction.EDIT_ITEM_ACTION:
-			return 'Edit DialogueItems'
+		ToolDialogueEditorButtonAction.ADD_ITEM_ACTION:
+			return 'Add DialogueItem'
+		ToolDialogueEditorButtonAction.CLEAR_CHOICE_LEADS_TO_ACTION:
+			return 'Clear Choice Leads To'
 	return 'UNKNOWN_ACTION'
 
 @onready var testCamera: TestCamera = get_node('TestCamera')
@@ -78,8 +67,16 @@ static func button_action_to_label(action: ToolDialogueEditorButtonAction) -> St
 @onready var npcButtons: Node = get_node('MapRoot/NpcButtons')
 @onready var audioHandler: AudioHandler = get_node('AudioHandler')
 
+@onready var entrySettings: Control = get_node('TestCamera/HudRoot/EntrySettings')
+@onready var selectForChoiceCtrl: Control = get_node('TestCamera/HudRoot/EntrySettings/SelectForChoiceControl')
 @onready var interactableSpeakerCtrl: Control = get_node("TestCamera/HudRoot/EntrySettings/InteractableSpeakerControl")
 @onready var interactableSpeakerLineEdit: LineEdit = get_node("TestCamera/HudRoot/EntrySettings/InteractableSpeakerControl/InteractableSpeaker")
+@onready var entryIdLineEdit: LineEdit = get_node('TestCamera/HudRoot/EntrySettings/EntryIdControl/EntryId')
+@onready var givesQuestButton: Button = get_node('TestCamera/HudRoot/EntrySettings/GivesQuestControl/GivesQuestButton')
+@onready var dialogueChoicesEditor: ToolDialogueChoicesEditor = get_node('TestCamera/HudRoot/DialogueChoicesEditor')
+@onready var entryQuestPicker: ToolEntryQuestPicker = get_node('TestCamera/HudRoot/EntryQuestPicker')
+
+var questsDict: Dictionary[String, Quest] = {}
 
 var stateActionsDict: Dictionary[ToolDialogueEditorMenuState, Array] = {}
 
@@ -91,13 +88,13 @@ var fileDialog: FileDialog = null
 var dialogueSavePath: String = ''
 var editingInteractableDialogue: InteractableDialogue = null
 var editingEntry: DialogueEntry = null
-var editingChoice: DialogueChoice = null
 
 # Stack-based storage of parents dialogues; if something is not set, it should be pushed as a NULL
 var parentSavePaths: Array[String] = []
 var parentInteractableDialogues: Array[InteractableDialogue] = []
 var parentEntries: Array[DialogueEntry] = []
 var parentChoices: Array[DialogueChoice] = []
+var parentStackStartIdxs: Array[int] = []
 
 var editingMap: MapScript = null
 var mapNpcs: Array[Node] = []
@@ -114,10 +111,27 @@ func _ready() -> void:
 	
 	stateActionsDict[ToolDialogueEditorMenuState.EDIT_ENTRY] = [
 		ToolDialogueEditorButtonAction.CONFIGURE_ENTRY_ACTION,
-		ToolDialogueEditorButtonAction.EDIT_ITEM_ACTION
+		ToolDialogueEditorButtonAction.ADD_ITEM_ACTION
 	]
 	
+	load_quests()
 	load_menu_state()
+
+func load_quests() -> void:
+	questsDict = {}
+	var filepathQueue: Array[String] = ['res://gamedata/quests']
+	while not filepathQueue.is_empty():
+		var filepath: String = filepathQueue.pop_front()
+		var dirs: PackedStringArray = DirAccess.get_directories_at(filepath)
+		for dir: String in dirs:
+			filepathQueue.append(filepath + '/' + dir)
+		var files: PackedStringArray = DirAccess.get_files_at(filepath)
+		for fileName: String in files:
+			var questResource: Resource = load(filepath + '/' + fileName)
+			if questResource is Quest:
+				var quest: Quest = questResource as Quest
+				questsDict.set(quest.questName, quest)
+	entryQuestPicker.questsDict = questsDict
 
 func load_menu_state() -> void:
 	menuStateTitle.text = '[center]' + menu_state_to_string(menuState) + '[/center]'
@@ -141,7 +155,8 @@ func load_menu_state() -> void:
 			load_npc_buttons()
 			testCamera.disableInputHandling = false
 		ToolDialogueEditorMenuState.EDIT_ENTRY:
-			load_dialogue_item_editors()
+			if menuStateStack.back() == ToolDialogueEditorMenuState.CHOOSE_NPC:
+				load_dialogue_item_editors()
 	load_action_buttons()
 
 func init_file_dialog() -> FileDialog:
@@ -166,6 +181,13 @@ func load_action_buttons() -> void:
 		saveButton.text = button_action_to_label(ToolDialogueEditorButtonAction.SAVE_ACTION)
 		saveButton.pressed.connect(_action_button_pressed.bind(ToolDialogueEditorButtonAction.SAVE_ACTION))
 		actionButtonsHFlow.add_child(saveButton)
+	
+	# clear choice leadsTo
+	if len(parentChoices) > 0:
+		var clearButton: Button = SFX_BUTTON_SCENE.instantiate()
+		clearButton.text = button_action_to_label(ToolDialogueEditorButtonAction.CLEAR_CHOICE_LEADS_TO_ACTION)
+		clearButton.pressed.connect(_action_button_pressed.bind(ToolDialogueEditorButtonAction.CLEAR_CHOICE_LEADS_TO_ACTION))
+		actionButtonsHFlow.add_child(clearButton)
 	
 	if stateActionsDict.has(menuState):
 		var actions: Array = stateActionsDict[menuState]
@@ -199,6 +221,7 @@ func load_npc_buttons() -> void:
 
 func load_dialogue_item_editors() -> void:
 	for child: Node in dialogueItemEditorsTabContainer.get_children():
+		child.name += ' Old' # prevent name clashes before the old one is finally freed
 		child.visible = false
 		child.queue_free()
 	
@@ -207,8 +230,24 @@ func load_dialogue_item_editors() -> void:
 		itemEditor.dialogueItem = editingEntry.items[itemIdx]
 		itemEditor.name = 'Item ' + String.num_int64(itemIdx + 1)
 		itemEditor.preview_line_toggled.connect(_on_dialogue_item_editor_preview_line_toggled)
+		itemEditor.delete_item_pressed.connect(_on_dialogue_item_editor_delete_item)
+		itemEditor.edit_choices_toggled.connect(_on_dialogue_item_editor_edit_choices_toggled)
 		dialogueItemEditorsTabContainer.add_child(itemEditor)
 	dialogueItemEditorsTabContainer.visible = true
+
+func load_entry_settings() -> void:
+	entrySettings.visible = true
+	selectForChoiceCtrl.visible = len(parentChoices) > 0
+	if editingInteractableDialogue != null:
+		interactableSpeakerCtrl.visible = true
+		interactableSpeakerLineEdit.text = editingInteractableDialogue.speaker
+	else:
+		interactableSpeakerCtrl.visible = false
+	entryIdLineEdit.text = editingEntry.entryId
+	if editingEntry.startsQuest != null:
+		givesQuestButton.text = editingEntry.startsQuest.questName
+	else:
+		givesQuestButton.text = '(No Quest)'
 
 func load_text_box(dialogueItem: DialogueItem) -> void:
 	textBox.dialogueItem = dialogueItem
@@ -222,7 +261,7 @@ func load_text_box(dialogueItem: DialogueItem) -> void:
 			textBox.speakerSpriteOffset = editingInteractable.speakerSpriteOffset
 	textBox.update_speaker_sprite()
 
-func save_dialogues() -> void:
+func save_dialogues(justCurrent = false) -> void:
 	if dialogueSavePath != '':
 		if editingInteractableDialogue != null:
 			ResourceSaver.save(editingInteractableDialogue, dialogueSavePath)
@@ -243,6 +282,9 @@ func save_dialogues() -> void:
 		elif editingEntry != null:
 			ResourceSaver.save(editingEntry, dialogueSavePath)
 		dialogueSavePath = filepath
+	
+	if justCurrent:
+		return
 	
 	for idx: int in range(len(parentSavePaths)):
 		var parentSavePath: String = parentSavePaths[idx]
@@ -268,9 +310,19 @@ func save_dialogues() -> void:
 			elif parentEntry != null:
 				ResourceSaver.save(parentEntry, parentSavePath)
 			parentSavePaths[idx] = parentSavePath
+	menuState = menuStateStack.pop_back()
+	load_menu_state()
+
+func pop_entry_stack() -> void:
+	var stackIdx: int = parentStackStartIdxs.back()
+	for idx: int in range(stackIdx, len(menuStateStack)):
+		menuStateStack.pop_back()
+	menuState = menuStateStack.pop_back()
+	load_menu_state()
 
 func _action_button_pressed(action: ToolDialogueEditorButtonAction) -> void:
-	if action != ToolDialogueEditorButtonAction.BACK_ACTION:
+	if action != ToolDialogueEditorButtonAction.BACK_ACTION and \
+		action != ToolDialogueEditorButtonAction.ADD_ITEM_ACTION:
 		menuStateStack.append(menuState)
 	match action:
 		ToolDialogueEditorButtonAction.BACK_ACTION:
@@ -280,9 +332,17 @@ func _action_button_pressed(action: ToolDialogueEditorButtonAction) -> void:
 			menuState = ToolDialogueEditorMenuState.CHOOSE_MAP
 		ToolDialogueEditorButtonAction.LOAD_ENTRY_ACTION:
 			menuState = ToolDialogueEditorMenuState.LOAD_ENTRY
+		ToolDialogueEditorButtonAction.ADD_ITEM_ACTION:
+			if editingEntry != null:
+				editingEntry.items.append(DialogueItem.new())
+				load_dialogue_item_editors()
 		ToolDialogueEditorButtonAction.SAVE_ACTION:
 			menuState = ToolDialogueEditorMenuState.SAVING_ENTRIES
 			save_dialogues()
+		ToolDialogueEditorButtonAction.CLEAR_CHOICE_LEADS_TO_ACTION:
+			var parentChoice: DialogueChoice = parentChoices.back()
+			parentChoice.leadsTo = null
+			pop_entry_stack()
 	load_menu_state()
 
 func _npc_button_pressed(npc: NPCScript, interactable: Interactable) -> void:
@@ -295,6 +355,8 @@ func _npc_button_pressed(npc: NPCScript, interactable: Interactable) -> void:
 	
 	menuStateStack.append(menuState)
 	menuState = ToolDialogueEditorMenuState.EDIT_ENTRY
+	load_entry_settings()
+	
 	for child: Node in npcButtons.get_children():
 		child.visible = false
 		child.queue_free()
@@ -316,11 +378,19 @@ func _on_file_dialog_file_selected(path: String) -> void:
 				printerr("ERROR: Resource not recognized as a dialogue entry/interactable entry")
 			menuState = ToolDialogueEditorMenuState.CHOOSE_MAP
 		ToolDialogueEditorMenuState.CHOOSE_MAP:
+			if editingMap != null:
+				editingMap.visible = false
+				editingMap.queue_free()
+			mapNpcs = []
+			mapInteractables = []
+			editingNpc = null
+			editingInteractable = null
 			var mapInstance = load(path)
 			editingMap = mapInstance.instantiate()
 			mapRoot.add_child(editingMap)
 			mapNpcs = get_tree().get_nodes_in_group('NPC')
 			mapInteractables = get_tree().get_nodes_in_group('Interactable')
+			mapInteractables = mapInteractables.filter(_filter_map_interactables)
 			menuState = ToolDialogueEditorMenuState.CHOOSE_NPC
 		ToolDialogueEditorMenuState.SAVING_ENTRIES:
 			file_saved.emit(path)
@@ -341,6 +411,61 @@ func _on_dialogue_item_editor_preview_line_toggled(dialogueItem: DialogueItem, l
 		speakerName = editingInteractableDialogue.speaker
 	textBox.set_textbox_text(TextUtils.rich_text_substitute(text, Vector2i(32, 32)), dialogueItem.speakerOverride if dialogueItem.speakerOverride != '' else speakerName, len(dialogueItem.lines) - 1 == lineIdx)
 
+func _on_dialogue_item_editor_delete_item(dialogueItem: DialogueItem) -> void:
+	if editingEntry == null:
+		return
+	var removeIdx: int = editingEntry.items.find(dialogueItem)
+	if removeIdx < 0:
+		return
+	for idx: int in range(removeIdx, len(editingEntry.items) - 1):
+		editingEntry.items[idx] = editingEntry.items[idx + 1]
+	editingEntry.items.pop_back()
+	load_dialogue_item_editors()
+
+func _on_dialogue_item_editor_edit_choices_toggled(dialogueItem: DialogueItem) -> void:
+	dialogueChoicesEditor.dialogueItem = dialogueItem
+	dialogueChoicesEditor.questsDict = questsDict
+	dialogueChoicesEditor.load_choices_editor()
+
+func _filter_map_interactables(interactable: Node) -> bool:
+	return interactable is Interactable and not (interactable is GroundItem)
+
 func _on_interactable_speaker_text_changed(new_text: String) -> void:
 	if editingInteractableDialogue != null:
 		editingInteractableDialogue.speaker = new_text
+
+func _on_gives_quest_button_pressed() -> void:
+	entryQuestPicker.load_entry_quest_picker()
+
+func _on_entry_quest_picker_set_entry_quest(quest: Quest) -> void:
+	editingEntry.startsQuest = quest
+	if editingEntry.startsQuest != null:
+		givesQuestButton.text = editingEntry.startsQuest.questName
+	else:
+		givesQuestButton.text = '(No Quest)'
+
+func _on_entry_id_text_changed(new_text: String) -> void:
+	editingEntry.entryId = new_text
+
+func _on_select_for_choice_button_pressed() -> void:
+	if len(parentChoices) > 0:
+		await save_dialogues(true)
+		var parentChoice: DialogueChoice = parentChoices.back()
+		parentChoice.leadsTo = editingEntry
+		pop_entry_stack()
+
+func _on_dialogue_choices_editor_choice_leads_to_clicked(choiceIdx: int, dialogueItem: DialogueItem) -> void:
+	menuStateStack.append(menuState)
+	parentEntries.append(editingEntry)
+	parentInteractableDialogues.append(editingInteractableDialogue)
+	parentSavePaths.append(dialogueSavePath)
+	parentStackStartIdxs.append(len(menuStateStack))
+	parentChoices.append(dialogueItem.choices[choiceIdx])
+	menuState = ToolDialogueEditorMenuState.CREATE_OR_LOAD_ENTRY
+	load_menu_state()
+
+func _on_dialogue_choices_editor_choices_editor_closed(dialogueItem: DialogueItem) -> void:
+	for child: Node in dialogueItemEditorsTabContainer.get_children():
+		if child is ToolDialogueItemEditor and child.dialogueItem == dialogueItem:
+			child.load_item_editor()
+			break

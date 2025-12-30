@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://bojquldxuq7di"]
+[gd_scene load_steps=4 format=3 uid="uid://bojquldxuq7di"]
 
 [ext_resource type="Script" uid="uid://cxnawhx57m7ny" path="res://prefabs/tools/dialogue_editor/dialogue_item_editor/dialogue_choices_editor/dialogue_choices_editor.gd" id="1_kokdt"]
+[ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="2_acupw"]
+[ext_resource type="PackedScene" uid="uid://n24hm66wn3s5" path="res://prefabs/tools/dialogue_editor/entry_quest_picker/entry_quest_picker.tscn" id="3_5dwo1"]
 
 [node name="DialogueChoicesEditor" type="Control"]
 layout_mode = 3
@@ -11,3 +13,53 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_kokdt")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TabContainer" type="TabContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -47.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CancelButton" parent="." instance=ExtResource("2_acupw")]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -4.0
+offset_top = -8.0
+offset_right = 4.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Back"
+
+[node name="AddChoiceButton" parent="." instance=ExtResource("2_acupw")]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -29.0
+offset_right = 118.0
+grow_vertical = 0
+text = "Add Choice"
+
+[node name="EntryQuestPicker" parent="." instance=ExtResource("3_5dwo1")]
+visible = false
+layout_mode = 1
+picksStep = true
+
+[connection signal="pressed" from="CancelButton" to="." method="_on_cancel_button_pressed"]
+[connection signal="pressed" from="AddChoiceButton" to="." method="_on_add_choice_button_pressed"]
+[connection signal="set_entry_quest_and_step" from="EntryQuestPicker" to="." method="_on_entry_quest_picker_set_entry_quest_and_step"]

@@ -1,0 +1,64 @@
+[gd_scene load_steps=3 format=3 uid="uid://n24hm66wn3s5"]
+
+[ext_resource type="Script" uid="uid://2ylkdw48423k" path="res://prefabs/tools/dialogue_editor/entry_quest_picker/entry_quest_picker.gd" id="1_24w1m"]
+[ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="2_ri243"]
+
+[node name="EntryQuestPicker" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_24w1m")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -41.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HFlowContainer" type="HFlowContainer" parent="Panel/ScrollContainer"]
+layout_mode = 2
+
+[node name="NoQuestButton" parent="Panel" instance=ExtResource("2_ri243")]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -144.0
+offset_top = -29.0
+offset_right = 10.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Set (No Quest)"
+
+[node name="CancelButton" parent="Panel" instance=ExtResource("2_ri243")]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 27.0
+offset_top = -29.0
+offset_right = 104.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Cancel"
+
+[connection signal="pressed" from="Panel/NoQuestButton" to="." method="_on_no_quest_button_pressed"]
+[connection signal="pressed" from="Panel/CancelButton" to="." method="_on_cancel_button_pressed"]

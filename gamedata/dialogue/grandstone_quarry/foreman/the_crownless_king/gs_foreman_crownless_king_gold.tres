@@ -1,15 +1,52 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=8 format=3 uid="uid://by1ispaql27nq"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=16 format=3 uid="uid://bci22ub7yaphj"]
 
 [ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_qu7jd"]
 [ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_qxpoa"]
 [ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_tfdoi"]
 [ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_qxpoa"]
 [ext_resource type="Script" uid="uid://fw22o8hbosnk" path="res://scripts/inventory/inventory_slot.gd" id="4_ggsd8"]
+[ext_resource type="Script" uid="uid://fsrd48o26kgo" path="res://scripts/dialogue/story_reqs_dialogue_item.gd" id="5_ggsd8"]
+[ext_resource type="Resource" uid="uid://bowmhnl8gmekp" path="res://gamedata/dialogue/grandstone_quarry/foreman/intro_quest/gs_foreman_intro_quest_start.tres" id="5_n3r07"]
+[ext_resource type="Script" uid="uid://b6oofnelefs8o" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="5_uuoxp"]
+
+[sub_resource type="Resource" id="Resource_jxr01"]
+script = ExtResource("2_qxpoa")
+choiceBtn = "Really?"
+leadsTo = ExtResource("5_n3r07")
+isDeclineChoice = true
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
 
 [sub_resource type="Resource" id="Resource_uuoxp"]
 script = ExtResource("1_qu7jd")
-lines = Array[String](["TBD"])
+lines = Array[String](["Do we have any spare raw gold in the quarry, you ask?", "Unfortunately, I'm dealing with a huge problem right now.."])
+animation = "talk"
+choices = Array[ExtResource("2_qxpoa")]([SubResource("Resource_jxr01")])
 metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[sub_resource type="Resource" id="Resource_onyt5"]
+script = ExtResource("1_qu7jd")
+lines = Array[String](["We've got no time to worry about gold, @! If you don't take care of those monsters...", "Things could get really dicey. Ask me again when things are stabilized."])
+animation = "talk"
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[sub_resource type="Resource" id="Resource_m74sg"]
+script = ExtResource("2_tfdoi")
+invalidAfterCompletingQuests = Array[String](["Quarry Quandary#"])
+metadata/_custom_type_script = "uid://bjesn36acj0uh"
+
+[sub_resource type="Resource" id="Resource_hlsl7"]
+script = ExtResource("2_tfdoi")
+prereqQuests = Array[String](["Quarry Quandary#"])
+invalidAfterCompletingQuests = Array[String](["Quarry Quandary"])
+metadata/_custom_type_script = "uid://bjesn36acj0uh"
+
+[sub_resource type="Resource" id="Resource_idh46"]
+script = ExtResource("5_ggsd8")
+alternativeDialogueItems = Array[ExtResource("1_qu7jd")]([SubResource("Resource_uuoxp"), SubResource("Resource_onyt5")])
+alternativeStoryReqs = Array[ExtResource("2_tfdoi")]([SubResource("Resource_m74sg"), SubResource("Resource_hlsl7")])
+lines = Array[String](["Do we have any spare raw gold in the quarry, you ask?", "Yes, we've piled up quite a mound of raw gold, but it'll take a lot of work to turn into coins."])
+animation = "talk"
+metadata/_custom_type_script = "uid://fsrd48o26kgo"
 
 [sub_resource type="Resource" id="Resource_n3r07"]
 script = ExtResource("2_tfdoi")
@@ -18,6 +55,6 @@ metadata/_custom_type_script = "uid://bjesn36acj0uh"
 
 [resource]
 script = ExtResource("3_qxpoa")
-items = Array[ExtResource("1_qu7jd")]([SubResource("Resource_uuoxp")])
+items = Array[ExtResource("1_qu7jd")]([SubResource("Resource_idh46")])
 ordStoryRequirements = Array[ExtResource("2_tfdoi")]([SubResource("Resource_n3r07")])
 metadata/_custom_type_script = "uid://1n6mppc7hmmf"
