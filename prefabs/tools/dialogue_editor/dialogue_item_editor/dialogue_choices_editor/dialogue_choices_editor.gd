@@ -24,7 +24,7 @@ func load_choices_editor() -> void:
 	nameOccurrences = {}
 	for child: Node in tabContainer.get_children():
 		child.visible = false
-		tabContainer.remove_child.call_deferred(child)
+		tabContainer.remove_child(child)
 		child.queue_free.call_deferred()
 	
 	if dialogueItem != null:
@@ -45,8 +45,8 @@ func load_choices_editor() -> void:
 			else:
 				nameOccurrences[label].append(dialogueItem.choices[choiceIdx])
 				label += ' (' + String.num_int64(len(nameOccurrences[label]) - 1) + ')'
-			choiceEditor.name = label
 			tabContainer.add_child(choiceEditor)
+			choiceEditor.name = label
 		visible = true
 
 func _choice_button_label_changed(choiceIdx: int, label: String) -> void:
@@ -64,7 +64,7 @@ func _choice_button_delete_clicked(choiceIdx: int) -> void:
 		dialogueItem.choices[idx] = dialogueItem.choices[idx + 1]
 	dialogueItem.choices.pop_back()
 	var choiceEditor: ToolChoiceEditor = tabContainer.get_child(choiceIdx)
-	tabContainer.remove_child.call_deferred(choiceEditor)
+	tabContainer.remove_child(choiceEditor)
 	choiceEditor.queue_free.call_deferred()
 
 func _choice_button_leads_to_clicked(choiceIdx: int):
@@ -91,3 +91,11 @@ func _on_entry_quest_picker_set_entry_quest_and_step(quest: Quest, step: QuestSt
 	var choiceEditor: ToolChoiceEditor = tabContainer.get_child(questPickingChoiceIdx) as ToolChoiceEditor
 	choiceEditor.load_choice_editor()
 	questPickingChoiceIdx = -1
+
+func _on_entry_quest_picker_set_entry_quest(quest: Quest) -> void:
+	if quest == null:
+		var choice: DialogueChoice = dialogueItem.choices[questPickingChoiceIdx]
+		choice.turnsInQuest = ''
+		var choiceEditor: ToolChoiceEditor = tabContainer.get_child(questPickingChoiceIdx) as ToolChoiceEditor
+		choiceEditor.load_choice_editor()
+		questPickingChoiceIdx = -1

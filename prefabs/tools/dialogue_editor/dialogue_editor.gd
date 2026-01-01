@@ -158,7 +158,7 @@ func load_quests() -> void:
 			filepathQueue.append(filepath + '/' + dir)
 		var files: PackedStringArray = DirAccess.get_files_at(filepath)
 		for fileName: String in files:
-			var questResource: Resource = load(filepath + '/' + fileName)
+			var questResource: Resource = ResourceLoader.load(filepath + '/' + fileName, '', ResourceLoader.CACHE_MODE_REPLACE_DEEP)
 			if questResource is Quest:
 				var quest: Quest = questResource as Quest
 				questsDict.set(quest.questName, quest)
@@ -186,7 +186,8 @@ func load_menu_state() -> void:
 			load_npc_buttons()
 			testCamera.disableInputHandling = false
 		ToolDialogueEditorMenuState.EDIT_ENTRY:
-			if menuStateStack.back() == ToolDialogueEditorMenuState.CHOOSE_NPC:
+			var lastState: ToolDialogueEditorMenuState = menuStateStack.back()
+			if lastState == ToolDialogueEditorMenuState.CHOOSE_NPC or lastState == ToolDialogueEditorMenuState.CREATE_OR_LOAD_ENTRY:
 				load_dialogue_item_editors()
 		ToolDialogueEditorMenuState.PREVIEW_ENTRY:
 			preview_entry()
@@ -205,7 +206,7 @@ func init_file_dialog() -> FileDialog:
 
 func load_action_buttons() -> void:
 	for child: Node in actionButtonsHFlow.get_children():
-		actionButtonsHFlow.remove_child.call_deferred(child)
+		actionButtonsHFlow.remove_child(child)
 		child.queue_free.call_deferred()
 	
 	# save
@@ -292,7 +293,7 @@ func load_text_box(dialogueItem: DialogueItem) -> void:
 		elif editingInteractable != null:
 			textBox.speakerSpriteFrames = editingInteractable.get_sprite_frames()
 			textBox.speakerSpriteOffset = editingInteractable.speakerSpriteOffset
-	textBox.update_speaker_sprite()
+	#textBox.update_speaker_sprite() # not necessary, textBox.set_textbox_text will handle this
 
 func preview_line(dialogueItem: DialogueItem, lineIdx: int, text: String, previewingSingleLine = true) -> void:
 	if previewingSingleLine:
@@ -351,12 +352,18 @@ func save_dialogues(justCurrent = false) -> void:
 		fileDialog.file_mode = FileDialog.FILE_MODE_SAVE_FILE
 		fileDialog.filters = ["*.tres,*.res"]
 		
-		var filepath: String = await file_saved
+		dialogueSavePath = await file_saved
 		if editingInteractableDialogue != null:
-			ResourceSaver.save(editingInteractableDialogue, filepath)
+			ResourceSaver.save(editingInteractableDialogue, dialogueSavePath)
 		elif editingEntry != null:
 			ResourceSaver.save(editingEntry, dialogueSavePath)
-		dialogueSavePath = filepath
+		var resource: Resource = ResourceLoader.load(dialogueSavePath, '', ResourceLoader.CACHE_MODE_REPLACE_DEEP)
+		if resource is InteractableDialogue:
+			editingInteractableDialogue = resource as InteractableDialogue
+			editingEntry = editingInteractableDialogue.dialogueEntry
+		elif resource is DialogueEntry:
+			editingInteractableDialogue = null
+			editingEntry = resource as DialogueEntry
 	
 	if justCurrent:
 		return
@@ -385,15 +392,22 @@ func save_dialogues(justCurrent = false) -> void:
 			elif parentEntry != null:
 				ResourceSaver.save(parentEntry, parentSavePath)
 			parentSavePaths[idx] = parentSavePath
+			var resource: Resource = ResourceLoader.load(parentSavePath, '', ResourceLoader.CACHE_MODE_REPLACE_DEEP)
+			if resource is InteractableDialogue:
+				parentInteractableDialogues[idx] = resource as InteractableDialogue
+				parentEntries[idx] = editingInteractableDialogue.dialogueEntry
+			elif resource is DialogueEntry:
+				parentInteractableDialogues[idx] = null
+				parentEntries[idx] = resource as DialogueEntry
 	menuState = menuStateStack.pop_back()
 	load_menu_state()
 
 func pop_entry_stack() -> void:
 	var stackIdx: int = parentStackStartIdxs.pop_back()
-	parentInteractableDialogues.pop_back()
-	parentEntries.pop_back()
+	editingInteractableDialogue = parentInteractableDialogues.pop_back()
+	editingEntry = parentEntries.pop_back()
 	parentChoices.pop_back()
-	parentSavePaths.pop_back()
+	dialogueSavePath = parentSavePaths.pop_back()
 	for idx: int in range(stackIdx, len(menuStateStack)):
 		menuStateStack.pop_back()
 	menuState = menuStateStack.pop_back()
@@ -415,7 +429,14 @@ func _action_button_pressed(action: ToolDialogueEditorButtonAction) -> void:
 				menuState = menuStateStack.pop_back()
 		ToolDialogueEditorButtonAction.CREATE_ENTRY_ACTION:
 			editingEntry = DialogueEntry.new()
-			menuState = ToolDialogueEditorMenuState.CHOOSE_MAP
+			dialogueSavePath = ''
+			if editingMap == null:
+				menuState = ToolDialogueEditorMenuState.CHOOSE_MAP
+			else:
+				if editingInteractable != null:
+					editingInteractableDialogue = InteractableDialogue.new()
+				menuState = ToolDialogueEditorMenuState.EDIT_ENTRY
+				load_entry_settings()
 		ToolDialogueEditorButtonAction.LOAD_ENTRY_ACTION:
 			menuState = ToolDialogueEditorMenuState.LOAD_ENTRY
 		ToolDialogueEditorButtonAction.ADD_ITEM_ACTION:
@@ -451,11 +472,12 @@ func _npc_button_pressed(npc: NPCScript, interactable: Interactable) -> void:
 	load_menu_state()
 
 func _on_file_dialog_file_selected(path: String) -> void:
-	menuStateStack.append(menuState)
+	if menuState != ToolDialogueEditorMenuState.SAVING_ENTRIES:
+		menuStateStack.append(menuState)
 	match menuState:
 		ToolDialogueEditorMenuState.LOAD_ENTRY:
 			dialogueSavePath = path
-			var resource: Resource = load(path)
+			var resource: Resource = ResourceLoader.load(path, '', ResourceLoader.CACHE_MODE_REPLACE_DEEP)
 			if resource is InteractableDialogue:
 				editingInteractableDialogue = resource as InteractableDialogue
 				editingEntry = editingInteractableDialogue.dialogueEntry
@@ -464,7 +486,11 @@ func _on_file_dialog_file_selected(path: String) -> void:
 				editingEntry = resource as DialogueEntry
 			else:
 				printerr("ERROR: Resource not recognized as a dialogue entry/interactable entry")
-			menuState = ToolDialogueEditorMenuState.CHOOSE_MAP
+			if editingMap == null:
+				menuState = ToolDialogueEditorMenuState.CHOOSE_MAP
+			else:
+				menuState = ToolDialogueEditorMenuState.EDIT_ENTRY
+				load_entry_settings()
 		ToolDialogueEditorMenuState.CHOOSE_MAP:
 			if editingMap != null:
 				editingMap.visible = false
@@ -473,7 +499,7 @@ func _on_file_dialog_file_selected(path: String) -> void:
 			mapInteractables = []
 			editingNpc = null
 			editingInteractable = null
-			var mapInstance = load(path)
+			var mapInstance = ResourceLoader.load(path, '', ResourceLoader.CACHE_MODE_REPLACE_DEEP)
 			editingMap = mapInstance.instantiate()
 			mapRoot.add_child(editingMap)
 			mapNpcs = get_tree().get_nodes_in_group('NPC')

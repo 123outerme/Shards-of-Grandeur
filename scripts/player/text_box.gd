@@ -161,7 +161,7 @@ func update_speaker_sprite() -> void:
 		if speakerSprite.sprite_frames.has_animation(speakerAnim):
 			speakerSprite.play(speakerAnim)
 		else:
-			print('update_speaker_sprite WARNING: animation ', speakerAnim, ' not found')
+			print('update_speaker_sprite WARNING: animation ', speakerAnim, ' not found in: ', spriteFrames.resource_path)
 		speakerSprite.scale = Vector2.ONE * spriteScale
 
 func add_choices():

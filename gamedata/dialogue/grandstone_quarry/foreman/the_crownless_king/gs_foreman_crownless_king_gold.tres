@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=20 format=3 uid="uid://xjc7a5j6q5kt"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=24 format=3 uid="uid://cow4kfvybuxk3"]
 
 [ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_qu7jd"]
 [ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_qxpoa"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_qxpoa"]
 [ext_resource type="Script" uid="uid://fw22o8hbosnk" path="res://scripts/inventory/inventory_slot.gd" id="4_ggsd8"]
 [ext_resource type="Script" uid="uid://fsrd48o26kgo" path="res://scripts/dialogue/story_reqs_dialogue_item.gd" id="5_ggsd8"]
+[ext_resource type="Resource" uid="uid://bkud21u4eib36" path="res://gamedata/dialogue/grandstone_quarry/foreman/the_crownless_king/gs_foreman_crownless_king_gold_quarry_intro_inprogress.tres" id="5_m74sg"]
 [ext_resource type="Resource" uid="uid://bowmhnl8gmekp" path="res://gamedata/dialogue/grandstone_quarry/foreman/intro_quest/gs_foreman_intro_quest_start.tres" id="5_n3r07"]
 [ext_resource type="Script" uid="uid://b6oofnelefs8o" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="5_uuoxp"]
 
@@ -23,10 +24,18 @@ animation = "talk"
 choices = Array[ExtResource("2_qxpoa")]([SubResource("Resource_jxr01")])
 metadata/_custom_type_script = "uid://grt2yrupha8c"
 
+[sub_resource type="Resource" id="Resource_16su6"]
+script = ExtResource("2_qxpoa")
+choiceBtn = "I See..."
+leadsTo = ExtResource("5_m74sg")
+isDeclineChoice = true
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
 [sub_resource type="Resource" id="Resource_onyt5"]
 script = ExtResource("1_qu7jd")
-lines = Array[String](["We've got no time to worry about gold, @! If you don't take care of those monsters...", "Things could get really dicey. Ask me again when things are stabilized."])
+lines = Array[String](["I'm afraid I have my hands tied on account of those monsters tearing up the quarry..."])
 animation = "talk"
+choices = Array[ExtResource("2_qxpoa")]([SubResource("Resource_16su6")])
 metadata/_custom_type_script = "uid://grt2yrupha8c"
 
 [sub_resource type="Resource" id="Resource_m74sg"]
@@ -50,7 +59,7 @@ metadata/_custom_type_script = "uid://fsrd48o26kgo"
 
 [sub_resource type="Resource" id="Resource_5a6v3"]
 script = ExtResource("1_qu7jd")
-lines = Array[String](["I'm not looking to make a quick coin, this will be raw material for a crown."])
+lines = Array[String](["I'm not looking to make quick money, this will be raw material for a crown."])
 animation = "stand"
 speakerOverride = "@"
 
@@ -61,14 +70,24 @@ animation = "talk"
 
 [sub_resource type="Resource" id="Resource_rlyhc"]
 script = ExtResource("1_qu7jd")
-lines = Array[String](["Something like that, yeah.", "So I'm free to take it?"])
+lines = Array[String](["Something like that, yeah.", "So, I'm free to take it?"])
 animation = "stand"
 speakerOverride = "@"
 
+[sub_resource type="Resource" id="Resource_eby0u"]
+script = ExtResource("2_qxpoa")
+choiceBtn = "Wait..."
+isDeclineChoice = true
+
+[sub_resource type="Resource" id="Resource_te6oy"]
+script = ExtResource("2_qxpoa")
+choiceBtn = "I'll Go Get It."
+
 [sub_resource type="Resource" id="Resource_ovreq"]
 script = ExtResource("1_qu7jd")
-lines = Array[String](["Sure."])
+lines = Array[String](["Sure. You'll have to clear it with Dr. Ildran, but go ahead and pick it up first.", "It's tucked away in a room at the bottom of the quarry."])
 animation = "talk"
+choices = Array[ExtResource("2_qxpoa")]([SubResource("Resource_eby0u"), SubResource("Resource_te6oy")])
 
 [sub_resource type="Resource" id="Resource_n3r07"]
 script = ExtResource("2_tfdoi")
@@ -77,6 +96,7 @@ metadata/_custom_type_script = "uid://bjesn36acj0uh"
 
 [resource]
 script = ExtResource("3_qxpoa")
+entryId = "quarry_foreman_crown_gold"
 items = Array[ExtResource("1_qu7jd")]([SubResource("Resource_idh46"), SubResource("Resource_5a6v3"), SubResource("Resource_dd8gi"), SubResource("Resource_rlyhc"), SubResource("Resource_ovreq")])
 ordStoryRequirements = Array[ExtResource("2_tfdoi")]([SubResource("Resource_n3r07")])
 metadata/_custom_type_script = "uid://1n6mppc7hmmf"

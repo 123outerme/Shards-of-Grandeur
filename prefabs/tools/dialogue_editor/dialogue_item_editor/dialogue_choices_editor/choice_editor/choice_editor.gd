@@ -12,8 +12,11 @@ signal choice_button_turns_in_clicked(choiceIdx: int)
 
 @onready var choiceLabel: LineEdit = get_node('Panel/ChoiceLabelControl/ChoiceLabel')
 @onready var isDeclineChoiceCheck: CheckButton = get_node('Panel/IsDeclineChoiceControl/IsDeclineChoice')
+@onready var leadsToControl: Control = get_node('Panel/LeadsToControl')
 @onready var leadsToButton: Button = get_node('Panel/LeadsToControl/LeadsToButton')
+@onready var turnsInControl: Control = get_node('Panel/TurnsInControl')
 @onready var turnsInButton: Button = get_node('Panel/TurnsInControl/TurnsInButton')
+@onready var repeatsItemButton: Button = get_node('Panel/RepeatsItemControl/RepeatsItem')
 
 func _ready() -> void:
 	load_choice_editor()
@@ -32,6 +35,11 @@ func load_choice_editor() -> void:
 			var questName: String = questPieces[0]
 			var stepName: String = questPieces[1]
 			turnsInButton.text = questName + ', ' + stepName
+		else:
+			turnsInButton.text = '(No Quest)'
+		repeatsItemButton.button_pressed = choice.repeatsItem
+		leadsToControl.visible = not repeatsItemButton.button_pressed
+		turnsInControl.visible = not repeatsItemButton.button_pressed
 
 func _on_choice_label_text_changed(new_text: String) -> void:
 	choice_button_label_changed.emit(choiceIdx, new_text)
@@ -48,3 +56,16 @@ func _on_turns_in_button_pressed() -> void:
 
 func _on_is_decline_choice_toggled(toggled_on: bool) -> void:
 	dialogueItem.choices[choiceIdx].isDeclineChoice = toggled_on
+
+func _on_repeats_item_toggled(toggled_on: bool) -> void:
+	dialogueItem.choices[choiceIdx].repeatsItem = toggled_on
+	if toggled_on:
+		dialogueItem.choices[choiceIdx].leadsTo = null
+		leadsToButton.text = '(No Entry)' # updating for if toggled back on
+		leadsToControl.visible = false
+		dialogueItem.choices[choiceIdx].turnsInQuest = ''
+		turnsInButton.text = '(No Quest)' # same logic as above
+		turnsInControl.visible = false
+	else:
+		leadsToControl.visible = true
+		turnsInControl.visible = true

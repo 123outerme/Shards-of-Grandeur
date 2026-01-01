@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://bkud21u4eib36"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_3oiwu"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_e1w8k"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_lu62t"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_lu62t"]
+
+[sub_resource type="Resource" id="Resource_vlkta"]
+script = ExtResource("1_3oiwu")
+lines = Array[String](["If you were to take care of our monster problem, though, I would be able to help you out.", "Something to think about, anyways. No rush..."])
+animation = "talk"
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[resource]
+script = ExtResource("3_lu62t")
+items = Array[ExtResource("1_3oiwu")]([SubResource("Resource_vlkta")])
+closesDialogue = true
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"

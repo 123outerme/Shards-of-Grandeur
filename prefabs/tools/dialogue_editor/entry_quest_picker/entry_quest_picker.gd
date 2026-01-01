@@ -43,7 +43,7 @@ func load_entry_quest_picker(restart: bool = true) -> void:
 			hflowContainer.add_child(button)
 
 func unload_entry_quest_picker() -> void:
-	for child: Node in hflowContainer.children():
+	for child: Node in hflowContainer.get_children():
 		child.queue_free()
 	questPicked = null
 	state = ToolEntryQuestPickerMenuState.PICK_QUEST
