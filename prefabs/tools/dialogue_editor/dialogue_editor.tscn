@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cr3tawrk6li8u"]
+[gd_scene load_steps=9 format=3 uid="uid://cr3tawrk6li8u"]
 
 [ext_resource type="Script" uid="uid://bur742tma2ena" path="res://prefabs/tools/dialogue_editor/dialogue_editor.gd" id="1_7w1wt"]
 [ext_resource type="PackedScene" uid="uid://dx00oa0dadpvj" path="res://prefabs/ui/text_box.tscn" id="2_nr7ai"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://blb38hmic2jvq" path="res://prefabs/overworld/test_camera.tscn" id="4_k3rpk"]
 [ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="5_3xu4k"]
 [ext_resource type="PackedScene" uid="uid://bojquldxuq7di" path="res://prefabs/tools/dialogue_editor/dialogue_item_editor/dialogue_choices_editor/dialogue_choices_editor.tscn" id="5_jlx2h"]
+[ext_resource type="Theme" uid="uid://dspb6mujs3bb2" path="res://themes/title_text_theme.tres" id="5_nip4h"]
 [ext_resource type="PackedScene" uid="uid://n24hm66wn3s5" path="res://prefabs/tools/dialogue_editor/entry_quest_picker/entry_quest_picker.tscn" id="7_qy48t"]
 
 [node name="DialogueEditor" type="Node2D"]
@@ -42,6 +43,7 @@ anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 44.0
 grow_horizontal = 2
+theme = ExtResource("5_nip4h")
 theme_override_font_sizes/normal_font_size = 32
 theme_override_font_sizes/bold_font_size = 32
 theme_override_font_sizes/bold_italics_font_size = 32
@@ -95,6 +97,12 @@ offset_right = 236.0
 offset_bottom = 11.0
 grow_vertical = 2
 mouse_filter = 2
+theme = ExtResource("5_nip4h")
+theme_override_font_sizes/normal_font_size = 16
+theme_override_font_sizes/bold_font_size = 16
+theme_override_font_sizes/bold_italics_font_size = 16
+theme_override_font_sizes/italics_font_size = 16
+theme_override_font_sizes/mono_font_size = 16
 text = "Select For Choice?"
 
 [node name="SelectForChoiceButton" parent="TestCamera/HudRoot/EntrySettings/SelectForChoiceControl" instance=ExtResource("5_3xu4k")]
@@ -129,6 +137,12 @@ offset_right = 236.0
 offset_bottom = 11.0
 grow_vertical = 2
 mouse_filter = 2
+theme = ExtResource("5_nip4h")
+theme_override_font_sizes/normal_font_size = 16
+theme_override_font_sizes/bold_font_size = 16
+theme_override_font_sizes/bold_italics_font_size = 16
+theme_override_font_sizes/italics_font_size = 16
+theme_override_font_sizes/mono_font_size = 16
 text = "Interactable: Speaker"
 
 [node name="InteractableSpeaker" type="LineEdit" parent="TestCamera/HudRoot/EntrySettings/InteractableSpeakerControl"]
@@ -162,6 +176,12 @@ offset_right = 140.0
 offset_bottom = 11.0
 grow_vertical = 2
 mouse_filter = 2
+theme = ExtResource("5_nip4h")
+theme_override_font_sizes/normal_font_size = 16
+theme_override_font_sizes/bold_font_size = 16
+theme_override_font_sizes/bold_italics_font_size = 16
+theme_override_font_sizes/italics_font_size = 16
+theme_override_font_sizes/mono_font_size = 16
 text = "Entry ID"
 
 [node name="EntryId" type="LineEdit" parent="TestCamera/HudRoot/EntrySettings/EntryIdControl"]
@@ -195,6 +215,12 @@ offset_right = 236.0
 offset_bottom = 11.0
 grow_vertical = 2
 mouse_filter = 2
+theme = ExtResource("5_nip4h")
+theme_override_font_sizes/normal_font_size = 16
+theme_override_font_sizes/bold_font_size = 16
+theme_override_font_sizes/bold_italics_font_size = 16
+theme_override_font_sizes/italics_font_size = 16
+theme_override_font_sizes/mono_font_size = 16
 text = "Gives Quest"
 
 [node name="GivesQuestButton" parent="TestCamera/HudRoot/EntrySettings/GivesQuestControl" instance=ExtResource("5_3xu4k")]
@@ -219,6 +245,7 @@ layout_mode = 1
 visible = false
 layout_mode = 1
 
+[connection signal="choice_selected" from="TestCamera/TextBoxRoot" to="." method="_on_text_box_root_choice_selected"]
 [connection signal="pressed" from="TestCamera/HudRoot/EntrySettings/SelectForChoiceControl/SelectForChoiceButton" to="." method="_on_select_for_choice_button_pressed"]
 [connection signal="text_changed" from="TestCamera/HudRoot/EntrySettings/InteractableSpeakerControl/InteractableSpeaker" to="." method="_on_interactable_speaker_text_changed"]
 [connection signal="text_changed" from="TestCamera/HudRoot/EntrySettings/EntryIdControl/EntryId" to="." method="_on_entry_id_text_changed"]

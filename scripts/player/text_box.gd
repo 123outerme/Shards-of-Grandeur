@@ -2,6 +2,7 @@ extends Node2D
 class_name TextBox
 
 signal text_box_closed
+signal choice_selected(choice: DialogueChoice)
 
 @export var textScrollSfx: AudioStream = null
 @export var advanceDialogueSfx: Array[AudioStream] = []
@@ -337,8 +338,11 @@ func _viewport_focus_changed(control):
 	
 func _select_choice(idx: int):
 	#print(dialogueItem.get_choices()[idx].leadsTo.entryId, ' what is going on')
+	var choiceSelected: DialogueChoice = dialogueItem.get_choices()[choicesDialogueItemIdxs[idx]]
 	if PlayerFinder.player != null:
-		PlayerFinder.player.select_choice(dialogueItem.get_choices()[choicesDialogueItemIdxs[idx]])
+		PlayerFinder.player.select_choice(choiceSelected)
+	else:
+		choice_selected.emit(choiceSelected)
 	lastChoiceFocused = null
 
 func _on_box_container_scroller_visibility_changed() -> void:

@@ -44,6 +44,26 @@ grow_vertical = 0
 layout_mode = 2
 theme = ExtResource("2_eovpd")
 
+[node name="SpeakerAnim" type="LineEdit" parent="."]
+layout_mode = 0
+offset_top = 331.0
+offset_right = 153.0
+offset_bottom = 360.0
+focus_next = NodePath("../SpeakerOverride")
+placeholder_text = "Speaker Anim"
+
+[node name="SpeakerOverride" type="LineEdit" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 153.0
+offset_top = -29.0
+offset_right = 306.0
+grow_vertical = 0
+focus_previous = NodePath("../SpeakerAnim")
+placeholder_text = "Spkr Override"
+
 [node name="AddLineButton" parent="." instance=ExtResource("2_q6xmg")]
 layout_mode = 1
 anchors_preset = 7
@@ -51,9 +71,9 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -161.0
+offset_left = -43.0
 offset_top = -29.0
-offset_right = -69.0
+offset_right = 49.0
 grow_horizontal = 2
 grow_vertical = 0
 text = "Add Line"
@@ -65,19 +85,12 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -66.5
+offset_left = 51.5
 offset_top = -29.0
-offset_right = 66.5
+offset_right = 184.5
 grow_horizontal = 2
 grow_vertical = 0
 text = "Edit Choices"
-
-[node name="SpeakerAnim" type="LineEdit" parent="."]
-layout_mode = 0
-offset_top = 332.0
-offset_right = 153.0
-offset_bottom = 361.0
-placeholder_text = "Speaker Anim"
 
 [node name="DeleteItemButton" parent="." instance=ExtResource("2_q6xmg")]
 layout_mode = 1
@@ -92,7 +105,8 @@ grow_horizontal = 0
 grow_vertical = 0
 text = "Delete Item"
 
+[connection signal="text_changed" from="SpeakerAnim" to="." method="_on_speaker_anim_text_changed"]
+[connection signal="text_changed" from="SpeakerOverride" to="." method="_on_speaker_override_text_changed"]
 [connection signal="pressed" from="AddLineButton" to="." method="_on_add_line_button_pressed"]
 [connection signal="pressed" from="EditChoicesButton" to="." method="_on_edit_choices_button_pressed"]
-[connection signal="text_changed" from="SpeakerAnim" to="." method="_on_speaker_anim_text_changed"]
 [connection signal="pressed" from="DeleteItemButton" to="." method="_on_delete_item_button_pressed"]

@@ -39,7 +39,7 @@ func load_choices_editor() -> void:
 			choiceEditor.choice_button_turns_in_clicked.connect(_choice_button_turns_in_clicked)
 			var label: String = dialogueItem.choices[choiceIdx].choiceBtn
 			if label == '':
-				label = 'New Button ' + String.num_int64(len(nameOccurrences[label]))
+				label = 'New Button'
 			if not nameOccurrences.has(label):
 				nameOccurrences[label] = [dialogueItem.choices[choiceIdx]]
 			else:
@@ -51,7 +51,7 @@ func load_choices_editor() -> void:
 
 func _choice_button_label_changed(choiceIdx: int, label: String) -> void:
 	if label == '':
-		label = 'New Button ' + String.num_int64(len(nameOccurrences[label]))
+		label = 'New Button'
 	if not nameOccurrences.has(label):
 		nameOccurrences[label] = [dialogueItem.choices[choiceIdx]]
 	else:

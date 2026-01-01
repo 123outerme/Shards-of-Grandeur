@@ -2,6 +2,7 @@ extends Node2D
 class_name ToolDialogueEditor
 
 signal file_saved(filepath: String)
+signal preview_entry_finished
 
 const SFX_BUTTON_SCENE = preload("res://prefabs/ui/sfx_button.tscn")
 const SFX_NINE_PATH_BUTTON_SCENE = preload("res://prefabs/ui/sfx_nine_patch_button.tscn")
@@ -14,6 +15,7 @@ enum ToolDialogueEditorMenuState {
 	CHOOSE_NPC, ## Choosing the NPC on this map this DialogueEntry belongs to
 	EDIT_ENTRY, ## menu for options of editing a DialogueEntry
 	SAVING_ENTRIES, ## menu for choosing where to save the dialogues (if necessary)
+	PREVIEW_ENTRY, ## preview entry state (automatically transitions back to last state)
 }
 
 static func menu_state_to_string(state: ToolDialogueEditorMenuState) -> String:
@@ -30,16 +32,18 @@ static func menu_state_to_string(state: ToolDialogueEditorMenuState) -> String:
 			return 'Edit Entry'
 		ToolDialogueEditorMenuState.SAVING_ENTRIES:
 			return 'Save Dialogues'
+		ToolDialogueEditorMenuState.PREVIEW_ENTRY:
+			return 'Previewing Entry...'
 	return 'UNKNOWN_STATE'
 
 enum ToolDialogueEditorButtonAction {
 	BACK_ACTION,
 	LOAD_ENTRY_ACTION,
 	CREATE_ENTRY_ACTION,
-	CONFIGURE_ENTRY_ACTION,
 	ADD_ITEM_ACTION,
 	SAVE_ACTION,
 	CLEAR_CHOICE_LEADS_TO_ACTION,
+	PREVIEW_ENTRY_ACTION
 }
 
 static func button_action_to_label(action: ToolDialogueEditorButtonAction) -> String:
@@ -56,6 +60,8 @@ static func button_action_to_label(action: ToolDialogueEditorButtonAction) -> St
 			return 'Add DialogueItem'
 		ToolDialogueEditorButtonAction.CLEAR_CHOICE_LEADS_TO_ACTION:
 			return 'Clear Choice Leads To'
+		ToolDialogueEditorButtonAction.PREVIEW_ENTRY_ACTION:
+			return 'Preview Entry'
 	return 'UNKNOWN_ACTION'
 
 @onready var testCamera: TestCamera = get_node('TestCamera')
@@ -102,7 +108,32 @@ var mapInteractables: Array[Node] = []
 var editingNpc: NPCScript = null
 var editingInteractable: Interactable = null
 
+var previewingItems: Array[DialogueItem] = []
+var previewingLineIdx: int = -1
+var previewingOneLine: bool = false
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed and textBox.visible:
+			if not textBox.is_textbox_complete():
+				textBox.show_text_instant()
+			elif len(previewingItems) > 0:
+				advance_preview()
+	elif event.is_action_pressed("game_interact"):
+		if not textBox.is_textbox_complete():
+			textBox.show_text_instant()
+		elif len(previewingItems) > 0:
+			advance_preview()
+
 func _ready() -> void:
+	var focusPrevInput: InputEventKey = InputEventKey.new()
+	focusPrevInput.keycode = KEY_TAB
+	focusPrevInput.shift_pressed = true
+	var focusNextInput: InputEventKey = InputEventKey.new()
+	focusNextInput.keycode = KEY_TAB
+	InputMap.action_add_event('ui_focus_prev', focusPrevInput)
+	InputMap.action_add_event('ui_focus_next', focusNextInput)
+	
 	SceneLoader.audioHandler = audioHandler
 	stateActionsDict[ToolDialogueEditorMenuState.CREATE_OR_LOAD_ENTRY] = [
 		ToolDialogueEditorButtonAction.LOAD_ENTRY_ACTION,
@@ -110,8 +141,8 @@ func _ready() -> void:
 	]
 	
 	stateActionsDict[ToolDialogueEditorMenuState.EDIT_ENTRY] = [
-		ToolDialogueEditorButtonAction.CONFIGURE_ENTRY_ACTION,
-		ToolDialogueEditorButtonAction.ADD_ITEM_ACTION
+		ToolDialogueEditorButtonAction.ADD_ITEM_ACTION,
+		ToolDialogueEditorButtonAction.PREVIEW_ENTRY_ACTION
 	]
 	
 	load_quests()
@@ -157,6 +188,8 @@ func load_menu_state() -> void:
 		ToolDialogueEditorMenuState.EDIT_ENTRY:
 			if menuStateStack.back() == ToolDialogueEditorMenuState.CHOOSE_NPC:
 				load_dialogue_item_editors()
+		ToolDialogueEditorMenuState.PREVIEW_ENTRY:
+			preview_entry()
 	load_action_buttons()
 
 func init_file_dialog() -> FileDialog:
@@ -229,7 +262,7 @@ func load_dialogue_item_editors() -> void:
 		var itemEditor: ToolDialogueItemEditor = DIALOGUE_ITEM_EDITOR.instantiate()
 		itemEditor.dialogueItem = editingEntry.items[itemIdx]
 		itemEditor.name = 'Item ' + String.num_int64(itemIdx + 1)
-		itemEditor.preview_line_toggled.connect(_on_dialogue_item_editor_preview_line_toggled)
+		itemEditor.preview_line_toggled.connect(preview_line)
 		itemEditor.delete_item_pressed.connect(_on_dialogue_item_editor_delete_item)
 		itemEditor.edit_choices_toggled.connect(_on_dialogue_item_editor_edit_choices_toggled)
 		dialogueItemEditorsTabContainer.add_child(itemEditor)
@@ -260,6 +293,48 @@ func load_text_box(dialogueItem: DialogueItem) -> void:
 			textBox.speakerSpriteFrames = editingInteractable.get_sprite_frames()
 			textBox.speakerSpriteOffset = editingInteractable.speakerSpriteOffset
 	textBox.update_speaker_sprite()
+
+func preview_line(dialogueItem: DialogueItem, lineIdx: int, text: String, previewingSingleLine = true) -> void:
+	if previewingSingleLine:
+		previewingItems = [dialogueItem]
+	previewingLineIdx = lineIdx
+	previewingOneLine = previewingSingleLine
+	load_text_box(dialogueItem)
+	
+	var speakerName: String = 'ERROR'
+	if editingNpc != null:
+		speakerName = editingNpc.displayName
+	elif editingInteractable != null:
+		speakerName = editingInteractableDialogue.speaker
+	textBox.set_textbox_text(TextUtils.rich_text_substitute(text, Vector2i(32, 32)), dialogueItem.speakerOverride if dialogueItem.speakerOverride != '' else speakerName, len(dialogueItem.lines) - 1 == lineIdx)
+
+func advance_preview() -> void:
+	var dialogueItem: DialogueItem = previewingItems[0]
+	previewingLineIdx += 1
+	if previewingLineIdx >= len(dialogueItem.lines) or previewingOneLine:
+		previewingItems.pop_front()
+		if len(previewingItems) == 0 or previewingOneLine:
+			stop_previewing()
+			return
+		dialogueItem = previewingItems[0]
+		previewingLineIdx = 0
+	preview_line(dialogueItem, previewingLineIdx, dialogueItem.lines[previewingLineIdx], previewingOneLine)
+
+func preview_entry() -> void:
+	if editingEntry == null or len(editingEntry.items) == 0:
+		return
+	previewingItems = editingEntry.items.duplicate()
+	previewingLineIdx = 0
+	preview_line(previewingItems[0], previewingLineIdx, previewingItems[0].lines[previewingLineIdx], false)
+	await preview_entry_finished
+	menuState = menuStateStack.pop_back()
+	load_menu_state()
+
+func stop_previewing() -> void:
+	textBox.visible = false
+	previewingItems = []
+	previewingLineIdx = -1
+	preview_entry_finished.emit()
 
 func save_dialogues(justCurrent = false) -> void:
 	if dialogueSavePath != '':
@@ -314,7 +389,11 @@ func save_dialogues(justCurrent = false) -> void:
 	load_menu_state()
 
 func pop_entry_stack() -> void:
-	var stackIdx: int = parentStackStartIdxs.back()
+	var stackIdx: int = parentStackStartIdxs.pop_back()
+	parentInteractableDialogues.pop_back()
+	parentEntries.pop_back()
+	parentChoices.pop_back()
+	parentSavePaths.pop_back()
 	for idx: int in range(stackIdx, len(menuStateStack)):
 		menuStateStack.pop_back()
 	menuState = menuStateStack.pop_back()
@@ -326,7 +405,14 @@ func _action_button_pressed(action: ToolDialogueEditorButtonAction) -> void:
 		menuStateStack.append(menuState)
 	match action:
 		ToolDialogueEditorButtonAction.BACK_ACTION:
-			menuState = menuStateStack.pop_back()
+			if len(parentStackStartIdxs) > 0 and parentStackStartIdxs.back() == len(menuStateStack):
+				pop_entry_stack()
+				return
+			elif menuState == ToolDialogueEditorMenuState.PREVIEW_ENTRY:
+				stop_previewing()
+				return
+			else:
+				menuState = menuStateStack.pop_back()
 		ToolDialogueEditorButtonAction.CREATE_ENTRY_ACTION:
 			editingEntry = DialogueEntry.new()
 			menuState = ToolDialogueEditorMenuState.CHOOSE_MAP
@@ -343,6 +429,8 @@ func _action_button_pressed(action: ToolDialogueEditorButtonAction) -> void:
 			var parentChoice: DialogueChoice = parentChoices.back()
 			parentChoice.leadsTo = null
 			pop_entry_stack()
+		ToolDialogueEditorButtonAction.PREVIEW_ENTRY_ACTION:
+			menuState = ToolDialogueEditorMenuState.PREVIEW_ENTRY
 	load_menu_state()
 
 func _npc_button_pressed(npc: NPCScript, interactable: Interactable) -> void:
@@ -401,16 +489,6 @@ func _on_file_dialog_file_selected(path: String) -> void:
 	else:
 		menuStateStack.pop_back() # undo push at the beginning here
 
-func _on_dialogue_item_editor_preview_line_toggled(dialogueItem: DialogueItem, lineIdx: int, text: String) -> void:
-	load_text_box(dialogueItem)
-	
-	var speakerName: String = 'ERROR'
-	if editingNpc != null:
-		speakerName = editingNpc.displayName
-	elif editingInteractable != null:
-		speakerName = editingInteractableDialogue.speaker
-	textBox.set_textbox_text(TextUtils.rich_text_substitute(text, Vector2i(32, 32)), dialogueItem.speakerOverride if dialogueItem.speakerOverride != '' else speakerName, len(dialogueItem.lines) - 1 == lineIdx)
-
 func _on_dialogue_item_editor_delete_item(dialogueItem: DialogueItem) -> void:
 	if editingEntry == null:
 		return
@@ -462,6 +540,7 @@ func _on_dialogue_choices_editor_choice_leads_to_clicked(choiceIdx: int, dialogu
 	parentStackStartIdxs.append(len(menuStateStack))
 	parentChoices.append(dialogueItem.choices[choiceIdx])
 	menuState = ToolDialogueEditorMenuState.CREATE_OR_LOAD_ENTRY
+	dialogueChoicesEditor.visible = false
 	load_menu_state()
 
 func _on_dialogue_choices_editor_choices_editor_closed(dialogueItem: DialogueItem) -> void:
@@ -469,3 +548,21 @@ func _on_dialogue_choices_editor_choices_editor_closed(dialogueItem: DialogueIte
 		if child is ToolDialogueItemEditor and child.dialogueItem == dialogueItem:
 			child.load_item_editor()
 			break
+
+func _on_text_box_root_choice_selected(choice: DialogueChoice) -> void:
+	if menuState != ToolDialogueEditorMenuState.PREVIEW_ENTRY or \
+			choice.leadsTo != null or len(choice.randomDialogues) > 0 or \
+			choice.returnsToParentId != '':
+		 # close dialogue if it would lead somewhere else, or if this is not previewing a full entry
+		stop_previewing()
+		return
+	if choice.repeatsItem:
+		previewingLineIdx = -1
+		advance_preview() # will increment previewing lineIdx by 1, restarting at 0
+		return
+	if choice is NPCDialogueChoice:
+		if choice.opensShop:
+			return # do nothing; as if player entered and exited shop
+	
+	# this is a no-op button
+	advance_preview()

@@ -2,7 +2,7 @@ extends Control
 class_name ToolDialogueLineEditor
 
 signal preview_line_toggled(lineIdx: int, text: String)
-signal delete_line_toggled(lineIdx: int)
+signal delete_line_pressed(lineIdx: int)
 signal min_show_secs_updated(lineIdx: int)
 
 @export var dialogueItem: DialogueItem = null
@@ -29,7 +29,7 @@ func _on_preview_button_pressed() -> void:
 	preview_line_toggled.emit(lineIdx, textEdit.text)
 
 func _on_delete_button_pressed() -> void:
-	delete_line_toggled.emit(lineIdx)
+	delete_line_pressed.emit(lineIdx)
 
 func _on_text_edit_text_changed() -> void:
 	write_back_line_changes()
