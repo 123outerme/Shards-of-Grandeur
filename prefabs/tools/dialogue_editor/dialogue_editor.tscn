@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cr3tawrk6li8u"]
+[gd_scene load_steps=10 format=3 uid="uid://cr3tawrk6li8u"]
 
 [ext_resource type="Script" uid="uid://bur742tma2ena" path="res://prefabs/tools/dialogue_editor/dialogue_editor.gd" id="1_7w1wt"]
 [ext_resource type="PackedScene" uid="uid://dx00oa0dadpvj" path="res://prefabs/ui/text_box.tscn" id="2_nr7ai"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="5_3xu4k"]
 [ext_resource type="PackedScene" uid="uid://bojquldxuq7di" path="res://prefabs/tools/dialogue_editor/dialogue_item_editor/dialogue_choices_editor/dialogue_choices_editor.tscn" id="5_jlx2h"]
 [ext_resource type="Theme" uid="uid://dspb6mujs3bb2" path="res://themes/title_text_theme.tres" id="5_nip4h"]
+[ext_resource type="PackedScene" uid="uid://djat5vf5bcbma" path="res://prefabs/ui/sfx_check_button.tscn" id="7_i5rnn"]
 [ext_resource type="PackedScene" uid="uid://n24hm66wn3s5" path="res://prefabs/tools/dialogue_editor/entry_quest_picker/entry_quest_picker.tscn" id="7_qy48t"]
 
 [node name="DialogueEditor" type="Node2D"]
@@ -198,11 +199,49 @@ grow_horizontal = 0
 grow_vertical = 2
 placeholder_text = "(optional)"
 
-[node name="GivesQuestControl" type="Control" parent="TestCamera/HudRoot/EntrySettings"]
+[node name="ClosesDialogueControl" type="Control" parent="TestCamera/HudRoot/EntrySettings"]
 anchors_preset = 0
 offset_top = 100.0
 offset_right = 420.0
 offset_bottom = 132.0
+mouse_filter = 2
+
+[node name="ControlLabel" type="RichTextLabel" parent="TestCamera/HudRoot/EntrySettings/ClosesDialogueControl"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -11.0
+offset_right = 236.0
+offset_bottom = 11.0
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("5_nip4h")
+theme_override_font_sizes/normal_font_size = 16
+theme_override_font_sizes/bold_font_size = 16
+theme_override_font_sizes/bold_italics_font_size = 16
+theme_override_font_sizes/italics_font_size = 16
+theme_override_font_sizes/mono_font_size = 16
+text = "Closes Dialogue"
+
+[node name="ClosesDialogue" parent="TestCamera/HudRoot/EntrySettings/ClosesDialogueControl" instance=ExtResource("7_i5rnn")]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -44.0
+offset_top = -12.0
+offset_bottom = 12.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="GivesQuestControl" type="Control" parent="TestCamera/HudRoot/EntrySettings"]
+anchors_preset = 0
+offset_top = 132.0
+offset_right = 420.0
+offset_bottom = 164.0
 mouse_filter = 2
 
 [node name="ControlLabel" type="RichTextLabel" parent="TestCamera/HudRoot/EntrySettings/GivesQuestControl"]
@@ -237,6 +276,44 @@ grow_horizontal = 0
 grow_vertical = 2
 text = "(No Quest)"
 
+[node name="FullyHealsControl" type="Control" parent="TestCamera/HudRoot/EntrySettings"]
+anchors_preset = 0
+offset_top = 168.0
+offset_right = 420.0
+offset_bottom = 200.0
+mouse_filter = 2
+
+[node name="ControlLabel" type="RichTextLabel" parent="TestCamera/HudRoot/EntrySettings/FullyHealsControl"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -11.0
+offset_right = 236.0
+offset_bottom = 11.0
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("5_nip4h")
+theme_override_font_sizes/normal_font_size = 16
+theme_override_font_sizes/bold_font_size = 16
+theme_override_font_sizes/bold_italics_font_size = 16
+theme_override_font_sizes/italics_font_size = 16
+theme_override_font_sizes/mono_font_size = 16
+text = "Fully Heals Player"
+
+[node name="FullyHeals" parent="TestCamera/HudRoot/EntrySettings/FullyHealsControl" instance=ExtResource("7_i5rnn")]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -44.0
+offset_top = -12.0
+offset_bottom = 12.0
+grow_horizontal = 0
+grow_vertical = 2
+
 [node name="DialogueChoicesEditor" parent="TestCamera/HudRoot" instance=ExtResource("5_jlx2h")]
 visible = false
 layout_mode = 1
@@ -249,7 +326,9 @@ layout_mode = 1
 [connection signal="pressed" from="TestCamera/HudRoot/EntrySettings/SelectForChoiceControl/SelectForChoiceButton" to="." method="_on_select_for_choice_button_pressed"]
 [connection signal="text_changed" from="TestCamera/HudRoot/EntrySettings/InteractableSpeakerControl/InteractableSpeaker" to="." method="_on_interactable_speaker_text_changed"]
 [connection signal="text_changed" from="TestCamera/HudRoot/EntrySettings/EntryIdControl/EntryId" to="." method="_on_entry_id_text_changed"]
+[connection signal="toggled" from="TestCamera/HudRoot/EntrySettings/ClosesDialogueControl/ClosesDialogue" to="." method="_on_closes_dialogue_toggled"]
 [connection signal="pressed" from="TestCamera/HudRoot/EntrySettings/GivesQuestControl/GivesQuestButton" to="." method="_on_gives_quest_button_pressed"]
+[connection signal="toggled" from="TestCamera/HudRoot/EntrySettings/FullyHealsControl/FullyHeals" to="." method="_on_fully_heals_toggled"]
 [connection signal="choice_leads_to_clicked" from="TestCamera/HudRoot/DialogueChoicesEditor" to="." method="_on_dialogue_choices_editor_choice_leads_to_clicked"]
 [connection signal="choices_editor_closed" from="TestCamera/HudRoot/DialogueChoicesEditor" to="." method="_on_dialogue_choices_editor_choices_editor_closed"]
 [connection signal="cancel_set_entry_quest" from="TestCamera/HudRoot/EntryQuestPicker" to="." method="_on_entry_quest_picker_cancel_set_entry_quest"]

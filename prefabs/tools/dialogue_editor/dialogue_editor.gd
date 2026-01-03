@@ -78,7 +78,9 @@ static func button_action_to_label(action: ToolDialogueEditorButtonAction) -> St
 @onready var interactableSpeakerCtrl: Control = get_node("TestCamera/HudRoot/EntrySettings/InteractableSpeakerControl")
 @onready var interactableSpeakerLineEdit: LineEdit = get_node("TestCamera/HudRoot/EntrySettings/InteractableSpeakerControl/InteractableSpeaker")
 @onready var entryIdLineEdit: LineEdit = get_node('TestCamera/HudRoot/EntrySettings/EntryIdControl/EntryId')
+@onready var closesDialogueButton: CheckButton = get_node('TestCamera/HudRoot/EntrySettings/ClosesDialogueControl/ClosesDialogue')
 @onready var givesQuestButton: Button = get_node('TestCamera/HudRoot/EntrySettings/GivesQuestControl/GivesQuestButton')
+@onready var fullyHealsButton: CheckButton = get_node('TestCamera/HudRoot/EntrySettings/FullyHealsControl/FullyHeals')
 @onready var dialogueChoicesEditor: ToolDialogueChoicesEditor = get_node('TestCamera/HudRoot/DialogueChoicesEditor')
 @onready var entryQuestPicker: ToolEntryQuestPicker = get_node('TestCamera/HudRoot/EntryQuestPicker')
 
@@ -278,6 +280,8 @@ func load_entry_settings() -> void:
 	else:
 		interactableSpeakerCtrl.visible = false
 	entryIdLineEdit.text = editingEntry.entryId
+	closesDialogueButton.button_pressed = editingEntry.closesDialogue
+	fullyHealsButton.button_pressed = editingEntry.fullHealsPlayer
 	if editingEntry.startsQuest != null:
 		givesQuestButton.text = editingEntry.startsQuest.questName
 	else:
@@ -548,15 +552,21 @@ func _on_entry_quest_picker_set_entry_quest(quest: Quest) -> void:
 	else:
 		givesQuestButton.text = '(No Quest)'
 
-func _on_entry_id_text_changed(new_text: String) -> void:
-	editingEntry.entryId = new_text
-
 func _on_select_for_choice_button_pressed() -> void:
 	if len(parentChoices) > 0:
 		await save_dialogues(true)
 		var parentChoice: DialogueChoice = parentChoices.back()
 		parentChoice.leadsTo = editingEntry
 		pop_entry_stack()
+
+func _on_entry_id_text_changed(new_text: String) -> void:
+	editingEntry.entryId = new_text
+
+func _on_closes_dialogue_toggled(toggled_on: bool) -> void:
+	editingEntry.closesDialogue = toggled_on
+
+func _on_fully_heals_toggled(toggled_on: bool) -> void:
+	editingEntry.fullHealsPlayer = toggled_on
 
 func _on_dialogue_choices_editor_choice_leads_to_clicked(choiceIdx: int, dialogueItem: DialogueItem) -> void:
 	menuStateStack.append(menuState)
