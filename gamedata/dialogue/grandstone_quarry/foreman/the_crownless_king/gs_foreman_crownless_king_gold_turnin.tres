@@ -1,9 +1,10 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=9 format=3 uid="uid://bsk75waktwvbe"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=10 format=3 uid="uid://c77ucdl6ae4le"]
 
 [ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_x2hqd"]
 [ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_2xx7n"]
 [ext_resource type="Script" uid="uid://b6oofnelefs8o" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_2xx7n"]
 [ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="3_alnrd"]
+[ext_resource type="Resource" path="res://gamedata/dialogue/grandstone_quarry/foreman/the_crownless_king/gs_foreman_crownless_king_gold_after_turnin.tres" id="4_alnrd"]
 [ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="4_yg18o"]
 
 [sub_resource type="Resource" id="Resource_alnrd"]
@@ -14,6 +15,7 @@ isDeclineChoice = true
 [sub_resource type="Resource" id="Resource_yg18o"]
 script = ExtResource("2_2xx7n")
 choiceBtn = "Thanks!"
+leadsTo = ExtResource("4_alnrd")
 turnsInQuest = "The Crownless King#Quarry of Minerals"
 
 [sub_resource type="Resource" id="Resource_af4gf"]

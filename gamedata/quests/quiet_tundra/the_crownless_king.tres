@@ -128,20 +128,33 @@ name = "Gather The Gold"
 description = "Find the piles of gold stashed in the Grandstone Quarry!"
 locations = Array[int]([12])
 type = 6
+count = 3
+objectiveName = "Raw Gold Chunk"
+displayObjName = "Raw Gold Chunk"
 metadata/_custom_type_script = "uid://b3j2bj1p0bkq8"
 
 [sub_resource type="Resource" id="Resource_e87w4"]
 script = ExtResource("2_5o8i1")
 name = "Export Approval"
 description = "Talk to Dr. Ildran about offering the gold as a gift to the King Rat!"
+locations = Array[int]([10])
+turnInLocations = Array[int]([10])
 objectiveName = "---"
+displayObjName = "Dr. Ildran"
+displayTurnInName = "Dr. Ildran"
 metadata/_custom_type_script = "uid://b3j2bj1p0bkq8"
 
 [sub_resource type="Resource" id="Resource_fhsgq"]
 script = ExtResource("2_5o8i1")
 name = "A Gilded Age"
 description = "Bring the raw gold to the Frostmint Forge so it can be made into a crown!"
-objectiveName = "---"
+locations = Array[int]([55])
+turnInLocations = Array[int]([55])
+type = 1
+count = 3
+objectiveName = "Raw Gold Chunk"
+displayObjName = "Raw Gold Chunk"
+displayTurnInName = "Frostmint Smith"
 metadata/_custom_type_script = "uid://b3j2bj1p0bkq8"
 
 [sub_resource type="Resource" id="Resource_61nwe"]

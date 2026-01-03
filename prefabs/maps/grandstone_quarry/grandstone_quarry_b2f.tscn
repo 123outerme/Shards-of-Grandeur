@@ -1,4 +1,4 @@
-[gd_scene load_steps=212 format=4 uid="uid://b7bahcx27w7y7"]
+[gd_scene load_steps=215 format=4 uid="uid://b7bahcx27w7y7"]
 
 [ext_resource type="Script" uid="uid://vg00rfnn3346" path="res://scripts/overworld/map_script.gd" id="1_cc5ra"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_cu5tj"]
@@ -9,11 +9,14 @@
 [ext_resource type="Resource" uid="uid://bkqfhls3q7vsp" path="res://gamedata/ground_items/grandstone_quarry/gs_quarry_b2f_magelight.tres" id="4_rdd83"]
 [ext_resource type="PackedScene" uid="uid://drntacqptcfm5" path="res://prefabs/entities/decoration.tscn" id="5_cjfm8"]
 [ext_resource type="Script" uid="uid://dioty4gjx3hdu" path="res://scripts/overworld/overworld_enemy/spawner_data.gd" id="5_lw2nd"]
+[ext_resource type="Resource" uid="uid://bcdb0mc1k7ooq" path="res://gamedata/ground_items/grandstone_quarry/gs_quarry_b2f_raw_gold1.tres" id="5_saws7"]
 [ext_resource type="Texture2D" uid="uid://crnost8lfnrs4" path="res://graphics/structures/quarry_marble_giant_block.png" id="6_7b77b"]
 [ext_resource type="Resource" uid="uid://dtf5b4ty8mdq0" path="res://gamedata/combatants/stagmite/stagmite.tres" id="6_m8uov"]
+[ext_resource type="Resource" uid="uid://dqv8xsrsqkwjn" path="res://gamedata/ground_items/grandstone_quarry/gs_quarry_b2f_raw_gold2.tres" id="6_oyukn"]
 [ext_resource type="PackedScene" uid="uid://blb38hmic2jvq" path="res://prefabs/overworld/test_camera.tscn" id="6_w2nru"]
 [ext_resource type="PackedScene" uid="uid://bsalesakrx8yy" path="res://prefabs/entities/npc.tscn" id="7_5luhd"]
 [ext_resource type="Script" uid="uid://dga8cpwmm0j6h" path="res://scripts/battle/weighted_things/weighted_combatants.gd" id="7_40h8a"]
+[ext_resource type="Resource" uid="uid://bjaytav3qnahm" path="res://gamedata/ground_items/grandstone_quarry/gs_quarry_b2f_raw_gold3.tres" id="7_jwtgg"]
 [ext_resource type="Script" uid="uid://bvnw0ab8d80ti" path="res://scripts/overworld/overworld_enemy/random_encounter_level_stage.gd" id="8_4yasx"]
 [ext_resource type="Script" uid="uid://8t63d3un22ug" path="res://scripts/npcs/npc_data.gd" id="8_j0um0"]
 [ext_resource type="SpriteFrames" uid="uid://dirmctruik1lh" path="res://graphics/animations/a_spelunker2.tres" id="9_7rok8"]
@@ -1080,6 +1083,7 @@ tile_set = ExtResource("2_cu5tj")
 [node name="GroundItem" parent="TilemapRoot" instance=ExtResource("3_wk5v0")]
 position = Vector2(29, -191)
 pickedUpItem = ExtResource("4_rdd83")
+saveName = "gs_quarry_b2f_magelight"
 
 [node name="GroundItem2" parent="TilemapRoot" instance=ExtResource("3_wk5v0")]
 position = Vector2(-913, 147)
@@ -1089,6 +1093,8 @@ position = Vector2(-1021, -212)
 
 [node name="GroundItem4" parent="TilemapRoot" instance=ExtResource("3_wk5v0")]
 position = Vector2(923, 107)
+pickedUpItem = ExtResource("5_saws7")
+saveName = "gs_quarry_b2f_raw_gold1"
 
 [node name="GroundItem5" parent="TilemapRoot" instance=ExtResource("3_wk5v0")]
 position = Vector2(1180, 377)
@@ -1107,6 +1113,16 @@ position = Vector2(1076, 1420)
 
 [node name="GroundItem10" parent="TilemapRoot" instance=ExtResource("3_wk5v0")]
 position = Vector2(472, 1626)
+
+[node name="GroundItem11" parent="TilemapRoot" instance=ExtResource("3_wk5v0")]
+position = Vector2(871, -35)
+pickedUpItem = ExtResource("6_oyukn")
+saveName = "gs_quarry_b2f_raw_gold2"
+
+[node name="GroundItem12" parent="TilemapRoot" instance=ExtResource("3_wk5v0")]
+position = Vector2(861, 157)
+pickedUpItem = ExtResource("7_jwtgg")
+saveName = "gs_quarry_b2f_raw_gold3"
 
 [node name="StoneBlockDecoration1" parent="TilemapRoot" instance=ExtResource("5_cjfm8")]
 position = Vector2(488, 1038)
