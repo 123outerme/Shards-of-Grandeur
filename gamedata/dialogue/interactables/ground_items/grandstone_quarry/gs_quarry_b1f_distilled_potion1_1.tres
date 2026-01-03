@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://d1tuykr8u6d88"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_ierry"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_fqny3"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_yk4ge"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_fqny3"]
+
+[sub_resource type="Resource" id="Resource_vt1wh"]
+script = ExtResource("1_ierry")
+lines = Array[String](["I'll bet these Distilled Potions are very thirst-quenching for the Spelunkers down in the lower levels!"])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[resource]
+script = ExtResource("3_fqny3")
+items = Array[ExtResource("1_ierry")]([SubResource("Resource_vt1wh")])
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"

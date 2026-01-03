@@ -1,0 +1,39 @@
+[gd_resource type="Resource" script_class="Weapon" load_steps=7 format=3 uid="uid://by6x7ks7pd8nt"]
+
+[ext_resource type="Texture2D" uid="uid://dqeoii5rntyyx" path="res://graphics/items/weapons/geode_dagger.png" id="1_ato0d"]
+[ext_resource type="Script" uid="uid://c4jrorkxpw01e" path="res://scripts/inventory/items/weapon.gd" id="1_tg4hf"]
+[ext_resource type="Script" uid="uid://b8q40qhoufelh" path="res://scripts/battle/combatant/element_multiplier.gd" id="3_hwtpk"]
+[ext_resource type="Script" uid="uid://dvivnpdo5ga72" path="res://scripts/battle/combatant/stat_changes.gd" id="4_ok5mk"]
+
+[sub_resource type="Resource" id="Resource_hwtpk"]
+script = ExtResource("3_hwtpk")
+element = 5
+multiplier = 1.2
+metadata/_custom_type_script = "uid://b8q40qhoufelh"
+
+[sub_resource type="Resource" id="Resource_t8kqt"]
+script = ExtResource("4_ok5mk")
+physAttackMultiplier = 1.15
+magicAttackMultiplier = 0.8
+affinityMultiplier = 1.05
+resistanceMultiplier = 1.1
+elementMultipliers = Array[ExtResource("3_hwtpk")]([SubResource("Resource_hwtpk")])
+metadata/_custom_type_script = "uid://dvivnpdo5ga72"
+
+[resource]
+script = ExtResource("1_tg4hf")
+statChanges = SubResource("Resource_t8kqt")
+timing = 0
+bonusOrbs = 2
+itemSprite = ExtResource("1_ato0d")
+itemName = "Geode Dagger"
+itemType = 2
+itemDescription = "The brilliant crystals inside a geode were shaped into this small blade with a stone hilt. The dagger seem to contain some natural protective aura."
+cost = 44
+maxCount = 1
+usable = false
+battleUsable = false
+consumable = false
+equippable = true
+trashable = false
+metadata/_custom_type_script = "uid://c4jrorkxpw01e"

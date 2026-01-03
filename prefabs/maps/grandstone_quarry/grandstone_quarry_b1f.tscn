@@ -1,4 +1,4 @@
-[gd_scene load_steps=80 format=4 uid="uid://61lm3u3kbiwd"]
+[gd_scene load_steps=84 format=4 uid="uid://61lm3u3kbiwd"]
 
 [ext_resource type="Script" uid="uid://vg00rfnn3346" path="res://scripts/overworld/map_script.gd" id="1_cc5ra"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_cu5tj"]
@@ -9,10 +9,14 @@
 [ext_resource type="PackedScene" uid="uid://b1u1r7encrpgs" path="res://prefabs/overworld/camera_hold_zone.tscn" id="4_mbn4h"]
 [ext_resource type="SpriteFrames" uid="uid://dirmctruik1lh" path="res://graphics/animations/a_spelunker2.tres" id="5_6unhu"]
 [ext_resource type="PackedScene" uid="uid://cdnsjlf3gwbkf" path="res://prefabs/entities/ground_item.tscn" id="6_phx7s"]
+[ext_resource type="Resource" uid="uid://cn8krwii6acb1" path="res://gamedata/ground_items/grandstone_quarry/gs_quarry_b1f_distilled_potion1.tres" id="7_co5ny"]
 [ext_resource type="PackedScene" uid="uid://cm5yegguv62vn" path="res://prefabs/overworld/enemy_deaggro_zone.tscn" id="7_hr8gb"]
+[ext_resource type="Resource" uid="uid://cfqy0hkynt0q2" path="res://gamedata/ground_items/grandstone_quarry/gs_quarry_b1f_silver_boon.tres" id="7_hvfva"]
 [ext_resource type="Script" uid="uid://dioty4gjx3hdu" path="res://scripts/overworld/overworld_enemy/spawner_data.gd" id="7_ssa1k"]
 [ext_resource type="Resource" uid="uid://cra0rgrw4ujhn" path="res://gamedata/combatants/mesa_golem/mesa_golem.tres" id="8_klsd6"]
 [ext_resource type="Script" uid="uid://dga8cpwmm0j6h" path="res://scripts/battle/weighted_things/weighted_combatants.gd" id="8_ofo47"]
+[ext_resource type="Resource" uid="uid://chd056pd4b7wf" path="res://gamedata/ground_items/grandstone_quarry/gs_quarry_b1f_marble_ring.tres" id="8_yvtw0"]
+[ext_resource type="Resource" uid="uid://csbmsbch12kb3" path="res://gamedata/ground_items/grandstone_quarry/gs_quarry_b1f_sorcery_elixir.tres" id="9_3i45i"]
 [ext_resource type="Script" uid="uid://bvnw0ab8d80ti" path="res://scripts/overworld/overworld_enemy/random_encounter_level_stage.gd" id="9_4rcjl"]
 [ext_resource type="Resource" uid="uid://cw71a6bensfkc" path="res://gamedata/items/accessory/mage_light.tres" id="9_fumoj"]
 [ext_resource type="Resource" uid="uid://bcxhstec14bpg" path="res://gamedata/combatants/mesa_golem/evolutions/miner_golem/miner_golem_equipment.tres" id="10_fumoj"]
@@ -399,15 +403,23 @@ visible = false
 
 [node name="GroundItem" parent="TilemapRoot" instance=ExtResource("6_phx7s")]
 position = Vector2(-38, 417)
+pickedUpItem = ExtResource("7_co5ny")
+saveName = "gs_quarry_b1f_distilled_potion1"
 
 [node name="GroundItem2" parent="TilemapRoot" instance=ExtResource("6_phx7s")]
 position = Vector2(-512, -90)
+pickedUpItem = ExtResource("7_hvfva")
+saveName = "gs_quarry_b1f_silver_boon"
 
 [node name="GroundItem3" parent="TilemapRoot" instance=ExtResource("6_phx7s")]
 position = Vector2(-78, 105)
+pickedUpItem = ExtResource("9_3i45i")
+saveName = "gs_quarry_b1f_sorcery_elixir"
 
 [node name="GroundItem4" parent="TilemapRoot" instance=ExtResource("6_phx7s")]
-position = Vector2(440, 21)
+position = Vector2(344, -171)
+pickedUpItem = ExtResource("8_yvtw0")
+saveName = "gs_quarry_b1f_marble_ring"
 
 [node name="OneTileWideNav" type="NavigationRegion2D" parent="."]
 visible = false

@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://5jgxqivgi24k"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_565v4"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_br5tj"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="3_ufr6e"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="4_4pfpp"]
+
+[sub_resource type="Resource" id="Resource_67uo0"]
+script = ExtResource("1_565v4")
+lines = Array[String](["One of the Spelunkers must have made this... I'll bet they had a break and saw a chunk of marble they had to chisel!", "Seems like whoever made it dropped it in a hurry... Probably to get back to work."])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[resource]
+script = ExtResource("4_4pfpp")
+items = Array[ExtResource("1_565v4")]([SubResource("Resource_67uo0")])
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"

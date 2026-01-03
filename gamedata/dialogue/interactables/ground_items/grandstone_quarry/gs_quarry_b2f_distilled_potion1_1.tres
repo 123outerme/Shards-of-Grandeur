@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://367nnnls75kp"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_lcldw"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_sjuwv"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_vrtd5"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_sjuwv"]
+
+[sub_resource type="Resource" id="Resource_4fc2v"]
+script = ExtResource("1_lcldw")
+lines = Array[String](["This drink is covered in the reddish dust of the quarry's rock. Someone must've recently carved this room..."])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[resource]
+script = ExtResource("3_sjuwv")
+items = Array[ExtResource("1_lcldw")]([SubResource("Resource_4fc2v")])
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"

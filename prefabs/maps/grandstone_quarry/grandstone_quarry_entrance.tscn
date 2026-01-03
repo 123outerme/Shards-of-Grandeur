@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://dsqmg0tevwkip"]
+[gd_scene load_steps=20 format=4 uid="uid://dsqmg0tevwkip"]
 
 [ext_resource type="Script" uid="uid://vg00rfnn3346" path="res://scripts/overworld/map_script.gd" id="1_cicbu"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_3whso"]
@@ -10,6 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://d3rsvv5iihm7t" path="res://prefabs/overworld/warp_zone.tscn" id="5_rvddn"]
 [ext_resource type="PackedScene" uid="uid://b1u1r7encrpgs" path="res://prefabs/overworld/camera_hold_zone.tscn" id="6_l25xb"]
 [ext_resource type="Resource" uid="uid://d3mttj27wg6qw" path="res://gamedata/dialogue/grandstone_quarry/foreman/gs_foreman_entrance_1.tres" id="6_qbhjq"]
+[ext_resource type="Resource" uid="uid://c2idon2wli2uf" path="res://gamedata/ground_items/grandstone_quarry/gs_quarry_entrance_miners_helm.tres" id="9_qbhjq"]
+[ext_resource type="Resource" uid="uid://c1thkwgyaebu0" path="res://gamedata/ground_items/grandstone_quarry/gs_quarry_entrance_desert_fruit.tres" id="10_cbehy"]
 
 [sub_resource type="Resource" id="Resource_cbehy"]
 script = ExtResource("5_hiqvq")
@@ -120,9 +122,13 @@ visible = false
 
 [node name="GroundItem" parent="TilemapRoot" instance=ExtResource("3_jqha5")]
 position = Vector2(145, -103)
+pickedUpItem = ExtResource("9_qbhjq")
+saveName = "gs_quarry_entrance_miners_helm"
 
 [node name="GroundItem2" parent="TilemapRoot" instance=ExtResource("3_jqha5")]
 position = Vector2(-158, 156)
+pickedUpItem = ExtResource("10_cbehy")
+saveName = "gs_quarry_entrance_desert_fruit"
 
 [node name="OneTileWideNav" type="NavigationRegion2D" parent="."]
 visible = false
