@@ -13,62 +13,31 @@
 [sub_resource type="Resource" id="Resource_binva"]
 script = ExtResource("2_ujbp0")
 choiceBtn = "Goodbye!"
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("3_eibye")]([])
-repeatsItem = false
-buttonDims = Vector2(80, 40)
-turnsInQuest = ""
 isDeclineChoice = true
 metadata/_custom_type_script = "uid://bk6klhv2ls55w"
 
 [sub_resource type="Resource" id="Resource_p0wvv"]
 script = ExtResource("4_v67uw")
 opensShop = true
-addsFollowerId = ""
-removesFollowerId = ""
 choiceBtn = "Shop"
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("3_eibye")]([])
-repeatsItem = false
-buttonDims = Vector2(80, 40)
-turnsInQuest = ""
-isDeclineChoice = false
 metadata/_custom_type_script = "uid://c5cim8hvxtg3h"
 
 [sub_resource type="Resource" id="Resource_v67uw"]
 script = ExtResource("2_ujbp0")
 choiceBtn = "Solius?"
 leadsTo = ExtResource("5_v67uw")
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("3_eibye")]([])
-repeatsItem = false
-buttonDims = Vector2(80, 40)
-turnsInQuest = ""
-isDeclineChoice = false
 metadata/_custom_type_script = "uid://bk6klhv2ls55w"
 
 [sub_resource type="Resource" id="Resource_0xtsb"]
 script = ExtResource("2_ujbp0")
 choiceBtn = "Forge A Crown?"
 leadsTo = ExtResource("6_binva")
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("3_eibye")]([])
-repeatsItem = false
-buttonDims = Vector2(80, 40)
-turnsInQuest = ""
-isDeclineChoice = false
 metadata/_custom_type_script = "uid://bk6klhv2ls55w"
 
 [sub_resource type="Resource" id="Resource_d2wmk"]
 script = ExtResource("2_ujbp0")
 choiceBtn = "King Rat Crown?"
 leadsTo = ExtResource("7_p0wvv")
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("3_eibye")]([])
-repeatsItem = false
-buttonDims = Vector2(80, 40)
-turnsInQuest = ""
-isDeclineChoice = false
 metadata/_custom_type_script = "uid://bk6klhv2ls55w"
 
 [sub_resource type="Resource" id="Resource_eibye"]
@@ -76,21 +45,11 @@ script = ExtResource("1_gqjdk")
 lines = Array[String](["Hello, traveller! I am Smith the smith.
 Yes, I know.
 Welcome to the Frostmint Forge!"])
-minShowSecs = Array[float]([])
 animation = "talk"
-speakerOverride = ""
-actorAnimation = ""
-animateActorTreePath = ""
-animateActorIsPlayer = false
 choices = Array[ExtResource("2_ujbp0")]([SubResource("Resource_binva"), SubResource("Resource_p0wvv"), SubResource("Resource_v67uw"), SubResource("Resource_0xtsb"), SubResource("Resource_d2wmk")])
 metadata/_custom_type_script = "uid://grt2yrupha8c"
 
 [resource]
 script = ExtResource("3_ujbp0")
-entryId = ""
 items = Array[ExtResource("1_gqjdk")]([SubResource("Resource_eibye")])
-ordStoryRequirements = Array[ExtResource("2_ega4p")]([])
-closesDialogue = false
-fullHealsPlayer = false
-annotation = ""
 metadata/_custom_type_script = "uid://1n6mppc7hmmf"

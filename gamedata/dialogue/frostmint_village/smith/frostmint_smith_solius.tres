@@ -9,48 +9,16 @@
 [sub_resource type="Resource" id="Resource_p2jk6"]
 script = ExtResource("1_4frjs")
 lines = Array[String](["A traveller cloaked in red? Actually, I've seen him, and I made a sword for him too!", "He saved our town from a swarm of dangerous creatures, and I had to repay him somehow. Seemed fitting!", "The Tavernkeeper saw him last. Maybe you should talk to him."])
-minShowSecs = Array[float]([])
 animation = "talk"
-speakerOverride = ""
-actorAnimation = ""
-animateActorTreePath = ""
-animateActorIsPlayer = false
-choices = Array[ExtResource("2_ul8j4")]([])
 metadata/_custom_type_script = "uid://grt2yrupha8c"
 
 [sub_resource type="Resource" id="Resource_ul8j4"]
 script = ExtResource("2_j81vj")
-minAct = 0
-maxAct = -1
 prereqQuests = Array[String](["A Lost Comrade#Retrace His Steps"])
-prereqCutscenes = Array[String]([])
-prereqDialogues = Array[String]([])
-prereqPlacesVisited = Array[String]([])
-prereqSpecialBattles = Array[String]([])
-prereqDefeatedEnemies = Array[String]([])
-prereqPuzzles = Array[String]([])
-prereqPuzzleStates = Dictionary[String, Array]({})
-prereqDiscoveredEvolutions = Array[String]([])
-prereqHavingFollowers = Array[String]([])
-prereqHasItems = Array[ExtResource("3_j81vj")]([])
-invalidAfterCompletingQuests = Array[String]([])
-invalidAfterFailingQuests = Array[String]([])
-invalidAfterCutscenes = Array[String]([])
-invalidAfterDialogues = Array[String]([])
-invalidAfterVistingPlaces = Array[String]([])
-invalidAfterSpecialBattles = Array[String]([])
-invalidAfterSolvingPuzzles = Array[String]([])
-invalidFromPuzzleStates = Dictionary[String, Array]({})
-invalidFromHavingFollowers = Array[String]([])
-invalidFromHavingItems = Array[ExtResource("3_j81vj")]([])
 metadata/_custom_type_script = "uid://bjesn36acj0uh"
 
 [resource]
 script = ExtResource("3_ul8j4")
-entryId = ""
 items = Array[ExtResource("1_4frjs")]([SubResource("Resource_p2jk6")])
 ordStoryRequirements = Array[ExtResource("2_j81vj")]([SubResource("Resource_ul8j4")])
-closesDialogue = false
-fullHealsPlayer = false
-annotation = ""
 metadata/_custom_type_script = "uid://1n6mppc7hmmf"

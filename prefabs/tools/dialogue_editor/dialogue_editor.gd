@@ -189,8 +189,9 @@ func load_menu_state() -> void:
 			testCamera.disableInputHandling = false
 		ToolDialogueEditorMenuState.EDIT_ENTRY:
 			var lastState: ToolDialogueEditorMenuState = menuStateStack.back()
-			if lastState == ToolDialogueEditorMenuState.CHOOSE_NPC or lastState == ToolDialogueEditorMenuState.CREATE_OR_LOAD_ENTRY:
+			if lastState == ToolDialogueEditorMenuState.CHOOSE_NPC or lastState == ToolDialogueEditorMenuState.LOAD_ENTRY or lastState == ToolDialogueEditorMenuState.CREATE_OR_LOAD_ENTRY:
 				load_dialogue_item_editors()
+			load_entry_settings()
 		ToolDialogueEditorMenuState.PREVIEW_ENTRY:
 			preview_entry()
 	load_action_buttons()
@@ -430,6 +431,14 @@ func _action_button_pressed(action: ToolDialogueEditorButtonAction) -> void:
 				stop_previewing()
 				return
 			else:
+				if menuState == ToolDialogueEditorMenuState.CHOOSE_MAP:
+					editingMap = null
+				if menuState == ToolDialogueEditorMenuState.CHOOSE_NPC:
+					editingNpc = null
+					editingInteractable = null
+					for child: Node in npcButtons.get_children():
+						child.visible = false
+						child.queue_free()
 				menuState = menuStateStack.pop_back()
 		ToolDialogueEditorButtonAction.CREATE_ENTRY_ACTION:
 			editingEntry = DialogueEntry.new()

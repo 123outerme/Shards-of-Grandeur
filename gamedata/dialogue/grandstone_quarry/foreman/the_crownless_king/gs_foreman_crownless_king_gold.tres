@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=24 format=3 uid="uid://cow4kfvybuxk3"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=25 format=3 uid="uid://gn8uf66n1o1l"]
 
 [ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_qu7jd"]
 [ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_qxpoa"]
@@ -9,6 +9,7 @@
 [ext_resource type="Resource" uid="uid://bkud21u4eib36" path="res://gamedata/dialogue/grandstone_quarry/foreman/the_crownless_king/gs_foreman_crownless_king_gold_quarry_intro_inprogress.tres" id="5_m74sg"]
 [ext_resource type="Resource" uid="uid://bowmhnl8gmekp" path="res://gamedata/dialogue/grandstone_quarry/foreman/intro_quest/gs_foreman_intro_quest_start.tres" id="5_n3r07"]
 [ext_resource type="Script" uid="uid://b6oofnelefs8o" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="5_uuoxp"]
+[ext_resource type="Resource" path="res://gamedata/dialogue/grandstone_quarry/foreman/the_crownless_king/gs_foreman_crownless_king_gold_turnin.tres" id="9_idh46"]
 
 [sub_resource type="Resource" id="Resource_jxr01"]
 script = ExtResource("2_qxpoa")
@@ -82,6 +83,7 @@ isDeclineChoice = true
 [sub_resource type="Resource" id="Resource_te6oy"]
 script = ExtResource("2_qxpoa")
 choiceBtn = "I'll Go Get It."
+leadsTo = ExtResource("9_idh46")
 
 [sub_resource type="Resource" id="Resource_ovreq"]
 script = ExtResource("1_qu7jd")
@@ -92,6 +94,7 @@ choices = Array[ExtResource("2_qxpoa")]([SubResource("Resource_eby0u"), SubResou
 [sub_resource type="Resource" id="Resource_n3r07"]
 script = ExtResource("2_tfdoi")
 prereqQuests = Array[String](["The Crownless King#A New Crown"])
+invalidAfterCompletingQuests = Array[String](["The Crownless King#Quarry of Minerals"])
 metadata/_custom_type_script = "uid://bjesn36acj0uh"
 
 [resource]

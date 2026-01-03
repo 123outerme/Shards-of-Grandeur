@@ -9,48 +9,16 @@
 [sub_resource type="Resource" id="Resource_chh57"]
 script = ExtResource("1_a72ee")
 lines = Array[String](["When you've got the gold you need for this King Rat's crown, bring it here. I'll get to work on it right away."])
-minShowSecs = Array[float]([])
 animation = "talk"
-speakerOverride = ""
-actorAnimation = ""
-animateActorTreePath = ""
-animateActorIsPlayer = false
-choices = Array[ExtResource("2_wnacb")]([])
 metadata/_custom_type_script = "uid://grt2yrupha8c"
 
 [sub_resource type="Resource" id="Resource_id3oc"]
 script = ExtResource("2_xy8iw")
-minAct = 0
-maxAct = -1
-prereqQuests = Array[String]([])
-prereqCutscenes = Array[String]([])
 prereqDialogues = Array[String](["frostmint_smith_forge#king_rat_crown_job"])
-prereqPlacesVisited = Array[String]([])
-prereqSpecialBattles = Array[String]([])
-prereqDefeatedEnemies = Array[String]([])
-prereqPuzzles = Array[String]([])
-prereqPuzzleStates = Dictionary[String, Array]({})
-prereqDiscoveredEvolutions = Array[String]([])
-prereqHavingFollowers = Array[String]([])
-prereqHasItems = Array[ExtResource("4_wnacb")]([])
-invalidAfterCompletingQuests = Array[String]([])
-invalidAfterFailingQuests = Array[String]([])
-invalidAfterCutscenes = Array[String]([])
-invalidAfterDialogues = Array[String]([])
-invalidAfterVistingPlaces = Array[String]([])
-invalidAfterSpecialBattles = Array[String]([])
-invalidAfterSolvingPuzzles = Array[String]([])
-invalidFromPuzzleStates = Dictionary[String, Array]({})
-invalidFromHavingFollowers = Array[String]([])
-invalidFromHavingItems = Array[ExtResource("4_wnacb")]([])
 metadata/_custom_type_script = "uid://bjesn36acj0uh"
 
 [resource]
 script = ExtResource("3_wnacb")
-entryId = ""
 items = Array[ExtResource("1_a72ee")]([SubResource("Resource_chh57")])
 ordStoryRequirements = Array[ExtResource("2_xy8iw")]([SubResource("Resource_id3oc")])
-closesDialogue = false
-fullHealsPlayer = false
-annotation = ""
 metadata/_custom_type_script = "uid://1n6mppc7hmmf"

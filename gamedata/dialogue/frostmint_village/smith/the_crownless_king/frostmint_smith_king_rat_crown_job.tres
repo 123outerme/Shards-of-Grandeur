@@ -9,100 +9,46 @@
 [sub_resource type="Resource" id="Resource_1stqp"]
 script = ExtResource("1_v88py")
 lines = Array[String](["I come as the mediator for the King Rat, in the Quiet Tundra. He would like to commission your services, and have you forge him a new crown."])
-minShowSecs = Array[float]([])
 animation = "stand"
 speakerOverride = "@"
-actorAnimation = ""
-animateActorTreePath = ""
-animateActorIsPlayer = false
-choices = Array[ExtResource("2_emt2p")]([])
 metadata/_custom_type_script = "uid://grt2yrupha8c"
 
 [sub_resource type="Resource" id="Resource_51yna"]
 script = ExtResource("1_v88py")
 lines = Array[String](["The King Rat? A talking Rat asked you to have me craft a crown?", "... If I'd not seen many strange things in my lifetime, I'd be unwilling to believe you. But, as it turns out, I've seen the Rats along the Quiet Tundra roads.", "What sort of crown are we talking?"])
-minShowSecs = Array[float]([])
 animation = "talk"
-speakerOverride = ""
-actorAnimation = ""
-animateActorTreePath = ""
-animateActorIsPlayer = false
-choices = Array[ExtResource("2_emt2p")]([])
 metadata/_custom_type_script = "uid://grt2yrupha8c"
 
 [sub_resource type="Resource" id="Resource_emt2p"]
 script = ExtResource("1_v88py")
 lines = Array[String](["A crown of solid gold, encrusted with three precious jewels. The King Rat would be willing to pay any price you ask."])
-minShowSecs = Array[float]([])
 animation = "stand"
 speakerOverride = "@"
-actorAnimation = ""
-animateActorTreePath = ""
-animateActorIsPlayer = false
-choices = Array[ExtResource("2_emt2p")]([])
 metadata/_custom_type_script = "uid://grt2yrupha8c"
 
 [sub_resource type="Resource" id="Resource_2jnrc"]
 script = ExtResource("1_v88py")
 lines = Array[String](["Raw gold is precious to us, and we have very little of it. I would need to source more, but that would be a heavy burden.", "So long as I can get the gold, though, I'll say we can negotiate the price once I've forged the crown."])
-minShowSecs = Array[float]([])
 animation = "talk"
-speakerOverride = ""
-actorAnimation = ""
-animateActorTreePath = ""
-animateActorIsPlayer = false
-choices = Array[ExtResource("2_emt2p")]([])
 metadata/_custom_type_script = "uid://grt2yrupha8c"
 
 [sub_resource type="Resource" id="Resource_e0s57"]
 script = ExtResource("1_v88py")
 lines = Array[String](["I know of a place where I can get the raw gold for you. Grandstone Quarry must have a surplus of it. I'll have to talk to the Quarry Foreman about borrowing some of the gold we've dug up.", "If I handle gathering the raw gold you need, you'll agree?"])
-minShowSecs = Array[float]([])
 animation = "stand"
 speakerOverride = "@"
-actorAnimation = ""
-animateActorTreePath = ""
-animateActorIsPlayer = false
-choices = Array[ExtResource("2_emt2p")]([])
 metadata/_custom_type_script = "uid://grt2yrupha8c"
 
 [sub_resource type="Resource" id="Resource_2dedj"]
 script = ExtResource("1_v88py")
 lines = Array[String](["Sure, I accept. If the Rats are moving in, it'd be good to extend the olive branch and offer my services. You can return to the King Rat and tell him I'm glad to help out our new neighbor!"])
-minShowSecs = Array[float]([])
 animation = "talk"
-speakerOverride = ""
-actorAnimation = ""
-animateActorTreePath = ""
-animateActorIsPlayer = false
-choices = Array[ExtResource("2_emt2p")]([])
 metadata/_custom_type_script = "uid://grt2yrupha8c"
 
 [sub_resource type="Resource" id="Resource_j4je4"]
 script = ExtResource("2_51yna")
-minAct = 0
-maxAct = -1
 prereqQuests = Array[String](["The Crownless King#A Royal Return"])
-prereqCutscenes = Array[String]([])
-prereqDialogues = Array[String]([])
-prereqPlacesVisited = Array[String]([])
-prereqSpecialBattles = Array[String]([])
-prereqDefeatedEnemies = Array[String]([])
-prereqPuzzles = Array[String]([])
-prereqPuzzleStates = Dictionary[String, Array]({})
-prereqDiscoveredEvolutions = Array[String]([])
-prereqHavingFollowers = Array[String]([])
-prereqHasItems = Array[ExtResource("3_emt2p")]([])
-invalidAfterCompletingQuests = Array[String]([])
-invalidAfterFailingQuests = Array[String]([])
-invalidAfterCutscenes = Array[String]([])
 invalidAfterDialogues = Array[String](["frostmint_smith_forge#king_rat_crown_job"])
-invalidAfterVistingPlaces = Array[String]([])
-invalidAfterSpecialBattles = Array[String]([])
-invalidAfterSolvingPuzzles = Array[String]([])
-invalidFromPuzzleStates = Dictionary[String, Array]({})
-invalidFromHavingFollowers = Array[String]([])
-invalidFromHavingItems = Array[ExtResource("3_emt2p")]([])
 metadata/_custom_type_script = "uid://bjesn36acj0uh"
 
 [resource]
@@ -111,6 +57,4 @@ entryId = "king_rat_crown_job"
 items = Array[ExtResource("1_v88py")]([SubResource("Resource_1stqp"), SubResource("Resource_51yna"), SubResource("Resource_emt2p"), SubResource("Resource_2jnrc"), SubResource("Resource_e0s57"), SubResource("Resource_2dedj")])
 ordStoryRequirements = Array[ExtResource("2_51yna")]([SubResource("Resource_j4je4")])
 closesDialogue = true
-fullHealsPlayer = false
-annotation = ""
 metadata/_custom_type_script = "uid://1n6mppc7hmmf"

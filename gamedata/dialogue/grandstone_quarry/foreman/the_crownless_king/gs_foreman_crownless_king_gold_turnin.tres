@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=9 format=3 uid="uid://bsk75waktwvbe"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_x2hqd"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_2xx7n"]
+[ext_resource type="Script" uid="uid://b6oofnelefs8o" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_2xx7n"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="3_alnrd"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="4_yg18o"]
+
+[sub_resource type="Resource" id="Resource_alnrd"]
+script = ExtResource("2_2xx7n")
+choiceBtn = "Wait..."
+isDeclineChoice = true
+
+[sub_resource type="Resource" id="Resource_yg18o"]
+script = ExtResource("2_2xx7n")
+choiceBtn = "Thanks!"
+turnsInQuest = "The Crownless King#Quarry of Minerals"
+
+[sub_resource type="Resource" id="Resource_af4gf"]
+script = ExtResource("1_x2hqd")
+lines = Array[String](["Now that the Titan is taken care of, it's going to be the safest it'll ever be. So, you'd better get going."])
+animation = "talk"
+choices = Array[ExtResource("2_2xx7n")]([SubResource("Resource_alnrd"), SubResource("Resource_yg18o")])
+
+[resource]
+script = ExtResource("4_yg18o")
+items = Array[ExtResource("1_x2hqd")]([SubResource("Resource_af4gf")])

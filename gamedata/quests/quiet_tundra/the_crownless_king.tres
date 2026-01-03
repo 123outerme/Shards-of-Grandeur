@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Quest" load_steps=24 format=3 uid="uid://dpasfbf5p7oka"]
+[gd_resource type="Resource" script_class="Quest" load_steps=27 format=3 uid="uid://dpasfbf5p7oka"]
 
 [ext_resource type="Script" uid="uid://bnw42uegqk4wp" path="res://scripts/quests/quest.gd" id="1_j7i3x"]
 [ext_resource type="Script" uid="uid://b3j2bj1p0bkq8" path="res://scripts/quests/quest_step.gd" id="2_5o8i1"]
@@ -119,17 +119,43 @@ objectiveName = "gs_quarry_entrance_foreman#quarry_foreman_crown_gold"
 turnInNames = Array[String](["gs_quarry_entrance_foreman"])
 displayObjName = "Quarry Foreman"
 displayTurnInName = "Quarry Foreman"
+turnInDialogue = Array[ExtResource("3_5o8i1")]([null])
 metadata/_custom_type_script = "uid://b3j2bj1p0bkq8"
 
 [sub_resource type="Resource" id="Resource_jafpe"]
 script = ExtResource("2_5o8i1")
-name = "TBD"
+name = "Gather The Gold"
+description = "Find the piles of gold stashed in the Grandstone Quarry!"
+locations = Array[int]([12])
+type = 6
+metadata/_custom_type_script = "uid://b3j2bj1p0bkq8"
+
+[sub_resource type="Resource" id="Resource_e87w4"]
+script = ExtResource("2_5o8i1")
+name = "Export Approval"
+description = "Talk to Dr. Ildran about offering the gold as a gift to the King Rat!"
 objectiveName = "---"
+metadata/_custom_type_script = "uid://b3j2bj1p0bkq8"
+
+[sub_resource type="Resource" id="Resource_fhsgq"]
+script = ExtResource("2_5o8i1")
+name = "A Gilded Age"
+description = "Bring the raw gold to the Frostmint Forge so it can be made into a crown!"
+objectiveName = "---"
+metadata/_custom_type_script = "uid://b3j2bj1p0bkq8"
+
+[sub_resource type="Resource" id="Resource_61nwe"]
+script = ExtResource("2_5o8i1")
+name = "TBD"
+description = "Smith, the smith of Frostmint Forge, is currently working on the crown!"
+type = 3
+objectiveName = "---"
+customStatusStr = "???"
 metadata/_custom_type_script = "uid://b3j2bj1p0bkq8"
 
 [resource]
 script = ExtResource("1_j7i3x")
 questName = "The Crownless King"
 description = "Where's your crown, King of the Rats?"
-steps = Array[ExtResource("2_5o8i1")]([SubResource("Resource_iodx2"), SubResource("Resource_5o8i1"), SubResource("Resource_gb4qg"), SubResource("Resource_ibg1x"), SubResource("Resource_jfs2c"), SubResource("Resource_t0sud"), SubResource("Resource_jafpe")])
+steps = Array[ExtResource("2_5o8i1")]([SubResource("Resource_iodx2"), SubResource("Resource_5o8i1"), SubResource("Resource_gb4qg"), SubResource("Resource_ibg1x"), SubResource("Resource_jfs2c"), SubResource("Resource_t0sud"), SubResource("Resource_jafpe"), SubResource("Resource_e87w4"), SubResource("Resource_fhsgq"), SubResource("Resource_61nwe")])
 metadata/_custom_type_script = "uid://bnw42uegqk4wp"
