@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="CodexEntry" load_steps=5 format=3 uid="uid://cv36k2g8nmhjr"]
+
+[ext_resource type="Script" uid="uid://c4twgpj0pv84" path="res://scripts/codex/codex_entry.gd" id="1_a7ka5"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_h3a0m"]
+[ext_resource type="Script" uid="uid://fw22o8hbosnk" path="res://scripts/inventory/inventory_slot.gd" id="3_h3a0m"]
+
+[sub_resource type="Resource" id="Resource_46cg3"]
+script = ExtResource("2_h3a0m")
+prereqDiscoveredEvolutions = Array[String](["mesa_golem#miner_golem"])
+metadata/_custom_type_script = "uid://bjesn36acj0uh"
+
+[resource]
+script = ExtResource("1_a7ka5")
+id = "miner_golem"
+title = "Miner Golem"
+storyRequirements = Array[ExtResource("2_h3a0m")]([SubResource("Resource_46cg3")])
+description = "Miner Golem is a Mesa Golem evolution, performed by equipping the Mesa with the Mage-Light. The Miner Golem is a Spelunker's magical helper, enchanted with magic able to break cavern walls."
+metadata/_custom_type_script = "uid://c4twgpj0pv84"

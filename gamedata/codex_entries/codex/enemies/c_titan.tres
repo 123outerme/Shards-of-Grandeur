@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="CodexEntry" load_steps=5 format=3 uid="uid://cl6sdgddebvt5"]
+
+[ext_resource type="Script" uid="uid://c4twgpj0pv84" path="res://scripts/codex/codex_entry.gd" id="1_fo32r"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_vjoqs"]
+[ext_resource type="Script" uid="uid://fw22o8hbosnk" path="res://scripts/inventory/inventory_slot.gd" id="3_vjoqs"]
+
+[sub_resource type="Resource" id="Resource_kyio8"]
+script = ExtResource("2_vjoqs")
+prereqDefeatedEnemies = Array[String](["titan"])
+metadata/_custom_type_script = "uid://bjesn36acj0uh"
+
+[resource]
+script = ExtResource("1_fo32r")
+id = "titan"
+title = "Titan"
+storyRequirements = Array[ExtResource("2_vjoqs")]([SubResource("Resource_kyio8")])
+description = "The Titan is a creature featured in most of the prominent creation myths. A group of elemental Titans created the world as we see it today. However, their sightings being rare today, this begs the question: Where did they all go?"
+metadata/_custom_type_script = "uid://c4twgpj0pv84"

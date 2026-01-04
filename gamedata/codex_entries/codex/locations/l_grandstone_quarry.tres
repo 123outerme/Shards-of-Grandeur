@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="CodexEntry" load_steps=5 format=3 uid="uid://crprra2qhvppu"]
+
+[ext_resource type="Script" uid="uid://c4twgpj0pv84" path="res://scripts/codex/codex_entry.gd" id="1_h1hj8"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_ynmxa"]
+[ext_resource type="Script" uid="uid://fw22o8hbosnk" path="res://scripts/inventory/inventory_slot.gd" id="3_ynmxa"]
+
+[sub_resource type="Resource" id="Resource_rjn3b"]
+script = ExtResource("2_ynmxa")
+prereqPlacesVisited = Array[String](["grandstone_quarry_entrance"])
+metadata/_custom_type_script = "uid://bjesn36acj0uh"
+
+[resource]
+script = ExtResource("1_h1hj8")
+id = "grandstone_quarry"
+title = "Grandstone Quarry"
+storyRequirements = Array[ExtResource("2_ynmxa")]([SubResource("Resource_rjn3b")])
+description = "The Grandstone Quarry is the marble mine where Grandstone sources the materials to repair its ailing infrastructure. The tunnels are now home to dangerous creatures, but there are treasures below the ground that makes excavating it very much worth it."
+metadata/_custom_type_script = "uid://c4twgpj0pv84"
