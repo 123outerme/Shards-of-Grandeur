@@ -1,11 +1,16 @@
-[gd_resource type="Resource" script_class="CombatantRewards" load_steps=8 format=3 uid="uid://livt6kpac1a1"]
+[gd_resource type="Resource" script_class="CombatantRewards" load_steps=10 format=3 uid="uid://livt6kpac1a1"]
 
 [ext_resource type="Script" uid="uid://o0eqgjrxwybg" path="res://scripts/battle/combatant/combatant_rewards.gd" id="1_iaaxd"]
 [ext_resource type="Script" uid="uid://xmdasx5snbya" path="res://scripts/battle/weighted_things/weighted_reward.gd" id="2_787io"]
 [ext_resource type="Script" uid="uid://flaq3s0m3pf2" path="res://scripts/reward/reward.gd" id="3_787io"]
+[ext_resource type="Resource" uid="uid://biybwlxtk4y1c" path="res://gamedata/items/shard/titan_shard.tres" id="3_iptq8"]
+[ext_resource type="Resource" uid="uid://7t2wewwgvuf8" path="res://gamedata/items/key_items/azure_boon.tres" id="5_ruaco"]
 
 [sub_resource type="Resource" id="Resource_iptq8"]
 script = ExtResource("3_787io")
+experience = 70
+gold = 10
+item = ExtResource("3_iptq8")
 metadata/_custom_type_script = "uid://flaq3s0m3pf2"
 
 [sub_resource type="Resource" id="Resource_ruaco"]
@@ -16,6 +21,9 @@ metadata/_custom_type_script = "uid://xmdasx5snbya"
 
 [sub_resource type="Resource" id="Resource_s7xoe"]
 script = ExtResource("3_787io")
+experience = 70
+gold = 10
+item = ExtResource("5_ruaco")
 metadata/_custom_type_script = "uid://flaq3s0m3pf2"
 
 [sub_resource type="Resource" id="Resource_ekikn"]
