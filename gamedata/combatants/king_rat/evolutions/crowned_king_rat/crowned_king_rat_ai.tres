@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="CombatantAi" load_steps=18 format=3 uid="uid://bo8c46ntu0cno"]
+[gd_resource type="Resource" script_class="CombatantAi" load_steps=19 format=3 uid="uid://bo8c46ntu0cno"]
 
 [ext_resource type="Script" uid="uid://dflemol3c36f5" path="res://scripts/battle/combatant/abstract_combatant_ai_layer.gd" id="1_0dvfk"]
 [ext_resource type="Script" uid="uid://vxl3qi4y0tbk" path="res://scripts/battle/combatant/ai_layers/damage_layer.gd" id="2_sfv66"]
@@ -11,9 +11,15 @@
 [ext_resource type="Script" uid="uid://b1f1xty1kium3" path="res://scripts/battle/combatant/ai_layers/signature_layer.gd" id="9_rme1o"]
 [ext_resource type="Script" uid="uid://w2owehn7fmot" path="res://scripts/battle/combatant/combatant_ai.gd" id="10_tfadr"]
 
+[sub_resource type="Resource" id="Resource_48qrc"]
+script = ExtResource("8_q7jep")
+weight = 0.1
+metadata/_custom_type_script = "uid://dim2s6pbuqjth"
+
 [sub_resource type="Resource" id="Resource_421vb"]
 script = ExtResource("4_6hsmf")
 aggroStrategy = 1
+subLayers = Array[ExtResource("3_h035v")]([SubResource("Resource_48qrc")])
 weight = 0.25
 
 [sub_resource type="Resource" id="Resource_84h8a"]

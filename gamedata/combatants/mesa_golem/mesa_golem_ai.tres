@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="CombatantAi" load_steps=20 format=3 uid="uid://brejv3xt1u3v1"]
+[gd_resource type="Resource" script_class="CombatantAi" load_steps=21 format=3 uid="uid://brejv3xt1u3v1"]
 
 [ext_resource type="Script" uid="uid://dflemol3c36f5" path="res://scripts/battle/combatant/abstract_combatant_ai_layer.gd" id="1_7mbah"]
 [ext_resource type="Script" uid="uid://vxl3qi4y0tbk" path="res://scripts/battle/combatant/ai_layers/damage_layer.gd" id="2_psdcy"]
@@ -12,9 +12,15 @@
 [ext_resource type="Script" uid="uid://b1f1xty1kium3" path="res://scripts/battle/combatant/ai_layers/signature_layer.gd" id="5_yys6w"]
 [ext_resource type="Script" uid="uid://dw68jtuc0bxvn" path="res://scripts/battle/combatant/ai_layers/orbs_layer.gd" id="6_yc6s4"]
 
+[sub_resource type="Resource" id="Resource_my3td"]
+script = ExtResource("4_sm5ab")
+weight = 0.1
+metadata/_custom_type_script = "uid://dim2s6pbuqjth"
+
 [sub_resource type="Resource" id="Resource_kycbf"]
 script = ExtResource("3_32mjd")
 aggroStrategy = 1
+subLayers = Array[ExtResource("3_my3td")]([SubResource("Resource_my3td")])
 weight = 0.2
 
 [sub_resource type="Resource" id="Resource_bd1m0"]
