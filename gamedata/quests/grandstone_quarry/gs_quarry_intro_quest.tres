@@ -1,18 +1,26 @@
-[gd_resource type="Resource" script_class="Quest" load_steps=15 format=3 uid="uid://djtn6hvl2oh06"]
+[gd_resource type="Resource" script_class="Quest" load_steps=22 format=3 uid="uid://djtn6hvl2oh06"]
 
 [ext_resource type="Script" uid="uid://bnw42uegqk4wp" path="res://scripts/quests/quest.gd" id="1_0r156"]
 [ext_resource type="Script" uid="uid://b3j2bj1p0bkq8" path="res://scripts/quests/quest_step.gd" id="2_ap2j5"]
 [ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_ap2j5"]
 [ext_resource type="Resource" uid="uid://dn0qav5ruggbt" path="res://gamedata/dialogue/grandstone_quarry/spelunker_b2f/quarry_spelunker_b2f_thirsty.tres" id="4_2v7wy"]
+[ext_resource type="Script" uid="uid://flaq3s0m3pf2" path="res://scripts/reward/reward.gd" id="4_fkdwh"]
 [ext_resource type="Resource" uid="uid://bt6khckgcs8js" path="res://gamedata/dialogue/grandstone_quarry/spelunker_b2f/quarry_spelunker_b2f_defeat_titan.tres" id="5_1docg"]
 [ext_resource type="Resource" uid="uid://b7jr6cqm5n60m" path="res://gamedata/dialogue/grandstone_quarry/spelunker_b2f/quarry_spelunker_b2f_defeat_titan_turnin.tres" id="6_6gpwm"]
 [ext_resource type="Resource" uid="uid://7h8gbku3jqak" path="res://gamedata/dialogue/grandstone_quarry/foreman/intro_quest/gs_foreman_intro_quest_debrief.tres" id="7_kbl7p"]
 [ext_resource type="Resource" uid="uid://bwjf26oh8s1t5" path="res://gamedata/dialogue/grandstone_quarry/foreman/intro_quest/gs_foreman_intro_quest_debrief_turnin.tres" id="8_fkdwh"]
 
+[sub_resource type="Resource" id="Resource_78u0n"]
+script = ExtResource("4_fkdwh")
+experience = 160
+gold = 15
+metadata/_custom_type_script = "uid://flaq3s0m3pf2"
+
 [sub_resource type="Resource" id="Resource_2v7wy"]
 script = ExtResource("2_ap2j5")
 name = "A Miner Problem"
 description = "The Miner Golems that usually work alongside the Spelunkers are acting strange... Set them straight!"
+reward = SubResource("Resource_78u0n")
 locations = Array[int]([12])
 type = 2
 count = 3
@@ -20,20 +28,33 @@ objectiveName = "miner_golem"
 displayObjName = "Miner Golem"
 metadata/_custom_type_script = "uid://b3j2bj1p0bkq8"
 
+[sub_resource type="Resource" id="Resource_fkdwh"]
+script = ExtResource("4_fkdwh")
+experience = 50
+metadata/_custom_type_script = "uid://flaq3s0m3pf2"
+
 [sub_resource type="Resource" id="Resource_ap2j5"]
 script = ExtResource("2_ap2j5")
 name = "Mage-Light The Way"
 description = "It's hard to see in the quarry, and even harder the deeper you go. Find a Mage-Light somewhere around here!"
+reward = SubResource("Resource_fkdwh")
 locations = Array[int]([12])
 type = 6
 objectiveName = "Mage-Light"
 displayObjName = "Mage-Light"
 metadata/_custom_type_script = "uid://b3j2bj1p0bkq8"
 
+[sub_resource type="Resource" id="Resource_ug0ap"]
+script = ExtResource("4_fkdwh")
+experience = 160
+gold = 10
+metadata/_custom_type_script = "uid://flaq3s0m3pf2"
+
 [sub_resource type="Resource" id="Resource_aafm8"]
 script = ExtResource("2_ap2j5")
 name = "Stagmite Stampede"
 description = "These Stagmites are causing problems for the Spelunkers! Thin the herd, just a little."
+reward = SubResource("Resource_ug0ap")
 locations = Array[int]([12])
 type = 2
 count = 3
@@ -41,10 +62,17 @@ objectiveName = "stagmite"
 displayObjName = "Stagmite"
 metadata/_custom_type_script = "uid://b3j2bj1p0bkq8"
 
+[sub_resource type="Resource" id="Resource_s4n75"]
+script = ExtResource("4_fkdwh")
+experience = 100
+gold = 10
+metadata/_custom_type_script = "uid://flaq3s0m3pf2"
+
 [sub_resource type="Resource" id="Resource_1docg"]
 script = ExtResource("2_ap2j5")
 name = "Spelunker's Thirsty!"
 description = "Bring the Spelunker in the Quarry some Quenching Water, he is parched!"
+reward = SubResource("Resource_s4n75")
 locations = Array[int]([12])
 turnInLocations = Array[int]([12])
 type = 1
@@ -57,10 +85,17 @@ turnInDialogue = Array[ExtResource("3_ap2j5")]([ExtResource("4_2v7wy")])
 inProgressDialogue = Array[ExtResource("3_ap2j5")]([ExtResource("4_2v7wy")])
 metadata/_custom_type_script = "uid://b3j2bj1p0bkq8"
 
+[sub_resource type="Resource" id="Resource_444qc"]
+script = ExtResource("4_fkdwh")
+experience = 400
+gold = 20
+metadata/_custom_type_script = "uid://flaq3s0m3pf2"
+
 [sub_resource type="Resource" id="Resource_6gpwm"]
 script = ExtResource("2_ap2j5")
 name = "The Titan"
 description = "A Titanic problem has appeared in the quarry! Best to defeat it before it brings the roof down!"
+reward = SubResource("Resource_444qc")
 locations = Array[int]([12])
 turnInLocations = Array[int]([12])
 type = 4
@@ -72,10 +107,17 @@ turnInDialogue = Array[ExtResource("3_ap2j5")]([ExtResource("6_6gpwm")])
 inProgressDialogue = Array[ExtResource("3_ap2j5")]([ExtResource("5_1docg")])
 metadata/_custom_type_script = "uid://b3j2bj1p0bkq8"
 
+[sub_resource type="Resource" id="Resource_sttx7"]
+script = ExtResource("4_fkdwh")
+experience = 300
+gold = 10
+metadata/_custom_type_script = "uid://flaq3s0m3pf2"
+
 [sub_resource type="Resource" id="Resource_kbl7p"]
 script = ExtResource("2_ap2j5")
 name = "See the Foreman"
 description = "The Quarry Foreman will be glad to hear of the Titan's defeat!"
+reward = SubResource("Resource_sttx7")
 locations = Array[int]([12])
 turnInLocations = Array[int]([12])
 objectiveName = "gs_quarry_entrance_foreman#quarry_foreman_intro_debrief"
