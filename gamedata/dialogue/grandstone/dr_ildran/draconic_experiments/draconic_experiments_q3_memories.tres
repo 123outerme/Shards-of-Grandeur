@@ -12,40 +12,19 @@
 script = ExtResource("2_5bcwt")
 choiceBtn = "No Way."
 leadsTo = ExtResource("3_1eyiq")
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("3_71g2v")]([])
-repeatsItem = false
-buttonDims = Vector2(80, 40)
-turnsInQuest = ""
-isDeclineChoice = false
 
 [sub_resource type="Resource" id="Resource_nsogk"]
 script = ExtResource("2_5bcwt")
 choiceBtn = "Okay, Fine."
 leadsTo = ExtResource("5_6onjj")
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("3_71g2v")]([])
-repeatsItem = false
-buttonDims = Vector2(80, 40)
 turnsInQuest = "Draconic Experiments#The Dragon Shard#"
-isDeclineChoice = false
 
 [sub_resource type="Resource" id="Resource_3bvcf"]
 script = ExtResource("1_q74pi")
 lines = Array[String](["There's an experiment I wish to run, @. The Dragon is a fire-breathing destroyer, so it cannot help us rebuild.", "However, I have theorized that each Shard stores some memory of the creature inside. I wish to test this!", "Hand over your Dragon Shard, and we may learn powerful secrets from it. I'm pretty sure it won't be consumed! "])
-minShowSecs = Array[float]([])
 animation = "talk"
-speakerOverride = ""
-actorAnimation = ""
-animateActorTreePath = ""
-animateActorIsPlayer = false
 choices = Array[ExtResource("2_5bcwt")]([SubResource("Resource_cm421"), SubResource("Resource_nsogk")])
 
 [resource]
 script = ExtResource("3_b1gm6")
-entryId = ""
 items = Array[ExtResource("1_q74pi")]([SubResource("Resource_3bvcf")])
-ordStoryRequirements = Array[ExtResource("2_1y43o")]([])
-closesDialogue = false
-fullHealsPlayer = false
-annotation = ""

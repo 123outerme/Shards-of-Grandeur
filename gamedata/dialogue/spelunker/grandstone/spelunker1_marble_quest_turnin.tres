@@ -10,40 +10,20 @@
 [sub_resource type="Resource" id="Resource_qixoc"]
 script = ExtResource("2_hu178")
 choiceBtn = "Not Yet."
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("3_npjsr")]([])
-repeatsItem = false
-buttonDims = Vector2(80, 40)
-turnsInQuest = ""
 isDeclineChoice = true
 
 [sub_resource type="Resource" id="Resource_f8pny"]
 script = ExtResource("2_hu178")
 choiceBtn = "Here!"
 leadsTo = ExtResource("4_028jd")
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("3_npjsr")]([])
-repeatsItem = false
-buttonDims = Vector2(80, 40)
 turnsInQuest = "Fetch Some Marble#The Marble Pile"
-isDeclineChoice = false
 
 [sub_resource type="Resource" id="Resource_tu388"]
 script = ExtResource("1_dmlqq")
 lines = Array[String](["Did you bring the marble chunk I need?"])
-minShowSecs = Array[float]([])
 animation = "talk"
-speakerOverride = ""
-actorAnimation = ""
-animateActorTreePath = ""
-animateActorIsPlayer = false
 choices = Array[ExtResource("2_hu178")]([SubResource("Resource_qixoc"), SubResource("Resource_f8pny")])
 
 [resource]
 script = ExtResource("3_try61")
-entryId = ""
 items = Array[ExtResource("1_dmlqq")]([SubResource("Resource_tu388")])
-ordStoryRequirements = Array[ExtResource("2_mx3ae")]([])
-closesDialogue = false
-fullHealsPlayer = false
-annotation = ""

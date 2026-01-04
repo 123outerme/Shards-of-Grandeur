@@ -10,30 +10,16 @@
 [sub_resource type="Resource" id="Resource_gunhf"]
 script = ExtResource("1_hlswh")
 choiceBtn = "O-okay..."
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("3_icbbb")]([])
-repeatsItem = false
 buttonDims = Vector2(200, 40)
-turnsInQuest = ""
-isDeclineChoice = false
 
 [sub_resource type="Resource" id="Resource_f6w3b"]
 script = ExtResource("1_5hntk")
 lines = Array[String](["Oh, why thank you @, this will leave me plenty of time to continue practicing my death in the final Act! Come right back here once you've found it!"])
-minShowSecs = Array[float]([])
 animation = "talk"
-speakerOverride = ""
-actorAnimation = ""
-animateActorTreePath = ""
-animateActorIsPlayer = false
 choices = Array[ExtResource("1_hlswh")]([SubResource("Resource_gunhf")])
 
 [resource]
 script = ExtResource("1_msf1h")
 entryId = "play_script_quest_start"
 items = Array[ExtResource("1_5hntk")]([SubResource("Resource_f6w3b")])
-ordStoryRequirements = Array[ExtResource("4_fgf86")]([])
 startsQuest = ExtResource("3_rmd4w")
-closesDialogue = false
-fullHealsPlayer = false
-annotation = ""

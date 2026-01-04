@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_5u3h3"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_nvfxp"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="3_y3jpu"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="4_rxols"]
+
+[sub_resource type="Resource" id="Resource_2ntpd"]
+script = ExtResource("1_5u3h3")
+lines = Array[String](["Okay! It'll take some time to fashion a crown fit for the King Rat. You'll have to come back later."])
+animation = "talk"
+
+[resource]
+script = ExtResource("4_rxols")
+items = Array[ExtResource("1_5u3h3")]([SubResource("Resource_2ntpd")])
+closesDialogue = true

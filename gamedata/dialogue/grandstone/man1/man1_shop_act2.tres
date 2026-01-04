@@ -10,42 +10,21 @@
 [sub_resource type="Resource" id="Resource_cat7t"]
 script = ExtResource("2_p7ph7")
 choiceBtn = "I'm Good!"
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("3_pkii0")]([])
-repeatsItem = false
 buttonDims = Vector2(180, 40)
-turnsInQuest = ""
 isDeclineChoice = true
 
 [sub_resource type="Resource" id="Resource_ejo6p"]
 script = ExtResource("4_j1n1d")
 opensShop = true
-addsFollowerId = ""
-removesFollowerId = ""
 choiceBtn = "Shop"
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("3_pkii0")]([])
-repeatsItem = false
 buttonDims = Vector2(120, 40)
-turnsInQuest = ""
-isDeclineChoice = false
 
 [sub_resource type="Resource" id="Resource_pbwlu"]
 script = ExtResource("1_3capj")
 lines = Array[String](["Welcome back @! Things are doing OK here in Grandstone. What do you need?"])
-minShowSecs = Array[float]([])
 animation = "talk"
-speakerOverride = ""
-actorAnimation = ""
-animateActorTreePath = ""
-animateActorIsPlayer = false
 choices = Array[ExtResource("2_p7ph7")]([SubResource("Resource_cat7t"), SubResource("Resource_ejo6p")])
 
 [resource]
 script = ExtResource("6_25o0b")
-entryId = ""
 items = Array[ExtResource("1_3capj")]([SubResource("Resource_pbwlu")])
-ordStoryRequirements = Array[ExtResource("5_pumsa")]([])
-closesDialogue = false
-fullHealsPlayer = false
-annotation = ""

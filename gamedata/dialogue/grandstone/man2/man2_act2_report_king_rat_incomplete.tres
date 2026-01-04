@@ -8,41 +8,20 @@
 [sub_resource type="Resource" id="Resource_8c7k3"]
 script = ExtResource("1_8l630")
 lines = Array[String](["What? The King Rat's not going to be a problem? What makes you so sure?"])
-minShowSecs = Array[float]([])
 animation = "talk"
-speakerOverride = ""
-actorAnimation = ""
-animateActorTreePath = ""
-animateActorIsPlayer = false
-choices = Array[ExtResource("2_asrdp")]([])
 
 [sub_resource type="Resource" id="Resource_qjdia"]
 script = ExtResource("1_8l630")
 lines = Array[String](["The King Rat's home is burned down. He's not in Hilltop Forest anymore."])
-minShowSecs = Array[float]([])
 animation = "stand"
 speakerOverride = "@"
-actorAnimation = ""
-animateActorTreePath = ""
-animateActorIsPlayer = false
-choices = Array[ExtResource("2_asrdp")]([])
 
 [sub_resource type="Resource" id="Resource_enoki"]
 script = ExtResource("1_8l630")
 lines = Array[String](["Well, that's good to hear at least..."])
-minShowSecs = Array[float]([])
 animation = "talk"
-speakerOverride = ""
-actorAnimation = ""
-animateActorTreePath = ""
-animateActorIsPlayer = false
-choices = Array[ExtResource("2_asrdp")]([])
 
 [resource]
 script = ExtResource("2_kg8dr")
 entryId = "act2_report_king_rat"
 items = Array[ExtResource("1_8l630")]([SubResource("Resource_8c7k3"), SubResource("Resource_qjdia"), SubResource("Resource_enoki")])
-ordStoryRequirements = Array[ExtResource("3_4c808")]([])
-closesDialogue = false
-fullHealsPlayer = false
-annotation = ""

@@ -12,66 +12,27 @@
 script = ExtResource("1_npa3o")
 choiceBtn = "Hold On..."
 leadsTo = ExtResource("1_e62aa")
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("4_v1ee8")]([])
-repeatsItem = false
 buttonDims = Vector2(160, 40)
-turnsInQuest = ""
 isDeclineChoice = true
 
 [sub_resource type="Resource" id="Resource_we7qk"]
 script = ExtResource("1_npa3o")
 choiceBtn = "I Accept."
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("4_v1ee8")]([])
-repeatsItem = false
 buttonDims = Vector2(160, 40)
 turnsInQuest = "Voice of the Rats#The Negotiator"
-isDeclineChoice = false
 
 [sub_resource type="Resource" id="Resource_y2og3"]
 script = ExtResource("1_tk8ma")
 lines = Array[String](["I challenge you to a duel, biped! If I win, I'll continue with my invasion as planned!"])
-minShowSecs = Array[float]([])
 animation = "talk"
-speakerOverride = ""
-actorAnimation = ""
-animateActorTreePath = ""
-animateActorIsPlayer = false
 choices = Array[ExtResource("1_npa3o")]([SubResource("Resource_g2835"), SubResource("Resource_we7qk")])
 
 [sub_resource type="Resource" id="Resource_ydwu0"]
 script = ExtResource("4_alpar")
-minAct = 0
 maxAct = 5
-prereqQuests = Array[String]([])
-prereqCutscenes = Array[String]([])
 prereqDialogues = Array[String](["king_rat_forest#negotiate"])
-prereqPlacesVisited = Array[String]([])
-prereqSpecialBattles = Array[String]([])
-prereqDefeatedEnemies = Array[String]([])
-prereqPuzzles = Array[String]([])
-prereqPuzzleStates = Dictionary[String, Array]({})
-prereqDiscoveredEvolutions = Array[String]([])
-prereqHavingFollowers = Array[String]([])
-prereqHasItems = Array[ExtResource("6_x6y4w")]([])
-invalidAfterCompletingQuests = Array[String]([])
-invalidAfterFailingQuests = Array[String]([])
-invalidAfterCutscenes = Array[String]([])
-invalidAfterDialogues = Array[String]([])
-invalidAfterVistingPlaces = Array[String]([])
-invalidAfterSpecialBattles = Array[String]([])
-invalidAfterSolvingPuzzles = Array[String]([])
-invalidFromPuzzleStates = Dictionary[String, Array]({})
-invalidFromHavingFollowers = Array[String]([])
-invalidFromHavingItems = Array[ExtResource("6_x6y4w")]([])
 
 [resource]
 script = ExtResource("1_k7pge")
-entryId = ""
 items = Array[ExtResource("1_tk8ma")]([SubResource("Resource_y2og3")])
 storyRequirements = SubResource("Resource_ydwu0")
-ordStoryRequirements = Array[ExtResource("4_alpar")]([])
-closesDialogue = false
-fullHealsPlayer = false
-annotation = ""

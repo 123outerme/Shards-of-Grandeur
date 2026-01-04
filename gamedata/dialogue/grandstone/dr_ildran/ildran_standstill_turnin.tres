@@ -11,67 +11,25 @@
 [sub_resource type="Resource" id="Resource_3w711"]
 script = ExtResource("2_a6ts5")
 choiceBtn = "I'll Prepare First."
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("3_1kuy3")]([])
-repeatsItem = false
-buttonDims = Vector2(80, 40)
-turnsInQuest = ""
 isDeclineChoice = true
 
 [sub_resource type="Resource" id="Resource_nrs3a"]
 script = ExtResource("2_a6ts5")
 choiceBtn = "I'm Going Now."
 leadsTo = ExtResource("4_274rh")
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("3_1kuy3")]([])
-repeatsItem = false
-buttonDims = Vector2(80, 40)
 turnsInQuest = "Flames of Combat#Make Your Decision"
-isDeclineChoice = false
 
 [sub_resource type="Resource" id="Resource_upvlm"]
 script = ExtResource("1_8p316")
 lines = Array[String](["Be well prepared before you go to Standstill's aid.", "I'm sure Alessia and Lance have some combat skills and can hold off the witch until then."])
-minShowSecs = Array[float]([])
 animation = "talk"
-speakerOverride = ""
-actorAnimation = ""
-animateActorTreePath = ""
-animateActorIsPlayer = false
 choices = Array[ExtResource("2_a6ts5")]([SubResource("Resource_3w711"), SubResource("Resource_nrs3a")])
 
 [sub_resource type="Resource" id="Resource_476b2"]
 script = ExtResource("5_1xuu0")
-minAct = 0
-maxAct = -1
-prereqQuests = Array[String]([])
-prereqCutscenes = Array[String]([])
-prereqDialogues = Array[String]([])
-prereqPlacesVisited = Array[String]([])
-prereqSpecialBattles = Array[String]([])
-prereqDefeatedEnemies = Array[String]([])
-prereqPuzzles = Array[String]([])
-prereqPuzzleStates = Dictionary[String, Array]({})
-prereqDiscoveredEvolutions = Array[String]([])
-prereqHavingFollowers = Array[String]([])
-prereqHasItems = Array[ExtResource("6_k8nsw")]([])
 invalidAfterCompletingQuests = Array[String](["Flames of Combat#Make Your Decision"])
-invalidAfterFailingQuests = Array[String]([])
-invalidAfterCutscenes = Array[String]([])
-invalidAfterDialogues = Array[String]([])
-invalidAfterVistingPlaces = Array[String]([])
-invalidAfterSpecialBattles = Array[String]([])
-invalidAfterSolvingPuzzles = Array[String]([])
-invalidFromPuzzleStates = Dictionary[String, Array]({})
-invalidFromHavingFollowers = Array[String]([])
-invalidFromHavingItems = Array[ExtResource("6_k8nsw")]([])
 
 [resource]
 script = ExtResource("2_nxvup")
-entryId = ""
 items = Array[ExtResource("1_8p316")]([SubResource("Resource_upvlm")])
 storyRequirements = SubResource("Resource_476b2")
-ordStoryRequirements = Array[ExtResource("5_1xuu0")]([])
-closesDialogue = false
-fullHealsPlayer = false
-annotation = ""

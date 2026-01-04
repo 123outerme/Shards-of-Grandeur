@@ -13,51 +13,27 @@
 script = ExtResource("3_jcqx1")
 choiceBtn = "Neigh?"
 leadsTo = ExtResource("1_s6gyg")
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("4_kn0ph")]([])
-repeatsItem = false
 buttonDims = Vector2(120, 40)
-turnsInQuest = ""
-isDeclineChoice = false
 
 [sub_resource type="Resource" id="Resource_vyhb3"]
 script = ExtResource("3_jcqx1")
 choiceBtn = "Neigh."
 leadsTo = ExtResource("3_2bro6")
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("4_kn0ph")]([])
-repeatsItem = false
 buttonDims = Vector2(120, 40)
-turnsInQuest = ""
-isDeclineChoice = false
 
 [sub_resource type="Resource" id="Resource_l7kbr"]
 script = ExtResource("3_jcqx1")
 choiceBtn = "Hay..."
 leadsTo = ExtResource("4_b6h18")
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("4_kn0ph")]([])
-repeatsItem = false
 buttonDims = Vector2(120, 40)
-turnsInQuest = ""
-isDeclineChoice = false
 
 [sub_resource type="Resource" id="Resource_c1aue"]
 script = ExtResource("1_tieog")
 lines = Array[String](["Neigh!"])
-minShowSecs = Array[float]([])
 animation = "talk"
-speakerOverride = ""
-actorAnimation = ""
-animateActorTreePath = ""
-animateActorIsPlayer = false
 choices = Array[ExtResource("3_jcqx1")]([SubResource("Resource_g0o8o"), SubResource("Resource_vyhb3"), SubResource("Resource_l7kbr")])
 
 [resource]
 script = ExtResource("2_fy34r")
 entryId = "1"
 items = Array[ExtResource("1_tieog")]([SubResource("Resource_c1aue")])
-ordStoryRequirements = Array[ExtResource("7_a3kst")]([])
-closesDialogue = false
-fullHealsPlayer = false
-annotation = ""

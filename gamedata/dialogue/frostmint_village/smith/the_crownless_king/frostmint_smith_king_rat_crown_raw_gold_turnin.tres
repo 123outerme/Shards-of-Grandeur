@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=10 format=3]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_4dqlq"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_mnwyq"]
+[ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_mnwyq"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="3_pah2g"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="4_ovre7"]
+[ext_resource type="Resource" path="res://gamedata/dialogue/frostmint_village/smith/the_crownless_king/frostmint_smith_king_rat_crown_raw_gold_after_turnin.tres" id="4_pah2g"]
+
+[sub_resource type="Resource" id="Resource_pah2g"]
+script = ExtResource("2_mnwyq")
+choiceBtn = "Wait..."
+isDeclineChoice = true
+
+[sub_resource type="Resource" id="Resource_ovre7"]
+script = ExtResource("2_mnwyq")
+choiceBtn = "Here You Go."
+leadsTo = ExtResource("4_pah2g")
+turnsInQuest = "The Crownless King#A Gilded Age"
+
+[sub_resource type="Resource" id="Resource_vwy4v"]
+script = ExtResource("1_4dqlq")
+lines = Array[String](["Ah, I see you've brought the raw gold! Give it here, and I can start working on the King Rat's crown!"])
+animation = "talk"
+choices = Array[ExtResource("2_mnwyq")]([SubResource("Resource_pah2g"), SubResource("Resource_ovre7")])
+
+[resource]
+script = ExtResource("4_ovre7")
+items = Array[ExtResource("1_4dqlq")]([SubResource("Resource_vwy4v")])

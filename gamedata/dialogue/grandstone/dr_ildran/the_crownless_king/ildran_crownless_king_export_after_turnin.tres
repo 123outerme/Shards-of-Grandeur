@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://pfs5rrqlsumm"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_bmiud"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_8svo3"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="3_6wwpt"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="4_i6fvr"]
+
+[sub_resource type="Resource" id="Resource_ql5b5"]
+script = ExtResource("1_bmiud")
+lines = Array[String](["Next time, discuss more of this with me before making arrangements like this. You are an adventurer, making you some sort of ambassador, but...", "I wouldn't get in the habit of making promises on our behalf. Even though you've already done it with the Warlocks, too."])
+animation = "talk"
+
+[resource]
+script = ExtResource("4_i6fvr")
+items = Array[ExtResource("1_bmiud")]([SubResource("Resource_ql5b5")])
+closesDialogue = true

@@ -1,0 +1,40 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=13 format=3 uid="uid://dwjv6q7ebqfo"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_qfrqo"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_6vbv2"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_t775p"]
+[ext_resource type="Resource" uid="uid://damaakvxtes7d" path="res://gamedata/dialogue/grandstone/dr_ildran/ildran_cracking_need_anything_decline.tres" id="3_2o15i"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_t775p"]
+[ext_resource type="Script" uid="uid://b6oofnelefs8o" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_tl64v"]
+[ext_resource type="Script" uid="uid://fw22o8hbosnk" path="res://scripts/inventory/inventory_slot.gd" id="4_t775p"]
+[ext_resource type="Resource" path="res://gamedata/dialogue/grandstone/dr_ildran/the_crownless_king/ildran_crownless_king_export.tres" id="5_nvexf"]
+
+[sub_resource type="Resource" id="Resource_nvexf"]
+script = ExtResource("2_t775p")
+choiceBtn = "Never Mind."
+leadsTo = ExtResource("3_2o15i")
+isDeclineChoice = true
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_5l51v"]
+script = ExtResource("2_t775p")
+choiceBtn = "Gold Export..."
+leadsTo = ExtResource("5_nvexf")
+
+[sub_resource type="Resource" id="Resource_tl64v"]
+script = ExtResource("1_qfrqo")
+lines = Array[String](["Well, do you need anything?"])
+animation = "talk"
+choices = Array[ExtResource("2_t775p")]([SubResource("Resource_nvexf"), SubResource("Resource_5l51v")])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[sub_resource type="Resource" id="Resource_2o15i"]
+script = ExtResource("2_6vbv2")
+prereqQuests = Array[String](["Flames of Combat#Make Your Decision"])
+metadata/_custom_type_script = "uid://bjesn36acj0uh"
+
+[resource]
+script = ExtResource("3_t775p")
+items = Array[ExtResource("1_qfrqo")]([SubResource("Resource_tl64v")])
+ordStoryRequirements = Array[ExtResource("2_6vbv2")]([SubResource("Resource_2o15i")])
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"

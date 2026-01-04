@@ -13,67 +13,28 @@
 script = ExtResource("1_iobh4")
 choiceBtn = "Hold On..."
 leadsTo = ExtResource("1_n407v")
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("4_42h3d")]([])
-repeatsItem = false
 buttonDims = Vector2(180, 40)
-turnsInQuest = ""
 isDeclineChoice = true
 
 [sub_resource type="Resource" id="Resource_38qms"]
 script = ExtResource("1_iobh4")
 choiceBtn = "Have at thee!"
 leadsTo = ExtResource("2_405cb")
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("4_42h3d")]([])
-repeatsItem = false
 buttonDims = Vector2(220, 40)
-turnsInQuest = ""
-isDeclineChoice = false
 
 [sub_resource type="Resource" id="Resource_d6qfb"]
 script = ExtResource("1_dh4e3")
 lines = Array[String](["Let our duel commence!"])
-minShowSecs = Array[float]([])
 animation = "talk"
-speakerOverride = ""
-actorAnimation = ""
-animateActorTreePath = ""
-animateActorIsPlayer = false
 choices = Array[ExtResource("1_iobh4")]([SubResource("Resource_p3fkc"), SubResource("Resource_38qms")])
 
 [sub_resource type="Resource" id="Resource_7ydi5"]
 script = ExtResource("6_5qkhh")
-minAct = 0
 maxAct = 5
-prereqQuests = Array[String]([])
-prereqCutscenes = Array[String]([])
 prereqDialogues = Array[String](["king_rat_forest#negotiate"])
-prereqPlacesVisited = Array[String]([])
-prereqSpecialBattles = Array[String]([])
-prereqDefeatedEnemies = Array[String]([])
-prereqPuzzles = Array[String]([])
-prereqPuzzleStates = Dictionary[String, Array]({})
-prereqDiscoveredEvolutions = Array[String]([])
-prereqHavingFollowers = Array[String]([])
-prereqHasItems = Array[ExtResource("7_5lsfm")]([])
-invalidAfterCompletingQuests = Array[String]([])
-invalidAfterFailingQuests = Array[String]([])
-invalidAfterCutscenes = Array[String]([])
-invalidAfterDialogues = Array[String]([])
-invalidAfterVistingPlaces = Array[String]([])
 invalidAfterSpecialBattles = Array[String](["king_rat_encounter"])
-invalidAfterSolvingPuzzles = Array[String]([])
-invalidFromPuzzleStates = Dictionary[String, Array]({})
-invalidFromHavingFollowers = Array[String]([])
-invalidFromHavingItems = Array[ExtResource("7_5lsfm")]([])
 
 [resource]
 script = ExtResource("1_ar7y3")
-entryId = ""
 items = Array[ExtResource("1_dh4e3")]([SubResource("Resource_d6qfb")])
 storyRequirements = SubResource("Resource_7ydi5")
-ordStoryRequirements = Array[ExtResource("6_5qkhh")]([])
-closesDialogue = false
-fullHealsPlayer = false
-annotation = ""

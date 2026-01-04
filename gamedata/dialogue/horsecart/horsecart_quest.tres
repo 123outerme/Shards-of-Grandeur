@@ -11,47 +11,16 @@
 script = ExtResource("1_2te42")
 lines = Array[String](["Neigh.
 (I could really use some hay right now...)"])
-minShowSecs = Array[float]([])
 animation = "talk"
-speakerOverride = ""
-actorAnimation = ""
-animateActorTreePath = ""
-animateActorIsPlayer = false
-choices = Array[ExtResource("2_vw8sb")]([])
 
 [sub_resource type="Resource" id="Resource_xcwcl"]
 script = ExtResource("4_evant")
-minAct = 0
 maxAct = 2
-prereqQuests = Array[String]([])
-prereqCutscenes = Array[String]([])
 prereqDialogues = Array[String](["horse_cart_standstill#1"])
-prereqPlacesVisited = Array[String]([])
-prereqSpecialBattles = Array[String]([])
-prereqDefeatedEnemies = Array[String]([])
-prereqPuzzles = Array[String]([])
-prereqPuzzleStates = Dictionary[String, Array]({})
-prereqDiscoveredEvolutions = Array[String]([])
-prereqHavingFollowers = Array[String]([])
-prereqHasItems = Array[ExtResource("5_tbyaf")]([])
-invalidAfterCompletingQuests = Array[String]([])
-invalidAfterFailingQuests = Array[String]([])
-invalidAfterCutscenes = Array[String]([])
-invalidAfterDialogues = Array[String]([])
-invalidAfterVistingPlaces = Array[String]([])
-invalidAfterSpecialBattles = Array[String]([])
-invalidAfterSolvingPuzzles = Array[String]([])
-invalidFromPuzzleStates = Dictionary[String, Array]({})
-invalidFromHavingFollowers = Array[String]([])
-invalidFromHavingItems = Array[ExtResource("5_tbyaf")]([])
 
 [resource]
 script = ExtResource("1_3ixxv")
 entryId = "4"
 items = Array[ExtResource("1_2te42")]([SubResource("Resource_vx2ia")])
 storyRequirements = SubResource("Resource_xcwcl")
-ordStoryRequirements = Array[ExtResource("4_evant")]([])
 startsQuest = ExtResource("3_p31dd")
-closesDialogue = false
-fullHealsPlayer = false
-annotation = ""

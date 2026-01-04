@@ -10,40 +10,19 @@
 [sub_resource type="Resource" id="Resource_6wpuu"]
 script = ExtResource("2_4h5v6")
 choiceBtn = "Wait..."
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("3_rgsqc")]([])
-repeatsItem = false
-buttonDims = Vector2(80, 40)
-turnsInQuest = ""
-isDeclineChoice = false
 
 [sub_resource type="Resource" id="Resource_37s8q"]
 script = ExtResource("2_4h5v6")
 choiceBtn = "Thanks."
 leadsTo = ExtResource("4_1kagw")
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("3_rgsqc")]([])
-repeatsItem = false
-buttonDims = Vector2(80, 40)
 turnsInQuest = "Draconic Experiments#A Dragon's Memories"
-isDeclineChoice = false
 
 [sub_resource type="Resource" id="Resource_1kn7c"]
 script = ExtResource("1_1yebm")
 lines = Array[String](["That was well worth it, @. I think we got some valuable information from the Dragon.", "It didn't seem to use up the Shard, so here you go."])
-minShowSecs = Array[float]([])
 animation = "talk"
-speakerOverride = ""
-actorAnimation = ""
-animateActorTreePath = ""
-animateActorIsPlayer = false
 choices = Array[ExtResource("2_4h5v6")]([SubResource("Resource_6wpuu"), SubResource("Resource_37s8q")])
 
 [resource]
 script = ExtResource("4_a6bli")
-entryId = ""
 items = Array[ExtResource("1_1yebm")]([SubResource("Resource_1kn7c")])
-ordStoryRequirements = Array[ExtResource("3_8yatf")]([])
-closesDialogue = false
-fullHealsPlayer = false
-annotation = ""

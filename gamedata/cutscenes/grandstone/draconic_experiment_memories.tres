@@ -14,45 +14,15 @@
 script = ExtResource("1_qx5br")
 frameLength = 0.1
 annotation = "Hold the camera and start fading out"
-actorTweens = Array[ExtResource("5_8gowp")]([])
-actorAnims = Array[ExtResource("3_r8egg")]([])
-actorAnimSets = Array[ExtResource("2_ak66a")]([])
-actorFaceTargets = Array[ExtResource("4_hejes")]([])
-dialogues = Array[ExtResource("6_c0dvo")]([])
-playSfxs = Array[AudioStream]([])
-snapshotActorPaths = Array[String]([])
-restoreSnapshotActorPaths = Array[String]([])
-endTextBoxPauses = true
-shakeCamForDuration = false
 endHoldCamera = true
 endFade = 1
 endFadeLength = 0.5
-healsPlayer = false
-addsFollowerId = ""
-removesFollowerId = ""
-endStartsShardLearnTutorial = false
 
 [sub_resource type="Resource" id="Resource_kr45o"]
 script = ExtResource("1_qx5br")
 frameLength = 0.6
 annotation = "Wait for the fadeout to occur"
-actorTweens = Array[ExtResource("5_8gowp")]([])
-actorAnims = Array[ExtResource("3_r8egg")]([])
-actorAnimSets = Array[ExtResource("2_ak66a")]([])
-actorFaceTargets = Array[ExtResource("4_hejes")]([])
-dialogues = Array[ExtResource("6_c0dvo")]([])
-playSfxs = Array[AudioStream]([])
-snapshotActorPaths = Array[String]([])
-restoreSnapshotActorPaths = Array[String]([])
-endTextBoxPauses = true
-shakeCamForDuration = false
 endHoldCamera = true
-endFade = 0
-endFadeLength = 0.0
-healsPlayer = false
-addsFollowerId = ""
-removesFollowerId = ""
-endStartsShardLearnTutorial = false
 
 [sub_resource type="Resource" id="Resource_85p25"]
 script = ExtResource("7_4hpxi")
@@ -62,246 +32,79 @@ linearInterp = true
 script = ExtResource("8_pdygy")
 movementCurve = SubResource("Resource_85p25")
 finalPos = Vector2(1104, 336)
-relative = false
 
 [sub_resource type="Resource" id="Resource_kdvai"]
 script = ExtResource("1_qx5br")
 frameLength = 0.5
 annotation = "Move the camera to the cutscene area"
-actorTweens = Array[ExtResource("5_8gowp")]([])
-actorAnims = Array[ExtResource("3_r8egg")]([])
-actorAnimSets = Array[ExtResource("2_ak66a")]([])
-actorFaceTargets = Array[ExtResource("4_hejes")]([])
-dialogues = Array[ExtResource("6_c0dvo")]([])
-playSfxs = Array[AudioStream]([])
-snapshotActorPaths = Array[String]([])
-restoreSnapshotActorPaths = Array[String]([])
-endTextBoxPauses = true
-shakeCamForDuration = false
 endHoldCamera = true
 cameraMovement = SubResource("Resource_7xg4o")
-endFade = 0
-endFadeLength = 0.0
-healsPlayer = false
-addsFollowerId = ""
-removesFollowerId = ""
-endStartsShardLearnTutorial = false
 
 [sub_resource type="Resource" id="Resource_ogh0l"]
 script = ExtResource("1_qx5br")
 frameLength = 0.1
 annotation = "start fade in"
-actorTweens = Array[ExtResource("5_8gowp")]([])
-actorAnims = Array[ExtResource("3_r8egg")]([])
-actorAnimSets = Array[ExtResource("2_ak66a")]([])
-actorFaceTargets = Array[ExtResource("4_hejes")]([])
-dialogues = Array[ExtResource("6_c0dvo")]([])
-playSfxs = Array[AudioStream]([])
-snapshotActorPaths = Array[String]([])
-restoreSnapshotActorPaths = Array[String]([])
-endTextBoxPauses = true
-shakeCamForDuration = false
 endHoldCamera = true
 endFade = 2
 endFadeLength = 0.75
-healsPlayer = false
-addsFollowerId = ""
-removesFollowerId = ""
-endStartsShardLearnTutorial = false
 
 [sub_resource type="Resource" id="Resource_4lg85"]
 script = ExtResource("6_c0dvo")
 speaker = "Dragon"
 texts = Array[String](["Those men in Gold armor, they found me Resting in the Cave...", "I was Bound to a $highlight{witch of Fire}color$, to carry out her will. I was to track down an adventurer.", "What do I care about human squabbles? Why must I do this?"])
-textboxSfxs = Array[AudioStream]([])
 speakerActorScenePath = "TilemapRoot/DragonDecoration"
-speakerActorIsPlayer = false
 speakerAnim = "battle_idle"
-speakerAnimScale = 3
-animSpeakerOffset = Vector2(0, 0)
 
 [sub_resource type="Resource" id="Resource_wcbo0"]
 script = ExtResource("1_qx5br")
 frameLength = 0.4
 annotation = "wait for half of fade in to occur, then start dialogue"
-actorTweens = Array[ExtResource("5_8gowp")]([])
-actorAnims = Array[ExtResource("3_r8egg")]([])
-actorAnimSets = Array[ExtResource("2_ak66a")]([])
-actorFaceTargets = Array[ExtResource("4_hejes")]([])
 dialogues = Array[ExtResource("6_c0dvo")]([SubResource("Resource_4lg85")])
-playSfxs = Array[AudioStream]([])
-snapshotActorPaths = Array[String]([])
-restoreSnapshotActorPaths = Array[String]([])
-endTextBoxPauses = true
-shakeCamForDuration = false
 endHoldCamera = true
-endFade = 0
-endFadeLength = 0.0
-healsPlayer = false
-addsFollowerId = ""
-removesFollowerId = ""
-endStartsShardLearnTutorial = false
 
 [sub_resource type="Resource" id="Resource_hh65k"]
 script = ExtResource("1_qx5br")
 frameLength = 0.4
 annotation = "Wait for second half of fade up at least, wait for dialogue to be over"
-actorTweens = Array[ExtResource("5_8gowp")]([])
-actorAnims = Array[ExtResource("3_r8egg")]([])
-actorAnimSets = Array[ExtResource("2_ak66a")]([])
-actorFaceTargets = Array[ExtResource("4_hejes")]([])
-dialogues = Array[ExtResource("6_c0dvo")]([])
-playSfxs = Array[AudioStream]([])
-snapshotActorPaths = Array[String]([])
-restoreSnapshotActorPaths = Array[String]([])
-endTextBoxPauses = true
-shakeCamForDuration = false
 endHoldCamera = true
-endFade = 0
-endFadeLength = 0.0
-healsPlayer = false
-addsFollowerId = ""
-removesFollowerId = ""
-endStartsShardLearnTutorial = false
 
 [sub_resource type="Resource" id="Resource_b8o11"]
 script = ExtResource("1_qx5br")
 frameLength = 0.1
 annotation = "start fade out"
-actorTweens = Array[ExtResource("5_8gowp")]([])
-actorAnims = Array[ExtResource("3_r8egg")]([])
-actorAnimSets = Array[ExtResource("2_ak66a")]([])
-actorFaceTargets = Array[ExtResource("4_hejes")]([])
-dialogues = Array[ExtResource("6_c0dvo")]([])
-playSfxs = Array[AudioStream]([])
-snapshotActorPaths = Array[String]([])
-restoreSnapshotActorPaths = Array[String]([])
-endTextBoxPauses = true
-shakeCamForDuration = false
 endHoldCamera = true
 endFade = 1
 endFadeLength = 0.5
-healsPlayer = false
-addsFollowerId = ""
-removesFollowerId = ""
-endStartsShardLearnTutorial = false
 
 [sub_resource type="Resource" id="Resource_fxyn6"]
 script = ExtResource("1_qx5br")
 frameLength = 0.6
 annotation = "wait for fade out to occur"
-actorTweens = Array[ExtResource("5_8gowp")]([])
-actorAnims = Array[ExtResource("3_r8egg")]([])
-actorAnimSets = Array[ExtResource("2_ak66a")]([])
-actorFaceTargets = Array[ExtResource("4_hejes")]([])
-dialogues = Array[ExtResource("6_c0dvo")]([])
-playSfxs = Array[AudioStream]([])
-snapshotActorPaths = Array[String]([])
-restoreSnapshotActorPaths = Array[String]([])
-endTextBoxPauses = true
-shakeCamForDuration = false
 endHoldCamera = true
-endFade = 0
-endFadeLength = 0.0
-healsPlayer = false
-addsFollowerId = ""
-removesFollowerId = ""
-endStartsShardLearnTutorial = false
 
 [sub_resource type="Resource" id="Resource_3quv0"]
 script = ExtResource("1_qx5br")
 frameLength = 0.1
 annotation = "move camera back to player"
-actorTweens = Array[ExtResource("5_8gowp")]([])
-actorAnims = Array[ExtResource("3_r8egg")]([])
-actorAnimSets = Array[ExtResource("2_ak66a")]([])
-actorFaceTargets = Array[ExtResource("4_hejes")]([])
-dialogues = Array[ExtResource("6_c0dvo")]([])
-playSfxs = Array[AudioStream]([])
-snapshotActorPaths = Array[String]([])
-restoreSnapshotActorPaths = Array[String]([])
-endTextBoxPauses = true
-shakeCamForDuration = false
-endHoldCamera = false
-endFade = 0
-endFadeLength = 0.0
-healsPlayer = false
-addsFollowerId = ""
-removesFollowerId = ""
-endStartsShardLearnTutorial = false
 
 [sub_resource type="Resource" id="Resource_h3fi3"]
 script = ExtResource("1_qx5br")
 frameLength = 0.5
 annotation = "wait for camera to fling back to player"
-actorTweens = Array[ExtResource("5_8gowp")]([])
-actorAnims = Array[ExtResource("3_r8egg")]([])
-actorAnimSets = Array[ExtResource("2_ak66a")]([])
-actorFaceTargets = Array[ExtResource("4_hejes")]([])
-dialogues = Array[ExtResource("6_c0dvo")]([])
-playSfxs = Array[AudioStream]([])
-snapshotActorPaths = Array[String]([])
-restoreSnapshotActorPaths = Array[String]([])
-endTextBoxPauses = true
-shakeCamForDuration = false
-endHoldCamera = false
-endFade = 0
-endFadeLength = 0.0
-healsPlayer = false
-addsFollowerId = ""
-removesFollowerId = ""
-endStartsShardLearnTutorial = false
 
 [sub_resource type="Resource" id="Resource_v02pc"]
 script = ExtResource("1_qx5br")
 frameLength = 0.1
 annotation = "start camera fade in"
-actorTweens = Array[ExtResource("5_8gowp")]([])
-actorAnims = Array[ExtResource("3_r8egg")]([])
-actorAnimSets = Array[ExtResource("2_ak66a")]([])
-actorFaceTargets = Array[ExtResource("4_hejes")]([])
-dialogues = Array[ExtResource("6_c0dvo")]([])
-playSfxs = Array[AudioStream]([])
-snapshotActorPaths = Array[String]([])
-restoreSnapshotActorPaths = Array[String]([])
-endTextBoxPauses = true
-shakeCamForDuration = false
-endHoldCamera = false
 endFade = 2
 endFadeLength = 0.75
-healsPlayer = false
-addsFollowerId = ""
-removesFollowerId = ""
-endStartsShardLearnTutorial = false
 
 [sub_resource type="Resource" id="Resource_3ubi2"]
 script = ExtResource("1_qx5br")
 frameLength = 0.8
 annotation = "wait for camera to fade up"
-actorTweens = Array[ExtResource("5_8gowp")]([])
-actorAnims = Array[ExtResource("3_r8egg")]([])
-actorAnimSets = Array[ExtResource("2_ak66a")]([])
-actorFaceTargets = Array[ExtResource("4_hejes")]([])
-dialogues = Array[ExtResource("6_c0dvo")]([])
-playSfxs = Array[AudioStream]([])
-snapshotActorPaths = Array[String]([])
-restoreSnapshotActorPaths = Array[String]([])
-endTextBoxPauses = true
-shakeCamForDuration = false
-endHoldCamera = false
-endFade = 0
-endFadeLength = 0.0
-healsPlayer = false
-addsFollowerId = ""
-removesFollowerId = ""
-endStartsShardLearnTutorial = false
 
 [resource]
 script = ExtResource("2_etpt7")
 cutsceneFrames = Array[ExtResource("1_qx5br")]([SubResource("Resource_3lyq3"), SubResource("Resource_kr45o"), SubResource("Resource_kdvai"), SubResource("Resource_ogh0l"), SubResource("Resource_wcbo0"), SubResource("Resource_hh65k"), SubResource("Resource_b8o11"), SubResource("Resource_fxyn6"), SubResource("Resource_3quv0"), SubResource("Resource_h3fi3"), SubResource("Resource_v02pc"), SubResource("Resource_3ubi2")])
 saveName = "draconic_experiment_memory"
-unlockCameraHoldAfter = true
-activateActorsBefore = Array[String]([])
-deactivateActorsAfter = Array[String]([])
-tempDisabledAfter = false
-notes = ""

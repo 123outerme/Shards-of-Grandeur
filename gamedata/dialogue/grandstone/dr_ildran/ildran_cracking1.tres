@@ -13,90 +13,37 @@
 [sub_resource type="Resource" id="Resource_e7hke"]
 script = ExtResource("2_i2w6n")
 choiceBtn = "OK."
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("3_m1apy")]([])
-repeatsItem = false
-buttonDims = Vector2(80, 40)
-turnsInQuest = ""
 isDeclineChoice = true
 
 [sub_resource type="Resource" id="Resource_j58bw"]
 script = ExtResource("2_i2w6n")
 choiceBtn = "There was a Dragon..."
 leadsTo = ExtResource("4_am4dc")
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("3_m1apy")]([])
-repeatsItem = false
-buttonDims = Vector2(80, 40)
-turnsInQuest = ""
-isDeclineChoice = false
 
 [sub_resource type="Resource" id="Resource_0tvek"]
 script = ExtResource("2_i2w6n")
 choiceBtn = "Dragon Shard..."
 leadsTo = ExtResource("5_608uc")
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("3_m1apy")]([])
-repeatsItem = false
-buttonDims = Vector2(80, 40)
-turnsInQuest = ""
-isDeclineChoice = false
 metadata/_custom_type_script = "uid://bk6klhv2ls55w"
 
 [sub_resource type="Resource" id="Resource_608uc"]
 script = ExtResource("2_i2w6n")
 choiceBtn = "About That Dragon Shard..."
 leadsTo = ExtResource("6_7hkcj")
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("3_m1apy")]([])
-repeatsItem = false
-buttonDims = Vector2(80, 40)
-turnsInQuest = ""
-isDeclineChoice = false
 metadata/_custom_type_script = "uid://bk6klhv2ls55w"
 
 [sub_resource type="Resource" id="Resource_qkb2o"]
 script = ExtResource("1_1ri6y")
 lines = Array[String](["Go, help Standstill then! We did promise them. I'll visit as soon as the critical repairs are made."])
-minShowSecs = Array[float]([])
 animation = "talk"
-speakerOverride = ""
-actorAnimation = ""
-animateActorTreePath = ""
-animateActorIsPlayer = false
 choices = Array[ExtResource("2_i2w6n")]([SubResource("Resource_e7hke"), SubResource("Resource_j58bw"), SubResource("Resource_0tvek"), SubResource("Resource_608uc")])
 
 [sub_resource type="Resource" id="Resource_l4ybl"]
 script = ExtResource("4_6tnk0")
-minAct = 0
-maxAct = -1
 prereqQuests = Array[String](["Flames of Combat#Make Your Decision"])
-prereqCutscenes = Array[String]([])
-prereqDialogues = Array[String]([])
-prereqPlacesVisited = Array[String]([])
-prereqSpecialBattles = Array[String]([])
-prereqDefeatedEnemies = Array[String]([])
-prereqPuzzles = Array[String]([])
-prereqPuzzleStates = Dictionary[String, Array]({})
-prereqDiscoveredEvolutions = Array[String]([])
-prereqHavingFollowers = Array[String]([])
-prereqHasItems = Array[ExtResource("6_mr7ff")]([])
-invalidAfterCompletingQuests = Array[String]([])
-invalidAfterFailingQuests = Array[String]([])
-invalidAfterCutscenes = Array[String]([])
-invalidAfterDialogues = Array[String]([])
-invalidAfterVistingPlaces = Array[String]([])
 invalidAfterSpecialBattles = Array[String](["standstill_helia_fight"])
-invalidAfterSolvingPuzzles = Array[String]([])
-invalidFromPuzzleStates = Dictionary[String, Array]({})
-invalidFromHavingFollowers = Array[String]([])
-invalidFromHavingItems = Array[ExtResource("6_mr7ff")]([])
 
 [resource]
 script = ExtResource("2_25rlg")
-entryId = ""
 items = Array[ExtResource("1_1ri6y")]([SubResource("Resource_qkb2o")])
 ordStoryRequirements = Array[ExtResource("4_6tnk0")]([SubResource("Resource_l4ybl")])
-closesDialogue = false
-fullHealsPlayer = false
-annotation = ""

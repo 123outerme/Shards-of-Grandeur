@@ -16,8 +16,6 @@
 script = ExtResource("2_1hnlw")
 experience = 50
 gold = 15
-itemCount = 1
-fullyAttuneCombatantSaveName = ""
 
 [sub_resource type="Resource" id="Resource_ky3m0"]
 script = ExtResource("2_fs5fl")
@@ -32,16 +30,12 @@ objectiveName = "Rat Shard"
 turnInNames = Array[String](["king_rat_forest"])
 displayObjName = "Rat Shard"
 displayTurnInName = "King Rat"
-customStatusStr = ""
 turnInDialogue = Array[ExtResource("3_e0b00")]([ExtResource("5_vx8jr")])
 inProgressDialogue = Array[ExtResource("3_e0b00")]([ExtResource("2_mpki7")])
 
 [sub_resource type="Resource" id="Resource_t27f8"]
 script = ExtResource("2_1hnlw")
 experience = 20
-gold = 0
-itemCount = 1
-fullyAttuneCombatantSaveName = ""
 
 [sub_resource type="Resource" id="Resource_2pxg1"]
 script = ExtResource("2_fs5fl")
@@ -50,22 +44,16 @@ description = "The King Rat is ready to sit at the metaphorical negotiation tabl
 reward = SubResource("Resource_t27f8")
 locations = Array[int]([21])
 turnInLocations = Array[int]([21])
-type = 0
-count = 1
 objectiveName = "king_rat_forest#negotiate"
 turnInNames = Array[String](["king_rat_forest"])
 displayObjName = "King Rat"
 displayTurnInName = "King Rat"
-customStatusStr = ""
 turnInDialogue = Array[ExtResource("3_e0b00")]([ExtResource("6_15wyv")])
-inProgressDialogue = Array[ExtResource("3_e0b00")]([])
 
 [sub_resource type="Resource" id="Resource_j6y48"]
 script = ExtResource("2_1hnlw")
 experience = 60
 gold = 10
-itemCount = 1
-fullyAttuneCombatantSaveName = ""
 
 [sub_resource type="Resource" id="Resource_82egl"]
 script = ExtResource("2_fs5fl")
@@ -75,12 +63,10 @@ reward = SubResource("Resource_j6y48")
 locations = Array[int]([21])
 turnInLocations = Array[int]([21])
 type = 4
-count = 1
 objectiveName = "king_rat_encounter"
 turnInNames = Array[String](["king_rat_forest"])
 displayObjName = "King Rat"
 displayTurnInName = "King Rat"
-customStatusStr = ""
 turnInDialogue = Array[ExtResource("3_e0b00")]([ExtResource("8_gkw8k")])
 inProgressDialogue = Array[ExtResource("3_e0b00")]([ExtResource("7_pnrx5")])
 
@@ -88,27 +74,7 @@ inProgressDialogue = Array[ExtResource("3_e0b00")]([ExtResource("7_pnrx5")])
 script = ExtResource("6_o1mpp")
 minAct = 1
 maxAct = 1
-prereqQuests = Array[String]([])
-prereqCutscenes = Array[String]([])
-prereqDialogues = Array[String]([])
-prereqPlacesVisited = Array[String]([])
-prereqSpecialBattles = Array[String]([])
-prereqDefeatedEnemies = Array[String]([])
-prereqPuzzles = Array[String]([])
-prereqPuzzleStates = Dictionary[String, Array]({})
-prereqDiscoveredEvolutions = Array[String]([])
-prereqHavingFollowers = Array[String]([])
-prereqHasItems = Array[ExtResource("10_nyppv")]([])
-invalidAfterCompletingQuests = Array[String]([])
-invalidAfterFailingQuests = Array[String]([])
-invalidAfterCutscenes = Array[String]([])
 invalidAfterDialogues = Array[String](["king_rat_forest#shards_no"])
-invalidAfterVistingPlaces = Array[String]([])
-invalidAfterSpecialBattles = Array[String]([])
-invalidAfterSolvingPuzzles = Array[String]([])
-invalidFromPuzzleStates = Dictionary[String, Array]({})
-invalidFromHavingFollowers = Array[String]([])
-invalidFromHavingItems = Array[ExtResource("10_nyppv")]([])
 
 [resource]
 script = ExtResource("1_a6ajt")
@@ -116,5 +82,3 @@ questName = "Voice of the Rats"
 description = "A rather strange character, this gentleman is. He claims the Giant Rats that have been wandering around Grandstone have told him of a foreboding message they bring."
 steps = Array[ExtResource("2_fs5fl")]([SubResource("Resource_ky3m0"), SubResource("Resource_2pxg1"), SubResource("Resource_82egl")])
 storyRequirements = SubResource("Resource_py5ce")
-isMainQuest = false
-advanceActAfterComplete = false

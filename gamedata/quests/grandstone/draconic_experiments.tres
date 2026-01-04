@@ -14,16 +14,9 @@ script = ExtResource("2_u3dfj")
 name = "Standstill's Flames"
 description = "Standstill is burning... that's a little more important right now!"
 locations = Array[int]([20])
-turnInLocations = Array[int]([])
 type = 3
-count = 1
 objectiveName = "standstill_defeated_helia"
-turnInNames = Array[String]([])
-displayObjName = ""
-displayTurnInName = ""
 customStatusStr = "Help Standstill!"
-turnInDialogue = Array[ExtResource("3_qie4i")]([])
-inProgressDialogue = Array[ExtResource("3_qie4i")]([])
 
 [sub_resource type="Resource" id="Resource_6uslj"]
 script = ExtResource("2_u3dfj")
@@ -32,22 +25,16 @@ description = "Hand over the Dragon Shard if you still have it, and trust Dr. Il
 locations = Array[int]([10])
 turnInLocations = Array[int]([10])
 type = 1
-count = 1
 objectiveName = "Dragon Shard"
 turnInNames = Array[String](["dr_ildran_gs_cracking"])
 displayObjName = "Dragon Shard"
 displayTurnInName = "Dr. Ildran"
-customStatusStr = ""
 turnInDialogue = Array[ExtResource("3_qie4i")]([ExtResource("4_gogce")])
-inProgressDialogue = Array[ExtResource("3_qie4i")]([])
 
 [sub_resource type="Resource" id="Resource_pnj0h"]
 script = ExtResource("5_dxkxn")
 experience = 300
-gold = 0
 item = ExtResource("4_ffvr7")
-itemCount = 1
-fullyAttuneCombatantSaveName = ""
 
 [sub_resource type="Resource" id="Resource_01hlp"]
 script = ExtResource("2_u3dfj")
@@ -57,11 +44,8 @@ reward = SubResource("Resource_pnj0h")
 locations = Array[int]([10])
 turnInLocations = Array[int]([10])
 type = 3
-count = 1
 objectiveName = "draconic_experiment_memory"
 turnInNames = Array[String](["dr_ildran_gs_cracking"])
-displayObjName = ""
-displayTurnInName = ""
 customStatusStr = "See Its Memories!"
 turnInDialogue = Array[ExtResource("3_qie4i")]([ExtResource("7_lqpm5")])
 inProgressDialogue = Array[ExtResource("3_qie4i")]([ExtResource("5_l3bj0")])
@@ -71,5 +55,3 @@ script = ExtResource("1_oi6oo")
 questName = "Draconic Experiments"
 description = "Dr. Ildran wants to borrow... YES, borrow, your Dragon Shard. Help him perform some research with it!"
 steps = Array[ExtResource("2_u3dfj")]([SubResource("Resource_8q5t2"), SubResource("Resource_6uslj"), SubResource("Resource_01hlp")])
-isMainQuest = false
-advanceActAfterComplete = false

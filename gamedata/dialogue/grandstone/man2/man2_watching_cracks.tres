@@ -12,40 +12,20 @@
 script = ExtResource("2_flkux")
 choiceBtn = "It'll Be Fine."
 leadsTo = ExtResource("3_vtas6")
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("3_qfyw3")]([])
-repeatsItem = false
-buttonDims = Vector2(80, 40)
-turnsInQuest = ""
 isDeclineChoice = true
 
 [sub_resource type="Resource" id="Resource_3ujwp"]
 script = ExtResource("2_flkux")
 choiceBtn = "It'll Be Fine."
 leadsTo = ExtResource("7_r4ify")
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("3_qfyw3")]([])
-repeatsItem = false
-buttonDims = Vector2(80, 40)
-turnsInQuest = ""
 isDeclineChoice = true
 
 [sub_resource type="Resource" id="Resource_l7egf"]
 script = ExtResource("1_ah0dm")
 lines = Array[String](["Our... our buildings are crumbling?! Oh boy, this isn't good..."])
-minShowSecs = Array[float]([])
 animation = "talk"
-speakerOverride = ""
-actorAnimation = ""
-animateActorTreePath = ""
-animateActorIsPlayer = false
 choices = Array[ExtResource("2_flkux")]([SubResource("Resource_exe0w"), SubResource("Resource_3ujwp")])
 
 [resource]
 script = ExtResource("2_xqvkw")
-entryId = ""
 items = Array[ExtResource("1_ah0dm")]([SubResource("Resource_l7egf")])
-ordStoryRequirements = Array[ExtResource("6_g0o7n")]([])
-closesDialogue = false
-fullHealsPlayer = false
-annotation = ""

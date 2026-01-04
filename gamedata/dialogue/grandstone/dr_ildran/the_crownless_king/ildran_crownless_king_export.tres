@@ -1,0 +1,54 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=15 format=3 uid="uid://og3fujvg3lkr"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_xng2j"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_ushul"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="3_0s5jp"]
+[ext_resource type="Script" uid="uid://b6oofnelefs8o" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_ushul"]
+[ext_resource type="Resource" uid="uid://cirx1qi076ble" path="res://gamedata/dialogue/grandstone/dr_ildran/the_crownless_king/ildran_crownless_king_export_turnin.tres" id="4_0s5jp"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="4_ai45u"]
+[ext_resource type="Script" uid="uid://fw22o8hbosnk" path="res://scripts/inventory/inventory_slot.gd" id="6_ai45u"]
+
+[sub_resource type="Resource" id="Resource_ym7jj"]
+script = ExtResource("1_xng2j")
+lines = Array[String](["I'd like to give a gift from our Quarry to a... foreign dignitary."])
+animation = "stand"
+speakerOverride = "@"
+
+[sub_resource type="Resource" id="Resource_h4tla"]
+script = ExtResource("1_xng2j")
+lines = Array[String](["Well, @, what did you find in our Quarry that you want to gift? And to whom?"])
+animation = "talk"
+
+[sub_resource type="Resource" id="Resource_jd05e"]
+script = ExtResource("1_xng2j")
+lines = Array[String](["Well, the King Rat, after fleeing from his nest in Hilltop Forest, lost his crown.", "I stumbled upon him in the Quiet Tundra, and forged an alliance against Steelspire with him.", "And, part of that alliance, as he demanded, involved helping forge him a new crown. We had spare gold in the Quarry, so I figured, why not?"])
+animation = "stand"
+speakerOverride = "@"
+
+[sub_resource type="Resource" id="Resource_0s5jp"]
+script = ExtResource("2_ushul")
+choiceBtn = "Let Me Think..."
+isDeclineChoice = true
+
+[sub_resource type="Resource" id="Resource_ai45u"]
+script = ExtResource("2_ushul")
+choiceBtn = "Of Course."
+leadsTo = ExtResource("4_0s5jp")
+
+[sub_resource type="Resource" id="Resource_xng2j"]
+script = ExtResource("1_xng2j")
+lines = Array[String](["... Are you sure this is the right thing to do?"])
+animation = "talk"
+choices = Array[ExtResource("2_ushul")]([SubResource("Resource_0s5jp"), SubResource("Resource_ai45u")])
+
+[sub_resource type="Resource" id="Resource_b0hm6"]
+script = ExtResource("3_0s5jp")
+prereqQuests = Array[String](["The Crownless King#Gather The Gold"])
+invalidAfterCompletingQuests = Array[String](["The Crownless King#Export Approval"])
+metadata/_custom_type_script = "uid://bjesn36acj0uh"
+
+[resource]
+script = ExtResource("4_ai45u")
+entryId = "ildran_crownless_king_export_gold"
+items = Array[ExtResource("1_xng2j")]([SubResource("Resource_ym7jj"), SubResource("Resource_h4tla"), SubResource("Resource_jd05e"), SubResource("Resource_xng2j")])
+ordStoryRequirements = Array[ExtResource("3_0s5jp")]([SubResource("Resource_b0hm6")])

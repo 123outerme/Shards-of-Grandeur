@@ -432,6 +432,7 @@ func _action_button_pressed(action: ToolDialogueEditorButtonAction) -> void:
 				return
 			else:
 				if menuState == ToolDialogueEditorMenuState.CHOOSE_MAP:
+					editingMap.queue_free()
 					editingMap = null
 				if menuState == ToolDialogueEditorMenuState.CHOOSE_NPC:
 					editingNpc = null

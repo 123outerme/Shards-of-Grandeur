@@ -1,0 +1,65 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=17 format=3 uid="uid://cirx1qi076ble"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_yi2aa"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_8tcrm"]
+[ext_resource type="Script" uid="uid://b6oofnelefs8o" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_j30ar"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="3_u2iud"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="4_j30ar"]
+[ext_resource type="Script" uid="uid://fw22o8hbosnk" path="res://scripts/inventory/inventory_slot.gd" id="4_u2iud"]
+[ext_resource type="Script" uid="uid://fsrd48o26kgo" path="res://scripts/dialogue/story_reqs_dialogue_item.gd" id="5_j30ar"]
+[ext_resource type="Resource" path="res://gamedata/dialogue/grandstone/dr_ildran/the_crownless_king/ildran_crownless_king_export_after_turnin.tres" id="7_0gb0d"]
+
+[sub_resource type="Resource" id="Resource_0gb0d"]
+script = ExtResource("1_yi2aa")
+lines = Array[String](["Well, if you're sure. The King Rat never caused us any problems before, even though there was word he was considering an invasion."])
+animation = "talk"
+
+[sub_resource type="Resource" id="Resource_f2pcl"]
+script = ExtResource("2_8tcrm")
+choiceBtn = "Right, Diplomatically..."
+isDeclineChoice = true
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_q1ujo"]
+script = ExtResource("1_yi2aa")
+lines = Array[String](["Thanks to your efforts to meet him and solve things diplomatically, we did not have to deal with that."])
+animation = "talk"
+choices = Array[ExtResource("2_8tcrm")]([SubResource("Resource_f2pcl")])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[sub_resource type="Resource" id="Resource_glysy"]
+script = ExtResource("3_u2iud")
+prereqQuests = Array[String](["Voice of the Rats"])
+metadata/_custom_type_script = "uid://bjesn36acj0uh"
+
+[sub_resource type="Resource" id="Resource_wytue"]
+script = ExtResource("5_j30ar")
+alternativeDialogueItems = Array[ExtResource("1_yi2aa")]([SubResource("Resource_q1ujo")])
+alternativeStoryReqs = Array[ExtResource("3_u2iud")]([SubResource("Resource_glysy")])
+lines = Array[String](["I suppose because of the burning of Hilltop Forest, he had to give up on those ambitions."])
+animation = "talk"
+metadata/_custom_type_script = "uid://fsrd48o26kgo"
+
+[sub_resource type="Resource" id="Resource_jugo8"]
+script = ExtResource("2_8tcrm")
+choiceBtn = "Wait..."
+isDeclineChoice = true
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_4s706"]
+script = ExtResource("2_8tcrm")
+choiceBtn = "Thanks!"
+leadsTo = ExtResource("7_0gb0d")
+turnsInQuest = "The Crownless King#Export Approval"
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_j30ar"]
+script = ExtResource("1_yi2aa")
+lines = Array[String](["So, then off you go. I officially give you my blessing."])
+animation = "talk"
+choices = Array[ExtResource("2_8tcrm")]([SubResource("Resource_jugo8"), SubResource("Resource_4s706")])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[resource]
+script = ExtResource("4_j30ar")
+items = Array[ExtResource("1_yi2aa")]([SubResource("Resource_0gb0d"), SubResource("Resource_wytue"), SubResource("Resource_j30ar")])
