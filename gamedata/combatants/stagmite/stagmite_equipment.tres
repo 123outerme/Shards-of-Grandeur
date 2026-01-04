@@ -1,8 +1,21 @@
-[gd_resource type="Resource" script_class="CombatantEquipment" load_steps=3 format=3 uid="uid://djk50enk71bnk"]
+[gd_resource type="Resource" script_class="CombatantEquipment" load_steps=6 format=3 uid="uid://djk50enk71bnk"]
 
 [ext_resource type="Script" uid="uid://cynr2ijojwq5x" path="res://scripts/battle/combatant/combatant_equipment.gd" id="1_0uaup"]
 [ext_resource type="Script" uid="uid://c0l5rf7mo6o3m" path="res://scripts/battle/weighted_things/weighted_equipment.gd" id="2_hahkn"]
+[ext_resource type="Resource" uid="uid://5oxb675padb7" path="res://gamedata/items/weapon/marble_ring.tres" id="3_hahkn"]
+
+[sub_resource type="Resource" id="Resource_uen4f"]
+script = ExtResource("2_hahkn")
+weight = 0.7
+metadata/_custom_type_script = "uid://c0l5rf7mo6o3m"
+
+[sub_resource type="Resource" id="Resource_w6ous"]
+script = ExtResource("2_hahkn")
+weapon = ExtResource("3_hahkn")
+weight = 0.3
+metadata/_custom_type_script = "uid://c0l5rf7mo6o3m"
 
 [resource]
 script = ExtResource("1_0uaup")
+weightedEquipment = Array[ExtResource("2_hahkn")]([SubResource("Resource_uen4f"), SubResource("Resource_w6ous")])
 metadata/_custom_type_script = "uid://cynr2ijojwq5x"

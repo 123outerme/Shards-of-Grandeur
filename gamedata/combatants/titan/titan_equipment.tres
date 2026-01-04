@@ -1,8 +1,21 @@
-[gd_resource type="Resource" script_class="CombatantEquipment" load_steps=3 format=3 uid="uid://cmvl2rhr7da0p"]
+[gd_resource type="Resource" script_class="CombatantEquipment" load_steps=6 format=3 uid="uid://cmvl2rhr7da0p"]
 
 [ext_resource type="Script" uid="uid://cynr2ijojwq5x" path="res://scripts/battle/combatant/combatant_equipment.gd" id="1_mkkmu"]
 [ext_resource type="Script" uid="uid://c0l5rf7mo6o3m" path="res://scripts/battle/weighted_things/weighted_equipment.gd" id="2_pyxca"]
+[ext_resource type="Resource" uid="uid://by6x7ks7pd8nt" path="res://gamedata/items/weapon/geode_dagger.tres" id="3_pyxca"]
+
+[sub_resource type="Resource" id="Resource_trxvy"]
+script = ExtResource("2_pyxca")
+weight = 0.7
+metadata/_custom_type_script = "uid://c0l5rf7mo6o3m"
+
+[sub_resource type="Resource" id="Resource_dod6d"]
+script = ExtResource("2_pyxca")
+weapon = ExtResource("3_pyxca")
+weight = 0.3
+metadata/_custom_type_script = "uid://c0l5rf7mo6o3m"
 
 [resource]
 script = ExtResource("1_mkkmu")
+weightedEquipment = Array[ExtResource("2_pyxca")]([SubResource("Resource_trxvy"), SubResource("Resource_dod6d")])
 metadata/_custom_type_script = "uid://cynr2ijojwq5x"
