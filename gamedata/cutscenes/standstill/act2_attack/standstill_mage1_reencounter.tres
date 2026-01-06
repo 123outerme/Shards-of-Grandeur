@@ -17,78 +17,36 @@
 [sub_resource type="Resource" id="Resource_qjdwh"]
 script = ExtResource("3_6v2ds")
 actorTreePath = "TilemapRoot/ChainLegionMage1"
-isPlayer = false
 animation = "talk"
 
 [sub_resource type="Resource" id="Resource_ndjos"]
 script = ExtResource("6_rw1vf")
 speaker = "Chain Legion Mage"
 texts = Array[String](["That was a nice try... I'm just getting WARMED up though!"])
-textboxSfxs = Array[AudioStream]([])
 speakerActorScenePath = "TilemapRoot/ChainLegionMage1"
-speakerActorIsPlayer = false
-speakerAnim = "talk"
-speakerAnimScale = 3
-animSpeakerOffset = Vector2(0, 0)
 
 [sub_resource type="Resource" id="Resource_45cam"]
 script = ExtResource("1_iq1k5")
 frameLength = 0.1
 annotation = "The player stops, the mage speaks"
-actorTweens = Array[ExtResource("5_pqths")]([])
 actorAnims = Array[ExtResource("3_6v2ds")]([ExtResource("4_vtqul"), SubResource("Resource_qjdwh")])
-actorAnimSets = Array[ExtResource("2_77ti1")]([])
-actorFaceTargets = Array[ExtResource("4_3bdmq")]([])
 dialogues = Array[ExtResource("6_rw1vf")]([SubResource("Resource_ndjos")])
-playSfxs = Array[AudioStream]([])
-snapshotActorPaths = Array[String]([])
-restoreSnapshotActorPaths = Array[String]([])
-endTextBoxPauses = true
-shakeCamForDuration = false
-endHoldCamera = false
-endFade = 0
-endFadeLength = 0.0
-healsPlayer = false
-addsFollowerId = ""
-removesFollowerId = ""
-endStartsShardLearnTutorial = false
 
 [sub_resource type="Resource" id="Resource_2v1sl"]
 script = ExtResource("1_iq1k5")
 frameLength = 0.1
 annotation = "wait for text box to be closed"
-actorTweens = Array[ExtResource("5_pqths")]([])
-actorAnims = Array[ExtResource("3_6v2ds")]([])
-actorAnimSets = Array[ExtResource("2_77ti1")]([])
-actorFaceTargets = Array[ExtResource("4_3bdmq")]([])
-dialogues = Array[ExtResource("6_rw1vf")]([])
-playSfxs = Array[AudioStream]([])
-snapshotActorPaths = Array[String]([])
-restoreSnapshotActorPaths = Array[String]([])
-endTextBoxPauses = true
-shakeCamForDuration = false
-endHoldCamera = false
-endFade = 0
-endFadeLength = 0.0
-healsPlayer = false
-addsFollowerId = ""
-removesFollowerId = ""
-endStartsShardLearnTutorial = false
 
 [sub_resource type="Resource" id="Resource_o2c8a"]
 script = ExtResource("3_6v2ds")
 actorTreePath = "TilemapRoot/ChainLegionMage1"
-isPlayer = false
 animation = "stand"
 
 [sub_resource type="Resource" id="Resource_ryp1x"]
 script = ExtResource("8_41xsk")
 value = Vector2(-208, 116)
-actorTreePath = ""
 isPlayer = true
 propertyName = "position"
-easeType = 2
-transitionType = 0
 
 [sub_resource type="Resource" id="Resource_w7ow2"]
 script = ExtResource("1_iq1k5")
@@ -96,111 +54,35 @@ frameLength = 2.0
 annotation = "Walk the player closer"
 actorTweens = Array[ExtResource("5_pqths")]([SubResource("Resource_ryp1x")])
 actorAnims = Array[ExtResource("3_6v2ds")]([ExtResource("8_yksys"), SubResource("Resource_o2c8a")])
-actorAnimSets = Array[ExtResource("2_77ti1")]([])
-actorFaceTargets = Array[ExtResource("4_3bdmq")]([])
-dialogues = Array[ExtResource("6_rw1vf")]([])
-playSfxs = Array[AudioStream]([])
-snapshotActorPaths = Array[String]([])
-restoreSnapshotActorPaths = Array[String]([])
-endTextBoxPauses = true
-shakeCamForDuration = false
-endHoldCamera = false
-endFade = 0
-endFadeLength = 0.0
-healsPlayer = false
-addsFollowerId = ""
-removesFollowerId = ""
-endStartsShardLearnTutorial = false
 
 [sub_resource type="Resource" id="Resource_8s7co"]
 script = ExtResource("6_rw1vf")
 speaker = "@"
 texts = Array[String](["... Bad time for a pun."])
-textboxSfxs = Array[AudioStream]([])
-speakerActorScenePath = ""
 speakerActorIsPlayer = true
 speakerAnim = "stand"
-speakerAnimScale = 3
-animSpeakerOffset = Vector2(0, 0)
 
 [sub_resource type="Resource" id="Resource_gp51h"]
 script = ExtResource("1_iq1k5")
 frameLength = 0.1
 annotation = "player stands and speaks"
-actorTweens = Array[ExtResource("5_pqths")]([])
 actorAnims = Array[ExtResource("3_6v2ds")]([ExtResource("4_vtqul")])
-actorAnimSets = Array[ExtResource("2_77ti1")]([])
-actorFaceTargets = Array[ExtResource("4_3bdmq")]([])
 dialogues = Array[ExtResource("6_rw1vf")]([SubResource("Resource_8s7co")])
-playSfxs = Array[AudioStream]([])
-snapshotActorPaths = Array[String]([])
-restoreSnapshotActorPaths = Array[String]([])
-endTextBoxPauses = true
-shakeCamForDuration = false
-endHoldCamera = false
-endFade = 0
-endFadeLength = 0.0
-healsPlayer = false
-addsFollowerId = ""
-removesFollowerId = ""
-endStartsShardLearnTutorial = false
 
 [sub_resource type="Resource" id="Resource_tgkue"]
 script = ExtResource("1_iq1k5")
 frameLength = 0.1
 annotation = "Wait for text box to be closed"
-actorTweens = Array[ExtResource("5_pqths")]([])
-actorAnims = Array[ExtResource("3_6v2ds")]([])
-actorAnimSets = Array[ExtResource("2_77ti1")]([])
-actorFaceTargets = Array[ExtResource("4_3bdmq")]([])
-dialogues = Array[ExtResource("6_rw1vf")]([])
-playSfxs = Array[AudioStream]([])
-snapshotActorPaths = Array[String]([])
-restoreSnapshotActorPaths = Array[String]([])
-endTextBoxPauses = true
-shakeCamForDuration = false
-endHoldCamera = false
-endFade = 0
-endFadeLength = 0.0
-healsPlayer = false
-addsFollowerId = ""
-removesFollowerId = ""
-endStartsShardLearnTutorial = false
 
 [sub_resource type="Resource" id="Resource_aqj88"]
 script = ExtResource("4_mhrut")
 minAct = 2
 maxAct = 2
-prereqQuests = Array[String]([])
 prereqCutscenes = Array[String](["standstill_burned_enter"])
-prereqDialogues = Array[String]([])
-prereqPlacesVisited = Array[String]([])
-prereqSpecialBattles = Array[String]([])
-prereqDefeatedEnemies = Array[String]([])
-prereqPuzzles = Array[String]([])
-prereqPuzzleStates = Dictionary[String, Array]({})
-prereqDiscoveredEvolutions = Array[String]([])
-prereqHavingFollowers = Array[String]([])
-prereqHasItems = Array[ExtResource("3_abnag")]([])
-invalidAfterCompletingQuests = Array[String]([])
-invalidAfterFailingQuests = Array[String]([])
-invalidAfterCutscenes = Array[String]([])
-invalidAfterDialogues = Array[String]([])
-invalidAfterVistingPlaces = Array[String]([])
 invalidAfterSpecialBattles = Array[String](["standstill_cl_mage_1"])
-invalidAfterSolvingPuzzles = Array[String]([])
-invalidFromPuzzleStates = Dictionary[String, Array]({})
-invalidFromHavingFollowers = Array[String]([])
-invalidFromHavingItems = Array[ExtResource("3_abnag")]([])
 
 [resource]
 script = ExtResource("2_ft6in")
 cutsceneFrames = Array[ExtResource("1_iq1k5")]([SubResource("Resource_45cam"), SubResource("Resource_2v1sl"), SubResource("Resource_w7ow2"), SubResource("Resource_gp51h"), SubResource("Resource_tgkue")])
-saveName = ""
 storyRequirements = SubResource("Resource_aqj88")
-unlockCameraHoldAfter = true
-activateActorsBefore = Array[String]([])
-deactivateActorsAfter = Array[String]([])
 staticEncounter = ExtResource("9_s48kp")
-tempDisabledAfter = false
-notes = ""

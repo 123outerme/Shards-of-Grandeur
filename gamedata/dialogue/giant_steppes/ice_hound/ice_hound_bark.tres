@@ -10,44 +10,24 @@
 [sub_resource type="Resource" id="Resource_c34ki"]
 script = ExtResource("2_c34ki")
 choiceBtn = "<Pet>"
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("3_lr551")]([])
 repeatsItem = true
-buttonDims = Vector2(80, 40)
-turnsInQuest = ""
-isDeclineChoice = false
 metadata/_custom_type_script = "uid://bk6klhv2ls55w"
 
 [sub_resource type="Resource" id="Resource_5e50l"]
 script = ExtResource("2_c34ki")
 choiceBtn = "Bye Bye!"
 leadsTo = ExtResource("4_lr551")
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("3_lr551")]([])
-repeatsItem = false
-buttonDims = Vector2(80, 40)
-turnsInQuest = ""
 isDeclineChoice = true
 metadata/_custom_type_script = "uid://bk6klhv2ls55w"
 
 [sub_resource type="Resource" id="Resource_lr551"]
 script = ExtResource("1_671pi")
 lines = Array[String](["Bark bark!"])
-minShowSecs = Array[float]([])
 animation = "talk"
-speakerOverride = ""
-actorAnimation = ""
-animateActorTreePath = ""
-animateActorIsPlayer = false
 choices = Array[ExtResource("2_c34ki")]([SubResource("Resource_c34ki"), SubResource("Resource_5e50l")])
 metadata/_custom_type_script = "uid://grt2yrupha8c"
 
 [resource]
 script = ExtResource("3_c34ki")
-entryId = ""
 items = Array[ExtResource("1_671pi")]([SubResource("Resource_lr551")])
-ordStoryRequirements = Array[ExtResource("2_2j162")]([])
-closesDialogue = false
-fullHealsPlayer = false
-annotation = ""
 metadata/_custom_type_script = "uid://1n6mppc7hmmf"

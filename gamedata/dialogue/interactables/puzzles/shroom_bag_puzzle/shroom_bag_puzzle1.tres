@@ -14,44 +14,20 @@
 script = ExtResource("2_sxmm1")
 choiceBtn = "No"
 leadsTo = ExtResource("1_cybfr")
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("4_8q60u")]([])
-repeatsItem = false
-buttonDims = Vector2(80, 40)
-turnsInQuest = ""
 isDeclineChoice = true
 
 [sub_resource type="Resource" id="Resource_k55f7"]
 script = ExtResource("4_wdwgr")
 puzzle = ExtResource("6_koa6p")
-puzzleStateIndex = 0
 acceptsSolve = true
-setsState = ""
 choiceBtn = "Yes"
 leadsTo = ExtResource("3_shp3p")
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("4_8q60u")]([])
-repeatsItem = false
-buttonDims = Vector2(80, 40)
-turnsInQuest = ""
-isDeclineChoice = false
 
 [sub_resource type="Resource" id="Resource_0lko5"]
 script = ExtResource("5_mnpyc")
 lines = Array[String](["This tree stump was the place, as far as that old skipper said... Should I place the bag here?"])
-minShowSecs = Array[float]([])
-animation = ""
-speakerOverride = ""
-actorAnimation = ""
-animateActorTreePath = ""
-animateActorIsPlayer = false
 choices = Array[ExtResource("2_sxmm1")]([SubResource("Resource_slaxe"), SubResource("Resource_k55f7")])
 
 [resource]
 script = ExtResource("6_augbt")
-entryId = ""
 items = Array[ExtResource("5_mnpyc")]([SubResource("Resource_0lko5")])
-ordStoryRequirements = Array[ExtResource("7_i52a6")]([])
-closesDialogue = false
-fullHealsPlayer = false
-annotation = ""

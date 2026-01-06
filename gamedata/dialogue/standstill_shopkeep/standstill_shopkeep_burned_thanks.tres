@@ -10,58 +10,19 @@
 [sub_resource type="Resource" id="Resource_b638f"]
 script = ExtResource("1_5ef3a")
 lines = Array[String](["You saved my shop... thank you! ", "Though, before I can reopen, I'll need some time to help with rebuilding the town."])
-minShowSecs = Array[float]([])
 animation = "talk"
-speakerOverride = ""
-actorAnimation = ""
-animateActorTreePath = ""
-animateActorIsPlayer = false
-choices = Array[ExtResource("2_j8ti7")]([])
 
 [sub_resource type="Resource" id="Resource_wywbr"]
 script = ExtResource("3_g6pat")
-minAct = 0
-maxAct = -1
-prereqQuests = Array[String]([])
 prereqCutscenes = Array[String](["standstill_defeated_helia"])
-prereqDialogues = Array[String]([])
-prereqPlacesVisited = Array[String]([])
-prereqSpecialBattles = Array[String]([])
-prereqDefeatedEnemies = Array[String]([])
-prereqPuzzles = Array[String]([])
-prereqPuzzleStates = Dictionary[String, Array]({})
-prereqDiscoveredEvolutions = Array[String]([])
-prereqHavingFollowers = Array[String]([])
-prereqHasItems = Array[ExtResource("4_5vhak")]([])
-invalidAfterCompletingQuests = Array[String]([])
-invalidAfterFailingQuests = Array[String]([])
-invalidAfterCutscenes = Array[String]([])
-invalidAfterDialogues = Array[String]([])
-invalidAfterVistingPlaces = Array[String]([])
-invalidAfterSpecialBattles = Array[String]([])
-invalidAfterSolvingPuzzles = Array[String]([])
-invalidFromPuzzleStates = Dictionary[String, Array]({})
-invalidFromHavingFollowers = Array[String]([])
-invalidFromHavingItems = Array[ExtResource("4_5vhak")]([])
 
 [sub_resource type="Resource" id="Resource_diyh0"]
 script = ExtResource("4_piu2w")
 alternativeDialogueItems = Array[ExtResource("1_5ef3a")]([SubResource("Resource_b638f")])
 alternativeStoryReqs = Array[ExtResource("3_g6pat")]([SubResource("Resource_wywbr")])
 lines = Array[String](["You saved my shop... thank you! "])
-minShowSecs = Array[float]([])
 animation = "talk"
-speakerOverride = ""
-actorAnimation = ""
-animateActorTreePath = ""
-animateActorIsPlayer = false
-choices = Array[ExtResource("2_j8ti7")]([])
 
 [resource]
 script = ExtResource("4_q8m3v")
-entryId = ""
 items = Array[ExtResource("1_5ef3a")]([SubResource("Resource_diyh0")])
-ordStoryRequirements = Array[ExtResource("3_g6pat")]([])
-closesDialogue = false
-fullHealsPlayer = false
-annotation = ""

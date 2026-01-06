@@ -16,115 +16,39 @@
 script = ExtResource("6_sfr76")
 speaker = "@"
 texts = Array[String](["I promised to rescue their elder, I shouldn't leave now.", "Plus, that Ruinous Cavern sounds an awful lot like the Radiant Cave..."])
-textboxSfxs = Array[AudioStream]([])
-speakerActorScenePath = ""
 speakerActorIsPlayer = true
 speakerAnim = "stand"
-speakerAnimScale = 3
-animSpeakerOffset = Vector2(0, 0)
 
 [sub_resource type="Resource" id="Resource_jnl61"]
 script = ExtResource("1_y3e6w")
 frameLength = 0.1
 annotation = "Stop the player and have them speak"
-actorTweens = Array[ExtResource("5_5dqsi")]([])
-actorAnims = Array[ExtResource("3_nydc0")]([])
-actorAnimSets = Array[ExtResource("2_nltlv")]([])
-actorFaceTargets = Array[ExtResource("4_sx8yk")]([])
 dialogues = Array[ExtResource("6_sfr76")]([SubResource("Resource_jx4iv")])
-playSfxs = Array[AudioStream]([])
-endTextBoxPauses = true
-shakeCamForDuration = false
-endHoldCamera = false
-endFade = 0
-endFadeLength = 0.0
-healsPlayer = false
-addsFollowerId = ""
-removesFollowerId = ""
-endStartsShardLearnTutorial = false
 
 [sub_resource type="Resource" id="Resource_dks1o"]
 script = ExtResource("7_lr2s0")
 value = Vector2(0, -400)
-actorTreePath = ""
 isPlayer = true
 propertyName = "position"
-easeType = 2
-transitionType = 0
 
 [sub_resource type="Resource" id="Resource_mpqpu"]
 script = ExtResource("1_y3e6w")
-frameLength = 1.0
 annotation = "walk the player back towards camp"
 actorTweens = Array[ExtResource("5_5dqsi")]([SubResource("Resource_dks1o")])
-actorAnims = Array[ExtResource("3_nydc0")]([])
-actorAnimSets = Array[ExtResource("2_nltlv")]([])
-actorFaceTargets = Array[ExtResource("4_sx8yk")]([])
-dialogues = Array[ExtResource("6_sfr76")]([])
-playSfxs = Array[AudioStream]([])
 endTextBoxPauses = false
-shakeCamForDuration = false
-endHoldCamera = false
-endFade = 0
-endFadeLength = 0.0
-healsPlayer = false
-addsFollowerId = ""
-removesFollowerId = ""
-endStartsShardLearnTutorial = false
 
 [sub_resource type="Resource" id="Resource_ja54h"]
 script = ExtResource("1_y3e6w")
 frameLength = 0.1
 annotation = "Wait for the textbox to be closed and make the player stand"
-actorTweens = Array[ExtResource("5_5dqsi")]([])
 actorAnims = Array[ExtResource("3_nydc0")]([ExtResource("8_rw1ol")])
-actorAnimSets = Array[ExtResource("2_nltlv")]([])
-actorFaceTargets = Array[ExtResource("4_sx8yk")]([])
-dialogues = Array[ExtResource("6_sfr76")]([])
-playSfxs = Array[AudioStream]([])
-endTextBoxPauses = true
-shakeCamForDuration = false
-endHoldCamera = false
-endFade = 0
-endFadeLength = 0.0
-healsPlayer = false
-addsFollowerId = ""
-removesFollowerId = ""
-endStartsShardLearnTutorial = false
 
 [sub_resource type="Resource" id="Resource_jnsq6"]
 script = ExtResource("10_crvl3")
 minAct = 1
 maxAct = 1
-prereqQuests = Array[String]([])
-prereqCutscenes = Array[String]([])
-prereqDialogues = Array[String]([])
-prereqPlacesVisited = Array[String]([])
-prereqSpecialBattles = Array[String]([])
-prereqDefeatedEnemies = Array[String]([])
-prereqPuzzles = Array[String]([])
-prereqPuzzleStates = Dictionary[String, Array]({})
-prereqDiscoveredEvolutions = Array[String]([])
-prereqHavingFollowers = Array[String]([])
-prereqHasItems = Array[ExtResource("10_bw6bb")]([])
-invalidAfterCompletingQuests = Array[String]([])
-invalidAfterFailingQuests = Array[String]([])
-invalidAfterCutscenes = Array[String]([])
-invalidAfterDialogues = Array[String]([])
-invalidAfterVistingPlaces = Array[String]([])
-invalidAfterSpecialBattles = Array[String]([])
-invalidAfterSolvingPuzzles = Array[String]([])
-invalidFromPuzzleStates = Dictionary[String, Array]({})
-invalidFromHavingFollowers = Array[String]([])
-invalidFromHavingItems = Array[ExtResource("10_bw6bb")]([])
 
 [resource]
 script = ExtResource("9_6av2f")
 cutsceneFrames = Array[ExtResource("1_y3e6w")]([SubResource("Resource_jnl61"), SubResource("Resource_mpqpu"), SubResource("Resource_ja54h")])
-saveName = ""
 storyRequirements = SubResource("Resource_jnsq6")
-unlockCameraHoldAfter = true
-activateActorsBefore = Array[String]([])
-deactivateActorsAfter = Array[String]([])
-tempDisabledAfter = false
-notes = ""

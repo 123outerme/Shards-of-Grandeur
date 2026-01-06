@@ -12,16 +12,9 @@ script = ExtResource("2_qiuql")
 name = "The Ruinous Cavern?"
 description = "The elder left to the east of the Nomad Camp, so retrace his steps. Hopefully he hasn't gone too far..."
 locations = Array[int]([42])
-turnInLocations = Array[int]([])
 type = 3
-count = 1
 objectiveName = "dragon1_encounter"
-turnInNames = Array[String]([])
-displayObjName = ""
-displayTurnInName = ""
 customStatusStr = "Find the Elder!"
-turnInDialogue = Array[ExtResource("3_a40f2")]([])
-inProgressDialogue = Array[ExtResource("3_a40f2")]([])
 
 [sub_resource type="Resource" id="Resource_sxfel"]
 script = ExtResource("2_qiuql")
@@ -30,37 +23,22 @@ description = "The elder is collapsed, and a Dragon stares you down!"
 locations = Array[int]([42])
 turnInLocations = Array[int]([42])
 type = 3
-count = 1
 objectiveName = "dragon1_survive"
-turnInNames = Array[String]([])
-displayObjName = ""
-displayTurnInName = ""
 customStatusStr = "Fight the Dragon!"
-turnInDialogue = Array[ExtResource("3_a40f2")]([])
-inProgressDialogue = Array[ExtResource("3_a40f2")]([])
 
 [sub_resource type="Resource" id="Resource_yee4y"]
 script = ExtResource("2_qiuql")
 name = "Back to Base Camp"
 description = "With the Dragon chased off and the elder revived, you'd both best head back to the Nomad Camp."
 locations = Array[int]([40])
-turnInLocations = Array[int]([])
 type = 3
-count = 1
 objectiveName = "return_elder_nomad"
-turnInNames = Array[String]([])
-displayObjName = ""
-displayTurnInName = ""
 customStatusStr = "Return to Nomad Camp!"
-turnInDialogue = Array[ExtResource("3_a40f2")]([])
-inProgressDialogue = Array[ExtResource("3_a40f2")]([])
 
 [sub_resource type="Resource" id="Resource_vt8bs"]
 script = ExtResource("4_2idsp")
 experience = 120
 gold = 5
-itemCount = 1
-fullyAttuneCombatantSaveName = ""
 
 [sub_resource type="Resource" id="Resource_hkuv4"]
 script = ExtResource("2_qiuql")
@@ -69,13 +47,10 @@ description = "A Ruinous Cave, a Dragon in the desert, and this old man can use 
 reward = SubResource("Resource_vt8bs")
 locations = Array[int]([40])
 turnInLocations = Array[int]([40])
-type = 0
-count = 1
 objectiveName = "nomad2_hut#rescued_answers"
 turnInNames = Array[String](["nomad2_hut"])
 displayObjName = "Elder"
 displayTurnInName = "Elder"
-customStatusStr = ""
 turnInDialogue = Array[ExtResource("3_a40f2")]([ExtResource("6_yfy30")])
 inProgressDialogue = Array[ExtResource("3_a40f2")]([ExtResource("4_uknb2")])
 
@@ -84,16 +59,9 @@ script = ExtResource("2_qiuql")
 name = "A Granted Vision"
 description = "As thanks, the Elder bestows you a vision of a calamity yet to pass..."
 locations = Array[int]([40])
-turnInLocations = Array[int]([])
 type = 3
-count = 1
 objectiveName = "standstill_vision"
-turnInNames = Array[String]([])
-displayObjName = ""
-displayTurnInName = ""
 customStatusStr = "See Into the Future!"
-turnInDialogue = Array[ExtResource("3_a40f2")]([])
-inProgressDialogue = Array[ExtResource("3_a40f2")]([])
 
 [resource]
 script = ExtResource("1_ckbbk")

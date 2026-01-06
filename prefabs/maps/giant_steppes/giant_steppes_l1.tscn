@@ -1,4 +1,4 @@
-[gd_scene load_steps=87 format=4 uid="uid://drbsfhefdewe5"]
+[gd_scene load_steps=86 format=4 uid="uid://drbsfhefdewe5"]
 
 [ext_resource type="Script" uid="uid://vg00rfnn3346" path="res://scripts/overworld/map_script.gd" id="1_tdh71"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_iwy47"]
@@ -36,94 +36,31 @@
 [ext_resource type="Resource" uid="uid://ded2gogbnwnnt" path="res://gamedata/dialogue/giant_steppes/warlock_agent/agent_training_block_demo_end.tres" id="19_m7m11"]
 [ext_resource type="Script" uid="uid://bhe5dt53rj7mf" path="res://scripts/npcs/npc_move_point.gd" id="21_tnovd"]
 [ext_resource type="Resource" uid="uid://bf7be5r483rl8" path="res://gamedata/cutscenes/giant_steppes/gis_demo_block.tres" id="25_68q3o"]
-[ext_resource type="PackedScene" uid="uid://blb38hmic2jvq" path="res://prefabs/overworld/test_camera.tscn" id="37_2ixtn"]
 
 [sub_resource type="Resource" id="Resource_2yuxa"]
 script = ExtResource("6_4hkxj")
 id = "default"
 priority = -1
-storyRequirements = Array[ExtResource("7_68q3o")]([])
-autoApplyState = false
 
 [sub_resource type="Resource" id="Resource_m8ki0"]
 script = ExtResource("5_h3fmg")
 saveName = "npc"
-spriteState = "default"
-animation = "stand"
 position = Vector2(150, -332)
-flipH = false
-visible = true
-selectedTarget = 0
-loops = 0
-disableMovement = false
-previousDisableMove = false
-afterMoveWaitAccum = 0.0
-followerHomePosition = Vector2(0, 0)
-followingPlayer = false
-followerHomeSet = false
-combatMode = false
-version = ""
-dialogueItems = []
-dialogueIndex = -1
-dialogueItemIdx = -1
-dialogueLine = -1
 
 [sub_resource type="Resource" id="Resource_okj30"]
 script = ExtResource("6_4hkxj")
 id = "default"
 priority = -1
-storyRequirements = Array[ExtResource("7_68q3o")]([])
-autoApplyState = false
 
 [sub_resource type="Resource" id="Resource_o4dl1"]
 script = ExtResource("7_68q3o")
-minAct = 0
-maxAct = -1
-prereqQuests = Array[String]([])
-prereqCutscenes = Array[String]([])
-prereqDialogues = Array[String]([])
-prereqPlacesVisited = Array[String]([])
-prereqSpecialBattles = Array[String]([])
-prereqDefeatedEnemies = Array[String]([])
-prereqPuzzles = Array[String]([])
-prereqPuzzleStates = Dictionary[String, Array]({})
-prereqDiscoveredEvolutions = Array[String]([])
-prereqHavingFollowers = Array[String]([])
-prereqHasItems = Array[ExtResource("8_m7m11")]([])
-invalidAfterCompletingQuests = Array[String]([])
-invalidAfterFailingQuests = Array[String]([])
 invalidAfterCutscenes = Array[String](["giant_steppes_arrive"])
-invalidAfterDialogues = Array[String]([])
-invalidAfterVistingPlaces = Array[String]([])
-invalidAfterSpecialBattles = Array[String]([])
-invalidAfterSolvingPuzzles = Array[String]([])
-invalidFromPuzzleStates = Dictionary[String, Array]({})
-invalidFromHavingFollowers = Array[String]([])
-invalidFromHavingItems = Array[ExtResource("8_m7m11")]([])
 metadata/_custom_type_script = "uid://bjesn36acj0uh"
 
 [sub_resource type="Resource" id="Resource_y8w0x"]
 script = ExtResource("5_h3fmg")
 saveName = "npc"
-spriteState = "default"
-animation = "stand"
 position = Vector2(321, -83)
-flipH = false
-visible = true
-selectedTarget = 0
-loops = 0
-disableMovement = false
-previousDisableMove = false
-afterMoveWaitAccum = 0.0
-followerHomePosition = Vector2(0, 0)
-followingPlayer = false
-followerHomeSet = false
-combatMode = false
-version = ""
-dialogueItems = []
-dialogueIndex = -1
-dialogueItemIdx = -1
-dialogueLine = -1
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f378v"]
 size = Vector2(15.5, 13)
@@ -132,31 +69,11 @@ size = Vector2(15.5, 13)
 script = ExtResource("6_4hkxj")
 id = "default"
 priority = -1
-storyRequirements = Array[ExtResource("7_68q3o")]([])
-autoApplyState = false
 
 [sub_resource type="Resource" id="Resource_qj1li"]
 script = ExtResource("5_h3fmg")
 saveName = "npc"
-spriteState = "default"
-animation = "stand"
 position = Vector2(616, -80)
-flipH = false
-visible = true
-selectedTarget = 0
-loops = 0
-disableMovement = false
-previousDisableMove = false
-afterMoveWaitAccum = 0.0
-followerHomePosition = Vector2(0, 0)
-followingPlayer = false
-followerHomeSet = false
-combatMode = false
-version = ""
-dialogueItems = []
-dialogueIndex = -1
-dialogueItemIdx = -1
-dialogueLine = -1
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ku0es"]
 size = Vector2(22, 11)
@@ -164,29 +81,21 @@ size = Vector2(22, 11)
 [sub_resource type="Resource" id="Resource_fecqu"]
 script = ExtResource("21_tnovd")
 position = Vector2(600, -88)
-relativeToCurrentPos = false
-pauseSecs = 0.0
 metadata/_custom_type_script = "uid://bhe5dt53rj7mf"
 
 [sub_resource type="Resource" id="Resource_d0k41"]
 script = ExtResource("21_tnovd")
 position = Vector2(616, -96)
-relativeToCurrentPos = false
-pauseSecs = 0.0
 metadata/_custom_type_script = "uid://bhe5dt53rj7mf"
 
 [sub_resource type="Resource" id="Resource_jnqfi"]
 script = ExtResource("21_tnovd")
 position = Vector2(632, -88)
-relativeToCurrentPos = false
-pauseSecs = 0.0
 metadata/_custom_type_script = "uid://bhe5dt53rj7mf"
 
 [sub_resource type="Resource" id="Resource_m15ju"]
 script = ExtResource("21_tnovd")
 position = Vector2(616, -80)
-relativeToCurrentPos = false
-pauseSecs = 0.0
 metadata/_custom_type_script = "uid://bhe5dt53rj7mf"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_diebl"]
@@ -226,58 +135,16 @@ size = Vector2(16, 16)
 script = ExtResource("6_4hkxj")
 id = "default"
 priority = -1
-storyRequirements = Array[ExtResource("7_68q3o")]([])
-autoApplyState = false
 
 [sub_resource type="Resource" id="Resource_qw8te"]
 script = ExtResource("7_68q3o")
-minAct = 0
-maxAct = -1
-prereqQuests = Array[String]([])
 prereqCutscenes = Array[String](["giant_steppes_arrive"])
-prereqDialogues = Array[String]([])
-prereqPlacesVisited = Array[String]([])
-prereqSpecialBattles = Array[String]([])
-prereqDefeatedEnemies = Array[String]([])
-prereqPuzzles = Array[String]([])
-prereqPuzzleStates = Dictionary[String, Array]({})
-prereqDiscoveredEvolutions = Array[String]([])
-prereqHavingFollowers = Array[String]([])
-prereqHasItems = Array[ExtResource("8_m7m11")]([])
-invalidAfterCompletingQuests = Array[String]([])
-invalidAfterFailingQuests = Array[String]([])
-invalidAfterCutscenes = Array[String]([])
-invalidAfterDialogues = Array[String]([])
-invalidAfterVistingPlaces = Array[String]([])
-invalidAfterSpecialBattles = Array[String]([])
-invalidAfterSolvingPuzzles = Array[String]([])
-invalidFromPuzzleStates = Dictionary[String, Array]({})
-invalidFromHavingFollowers = Array[String]([])
-invalidFromHavingItems = Array[ExtResource("8_m7m11")]([])
 metadata/_custom_type_script = "uid://bjesn36acj0uh"
 
 [sub_resource type="Resource" id="Resource_rylli"]
 script = ExtResource("5_h3fmg")
 saveName = "npc"
-spriteState = "default"
-animation = "stand"
 position = Vector2(1008, -163)
-flipH = false
-visible = true
-selectedTarget = 0
-loops = 0
-disableMovement = false
-previousDisableMove = false
-afterMoveWaitAccum = 0.0
-followerHomePosition = Vector2(0, 0)
-followingPlayer = false
-followerHomeSet = false
-combatMode = false
-version = ""
-dialogueItems = []
-dialogueIndex = -1
-dialogueItemIdx = -1
-dialogueLine = -1
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wc6h0"]
 size = Vector2(24, 7)
@@ -876,9 +743,6 @@ navigation_layers = 2
 visible = false
 navigation_polygon = SubResource("NavigationPolygon_8fg56")
 navigation_layers = 4
-
-[node name="TestCamera" parent="." instance=ExtResource("37_2ixtn")]
-position = Vector2(611, -78)
 
 [editable path="TilemapRoot/Warlock1"]
 [editable path="TilemapRoot/WarlockAgent"]
