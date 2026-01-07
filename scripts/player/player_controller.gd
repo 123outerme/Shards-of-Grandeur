@@ -381,14 +381,21 @@ func advance_dialogue(canStart: bool = true):
 				if (npc.position.distance_to(position) < minDistance or minDistance == -1.0) and \
 						len(npc.data.dialogueItems) > 0 and npc.visible: # if the NPC has dialogue and is the closest visible NPC, speak to this one
 					minDistance = npc.position.distance_to(position)
+					if talkNPC != npc and talkNPC != null and talkNPC.tree_exiting.is_connected(_dialogue_partner_freed):
+						talkNPC.tree_exiting.disconnect(_dialogue_partner_freed)
 					talkNPC = npc
+					talkNPC.tree_exiting.connect(_dialogue_partner_freed)
 					PlayerResources.playerInfo.encounter = null # reset static encounter in case game crash
 		play_animation('stand')
 		if not canStart and not disableMovement or talkNPC == null: # if we are pressing game_decline, or there is no talk NPC, do not start conversation!
+			if talkNPC != null and talkNPC.tree_exiting.is_connected(_dialogue_partner_freed):
+				talkNPC.tree_exiting.disconnect(_dialogue_partner_freed)
 			talkNPC = null
 			return
 		var hasDialogue: bool = talkNPC.advance_dialogue()
 		if not hasDialogue:
+			if talkNPC.tree_exiting.is_connected(_dialogue_partner_freed):
+				talkNPC.tree_exiting.disconnect(_dialogue_partner_freed)
 			talkNPC = null
 			return
 		
@@ -412,6 +419,8 @@ func advance_dialogue(canStart: bool = true):
 			for npc in talkNPCcandidates:
 				if len(npc.data.dialogueItems) > 0:
 					npc.talkAlertSprite.visible = true
+			if talkNPC != null and talkNPC.tree_exiting.is_connected(_dialogue_partner_freed):
+				talkNPC.tree_exiting.disconnect(_dialogue_partner_freed)
 			talkNPC = null
 			if PlayerResources.playerInfo.encounter != null:
 				start_battle()
@@ -655,6 +664,8 @@ func set_talk_npc(npc: NPCScript, remove: bool = false):
 		for candidate in talkNPCcandidates:
 			candidate.reset_dialogue()
 		talkNPCcandidates = []
+		if talkNPC != null and talkNPC.tree_exiting.is_connected(_dialogue_partner_freed):
+			talkNPC.tree_exiting.disconnect(_dialogue_partner_freed)
 		talkNPC = null
 		return
 	
@@ -674,7 +685,10 @@ func restore_dialogue(npc: NPCScript):
 	if dialogueItem != null and talkNPC == null:
 		if not npc in talkNPCcandidates:
 			talkNPCcandidates.append(npc)
+		if npc != talkNPC and talkNPC != null and talkNPC.tree_exiting.is_connected(_dialogue_partner_freed):
+			talkNPC.tree_exiting.disconnect(_dialogue_partner_freed)
 		talkNPC = npc
+		talkNPC.tree_exiting.connect(_dialogue_partner_freed)
 		talkNPC.face_player()
 		talkNPC.talkAlertSprite.visible = true
 		SceneLoader.pause_autonomous_movers()
@@ -696,9 +710,11 @@ func show_all_talk_alert_sprites():
 
 func restore_interactable_dialogue(dialogues: Array[InteractableDialogue]):
 	await get_tree().process_frame # wait for nearby interactables to register with the player
-	await get_tree().process_frame # wait for nearby interactables to register with the player
+	await get_tree().process_frame # wait another frame for nearby interactables to register with the player
 	interactableDialogues.append_array(dialogues)
 	if len(interactableDialogues) > 0:
+		if interactable != null and interactable.tree_exiting.is_connected(_dialogue_partner_freed):
+			interactable.tree_exiting.disconnect(_dialogue_partner_freed)
 		interactable = null
 		for inter: Interactable in interactables:
 			if inter.saveName == PlayerResources.playerInfo.interactableName:
@@ -706,6 +722,7 @@ func restore_interactable_dialogue(dialogues: Array[InteractableDialogue]):
 				break
 		
 		if interactable != null:
+			interactable.tree_exiting.connect(_dialogue_partner_freed)
 			face_horiz(interactable.global_position.x - global_position.x)
 			SceneLoader.pause_autonomous_movers()
 			put_interactable_text(false, true)
@@ -756,7 +773,10 @@ func pick_up(groundItem: GroundItem):
 	
 	groundItem.pickedUpItem.savedTextIdx = 0
 	play_animation('stand')
+	if interactable != null and interactable.tree_exiting.is_connected(_dialogue_partner_freed):
+		interactable.tree_exiting.disconnect(_dialogue_partner_freed)
 	interactable = groundItem
+	interactable.tree_exiting.connect(_dialogue_partner_freed)
 	# don't advance, and if this is up next, play the animation
 	put_interactable_text(false, interactableDialogues[interactableDialogueIndex] == groundItem.pickedUpItem)
 
@@ -765,7 +785,10 @@ func interact_interactable(inter: Interactable, dialogue: InteractableDialogue =
 	if interDialogue == null:
 		interDialogue = inter.dialogue
 	if interDialogue != null:
+		if interactable != null and interactable.tree_exiting.is_connected(_dialogue_partner_freed):
+			interactable.tree_exiting.disconnect(_dialogue_partner_freed)
 		interactable = inter
+		interactable.tree_exiting.connect(_dialogue_partner_freed)
 		interactableDialogues.append(interDialogue)
 		# if this one is up next, play the animation
 		put_interactable_text(false, interactableDialogues[interactableDialogueIndex] == interDialogue)
@@ -871,12 +894,14 @@ func put_interactable_text(advance: bool = false, playDialogueAnim: bool = false
 		SceneLoader.unpause_autonomous_movers()
 		if interactable != null:
 			interactable.finished_dialogue()
-		if PlayerResources.playerInfo.encounter != null:
-			start_battle() # if this is the end of the interactable dialogue, start battle
+			if interactable.tree_exiting.is_connected(_dialogue_partner_freed):
+				interactable.tree_exiting.disconnect(_dialogue_partner_freed)
 		interactableDialogue = null
 		interactableDialogues = []
 		interactableDialogueIndex = 0
 		interactable = null
+		if PlayerResources.playerInfo.encounter != null:
+			start_battle() # if this is the end of the interactable dialogue, start battle
 	else:
 		SceneLoader.pause_autonomous_movers()
 
@@ -1193,3 +1218,14 @@ func _on_overworld_touch_controls_console_pressed() -> void:
 
 func _on_act_changed() -> void:
 	actChanged = true
+
+func _dialogue_partner_freed() -> void:
+	# emergency cleanup of dialogue if the current interactable/NPC being interacted with is freed before dialogue is over
+	interactables.erase(interactable)
+	interactable = null
+	interactableDialogues = []
+	interactableDialogueIndex = 0
+	talkNPCcandidates.erase(talkNPC)
+	talkNPC = null
+	if not inCutscene:
+		textBox.hide_textbox()
