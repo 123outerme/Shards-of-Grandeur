@@ -10,7 +10,9 @@ signal combatant_finished_animating(combatant: CombatantNode)
 @export var targetCombatant: Combatant = null
 @export var evolution: Evolution = null
 @export var moveCombatantsIfAlone: bool = false
+@export var battleMap: PackedScene = null
 
+@onready var tilemapParent: Node2D = get_node('TilemapParent')
 @onready var moveLearnAnimController: MoveLearnAnimationController = get_node('MoveLearnAnimControl')
 @onready var button: Button = get_node('Button')
 @onready var surgeChargeToggle: Button = get_node('SurgeChargeToggle')
@@ -35,6 +37,8 @@ func _ready():
 		surgeChargeToggle.text = 'Surge'
 	else:
 		surgeChargeToggle.text = 'Charge'
+	var battleMapScene: Node2D = battleMap.instantiate()
+	tilemapParent.add_child(battleMapScene)
 	userNode = moveLearnAnimController.battleAnimManager.playerCombatantNode
 
 func _on_button_pressed():

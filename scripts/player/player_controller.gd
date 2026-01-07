@@ -1229,3 +1229,4 @@ func _dialogue_partner_freed() -> void:
 	talkNPC = null
 	if not inCutscene:
 		textBox.hide_textbox()
+	unpause_movement()

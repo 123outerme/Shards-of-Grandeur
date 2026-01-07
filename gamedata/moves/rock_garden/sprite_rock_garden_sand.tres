@@ -1,0 +1,41 @@
+[gd_resource type="Resource" script_class="MoveAnimSprite" load_steps=8 format=3 uid="uid://ced84214abrwv"]
+
+[ext_resource type="Script" uid="uid://n71lfdnd5xrr" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite_frame.gd" id="1_2oljy"]
+[ext_resource type="Script" uid="uid://mk6loduurcg4" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="2_33dtm"]
+[ext_resource type="SpriteFrames" uid="uid://eimikxqalmye" path="res://graphics/moves/earth/a_rock_garden.tres" id="3_33dtm"]
+
+[sub_resource type="Curve" id="Curve_msotn"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Curve" id="Curve_5ie06"]
+_data = [Vector2(0, 1), 0.0, -0.5, 0, 1]
+point_count = 1
+
+[sub_resource type="Resource" id="Resource_33dtm"]
+script = ExtResource("1_2oljy")
+annotation = "set up position below user"
+animation = "default"
+duration = 0.1
+relativeTo = 2
+position = Vector2(0, -12)
+offset = 8
+xCurve = SubResource("Curve_msotn")
+yCurve = SubResource("Curve_5ie06")
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[sub_resource type="Resource" id="Resource_fsi7r"]
+script = ExtResource("1_2oljy")
+annotation = "play rocks anim"
+animation = "rock_garden_sand"
+duration = 2.5
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[resource]
+script = ExtResource("2_33dtm")
+spriteFrames = ExtResource("3_33dtm")
+maxSize = Vector2(64, 32)
+frames = Array[ExtResource("1_2oljy")]([SubResource("Resource_33dtm"), SubResource("Resource_fsi7r")])
+playsOnImpactFrame = false
+behindCombatants = true
+metadata/_custom_type_script = "uid://mk6loduurcg4"

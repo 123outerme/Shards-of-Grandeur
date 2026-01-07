@@ -80,6 +80,7 @@ func load_animation():
 	lastPivotPos = spritePivot.position
 	if anim != null:
 		animatedSpriteNode.sprite_frames = anim.spriteFrames
+		z_index = -4 if anim.behindCombatants else 4 
 	animatedSpriteNode.flip_h = not user.leftSide # mirror if user is right side (sprites drawn as if user is left-side)
 
 func play_sprite_animation():

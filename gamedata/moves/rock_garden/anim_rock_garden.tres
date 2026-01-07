@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="MoveAnimation" load_steps=5 format=3 uid="uid://s1bof2i4qjww"]
+
+[ext_resource type="Script" uid="uid://mk6loduurcg4" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="1_3kv6y"]
+[ext_resource type="Script" uid="uid://dy6wwno8h0wdl" path="res://scripts/battle/particles/move_animation.gd" id="2_5oohd"]
+[ext_resource type="Resource" uid="uid://d3js05ap40j28" path="res://gamedata/moves/rock_garden/sprite_rock_garden_rocks.tres" id="2_dp7my"]
+[ext_resource type="Resource" uid="uid://ced84214abrwv" path="res://gamedata/moves/rock_garden/sprite_rock_garden_sand.tres" id="3_85lrm"]
+
+[resource]
+script = ExtResource("2_5oohd")
+combatantAnimation = "attack_affinity"
+chargeMoveSprites = Array[ExtResource("1_3kv6y")]([ExtResource("2_dp7my"), ExtResource("3_85lrm")])
+surgeMoveSprites = Array[ExtResource("1_3kv6y")]([ExtResource("2_dp7my"), ExtResource("3_85lrm")])
+metadata/_custom_type_script = "uid://dy6wwno8h0wdl"
