@@ -11,6 +11,7 @@ signal combatant_finished_animating(combatant: CombatantNode)
 @export var evolution: Evolution = null
 @export var moveCombatantsIfAlone: bool = false
 @export var battleMap: PackedScene = null
+@export_enum("Center", "Top", "Bottom") var enemyCombatantUser: String = 'Center'
 
 @onready var tilemapParent: Node2D = get_node('TilemapParent')
 @onready var moveLearnAnimController: MoveLearnAnimationController = get_node('MoveLearnAnimControl')
@@ -32,6 +33,7 @@ func _ready():
 	moveLearnAnimController.move = move
 	moveLearnAnimController.moveCombatantsIfAlone = moveCombatantsIfAlone
 	moveLearnAnimController.useItem = item
+	moveLearnAnimController.enemyCombatantUser = enemyCombatantUser
 	moveLearnAnimController.load_move_learn_animation(playSurge)
 	if playSurge:
 		surgeChargeToggle.text = 'Surge'

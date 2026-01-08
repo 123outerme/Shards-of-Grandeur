@@ -86,6 +86,16 @@ position = Vector2(658, 146)
 scale = Vector2(3, 3)
 gizmo_extents = 1.0
 
+[node name="Enemy2MultiPos" type="Marker2D" parent="."]
+position = Vector2(706, 53)
+scale = Vector2(3, 3)
+gizmo_extents = 1.0
+
+[node name="Enemy3MultiPos" type="Marker2D" parent="."]
+position = Vector2(724, 233)
+scale = Vector2(3, 3)
+gizmo_extents = 1.0
+
 [connection signal="combatant_animation_complete" from="BattlefieldBorder/BattleAnimationManager" to="." method="_on_battle_animation_manager_combatant_animation_complete"]
 [connection signal="combatant_animation_start" from="BattlefieldBorder/BattleAnimationManager" to="." method="_on_battle_animation_manager_combatant_animation_start"]
 

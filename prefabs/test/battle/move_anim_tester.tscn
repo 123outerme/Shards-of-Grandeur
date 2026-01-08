@@ -2,16 +2,17 @@
 
 [ext_resource type="Script" uid="uid://1nnb5j8bb75a" path="res://prefabs/test/battle/move_anim_tester.gd" id="1_ukfe0"]
 [ext_resource type="Resource" uid="uid://bvuvccudlsrkd" path="res://gamedata/moves/rock_garden/rock_garden.tres" id="2_oubfq"]
-[ext_resource type="Resource" uid="uid://1d33s7xyld3s" path="res://gamedata/combatants/titan/titan.tres" id="3_g7jvt"]
 [ext_resource type="PackedScene" uid="uid://cjw6dl387qwra" path="res://prefabs/ui/inventory/move_learn_anim_controller.tscn" id="3_gfh4k"]
-[ext_resource type="PackedScene" uid="uid://fjfraluuqvid" path="res://prefabs/battle/battle_maps/desert_battle_map.tscn" id="4_oubfq"]
+[ext_resource type="Resource" uid="uid://dtf5b4ty8mdq0" path="res://gamedata/combatants/stagmite/stagmite.tres" id="3_oubfq"]
+[ext_resource type="PackedScene" uid="uid://dkqxsnv4nyxwj" path="res://prefabs/battle/battle_maps/grandstone_quarry_battle_map.tscn" id="4_oubfq"]
 [ext_resource type="PackedScene" uid="uid://dmc2ox37dega8" path="res://prefabs/audio/audio_handler.tscn" id="6_vbave"]
 
 [node name="MoveAnimTester" type="Node2D"]
 script = ExtResource("1_ukfe0")
 move = ExtResource("2_oubfq")
-targetCombatant = ExtResource("3_g7jvt")
+targetCombatant = ExtResource("3_oubfq")
 battleMap = ExtResource("4_oubfq")
+enemyCombatantUser = "Bottom"
 
 [node name="TilemapParent" type="Node2D" parent="."]
 
@@ -57,6 +58,7 @@ position = Vector2(751, 244)
 zoom = Vector2(4, 4)
 
 [node name="Button" type="Button" parent="."]
+z_index = 10
 offset_left = -26.0
 offset_top = 48.0
 offset_right = 26.0
@@ -64,6 +66,7 @@ offset_bottom = 79.0
 text = "Play"
 
 [node name="SwapButton" type="Button" parent="."]
+z_index = 10
 offset_left = 74.0
 offset_top = 48.0
 offset_right = 132.0
@@ -73,6 +76,7 @@ text = "Swap"
 [node name="AudioHandler" parent="." instance=ExtResource("6_vbave")]
 
 [node name="SurgeChargeToggle" type="Button" parent="."]
+z_index = 10
 custom_minimum_size = Vector2(81, 0)
 offset_left = -141.0
 offset_top = 48.0

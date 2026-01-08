@@ -80,7 +80,9 @@ func load_animation():
 	lastPivotPos = spritePivot.position
 	if anim != null:
 		animatedSpriteNode.sprite_frames = anim.spriteFrames
-		z_index = -4 if anim.behindCombatants else 4 
+		# z_index to put behind combatants: -1 * z_index of the user (who is the parent of this sprite), minus one to put it behind always
+		# z_index to put in front of combatants: 4 will always put it in front of combatants, no matter if the user (parent) is the lowest or highest z_index of the group
+		z_index = -(user.z_index + 1) if anim.behindCombatants else 4
 	animatedSpriteNode.flip_h = not user.leftSide # mirror if user is right side (sprites drawn as if user is left-side)
 
 func play_sprite_animation():

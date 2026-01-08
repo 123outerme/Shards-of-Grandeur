@@ -17,6 +17,7 @@ signal combatant_finished_anim
 @export var swapUsersAndTargets: bool = false
 @export var moveCombatantsIfAlone: bool = true
 @export var useItem: Item = null
+@export_enum("Center", "Top", "Bottom") var enemyCombatantUser: String = 'Center'
 
 var targetNodes: Array[CombatantNode] = []
 var moveEffect: MoveEffect = null
@@ -26,9 +27,14 @@ var moveEffect: MoveEffect = null
 
 @onready var enemy1SoloPos: Marker2D = get_node('Enemy1SoloPos')
 @onready var enemy1MultiPos: Marker2D = get_node('Enemy1MultiPos')
+@onready var enemy2MultiPos: Marker2D = get_node('Enemy2MultiPos')
+@onready var enemy3MultiPos: Marker2D = get_node('Enemy3MultiPos')
 
 @onready var battleAnimManager: BattleAnimationManager = get_node('BattlefieldBorder/BattleAnimationManager')
 
+var enemyDict: Dictionary[String, CombatantNode] = {}
+var enemyAllyDict: Dictionary[String, CombatantNode] = {}
+var enemyMultiPos: Dictionary[String, Marker2D] = {}
 
 func _ready() -> void:
 	battleAnimManager.disableHpTags = disableHpTags
@@ -39,23 +45,40 @@ func _ready() -> void:
 	battleAnimManager.minionCombatantNode.role = CombatantNode.Role.ALLY
 	
 	battleAnimManager.enemy1CombatantNode.role = CombatantNode.Role.ENEMY
+	enemyDict[battleAnimManager.enemy1CombatantNode.battlePosition] = battleAnimManager.enemy1CombatantNode
 	battleAnimManager.enemy2CombatantNode.role = CombatantNode.Role.ENEMY
+	enemyDict[battleAnimManager.enemy2CombatantNode.battlePosition] = battleAnimManager.enemy2CombatantNode
 	
 	battleAnimManager.enemy3CombatantNode.visible = false
 	battleAnimManager.enemy3CombatantNode.role = CombatantNode.Role.ENEMY
+	enemyDict[battleAnimManager.enemy3CombatantNode.battlePosition] = battleAnimManager.enemy3CombatantNode
+	
+	enemyAllyDict['Center'] = battleAnimManager.enemy2CombatantNode
+	enemyAllyDict['Top'] = battleAnimManager.enemy1CombatantNode
+	enemyAllyDict['Bottom'] = battleAnimManager.enemy1CombatantNode
+	
+	enemyMultiPos['Center'] = enemy1MultiPos
+	enemyMultiPos['Top'] = enemy2MultiPos
+	enemyMultiPos['Bottom'] = enemy3MultiPos
 
 func load_move_learn_animation(playSurge: bool = false) -> void:
 	moveEffect = move.surgeEffect if playSurge else move.chargeEffect
 	
-	var userNode: CombatantNode = battleAnimManager.playerCombatantNode if not swapUsersAndTargets else battleAnimManager.enemy1CombatantNode
-	var userAllyNode: CombatantNode = battleAnimManager.minionCombatantNode if not swapUsersAndTargets else battleAnimManager.enemy2CombatantNode
-	var targetNode: CombatantNode = battleAnimManager.enemy1CombatantNode if not swapUsersAndTargets else battleAnimManager.playerCombatantNode
-	var targetAllyNode: CombatantNode = battleAnimManager.enemy2CombatantNode if not swapUsersAndTargets else battleAnimManager.minionCombatantNode
+	battleAnimManager.enemy1CombatantNode.visible = false
+	battleAnimManager.enemy2CombatantNode.visible = false
+	battleAnimManager.enemy3CombatantNode.visible = false
+	
+	var userNode: CombatantNode = battleAnimManager.playerCombatantNode if not swapUsersAndTargets else enemyDict[enemyCombatantUser]
+	var userAllyNode: CombatantNode = battleAnimManager.minionCombatantNode if not swapUsersAndTargets else enemyAllyDict[enemyCombatantUser]
+	var targetNode: CombatantNode = enemyDict[enemyCombatantUser] if not swapUsersAndTargets else battleAnimManager.playerCombatantNode
+	var targetAllyNode: CombatantNode = enemyAllyDict[enemyCombatantUser] if not swapUsersAndTargets else battleAnimManager.minionCombatantNode
+	
+	battleAnimManager.enemy3CombatantNode.visible = (targetNode == battleAnimManager.enemy3CombatantNode or userNode == battleAnimManager.enemy3CombatantNode)
 	
 	var userSoloPos: Vector2 = playerSoloPos.global_position if not swapUsersAndTargets else enemy1SoloPos.global_position
-	var userMultiPos: Vector2 = playerMultiPos.global_position if not swapUsersAndTargets else enemy1MultiPos.global_position
+	var userMultiPos: Vector2 = playerMultiPos.global_position if not swapUsersAndTargets else enemyMultiPos[enemyCombatantUser].global_position
 	var targetSoloPos: Vector2 = enemy1SoloPos.global_position if not swapUsersAndTargets else playerSoloPos.global_position
-	var targetMultiPos: Vector2 = enemy1MultiPos.global_position if not swapUsersAndTargets else playerMultiPos.global_position
+	var targetMultiPos: Vector2 = enemyMultiPos[enemyCombatantUser].global_position if not swapUsersAndTargets else playerMultiPos.global_position
 	var userSelfPos: Vector2 = battleAnimManager.globalMarker.global_position
 	
 	var targetCombatant: Combatant = customTarget if customTarget != null else shard.get_combatant()
