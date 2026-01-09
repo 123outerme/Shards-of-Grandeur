@@ -64,13 +64,13 @@ metadata/_custom_type_script = "uid://dy2r6h7mhh2oc"
 [sub_resource type="Resource" id="Resource_m2rg2"]
 script = ExtResource("9_w6ndc")
 value = Vector2(-225, 612)
-actorTreePath = "position"
 isPlayer = true
+propertyName = "position"
 metadata/_custom_type_script = "uid://b5d2qgg22dgbw"
 
 [sub_resource type="Resource" id="Resource_jarmb"]
 script = ExtResource("1_qlos5")
-frameLength = 0.5
+frameLength = 0.75
 annotation = "the player walks closer"
 actorTweens = Array[ExtResource("5_m3ln3")]([SubResource("Resource_m2rg2")])
 actorAnims = Array[ExtResource("3_1ht5r")]([ExtResource("8_m3ln3"), SubResource("Resource_ltuqn")])
@@ -103,7 +103,9 @@ metadata/_custom_type_script = "uid://bjesn36acj0uh"
 [sub_resource type="Resource" id="Resource_ig12g"]
 script = ExtResource("11_k1bm6")
 storyRequirements = Array[ExtResource("14_ltuqn")]([SubResource("Resource_y35hs")])
+speaker = "Spelunker"
 texts = Array[String](["There's a titanic monster down this path, don't go yet! You won't be able to see it in the cavern without a Mage-Light!", "You should be able to find a Mage-Light I previously cast floating around here somewhere... I think it was close to the stairs back up."])
+speakerActorScenePath = "TilemapRoot/Spelunker1"
 metadata/_custom_type_script = "uid://dlifax6y4uci3"
 
 [sub_resource type="Resource" id="Resource_rdft6"]
@@ -137,7 +139,7 @@ metadata/_custom_type_script = "uid://b5d2qgg22dgbw"
 
 [sub_resource type="Resource" id="Resource_55af0"]
 script = ExtResource("1_qlos5")
-frameLength = 0.5
+frameLength = 0.75
 annotation = "player walks back"
 actorTweens = Array[ExtResource("5_m3ln3")]([SubResource("Resource_ydltj")])
 actorAnims = Array[ExtResource("3_1ht5r")]([ExtResource("8_m3ln3")])

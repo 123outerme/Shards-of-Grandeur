@@ -1,0 +1,90 @@
+[gd_resource type="Resource" script_class="Cutscene" load_steps=23 format=3 uid="uid://cw6svrisoj078"]
+
+[ext_resource type="Script" uid="uid://cqpl74uk8cjo0" path="res://scripts/cutscenes/cutscene_frame.gd" id="1_6t3aa"]
+[ext_resource type="Script" uid="uid://cg21ocaokyfnx" path="res://scripts/cutscenes/actor_anim_set.gd" id="2_rmhww"]
+[ext_resource type="Script" uid="uid://dy2r6h7mhh2oc" path="res://scripts/cutscenes/actor_sprite_anim.gd" id="3_42t0p"]
+[ext_resource type="Resource" uid="uid://dcphj1dtjg3mr" path="res://gamedata/cutscenes/reused/player_stand_anim.tres" id="4_0k702"]
+[ext_resource type="Script" uid="uid://8oxtwxpqllgd" path="res://scripts/cutscenes/actor_face_target.gd" id="5_bbu4m"]
+[ext_resource type="Script" uid="uid://g5p5b4jsf6bs" path="res://scripts/cutscenes/actor_tween.gd" id="6_nlntr"]
+[ext_resource type="Script" uid="uid://jcu0gq2ns4in" path="res://scripts/cutscenes/cutscene_dialogue.gd" id="7_fbxya"]
+[ext_resource type="Resource" uid="uid://bhhs2axr1n15b" path="res://gamedata/cutscenes/reused/player_walk_anim.tres" id="8_r0cu1"]
+[ext_resource type="Script" uid="uid://b5d2qgg22dgbw" path="res://scripts/cutscenes/tweens/tween_vector2.gd" id="9_c54tk"]
+[ext_resource type="Script" uid="uid://fpa08p2kb0ts" path="res://scripts/cutscenes/cutscene.gd" id="10_030mh"]
+[ext_resource type="Script" uid="uid://fw22o8hbosnk" path="res://scripts/inventory/inventory_slot.gd" id="11_3fuqk"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="12_gw1gv"]
+
+[sub_resource type="Resource" id="Resource_dcyg1"]
+script = ExtResource("3_42t0p")
+actorTreePath = "TilemapRoot/Spelunker"
+animation = "talk"
+metadata/_custom_type_script = "uid://dy2r6h7mhh2oc"
+
+[sub_resource type="Resource" id="Resource_q8m8a"]
+script = ExtResource("5_bbu4m")
+isPlayer = true
+targetTreePath = "TilemapRoot/Spelunker"
+metadata/_custom_type_script = "uid://8oxtwxpqllgd"
+
+[sub_resource type="Resource" id="Resource_h30bs"]
+script = ExtResource("5_bbu4m")
+actorTreePath = "TilemapRoot/Spelunker"
+targetIsPlayer = true
+metadata/_custom_type_script = "uid://8oxtwxpqllgd"
+
+[sub_resource type="Resource" id="Resource_ou8rs"]
+script = ExtResource("7_fbxya")
+speaker = "Spelunker"
+texts = Array[String](["Hold on! The Foreman doesn't want just anybody to go any deeper without his permission.", "There's a dangerous monster down there, and we're looking for a way to get rid of it!", "If you're strong enough, @, ask the Foreman! He'll probably give you permission."])
+speakerActorScenePath = "TilemapRoot/Spelunker"
+metadata/_custom_type_script = "uid://jcu0gq2ns4in"
+
+[sub_resource type="Resource" id="Resource_76eml"]
+script = ExtResource("1_6t3aa")
+frameLength = 0.1
+annotation = "The spelunker stops you"
+actorAnims = Array[ExtResource("3_42t0p")]([ExtResource("4_0k702"), SubResource("Resource_dcyg1")])
+actorFaceTargets = Array[ExtResource("5_bbu4m")]([SubResource("Resource_q8m8a"), SubResource("Resource_h30bs")])
+dialogues = Array[ExtResource("7_fbxya")]([SubResource("Resource_ou8rs")])
+endTextBoxPauses = false
+metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
+
+[sub_resource type="Resource" id="Resource_hb6x2"]
+script = ExtResource("9_c54tk")
+value = Vector2(414, -88)
+isPlayer = true
+propertyName = "position"
+metadata/_custom_type_script = "uid://b5d2qgg22dgbw"
+
+[sub_resource type="Resource" id="Resource_6t3aa"]
+script = ExtResource("1_6t3aa")
+frameLength = 0.5
+annotation = "move the player east of the entrance"
+actorTweens = Array[ExtResource("6_nlntr")]([SubResource("Resource_hb6x2")])
+actorAnims = Array[ExtResource("3_42t0p")]([ExtResource("8_r0cu1")])
+endTextBoxPauses = false
+metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
+
+[sub_resource type="Resource" id="Resource_li18y"]
+script = ExtResource("5_bbu4m")
+isPlayer = true
+targetTreePath = "TilemapRoot/Spelunker"
+metadata/_custom_type_script = "uid://8oxtwxpqllgd"
+
+[sub_resource type="Resource" id="Resource_4yro1"]
+script = ExtResource("1_6t3aa")
+frameLength = 0.1
+annotation = "wait for text box to be closed"
+actorAnims = Array[ExtResource("3_42t0p")]([ExtResource("4_0k702")])
+actorFaceTargets = Array[ExtResource("5_bbu4m")]([SubResource("Resource_li18y")])
+metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
+
+[sub_resource type="Resource" id="Resource_yov27"]
+script = ExtResource("12_gw1gv")
+invalidAfterCompletingQuests = Array[String](["Quarry Quandary#"])
+metadata/_custom_type_script = "uid://bjesn36acj0uh"
+
+[resource]
+script = ExtResource("10_030mh")
+cutsceneFrames = Array[ExtResource("1_6t3aa")]([SubResource("Resource_76eml"), SubResource("Resource_6t3aa"), SubResource("Resource_4yro1")])
+storyRequirements = SubResource("Resource_yov27")
+metadata/_custom_type_script = "uid://fpa08p2kb0ts"

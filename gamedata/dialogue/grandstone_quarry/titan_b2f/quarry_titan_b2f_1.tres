@@ -1,9 +1,32 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=4 format=3 uid="uid://iynn2fwqu5e7"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=10 format=3 uid="uid://iynn2fwqu5e7"]
 
 [ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_j3x7t"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_6lttd"]
 [ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_xujky"]
+[ext_resource type="Script" uid="uid://b6oofnelefs8o" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_61jeg"]
 [ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_ipv6f"]
+[ext_resource type="Resource" uid="uid://b77hrvqtuxcoe" path="res://gamedata/dialogue/grandstone_quarry/titan_b2f/quarry_titan_b2f_battle.tres" id="4_b4yco"]
+
+[sub_resource type="Resource" id="Resource_b4yco"]
+script = ExtResource("2_6lttd")
+choiceBtn = "(Walk Away)"
+isDeclineChoice = true
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_c1a7i"]
+script = ExtResource("2_6lttd")
+choiceBtn = "(Battle!)"
+leadsTo = ExtResource("4_b4yco")
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_61jeg"]
+script = ExtResource("1_j3x7t")
+lines = Array[String](["Gurggggh..."])
+animation = "battle_idle"
+choices = Array[ExtResource("2_6lttd")]([SubResource("Resource_b4yco"), SubResource("Resource_c1a7i")])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
 
 [resource]
 script = ExtResource("3_ipv6f")
+items = Array[ExtResource("1_j3x7t")]([SubResource("Resource_61jeg")])
 metadata/_custom_type_script = "uid://1n6mppc7hmmf"

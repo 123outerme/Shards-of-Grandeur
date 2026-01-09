@@ -1,4 +1,4 @@
-[gd_scene load_steps=84 format=4 uid="uid://61lm3u3kbiwd"]
+[gd_scene load_steps=93 format=4 uid="uid://61lm3u3kbiwd"]
 
 [ext_resource type="Script" uid="uid://vg00rfnn3346" path="res://scripts/overworld/map_script.gd" id="1_cc5ra"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_cu5tj"]
@@ -28,7 +28,12 @@
 [ext_resource type="Resource" uid="uid://btnde87dlhjhu" path="res://gamedata/combatants/soot_spider/soot_spider.tres" id="18_qecqx"]
 [ext_resource type="PackedScene" uid="uid://ckjsms2r3k2jv" path="res://prefabs/overworld/cutscene_trigger.tscn" id="23_qecqx"]
 [ext_resource type="Script" uid="uid://fpa08p2kb0ts" path="res://scripts/cutscenes/cutscene.gd" id="24_h6abe"]
-[ext_resource type="Resource" uid="uid://djyt4my3ktrgk" path="res://gamedata/cutscenes/grandstone_quarry/gs_quarry_b2f_block.tres" id="25_hvfva"]
+[ext_resource type="Resource" uid="uid://c2l4awfkof3xs" path="res://gamedata/cutscenes/grandstone_quarry/gs_quarry_b2f_block_west.tres" id="29_sto3c"]
+[ext_resource type="Resource" uid="uid://d074dqjnkfy6n" path="res://gamedata/cutscenes/grandstone_quarry/gs_quarry_b2f_block_north.tres" id="30_ovwae"]
+[ext_resource type="Script" uid="uid://fw22o8hbosnk" path="res://scripts/inventory/inventory_slot.gd" id="36_iifet"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="37_tuj3d"]
+[ext_resource type="Resource" uid="uid://cw6svrisoj078" path="res://gamedata/cutscenes/grandstone_quarry/gs_quarry_b2f_block_east.tres" id="38_ms3x1"]
+[ext_resource type="Resource" uid="uid://g3ntio1lwouo" path="res://gamedata/cutscenes/grandstone_quarry/gs_quarry_b2f_block_south.tres" id="39_0tpoy"]
 
 [sub_resource type="Resource" id="Resource_chavn"]
 script = ExtResource("4_6unhu")
@@ -328,17 +333,33 @@ size = Vector2(211, 98)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fhtt5"]
 size = Vector2(50, 8)
 
+[sub_resource type="Resource" id="Resource_p1fpn"]
+script = ExtResource("37_tuj3d")
+prereqQuests = Array[String](["Quarry Quandary#"])
+metadata/_custom_type_script = "uid://bjesn36acj0uh"
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2hkjr"]
 size = Vector2(1, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mbn4h"]
 size = Vector2(50, 75)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_h6abe"]
-size = Vector2(24, 24)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pmhfl"]
+size = Vector2(4, 11)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3i45i"]
+size = Vector2(15, 2)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0tpoy"]
+size = Vector2(16, 2)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xwucu"]
+size = Vector2(2, 12)
 
 [node name="OverworldMap" type="Node2D"]
 script = ExtResource("1_cc5ra")
+metadata/_edit_horizontal_guides_ = [-88.0]
+metadata/_edit_vertical_guides_ = [392.0]
 
 [node name="TilemapRoot" type="Node2D" parent="."]
 y_sort_enabled = true
@@ -511,6 +532,7 @@ shape = SubResource("RectangleShape2D_fhtt5")
 position = Vector2(392, -87)
 mapName = "grandstone_quarry_b2f"
 mapPos = Vector2(249, -326)
+storyRequirements = SubResource("Resource_p1fpn")
 
 [node name="WarpArea" parent="B2FWarpZone" index="0"]
 shape = SubResource("RectangleShape2D_2hkjr")
@@ -523,12 +545,38 @@ holdX = false
 position = Vector2(0, -27.5)
 shape = SubResource("RectangleShape2D_mbn4h")
 
-[node name="B2fBlockCutscene" parent="." instance=ExtResource("23_qecqx")]
-position = Vector2(392, -88)
-cutscenes = Array[ExtResource("24_h6abe")]([ExtResource("25_hvfva")])
+[node name="B2fBlockCutsceneE" parent="." instance=ExtResource("23_qecqx")]
+position = Vector2(398, -88)
+cutscenes = Array[ExtResource("24_h6abe")]([ExtResource("38_ms3x1")])
 
-[node name="CollisionShape2D" parent="B2fBlockCutscene" index="0"]
-shape = SubResource("RectangleShape2D_h6abe")
+[node name="CollisionShape2D" parent="B2fBlockCutsceneE" index="0"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_pmhfl")
+
+[node name="B2fBlockCutsceneN" parent="." instance=ExtResource("23_qecqx")]
+position = Vector2(392, -92)
+cutscenes = Array[ExtResource("24_h6abe")]([ExtResource("30_ovwae")])
+
+[node name="CollisionShape2D" parent="B2fBlockCutsceneN" index="0"]
+position = Vector2(0.5, -1)
+shape = SubResource("RectangleShape2D_3i45i")
+
+[node name="B2fBlockCutsceneS" parent="." instance=ExtResource("23_qecqx")]
+position = Vector2(393, -83)
+cutscenes = Array[ExtResource("24_h6abe")]([ExtResource("39_0tpoy")])
+
+[node name="CollisionShape2D" parent="B2fBlockCutsceneS" index="0"]
+position = Vector2(-1, 1)
+shape = SubResource("RectangleShape2D_0tpoy")
+
+[node name="B2fBlockCutsceneW" parent="." instance=ExtResource("23_qecqx")]
+position = Vector2(386, -88)
+priority = 1
+cutscenes = Array[ExtResource("24_h6abe")]([ExtResource("29_sto3c")])
+
+[node name="CollisionShape2D" parent="B2fBlockCutsceneW" index="0"]
+position = Vector2(-1, 0)
+shape = SubResource("RectangleShape2D_xwucu")
 
 [editable path="TilemapRoot/Spelunker"]
 [editable path="EnemySpawner"]
@@ -541,4 +589,7 @@ shape = SubResource("RectangleShape2D_h6abe")
 [editable path="EntranceWarpZone"]
 [editable path="B2FWarpZone"]
 [editable path="CameraHoldZone"]
-[editable path="B2fBlockCutscene"]
+[editable path="B2fBlockCutsceneE"]
+[editable path="B2fBlockCutsceneN"]
+[editable path="B2fBlockCutsceneS"]
+[editable path="B2fBlockCutsceneW"]

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="StaticEncounter" load_steps=10 format=3 uid="uid://dwri2oot20tqj"]
+[gd_resource type="Resource" script_class="StaticEncounter" load_steps=15 format=3 uid="uid://dwri2oot20tqj"]
 
 [ext_resource type="Script" uid="uid://dx4lnh4driy7a" path="res://scripts/battle/combatant/move.gd" id="1_8rmop"]
 [ext_resource type="Resource" uid="uid://1d33s7xyld3s" path="res://gamedata/combatants/titan/titan.tres" id="2_84apv"]
@@ -9,6 +9,29 @@
 [ext_resource type="Resource" uid="uid://cw71a6bensfkc" path="res://gamedata/items/accessory/mage_light.tres" id="4_gku32"]
 [ext_resource type="Resource" uid="uid://3a2aqxqx230t" path="res://gamedata/items/armor/tempered_helm.tres" id="5_1mwjp"]
 [ext_resource type="Resource" uid="uid://cupa36xfl2ydk" path="res://gamedata/items/weapon/strong_shovel.tres" id="6_kxhfk"]
+[ext_resource type="Resource" uid="uid://biybwlxtk4y1c" path="res://gamedata/items/shard/titan_shard.tres" id="9_dlhqu"]
+[ext_resource type="Resource" uid="uid://bo0vnl5ddbe8p" path="res://gamedata/items/shard/mesa_golem_shard.tres" id="10_njgxx"]
+
+[sub_resource type="Resource" id="Resource_fwkmk"]
+script = ExtResource("2_w5fiw")
+experience = 250
+gold = 25
+item = ExtResource("9_dlhqu")
+metadata/_custom_type_script = "uid://flaq3s0m3pf2"
+
+[sub_resource type="Resource" id="Resource_k72e7"]
+script = ExtResource("2_w5fiw")
+experience = 200
+gold = 20
+item = ExtResource("10_njgxx")
+metadata/_custom_type_script = "uid://flaq3s0m3pf2"
+
+[sub_resource type="Resource" id="Resource_iv3jk"]
+script = ExtResource("2_w5fiw")
+experience = 200
+gold = 20
+item = ExtResource("10_njgxx")
+metadata/_custom_type_script = "uid://flaq3s0m3pf2"
 
 [resource]
 script = ExtResource("3_84apv")
@@ -24,6 +47,8 @@ combatant3Accessory = ExtResource("4_gku32")
 specialBattleId = "titan_quarry_b2f_encounter"
 bossBattle = true
 canEscape = false
+rewards = Array[ExtResource("2_w5fiw")]([SubResource("Resource_fwkmk"), SubResource("Resource_k72e7"), SubResource("Resource_iv3jk")])
+useStaticRewards = true
 battleMusic = ExtResource("2_kxhfk")
 combatant1 = ExtResource("2_84apv")
 metadata/_custom_type_script = "uid://by2yp7g75qdn0"

@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=7 format=3 uid="uid://b77hrvqtuxcoe"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_7npic"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_5dgg3"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_6v07h"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_5dgg3"]
+[ext_resource type="Resource" uid="uid://dwri2oot20tqj" path="res://gamedata/static_encounters/titan_quarry_b2f_encounter.tres" id="4_6v07h"]
+
+[sub_resource type="Resource" id="Resource_wtfxl"]
+script = ExtResource("1_7npic")
+lines = Array[String](["GURRRGGGH...!"])
+animation = "battle_idle"
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[resource]
+script = ExtResource("3_5dgg3")
+items = Array[ExtResource("1_7npic")]([SubResource("Resource_wtfxl")])
+startsStaticEncounter = ExtResource("4_6v07h")
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"
