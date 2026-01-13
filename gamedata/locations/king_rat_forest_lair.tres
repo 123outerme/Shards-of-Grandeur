@@ -2,18 +2,15 @@
 
 [ext_resource type="Script" uid="uid://1kibgfap86bm" path="res://scripts/overworld/map_entry.gd" id="1_3n1nb"]
 [ext_resource type="AudioStream" uid="uid://c7d7pycfjgo44" path="res://audio/music/battle/newbattlethemev2.mp3" id="1_7ryk5"]
-[ext_resource type="AudioStream" uid="uid://d0c34p7rvr8rf" path="res://audio/music/gtl_3.mp3" id="1_76fgp"]
 [ext_resource type="Script" uid="uid://dd27pbjjyrw7p" path="res://scripts/overworld/world_location.gd" id="1_yacna"]
 [ext_resource type="AudioStream" uid="uid://dnfsxipd2v2xo" path="res://audio/music/battle/battletheme_uvutudx_demo.mp3" id="2_ldha8"]
+[ext_resource type="AudioStream" uid="uid://c8r88hcpxxo48" path="res://audio/music/overworld/hilltop_forest.mp3" id="4_qaa4v"]
 
 [sub_resource type="Resource" id="Resource_7spm6"]
 script = ExtResource("1_3n1nb")
 path = "hilltop_forest/king_rat_forest_lair"
-overworldTheme = ExtResource("1_76fgp")
-battleMapName = "forest_battle_map"
+overworldTheme = ExtResource("4_qaa4v")
 battleMusic = Array[AudioStream]([ExtResource("1_7ryk5"), ExtResource("2_ldha8")])
-isRecoverLocation = false
-recoverPosition = Vector2(0, 0)
 
 [resource]
 script = ExtResource("1_yacna")

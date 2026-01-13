@@ -1,17 +1,13 @@
 [gd_resource type="Resource" script_class="WorldLocation" load_steps=5 format=3 uid="uid://bvw78cht2y0j"]
 
-[ext_resource type="AudioStream" uid="uid://dqlfuel3pox0" path="res://audio/music/gtl_1.mp3" id="1_durqo"]
 [ext_resource type="Script" uid="uid://1kibgfap86bm" path="res://scripts/overworld/map_entry.gd" id="1_o6eem"]
 [ext_resource type="Script" uid="uid://dd27pbjjyrw7p" path="res://scripts/overworld/world_location.gd" id="1_x11tg"]
+[ext_resource type="AudioStream" uid="uid://dixsuba1ywd02" path="res://audio/music/overworld/grandstone.mp3" id="2_56y4p"]
 
 [sub_resource type="Resource" id="Resource_22njc"]
 script = ExtResource("1_o6eem")
 path = "grandstone/grandstone_restaurant"
-overworldTheme = ExtResource("1_durqo")
-battleMapName = "forest_battle_map"
-battleMusic = Array[AudioStream]([])
-isRecoverLocation = false
-recoverPosition = Vector2(0, 0)
+overworldTheme = ExtResource("2_56y4p")
 
 [resource]
 script = ExtResource("1_x11tg")

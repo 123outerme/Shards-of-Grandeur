@@ -1,9 +1,8 @@
-[gd_scene load_steps=25 format=3 uid="uid://bbg1t1b1aah7h"]
+[gd_scene load_steps=24 format=3 uid="uid://bbg1t1b1aah7h"]
 
 [ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://themes/root_theme.tres" id="1_gmnpf"]
 [ext_resource type="Script" uid="uid://1gqssc14h4wx" path="res://scripts/menus/main_menu/main_menu.gd" id="2_viou1"]
-[ext_resource type="AudioStream" uid="uid://bfb8ig1npu1ls" path="res://audio/music/menus/main_theme_loop.mp3" id="3_2as7v"]
-[ext_resource type="AudioStream" uid="uid://hjf5wq364qtu" path="res://audio/music/menus/main_theme_intro.mp3" id="3_wb5ue"]
+[ext_resource type="AudioStream" uid="uid://dn6ksqtqep5gx" path="res://audio/music/menus/main_theme_interactive.tres" id="3_eni48"]
 [ext_resource type="AudioStream" uid="uid://dkxodlkxrnnby" path="res://audio/sfx/moves/shard.mp3" id="4_467y5"]
 [ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="4_rb8pb"]
 [ext_resource type="Texture2D" uid="uid://id2gjt271bko" path="res://graphics/ui/ui_target_unselected.png" id="5_a7rkf"]
@@ -39,8 +38,7 @@ grow_vertical = 2
 theme = ExtResource("1_gmnpf")
 theme_type_variation = &"Standard"
 script = ExtResource("2_viou1")
-mainMenuMusic = ExtResource("3_wb5ue")
-mainMenuLoopMusic = ExtResource("3_2as7v")
+mainMenuMusic = ExtResource("3_eni48")
 activateDebugModeSfx = ExtResource("4_467y5")
 
 [node name="AnimatedBgPanel" parent="." instance=ExtResource("5_bi187")]
@@ -375,11 +373,11 @@ offset_bottom = -74.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
+theme_override_font_sizes/normal_font_size = 24
+theme_override_font_sizes/bold_font_size = 24
 theme_override_font_sizes/bold_italics_font_size = 24
 theme_override_font_sizes/italics_font_size = 24
 theme_override_font_sizes/mono_font_size = 24
-theme_override_font_sizes/normal_font_size = 24
-theme_override_font_sizes/bold_font_size = 24
 bbcode_enabled = true
 text = "[center]Programming, Game Design, UI, Art, Story:
 Stephen Policelli

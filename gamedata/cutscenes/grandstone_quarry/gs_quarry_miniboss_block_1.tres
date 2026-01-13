@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Cutscene" load_steps=36 format=3 uid="uid://bd4bqrt3k8ru2"]
+[gd_resource type="Resource" script_class="Cutscene" load_steps=37 format=3 uid="uid://bd4bqrt3k8ru2"]
 
 [ext_resource type="Script" uid="uid://cqpl74uk8cjo0" path="res://scripts/cutscenes/cutscene_frame.gd" id="1_qlos5"]
 [ext_resource type="Script" uid="uid://fpa08p2kb0ts" path="res://scripts/cutscenes/cutscene.gd" id="2_6vfvs"]
@@ -130,6 +130,12 @@ frameLength = 0.1
 annotation = "wait for dialogue to end"
 metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
 
+[sub_resource type="Resource" id="Resource_hwb0a"]
+script = ExtResource("3_1ht5r")
+actorTreePath = "TilemapRoot/Spelunker1"
+animation = "stand"
+metadata/_custom_type_script = "uid://dy2r6h7mhh2oc"
+
 [sub_resource type="Resource" id="Resource_ydltj"]
 script = ExtResource("9_w6ndc")
 value = Vector2(-182, 600)
@@ -142,7 +148,7 @@ script = ExtResource("1_qlos5")
 frameLength = 0.75
 annotation = "player walks back"
 actorTweens = Array[ExtResource("5_m3ln3")]([SubResource("Resource_ydltj")])
-actorAnims = Array[ExtResource("3_1ht5r")]([ExtResource("8_m3ln3")])
+actorAnims = Array[ExtResource("3_1ht5r")]([ExtResource("8_m3ln3"), SubResource("Resource_hwb0a")])
 metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
 
 [sub_resource type="Resource" id="Resource_uutxy"]

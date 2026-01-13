@@ -1,22 +1,18 @@
 [gd_resource type="Resource" script_class="WorldLocation" load_steps=7 format=3 uid="uid://b0vwjpj47m1xn"]
 
-[ext_resource type="AudioStream" uid="uid://dqlfuel3pox0" path="res://audio/music/gtl_1.mp3" id="1_3bcea"]
 [ext_resource type="Script" uid="uid://dd27pbjjyrw7p" path="res://scripts/overworld/world_location.gd" id="1_33qfi"]
 [ext_resource type="AudioStream" uid="uid://dnfsxipd2v2xo" path="res://audio/music/battle/battletheme_uvutudx_demo.mp3" id="1_ah83e"]
 [ext_resource type="Script" uid="uid://1kibgfap86bm" path="res://scripts/overworld/map_entry.gd" id="1_x6lp7"]
 [ext_resource type="AudioStream" uid="uid://c7d7pycfjgo44" path="res://audio/music/battle/newbattlethemev2.mp3" id="2_4ehbj"]
+[ext_resource type="AudioStream" uid="uid://bqteksvyw463i" path="res://audio/music/overworld/tundra.mp3" id="4_j0klr"]
 
 [sub_resource type="Resource" id="Resource_5vtxn"]
 script = ExtResource("1_x6lp7")
 path = "giant_steppes_test"
-overworldTheme = ExtResource("1_3bcea")
-battleMapName = "forest_battle_map"
+overworldTheme = ExtResource("4_j0klr")
 battleMusic = Array[AudioStream]([ExtResource("1_ah83e"), ExtResource("2_4ehbj")])
-isRecoverLocation = false
-recoverPosition = Vector2(0, 0)
 
 [resource]
 script = ExtResource("1_33qfi")
 locationName = "test_map"
 maps = Array[ExtResource("1_x6lp7")]([SubResource("Resource_5vtxn")])
-mapLocation = 0

@@ -2,7 +2,6 @@ extends Control
 class_name MainMenu
 
 @export var mainMenuMusic: AudioStream
-@export var mainMenuLoopMusic: AudioStream
 @export var activateDebugModeSfx: AudioStream = null
 
 ## for some reason, this includes down-events and up-events even if checking event.pressed to be true...
@@ -56,7 +55,6 @@ func _ready():
 		fade_in_menu(0.5)
 	# after 0.25 secs, play the game music
 	get_tree().create_timer(0.25).timeout.connect(SceneLoader.audioHandler.play_music.bind(mainMenuMusic))
-	SceneLoader.audioHandler.music_playback_complete.connect(_music_playback_complete)
 	SettingsHandler.settings_changed.connect(_on_settings_changed)
 	_on_settings_changed()
 
@@ -212,10 +210,6 @@ func _on_debug_click_control_gui_input(event: InputEvent) -> void:
 		if debugCounter == DEBUG_CLICKS:
 			SceneLoader.debug = true
 			SceneLoader.audioHandler.play_sfx(activateDebugModeSfx)
-
-func _music_playback_complete():
-	SceneLoader.audioHandler.play_music(mainMenuLoopMusic, -1)
-	SceneLoader.audioHandler.music_playback_complete.disconnect(_music_playback_complete)
 
 func new_game_fade_out() -> void:
 	SceneLoader.audioHandler.fade_out_music(0.75)

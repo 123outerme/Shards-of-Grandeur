@@ -1,0 +1,27 @@
+[gd_resource type="AudioStreamInteractive" load_steps=3 format=3 uid="uid://cf6a1f83hkyab"]
+
+[ext_resource type="AudioStream" uid="uid://fnuqajame16x" path="res://audio/music/overworld/quarry_intro.mp3" id="1_1vmvg"]
+[ext_resource type="AudioStream" uid="uid://bwky074enj6l7" path="res://audio/music/overworld/quarry_loop.mp3" id="2_w5vxq"]
+
+[resource]
+clip_count = 3
+clip_0/name = &"intro"
+clip_0/stream = ExtResource("1_1vmvg")
+clip_0/auto_advance = 1
+clip_0/next_clip = 1
+clip_1/name = &"loop"
+clip_1/stream = ExtResource("2_w5vxq")
+clip_1/auto_advance = 1
+clip_1/next_clip = 2
+clip_2/name = &"loop2"
+clip_2/stream = ExtResource("2_w5vxq")
+clip_2/auto_advance = 1
+clip_2/next_clip = 1
+_transitions = {
+Vector2i(-1, -1): {
+"fade_beats": 1.0,
+"fade_mode": 0,
+"from_time": 3,
+"to_time": 1
+}
+}
