@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Quest" load_steps=8 format=3 uid="uid://dnghhx8h5dgtw"]
+[gd_resource type="Resource" script_class="Quest" load_steps=12 format=3 uid="uid://dnghhx8h5dgtw"]
 
 [ext_resource type="Script" uid="uid://bnw42uegqk4wp" path="res://scripts/quests/quest.gd" id="1_ywcmt"]
 [ext_resource type="Script" uid="uid://b3j2bj1p0bkq8" path="res://scripts/quests/quest_step.gd" id="2_io756"]
@@ -23,13 +23,57 @@ inProgressDialogue = Array[ExtResource("3_rysse")]([ExtResource("4_cf535")])
 
 [sub_resource type="Resource" id="Resource_82t2o"]
 script = ExtResource("2_io756")
+name = "An Elder's Advice"
+description = "Visit the Elder at the Nomad Camp for advice on how to heal Alessia!"
+locations = Array[int]([40])
+turnInLocations = Array[int]([40])
+objectiveName = "---#---"
+displayObjName = "Elder"
+displayTurnInName = "Elder"
+
+[sub_resource type="Resource" id="Resource_l7y7p"]
+script = ExtResource("2_io756")
+name = "Restore Alessia"
+description = "Return to Standstill and attempt the healing ritual on Alessia!"
+locations = Array[int]([20])
+type = 3
+objectiveName = "---"
+displayObjName = "Heal Alessia!"
+metadata/_custom_type_script = "uid://b3j2bj1p0bkq8"
+
+[sub_resource type="Resource" id="Resource_0vkka"]
+script = ExtResource("2_io756")
+name = "Healing the Land"
+description = "Visit the Prime Minister in Leavenport to search for a way to heal the charred land."
+locations = Array[int]([30])
+turnInLocations = Array[int]([30])
+objectiveName = "---#---"
+displayObjName = "Prime Minister"
+displayTurnInName = "Prime Minister"
+metadata/_custom_type_script = "uid://b3j2bj1p0bkq8"
+
+[sub_resource type="Resource" id="Resource_fkgyy"]
+script = ExtResource("2_io756")
+name = "Sow the Healing Seeds"
+description = "Spread the Healing Seeds across three spots within Standstill's town limits!"
+locations = Array[int]([20])
+turnInLocations = Array[int]([20])
+type = 5
+objectiveName = "---"
+displayObjName = "Spread Healing Seeds!"
+metadata/_custom_type_script = "uid://b3j2bj1p0bkq8"
+
+[sub_resource type="Resource" id="Resource_tgj1o"]
+script = ExtResource("2_io756")
 name = "TBD"
+locations = Array[int]([0])
 type = -1
 objectiveName = "---"
 customStatusStr = "???"
+metadata/_custom_type_script = "uid://b3j2bj1p0bkq8"
 
 [resource]
 script = ExtResource("1_ywcmt")
 questName = "Rebuild Standstill"
 description = "After the Chain Legion attacked Standstill, the once vibrant village has been reduced to rubble and ash... Grandstone must help them, and you must lead the aid!"
-steps = Array[ExtResource("2_io756")]([SubResource("Resource_yoc8b"), SubResource("Resource_82t2o")])
+steps = Array[ExtResource("2_io756")]([SubResource("Resource_yoc8b"), null, SubResource("Resource_82t2o"), SubResource("Resource_l7y7p"), SubResource("Resource_0vkka"), null, SubResource("Resource_fkgyy"), SubResource("Resource_tgj1o")])
