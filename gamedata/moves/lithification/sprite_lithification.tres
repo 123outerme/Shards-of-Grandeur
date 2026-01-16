@@ -1,0 +1,49 @@
+[gd_resource type="Resource" script_class="MoveAnimSprite" load_steps=8 format=3 uid="uid://di48gkulod5ab"]
+
+[ext_resource type="Script" uid="uid://n71lfdnd5xrr" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite_frame.gd" id="1_411ll"]
+[ext_resource type="Script" uid="uid://mk6loduurcg4" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="2_u8rit"]
+
+[sub_resource type="Resource" id="Resource_411ll"]
+script = ExtResource("1_411ll")
+annotation = "set up sprite"
+animation = "default"
+duration = 0.1
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[sub_resource type="Resource" id="Resource_u8rit"]
+script = ExtResource("1_411ll")
+annotation = "animate target to become all grayscale"
+modifyTargetGrayscale = true
+targetGrayscale = 1.0
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[sub_resource type="Resource" id="Resource_5rnnl"]
+script = ExtResource("1_411ll")
+annotation = "hold grayscale on target"
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[sub_resource type="Resource" id="Resource_onpgy"]
+script = ExtResource("1_411ll")
+annotation = "release target grayscale"
+duration = 0.75
+modifyTargetGrayscale = true
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_411ll"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": null
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[resource]
+script = ExtResource("2_u8rit")
+spriteFrames = SubResource("SpriteFrames_411ll")
+frames = Array[ExtResource("1_411ll")]([SubResource("Resource_411ll"), SubResource("Resource_u8rit"), SubResource("Resource_5rnnl"), SubResource("Resource_onpgy")])
+delayedUntilReposition = true
+playsOnImpactFrame = false
+metadata/_custom_type_script = "uid://mk6loduurcg4"

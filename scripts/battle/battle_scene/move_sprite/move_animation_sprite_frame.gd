@@ -74,6 +74,33 @@ enum MoveSpriteOffset {
 ## If true, will constantly update the rotation to track the target position as the frame progresses
 @export var trackRotationTarget: bool = false
 
+@export_group('Combatant Sprites')
+
+## If true, will animate the user's current `modulate` towards `userModulate` over the duration of the frame
+@export var modifyUserModulate: bool = false
+
+## The new color to animate the user's `modulate` towards (if `modifyUserModulate` is true)
+@export var userModulate: Color = Color.WHITE
+
+## If true, will animate the user's current grayscale percentage towards `userGrayscale` over the duration of the frame
+@export var modifyUserGrayscale: bool = false
+
+## The amount of grayscale to modulate the user's sprite by (if `modifyUserGrayscale` is true)
+@export_range(0.0, 1.0, 0.1) var userGrayscale: float = 0.0
+
+
+## If true, will animate the target(s)' current `modulate` towards `targetModulate` over the duration of the frame
+@export var modifyTargetModulate: bool = false
+
+## The new color to animate the target(s)' `modulate` towards (if `modifyTargetModulate` is true)
+@export var targetModulate: Color = Color.WHITE
+
+## If true, will animate the target(s)' current grayscale percentage towards `targetGrayscale` over the duration of the frame
+@export var modifyTargetGrayscale: bool = false
+
+## The amount of grayscale to modulate the target(s)' sprite by (if `modifyTargetGrayscale` is true)
+@export_range(0.0, 1.0, 0.1) var targetGrayscale: float = 0.0
+
 @export_group('')
 
 ## particles to play on this frame
@@ -104,6 +131,14 @@ func _init(
 	i_spritePivot: Vector2 = Vector2.ZERO,
 	i_rotateToFaceOffset: MoveSpriteOffset = MoveSpriteOffset.NONE,
 	i_trackRotationTarget: bool = false,
+	i_modifyUserModulate: bool = false,
+	i_userModulate: Color = Color.WHITE,
+	i_modifyUserGrayscale: bool = false,
+	i_userGrayscale: float = 0,
+	i_modifyTargetModulate: bool = false,
+	i_targetModulate: Color = Color.WHITE,
+	i_modifyTargetGrayscale: bool = false,
+	i_targetGrayscale: float = 0,
 	i_particles: ParticlePreset = null,
 	i_sfx: AudioStream = null,
 	i_randomizeSfxPitch: bool = false,
@@ -124,6 +159,14 @@ func _init(
 	rotateToFaceOffset = i_rotateToFaceOffset
 	spritePivot = i_spritePivot
 	trackRotationTarget = i_trackRotationTarget
+	modifyUserModulate = i_modifyUserModulate
+	userModulate = i_userModulate
+	modifyUserGrayscale = i_modifyUserGrayscale
+	userGrayscale = i_userGrayscale
+	modifyTargetModulate = i_modifyTargetModulate
+	targetModulate = i_targetModulate
+	modifyTargetGrayscale = i_modifyTargetGrayscale
+	targetGrayscale = i_targetGrayscale
 	particles = i_particles
 	sfx = i_sfx
 	randomizeSfxPitch = i_randomizeSfxPitch
@@ -153,14 +196,30 @@ func get_y_curve_pos(time: float, diff: Vector2) -> float:
 	return yCurve.sample_baked(get_percent_complete(time, diff))
 
 func get_sprite_position(time: float, targetPos: Vector2, startPos: Vector2) -> Vector2:
-	var diff = targetPos - startPos
+	var diff: Vector2 = targetPos - startPos # animates along the same curve as the overall position vector
 	return Vector2(startPos.x + (diff.x * get_x_curve_pos(time, diff)), startPos.y + (diff.y * get_y_curve_pos(time, diff)))
 
 func get_sprite_opacity(currentOpacity: float, time: float, targetPos: Vector2, startPos: Vector2) -> float:
-	var diff = targetPos - startPos
+	var diff: Vector2 = targetPos - startPos # animates along the same curve as the overall position vector
 	return (opacity - currentOpacity) * get_percent_complete(time, diff) + currentOpacity
+
+func get_user_modulate(currentModulate: Color, time: float, targetPos: Vector2, startPos: Vector2) -> Color:
+	var diff: Vector2 = targetPos - startPos # animates along the same curve as the overall position vector
+	return currentModulate.lerp(userModulate, get_percent_complete(time, diff))
+
+func get_user_grayscale(currentGrayscale: float, time: float, targetPos: Vector2, startPos: Vector2) -> float:
+	var diff: Vector2 = targetPos - startPos # animates along the same curve as the overall position vector
+	return lerpf(currentGrayscale, userGrayscale, get_percent_complete(time, diff))
+
+func get_target_modulate(currentModulate: Color, time: float, targetPos: Vector2, startPos: Vector2) -> Color:
+	var diff: Vector2 = targetPos - startPos # animates along the same curve as the overall position vector
+	return currentModulate.lerp(targetModulate, get_percent_complete(time, diff))
+
+func get_target_grayscale(currentGrayscale: float, time: float, targetPos: Vector2, startPos: Vector2) -> float:
+	var diff: Vector2 = targetPos - startPos # animates along the same curve as the overall position vector
+	return lerpf(currentGrayscale, targetGrayscale, get_percent_complete(time, diff))
 
 func get_sprite_pivot(time: float, targetPos: Vector2, startPos: Vector2) -> Vector2:
 	startPos.x *= -1 # because we're flipping x here to make the data inputting make more sense, we have to account for a startPos with a flipped x
-	var diff = targetPos - startPos
+	var diff: Vector2 = targetPos - startPos # animates along the same curve as the overall position vector
 	return Vector2((startPos.x + (diff.x * (time / duration))) * -1, startPos.y + (diff.y * (time / duration)))

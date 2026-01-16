@@ -1,10 +1,11 @@
-[gd_scene load_steps=22 format=3 uid="uid://cm4jsnjutjfu6"]
+[gd_scene load_steps=24 format=3 uid="uid://cm4jsnjutjfu6"]
 
 [ext_resource type="Script" uid="uid://005yhg0g2rau" path="res://scripts/battle/combatant/combatant_node.gd" id="1_d8qkc"]
 [ext_resource type="Resource" uid="uid://sdnbjpunsbc0" path="res://gamedata/story_requirements/surge_move_reqs.tres" id="2_a8f3n"]
 [ext_resource type="PackedScene" uid="uid://bmlhhy2yvh2bq" path="res://prefabs/ui/sfx_nine_patch_button.tscn" id="3_0urjt"]
 [ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://themes/root_theme.tres" id="3_o4uc1"]
 [ext_resource type="SpriteFrames" uid="uid://mek3yddf26xy" path="res://graphics/ui/a_shard_summon_anim.tres" id="3_wdco2"]
+[ext_resource type="Shader" uid="uid://derj6ybory846" path="res://scripts/shaders/combatant_node_sprite.gdshader" id="6_u57j6"]
 [ext_resource type="Resource" uid="uid://blj5s6jgtbvbk" path="res://gamedata/moves/particles_surge.tres" id="8_a3k0w"]
 [ext_resource type="Material" uid="uid://bcqvkeuoqt43w" path="res://graphics/particles/hit/hit_particle_process_mat.tres" id="10_nbsj4"]
 [ext_resource type="PackedScene" uid="uid://ffos7xabqx5j" path="res://prefabs/battle/particles/particle_emitter.tscn" id="11_231h2"]
@@ -21,7 +22,10 @@
 [ext_resource type="StyleBox" uid="uid://lxxvcevm620f" path="res://themes/hp_tag_panel.tres" id="17_ath4t"]
 [ext_resource type="Texture2D" uid="uid://b25no5y38ry06" path="res://graphics/ui/berserk.png" id="20_es783"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_nsy4x"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bg31g"]
+shader = ExtResource("6_u57j6")
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_u57j6"]
 
 [node name="CombatantNode" type="Node2D" groups=["CombatantNode"]]
 script = ExtResource("1_d8qkc")
@@ -71,7 +75,8 @@ duration = 0.675
 [node name="BehindParticleEmitter" parent="SpriteContainer/BehindParticleContainer" instance=ExtResource("11_231h2")]
 
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="SpriteContainer"]
-sprite_frames = SubResource("SpriteFrames_nsy4x")
+material = SubResource("ShaderMaterial_bg31g")
+sprite_frames = SubResource("SpriteFrames_u57j6")
 centered = false
 offset = Vector2(-8, -8)
 

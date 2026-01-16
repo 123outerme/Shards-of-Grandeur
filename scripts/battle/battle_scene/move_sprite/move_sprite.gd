@@ -25,6 +25,10 @@ var user: CombatantNode
 var target: CombatantNode
 var playing: bool = false
 var startOpacity: float = 1
+var startUserModulate: Color
+var startUserGrayscale: float = 0
+var startTargetModulate: Color
+var startTargetGrayscale: float = 0
 var moveFrame: int = 0
 var frameTimer: float = 0
 var totalTimer: float = 0
@@ -70,12 +74,24 @@ func _process(delta):
 		modulate.a = frame.get_sprite_opacity(startOpacity, frameTimer, targetPos, startPos)
 		if frame.trackRotationTarget:
 			calc_rotation(frame)
+		if user != null:
+			if frame.modifyUserModulate:
+				user.set_sprite_modulate(frame.get_user_modulate(startUserModulate, frameTimer, targetPos, startPos))
+			if frame.modifyUserGrayscale:
+				user.set_sprite_grayscale_amount(frame.get_user_grayscale(startUserGrayscale, frameTimer, targetPos, startPos))
+		
+		if target != null:
+			if frame.modifyTargetModulate:
+				target.set_sprite_modulate(frame.get_target_modulate(startTargetModulate, frameTimer, targetPos, startPos))
+			if frame.modifyTargetGrayscale:
+				target.set_sprite_grayscale_amount(frame.get_target_grayscale(startTargetGrayscale, frameTimer, targetPos, startPos))
 
 func load_animation():
 	moveFrame = 0
 	frameTimer = 0
 	totalTimer = 0
 	startOpacity = modulate.a
+	get_current_combatant_node_color_values()
 	animatedSpriteNode.centered = anim.centerSprite
 	lastPivotPos = spritePivot.position
 	if anim != null:
@@ -99,6 +115,7 @@ func play_sprite_animation():
 func load_frame():
 	startPos = global_position
 	startOpacity = modulate.a
+	get_current_combatant_node_color_values()
 	var sprFrame: MoveAnimSpriteFrame = anim.frames[moveFrame]
 	if sprFrame.animation == '#stop':
 		animatedSpriteNode.stop()
@@ -233,10 +250,20 @@ func finish_current_frame() -> void:
 	var frame: MoveAnimSpriteFrame = anim.frames[moveFrame]
 	var finishTime: float = frame.get_real_duration(targetPos - startPos)
 	spritePivot.position = frame.get_sprite_pivot(finishTime, frame.spritePivot, lastPivotPos)
-	if not user.leftSide:
+	if user != null and not user.leftSide:
 		spritePivot.position.x *= -1
 	global_position = frame.get_sprite_position(finishTime, targetPos, startPos)
 	modulate.a = frame.get_sprite_opacity(startOpacity, finishTime, targetPos, startPos)
+	if user != null:
+		if frame.modifyUserModulate:
+			user.set_sprite_modulate(frame.get_user_modulate(startUserModulate, finishTime, targetPos, startPos))
+		if frame.modifyUserGrayscale:
+			user.set_sprite_grayscale_amount(frame.get_user_grayscale(startUserGrayscale, finishTime, targetPos, startPos))
+	if target != null:
+		if frame.modifyTargetModulate:
+			target.set_sprite_modulate(frame.get_target_modulate(startTargetModulate, finishTime, targetPos, startPos))
+		if frame.modifyTargetGrayscale:
+			target.set_sprite_grayscale_amount(frame.get_target_grayscale(startTargetGrayscale, finishTime, targetPos, startPos))
 	if frame.trackRotationTarget:
 		calc_rotation(frame)
 
@@ -264,7 +291,7 @@ func next_frame():
 		lastPivotPos.x *= -1 # account for the pivot being flipped for right-side combatants
 	load_frame()
 
-func reset_animation(stop: bool = true):
+func reset_animation(stop: bool = true) -> void:
 	frameTimer = 0
 	moveFrame = 0
 	totalTimer = 0
@@ -274,7 +301,17 @@ func reset_animation(stop: bool = true):
 		animatedSpriteNode.play('default')
 		position = Vector2.ZERO
 
-func destroy(emitSignal: bool = true):
+func get_current_combatant_node_color_values() -> void:
+	if user != null:
+		startUserModulate = user.animatedSprite.modulate
+		startUserGrayscale = user.get_sprite_grayscale_amount()
+	
+	if target != null:
+		startTargetModulate = target.animatedSprite.modulate
+		startTargetGrayscale = target.get_sprite_grayscale_amount()
+		
+
+func destroy(emitSignal: bool = true) -> void:
 	playing = false
 	visible = false
 	destroying = true

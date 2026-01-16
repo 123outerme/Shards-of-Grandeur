@@ -541,6 +541,16 @@ func tween_back_to_return_pos():
 	animateTween.tween_property(spriteContainer, 'global_position', returnToPos, ((returnToPos - spriteContainer.global_position) / global_scale).length() / ANIMATE_MOVE_SPEED)
 	animateTween.finished.connect(_on_combatant_tween_returned)
 
+func set_sprite_grayscale_amount(grayscaleAmount: float) -> void:
+	animatedSprite.set_instance_shader_parameter('grayscale', grayscaleAmount)
+
+func get_sprite_grayscale_amount() -> float:
+	var grayscale = animatedSprite.get_instance_shader_parameter('grayscale')
+	return grayscale if grayscale != null else 0 
+
+func set_sprite_modulate(mod: Color) -> void:
+	animatedSprite.modulate = mod
+
 func play_particles(preset: ParticlePreset, timingDelay: float = 0):
 	if preset == null or preset.count == 0:
 		return
