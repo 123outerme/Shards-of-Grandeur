@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="MovePool" load_steps=8 format=3 uid="uid://doyiw4d75tgmt"]
+[gd_resource type="Resource" script_class="MovePool" load_steps=9 format=3 uid="uid://doyiw4d75tgmt"]
 
 [ext_resource type="Script" uid="uid://dx4lnh4driy7a" path="res://scripts/battle/combatant/move.gd" id="1_kqxy0"]
 [ext_resource type="Script" uid="uid://cwh7p05135w7q" path="res://scripts/battle/combatant/movepool.gd" id="2_aeyyj"]
@@ -7,10 +7,12 @@
 [ext_resource type="Resource" uid="uid://be6ujc6h8gava" path="res://gamedata/moves/arcane_sigil/arcane_sigil.tres" id="4_47k7v"]
 [ext_resource type="Resource" uid="uid://ccaebtgjogv35" path="res://gamedata/moves/silt_slash/silt_slash.tres" id="4_vf3du"]
 [ext_resource type="Resource" uid="uid://b0qktp2rwgumg" path="res://gamedata/moves/mud_sling/mud_sling.tres" id="5_7n3u6"]
+[ext_resource type="Resource" uid="uid://days4pcokghja" path="res://gamedata/moves/lithification/lithification.tres" id="7_hmh17"]
 
 [resource]
 script = ExtResource("2_aeyyj")
-pool = Array[ExtResource("1_kqxy0")]([ExtResource("2_s2abt"), ExtResource("3_47k7v"), ExtResource("4_vf3du"), ExtResource("4_47k7v"), ExtResource("5_7n3u6")])
+pool = Array[ExtResource("1_kqxy0")]([ExtResource("2_s2abt"), ExtResource("3_47k7v"), ExtResource("4_vf3du"), ExtResource("4_47k7v"), ExtResource("5_7n3u6"), ExtResource("7_hmh17")])
+signatureMoves = Array[ExtResource("1_kqxy0")]([ExtResource("7_hmh17")])
 preferredMove1Role = 2
 preferredMove1DmgType = 1
 preferredMove1Element = 5
