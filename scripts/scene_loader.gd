@@ -1,13 +1,19 @@
 extends Node
 
-var currentScene
+## the current game-scene root node
+var currentScene: Node
 var unpauseExcludedMover: Node2D = null
 var mapLoader: MapLoader = null
 var audioHandler: AudioHandler = null
 var cutscenePlayer: CutscenePlayer = null
 var curMapEntry: MapEntry = null
+
+## if true, debug tools are enabled
 var debug: bool = false
 var mainGame: MainGame = null
+
+## if true, StoryRequirements will always resolve as "passed"
+var ignoreStoryRequirements: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

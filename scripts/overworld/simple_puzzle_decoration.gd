@@ -84,6 +84,12 @@ func play_animation(animName: String):
 func get_sprite_frames() -> SpriteFrames:
 	return animatedDecoration.get_sprite_frames()
 
+func get_max_sprite_size() -> Vector2i:
+	var interactableAnimTexture: Texture2D = get_sprite_frames().get_frame_texture(get_interact_animation(), 0)
+	if interactableAnimTexture != null:
+		return Vector2i(interactableAnimTexture.get_width(), interactableAnimTexture.get_height())
+	return Vector2i()
+
 func get_interact_animation() -> String:
 	return solvedAnimation if solved else unsolvedAnimation
 

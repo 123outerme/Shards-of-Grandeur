@@ -9,39 +9,21 @@
 [sub_resource type="Resource" id="Resource_c6wx8"]
 script = ExtResource("1_l2r55")
 choiceBtn = "Nope."
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("3_bhfx0")]([])
-repeatsItem = false
 buttonDims = Vector2(120, 40)
-turnsInQuest = ""
 isDeclineChoice = true
 
 [sub_resource type="Resource" id="Resource_dju0c"]
 script = ExtResource("1_l2r55")
 choiceBtn = "Here!"
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("3_bhfx0")]([])
-repeatsItem = false
 buttonDims = Vector2(120, 40)
 turnsInQuest = "Apprenticeship#An Enchanted Hammer"
-isDeclineChoice = false
 
 [sub_resource type="Resource" id="Resource_svjjr"]
 script = ExtResource("2_w3scd")
 lines = Array[String](["Hey @, did you bring me back that enchanted hammer?"])
-minShowSecs = Array[float]([])
 animation = "talk"
-speakerOverride = ""
-actorAnimation = ""
-animateActorTreePath = ""
-animateActorIsPlayer = false
 choices = Array[ExtResource("1_l2r55")]([SubResource("Resource_c6wx8"), SubResource("Resource_dju0c")])
 
 [resource]
 script = ExtResource("1_rbc0r")
-entryId = ""
 items = Array[ExtResource("2_w3scd")]([SubResource("Resource_svjjr")])
-ordStoryRequirements = Array[ExtResource("4_7pwww")]([])
-closesDialogue = false
-fullHealsPlayer = false
-annotation = ""

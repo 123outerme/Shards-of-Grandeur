@@ -23,6 +23,7 @@ var lastChoiceFocused: Button = null # the item at index `idx` will be the dialo
 var choicesDialogueItemIdxs: Array[int] = []
 var firstChoiceButton: Button = null
 var lastChoiceButton: Button = null
+var makingChoice: bool = false
 
 # Minimum Dialogue Shown Timer
 var startDialogueTimer: float = 0
@@ -51,11 +52,11 @@ func _ready():
 	get_viewport().gui_focus_changed.connect(_viewport_focus_changed)
 
 func _unhandled_input(event):
-	if visible and event.is_action_pressed("game_decline") and is_textbox_complete() and PlayerFinder.player.makingChoice:
+	if visible and event.is_action_pressed("game_decline") and is_textbox_complete() and makingChoice:
 		get_viewport().set_input_as_handled()
 		select_decline_choice()
 	
-	if visible and (event.is_action_pressed('game_tab_left') or event.is_action_pressed('game_tab_right')) and is_textbox_complete() and PlayerFinder.player.makingChoice:
+	if visible and (event.is_action_pressed('game_tab_left') or event.is_action_pressed('game_tab_right')) and is_textbox_complete() and makingChoice:
 		get_viewport().set_input_as_handled()
 		focus_next_choice(-1 if event.is_action_pressed('game_tab_left') else 1)
 
@@ -168,8 +169,7 @@ func add_choices():
 	if dialogueItem == null:
 		return
 	var dialogueLines: Array[String] = dialogueItem.get_lines()
-	if (PlayerFinder.player != null and PlayerFinder.player.makingChoice) \
-			or TextBoxText.text != TextUtils.rich_text_substitute(dialogueLines[len(dialogueLines) - 1], Vector2i(32, 32)):
+	if makingChoice or TextBoxText.text != TextUtils.rich_text_substitute(dialogueLines[len(dialogueLines) - 1], Vector2i(32, 32)):
 		return
 	
 	delete_choices()
@@ -247,13 +247,11 @@ func add_choices():
 	
 	buttonContainer.custom_minimum_size.y = max(48, maxBtnHeight + 8)
 	
-	if PlayerFinder.player != null:
-		PlayerFinder.player.makingChoice = buttonIdx > 0
+	makingChoice = buttonIdx > 0
 
 func delete_choices():
 	boxContainerScroller.bailoutFocusControl = null
-	if PlayerFinder.player != null:
-		PlayerFinder.player.makingChoice = false
+	makingChoice = false
 	for node in buttonContainer.get_children():
 		node.queue_free()
 		#var button: Button = get_node('Panel/HBoxContainer/Button' + String.num_int64(idx + 1))
@@ -310,7 +308,7 @@ func show_text_instant():
 		add_choices()
 
 func select_decline_choice():
-	if not PlayerFinder.player.makingChoice or dialogueItem == null:
+	if not makingChoice or dialogueItem == null:
 		return
 	var buttons: Array[Node] = buttonContainer.get_children()
 	var dialogueChoices: Array[DialogueChoice] = dialogueItem.get_choices()
@@ -320,7 +318,7 @@ func select_decline_choice():
 			return
 
 func focus_next_choice(direction: int):
-	if not PlayerFinder.player.makingChoice or dialogueItem == null:
+	if not makingChoice or dialogueItem == null:
 		return
 	var buttons: Array[Node] = buttonContainer.get_children()
 	var focusedIdx = buttons.find(lastChoiceFocused)

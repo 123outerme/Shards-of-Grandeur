@@ -1,0 +1,56 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=14 format=3 uid="uid://bu0k2aw5wx4j"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_afwf4"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_idpap"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="3_hcguv"]
+[ext_resource type="Script" uid="uid://b6oofnelefs8o" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_idpap"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="4_k8tvj"]
+
+[sub_resource type="Resource" id="Resource_hcguv"]
+script = ExtResource("2_idpap")
+choiceBtn = "I Can't..."
+isDeclineChoice = true
+
+[sub_resource type="Resource" id="Resource_b7o1l"]
+script = ExtResource("1_afwf4")
+lines = Array[String](["Alessia isn't waking up. Her injuries have started to heal, but I've done all I can for her. Is there any chance you have any magic that can heal her?"])
+animation = "talk"
+choices = Array[ExtResource("2_idpap")]([SubResource("Resource_hcguv")])
+
+[sub_resource type="Resource" id="Resource_k8tvj"]
+script = ExtResource("1_afwf4")
+lines = Array[String](["I have techniques and elixirs that can heal wounds, but none that can wake her back up.", "I do have another idea, but it's sort of a long-shot. In the desert Nomad Camp, there was an elder that had great powers of Affinity.", "He could look into the future with his abilities, and he... foresaw the Chain Legion's attack on your town."])
+animation = "stand"
+speakerOverride = "@"
+
+[sub_resource type="Resource" id="Resource_dkic7"]
+script = ExtResource("2_idpap")
+choiceBtn = "Unfortunately."
+isDeclineChoice = true
+
+[sub_resource type="Resource" id="Resource_r87mw"]
+script = ExtResource("1_afwf4")
+lines = Array[String](["He did? ... And it was still too late to save us?"])
+animation = "talk"
+choices = Array[ExtResource("2_idpap")]([SubResource("Resource_dkic7")])
+
+[sub_resource type="Resource" id="Resource_c301f"]
+script = ExtResource("1_afwf4")
+lines = Array[String](["Unfortunately, yes. By the time I had arrived, the vision had already come true. But, his great power had also warded off a mighty Dragon.", "Since Affinity is primarily a natural energy, I'll bet he can help us restore Alessia's health fully."])
+animation = "stand"
+speakerOverride = "@"
+
+[sub_resource type="Resource" id="Resource_idpap"]
+script = ExtResource("2_idpap")
+choiceBtn = "I'll Go See Him."
+
+[sub_resource type="Resource" id="Resource_di05r"]
+script = ExtResource("1_afwf4")
+lines = Array[String](["If you're right, we need him here. Send for him... quickly!"])
+animation = "talk"
+choices = Array[ExtResource("2_idpap")]([SubResource("Resource_idpap")])
+
+[resource]
+script = ExtResource("4_k8tvj")
+items = Array[ExtResource("1_afwf4")]([SubResource("Resource_b7o1l"), SubResource("Resource_k8tvj"), SubResource("Resource_r87mw"), SubResource("Resource_c301f"), SubResource("Resource_di05r")])
+closesDialogue = true

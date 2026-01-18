@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=4 uid="uid://dyya5ljxgcvlx"]
+[gd_scene load_steps=44 format=4 uid="uid://dyya5ljxgcvlx"]
 
 [ext_resource type="Script" uid="uid://vg00rfnn3346" path="res://scripts/overworld/map_script.gd" id="1_2ghcv"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_kph06"]
@@ -21,7 +21,11 @@
 [ext_resource type="PackedScene" uid="uid://drntacqptcfm5" path="res://prefabs/entities/decoration.tscn" id="15_1tpat"]
 [ext_resource type="Texture2D" uid="uid://blu0s5mpplprq" path="res://graphics/furniture/misc_furniture.png" id="16_ev6bm"]
 [ext_resource type="Script" uid="uid://fw22o8hbosnk" path="res://scripts/inventory/inventory_slot.gd" id="17_mm255"]
+[ext_resource type="SpriteFrames" uid="uid://cckvd8y6irr71" path="res://graphics/animations/a_alessia_in_bed_awake.tres" id="18_gg67x"]
 [ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="18_joowq"]
+[ext_resource type="Resource" uid="uid://b0saocdcj13je" path="res://gamedata/dialogue/lance/rebuild_standstill/lance_rebuild_standstill_heal_alessia_inprogress.tres" id="20_kbqqb"]
+[ext_resource type="PackedScene" uid="uid://b4bahmif0u56p" path="res://prefabs/overworld/tool_cutscene_visualizer.tscn" id="25_istn8"]
+[ext_resource type="Resource" uid="uid://ckl2lfmonig3y" path="res://gamedata/cutscenes/standstill/rebuild_standstill_heal_alessia.tres" id="26_ll4e0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_86df0"]
 atlas = ExtResource("16_ev6bm")
@@ -29,58 +33,14 @@ region = Rect2(16, 32, 16, 16)
 
 [sub_resource type="Resource" id="Resource_w3dsr"]
 script = ExtResource("18_joowq")
-minAct = 0
-maxAct = -1
-prereqQuests = Array[String]([])
-prereqCutscenes = Array[String]([])
-prereqDialogues = Array[String]([])
-prereqPlacesVisited = Array[String]([])
-prereqSpecialBattles = Array[String]([])
-prereqDefeatedEnemies = Array[String]([])
-prereqPuzzles = Array[String]([])
-prereqPuzzleStates = Dictionary[String, Array]({})
-prereqDiscoveredEvolutions = Array[String]([])
-prereqHavingFollowers = Array[String]([])
-prereqHasItems = Array[ExtResource("17_mm255")]([])
 invalidAfterCompletingQuests = Array[String](["Rebuild Standstill#Bearing Charcoal"])
-invalidAfterFailingQuests = Array[String]([])
-invalidAfterCutscenes = Array[String]([])
-invalidAfterDialogues = Array[String]([])
-invalidAfterVistingPlaces = Array[String]([])
-invalidAfterSpecialBattles = Array[String]([])
-invalidAfterSolvingPuzzles = Array[String]([])
-invalidFromPuzzleStates = Dictionary[String, Array]({})
-invalidFromHavingFollowers = Array[String]([])
-invalidFromHavingItems = Array[ExtResource("17_mm255")]([])
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ps5la"]
 size = Vector2(16, 5)
 
 [sub_resource type="Resource" id="Resource_hm6gc"]
 script = ExtResource("18_joowq")
-minAct = 0
-maxAct = -1
 prereqQuests = Array[String](["Rebuild Standstill#Bearing Charcoal"])
-prereqCutscenes = Array[String]([])
-prereqDialogues = Array[String]([])
-prereqPlacesVisited = Array[String]([])
-prereqSpecialBattles = Array[String]([])
-prereqDefeatedEnemies = Array[String]([])
-prereqPuzzles = Array[String]([])
-prereqPuzzleStates = Dictionary[String, Array]({})
-prereqDiscoveredEvolutions = Array[String]([])
-prereqHavingFollowers = Array[String]([])
-prereqHasItems = Array[ExtResource("17_mm255")]([])
-invalidAfterCompletingQuests = Array[String]([])
-invalidAfterFailingQuests = Array[String]([])
-invalidAfterCutscenes = Array[String]([])
-invalidAfterDialogues = Array[String]([])
-invalidAfterVistingPlaces = Array[String]([])
-invalidAfterSpecialBattles = Array[String]([])
-invalidAfterSolvingPuzzles = Array[String]([])
-invalidFromPuzzleStates = Dictionary[String, Array]({})
-invalidFromHavingFollowers = Array[String]([])
-invalidFromHavingItems = Array[ExtResource("17_mm255")]([])
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wrv16"]
 size = Vector2(16, 5)
@@ -89,31 +49,11 @@ size = Vector2(16, 5)
 script = ExtResource("10_o2viv")
 id = "default"
 priority = -1
-storyRequirements = Array[ExtResource("18_joowq")]([])
-autoApplyState = false
 
 [sub_resource type="Resource" id="Resource_gg67x"]
 script = ExtResource("4_eo5tj")
 saveName = "npc"
-spriteState = "default"
-animation = "stand"
 position = Vector2(-68, 16)
-flipH = false
-visible = true
-selectedTarget = 0
-loops = 0
-disableMovement = false
-previousDisableMove = false
-afterMoveWaitAccum = 0.0
-followerHomePosition = Vector2(0, 0)
-followingPlayer = false
-followerHomeSet = false
-combatMode = false
-version = ""
-dialogueItems = []
-dialogueIndex = -1
-dialogueItemIdx = -1
-dialogueLine = -1
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kv6kh"]
 size = Vector2(16, 6)
@@ -124,58 +64,36 @@ size = Vector2(24, 14)
 [sub_resource type="Resource" id="Resource_o2viv"]
 script = ExtResource("10_o2viv")
 id = "burned_collapsed"
-priority = 0
 spriteFrames = ExtResource("9_ls1j7")
-storyRequirements = Array[ExtResource("18_joowq")]([])
-autoApplyState = false
 metadata/_custom_type_script = "uid://bwcja16pmp3mf"
 
 [sub_resource type="Resource" id="Resource_e8c0q"]
 script = ExtResource("10_o2viv")
 id = "default"
 priority = -1
-storyRequirements = Array[ExtResource("18_joowq")]([])
-autoApplyState = false
 
 [sub_resource type="Resource" id="Resource_oek4s"]
 script = ExtResource("10_o2viv")
 id = "in_bed"
-priority = 0
 spriteFrames = ExtResource("10_p0awk")
-storyRequirements = Array[ExtResource("18_joowq")]([])
-autoApplyState = false
+metadata/_custom_type_script = "uid://bwcja16pmp3mf"
+
+[sub_resource type="Resource" id="Resource_l4060"]
+script = ExtResource("10_o2viv")
+id = "in_bed_awake"
+spriteFrames = ExtResource("18_gg67x")
 metadata/_custom_type_script = "uid://bwcja16pmp3mf"
 
 [sub_resource type="Resource" id="Resource_istn8"]
 script = ExtResource("4_eo5tj")
 saveName = "npc"
 spriteState = "in_bed"
-animation = "stand"
 position = Vector2(-88, -22)
-flipH = false
-visible = true
-selectedTarget = 0
-loops = 0
-disableMovement = false
-previousDisableMove = false
-afterMoveWaitAccum = 0.0
-followerHomePosition = Vector2(0, 0)
-followingPlayer = false
-followerHomeSet = false
-combatMode = false
-version = ""
-dialogueItems = []
-dialogueIndex = -1
-dialogueItemIdx = -1
-dialogueLine = -1
 
 [sub_resource type="Resource" id="Resource_0076e"]
 script = ExtResource("10_o2viv")
 id = "burned"
-priority = 0
 spriteFrames = ExtResource("10_yywe0")
-storyRequirements = Array[ExtResource("18_joowq")]([])
-autoApplyState = false
 metadata/_custom_type_script = "uid://bwcja16pmp3mf"
 
 [sub_resource type="Resource" id="Resource_ll4e0"]
@@ -183,34 +101,17 @@ script = ExtResource("10_o2viv")
 id = "default"
 priority = -1
 spriteFrames = ExtResource("11_pb102")
-storyRequirements = Array[ExtResource("18_joowq")]([])
-autoApplyState = false
 
 [sub_resource type="Resource" id="Resource_yo0d8"]
 script = ExtResource("4_eo5tj")
 saveName = "npc"
 spriteState = "burned"
-animation = "stand"
 position = Vector2(-8, -89)
-flipH = false
-visible = true
-selectedTarget = 0
-loops = 0
-disableMovement = false
-previousDisableMove = false
-afterMoveWaitAccum = 0.0
-followerHomePosition = Vector2(0, 0)
-followingPlayer = false
-followerHomeSet = false
-combatMode = false
-version = ""
-dialogueItems = []
-dialogueIndex = -1
-dialogueItemIdx = -1
-dialogueLine = -1
 
 [node name="OverworldMap" type="Node2D"]
 script = ExtResource("1_2ghcv")
+metadata/_edit_vertical_guides_ = [-72.0]
+metadata/_edit_horizontal_guides_ = [-25.0]
 
 [node name="TilemapRoot" type="Node2D" parent="."]
 y_sort_enabled = true
@@ -314,7 +215,8 @@ spriteState = "in_bed"
 spriteStatesDict = Dictionary[String, ExtResource("10_o2viv")]({
 "burned_collapsed": SubResource("Resource_o2viv"),
 "default": SubResource("Resource_e8c0q"),
-"in_bed": SubResource("Resource_oek4s")
+"in_bed": SubResource("Resource_oek4s"),
+"in_bed_awake": SubResource("Resource_l4060")
 })
 data = SubResource("Resource_istn8")
 
@@ -346,7 +248,7 @@ spriteStatesDict = Dictionary[String, ExtResource("10_o2viv")]({
 "default": SubResource("Resource_ll4e0")
 })
 data = SubResource("Resource_yo0d8")
-dialogueEntries = Array[ExtResource("5_fmisr")]([ExtResource("13_ln4wi")])
+dialogueEntries = Array[ExtResource("5_fmisr")]([ExtResource("20_kbqqb"), ExtResource("13_ln4wi")])
 npcShop = ExtResource("12_oygwg")
 
 [node name="NPCSprite" parent="TilemapRoot/Lance" index="0"]
@@ -376,6 +278,11 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 position = Vector2(-8.5, 18)
 mapName = "standstill"
 mapPos = Vector2(168, -140)
+
+[node name="ToolCutsceneVisualizer" parent="." node_paths=PackedStringArray("triggerOrNPC", "rootNode") instance=ExtResource("25_istn8")]
+triggerOrNPC = NodePath("../TilemapRoot/Lance")
+cutscene = ExtResource("26_ll4e0")
+rootNode = NodePath("..")
 
 [editable path="TilemapRoot/UnlitFurnace"]
 [editable path="TilemapRoot/LitFurnace"]

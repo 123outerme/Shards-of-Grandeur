@@ -10,40 +10,22 @@
 [sub_resource type="Resource" id="Resource_llsj0"]
 script = ExtResource("1_n23h4")
 choiceBtn = "Hold on..."
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("3_il2cc")]([])
-repeatsItem = false
 buttonDims = Vector2(180, 40)
-turnsInQuest = ""
 isDeclineChoice = true
 
 [sub_resource type="Resource" id="Resource_nb208"]
 script = ExtResource("1_n23h4")
 choiceBtn = "Here you go!"
 leadsTo = ExtResource("2_gjvmb")
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("3_il2cc")]([])
-repeatsItem = false
 buttonDims = Vector2(260, 40)
 turnsInQuest = "Apprenticeship#Bearing Logs"
-isDeclineChoice = false
 
 [sub_resource type="Resource" id="Resource_k8fm1"]
 script = ExtResource("1_bm04q")
 lines = Array[String](["Thanks for the bark. This will keep the furnace going for long enough to finish making that sword. Now, I just need to put my nose to the grindstone."])
-minShowSecs = Array[float]([])
 animation = "talk"
-speakerOverride = ""
-actorAnimation = ""
-animateActorTreePath = ""
-animateActorIsPlayer = false
 choices = Array[ExtResource("1_n23h4")]([SubResource("Resource_llsj0"), SubResource("Resource_nb208")])
 
 [resource]
 script = ExtResource("1_w7tu0")
-entryId = ""
 items = Array[ExtResource("1_bm04q")]([SubResource("Resource_k8fm1")])
-ordStoryRequirements = Array[ExtResource("5_mnd64")]([])
-closesDialogue = false
-fullHealsPlayer = false
-annotation = ""

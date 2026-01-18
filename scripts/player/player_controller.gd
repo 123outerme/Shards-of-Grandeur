@@ -24,7 +24,6 @@ var cutsceneLineIndex: int = 0
 var holdCameraX: bool = false
 var holdCameraY: bool = false
 var holdingCameraAt: Vector2
-var makingChoice: bool = false
 var pickedChoice: DialogueChoice = null
 var actChanged: bool = false
 var pauseDisabled: bool = false
@@ -88,7 +87,7 @@ func _unhandled_input(event):
 			and not (talkNPC != null or len(interactableDialogues) > 0 or len(cutsceneTexts) > 0) \
 			and not pausePanel.isPaused and not inventoryPanel.visible and not questsPanel.visible \
 			and not statsPanel.visible and not overworldConsole.visible and not overworldRewardPanel.visible \
-			and not makingChoice and not cutscenePaused and not inCutscene \
+			and not textBox.makingChoice and not cutscenePaused and not inCutscene \
 			and (SceneLoader.curMapEntry.isRecoverLocation or SettingsHandler.gameSettings.enableExperimentalFeatures) \
 			and (SceneLoader.mapLoader == null or not SceneLoader.mapLoader.loading) \
 			and not cam.fadedOrFadingOut:
@@ -137,7 +136,7 @@ func _unhandled_input(event):
 			or (event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed() and not mobileNotInDialogue)) \
 			and (len(interactables) > 0 or len(talkNPCcandidates) > 0 or len(cutsceneTexts) > 0) \
 			and not pausePanel.isPaused and not inventoryPanel.visible and not questsPanel.visible \
-			and not statsPanel.visible and not overworldConsole.visible and not makingChoice and \
+			and not statsPanel.visible and not overworldConsole.visible and not textBox.makingChoice and \
 			not cutscenePaused and not startingBattle and not overworldRewardPanel.visible and \
 			# SceneLoader.curMapEntry.isRecoverLocation and \ # uncomment to make the player unable to toggle running while not in a recover location
 			(SceneLoader.mapLoader == null or not SceneLoader.mapLoader.loading):
@@ -549,10 +548,10 @@ func update_cutscene_speaker_sprite(cutsceneDialogue: CutsceneDialogue) -> void:
 	textBox.speakerSpriteScale = spriteScale
 
 func select_choice(choice: DialogueChoice):
-	makingChoice = false
+	textBox.makingChoice = false
 	
 	if choice.turnsInQuest:
-		makingChoice = true # leave choice buttons up for now
+		textBox.makingChoice = true # leave choice buttons up for now
 		pickedChoice = choice
 		_on_turn_in_button_pressed()
 		return
@@ -612,7 +611,7 @@ func select_choice(choice: DialogueChoice):
 			PlayerResources.remove_follower(npcChoice.removesFollowerId)
 		
 		if npcChoice.opensShop:
-			makingChoice = true # leave choice buttons up for now
+			textBox.makingChoice = true # leave choice buttons up for now
 			pickedChoice = choice
 			_on_shop_button_pressed()
 			return
@@ -653,7 +652,7 @@ func select_choice(choice: DialogueChoice):
 			textBox.set_textbox_text(dialogueText, talkNPC.displayName if dialogueItem.speakerOverride == '' else dialogueItem.speakerOverride, talkNPC.is_dialogue_item_last())
 			return
 	
-	makingChoice = false
+	textBox.makingChoice = false
 	advance_dialogue()
 
 func is_in_dialogue() -> bool:
@@ -861,7 +860,7 @@ func put_interactable_text(advance: bool = false, playDialogueAnim: bool = false
 					if node.has_method('play_animation'):
 						node.play_animation(interactableDialogue.dialogueEntry.items[interactableDialogue.savedItemIdx].actorAnimation)
 					else:
-						print('Actor ' , node.name, ' was asked to play an animation but it doesn\'t implement play_animation()')
+						print('Actor ', node.name, ' was asked to play an animation but it doesn\'t implement play_animation()')
 	
 	# if not null, check and then show the dialogue
 	if interactableDialogue != null and interactableDialogue.dialogueEntry != null:

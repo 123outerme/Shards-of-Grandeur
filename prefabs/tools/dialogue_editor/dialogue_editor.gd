@@ -64,6 +64,10 @@ static func button_action_to_label(action: ToolDialogueEditorButtonAction) -> St
 			return 'Preview Entry'
 	return 'UNKNOWN_ACTION'
 
+@export var loadDialogueEntry: DialogueEntry
+@export var loadInteractableDialogue: InteractableDialogue
+@export var loadMap: PackedScene
+
 @onready var testCamera: TestCamera = get_node('TestCamera')
 @onready var textBox: TextBox = get_node('TestCamera/TextBoxRoot')
 @onready var menuStateTitle: RichTextLabel = get_node('TestCamera/HudRoot/MenuStateTitle')
@@ -121,13 +125,14 @@ func _unhandled_input(event: InputEvent) -> void:
 				textBox.show_text_instant()
 			elif len(previewingItems) > 0:
 				advance_preview()
-	elif event.is_action_pressed("game_interact"):
+	elif event.is_action_pressed("game_interact") and textBox.visible:
 		if not textBox.is_textbox_complete():
 			textBox.show_text_instant()
 		elif len(previewingItems) > 0:
 			advance_preview()
 
 func _ready() -> void:
+	SceneLoader.ignoreStoryRequirements = true
 	var focusPrevInput: InputEventKey = InputEventKey.new()
 	focusPrevInput.keycode = KEY_TAB
 	focusPrevInput.shift_pressed = true
@@ -148,6 +153,21 @@ func _ready() -> void:
 	]
 	
 	load_quests()
+	if (loadDialogueEntry != null or loadInteractableDialogue != null):
+		textBox.hide_textbox()
+		if loadInteractableDialogue != null:
+			editingInteractableDialogue = loadInteractableDialogue
+			editingEntry = loadInteractableDialogue.dialogueEntry
+			dialogueSavePath = loadInteractableDialogue.resource_path
+		else:
+			editingEntry = loadDialogueEntry
+			dialogueSavePath = loadDialogueEntry.resource_path
+		menuStateStack = [ToolDialogueEditorMenuState.CREATE_OR_LOAD_ENTRY, ToolDialogueEditorMenuState.LOAD_ENTRY]
+		menuState = ToolDialogueEditorMenuState.CHOOSE_MAP
+		if loadMap != null:
+			_on_file_dialog_file_selected(loadMap.resource_path)
+			return
+	
 	load_menu_state()
 
 func load_quests() -> void:
@@ -243,6 +263,7 @@ func load_action_buttons() -> void:
 
 func load_npc_buttons() -> void:
 	for npc: NPCScript in mapNpcs:
+		npc.visible = true
 		var button: SFXNinePatchButton = SFX_NINE_PATH_BUTTON_SCENE.instantiate()
 		button.pressed.connect(_npc_button_pressed.bind(npc, null))
 		npcButtons.add_child(button)
@@ -250,6 +271,7 @@ func load_npc_buttons() -> void:
 		button.position = npc.position - 0.5 * button.size
 	
 	for interactable: Interactable in mapInteractables:
+		interactable.visible = true
 		var button: SFXNinePatchButton = SFX_NINE_PATH_BUTTON_SCENE.instantiate()
 		button.pressed.connect(_npc_button_pressed.bind(null, interactable))
 		npcButtons.add_child(button)
@@ -522,8 +544,10 @@ func _on_file_dialog_file_selected(path: String) -> void:
 			menuState = ToolDialogueEditorMenuState.CHOOSE_NPC
 		ToolDialogueEditorMenuState.SAVING_ENTRIES:
 			file_saved.emit(path)
-	fileDialog.visible = false
-	fileDialog.queue_free()
+	if fileDialog != null:
+		fileDialog.visible = false
+		fileDialog.queue_free()
+		fileDialog = null
 	if menuState != ToolDialogueEditorMenuState.SAVING_ENTRIES:
 		load_menu_state.call_deferred()
 	else:

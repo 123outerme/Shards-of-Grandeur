@@ -11,57 +11,20 @@
 [sub_resource type="Resource" id="Resource_yv1y0"]
 script = ExtResource("2_8ed2w")
 choiceBtn = "OK!"
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("3_3yuvw")]([])
-repeatsItem = false
-buttonDims = Vector2(80, 40)
-turnsInQuest = ""
-isDeclineChoice = false
 
 [sub_resource type="Resource" id="Resource_rv2h5"]
 script = ExtResource("1_iaqsq")
 lines = Array[String](["Thank you, @... let's rebuild Standstill together. The first thing I need is to restart the furnace, and these Inferno-Bears are getting a bit too close to the town.", "Could you go out into the Hilltop Forest and defeat 3 Inferno-Bears, and bring me back their charcoal?"])
-minShowSecs = Array[float]([])
 animation = "talk"
-speakerOverride = ""
-actorAnimation = ""
-animateActorTreePath = ""
-animateActorIsPlayer = false
 choices = Array[ExtResource("2_8ed2w")]([SubResource("Resource_yv1y0")])
 
 [sub_resource type="Resource" id="Resource_f20ve"]
 script = ExtResource("4_x6asj")
-minAct = 0
-maxAct = -1
-prereqQuests = Array[String]([])
-prereqCutscenes = Array[String]([])
-prereqDialogues = Array[String]([])
-prereqPlacesVisited = Array[String]([])
-prereqSpecialBattles = Array[String]([])
-prereqDefeatedEnemies = Array[String]([])
-prereqPuzzles = Array[String]([])
-prereqPuzzleStates = Dictionary[String, Array]({})
-prereqDiscoveredEvolutions = Array[String]([])
-prereqHavingFollowers = Array[String]([])
-prereqHasItems = Array[ExtResource("7_ybmdh")]([])
 invalidAfterCompletingQuests = Array[String](["Rebuild Standstill#"])
-invalidAfterFailingQuests = Array[String]([])
-invalidAfterCutscenes = Array[String]([])
-invalidAfterDialogues = Array[String]([])
-invalidAfterVistingPlaces = Array[String]([])
-invalidAfterSpecialBattles = Array[String]([])
-invalidAfterSolvingPuzzles = Array[String]([])
-invalidFromPuzzleStates = Dictionary[String, Array]({})
-invalidFromHavingFollowers = Array[String]([])
-invalidFromHavingItems = Array[ExtResource("7_ybmdh")]([])
 
 [resource]
 script = ExtResource("5_mktx2")
-entryId = ""
 items = Array[ExtResource("1_iaqsq")]([SubResource("Resource_rv2h5")])
 storyRequirements = SubResource("Resource_f20ve")
-ordStoryRequirements = Array[ExtResource("4_x6asj")]([])
 startsQuest = ExtResource("6_8kawl")
 closesDialogue = true
-fullHealsPlayer = false
-annotation = ""

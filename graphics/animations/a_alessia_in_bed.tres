@@ -1,6 +1,19 @@
-[gd_resource type="SpriteFrames" load_steps=3 format=3 uid="uid://b0ldevl74c07y"]
+[gd_resource type="SpriteFrames" load_steps=7 format=3 uid="uid://b0ldevl74c07y"]
 
+[ext_resource type="Texture2D" uid="uid://cu3agyurmma3y" path="res://graphics/characters/alessia/alessia_burned_in_bed_awaken.png" id="1_0cc6c"]
 [ext_resource type="Texture2D" uid="uid://ccrua4nbwjd47" path="res://graphics/characters/alessia/alessia_burned_in_bed.png" id="1_3s4tc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v4cn1"]
+atlas = ExtResource("1_0cc6c")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ks3lp"]
+atlas = ExtResource("1_0cc6c")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_87e4l"]
+atlas = ExtResource("1_0cc6c")
+region = Rect2(32, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5uioj"]
 atlas = ExtResource("1_3s4tc")
@@ -8,6 +21,20 @@ region = Rect2(0, 0, 16, 16)
 
 [resource]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v4cn1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ks3lp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_87e4l")
+}],
+"loop": false,
+"name": &"awaken",
+"speed": 3.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_5uioj")

@@ -147,7 +147,7 @@ func _init(
 	invalidFromHavingItems = i_invalidItems
 
 func is_valid() -> bool:
-	if Engine.is_editor_hint():
+	if Engine.is_editor_hint() or SceneLoader.ignoreStoryRequirements:
 		return true
 	
 	if PlayerResources.questInventory.currentAct < minAct or (maxAct >= 0 and PlayerResources.questInventory.currentAct > maxAct):

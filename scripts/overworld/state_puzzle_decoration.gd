@@ -121,6 +121,15 @@ func get_sprite_frames() -> SpriteFrames:
 		return null
 	return animatedDecoration.get_sprite_frames()
 
+func get_max_sprite_size() -> Vector2i:
+	var spriteFrames: SpriteFrames = get_sprite_frames()
+	if spriteFrames == null:
+		return Vector2i()
+	var interactableAnimTexture: Texture2D = spriteFrames.get_frame_texture(get_interact_animation(), 0)
+	if interactableAnimTexture != null:
+		return Vector2i(interactableAnimTexture.get_width(), interactableAnimTexture.get_height())
+	return Vector2i()
+
 func get_interact_animation() -> String:
 	if not disableDialogueSpeakerSprite and stateAnimations.has(currentState):
 		return stateAnimations[currentState]

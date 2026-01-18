@@ -64,6 +64,10 @@ func get_sprite_frames() -> SpriteFrames:
 	print('Warning: Interactable ', name, ' SpriteFrames were queried for, but get_sprite_frames() was not overridden.')
 	return null
 
+func get_max_sprite_size() -> Vector2i:
+	print('Warning: Interactable ', name, ' max sprite size was queried for, but get_max_sprite_size() was not overridden.')
+	return Vector2i()
+
 func get_interact_animation() -> String:
 	print('Warning: Interactable ', name, ' animation name was queried for, but get_interact_animation() was not overridden.')
 	return ''

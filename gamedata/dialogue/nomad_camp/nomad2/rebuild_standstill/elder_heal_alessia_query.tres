@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=10 format=3 uid="uid://0ws7wwt46ub0"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_w47fh"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_a0dby"]
+[ext_resource type="Script" uid="uid://b6oofnelefs8o" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_a0dby"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="3_eoqei"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="4_4ik7e"]
+
+[sub_resource type="Resource" id="Resource_eoqei"]
+script = ExtResource("2_a0dby")
+choiceBtn = "Alessia..."
+isDeclineChoice = true
+
+[sub_resource type="Resource" id="Resource_k5tvi"]
+script = ExtResource("1_w47fh")
+lines = Array[String](["Hello again, @! What brings you our way?"])
+animation = "talk"
+choices = Array[ExtResource("2_a0dby")]([SubResource("Resource_eoqei")])
+
+[sub_resource type="Resource" id="Resource_4ik7e"]
+script = ExtResource("1_w47fh")
+lines = Array[String](["Alessia... the master blacksmith of the town that burned, she was injured in the battle and isn't waking up.", "We've treated her wounds the best we can, but she still isn't waking. Would you travel to Standstill and heal her?"])
+animation = "stand"
+speakerOverride = "@"
+
+[sub_resource type="Resource" id="Resource_73c6d"]
+script = ExtResource("1_w47fh")
+lines = Array[String](["I cannot leave here. Every Nomad is needed to ensure we don't lose our town to the harsh desert.", "However, I can take some time to train you in a healing technique to revive their blacksmith."])
+animation = "talk"
+
+[resource]
+script = ExtResource("4_4ik7e")
+items = Array[ExtResource("1_w47fh")]([SubResource("Resource_k5tvi"), SubResource("Resource_4ik7e"), SubResource("Resource_73c6d")])

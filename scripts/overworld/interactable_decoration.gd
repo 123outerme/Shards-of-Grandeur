@@ -8,6 +8,8 @@ class_name InteractableDecoration
 ## a SpriteFrames representing all the combined animated decorations' sprites (if more than one). Overrides default `get_sprite_frames` logic of returning the first decoration's SpriteFrames
 @export var combinedSpriteFrames: SpriteFrames = null
 
+@export var combinedSpritesMaxSize: Vector2i = Vector2i(16, 16)
+
 ## ifi true, will start a fadeout animation that then 
 @export var fadeOutOnRequirementsInvalidated: bool = false
 
@@ -49,6 +51,14 @@ func get_sprite_frames() -> SpriteFrames:
 		return animatedDecorations[0].get_sprite_frames()
 	return null
 
+func get_max_sprite_size() -> Vector2i:
+	if combinedSpriteFrames != null:
+		return combinedSpritesMaxSize
+	var interactableAnimTexture: Texture2D = get_sprite_frames().get_frame_texture(get_interact_animation(), 0)
+	if interactableAnimTexture != null:
+		return Vector2i(interactableAnimTexture.get_width(), interactableAnimTexture.get_height())
+	return Vector2i()
+
 func get_interact_animation() -> String:
 	return interactAnim
 
@@ -82,7 +92,7 @@ func _story_requirements_updated(initializing: bool = false) -> void:
 	if not StoryRequirements.list_is_valid(storyRequirements):
 		if not initializing and fadeOutOnRequirementsInvalidated and fadeoutTween == null:
 			fadeoutTween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_LINEAR)
-			fadeoutTween.tween_property(self, 'modulate', Color(0,0,0,0), 1.0)
+			fadeoutTween.tween_property(self, 'modulate', Color(0, 0, 0, 0), 1.0)
 			fadeoutTween.tween_callback(deactivate)
 		else:
 			deactivate()

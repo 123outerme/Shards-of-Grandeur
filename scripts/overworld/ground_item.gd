@@ -78,6 +78,12 @@ func get_sprite_frames() -> SpriteFrames:
 func get_interact_animation() -> String:
 	return speakerSpriteAnimation
 
+func get_max_sprite_size() -> Vector2i:
+	var interactableAnimTexture: Texture2D = get_sprite_frames().get_frame_texture(get_interact_animation(), 0)
+	if interactableAnimTexture != null:
+		return Vector2i(interactableAnimTexture.get_width(), interactableAnimTexture.get_height())
+	return Vector2i()
+
 func set_disabled(value: bool):
 	disabled = value
 	invisible = value

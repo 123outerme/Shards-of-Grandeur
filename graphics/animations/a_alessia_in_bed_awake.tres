@@ -1,0 +1,46 @@
+[gd_resource type="SpriteFrames" load_steps=6 format=3 uid="uid://cckvd8y6irr71"]
+
+[ext_resource type="Texture2D" uid="uid://b6kk4lxx1cx0q" path="res://graphics/characters/alessia/alessia_burned_in_bed_awake.png" id="1_xdmey"]
+[ext_resource type="Texture2D" uid="uid://bo1xlegitylvm" path="res://graphics/characters/alessia/alessia_burned_in_bed_talk.png" id="2_30f50"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_30f50"]
+atlas = ExtResource("1_xdmey")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f3brm"]
+atlas = ExtResource("2_30f50")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ehur6"]
+atlas = ExtResource("2_30f50")
+region = Rect2(16, 0, 16, 16)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_30f50")
+}],
+"loop": true,
+"name": &"stand",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f3brm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ehur6")
+}],
+"loop": true,
+"name": &"talk",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_30f50")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]

@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=11 format=3]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_0ln56"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_cppfm"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="3_5b2oi"]
+[ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_cppfm"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="4_lg8a4"]
+[ext_resource type="Resource" path="res://gamedata/cutscenes/standstill/rebuild_standstill_heal_alessia.tres" id="5_72mtb"]
+
+[sub_resource type="Resource" id="Resource_1qjxn"]
+script = ExtResource("1_0ln56")
+lines = Array[String](["What? You say you'll heal her? I thought you didn't know how!"])
+animation = "talk"
+
+[sub_resource type="Resource" id="Resource_cmhvu"]
+script = ExtResource("1_0ln56")
+lines = Array[String](["I didn't. The Elder wasn't able to leave the Nomad Camp, but he taught me everything I need to know."])
+animation = "stand"
+speakerOverride = "@"
+
+[sub_resource type="Resource" id="Resource_5b2oi"]
+script = ExtResource("2_cppfm")
+choiceBtn = "Ready."
+isDeclineChoice = true
+
+[sub_resource type="Resource" id="Resource_lg8a4"]
+script = ExtResource("1_0ln56")
+lines = Array[String](["Do you have everything you need? Then let's start, immediately."])
+animation = "talk"
+choices = Array[ExtResource("2_cppfm")]([SubResource("Resource_5b2oi")])
+
+[resource]
+script = ExtResource("4_lg8a4")
+items = Array[ExtResource("1_0ln56")]([SubResource("Resource_1qjxn"), SubResource("Resource_cmhvu"), SubResource("Resource_lg8a4")])
+startsCutscene = ExtResource("5_72mtb")

@@ -1,0 +1,232 @@
+[gd_resource type="Resource" script_class="Cutscene" load_steps=42 format=3 uid="uid://ckl2lfmonig3y"]
+
+[ext_resource type="Script" uid="uid://cqpl74uk8cjo0" path="res://scripts/cutscenes/cutscene_frame.gd" id="1_a8cen"]
+[ext_resource type="Script" uid="uid://fpa08p2kb0ts" path="res://scripts/cutscenes/cutscene.gd" id="2_assjx"]
+[ext_resource type="Script" uid="uid://cg21ocaokyfnx" path="res://scripts/cutscenes/actor_anim_set.gd" id="2_c6hht"]
+[ext_resource type="Script" uid="uid://dy2r6h7mhh2oc" path="res://scripts/cutscenes/actor_sprite_anim.gd" id="3_ka1i6"]
+[ext_resource type="Script" uid="uid://8oxtwxpqllgd" path="res://scripts/cutscenes/actor_face_target.gd" id="4_v0rw1"]
+[ext_resource type="Script" uid="uid://g5p5b4jsf6bs" path="res://scripts/cutscenes/actor_tween.gd" id="5_cb0r3"]
+[ext_resource type="Script" uid="uid://jcu0gq2ns4in" path="res://scripts/cutscenes/cutscene_dialogue.gd" id="6_4rait"]
+[ext_resource type="Script" uid="uid://b5d2qgg22dgbw" path="res://scripts/cutscenes/tweens/tween_vector2.gd" id="7_ka1i6"]
+[ext_resource type="Script" uid="uid://pwprqe15gr3j" path="res://scripts/cutscenes/tweens/tween_color.gd" id="8_v0rw1"]
+
+[sub_resource type="Resource" id="Resource_b7ua7"]
+script = ExtResource("1_a8cen")
+frameLength = 0.1
+annotation = "start fade out"
+endFade = 1
+endFadeLength = 0.5
+metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
+
+[sub_resource type="Resource" id="Resource_c6hht"]
+script = ExtResource("1_a8cen")
+frameLength = 0.6
+annotation = "wait for fade out to finish (+0.1s)"
+metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
+
+[sub_resource type="Resource" id="Resource_v0rw1"]
+script = ExtResource("7_ka1i6")
+value = Vector2(-88, -42)
+isPlayer = true
+propertyName = "position"
+metadata/_custom_type_script = "uid://b5d2qgg22dgbw"
+
+[sub_resource type="Resource" id="Resource_cb0r3"]
+script = ExtResource("7_ka1i6")
+value = Vector2(-72, -25)
+actorTreePath = "TilemapRoot/Lance"
+propertyName = "position"
+metadata/_custom_type_script = "uid://b5d2qgg22dgbw"
+
+[sub_resource type="Resource" id="Resource_ka1i6"]
+script = ExtResource("1_a8cen")
+frameLength = 0.2
+annotation = "move player, Lance to Alessia's bedside underneath the fade out, then start to fade back in"
+actorTweens = Array[ExtResource("5_cb0r3")]([SubResource("Resource_v0rw1"), SubResource("Resource_cb0r3")])
+metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
+
+[sub_resource type="Resource" id="Resource_iy6h3"]
+script = ExtResource("4_v0rw1")
+isPlayer = true
+targetTreePath = "TilemapRoot/Lance"
+metadata/_custom_type_script = "uid://8oxtwxpqllgd"
+
+[sub_resource type="Resource" id="Resource_8ra8p"]
+script = ExtResource("4_v0rw1")
+actorTreePath = "TilemapRoot/Lance"
+targetIsPlayer = true
+metadata/_custom_type_script = "uid://8oxtwxpqllgd"
+
+[sub_resource type="Resource" id="Resource_mhcbi"]
+script = ExtResource("1_a8cen")
+frameLength = 0.1
+annotation = "the player and lance face each other, start fade in at the end"
+actorFaceTargets = Array[ExtResource("4_v0rw1")]([SubResource("Resource_iy6h3"), SubResource("Resource_8ra8p")])
+endFade = 2
+endFadeLength = 0.5
+metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
+
+[sub_resource type="Resource" id="Resource_4rait"]
+script = ExtResource("1_a8cen")
+frameLength = 0.5
+annotation = "wait for fade in"
+metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
+
+[sub_resource type="Resource" id="Resource_sw77e"]
+script = ExtResource("3_ka1i6")
+actorTreePath = "TilemapRoot/Lance"
+animation = "talk"
+metadata/_custom_type_script = "uid://dy2r6h7mhh2oc"
+
+[sub_resource type="Resource" id="Resource_w5ils"]
+script = ExtResource("6_4rait")
+speaker = "Lance"
+texts = Array[String](["WIP Lance dialogue"])
+speakerActorScenePath = "TilemapRoot/Lance"
+metadata/_custom_type_script = "uid://jcu0gq2ns4in"
+
+[sub_resource type="Resource" id="Resource_qnlh0"]
+script = ExtResource("1_a8cen")
+frameLength = 0.1
+annotation = "Lance speaks"
+actorAnims = Array[ExtResource("3_ka1i6")]([SubResource("Resource_sw77e")])
+dialogues = Array[ExtResource("6_4rait")]([SubResource("Resource_w5ils")])
+metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
+
+[sub_resource type="Resource" id="Resource_tobwl"]
+script = ExtResource("1_a8cen")
+frameLength = 0.1
+annotation = "Wait for dialogue to be closed"
+metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
+
+[sub_resource type="Resource" id="Resource_di66f"]
+script = ExtResource("3_ka1i6")
+isPlayer = true
+animation = "attack_affinity"
+metadata/_custom_type_script = "uid://dy2r6h7mhh2oc"
+
+[sub_resource type="Resource" id="Resource_6wtha"]
+script = ExtResource("3_ka1i6")
+actorTreePath = "TilemapRoot/Lance"
+animation = "stand"
+metadata/_custom_type_script = "uid://dy2r6h7mhh2oc"
+
+[sub_resource type="Resource" id="Resource_yei3s"]
+script = ExtResource("1_a8cen")
+frameLength = 0.8
+annotation = "Lance stops talking anim; the player starts to heal Alessia"
+actorAnims = Array[ExtResource("3_ka1i6")]([SubResource("Resource_di66f"), SubResource("Resource_6wtha")])
+metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
+
+[sub_resource type="Resource" id="Resource_sxj1g"]
+script = ExtResource("8_v0rw1")
+value = Color(0.6745098, 0.9254902, 0.6392157, 1)
+actorTreePath = "TilemapRoot/Alessia"
+propertyName = "sprite_modulate"
+metadata/_custom_type_script = "uid://pwprqe15gr3j"
+
+[sub_resource type="Resource" id="Resource_x3jle"]
+script = ExtResource("1_a8cen")
+frameLength = 0.7
+annotation = "Alessia becomes green"
+actorTweens = Array[ExtResource("5_cb0r3")]([SubResource("Resource_sxj1g")])
+metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
+
+[sub_resource type="Resource" id="Resource_45xyd"]
+script = ExtResource("8_v0rw1")
+value = Color(1, 1, 1, 1)
+actorTreePath = "TilemapRoot/Alessia"
+propertyName = "sprite_modulate"
+metadata/_custom_type_script = "uid://pwprqe15gr3j"
+
+[sub_resource type="Resource" id="Resource_owmcy"]
+script = ExtResource("1_a8cen")
+frameLength = 0.7
+annotation = "Green color fades from Alessia"
+actorTweens = Array[ExtResource("5_cb0r3")]([SubResource("Resource_45xyd")])
+metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
+
+[sub_resource type="Resource" id="Resource_fucpd"]
+script = ExtResource("6_4rait")
+speaker = "Alessia"
+texts = Array[String](["Rrrrgh..."])
+speakerActorScenePath = "TilemapRoot/Alessia"
+metadata/_custom_type_script = "uid://jcu0gq2ns4in"
+
+[sub_resource type="Resource" id="Resource_bfbo1"]
+script = ExtResource("1_a8cen")
+frameLength = 0.1
+annotation = "Alessia speaks"
+dialogues = Array[ExtResource("6_4rait")]([SubResource("Resource_fucpd")])
+metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
+
+[sub_resource type="Resource" id="Resource_mvv8g"]
+script = ExtResource("1_a8cen")
+frameLength = 0.1
+annotation = "Wait for the text box to be closed"
+metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
+
+[sub_resource type="Resource" id="Resource_mtl5v"]
+script = ExtResource("3_ka1i6")
+actorTreePath = "TilemapRoot/Alessia"
+animation = "awaken"
+metadata/_custom_type_script = "uid://dy2r6h7mhh2oc"
+
+[sub_resource type="Resource" id="Resource_t1g1m"]
+script = ExtResource("1_a8cen")
+annotation = "Alessia awakens"
+actorAnims = Array[ExtResource("3_ka1i6")]([SubResource("Resource_mtl5v")])
+metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
+
+[sub_resource type="Resource" id="Resource_x4of4"]
+script = ExtResource("2_c6hht")
+actorTreePath = "TilemapRoot/Alessia"
+spriteState = "in_bed_awake"
+metadata/_custom_type_script = "uid://cg21ocaokyfnx"
+
+[sub_resource type="Resource" id="Resource_0ekku"]
+script = ExtResource("3_ka1i6")
+actorTreePath = "TilemapRoot/Alessia"
+animation = "stand"
+metadata/_custom_type_script = "uid://dy2r6h7mhh2oc"
+
+[sub_resource type="Resource" id="Resource_8qcom"]
+script = ExtResource("1_a8cen")
+frameLength = 0.1
+annotation = "transition Alessia anim set to in_bed_awake, have her play her stand anim"
+actorAnims = Array[ExtResource("3_ka1i6")]([SubResource("Resource_0ekku")])
+actorAnimSets = Array[ExtResource("2_c6hht")]([SubResource("Resource_x4of4")])
+metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
+
+[sub_resource type="Resource" id="Resource_qmsme"]
+script = ExtResource("3_ka1i6")
+actorTreePath = "talk"
+animation = "TilemapRoot/Alessia"
+metadata/_custom_type_script = "uid://dy2r6h7mhh2oc"
+
+[sub_resource type="Resource" id="Resource_gphaa"]
+script = ExtResource("6_4rait")
+speaker = "Alessia"
+texts = Array[String](["WIP Alessia dialogue"])
+speakerActorScenePath = "TilemapRoot/Alessia"
+metadata/_custom_type_script = "uid://jcu0gq2ns4in"
+
+[sub_resource type="Resource" id="Resource_cq66g"]
+script = ExtResource("1_a8cen")
+frameLength = 0.1
+annotation = "Alessia speaks again"
+actorAnims = Array[ExtResource("3_ka1i6")]([SubResource("Resource_qmsme")])
+dialogues = Array[ExtResource("6_4rait")]([SubResource("Resource_gphaa")])
+metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
+
+[sub_resource type="Resource" id="Resource_ypvwb"]
+script = ExtResource("1_a8cen")
+frameLength = 0.1
+annotation = "wait for the text box to be closed"
+metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
+
+[resource]
+script = ExtResource("2_assjx")
+cutsceneFrames = Array[ExtResource("1_a8cen")]([SubResource("Resource_b7ua7"), SubResource("Resource_c6hht"), SubResource("Resource_ka1i6"), SubResource("Resource_mhcbi"), SubResource("Resource_4rait"), SubResource("Resource_qnlh0"), SubResource("Resource_tobwl"), SubResource("Resource_yei3s"), SubResource("Resource_x3jle"), SubResource("Resource_owmcy"), SubResource("Resource_bfbo1"), SubResource("Resource_mvv8g"), SubResource("Resource_t1g1m"), SubResource("Resource_8qcom"), SubResource("Resource_cq66g"), SubResource("Resource_ypvwb")])
+saveName = "heal_alessia"
+metadata/_custom_type_script = "uid://fpa08p2kb0ts"

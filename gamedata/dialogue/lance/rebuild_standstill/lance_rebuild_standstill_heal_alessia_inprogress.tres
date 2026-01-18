@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=10 format=3 uid="uid://b0saocdcj13je"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_1b4am"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_2asyk"]
+[ext_resource type="Script" uid="uid://b6oofnelefs8o" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_xk2fw"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="4_ii7wx"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="5_v2nwl"]
+
+[sub_resource type="Resource" id="Resource_oj5hx"]
+script = ExtResource("2_2asyk")
+choiceBtn = "Not Yet."
+isDeclineChoice = true
+
+[sub_resource type="Resource" id="Resource_1b4am"]
+metadata/__load_path__ = "res://gamedata/dialogue/lance/rebuild_standstill/lance_rebuild_standstill_heal_alessia_turned_in.tres"
+
+[sub_resource type="Resource" id="Resource_c1dm0"]
+script = ExtResource("2_2asyk")
+choiceBtn = "I Will Heal Her."
+leadsTo = SubResource("Resource_1b4am")
+
+[sub_resource type="Resource" id="Resource_ot45p"]
+script = ExtResource("1_1b4am")
+lines = Array[String](["@, have you gone to get the Nomad Camp's Elder yet?"])
+animation = "talk"
+choices = Array[ExtResource("2_2asyk")]([SubResource("Resource_oj5hx"), SubResource("Resource_c1dm0")])
+
+[resource]
+script = ExtResource("5_v2nwl")
+items = Array[ExtResource("1_1b4am")]([SubResource("Resource_ot45p")])
