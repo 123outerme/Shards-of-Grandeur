@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="MoveAnimation" load_steps=7 format=3 uid="uid://b0l0rpmywkjn1"]
+
+[ext_resource type="Script" uid="uid://mk6loduurcg4" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="1_0k2oc"]
+[ext_resource type="Script" uid="uid://c8pibqehmw101" path="res://scripts/battle/battle_scene/battlefield_shade_anim.gd" id="1_3g5hj"]
+[ext_resource type="Script" uid="uid://dy6wwno8h0wdl" path="res://scripts/battle/particles/move_animation.gd" id="2_3g5hj"]
+[ext_resource type="Resource" uid="uid://rj2xp7mbvwqw" path="res://gamedata/moves/heat_wave/sprite_heat_wave.tres" id="3_uhcne"]
+
+[sub_resource type="Resource" id="Resource_uhcne"]
+script = ExtResource("1_3g5hj")
+color = Color(0.82, 0.29806998, 0.2706, 0.27450982)
+metadata/_custom_type_script = "uid://c8pibqehmw101"
+
+[sub_resource type="Resource" id="Resource_llway"]
+script = ExtResource("1_3g5hj")
+color = Color(0.82, 0.29806998, 0.2706, 0.45490196)
+metadata/_custom_type_script = "uid://c8pibqehmw101"
+
+[resource]
+script = ExtResource("2_3g5hj")
+combatantAnimation = "attack_affinity"
+makesContact = true
+makesContactPosOffset = Vector2(-12, 0)
+chargeMoveSprites = Array[ExtResource("1_0k2oc")]([ExtResource("3_uhcne")])
+surgeMoveSprites = Array[ExtResource("1_0k2oc")]([ExtResource("3_uhcne")])
+chargeBattlefieldShade = SubResource("Resource_uhcne")
+surgeBattlefieldShade = SubResource("Resource_llway")
+metadata/_custom_type_script = "uid://dy6wwno8h0wdl"

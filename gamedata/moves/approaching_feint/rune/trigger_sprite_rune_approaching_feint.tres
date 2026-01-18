@@ -11,19 +11,8 @@ script = ExtResource("1_gixtx")
 annotation = "set up position in front of target"
 animation = "default"
 duration = 0.1
-speed = 1.0
-opacity = 1.0
-spritePivot = Vector2(0, 0)
 relativeTo = 1
 position = Vector2(-16, 0)
-offset = 0
-rotate = false
-rotateToFace = 1
-rotateToFacePosition = Vector2(0, 0)
-rotateToFaceOffset = 0
-trackRotationTarget = false
-randomizeSfxPitch = false
-emitCompleteOnStart = false
 metadata/_custom_type_script = "uid://n71lfdnd5xrr"
 
 [sub_resource type="Curve" id="Curve_0jh1f"]
@@ -39,23 +28,12 @@ script = ExtResource("1_gixtx")
 annotation = "play throw punch anim"
 animation = "throw_punch"
 duration = 0.33
-speed = 1.0
-opacity = 1.0
-spritePivot = Vector2(0, 0)
 relativeTo = 1
 position = Vector2(4, 0)
-offset = 0
 xCurve = SubResource("Curve_0jh1f")
 yCurve = SubResource("Curve_ft8x7")
-rotate = false
-rotateToFace = 1
-rotateToFacePosition = Vector2(0, 0)
-rotateToFaceOffset = 0
-trackRotationTarget = false
 particles = ExtResource("2_8df26")
 sfx = ExtResource("3_vplk7")
-randomizeSfxPitch = false
-emitCompleteOnStart = false
 metadata/_custom_type_script = "uid://n71lfdnd5xrr"
 
 [sub_resource type="Curve" id="Curve_8df26"]
@@ -69,32 +47,16 @@ point_count = 2
 [sub_resource type="Resource" id="Resource_0jh1f"]
 script = ExtResource("1_gixtx")
 annotation = "keep thrown punch moving and fade out"
-animation = ""
 duration = 0.33
-speed = 1.0
 opacity = 0.0
-spritePivot = Vector2(0, 0)
 relativeTo = 1
 position = Vector2(12, 0)
-offset = 0
 xCurve = SubResource("Curve_8df26")
 yCurve = SubResource("Curve_vplk7")
-rotate = false
-rotateToFace = 1
-rotateToFacePosition = Vector2(0, 0)
-rotateToFaceOffset = 0
-trackRotationTarget = false
-randomizeSfxPitch = false
-emitCompleteOnStart = false
 metadata/_custom_type_script = "uid://n71lfdnd5xrr"
 
 [resource]
 script = ExtResource("2_xcvpd")
 spriteFrames = ExtResource("3_xcvpd")
-centerSprite = true
-maxSize = Vector2(16, 16)
 frames = Array[ExtResource("1_gixtx")]([SubResource("Resource_ypfqd"), SubResource("Resource_xcvpd"), SubResource("Resource_0jh1f")])
-delayedUntilReposition = false
-playsOnImpactFrame = true
-onePerTarget = true
 metadata/_custom_type_script = "uid://mk6loduurcg4"

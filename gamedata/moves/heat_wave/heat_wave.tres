@@ -1,0 +1,60 @@
+[gd_resource type="Resource" script_class="Move" load_steps=13 format=3 uid="uid://dr4g0xfly3hdc"]
+
+[ext_resource type="Script" uid="uid://drwve0pkx3g5o" path="res://scripts/battle/combatant/move_effect.gd" id="1_dwv08"]
+[ext_resource type="Script" uid="uid://dx4lnh4driy7a" path="res://scripts/battle/combatant/move.gd" id="1_wtyo0"]
+[ext_resource type="Script" uid="uid://b8q40qhoufelh" path="res://scripts/battle/combatant/element_multiplier.gd" id="2_p3kpr"]
+[ext_resource type="Script" uid="uid://dvivnpdo5ga72" path="res://scripts/battle/combatant/stat_changes.gd" id="3_8y8tb"]
+[ext_resource type="Resource" uid="uid://b0l0rpmywkjn1" path="res://gamedata/moves/heat_wave/anim_heat_wave.tres" id="4_8y8tb"]
+[ext_resource type="Script" uid="uid://cvjnh0a2q6sat" path="res://scripts/battle/combatant/surge_changes.gd" id="5_4m08y"]
+
+[sub_resource type="Resource" id="Resource_yblff"]
+script = ExtResource("3_8y8tb")
+affinityMultiplier = 0.96
+metadata/_custom_type_script = "uid://dvivnpdo5ga72"
+
+[sub_resource type="Resource" id="Resource_tdh2t"]
+script = ExtResource("1_dwv08")
+role = 1
+orbChange = 1
+power = 45
+targets = 5
+targetStatChanges = SubResource("Resource_yblff")
+metadata/_custom_type_script = "uid://drwve0pkx3g5o"
+
+[sub_resource type="Resource" id="Resource_pr40o"]
+script = ExtResource("3_8y8tb")
+affinityMultiplier = 0.97
+metadata/_custom_type_script = "uid://dvivnpdo5ga72"
+
+[sub_resource type="Resource" id="Resource_1ron1"]
+script = ExtResource("5_4m08y")
+powerPerOrb = 3
+targetStatChangesPerOrb = SubResource("Resource_pr40o")
+metadata/_custom_type_script = "uid://cvjnh0a2q6sat"
+
+[sub_resource type="Resource" id="Resource_2lp4m"]
+script = ExtResource("3_8y8tb")
+affinityMultiplier = 0.92
+metadata/_custom_type_script = "uid://dvivnpdo5ga72"
+
+[sub_resource type="Resource" id="Resource_b5lfx"]
+script = ExtResource("1_dwv08")
+role = 2
+orbChange = -4
+power = 55
+targets = 6
+targetStatChanges = SubResource("Resource_2lp4m")
+surgeChanges = SubResource("Resource_1ron1")
+metadata/_custom_type_script = "uid://drwve0pkx3g5o"
+
+[resource]
+script = ExtResource("1_wtyo0")
+moveName = "Heat Wave"
+requiredLv = 27
+category = 2
+element = 2
+chargeEffect = SubResource("Resource_tdh2t")
+surgeEffect = SubResource("Resource_b5lfx")
+description = "A sweltering pulse of heat washes over your enemies and disrupts their abilities!"
+moveAnimation = ExtResource("4_8y8tb")
+metadata/_custom_type_script = "uid://dx4lnh4driy7a"

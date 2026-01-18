@@ -11,80 +11,30 @@
 
 [sub_resource type="Resource" id="Resource_6rp8i"]
 script = ExtResource("4_1bsvt")
-physAttackIncrease = 0
-magicAttackIncrease = 0
-affinityIncrease = 0
-resistanceIncrease = 0
-speedIncrease = 0
-physAttackMultiplier = 1.0
-magicAttackMultiplier = 1.0
-affinityMultiplier = 1.0
 resistanceMultiplier = 0.9
-speedMultiplier = 1.0
-elementMultipliers = Array[ExtResource("3_0w5jc")]([])
-keywordMultipliers = Dictionary[String, float]({})
 metadata/_custom_type_script = "uid://dvivnpdo5ga72"
 
 [sub_resource type="Resource" id="Resource_svwa5"]
 script = ExtResource("2_6rp8i")
 role = 6
-keywords = Array[String]([])
-orbChange = 0
-power = 0
-lifesteal = 0.0
-selfHpSacrifice = 0.0
-priority = 0
 targets = 5
 targetStatChanges = SubResource("Resource_6rp8i")
-selfGetsStatus = false
-statusChance = 0.0
-statusRequiredForTargetStatChanges = false
 rune = ExtResource("1_ip7oa")
 metadata/_custom_type_script = "uid://drwve0pkx3g5o"
 
 [sub_resource type="Resource" id="Resource_0w5jc"]
 script = ExtResource("4_1bsvt")
-physAttackIncrease = 0
-magicAttackIncrease = 0
-affinityIncrease = 0
-resistanceIncrease = 0
-speedIncrease = 0
-physAttackMultiplier = 1.0
-magicAttackMultiplier = 1.0
-affinityMultiplier = 1.0
 resistanceMultiplier = 0.95
-speedMultiplier = 1.0
-elementMultipliers = Array[ExtResource("3_0w5jc")]([])
-keywordMultipliers = Dictionary[String, float]({})
 metadata/_custom_type_script = "uid://dvivnpdo5ga72"
 
 [sub_resource type="Resource" id="Resource_yafnv"]
 script = ExtResource("8_q46p3")
-powerPerOrb = 0
-lifestealPerOrb = 0.0
-selfHpSacrificePerOrb = 0.0
 targetStatChangesPerOrb = SubResource("Resource_0w5jc")
-weakThresholdOrbs = 0
-strongThresholdOrbs = 0
-overwhelmingThresholdOrbs = 0
-additionalStatusTurnsPerOrb = 0.0
-additionalStatusChancePerOrb = 0.0
 metadata/_custom_type_script = "uid://cvjnh0a2q6sat"
 
 [sub_resource type="Resource" id="Resource_ip7oa"]
 script = ExtResource("4_1bsvt")
-physAttackIncrease = 0
-magicAttackIncrease = 0
-affinityIncrease = 0
-resistanceIncrease = 0
-speedIncrease = 0
-physAttackMultiplier = 1.0
-magicAttackMultiplier = 1.0
-affinityMultiplier = 1.0
 resistanceMultiplier = 0.85
-speedMultiplier = 1.0
-elementMultipliers = Array[ExtResource("3_0w5jc")]([])
-keywordMultipliers = Dictionary[String, float]({})
 metadata/_custom_type_script = "uid://dvivnpdo5ga72"
 
 [sub_resource type="Resource" id="Resource_pejx0"]
@@ -92,15 +42,7 @@ script = ExtResource("2_6rp8i")
 role = 6
 keywords = Array[String](["Martial Arts"])
 orbChange = -2
-power = 0
-lifesteal = 0.0
-selfHpSacrifice = 0.0
-priority = 0
-targets = 1
 targetStatChanges = SubResource("Resource_ip7oa")
-selfGetsStatus = false
-statusChance = 0.0
-statusRequiredForTargetStatChanges = false
 rune = ExtResource("7_pyul7")
 surgeChanges = SubResource("Resource_yafnv")
 metadata/_custom_type_script = "uid://drwve0pkx3g5o"
@@ -109,8 +51,6 @@ metadata/_custom_type_script = "uid://drwve0pkx3g5o"
 script = ExtResource("6_1dali")
 moveName = "Approaching Feint"
 requiredLv = 21
-category = 0
-element = 0
 chargeEffect = SubResource("Resource_svwa5")
 surgeEffect = SubResource("Resource_pejx0")
 description = "Feint an attack at an opponent, priming them to be caught off-guard by your next strike."

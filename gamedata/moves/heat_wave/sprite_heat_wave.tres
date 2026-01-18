@@ -1,0 +1,56 @@
+[gd_resource type="Resource" script_class="MoveAnimSprite" load_steps=11 format=3 uid="uid://rj2xp7mbvwqw"]
+
+[ext_resource type="Script" uid="uid://n71lfdnd5xrr" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite_frame.gd" id="1_rem82"]
+[ext_resource type="Script" uid="uid://mk6loduurcg4" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="2_nscrj"]
+[ext_resource type="AudioStream" uid="uid://1bnigsf5of4m" path="res://audio/sfx/moves/fire/flamewind.mp3" id="2_xhran"]
+[ext_resource type="SpriteFrames" uid="uid://c4luv4fo1y6xt" path="res://graphics/moves/fire/a_heat_wave.tres" id="3_nscrj"]
+
+[sub_resource type="Curve" id="Curve_nscrj"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Curve" id="Curve_xhran"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Resource" id="Resource_nscrj"]
+script = ExtResource("1_rem82")
+annotation = "set position at target, fully transparent"
+animation = "default"
+duration = 0.1
+opacity = 0.0
+relativeTo = 1
+xCurve = SubResource("Curve_nscrj")
+yCurve = SubResource("Curve_xhran")
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[sub_resource type="Resource" id="Resource_xhran"]
+script = ExtResource("1_rem82")
+annotation = "fade in heat wave"
+animation = "heat_wave"
+duration = 0.5
+opacity = 0.8
+sfx = ExtResource("2_xhran")
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[sub_resource type="Resource" id="Resource_f3gn7"]
+script = ExtResource("1_rem82")
+annotation = "hold heat wave"
+duration = 0.5
+opacity = 0.8
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[sub_resource type="Resource" id="Resource_1pyrt"]
+script = ExtResource("1_rem82")
+annotation = "fade out heat wave"
+duration = 1.2
+opacity = 0.0
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[resource]
+script = ExtResource("2_nscrj")
+spriteFrames = ExtResource("3_nscrj")
+maxSize = Vector2(48, 48)
+frames = Array[ExtResource("1_rem82")]([SubResource("Resource_nscrj"), SubResource("Resource_xhran"), SubResource("Resource_f3gn7"), SubResource("Resource_1pyrt")])
+delayedUntilReposition = true
+metadata/_custom_type_script = "uid://mk6loduurcg4"

@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="MovePool" load_steps=10 format=3 uid="uid://by2fe5sgba7e3"]
+
+[ext_resource type="Script" uid="uid://dx4lnh4driy7a" path="res://scripts/battle/combatant/move.gd" id="1_llvs6"]
+[ext_resource type="Resource" uid="uid://b7fwd75mauun" path="res://gamedata/moves/mage_blast/mage_blast.tres" id="2_aeofp"]
+[ext_resource type="Resource" uid="uid://d3yj2khqaukni" path="res://gamedata/moves/stamina_drain/stamina_drain.tres" id="3_was18"]
+[ext_resource type="Resource" uid="uid://dqrx2sqrlujkj" path="res://gamedata/moves/enrage/enrage.tres" id="4_0usp5"]
+[ext_resource type="Resource" uid="uid://ct32l7eceriuy" path="res://gamedata/moves/torch/torch.tres" id="5_758fx"]
+[ext_resource type="Resource" uid="uid://owxtyn0bem0" path="res://gamedata/moves/burning_heart/burning_heart.tres" id="6_8pv5d"]
+[ext_resource type="Resource" uid="uid://c4mkngg5jwoxd" path="res://gamedata/moves/searing_rune/searing_rune.tres" id="7_bnfh4"]
+[ext_resource type="Resource" uid="uid://dr4g0xfly3hdc" path="res://gamedata/moves/heat_wave/heat_wave.tres" id="8_aeofp"]
+[ext_resource type="Script" uid="uid://cwh7p05135w7q" path="res://scripts/battle/combatant/movepool.gd" id="8_rbnmy"]
+
+[resource]
+script = ExtResource("8_rbnmy")
+pool = Array[ExtResource("1_llvs6")]([ExtResource("2_aeofp"), ExtResource("3_was18"), ExtResource("4_0usp5"), ExtResource("5_758fx"), ExtResource("6_8pv5d"), ExtResource("7_bnfh4"), ExtResource("8_aeofp")])
+signatureMoves = Array[ExtResource("1_llvs6")]([ExtResource("6_8pv5d")])
+preferredMove1Role = 1
+preferredMove1Element = 2
+preferredMove2Role = 5
+preferredMove2Element = 2
+preferredMove3Role = 6
+preferredMove4Role = 4

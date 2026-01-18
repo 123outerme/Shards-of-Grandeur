@@ -1,0 +1,54 @@
+[gd_resource type="SpriteFrames" load_steps=7 format=3 uid="uid://c4luv4fo1y6xt"]
+
+[ext_resource type="Texture2D" uid="uid://cwggbfl7268ru" path="res://graphics/moves/fire/heat_wave/heat_wave.png" id="1_qok4d"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ynsu1"]
+atlas = ExtResource("1_qok4d")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nu1f4"]
+atlas = ExtResource("1_qok4d")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jywo5"]
+atlas = ExtResource("1_qok4d")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ppgjn"]
+atlas = ExtResource("1_qok4d")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jy8if"]
+atlas = ExtResource("1_qok4d")
+region = Rect2(192, 0, 48, 48)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": null
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ynsu1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nu1f4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jywo5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ppgjn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jy8if")
+}],
+"loop": true,
+"name": &"heat_wave",
+"speed": 6.0
+}]

@@ -12,36 +12,21 @@ role = 1
 keywords = Array[String](["Martial Arts"])
 orbChange = 1
 power = 55
-lifesteal = 0.0
-selfHpSacrifice = 0.0
-priority = 0
 targets = 5
-selfGetsStatus = false
-statusChance = 0.0
-statusRequiredForTargetStatChanges = false
 
 [sub_resource type="Resource" id="Resource_bv6dh"]
 script = ExtResource("3_io351")
 element = 2
-power = 0.0
-attackerStat = 0.0
-attackerLv = 1
-damageTriggered = false
 type = 11
 potency = 1
-overwritesOtherStatuses = false
 turnsLeft = 4
 
 [sub_resource type="Resource" id="Resource_f556e"]
 script = ExtResource("4_a44t4")
 powerPerOrb = 5
-lifestealPerOrb = 0.0
-selfHpSacrificePerOrb = 0.0
-weakThresholdOrbs = 0
 strongThresholdOrbs = 5
 overwhelmingThresholdOrbs = 7
 additionalStatusTurnsPerOrb = 0.5
-additionalStatusChancePerOrb = 0.0
 
 [sub_resource type="Resource" id="Resource_5hi3r"]
 script = ExtResource("1_78erj")
@@ -49,21 +34,15 @@ role = 1
 keywords = Array[String](["Martial Arts"])
 orbChange = -4
 power = 75
-lifesteal = 0.0
-selfHpSacrifice = 0.0
-priority = 0
 targets = 5
 statusEffect = SubResource("Resource_bv6dh")
-selfGetsStatus = false
 statusChance = 0.7
-statusRequiredForTargetStatChanges = false
 surgeChanges = SubResource("Resource_f556e")
 
 [resource]
 script = ExtResource("1_iw5cm")
 moveName = "Flashfire Fist"
 requiredLv = 16
-category = 0
 element = 2
 chargeEffect = SubResource("Resource_plyjx")
 surgeEffect = SubResource("Resource_5hi3r")
