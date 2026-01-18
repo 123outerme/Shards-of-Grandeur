@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="TimedRune" load_steps=8 format=3 uid="uid://bofcjw6oyvv3p"]
+
+[ext_resource type="Script" uid="uid://b5mhqq6ioek3x" path="res://scripts/battle/combatant/runes/timed_rune.gd" id="1_nxwnj"]
+[ext_resource type="Script" uid="uid://b8q40qhoufelh" path="res://scripts/battle/combatant/element_multiplier.gd" id="2_4osrg"]
+[ext_resource type="Script" uid="uid://dvivnpdo5ga72" path="res://scripts/battle/combatant/stat_changes.gd" id="3_pndha"]
+[ext_resource type="Script" uid="uid://cvjnh0a2q6sat" path="res://scripts/battle/combatant/surge_changes.gd" id="4_vl8c8"]
+
+[sub_resource type="Resource" id="Resource_4em6q"]
+script = ExtResource("3_pndha")
+resistanceMultiplier = 0.9
+metadata/_custom_type_script = "uid://dvivnpdo5ga72"
+
+[sub_resource type="Resource" id="Resource_qanjh"]
+script = ExtResource("3_pndha")
+resistanceMultiplier = 0.97
+metadata/_custom_type_script = "uid://dvivnpdo5ga72"
+
+[sub_resource type="Resource" id="Resource_2gryy"]
+script = ExtResource("4_vl8c8")
+powerPerOrb = 5
+targetStatChangesPerOrb = SubResource("Resource_qanjh")
+metadata/_custom_type_script = "uid://cvjnh0a2q6sat"
+
+[resource]
+script = ExtResource("1_nxwnj")
+afterTurns = 3
+orbChange = 1
+category = 1
+element = 5
+power = 70
+statChanges = SubResource("Resource_4em6q")
+surgeChanges = SubResource("Resource_2gryy")
+metadata/_custom_type_script = "uid://b5mhqq6ioek3x"

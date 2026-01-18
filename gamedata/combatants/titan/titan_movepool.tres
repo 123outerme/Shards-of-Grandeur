@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="MovePool" load_steps=8 format=3 uid="uid://dxmwh5xneaerp"]
+[gd_resource type="Resource" script_class="MovePool" load_steps=9 format=3 uid="uid://dxmwh5xneaerp"]
 
 [ext_resource type="Script" uid="uid://dx4lnh4driy7a" path="res://scripts/battle/combatant/move.gd" id="1_mixlq"]
 [ext_resource type="Script" uid="uid://cwh7p05135w7q" path="res://scripts/battle/combatant/movepool.gd" id="2_1r786"]
@@ -7,10 +7,12 @@
 [ext_resource type="Resource" uid="uid://b7fwd75mauun" path="res://gamedata/moves/mage_blast/mage_blast.tres" id="3_gtbwn"]
 [ext_resource type="Resource" uid="uid://c4e2bdfeim571" path="res://gamedata/moves/burrow_strike/burrow_strike.tres" id="3_ost1a"]
 [ext_resource type="Resource" uid="uid://ccaebtgjogv35" path="res://gamedata/moves/silt_slash/silt_slash.tres" id="4_bsvdp"]
+[ext_resource type="Resource" uid="uid://dkewdoe5rfrof" path="res://gamedata/moves/break_ground/break_ground.tres" id="7_gtbwn"]
 
 [resource]
 script = ExtResource("2_1r786")
-pool = Array[ExtResource("1_mixlq")]([ExtResource("2_rc8vv"), ExtResource("3_gtbwn"), ExtResource("3_bsvdp"), ExtResource("3_ost1a"), ExtResource("4_bsvdp")])
+pool = Array[ExtResource("1_mixlq")]([ExtResource("2_rc8vv"), ExtResource("3_gtbwn"), ExtResource("3_bsvdp"), ExtResource("3_ost1a"), ExtResource("4_bsvdp"), ExtResource("7_gtbwn")])
+signatureMoves = Array[ExtResource("1_mixlq")]([ExtResource("7_gtbwn")])
 preferredMove1Role = 2
 preferredMove1Element = 5
 preferredMove2Role = 1

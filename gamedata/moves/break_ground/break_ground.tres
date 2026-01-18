@@ -1,0 +1,85 @@
+[gd_resource type="Resource" script_class="Move" load_steps=16 format=3 uid="uid://dkewdoe5rfrof"]
+
+[ext_resource type="Script" uid="uid://drwve0pkx3g5o" path="res://scripts/battle/combatant/move_effect.gd" id="1_snjtq"]
+[ext_resource type="Script" uid="uid://dohairjlp4nco" path="res://scripts/battle/status_effects/element_burn.gd" id="2_xhsf5"]
+[ext_resource type="Script" uid="uid://b8q40qhoufelh" path="res://scripts/battle/combatant/element_multiplier.gd" id="3_pvw0p"]
+[ext_resource type="Script" uid="uid://dvivnpdo5ga72" path="res://scripts/battle/combatant/stat_changes.gd" id="4_xqxu1"]
+[ext_resource type="Script" uid="uid://dx4lnh4driy7a" path="res://scripts/battle/combatant/move.gd" id="5_ha0o2"]
+[ext_resource type="Resource" uid="uid://b8fnt1p7sjcj2" path="res://gamedata/moves/break_ground/anim_break_ground.tres" id="5_xhsf5"]
+[ext_resource type="Script" uid="uid://cvjnh0a2q6sat" path="res://scripts/battle/combatant/surge_changes.gd" id="6_1kxi3"]
+
+[sub_resource type="Resource" id="Resource_ahng3"]
+script = ExtResource("2_xhsf5")
+element = 5
+type = 11
+potency = 1
+turnsLeft = 3
+metadata/_custom_type_script = "uid://dohairjlp4nco"
+
+[sub_resource type="Resource" id="Resource_uohrw"]
+script = ExtResource("4_xqxu1")
+speedMultiplier = 0.95
+metadata/_custom_type_script = "uid://dvivnpdo5ga72"
+
+[sub_resource type="Resource" id="Resource_ks0tu"]
+script = ExtResource("1_snjtq")
+role = 1
+power = 45
+targets = 5
+targetStatChanges = SubResource("Resource_uohrw")
+statusEffect = SubResource("Resource_ahng3")
+statusChance = 0.6
+metadata/_custom_type_script = "uid://drwve0pkx3g5o"
+
+[sub_resource type="Resource" id="Resource_c3ihd"]
+script = ExtResource("2_xhsf5")
+element = 5
+type = 11
+potency = 1
+turnsLeft = 4
+metadata/_custom_type_script = "uid://dohairjlp4nco"
+
+[sub_resource type="Resource" id="Resource_ylmwn"]
+script = ExtResource("4_xqxu1")
+speedMultiplier = 0.98
+metadata/_custom_type_script = "uid://dvivnpdo5ga72"
+
+[sub_resource type="Resource" id="Resource_tqcif"]
+script = ExtResource("6_1kxi3")
+powerPerOrb = 5
+targetStatChangesPerOrb = SubResource("Resource_ylmwn")
+strongThresholdOrbs = 6
+overwhelmingThresholdOrbs = 8
+additionalStatusTurnsPerOrb = 0.5
+additionalStatusChancePerOrb = 0.03
+metadata/_custom_type_script = "uid://cvjnh0a2q6sat"
+
+[sub_resource type="Resource" id="Resource_ntnts"]
+script = ExtResource("4_xqxu1")
+speedMultiplier = 0.95
+metadata/_custom_type_script = "uid://dvivnpdo5ga72"
+
+[sub_resource type="Resource" id="Resource_o4qeg"]
+script = ExtResource("1_snjtq")
+role = 2
+orbChange = -4
+power = 55
+targets = 6
+targetStatChanges = SubResource("Resource_ntnts")
+statusEffect = SubResource("Resource_c3ihd")
+statusChance = 0.65
+statusRequiredForTargetStatChanges = true
+surgeChanges = SubResource("Resource_tqcif")
+metadata/_custom_type_script = "uid://drwve0pkx3g5o"
+
+[resource]
+script = ExtResource("5_ha0o2")
+moveName = "Break Ground"
+requiredLv = 26
+element = 5
+chargeEffect = SubResource("Resource_ks0tu")
+surgeEffect = SubResource("Resource_o4qeg")
+description = "Smash the very ground the battle is taking place on, and disrupt your foes' footing!"
+moveLearnedText = "The Shard cracks as it dissipates, and this sends a shockwave through your body. When it reaches your feet, it shatters the ground and throws you off balance!"
+moveAnimation = ExtResource("5_xhsf5")
+metadata/_custom_type_script = "uid://dx4lnh4driy7a"

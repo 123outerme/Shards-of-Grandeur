@@ -1,14 +1,17 @@
-[gd_resource type="Resource" script_class="MovePool" load_steps=6 format=3 uid="uid://q3rqgjbdysjj"]
+[gd_resource type="Resource" script_class="MovePool" load_steps=9 format=3 uid="uid://q3rqgjbdysjj"]
 
 [ext_resource type="Script" uid="uid://dx4lnh4driy7a" path="res://scripts/battle/combatant/move.gd" id="1_g2f1e"]
 [ext_resource type="Script" uid="uid://cwh7p05135w7q" path="res://scripts/battle/combatant/movepool.gd" id="2_8m5u4"]
 [ext_resource type="Resource" uid="uid://crei2j1v6q4jn" path="res://gamedata/moves/slice/slice.tres" id="2_c4a8e"]
 [ext_resource type="Resource" uid="uid://ccaebtgjogv35" path="res://gamedata/moves/silt_slash/silt_slash.tres" id="3_0dyg0"]
+[ext_resource type="Resource" uid="uid://8hrdloy8r6ya" path="res://gamedata/moves/battle_chant/battle_chant.tres" id="3_w7rqd"]
 [ext_resource type="Resource" uid="uid://bvuvccudlsrkd" path="res://gamedata/moves/rock_garden/rock_garden.tres" id="4_0dyg0"]
+[ext_resource type="Resource" uid="uid://dtco7uib2bx3l" path="res://gamedata/moves/impale/impale.tres" id="4_muu51"]
+[ext_resource type="Resource" uid="uid://b0qktp2rwgumg" path="res://gamedata/moves/mud_sling/mud_sling.tres" id="7_q66ft"]
 
 [resource]
 script = ExtResource("2_8m5u4")
-pool = Array[ExtResource("1_g2f1e")]([ExtResource("2_c4a8e"), ExtResource("3_0dyg0"), ExtResource("4_0dyg0")])
+pool = Array[ExtResource("1_g2f1e")]([ExtResource("2_c4a8e"), ExtResource("3_w7rqd"), ExtResource("4_muu51"), ExtResource("3_0dyg0"), ExtResource("4_0dyg0"), ExtResource("7_q66ft")])
 signatureMoves = Array[ExtResource("1_g2f1e")]([ExtResource("4_0dyg0")])
 preferredMove1Role = 2
 preferredMove1DmgType = 2

@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="TimedRune" load_steps=5 format=3 uid="uid://cpvch2crckmul"]
+
+[ext_resource type="Script" uid="uid://b5mhqq6ioek3x" path="res://scripts/battle/combatant/runes/timed_rune.gd" id="1_xlh77"]
+[ext_resource type="Script" uid="uid://b8q40qhoufelh" path="res://scripts/battle/combatant/element_multiplier.gd" id="2_qoexd"]
+[ext_resource type="Script" uid="uid://dvivnpdo5ga72" path="res://scripts/battle/combatant/stat_changes.gd" id="3_58dga"]
+
+[sub_resource type="Resource" id="Resource_mp7ks"]
+script = ExtResource("3_58dga")
+resistanceMultiplier = 0.92
+metadata/_custom_type_script = "uid://dvivnpdo5ga72"
+
+[resource]
+script = ExtResource("1_xlh77")
+afterTurns = 3
+orbChange = 1
+category = 1
+element = 5
+power = 55
+statChanges = SubResource("Resource_mp7ks")
+metadata/_custom_type_script = "uid://b5mhqq6ioek3x"

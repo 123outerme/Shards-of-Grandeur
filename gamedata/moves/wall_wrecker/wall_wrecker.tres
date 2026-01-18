@@ -1,0 +1,41 @@
+[gd_resource type="Resource" script_class="Move" load_steps=9 format=3 uid="uid://dos21fp6ussm2"]
+
+[ext_resource type="Resource" uid="uid://cpvch2crckmul" path="res://gamedata/moves/wall_wrecker/rune/charge_rune_wall_wrecker.tres" id="1_cxns3"]
+[ext_resource type="Script" uid="uid://drwve0pkx3g5o" path="res://scripts/battle/combatant/move_effect.gd" id="2_qiuam"]
+[ext_resource type="Script" uid="uid://dx4lnh4driy7a" path="res://scripts/battle/combatant/move.gd" id="3_eguv8"]
+[ext_resource type="Resource" uid="uid://bofcjw6oyvv3p" path="res://gamedata/moves/wall_wrecker/rune/surge_rune_wall_wrecker.tres" id="4_drt76"]
+[ext_resource type="Script" uid="uid://cvjnh0a2q6sat" path="res://scripts/battle/combatant/surge_changes.gd" id="5_dl0nr"]
+
+[sub_resource type="Resource" id="Resource_qbueg"]
+script = ExtResource("2_qiuam")
+role = 6
+orbChange = 1
+targets = 5
+rune = ExtResource("1_cxns3")
+metadata/_custom_type_script = "uid://drwve0pkx3g5o"
+
+[sub_resource type="Resource" id="Resource_j6rln"]
+script = ExtResource("5_dl0nr")
+powerPerOrb = 2
+metadata/_custom_type_script = "uid://cvjnh0a2q6sat"
+
+[sub_resource type="Resource" id="Resource_162rt"]
+script = ExtResource("2_qiuam")
+role = 1
+orbChange = -4
+power = 45
+targets = 5
+rune = ExtResource("4_drt76")
+surgeChanges = SubResource("Resource_j6rln")
+metadata/_custom_type_script = "uid://drwve0pkx3g5o"
+
+[resource]
+script = ExtResource("3_eguv8")
+moveName = "Wall Wrecker"
+requiredLv = 28
+category = 1
+element = 5
+chargeEffect = SubResource("Resource_qbueg")
+surgeEffect = SubResource("Resource_162rt")
+description = "Fire a delayed blast capable of knocking down cavern walls, or the poor foe who is on the receiving end!"
+metadata/_custom_type_script = "uid://dx4lnh4driy7a"
