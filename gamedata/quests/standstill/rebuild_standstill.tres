@@ -1,15 +1,26 @@
-[gd_resource type="Resource" script_class="Quest" load_steps=15 format=3 uid="uid://dnghhx8h5dgtw"]
+[gd_resource type="Resource" script_class="Quest" load_steps=21 format=3 uid="uid://dnghhx8h5dgtw"]
 
 [ext_resource type="Script" uid="uid://bnw42uegqk4wp" path="res://scripts/quests/quest.gd" id="1_ywcmt"]
 [ext_resource type="Script" uid="uid://b3j2bj1p0bkq8" path="res://scripts/quests/quest_step.gd" id="2_io756"]
 [ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_rysse"]
 [ext_resource type="Resource" uid="uid://pfwna56ulu25" path="res://gamedata/dialogue/lance/rebuild_standstill/lance_rebuild_standstill_1_inprogress.tres" id="4_cf535"]
 [ext_resource type="Resource" uid="uid://thmy83lgklr2" path="res://gamedata/dialogue/lance/rebuild_standstill/lance_rebuild_standstill_1_turnin.tres" id="5_35u42"]
+[ext_resource type="Resource" uid="uid://btnvcd1cxvrhb" path="res://gamedata/items/healing/fortifying_elixir.tres" id="5_tgj1o"]
+[ext_resource type="Script" uid="uid://flaq3s0m3pf2" path="res://scripts/reward/reward.gd" id="6_0vkka"]
+[ext_resource type="Resource" uid="uid://brg1fruikt0np" path="res://gamedata/items/healing/desert_fruit.tres" id="6_fkgyy"]
+
+[sub_resource type="Resource" id="Resource_2k0y8"]
+script = ExtResource("6_0vkka")
+experience = 130
+gold = 15
+item = ExtResource("5_tgj1o")
+metadata/_custom_type_script = "uid://flaq3s0m3pf2"
 
 [sub_resource type="Resource" id="Resource_yoc8b"]
 script = ExtResource("2_io756")
 name = "Bearing Charcoal"
 description = "This seems really familiar... Lance has tasked you with defeating some Inferno-Bears to thin the herd and provide charcoal for the rebuilding effort!"
+reward = SubResource("Resource_2k0y8")
 locations = Array[int]([21])
 turnInLocations = Array[int]([20])
 type = 2
@@ -21,10 +32,16 @@ displayTurnInName = "Lance"
 turnInDialogue = Array[ExtResource("3_rysse")]([ExtResource("5_35u42")])
 inProgressDialogue = Array[ExtResource("3_rysse")]([ExtResource("4_cf535")])
 
+[sub_resource type="Resource" id="Resource_q4b36"]
+script = ExtResource("6_0vkka")
+experience = 50
+metadata/_custom_type_script = "uid://flaq3s0m3pf2"
+
 [sub_resource type="Resource" id="Resource_82t2o"]
 script = ExtResource("2_io756")
 name = "An Elder's Advice"
 description = "Visit the Elder at the Nomad Camp for advice on how to heal Alessia!"
+reward = SubResource("Resource_q4b36")
 locations = Array[int]([40])
 turnInLocations = Array[int]([40])
 objectiveName = "nomad2_hut#heal_alessia_query"
@@ -32,9 +49,19 @@ turnInNames = Array[String](["nomad2_hut"])
 displayObjName = "Elder"
 displayTurnInName = "Elder"
 
+[sub_resource type="Resource" id="Resource_0v1cp"]
+script = ExtResource("6_0vkka")
+experience = 180
+gold = 10
+item = ExtResource("6_fkgyy")
+metadata/_custom_type_script = "uid://flaq3s0m3pf2"
+
 [sub_resource type="Resource" id="Resource_ivwxp"]
 script = ExtResource("2_io756")
 name = "The Desert Winds"
+description = "Defeat Mesa Golems and understand how they harness the natural winds of the Forbidden Desert."
+reward = SubResource("Resource_0v1cp")
+locations = Array[int]([41, 42, 43])
 count = 3
 objectiveName = "mesa_golem"
 turnInNames = Array[String](["nomad2_hut"])
