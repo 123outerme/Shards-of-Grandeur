@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Quest" load_steps=14 format=3 uid="uid://dnghhx8h5dgtw"]
+[gd_resource type="Resource" script_class="Quest" load_steps=15 format=3 uid="uid://dnghhx8h5dgtw"]
 
 [ext_resource type="Script" uid="uid://bnw42uegqk4wp" path="res://scripts/quests/quest.gd" id="1_ywcmt"]
 [ext_resource type="Script" uid="uid://b3j2bj1p0bkq8" path="res://scripts/quests/quest_step.gd" id="2_io756"]
@@ -21,21 +21,31 @@ displayTurnInName = "Lance"
 turnInDialogue = Array[ExtResource("3_rysse")]([ExtResource("5_35u42")])
 inProgressDialogue = Array[ExtResource("3_rysse")]([ExtResource("4_cf535")])
 
-[sub_resource type="Resource" id="Resource_v3smn"]
-script = ExtResource("2_io756")
-name = "WIP (multiple steps?)"
-metadata/_custom_type_script = "uid://b3j2bj1p0bkq8"
-
 [sub_resource type="Resource" id="Resource_82t2o"]
 script = ExtResource("2_io756")
 name = "An Elder's Advice"
 description = "Visit the Elder at the Nomad Camp for advice on how to heal Alessia!"
 locations = Array[int]([40])
 turnInLocations = Array[int]([40])
-objectiveName = "nomad2_hut#---"
+objectiveName = "nomad2_hut#heal_alessia_query"
 turnInNames = Array[String](["nomad2_hut"])
 displayObjName = "Elder"
 displayTurnInName = "Elder"
+
+[sub_resource type="Resource" id="Resource_ivwxp"]
+script = ExtResource("2_io756")
+name = "The Desert Winds"
+count = 3
+objectiveName = "mesa_golem"
+turnInNames = Array[String](["nomad2_hut"])
+displayObjName = "Mesa Golem"
+displayTurnInName = "Nomad Elder"
+metadata/_custom_type_script = "uid://b3j2bj1p0bkq8"
+
+[sub_resource type="Resource" id="Resource_v3smn"]
+script = ExtResource("2_io756")
+name = "WIP (multiple steps?)"
+metadata/_custom_type_script = "uid://b3j2bj1p0bkq8"
 
 [sub_resource type="Resource" id="Resource_l7y7p"]
 script = ExtResource("2_io756")
@@ -87,4 +97,4 @@ metadata/_custom_type_script = "uid://b3j2bj1p0bkq8"
 script = ExtResource("1_ywcmt")
 questName = "Rebuild Standstill"
 description = "After the Chain Legion attacked Standstill, the once vibrant village has been reduced to rubble and ash... Grandstone must help them, and you must lead the aid!"
-steps = Array[ExtResource("2_io756")]([SubResource("Resource_yoc8b"), SubResource("Resource_v3smn"), SubResource("Resource_82t2o"), SubResource("Resource_l7y7p"), SubResource("Resource_0vkka"), SubResource("Resource_c7yo6"), SubResource("Resource_fkgyy"), SubResource("Resource_tgj1o")])
+steps = Array[ExtResource("2_io756")]([SubResource("Resource_yoc8b"), SubResource("Resource_82t2o"), SubResource("Resource_ivwxp"), SubResource("Resource_v3smn"), SubResource("Resource_l7y7p"), SubResource("Resource_0vkka"), SubResource("Resource_c7yo6"), SubResource("Resource_fkgyy"), SubResource("Resource_tgj1o")])

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://co2n5doobnc53"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_d1nll"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_nq22q"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="3_tv18c"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="4_40nds"]
+
+[sub_resource type="Resource" id="Resource_0d33a"]
+script = ExtResource("1_d1nll")
+lines = Array[String](["Note that after this, we will travel deeper into the Eastern side of the Forbidden Desert than you've travelled before. Prepare well."])
+animation = "talk"
+
+[resource]
+script = ExtResource("4_40nds")
+items = Array[ExtResource("1_d1nll")]([SubResource("Resource_0d33a")])

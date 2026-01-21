@@ -1,8 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://cr3tawrk6li8u"]
+[gd_scene load_steps=12 format=3 uid="uid://cr3tawrk6li8u"]
 
 [ext_resource type="Script" uid="uid://bur742tma2ena" path="res://prefabs/tools/dialogue_editor/dialogue_editor.gd" id="1_7w1wt"]
+[ext_resource type="Resource" path="res://gamedata/dialogue/nomad_camp/nomad2/rebuild_standstill/elder_heal_alessia_accept.tres" id="2_073l1"]
 [ext_resource type="PackedScene" uid="uid://dx00oa0dadpvj" path="res://prefabs/ui/text_box.tscn" id="2_nr7ai"]
 [ext_resource type="PackedScene" uid="uid://dmc2ox37dega8" path="res://prefabs/audio/audio_handler.tscn" id="3_lbw1y"]
+[ext_resource type="PackedScene" uid="uid://byo1uqtqrripw" path="res://prefabs/maps/nomad_camp/nomad_camp_elders_hut.tscn" id="3_sjffm"]
 [ext_resource type="PackedScene" uid="uid://blb38hmic2jvq" path="res://prefabs/overworld/test_camera.tscn" id="4_k3rpk"]
 [ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="5_3xu4k"]
 [ext_resource type="PackedScene" uid="uid://bojquldxuq7di" path="res://prefabs/tools/dialogue_editor/dialogue_item_editor/dialogue_choices_editor/dialogue_choices_editor.tscn" id="5_jlx2h"]
@@ -12,6 +14,8 @@
 
 [node name="DialogueEditor" type="Node2D"]
 script = ExtResource("1_7w1wt")
+loadDialogueEntry = ExtResource("2_073l1")
+loadMap = ExtResource("3_sjffm")
 metadata/_edit_vertical_guides_ = [20.0]
 metadata/_edit_horizontal_guides_ = [-70.0]
 

@@ -1,21 +1,12 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=10 format=3 uid="uid://0ws7wwt46ub0"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=12 format=3 uid="uid://coacl6m51407d"]
 
 [ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_w47fh"]
 [ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_a0dby"]
 [ext_resource type="Script" uid="uid://b6oofnelefs8o" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_a0dby"]
 [ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="3_eoqei"]
 [ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="4_4ik7e"]
-
-[sub_resource type="Resource" id="Resource_eoqei"]
-script = ExtResource("2_a0dby")
-choiceBtn = "Alessia..."
-isDeclineChoice = true
-
-[sub_resource type="Resource" id="Resource_k5tvi"]
-script = ExtResource("1_w47fh")
-lines = Array[String](["Hello again, @! What brings you our way?"])
-animation = "talk"
-choices = Array[ExtResource("2_a0dby")]([SubResource("Resource_eoqei")])
+[ext_resource type="Resource" uid="uid://cm84ov7acy54v" path="res://gamedata/dialogue/nomad_camp/nomad2/rebuild_standstill/elder_heal_alessia_accept.tres" id="5_4ik7e"]
+[ext_resource type="Script" uid="uid://fw22o8hbosnk" path="res://scripts/inventory/inventory_slot.gd" id="7_k5tvi"]
 
 [sub_resource type="Resource" id="Resource_4ik7e"]
 script = ExtResource("1_w47fh")
@@ -23,11 +14,27 @@ lines = Array[String](["Alessia... the master blacksmith of the town that burned
 animation = "stand"
 speakerOverride = "@"
 
+[sub_resource type="Resource" id="Resource_dn1e8"]
+script = ExtResource("2_a0dby")
+choiceBtn = "What Must I Do?"
+leadsTo = ExtResource("5_4ik7e")
+turnsInQuest = "Rebuild Standstill#An Elder's Advice"
+isDeclineChoice = true
+
 [sub_resource type="Resource" id="Resource_73c6d"]
 script = ExtResource("1_w47fh")
 lines = Array[String](["I cannot leave here. Every Nomad is needed to ensure we don't lose our town to the harsh desert.", "However, I can take some time to train you in a healing technique to revive their blacksmith."])
 animation = "talk"
+choices = Array[ExtResource("2_a0dby")]([SubResource("Resource_dn1e8")])
+
+[sub_resource type="Resource" id="Resource_84kcr"]
+script = ExtResource("3_eoqei")
+prereqQuests = Array[String](["Rebuild Standstill#Bearing Charcoal"])
+invalidAfterCompletingQuests = Array[String](["Rebuild Standstill#An Elder's Advice"])
+metadata/_custom_type_script = "uid://bjesn36acj0uh"
 
 [resource]
 script = ExtResource("4_4ik7e")
-items = Array[ExtResource("1_w47fh")]([SubResource("Resource_k5tvi"), SubResource("Resource_4ik7e"), SubResource("Resource_73c6d")])
+entryId = "heal_alessia_query"
+items = Array[ExtResource("1_w47fh")]([SubResource("Resource_4ik7e"), SubResource("Resource_73c6d")])
+ordStoryRequirements = Array[ExtResource("3_eoqei")]([SubResource("Resource_84kcr")])

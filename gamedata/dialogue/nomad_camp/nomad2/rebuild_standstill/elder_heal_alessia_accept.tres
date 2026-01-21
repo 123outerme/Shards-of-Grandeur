@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=11 format=3 uid="uid://w0oetwedkleh"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_m1pyg"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_oiykw"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="3_koxu8"]
+[ext_resource type="Script" uid="uid://b6oofnelefs8o" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_oiykw"]
+[ext_resource type="Resource" uid="uid://dgs7j5orm4104" path="res://gamedata/dialogue/nomad_camp/nomad2/rebuild_standstill/elder_heal_alessia_deny.tres" id="3_xwp0q"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="4_xwp0q"]
+[ext_resource type="Resource" path="res://gamedata/dialogue/nomad_camp/nomad2/rebuild_standstill/elder_heal_alessia_accept_followup.tres" id="5_xwp0q"]
+
+[sub_resource type="Resource" id="Resource_koxu8"]
+script = ExtResource("2_oiykw")
+choiceBtn = "I'm Not Ready.."
+leadsTo = ExtResource("3_xwp0q")
+isDeclineChoice = true
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_xwp0q"]
+script = ExtResource("2_oiykw")
+choiceBtn = "Let's Do It."
+leadsTo = ExtResource("5_xwp0q")
+turnsInQuest = "Rebuild Standstill#An Elder's Advice"
+
+[sub_resource type="Resource" id="Resource_gc0nr"]
+script = ExtResource("1_m1pyg")
+lines = Array[String](["First, you will learn to harness the power of Affinity by defeating the Mesa Golems that wield it so effectively."])
+animation = "talk"
+choices = Array[ExtResource("2_oiykw")]([SubResource("Resource_koxu8"), SubResource("Resource_xwp0q")])
+
+[resource]
+script = ExtResource("4_xwp0q")
+items = Array[ExtResource("1_m1pyg")]([SubResource("Resource_gc0nr")])

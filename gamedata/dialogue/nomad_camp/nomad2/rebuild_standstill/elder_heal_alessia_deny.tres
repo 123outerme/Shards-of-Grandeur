@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://dgs7j5orm4104"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_ols1o"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_sf0kt"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="3_cykxg"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="4_0hmux"]
+
+[sub_resource type="Resource" id="Resource_aiqxu"]
+script = ExtResource("1_ols1o")
+lines = Array[String](["Very well then. If you must prepare before you receive my teachings, then I will wait for you to be ready."])
+animation = "talk"
+
+[resource]
+script = ExtResource("4_0hmux")
+items = Array[ExtResource("1_ols1o")]([SubResource("Resource_aiqxu")])
+closesDialogue = true
