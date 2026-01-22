@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Quest" load_steps=21 format=3 uid="uid://dnghhx8h5dgtw"]
+[gd_resource type="Resource" script_class="Quest" load_steps=23 format=3 uid="uid://dnghhx8h5dgtw"]
 
 [ext_resource type="Script" uid="uid://bnw42uegqk4wp" path="res://scripts/quests/quest.gd" id="1_ywcmt"]
 [ext_resource type="Script" uid="uid://b3j2bj1p0bkq8" path="res://scripts/quests/quest_step.gd" id="2_io756"]
@@ -8,6 +8,8 @@
 [ext_resource type="Resource" uid="uid://btnvcd1cxvrhb" path="res://gamedata/items/healing/fortifying_elixir.tres" id="5_tgj1o"]
 [ext_resource type="Script" uid="uid://flaq3s0m3pf2" path="res://scripts/reward/reward.gd" id="6_0vkka"]
 [ext_resource type="Resource" uid="uid://brg1fruikt0np" path="res://gamedata/items/healing/desert_fruit.tres" id="6_fkgyy"]
+[ext_resource type="Resource" uid="uid://bqe4xgrq1xaxe" path="res://gamedata/dialogue/nomad_camp/nomad2/rebuild_standstill/elder_training_mesa_golem_inprogress.tres" id="8_c7yo6"]
+[ext_resource type="Resource" uid="uid://3841c8w1pir6" path="res://gamedata/dialogue/nomad_camp/nomad2/rebuild_standstill/elder_training_mesa_golem_turnin.tres" id="10_ivwxp"]
 
 [sub_resource type="Resource" id="Resource_2k0y8"]
 script = ExtResource("6_0vkka")
@@ -67,6 +69,8 @@ objectiveName = "mesa_golem"
 turnInNames = Array[String](["nomad2_hut"])
 displayObjName = "Mesa Golem"
 displayTurnInName = "Nomad Elder"
+turnInDialogue = Array[ExtResource("3_rysse")]([ExtResource("10_ivwxp")])
+inProgressDialogue = Array[ExtResource("3_rysse")]([ExtResource("8_c7yo6")])
 metadata/_custom_type_script = "uid://b3j2bj1p0bkq8"
 
 [sub_resource type="Resource" id="Resource_v3smn"]

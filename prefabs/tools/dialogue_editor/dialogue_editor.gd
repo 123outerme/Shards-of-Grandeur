@@ -468,6 +468,9 @@ func _action_button_pressed(action: ToolDialogueEditorButtonAction) -> void:
 			dialogueSavePath = ''
 			if editingMap == null:
 				menuState = ToolDialogueEditorMenuState.CHOOSE_MAP
+				if loadMap != null:
+					_on_file_dialog_file_selected(loadMap.resource_path)
+					return
 			else:
 				if editingInteractable != null:
 					editingInteractableDialogue = InteractableDialogue.new()
@@ -524,6 +527,9 @@ func _on_file_dialog_file_selected(path: String) -> void:
 				printerr("ERROR: Resource not recognized as a dialogue entry/interactable entry")
 			if editingMap == null:
 				menuState = ToolDialogueEditorMenuState.CHOOSE_MAP
+				if loadMap != null:
+					_on_file_dialog_file_selected(loadMap.resource_path)
+					return
 			else:
 				menuState = ToolDialogueEditorMenuState.EDIT_ENTRY
 				load_entry_settings()

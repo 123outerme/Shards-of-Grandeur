@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=10 format=3 uid="uid://3841c8w1pir6"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_hw1j2"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_kfmq5"]
+[ext_resource type="Script" uid="uid://b6oofnelefs8o" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_kfmq5"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="3_ok3om"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="4_laqhy"]
+[ext_resource type="Resource" uid="uid://j5swfxy80w04" path="res://gamedata/dialogue/nomad_camp/nomad2/rebuild_standstill/elder_training_desert_east_accept.tres" id="4_ok3om"]
+
+[sub_resource type="Resource" id="Resource_ok3om"]
+script = ExtResource("2_kfmq5")
+choiceBtn = "Not Yet."
+isDeclineChoice = true
+
+[sub_resource type="Resource" id="Resource_laqhy"]
+script = ExtResource("2_kfmq5")
+choiceBtn = "I'm Ready."
+leadsTo = ExtResource("4_ok3om")
+turnsInQuest = "Rebuild Standstill#The Desert Winds"
+
+[sub_resource type="Resource" id="Resource_aqmab"]
+script = ExtResource("1_hw1j2")
+lines = Array[String](["Excellent, I can tell you've absorbed some of the secrets of Affinity, just from your exposure to the Mesa Golems.", "Are you ready for the next phase of your training?"])
+animation = "talk"
+choices = Array[ExtResource("2_kfmq5")]([SubResource("Resource_ok3om"), SubResource("Resource_laqhy")])
+
+[resource]
+script = ExtResource("4_laqhy")
+items = Array[ExtResource("1_hw1j2")]([SubResource("Resource_aqmab")])

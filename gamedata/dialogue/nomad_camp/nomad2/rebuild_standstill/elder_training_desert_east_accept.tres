@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://j5swfxy80w04"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_ichot"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_4m2lp"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="3_8lia4"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="4_xmvks"]
+
+[sub_resource type="Resource" id="Resource_ewdad"]
+script = ExtResource("1_ichot")
+lines = Array[String](["Excellent. As I had previously mentioned, meet me out in the desert to the East of here for your next lesson.", "Go beyond the path where we encountered the Dragon. I assure you, you will find me waiting there for you."])
+animation = "talk"
+
+[resource]
+script = ExtResource("4_xmvks")
+items = Array[ExtResource("1_ichot")]([SubResource("Resource_ewdad")])
