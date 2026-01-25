@@ -1,0 +1,38 @@
+[gd_resource type="Resource" script_class="Cutscene" load_steps=15 format=3 uid="uid://dc2nhshsuyux8"]
+
+[ext_resource type="Script" uid="uid://cqpl74uk8cjo0" path="res://scripts/cutscenes/cutscene_frame.gd" id="1_n3qlq"]
+[ext_resource type="Script" uid="uid://cg21ocaokyfnx" path="res://scripts/cutscenes/actor_anim_set.gd" id="2_jhgrb"]
+[ext_resource type="Script" uid="uid://fpa08p2kb0ts" path="res://scripts/cutscenes/cutscene.gd" id="2_ymqir"]
+[ext_resource type="Script" uid="uid://dy2r6h7mhh2oc" path="res://scripts/cutscenes/actor_sprite_anim.gd" id="3_a77ws"]
+[ext_resource type="Script" uid="uid://fw22o8hbosnk" path="res://scripts/inventory/inventory_slot.gd" id="3_bxvj0"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="4_1k0pv"]
+[ext_resource type="Resource" uid="uid://bhhs2axr1n15b" path="res://gamedata/cutscenes/reused/player_walk_anim.tres" id="4_3nk2s"]
+[ext_resource type="Script" uid="uid://8oxtwxpqllgd" path="res://scripts/cutscenes/actor_face_target.gd" id="4_5s7dc"]
+[ext_resource type="Script" uid="uid://g5p5b4jsf6bs" path="res://scripts/cutscenes/actor_tween.gd" id="5_3nk2s"]
+[ext_resource type="Script" uid="uid://jcu0gq2ns4in" path="res://scripts/cutscenes/cutscene_dialogue.gd" id="6_jsh3w"]
+[ext_resource type="Script" uid="uid://b5d2qgg22dgbw" path="res://scripts/cutscenes/tweens/tween_vector2.gd" id="7_jsh3w"]
+
+[sub_resource type="Resource" id="Resource_b20q5"]
+script = ExtResource("7_jsh3w")
+value = Vector2(1752, 71)
+isPlayer = true
+propertyName = "position"
+metadata/_custom_type_script = "uid://b5d2qgg22dgbw"
+
+[sub_resource type="Resource" id="Resource_ospb6"]
+script = ExtResource("1_n3qlq")
+annotation = "Move the player south and into the sand wall cutscene trigger"
+actorTweens = Array[ExtResource("5_3nk2s")]([SubResource("Resource_b20q5")])
+actorAnims = Array[ExtResource("3_a77ws")]([ExtResource("4_3nk2s")])
+metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
+
+[sub_resource type="Resource" id="Resource_l2trn"]
+script = ExtResource("4_1k0pv")
+invalidAfterCutscenes = Array[String](["desert_east_sand_wall_dissipate"])
+metadata/_custom_type_script = "uid://bjesn36acj0uh"
+
+[resource]
+script = ExtResource("2_ymqir")
+cutsceneFrames = Array[ExtResource("1_n3qlq")]([SubResource("Resource_ospb6")])
+storyRequirements = SubResource("Resource_l2trn")
+metadata/_custom_type_script = "uid://fpa08p2kb0ts"

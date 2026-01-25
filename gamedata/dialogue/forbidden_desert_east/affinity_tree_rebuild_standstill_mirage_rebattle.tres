@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=7 format=3 uid="uid://ubu7t0odf24h"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_h66bj"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_ob5id"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_qehl2"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_ob5id"]
+[ext_resource type="Resource" uid="uid://dgx4ivgp0nv7c" path="res://gamedata/static_encounters/rebuild_standstill/rebuild_standstill_desert_east_mirage.tres" id="5_ob5id"]
+
+[sub_resource type="Resource" id="Resource_p8jwm"]
+script = ExtResource("1_h66bj")
+lines = Array[String](["... If you wish to bring about otherworldly healing ...", "... you MUST face this Mirage of suffering ..."])
+animation = "stand"
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[resource]
+script = ExtResource("3_ob5id")
+items = Array[ExtResource("1_h66bj")]([SubResource("Resource_p8jwm")])
+startsStaticEncounter = ExtResource("5_ob5id")
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"

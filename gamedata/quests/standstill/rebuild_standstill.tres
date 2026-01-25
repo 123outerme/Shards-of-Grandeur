@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Quest" load_steps=23 format=3 uid="uid://dnghhx8h5dgtw"]
+[gd_resource type="Resource" script_class="Quest" load_steps=33 format=3 uid="uid://dnghhx8h5dgtw"]
 
 [ext_resource type="Script" uid="uid://bnw42uegqk4wp" path="res://scripts/quests/quest.gd" id="1_ywcmt"]
 [ext_resource type="Script" uid="uid://b3j2bj1p0bkq8" path="res://scripts/quests/quest_step.gd" id="2_io756"]
@@ -10,6 +10,11 @@
 [ext_resource type="Resource" uid="uid://brg1fruikt0np" path="res://gamedata/items/healing/desert_fruit.tres" id="6_fkgyy"]
 [ext_resource type="Resource" uid="uid://bqe4xgrq1xaxe" path="res://gamedata/dialogue/nomad_camp/nomad2/rebuild_standstill/elder_training_mesa_golem_inprogress.tres" id="8_c7yo6"]
 [ext_resource type="Resource" uid="uid://3841c8w1pir6" path="res://gamedata/dialogue/nomad_camp/nomad2/rebuild_standstill/elder_training_mesa_golem_turnin.tres" id="10_ivwxp"]
+[ext_resource type="Resource" uid="uid://fymeya3xastf" path="res://gamedata/dialogue/forbidden_desert_east/elder_affinity_tree_touched.tres" id="11_ivwxp"]
+[ext_resource type="Resource" uid="uid://ct4o5lgoyp53" path="res://gamedata/dialogue/forbidden_desert_east/elder_affinity_tree_start.tres" id="11_q4b36"]
+[ext_resource type="Resource" uid="uid://cxhvabgb5jtb4" path="res://gamedata/dialogue/forbidden_desert_east/elder_affinity_tree_touched_turnin.tres" id="12_0v1cp"]
+[ext_resource type="Resource" uid="uid://clxke1qdlsyhg" path="res://gamedata/dialogue/forbidden_desert_east/elder_affinity_tree_start_turnin.tres" id="12_t3ikc"]
+[ext_resource type="Resource" uid="uid://d8ekthe4cbps" path="res://gamedata/dialogue/lance/rebuild_standstill/lance_rebuild_standstill_heal_alessia_turnin.tres" id="15_t3ikc"]
 
 [sub_resource type="Resource" id="Resource_2k0y8"]
 script = ExtResource("6_0vkka")
@@ -64,6 +69,7 @@ name = "The Desert Winds"
 description = "Defeat Mesa Golems and understand how they harness the natural winds of the Forbidden Desert."
 reward = SubResource("Resource_0v1cp")
 locations = Array[int]([41, 42, 43])
+type = 2
 count = 3
 objectiveName = "mesa_golem"
 turnInNames = Array[String](["nomad2_hut"])
@@ -73,9 +79,57 @@ turnInDialogue = Array[ExtResource("3_rysse")]([ExtResource("10_ivwxp")])
 inProgressDialogue = Array[ExtResource("3_rysse")]([ExtResource("8_c7yo6")])
 metadata/_custom_type_script = "uid://b3j2bj1p0bkq8"
 
+[sub_resource type="Resource" id="Resource_t3ikc"]
+script = ExtResource("2_io756")
+name = "Desert Training"
+description = "Meet the Elder in the east Forbidden Desert to train your Affinity!"
+locations = Array[int]([42])
+objectiveName = "nomad2_desert_east_training#affinity_tree_start"
+turnInNames = Array[String](["nomad2_desert_east_training"])
+displayObjName = "Elder"
+displayTurnInName = "Elder"
+turnInDialogue = Array[ExtResource("3_rysse")]([ExtResource("12_t3ikc")])
+inProgressDialogue = Array[ExtResource("3_rysse")]([ExtResource("11_q4b36")])
+metadata/_custom_type_script = "uid://b3j2bj1p0bkq8"
+
+[sub_resource type="Resource" id="Resource_upj30"]
+script = ExtResource("6_0vkka")
+experience = 200
+metadata/_custom_type_script = "uid://flaq3s0m3pf2"
+
+[sub_resource type="Resource" id="Resource_8ndah"]
+script = ExtResource("2_io756")
+name = "The Affinity Tree"
+description = "Touch the Affinity Tree."
+reward = SubResource("Resource_upj30")
+locations = Array[int]([42])
+objectiveName = "desert_east_affinity_tree#touch_tree"
+customStatusStr = "Touch the Tree!"
+metadata/_custom_type_script = "uid://b3j2bj1p0bkq8"
+
 [sub_resource type="Resource" id="Resource_v3smn"]
 script = ExtResource("2_io756")
-name = "WIP (multiple steps?)"
+name = "Mirage!"
+description = "After touching the Affinity Tree, a Mirage has challenged you! Face off against it!"
+locations = Array[int]([42])
+turnInLocations = Array[int]([42])
+type = 4
+objectiveName = "rebuild_standstill_desert_east_mirage"
+displayObjName = "Mirage"
+metadata/_custom_type_script = "uid://b3j2bj1p0bkq8"
+
+[sub_resource type="Resource" id="Resource_2itk1"]
+script = ExtResource("2_io756")
+name = "Report to the Elder"
+description = "Return to the Elder in the Forbidden Desert to tell him what you've experienced at the Affinity Tree."
+locations = Array[int]([42])
+turnInLocations = Array[int]([42])
+objectiveName = "nomad2_desert_east_training#affinity_tree_touched"
+turnInNames = Array[String](["nomad2_desert_east_training"])
+displayObjName = "Elder"
+displayTurnInName = "Elder"
+turnInDialogue = Array[ExtResource("3_rysse")]([ExtResource("12_0v1cp")])
+inProgressDialogue = Array[ExtResource("3_rysse")]([ExtResource("11_ivwxp")])
 metadata/_custom_type_script = "uid://b3j2bj1p0bkq8"
 
 [sub_resource type="Resource" id="Resource_l7y7p"]
@@ -85,7 +139,20 @@ description = "Return to Standstill and attempt the healing ritual on Alessia!"
 locations = Array[int]([20])
 type = 3
 objectiveName = "heal_alessia"
-displayObjName = "Heal Alessia!"
+customStatusStr = "Heal Alessia!"
+metadata/_custom_type_script = "uid://b3j2bj1p0bkq8"
+
+[sub_resource type="Resource" id="Resource_r246m"]
+script = ExtResource("2_io756")
+name = "See Lance"
+description = "Lance wants some more information after witnessing you revive Alessia."
+locations = Array[int]([20])
+turnInLocations = Array[int]([20])
+type = 1
+objectiveName = "Affinity Tree Leaf"
+turnInNames = Array[String](["lance_standstill_foundry_burned"])
+displayObjName = "Lance"
+turnInDialogue = Array[ExtResource("3_rysse")]([ExtResource("15_t3ikc")])
 metadata/_custom_type_script = "uid://b3j2bj1p0bkq8"
 
 [sub_resource type="Resource" id="Resource_0vkka"]
@@ -128,4 +195,4 @@ metadata/_custom_type_script = "uid://b3j2bj1p0bkq8"
 script = ExtResource("1_ywcmt")
 questName = "Rebuild Standstill"
 description = "After the Chain Legion attacked Standstill, the once vibrant village has been reduced to rubble and ash... Grandstone must help them, and you must lead the aid!"
-steps = Array[ExtResource("2_io756")]([SubResource("Resource_yoc8b"), SubResource("Resource_82t2o"), SubResource("Resource_ivwxp"), SubResource("Resource_v3smn"), SubResource("Resource_l7y7p"), SubResource("Resource_0vkka"), SubResource("Resource_c7yo6"), SubResource("Resource_fkgyy"), SubResource("Resource_tgj1o")])
+steps = Array[ExtResource("2_io756")]([SubResource("Resource_yoc8b"), SubResource("Resource_82t2o"), SubResource("Resource_ivwxp"), SubResource("Resource_t3ikc"), SubResource("Resource_8ndah"), SubResource("Resource_v3smn"), SubResource("Resource_2itk1"), SubResource("Resource_l7y7p"), SubResource("Resource_r246m"), SubResource("Resource_0vkka"), SubResource("Resource_c7yo6"), SubResource("Resource_fkgyy"), SubResource("Resource_tgj1o")])

@@ -1,0 +1,56 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=14 format=3 uid="uid://bgl1c1iit8kl7"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_ys8uc"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_bjd6b"]
+[ext_resource type="Script" uid="uid://b6oofnelefs8o" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_bjd6b"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="3_gd37a"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="4_1du48"]
+
+[sub_resource type="Resource" id="Resource_rei6n"]
+script = ExtResource("1_ys8uc")
+lines = Array[String](["We might be able to use this against Steelspire... As a healing elixir, it could prevent us from becoming weary as we fight!"])
+animation = "talk"
+
+[sub_resource type="Resource" id="Resource_n1541"]
+script = ExtResource("1_ys8uc")
+lines = Array[String](["Is it... withering in your hands?"])
+animation = "stand"
+speakerOverride = "@"
+
+[sub_resource type="Resource" id="Resource_ebnt3"]
+script = ExtResource("1_ys8uc")
+lines = Array[String](["It... did. That's a shame. Why did it do that?"])
+animation = "talk"
+
+[sub_resource type="Resource" id="Resource_r2hh5"]
+script = ExtResource("1_ys8uc")
+lines = Array[String](["When I touched the Affinity Tree, it tested me to see if I was worthy of its help. I think it wants nothing to do with this war."])
+animation = "stand"
+speakerOverride = "@"
+
+[sub_resource type="Resource" id="Resource_gd37a"]
+script = ExtResource("2_bjd6b")
+choiceBtn = "Probably Not."
+isDeclineChoice = true
+
+[sub_resource type="Resource" id="Resource_l5ktv"]
+script = ExtResource("1_ys8uc")
+lines = Array[String](["I see, that's a shame.", "In any case, now that Alessia's awake we should move on to our next order of business: Restoring our home.", "Could you use some more Affinity to heal the charred grounds?"])
+animation = "talk"
+choices = Array[ExtResource("2_bjd6b")]([SubResource("Resource_gd37a")])
+
+[sub_resource type="Resource" id="Resource_1du48"]
+script = ExtResource("1_ys8uc")
+lines = Array[String](["There's nothing left in the soil to grow. I'd need to gather seeds to re-plant the grass and trees.", "And, it looks like nothing is going to take root in this ground, it's still practically smoldering.", "But, I do know someone I can ask. The Prime Minister in Leavenport may have what I need to start the forest growing again."])
+animation = "stand"
+speakerOverride = "@"
+
+[sub_resource type="Resource" id="Resource_gna0a"]
+script = ExtResource("1_ys8uc")
+lines = Array[String](["Then we will see you on your way. If you need anything, anything at all, our shop is always open for you, my friend."])
+animation = "talk"
+
+[resource]
+script = ExtResource("4_1du48")
+items = Array[ExtResource("1_ys8uc")]([SubResource("Resource_rei6n"), SubResource("Resource_n1541"), SubResource("Resource_ebnt3"), SubResource("Resource_r2hh5"), SubResource("Resource_l5ktv"), SubResource("Resource_1du48"), SubResource("Resource_gna0a")])
+closesDialogue = true

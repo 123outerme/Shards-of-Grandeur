@@ -10,7 +10,7 @@ class_name InteractableDecoration
 
 @export var combinedSpritesMaxSize: Vector2i = Vector2i(16, 16)
 
-## ifi true, will start a fadeout animation that then 
+## if true, will start a fadeout animation that then deactivates this interactable on complete
 @export var fadeOutOnRequirementsInvalidated: bool = false
 
 var animatedDecorations: Array[AnimatedDecoration] = []

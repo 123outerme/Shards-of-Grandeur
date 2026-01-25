@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=4 uid="uid://byo1uqtqrripw"]
+[gd_scene load_steps=57 format=4 uid="uid://byo1uqtqrripw"]
 
 [ext_resource type="Script" uid="uid://vg00rfnn3346" path="res://scripts/overworld/map_script.gd" id="1_pqsws"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_ut3e1"]
@@ -14,6 +14,7 @@
 [ext_resource type="Resource" uid="uid://dh3dbbpbbjgf6" path="res://gamedata/dialogue/nomad_camp/nomad2/nomad2_act2_1.tres" id="7_7105x"]
 [ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="7_dtsyx"]
 [ext_resource type="Resource" uid="uid://1yrmjllfawx7" path="res://gamedata/dialogue/standstill/standstill_sign/standstill_sign1.tres" id="8_if42d"]
+[ext_resource type="Resource" uid="uid://bem8nyvjhjpw" path="res://gamedata/dialogue/nomad_camp/nomad2/rebuild_standstill/elder_training_desert_east_inprogress.tres" id="8_xmrco"]
 [ext_resource type="SpriteFrames" uid="uid://dpyxv7b1mo3o3" path="res://graphics/animations/a_signpost.tres" id="9_vutb1"]
 [ext_resource type="Texture2D" uid="uid://c3j1nagrqgxic" path="res://graphics/ui/talk_indicator_signpost.png" id="10_rhg6r"]
 [ext_resource type="PackedScene" uid="uid://coqeee0n1wuob" path="res://prefabs/entities/interactable_decoration.tscn" id="11_d54x6"]
@@ -39,12 +40,12 @@ script = ExtResource("4_hem8p")
 minAct = 1
 prereqQuests = Array[String](["A Nomadic Rescue#Back to Base Camp"])
 
-[sub_resource type="Resource" id="Resource_pqrbd"]
+[sub_resource type="Resource" id="Resource_kycru"]
 script = ExtResource("4_w52o7")
 saveName = "npc"
 position = Vector2(-52, -44)
 
-[sub_resource type="Resource" id="Resource_xmrco"]
+[sub_resource type="Resource" id="Resource_q1h58"]
 script = ExtResource("4_w52o7")
 saveName = "npc"
 position = Vector2(480, -320)
@@ -71,7 +72,7 @@ script = ExtResource("13_ei2lt")
 speaker = "@"
 dialogueEntry = ExtResource("17_1bdjb")
 
-[sub_resource type="Resource" id="Resource_kycru"]
+[sub_resource type="Resource" id="Resource_gr63f"]
 script = ExtResource("4_w52o7")
 saveName = "npc"
 position = Vector2(717, -338)
@@ -82,17 +83,17 @@ size = Vector2(16, 6)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_00dxq"]
 size = Vector2(24, 14)
 
-[sub_resource type="Resource" id="Resource_q1h58"]
+[sub_resource type="Resource" id="Resource_dcblc"]
 script = ExtResource("4_w52o7")
 saveName = "npc"
 position = Vector2(883, -546)
 
-[sub_resource type="Resource" id="Resource_gr63f"]
+[sub_resource type="Resource" id="Resource_8mjr7"]
 script = ExtResource("4_w52o7")
 saveName = "npc"
 position = Vector2(643, -514)
 
-[sub_resource type="Resource" id="Resource_dcblc"]
+[sub_resource type="Resource" id="Resource_88lpt"]
 script = ExtResource("4_w52o7")
 saveName = "npc"
 position = Vector2(717, 238)
@@ -103,12 +104,12 @@ size = Vector2(16, 6)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xlyn7"]
 size = Vector2(24, 14)
 
-[sub_resource type="Resource" id="Resource_8mjr7"]
+[sub_resource type="Resource" id="Resource_b1t0j"]
 script = ExtResource("4_w52o7")
 saveName = "npc"
 position = Vector2(883, 30)
 
-[sub_resource type="Resource" id="Resource_88lpt"]
+[sub_resource type="Resource" id="Resource_umiak"]
 script = ExtResource("4_w52o7")
 saveName = "npc"
 position = Vector2(643, 62)
@@ -179,8 +180,8 @@ position = Vector2(-52, -44)
 displayName = "Elder"
 saveName = "nomad2_hut"
 spawnRequirements = SubResource("Resource_c2gd7")
-data = SubResource("Resource_pqrbd")
-dialogueEntries = Array[ExtResource("7_dtsyx")]([ExtResource("7_7105x")])
+data = SubResource("Resource_kycru")
+dialogueEntries = Array[ExtResource("7_dtsyx")]([ExtResource("8_xmrco"), ExtResource("7_7105x")])
 
 [node name="NPCSprite" parent="TilemapRoot/Nomad2" index="0"]
 sprite_frames = ExtResource("5_pow4s")
@@ -199,7 +200,7 @@ visible = false
 [node name="Signpost" parent="TilemapRoot" instance=ExtResource("3_agm5n")]
 position = Vector2(480, -320)
 displayName = "Sign"
-data = SubResource("Resource_xmrco")
+data = SubResource("Resource_q1h58")
 dialogueEntries = Array[ExtResource("7_dtsyx")]([ExtResource("8_if42d")])
 facesPlayer = false
 
@@ -268,7 +269,7 @@ sprite_frames = ExtResource("17_b0vsa")
 [node name="GeneralStoreSign" parent="TilemapRoot" instance=ExtResource("3_agm5n")]
 position = Vector2(717, -338)
 displayName = "Sign"
-data = SubResource("Resource_kycru")
+data = SubResource("Resource_gr63f")
 dialogueEntries = Array[ExtResource("7_dtsyx")]([ExtResource("18_53qc7")])
 facesPlayer = false
 
@@ -302,7 +303,7 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 [node name="ArmorySign" parent="TilemapRoot" instance=ExtResource("3_agm5n")]
 position = Vector2(883, -546)
 displayName = "Sign"
-data = SubResource("Resource_q1h58")
+data = SubResource("Resource_dcblc")
 dialogueEntries = Array[ExtResource("7_dtsyx")]([ExtResource("20_u7mlx")])
 facesPlayer = false
 
@@ -336,7 +337,7 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 [node name="InnSign" parent="TilemapRoot" instance=ExtResource("3_agm5n")]
 position = Vector2(643, -514)
 displayName = "Sign"
-data = SubResource("Resource_gr63f")
+data = SubResource("Resource_8mjr7")
 dialogueEntries = Array[ExtResource("7_dtsyx")]([ExtResource("22_7mkxe")])
 facesPlayer = false
 
@@ -370,7 +371,7 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 [node name="BurnedGeneralStoreSign" parent="TilemapRoot" instance=ExtResource("3_agm5n")]
 position = Vector2(717, 238)
 displayName = "Sign"
-data = SubResource("Resource_dcblc")
+data = SubResource("Resource_88lpt")
 dialogueEntries = Array[ExtResource("7_dtsyx")]([ExtResource("18_53qc7")])
 facesPlayer = false
 
@@ -404,7 +405,7 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 [node name="BurnedArmorySign" parent="TilemapRoot" instance=ExtResource("3_agm5n")]
 position = Vector2(883, 30)
 displayName = "Sign"
-data = SubResource("Resource_8mjr7")
+data = SubResource("Resource_b1t0j")
 dialogueEntries = Array[ExtResource("7_dtsyx")]([ExtResource("20_u7mlx")])
 facesPlayer = false
 
@@ -438,7 +439,7 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 [node name="BurnedInnSign" parent="TilemapRoot" instance=ExtResource("3_agm5n")]
 position = Vector2(643, 62)
 displayName = "Sign"
-data = SubResource("Resource_88lpt")
+data = SubResource("Resource_umiak")
 dialogueEntries = Array[ExtResource("7_dtsyx")]([ExtResource("12_sauue")])
 facesPlayer = false
 

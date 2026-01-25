@@ -1,0 +1,40 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=11 format=3 uid="uid://fymeya3xastf"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_u8rek"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_3ngbm"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_mi80q"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_3ngbm"]
+[ext_resource type="Resource" uid="uid://0g86xgicwqvw" path="res://gamedata/dialogue/forbidden_desert_east/elder_affinity_tree_touched_turnin.tres" id="3_43scx"]
+[ext_resource type="Script" uid="uid://b6oofnelefs8o" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="4_hmvmk"]
+
+[sub_resource type="Resource" id="Resource_43scx"]
+script = ExtResource("1_u8rek")
+lines = Array[String](["Well, @? What did the Tree give you?"])
+animation = "talk"
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[sub_resource type="Resource" id="Resource_mi80q"]
+script = ExtResource("1_u8rek")
+lines = Array[String](["A little understanding, and one of its leaves."])
+animation = "stand"
+speakerOverride = "@"
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[sub_resource type="Resource" id="Resource_bmrg7"]
+script = ExtResource("2_3ngbm")
+choiceBtn = "Yes."
+leadsTo = ExtResource("3_43scx")
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_3ngbm"]
+script = ExtResource("1_u8rek")
+lines = Array[String](["Very good. Are you ready to head back?"])
+animation = "talk"
+choices = Array[ExtResource("2_3ngbm")]([SubResource("Resource_bmrg7")])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[resource]
+script = ExtResource("3_3ngbm")
+entryId = "affinity_tree_turnin"
+items = Array[ExtResource("1_u8rek")]([SubResource("Resource_43scx"), SubResource("Resource_mi80q"), SubResource("Resource_3ngbm")])
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"

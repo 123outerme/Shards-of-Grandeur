@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=8 format=3 uid="uid://cqk2gobug7cbt"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_tyfkd"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_eij5q"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="3_0thsk"]
+[ext_resource type="Script" uid="uid://fw22o8hbosnk" path="res://scripts/inventory/inventory_slot.gd" id="4_yxkpi"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="5_miib8"]
+
+[sub_resource type="Resource" id="Resource_2fh71"]
+script = ExtResource("1_tyfkd")
+lines = Array[String](["(The Affinity Tree is warm to the touch... it emboldens you!)"])
+animation = "default"
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[sub_resource type="Resource" id="Resource_xch5m"]
+script = ExtResource("3_0thsk")
+prereqDialogues = Array[String](["desert_east_affinity_tree#touch_tree"])
+metadata/_custom_type_script = "uid://bjesn36acj0uh"
+
+[resource]
+script = ExtResource("5_miib8")
+items = Array[ExtResource("1_tyfkd")]([SubResource("Resource_2fh71")])
+ordStoryRequirements = Array[ExtResource("3_0thsk")]([SubResource("Resource_xch5m")])
+fullHealsPlayer = true
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"

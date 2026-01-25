@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=10 format=3 uid="uid://cxhvabgb5jtb4"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_50nvo"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_hyemc"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_p47np"]
+[ext_resource type="Script" uid="uid://b6oofnelefs8o" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_8ekhu"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_p47np"]
+[ext_resource type="Resource" path="res://gamedata/dialogue/forbidden_desert_east/elder_affinity_tree_touched_after_turnin.tres" id="4_8ekhu"]
+
+[sub_resource type="Resource" id="Resource_orna4"]
+script = ExtResource("2_p47np")
+choiceBtn = "Wait..."
+isDeclineChoice = true
+
+[sub_resource type="Resource" id="Resource_y4223"]
+script = ExtResource("2_p47np")
+choiceBtn = "Thank You."
+leadsTo = ExtResource("4_8ekhu")
+turnsInQuest = "Rebuild Standstill#Report to the Elder"
+
+[sub_resource type="Resource" id="Resource_8ekhu"]
+script = ExtResource("1_50nvo")
+lines = Array[String](["Then, I will dismiss you to head back to Standstill. You have learned all you needed from me."])
+animation = "talk"
+choices = Array[ExtResource("2_p47np")]([SubResource("Resource_orna4"), SubResource("Resource_y4223")])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[resource]
+script = ExtResource("3_p47np")
+items = Array[ExtResource("1_50nvo")]([SubResource("Resource_8ekhu")])
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"

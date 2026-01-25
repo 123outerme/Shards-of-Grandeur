@@ -1,11 +1,12 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=11 format=3]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=13 format=3 uid="uid://bbvn5wcwo88lj"]
 
-[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_0ln56"]
-[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_cppfm"]
-[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="3_5b2oi"]
-[ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_cppfm"]
-[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="4_lg8a4"]
-[ext_resource type="Resource" path="res://gamedata/cutscenes/standstill/rebuild_standstill_heal_alessia.tres" id="5_72mtb"]
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_0ln56"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_cppfm"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="3_5b2oi"]
+[ext_resource type="Script" uid="uid://b6oofnelefs8o" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_cppfm"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="4_lg8a4"]
+[ext_resource type="Script" uid="uid://fw22o8hbosnk" path="res://scripts/inventory/inventory_slot.gd" id="5_5b2oi"]
+[ext_resource type="Resource" uid="uid://ckl2lfmonig3y" path="res://gamedata/cutscenes/standstill/rebuild_standstill_heal_alessia.tres" id="5_72mtb"]
 
 [sub_resource type="Resource" id="Resource_1qjxn"]
 script = ExtResource("1_0ln56")
@@ -29,7 +30,13 @@ lines = Array[String](["Do you have everything you need? Then let's start, immed
 animation = "talk"
 choices = Array[ExtResource("2_cppfm")]([SubResource("Resource_5b2oi")])
 
+[sub_resource type="Resource" id="Resource_72mtb"]
+script = ExtResource("3_5b2oi")
+prereqQuests = Array[String](["Rebuild Standstill#Report to the Elder"])
+metadata/_custom_type_script = "uid://bjesn36acj0uh"
+
 [resource]
 script = ExtResource("4_lg8a4")
 items = Array[ExtResource("1_0ln56")]([SubResource("Resource_1qjxn"), SubResource("Resource_cmhvu"), SubResource("Resource_lg8a4")])
+ordStoryRequirements = Array[ExtResource("3_5b2oi")]([SubResource("Resource_72mtb")])
 startsCutscene = ExtResource("5_72mtb")

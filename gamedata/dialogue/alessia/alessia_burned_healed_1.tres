@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://d0aiblruuxre4"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_waho5"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_44p05"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_urrw0"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_urrw0"]
+
+[sub_resource type="Resource" id="Resource_48ntq"]
+script = ExtResource("1_waho5")
+lines = Array[String](["Lance, I'm proud of what he did while I was out of commission.", "I've decided it's time I turned over the Foundry to him.", "But I'm not going anywhere, yet. Especially not while the Chain Legion's around."])
+animation = "talk"
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[resource]
+script = ExtResource("3_urrw0")
+items = Array[ExtResource("1_waho5")]([SubResource("Resource_48ntq")])
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"

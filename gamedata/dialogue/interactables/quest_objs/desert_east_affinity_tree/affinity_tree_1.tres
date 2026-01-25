@@ -1,0 +1,38 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=12 format=3 uid="uid://bu44fpvbujbdj"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_a3tgg"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_mhkhd"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_yoqtm"]
+[ext_resource type="Script" uid="uid://b6oofnelefs8o" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_3p1y4"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_yoqtm"]
+[ext_resource type="Resource" uid="uid://uti6w4pocxt8" path="res://gamedata/dialogue/interactables/quest_objs/desert_east_affinity_tree/affinity_tree_touch_quest.tres" id="4_ia4s4"]
+[ext_resource type="Resource" uid="uid://cqk2gobug7cbt" path="res://gamedata/dialogue/interactables/quest_objs/desert_east_affinity_tree/affinity_tree_touch_basic.tres" id="5_0421o"]
+
+[sub_resource type="Resource" id="Resource_ia4s4"]
+script = ExtResource("2_yoqtm")
+choiceBtn = "No"
+isDeclineChoice = true
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_0421o"]
+script = ExtResource("2_yoqtm")
+choiceBtn = "Yes"
+leadsTo = ExtResource("4_ia4s4")
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_lc0jw"]
+script = ExtResource("2_yoqtm")
+choiceBtn = "Yes"
+leadsTo = ExtResource("5_0421o")
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_vc8ri"]
+script = ExtResource("1_a3tgg")
+lines = Array[String](["(Touch the Affinity Tree?)"])
+choices = Array[ExtResource("2_yoqtm")]([SubResource("Resource_ia4s4"), SubResource("Resource_0421o"), SubResource("Resource_lc0jw")])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[resource]
+script = ExtResource("3_yoqtm")
+items = Array[ExtResource("1_a3tgg")]([SubResource("Resource_vc8ri")])
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"

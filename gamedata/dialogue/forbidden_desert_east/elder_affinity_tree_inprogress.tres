@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=8 format=3 uid="uid://3syq2t8l2fri"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_adeia"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_g8uax"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_ueqea"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_g8uax"]
+[ext_resource type="Script" uid="uid://fw22o8hbosnk" path="res://scripts/inventory/inventory_slot.gd" id="4_g8uax"]
+
+[sub_resource type="Resource" id="Resource_jbg1w"]
+script = ExtResource("1_adeia")
+lines = Array[String](["Venture onwards and touch the Affinity Tree, @. It will open your eyes."])
+animation = "talk"
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[sub_resource type="Resource" id="Resource_1wy7g"]
+script = ExtResource("2_ueqea")
+prereqQuests = Array[String](["Rebuild Standstill#Desert Training"])
+invalidAfterCompletingQuests = Array[String](["Rebuild Standstill#The Affinity Tree"])
+metadata/_custom_type_script = "uid://bjesn36acj0uh"
+
+[resource]
+script = ExtResource("3_g8uax")
+items = Array[ExtResource("1_adeia")]([SubResource("Resource_jbg1w")])
+ordStoryRequirements = Array[ExtResource("2_ueqea")]([SubResource("Resource_1wy7g")])
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"

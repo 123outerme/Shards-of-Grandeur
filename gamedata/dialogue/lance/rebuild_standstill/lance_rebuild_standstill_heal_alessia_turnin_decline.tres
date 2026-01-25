@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://hrly0mtemme3"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_71a7j"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_bca3i"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="3_f8yub"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="4_0to11"]
+
+[sub_resource type="Resource" id="Resource_e3rgx"]
+script = ExtResource("1_71a7j")
+lines = Array[String](["Please... I need to know if this is something we can use against Steelspire!"])
+animation = "talk"
+
+[resource]
+script = ExtResource("4_0to11")
+items = Array[ExtResource("1_71a7j")]([SubResource("Resource_e3rgx")])
+closesDialogue = true

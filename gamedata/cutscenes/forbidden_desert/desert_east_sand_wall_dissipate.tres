@@ -1,0 +1,165 @@
+[gd_resource type="Resource" script_class="Cutscene" load_steps=34 format=3 uid="uid://dppxsolpag41t"]
+
+[ext_resource type="Script" uid="uid://cqpl74uk8cjo0" path="res://scripts/cutscenes/cutscene_frame.gd" id="1_rjcf2"]
+[ext_resource type="Script" uid="uid://fpa08p2kb0ts" path="res://scripts/cutscenes/cutscene.gd" id="2_skpn5"]
+[ext_resource type="Script" uid="uid://cg21ocaokyfnx" path="res://scripts/cutscenes/actor_anim_set.gd" id="2_xhu4d"]
+[ext_resource type="Script" uid="uid://fw22o8hbosnk" path="res://scripts/inventory/inventory_slot.gd" id="3_qd6ep"]
+[ext_resource type="Script" uid="uid://dy2r6h7mhh2oc" path="res://scripts/cutscenes/actor_sprite_anim.gd" id="3_s7fqj"]
+[ext_resource type="Resource" uid="uid://dcphj1dtjg3mr" path="res://gamedata/cutscenes/reused/player_stand_anim.tres" id="4_02nam"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="4_3ckia"]
+[ext_resource type="Script" uid="uid://8oxtwxpqllgd" path="res://scripts/cutscenes/actor_face_target.gd" id="4_ohfvi"]
+[ext_resource type="Script" uid="uid://g5p5b4jsf6bs" path="res://scripts/cutscenes/actor_tween.gd" id="5_02nam"]
+[ext_resource type="Script" uid="uid://jcu0gq2ns4in" path="res://scripts/cutscenes/cutscene_dialogue.gd" id="6_1w8qu"]
+[ext_resource type="Script" uid="uid://b5d2qgg22dgbw" path="res://scripts/cutscenes/tweens/tween_vector2.gd" id="7_1w8qu"]
+[ext_resource type="Script" uid="uid://pwprqe15gr3j" path="res://scripts/cutscenes/tweens/tween_color.gd" id="9_02nam"]
+
+[sub_resource type="Resource" id="Resource_h18pr"]
+script = ExtResource("3_s7fqj")
+actorTreePath = "TilemapRoot/Nomad2Training"
+animation = "walk"
+metadata/_custom_type_script = "uid://dy2r6h7mhh2oc"
+
+[sub_resource type="Resource" id="Resource_siygl"]
+script = ExtResource("4_ohfvi")
+isPlayer = true
+targetTreePath = "TilemapRoot/Nomad2Training"
+metadata/_custom_type_script = "uid://8oxtwxpqllgd"
+
+[sub_resource type="Resource" id="Resource_ty715"]
+script = ExtResource("7_1w8qu")
+value = Vector2(1582, 118)
+actorTreePath = "TilemapRoot/Nomad2Training"
+propertyName = "position"
+metadata/_custom_type_script = "uid://b5d2qgg22dgbw"
+
+[sub_resource type="Resource" id="Resource_acguo"]
+script = ExtResource("6_1w8qu")
+speaker = "Elder"
+texts = Array[String](["Need help with that sand dune?"])
+speakerActorScenePath = "TilemapRoot/Nomad2Training"
+metadata/_custom_type_script = "uid://jcu0gq2ns4in"
+
+[sub_resource type="Resource" id="Resource_kmdrw"]
+script = ExtResource("1_rjcf2")
+frameLength = 0.1
+annotation = "player stands, set up elder position; elder calls from offscreen"
+actorTweens = Array[ExtResource("5_02nam")]([SubResource("Resource_ty715")])
+actorAnims = Array[ExtResource("3_s7fqj")]([ExtResource("4_02nam"), SubResource("Resource_h18pr")])
+actorFaceTargets = Array[ExtResource("4_ohfvi")]([SubResource("Resource_siygl")])
+dialogues = Array[ExtResource("6_1w8qu")]([SubResource("Resource_acguo")])
+metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
+
+[sub_resource type="Resource" id="Resource_2l53x"]
+script = ExtResource("1_rjcf2")
+frameLength = 0.1
+annotation = "wait for text box to be closed"
+metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
+
+[sub_resource type="Resource" id="Resource_02nam"]
+script = ExtResource("7_1w8qu")
+value = Vector2(1720, 102)
+actorTreePath = "TilemapRoot/Nomad2Training"
+propertyName = "position"
+metadata/_custom_type_script = "uid://b5d2qgg22dgbw"
+
+[sub_resource type="Resource" id="Resource_ohfvi"]
+script = ExtResource("1_rjcf2")
+frameLength = 2.5
+annotation = "Elder walks onscreen"
+actorTweens = Array[ExtResource("5_02nam")]([SubResource("Resource_02nam")])
+metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
+
+[sub_resource type="Resource" id="Resource_tukv2"]
+script = ExtResource("3_s7fqj")
+actorTreePath = "TilemapRoot/Nomad2Training"
+animation = "talk"
+metadata/_custom_type_script = "uid://dy2r6h7mhh2oc"
+
+[sub_resource type="Resource" id="Resource_lujdk"]
+script = ExtResource("6_1w8qu")
+speaker = "Elder"
+texts = Array[String](["I'll blow it away, then."])
+speakerActorScenePath = "TilemapRoot/Nomad2Training"
+metadata/_custom_type_script = "uid://jcu0gq2ns4in"
+
+[sub_resource type="Resource" id="Resource_1w8qu"]
+script = ExtResource("1_rjcf2")
+frameLength = 0.1
+annotation = "the elder stands and says he's going to blow it away with affinity"
+actorAnims = Array[ExtResource("3_s7fqj")]([SubResource("Resource_tukv2")])
+dialogues = Array[ExtResource("6_1w8qu")]([SubResource("Resource_lujdk")])
+metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
+
+[sub_resource type="Resource" id="Resource_vlh3t"]
+script = ExtResource("1_rjcf2")
+frameLength = 0.1
+annotation = "wait for the text box to be closed"
+metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
+
+[sub_resource type="Resource" id="Resource_qm6ms"]
+script = ExtResource("3_s7fqj")
+actorTreePath = "TilemapRoot/Nomad2Training"
+animation = "attack_affinity"
+metadata/_custom_type_script = "uid://dy2r6h7mhh2oc"
+
+[sub_resource type="Resource" id="Resource_npv6s"]
+script = ExtResource("1_rjcf2")
+frameLength = 2.333
+annotation = "the nomad elder uses Affinity"
+actorAnims = Array[ExtResource("3_s7fqj")]([SubResource("Resource_qm6ms")])
+metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
+
+[sub_resource type="Resource" id="Resource_ydmuw"]
+script = ExtResource("3_s7fqj")
+actorTreePath = "TilemapRoot/Nomad2Training"
+animation = "stand"
+metadata/_custom_type_script = "uid://dy2r6h7mhh2oc"
+
+[sub_resource type="Resource" id="Resource_t5l3o"]
+script = ExtResource("4_ohfvi")
+isPlayer = true
+targetTreePath = "TilemapRoot/SandWallDecoration"
+metadata/_custom_type_script = "uid://8oxtwxpqllgd"
+
+[sub_resource type="Resource" id="Resource_sn2ei"]
+script = ExtResource("9_02nam")
+value = Color(0.6745098, 0.9254902, 0.6392157, 1)
+actorTreePath = "TilemapRoot/SandWallDecoration"
+propertyName = "modulate"
+metadata/_custom_type_script = "uid://pwprqe15gr3j"
+
+[sub_resource type="Resource" id="Resource_k1vvl"]
+script = ExtResource("1_rjcf2")
+frameLength = 0.7
+annotation = "The sand wall tints green, the player faces it"
+actorTweens = Array[ExtResource("5_02nam")]([SubResource("Resource_sn2ei")])
+actorAnims = Array[ExtResource("3_s7fqj")]([SubResource("Resource_ydmuw")])
+actorFaceTargets = Array[ExtResource("4_ohfvi")]([SubResource("Resource_t5l3o")])
+metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
+
+[sub_resource type="Resource" id="Resource_eccke"]
+script = ExtResource("9_02nam")
+value = Color(1, 1, 1, 1)
+actorTreePath = "TilemapRoot/SandWallDecoration"
+propertyName = "modulate"
+metadata/_custom_type_script = "uid://pwprqe15gr3j"
+
+[sub_resource type="Resource" id="Resource_y2ygb"]
+script = ExtResource("1_rjcf2")
+frameLength = 0.7
+annotation = "the sand wall returns to normal color"
+actorTweens = Array[ExtResource("5_02nam")]([SubResource("Resource_eccke")])
+metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
+
+[sub_resource type="Resource" id="Resource_4tlp2"]
+script = ExtResource("4_3ckia")
+prereqQuests = Array[String](["Rebuild Standstill#The Desert Winds"])
+invalidAfterCutscenes = Array[String](["desert_east_sand_wall_dissipate"])
+metadata/_custom_type_script = "uid://bjesn36acj0uh"
+
+[resource]
+script = ExtResource("2_skpn5")
+cutsceneFrames = Array[ExtResource("1_rjcf2")]([SubResource("Resource_kmdrw"), SubResource("Resource_2l53x"), SubResource("Resource_ohfvi"), SubResource("Resource_1w8qu"), SubResource("Resource_vlh3t"), SubResource("Resource_npv6s"), SubResource("Resource_k1vvl"), SubResource("Resource_y2ygb")])
+saveName = "desert_east_sand_wall_dissipate"
+storyRequirements = SubResource("Resource_4tlp2")
+metadata/_custom_type_script = "uid://fpa08p2kb0ts"

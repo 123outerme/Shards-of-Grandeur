@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=8 format=3 uid="uid://bem8nyvjhjpw"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_wx4dw"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_c53da"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_it2f7"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_it2f7"]
+[ext_resource type="Script" uid="uid://fw22o8hbosnk" path="res://scripts/inventory/inventory_slot.gd" id="4_c53da"]
+
+[sub_resource type="Resource" id="Resource_13jlq"]
+script = ExtResource("1_wx4dw")
+lines = Array[String](["If you wish to continue your training and heal Alessia, @, meet me in the Desert east of here."])
+animation = "talk"
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[sub_resource type="Resource" id="Resource_it2f7"]
+script = ExtResource("2_c53da")
+prereqQuests = Array[String](["Rebuild Standstill#The Desert Winds"])
+invalidAfterCompletingQuests = Array[String](["Rebuild Standstill#Report to the Elder"])
+metadata/_custom_type_script = "uid://bjesn36acj0uh"
+
+[resource]
+script = ExtResource("3_it2f7")
+items = Array[ExtResource("1_wx4dw")]([SubResource("Resource_13jlq")])
+ordStoryRequirements = Array[ExtResource("2_c53da")]([SubResource("Resource_it2f7")])
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"

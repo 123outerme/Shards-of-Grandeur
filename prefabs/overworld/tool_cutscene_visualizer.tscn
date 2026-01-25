@@ -9,25 +9,6 @@
 [sub_resource type="Resource" id="Resource_ptllw"]
 script = ExtResource("4_jf0m3")
 saveName = "npc"
-spriteState = "default"
-animation = "stand"
-position = Vector2(0, 0)
-flipH = false
-visible = true
-selectedTarget = 0
-loops = 0
-disableMovement = false
-previousDisableMove = false
-afterMoveWaitAccum = 0.0
-followerHomePosition = Vector2(0, 0)
-followingPlayer = false
-followerHomeSet = false
-combatMode = false
-version = ""
-dialogueItems = []
-dialogueIndex = -1
-dialogueItemIdx = -1
-dialogueLine = -1
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xu7ln"]
 size = Vector2(13.5, 4)
@@ -43,7 +24,7 @@ border_color = Color(1, 1, 1, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_grlfa"]
 bg_color = Color(0, 0, 0, 0.65098)
 
-[node name="ToolCutsceneVisualizer" type="Node2D"]
+[node name="ToolCutsceneVisualizer" type="Node2D" groups=["TestTool"]]
 y_sort_enabled = true
 script = ExtResource("1_vxik6")
 

@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://cdlvsu6g7f6r2"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_iwst7"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_385ox"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="3_y2bux"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="4_pvi14"]
+
+[sub_resource type="Resource" id="Resource_hdkqq"]
+script = ExtResource("1_iwst7")
+lines = Array[String](["Then approach the Tree. It's just a little further down this path."])
+animation = "talk"
+
+[resource]
+script = ExtResource("4_pvi14")
+items = Array[ExtResource("1_iwst7")]([SubResource("Resource_hdkqq")])
+closesDialogue = true

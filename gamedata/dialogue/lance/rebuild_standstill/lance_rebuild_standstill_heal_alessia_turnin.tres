@@ -1,0 +1,43 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=13 format=3 uid="uid://d8ekthe4cbps"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_qtjlu"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_jsapt"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_nquxv"]
+[ext_resource type="Resource" uid="uid://hrly0mtemme3" path="res://gamedata/dialogue/lance/rebuild_standstill/lance_rebuild_standstill_heal_alessia_turnin_decline.tres" id="3_doa3t"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_jsapt"]
+[ext_resource type="Script" uid="uid://b6oofnelefs8o" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_msjb7"]
+[ext_resource type="Resource" uid="uid://bgl1c1iit8kl7" path="res://gamedata/dialogue/lance/rebuild_standstill/lance_rebuild_standstill_restore_ground_start.tres" id="5_doa3t"]
+
+[sub_resource type="Resource" id="Resource_msjb7"]
+script = ExtResource("1_qtjlu")
+lines = Array[String](["What... what was that you used to heal her?"])
+animation = "talk"
+
+[sub_resource type="Resource" id="Resource_doa3t"]
+script = ExtResource("1_qtjlu")
+lines = Array[String](["A leaf from the Affinity Tree I visited in the Forbidden Desert."])
+animation = "stand"
+speakerOverride = "@"
+
+[sub_resource type="Resource" id="Resource_4nxgy"]
+script = ExtResource("2_jsapt")
+choiceBtn = "I Can't."
+leadsTo = ExtResource("3_doa3t")
+isDeclineChoice = true
+
+[sub_resource type="Resource" id="Resource_rqt3m"]
+script = ExtResource("2_jsapt")
+choiceBtn = "Here."
+leadsTo = ExtResource("5_doa3t")
+turnsInQuest = "Rebuild Standstill#See Lance"
+
+[sub_resource type="Resource" id="Resource_uuf5p"]
+script = ExtResource("1_qtjlu")
+lines = Array[String](["A green leaf from a tree in the desert? That must've been some tree. Please, show me the leaf."])
+animation = "talk"
+choices = Array[ExtResource("2_jsapt")]([SubResource("Resource_4nxgy"), SubResource("Resource_rqt3m")])
+
+[resource]
+script = ExtResource("3_jsapt")
+items = Array[ExtResource("1_qtjlu")]([SubResource("Resource_msjb7"), SubResource("Resource_doa3t"), SubResource("Resource_uuf5p")])
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"

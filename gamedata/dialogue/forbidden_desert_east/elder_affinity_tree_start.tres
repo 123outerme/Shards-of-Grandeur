@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=9 format=3 uid="uid://ct4o5lgoyp53"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_os2ph"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_abt1s"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_mrpt0"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_mrpt0"]
+[ext_resource type="Resource" uid="uid://dthafv6ul2pcb" path="res://gamedata/dialogue/forbidden_desert_east/elder_affinity_tree_start_turnin.tres" id="3_rqwp8"]
+[ext_resource type="Script" uid="uid://b6oofnelefs8o" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="4_g3fe5"]
+
+[sub_resource type="Resource" id="Resource_vu81s"]
+script = ExtResource("2_mrpt0")
+choiceBtn = "Really?"
+leadsTo = ExtResource("3_rqwp8")
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_rqwp8"]
+script = ExtResource("1_os2ph")
+lines = Array[String](["We are right where we need to be for the training, @.", "Your next task is to touch the Affinity Tree. This tree is the source of all life in this desert.", "Its growth has been limited by the desertification of this region, but yet it still persists.", "Much like your Alessia. It will show you the way to healing her, I'm certain."])
+animation = "talk"
+choices = Array[ExtResource("2_mrpt0")]([SubResource("Resource_vu81s")])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[resource]
+script = ExtResource("3_mrpt0")
+entryId = "affinity_tree_start"
+items = Array[ExtResource("1_os2ph")]([SubResource("Resource_rqwp8")])
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"
