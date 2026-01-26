@@ -52,7 +52,7 @@ script = ExtResource("10_o2viv")
 id = "default"
 priority = -1
 
-[sub_resource type="Resource" id="Resource_istn8"]
+[sub_resource type="Resource" id="Resource_yo0d8"]
 script = ExtResource("4_eo5tj")
 saveName = "npc"
 position = Vector2(-68, 16)
@@ -92,17 +92,16 @@ script = ExtResource("18_joowq")
 invalidAfterDialogues = Array[String](["heal_alessia"])
 metadata/_custom_type_script = "uid://bjesn36acj0uh"
 
-[sub_resource type="Resource" id="Resource_yo0d8"]
+[sub_resource type="Resource" id="Resource_ot2yn"]
 script = ExtResource("4_eo5tj")
 saveName = "npc"
 spriteState = "in_bed"
 position = Vector2(-88, -22)
 
-[sub_resource type="Resource" id="Resource_epvh0"]
+[sub_resource type="Resource" id="Resource_eipj7"]
 script = ExtResource("4_eo5tj")
 saveName = "npc"
-spriteState = "in_bed"
-position = Vector2(-88, -22)
+position = Vector2(24, -89)
 
 [sub_resource type="Resource" id="Resource_0076e"]
 script = ExtResource("10_o2viv")
@@ -116,15 +115,16 @@ id = "default"
 priority = -1
 spriteFrames = ExtResource("11_pb102")
 
-[sub_resource type="Resource" id="Resource_ot2yn"]
+[sub_resource type="Resource" id="Resource_epvh0"]
 script = ExtResource("4_eo5tj")
 saveName = "npc"
 spriteState = "burned"
 position = Vector2(-8, -89)
 
-[sub_resource type="Resource" id="Resource_eipj7"]
+[sub_resource type="Resource" id="Resource_l25k4"]
 script = ExtResource("4_eo5tj")
 saveName = "npc"
+position = Vector2(-8, -65)
 
 [node name="OverworldMap" type="Node2D"]
 script = ExtResource("1_2ghcv")
@@ -194,7 +194,7 @@ displayName = "Sign"
 spriteStatesDict = Dictionary[String, ExtResource("10_o2viv")]({
 "default": SubResource("Resource_kbqqb")
 })
-data = SubResource("Resource_istn8")
+data = SubResource("Resource_yo0d8")
 dialogueEntries = Array[ExtResource("5_fmisr")]([ExtResource("6_iexth")])
 facesPlayer = false
 
@@ -237,7 +237,7 @@ spriteStatesDict = Dictionary[String, ExtResource("10_o2viv")]({
 "in_bed_awake": SubResource("Resource_l4060")
 })
 orSpawnRequirements = Array[ExtResource("18_joowq")]([SubResource("Resource_tysq4")])
-data = SubResource("Resource_yo0d8")
+data = SubResource("Resource_ot2yn")
 
 [node name="NPCSprite" parent="TilemapRoot/Alessia" index="0"]
 position = Vector2(0, -6)
@@ -260,13 +260,14 @@ visible = false
 [node name="AlessiaHealed" parent="TilemapRoot" instance=ExtResource("3_55211")]
 visible = false
 position = Vector2(24, -89)
+collision_layer = 0
 displayName = "Alessia"
 saveName = "alessia_standstill_foundry_burned_healed"
 loadFlipH = true
 spriteStatesDict = Dictionary[String, ExtResource("10_o2viv")]({
 "default": SubResource("Resource_e8c0q")
 })
-data = SubResource("Resource_epvh0")
+data = SubResource("Resource_eipj7")
 dialogueEntries = Array[ExtResource("5_fmisr")]([ExtResource("20_0076e")])
 
 [node name="NPCSprite" parent="TilemapRoot/AlessiaHealed" index="0"]
@@ -295,7 +296,7 @@ spriteStatesDict = Dictionary[String, ExtResource("10_o2viv")]({
 "burned": SubResource("Resource_0076e"),
 "default": SubResource("Resource_ll4e0")
 })
-data = SubResource("Resource_ot2yn")
+data = SubResource("Resource_epvh0")
 dialogueEntries = Array[ExtResource("5_fmisr")]([ExtResource("20_kbqqb"), ExtResource("13_ln4wi")])
 npcShop = ExtResource("12_oygwg")
 
@@ -334,7 +335,7 @@ rootNode = NodePath("..")
 
 [node name="MockPlayer" parent="ToolCutsceneVisualizer" index="0"]
 position = Vector2(-8, -65)
-data = SubResource("Resource_eipj7")
+data = SubResource("Resource_l25k4")
 
 [node name="NPCSprite" parent="ToolCutsceneVisualizer/MockPlayer" index="0"]
 frame_progress = 0.8377168

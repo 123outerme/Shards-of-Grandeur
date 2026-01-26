@@ -1,0 +1,39 @@
+[gd_resource type="Resource" script_class="Weapon" load_steps=7 format=3 uid="uid://ci5tnagq4jkci"]
+
+[ext_resource type="Texture2D" uid="uid://cueqgbxbjn8fl" path="res://graphics/items/weapons/mushroom_mace.png" id="1_h4rgr"]
+[ext_resource type="Script" uid="uid://c4jrorkxpw01e" path="res://scripts/inventory/items/weapon.gd" id="1_ubar2"]
+[ext_resource type="Script" uid="uid://b8q40qhoufelh" path="res://scripts/battle/combatant/element_multiplier.gd" id="3_6esyr"]
+[ext_resource type="Script" uid="uid://dvivnpdo5ga72" path="res://scripts/battle/combatant/stat_changes.gd" id="4_8c73o"]
+
+[sub_resource type="Resource" id="Resource_h4rgr"]
+script = ExtResource("3_6esyr")
+element = 6
+multiplier = 1.1
+metadata/_custom_type_script = "uid://b8q40qhoufelh"
+
+[sub_resource type="Resource" id="Resource_ws5px"]
+script = ExtResource("4_8c73o")
+affinityMultiplier = 1.15
+elementMultipliers = Array[ExtResource("3_6esyr")]([SubResource("Resource_h4rgr")])
+keywordMultipliers = Dictionary[String, float]({
+"Shroom": 1.1
+})
+metadata/_custom_type_script = "uid://dvivnpdo5ga72"
+
+[resource]
+script = ExtResource("1_ubar2")
+statChanges = SubResource("Resource_ws5px")
+timing = 0
+bonusOrbs = 1
+itemSprite = ExtResource("1_h4rgr")
+itemName = "Mushroom Mace"
+itemType = 2
+itemDescription = "This mushroom-shaped bludgeon seems to have grown straight from the ground into its current form. Its fungal fury knows no bounds."
+cost = 25
+maxCount = 1
+usable = false
+battleUsable = false
+consumable = false
+equippable = true
+trashable = false
+metadata/_custom_type_script = "uid://c4jrorkxpw01e"
