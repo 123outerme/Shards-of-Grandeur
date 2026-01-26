@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="NpcShop" load_steps=24 format=3 uid="uid://bj5oava6twfyq"]
+[gd_resource type="Resource" script_class="NpcShop" load_steps=27 format=3 uid="uid://bj5oava6twfyq"]
 
 [ext_resource type="Script" uid="uid://c02s6f1mg2nhw" path="res://scripts/npcs/npc_shop.gd" id="1_2hats"]
 [ext_resource type="Script" uid="uid://dvhu11n6qar12" path="res://scripts/inventory/shop_inventory_slot.gd" id="2_7yktm"]
@@ -10,6 +10,19 @@
 [ext_resource type="Resource" uid="uid://jhhxu2gbjenp" path="res://gamedata/items/armor/standard_issue_mail.tres" id="8_3ltlq"]
 [ext_resource type="Resource" uid="uid://df8cprg6vpti3" path="res://gamedata/items/weapon/curved_knife.tres" id="9_qcymx"]
 [ext_resource type="Resource" uid="uid://3a2aqxqx230t" path="res://gamedata/items/armor/tempered_helm.tres" id="10_am35s"]
+[ext_resource type="Resource" uid="uid://cp5e8wxpu04xi" path="res://gamedata/items/weapon/standstill_torch.tres" id="11_mpg84"]
+
+[sub_resource type="Resource" id="Resource_mpg84"]
+script = ExtResource("6_xtlge")
+prereqCutscenes = Array[String](["heal_alessia"])
+metadata/_custom_type_script = "uid://bjesn36acj0uh"
+
+[sub_resource type="Resource" id="Resource_4xla2"]
+script = ExtResource("2_7yktm")
+storyRequirements = SubResource("Resource_mpg84")
+sinceVersion = "0.4.2"
+item = ExtResource("11_mpg84")
+metadata/_custom_type_script = "uid://dvhu11n6qar12"
 
 [sub_resource type="Resource" id="Resource_ovr6d"]
 script = ExtResource("2_7yktm")
@@ -75,4 +88,4 @@ item = ExtResource("10_am35s")
 
 [resource]
 script = ExtResource("1_2hats")
-shopItemSlots = Array[ExtResource("2_7yktm")]([SubResource("Resource_ovr6d"), SubResource("Resource_wwlcl"), SubResource("Resource_ul4tl"), SubResource("Resource_xyfhi"), SubResource("Resource_u4gnw"), SubResource("Resource_tiwki")])
+shopItemSlots = Array[ExtResource("2_7yktm")]([SubResource("Resource_4xla2"), SubResource("Resource_ovr6d"), SubResource("Resource_wwlcl"), SubResource("Resource_ul4tl"), SubResource("Resource_xyfhi"), SubResource("Resource_u4gnw"), SubResource("Resource_tiwki")])

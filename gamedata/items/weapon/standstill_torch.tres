@@ -1,0 +1,38 @@
+[gd_resource type="Resource" script_class="Weapon" load_steps=7 format=3 uid="uid://cp5e8wxpu04xi"]
+
+[ext_resource type="Texture2D" uid="uid://l1abak8j3uxe" path="res://graphics/items/weapons/standstill_torch.png" id="1_3j5ms"]
+[ext_resource type="Script" uid="uid://c4jrorkxpw01e" path="res://scripts/inventory/items/weapon.gd" id="1_hacvy"]
+[ext_resource type="Script" uid="uid://b8q40qhoufelh" path="res://scripts/battle/combatant/element_multiplier.gd" id="3_7cfvy"]
+[ext_resource type="Script" uid="uid://dvivnpdo5ga72" path="res://scripts/battle/combatant/stat_changes.gd" id="4_sbj6k"]
+
+[sub_resource type="Resource" id="Resource_3j5ms"]
+script = ExtResource("3_7cfvy")
+element = 2
+multiplier = 1.15
+metadata/_custom_type_script = "uid://b8q40qhoufelh"
+
+[sub_resource type="Resource" id="Resource_2xqq4"]
+script = ExtResource("4_sbj6k")
+physAttackMultiplier = 1.05
+affinityMultiplier = 1.05
+resistanceMultiplier = 1.05
+elementMultipliers = Array[ExtResource("3_7cfvy")]([SubResource("Resource_3j5ms")])
+metadata/_custom_type_script = "uid://dvivnpdo5ga72"
+
+[resource]
+script = ExtResource("1_hacvy")
+statChanges = SubResource("Resource_2xqq4")
+timing = 0
+bonusOrbs = 1
+itemSprite = ExtResource("1_3j5ms")
+itemName = "Standstill Torch"
+itemType = 2
+itemDescription = "Its wood was pulled from the leg of a ruined chair. This fire was lit from the flaming ruins of Standstill. It will never go out."
+cost = 24
+maxCount = 1
+usable = false
+battleUsable = false
+consumable = false
+equippable = true
+trashable = false
+metadata/_custom_type_script = "uid://c4jrorkxpw01e"
