@@ -1,39 +1,26 @@
-[gd_resource type="Resource" script_class="WorldLocation" load_steps=13 format=3 uid="uid://ct5re21o4w1pu"]
+[gd_resource type="Resource" script_class="WorldLocation" load_steps=15 format=3 uid="uid://ct5re21o4w1pu"]
 
 [ext_resource type="AudioStream" uid="uid://cfuuyombto64k" path="res://audio/music/overworld/standstill.mp3" id="1_0wv8b"]
 [ext_resource type="Script" uid="uid://1kibgfap86bm" path="res://scripts/overworld/map_entry.gd" id="1_w0atp"]
 [ext_resource type="Script" uid="uid://dd27pbjjyrw7p" path="res://scripts/overworld/world_location.gd" id="2_3ubyx"]
+[ext_resource type="Resource" uid="uid://05n00vest46t" path="res://gamedata/story_requirements/locations/reqs_standstill_healing.tres" id="3_0t8hf"]
 [ext_resource type="Resource" uid="uid://fyqynvxrqkm6" path="res://gamedata/story_requirements/locations/reqs_standstill_burned.tres" id="3_1cu5g"]
 [ext_resource type="AudioStream" uid="uid://dnfsxipd2v2xo" path="res://audio/music/battle/battletheme_uvutudx_demo.mp3" id="3_ocfii"]
 [ext_resource type="AudioStream" uid="uid://c7d7pycfjgo44" path="res://audio/music/battle/newbattlethemev2.mp3" id="4_lstum"]
 [ext_resource type="Script" uid="uid://fw22o8hbosnk" path="res://scripts/inventory/inventory_slot.gd" id="5_i0nsa"]
 [ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="6_m4cv4"]
 
+[sub_resource type="Resource" id="Resource_yxcbe"]
+script = ExtResource("1_w0atp")
+path = "standstill/healing/standstill_healing"
+requirements = ExtResource("3_0t8hf")
+overworldTheme = ExtResource("1_0wv8b")
+metadata/_custom_type_script = "uid://1kibgfap86bm"
+
 [sub_resource type="Resource" id="Resource_tvba6"]
 script = ExtResource("6_m4cv4")
 minAct = 2
-maxAct = -1
-prereqQuests = Array[String]([])
 prereqCutscenes = Array[String](["standstill_defeated_helia"])
-prereqDialogues = Array[String]([])
-prereqPlacesVisited = Array[String]([])
-prereqSpecialBattles = Array[String]([])
-prereqDefeatedEnemies = Array[String]([])
-prereqPuzzles = Array[String]([])
-prereqPuzzleStates = Dictionary[String, Array]({})
-prereqDiscoveredEvolutions = Array[String]([])
-prereqHavingFollowers = Array[String]([])
-prereqHasItems = Array[ExtResource("5_i0nsa")]([])
-invalidAfterCompletingQuests = Array[String]([])
-invalidAfterFailingQuests = Array[String]([])
-invalidAfterCutscenes = Array[String]([])
-invalidAfterDialogues = Array[String]([])
-invalidAfterVistingPlaces = Array[String]([])
-invalidAfterSpecialBattles = Array[String]([])
-invalidAfterSolvingPuzzles = Array[String]([])
-invalidFromPuzzleStates = Dictionary[String, Array]({})
-invalidFromHavingFollowers = Array[String]([])
-invalidFromHavingItems = Array[ExtResource("5_i0nsa")]([])
 
 [sub_resource type="Resource" id="Resource_sp0vm"]
 script = ExtResource("1_w0atp")
@@ -52,20 +39,16 @@ requirements = ExtResource("3_1cu5g")
 overworldTheme = ExtResource("1_0wv8b")
 battleMapName = "burned_forest_battle_map"
 battleMusic = Array[AudioStream]([ExtResource("3_ocfii"), ExtResource("4_lstum")])
-isRecoverLocation = false
-recoverPosition = Vector2(0, 0)
 
 [sub_resource type="Resource" id="Resource_jimr8"]
 script = ExtResource("1_w0atp")
 path = "standstill/standstill"
 overworldTheme = ExtResource("1_0wv8b")
-battleMapName = "forest_battle_map"
-battleMusic = Array[AudioStream]([])
 isRecoverLocation = true
 recoverPosition = Vector2(-72, -108)
 
 [resource]
 script = ExtResource("2_3ubyx")
 locationName = "Standstill"
-maps = Array[ExtResource("1_w0atp")]([SubResource("Resource_sp0vm"), SubResource("Resource_ri1r4"), SubResource("Resource_jimr8")])
+maps = Array[ExtResource("1_w0atp")]([SubResource("Resource_yxcbe"), SubResource("Resource_sp0vm"), SubResource("Resource_ri1r4"), SubResource("Resource_jimr8")])
 mapLocation = 20

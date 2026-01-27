@@ -44,6 +44,10 @@ func _assign_two_layer_tiles():
 			TileDef.new('Midground', 1, Vector2i(0,5)), # trees.png, 1st burned tree base
 			TileDef.new('Midground', 1, Vector2i(1,5)), # trees.png, 2nd burned tree base
 			TileDef.new('Midground', 1, Vector2i(2,5)), # trees.png, 3rd burned tree base
+			TileDef.new('Midground', 1, Vector2i(3,5)), # trees.png, 1st yellow tree base
+			TileDef.new('Midground', 1, Vector2i(4,5)), # trees.png, 2nd yellow tree base
+			TileDef.new('Midground', 1, Vector2i(5,5)), # trees.png, 1st red tree base
+			TileDef.new('Midground', 1, Vector2i(6,5)), # trees.png, 2nd red tree base
 			TileDef.new('Midground', 1, Vector2i(0,7)), # trees.png, 1st submerged tree shadow
 			TileDef.new('Midground', 1, Vector2i(1,7)), # trees.png, 2nd submerged tree shadow
 			TileDef.new('Midground', 1, Vector2i(2,7)), # trees.png, 3rd submerged tree shadow
@@ -85,6 +89,10 @@ func _assign_two_layer_tiles():
 			TileDef.new('Foreground', 1, Vector2i(0,4)), # trees.png, 1st burned tree top
 			TileDef.new('Foreground', 1, Vector2i(1,4)), # trees.png, 2nd burned tree top
 			TileDef.new('Foreground', 1, Vector2i(2,4)), # trees.png, 3rd burned tree top
+			TileDef.new('Foreground', 1, Vector2i(3,4)), # trees.png, 1st yellow tree top
+			TileDef.new('Foreground', 1, Vector2i(4,4)), # trees.png, 2nd yellow tree top
+			TileDef.new('Foreground', 1, Vector2i(5,4)), # trees.png, 1st red tree top
+			TileDef.new('Foreground', 1, Vector2i(6,4)), # trees.png, 2nd red tree top
 			TileDef.new('Foreground', 1, Vector2i(0,6)), # trees.png, 1st submerged tree top
 			TileDef.new('Foreground', 1, Vector2i(1,6)), # trees.png, 2nd submerged tree top
 			TileDef.new('Foreground', 1, Vector2i(2,6)), # trees.png, 3rd submerged tree top
