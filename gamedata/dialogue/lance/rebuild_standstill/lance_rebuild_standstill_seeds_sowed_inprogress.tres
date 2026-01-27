@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://bmpeqrcv6fc18"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_d242s"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_60ql2"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_xd5e1"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_60ql2"]
+
+[sub_resource type="Resource" id="Resource_rnwi4"]
+script = ExtResource("1_d242s")
+lines = Array[String](["Let me know when you've planted all those Regrowth Seeds, @. I want to watch it with my own eyes."])
+animation = "talk"
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[resource]
+script = ExtResource("3_60ql2")
+items = Array[ExtResource("1_d242s")]([SubResource("Resource_rnwi4")])
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"

@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://c4bvqfdtvnvpt"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_5ki6k"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_14uti"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_sx21e"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_sx21e"]
+
+[sub_resource type="Resource" id="Resource_kmcl4"]
+script = ExtResource("1_5ki6k")
+lines = Array[String](["Okay, I'll put a little Affinity into it, just like the Prime Minister said...", "Well, I've got more seeds left, so I can't be done. On to the next hole!"])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[resource]
+script = ExtResource("3_sx21e")
+items = Array[ExtResource("1_5ki6k")]([SubResource("Resource_kmcl4")])
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"

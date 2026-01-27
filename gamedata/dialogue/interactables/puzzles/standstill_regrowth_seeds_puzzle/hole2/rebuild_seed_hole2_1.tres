@@ -1,0 +1,39 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=13 format=3 uid="uid://da0dswihw3xcl"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_mwlq4"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_0r27y"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_06dke"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_06dke"]
+[ext_resource type="Script" uid="uid://b6oofnelefs8o" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_d8myj"]
+[ext_resource type="Resource" uid="uid://7fhgi1siamkn" path="res://gamedata/dialogue/interactables/puzzles/standstill_regrowth_seeds_puzzle/rebuild_seed_done.tres" id="4_jyjde"]
+[ext_resource type="Resource" uid="uid://c4bvqfdtvnvpt" path="res://gamedata/dialogue/interactables/puzzles/standstill_regrowth_seeds_puzzle/rebuild_seed_next.tres" id="4_md16q"]
+[ext_resource type="Resource" uid="uid://c4aq8eghah028" path="res://gamedata/puzzles/standstill/rebuild_standstill_regrowth_seeds.tres" id="4_t5vko"]
+[ext_resource type="Script" uid="uid://rq70khw4bw6c" path="res://scripts/dialogue/choice_types/puzzle_dialogue_choice.gd" id="5_md16q"]
+
+[sub_resource type="Resource" id="Resource_t5vko"]
+script = ExtResource("2_06dke")
+choiceBtn = "No."
+isDeclineChoice = true
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_jyjde"]
+script = ExtResource("5_md16q")
+puzzle = ExtResource("4_t5vko")
+puzzleStateIndex = 1
+acceptsSolve = true
+setsState = "planted"
+leadsToIfSolveFails = ExtResource("4_md16q")
+choiceBtn = "Yes."
+leadsTo = ExtResource("4_jyjde")
+metadata/_custom_type_script = "uid://rq70khw4bw6c"
+
+[sub_resource type="Resource" id="Resource_d8myj"]
+script = ExtResource("1_mwlq4")
+lines = Array[String](["Plant Regrowth Seeds into the hole?"])
+choices = Array[ExtResource("2_06dke")]([SubResource("Resource_t5vko"), SubResource("Resource_jyjde")])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[resource]
+script = ExtResource("3_06dke")
+items = Array[ExtResource("1_mwlq4")]([SubResource("Resource_d8myj")])
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"

@@ -21,12 +21,12 @@ class_name StatePuzzleDecoration
 ## dictionary of String -> InteractableDialogue objects. Each key is a state of the StatePuzzle, each InteractableDialogue the dialogue that will be played when interacting with this decoration in that puzzle state
 @export var stateDialogues: Dictionary[String, InteractableDialogue] = {}
 
-## the dialogue to show when the player doesn't have the prerequisite story requirements. `dialogue` is for the "unsolved but passes prereqs" dialogue
+## the dialogue to show when the player doesn't have the prerequisite story requirements to attempt the puzzle. `Interactable.dialogue` is for the "unsolved but passes prereqs" dialogue
 @export var failedPrereqsDialogue: InteractableDialogue = null
 
 @export var disableDialogueSpeakerSprite: bool = false
 
-## if true, the collision is disabled as soon as the puzzle is solved
+## the collision will be disabled as soon as the puzzle is in one of the below states, otherwise it is active
 @export var disableCollisionInStates: Array[String] = []
 
 ## if true, the animation is updated to the current state's `stateAnimations` entry animation immediately after finishing the `stateTransitionAnimations` entry animation. By setting to false, you must manually update the animation later in the solving dialogue sequence, if required

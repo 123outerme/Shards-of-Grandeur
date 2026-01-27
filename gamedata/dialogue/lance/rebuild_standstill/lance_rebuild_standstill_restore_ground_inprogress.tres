@@ -1,0 +1,46 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=13 format=3 uid="uid://bg0lk8ibt3olh"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_qera5"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_4r8eg"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_27g23"]
+[ext_resource type="Script" uid="uid://fw22o8hbosnk" path="res://scripts/inventory/inventory_slot.gd" id="3_4r8eg"]
+[ext_resource type="Script" uid="uid://b6oofnelefs8o" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_aiwbb"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_xjyk2"]
+[ext_resource type="Resource" uid="uid://dhew177ubs6du" path="res://gamedata/items/key_items/regrowth_seeds.tres" id="4_xjyk2"]
+
+[sub_resource type="Resource" id="Resource_d5u6i"]
+script = ExtResource("2_27g23")
+choiceBtn = "Not Yet."
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_aiwbb"]
+script = ExtResource("1_qera5")
+lines = Array[String](["Are you done figuring out how to regrow the plant life in Standstill?"])
+animation = "talk"
+choices = Array[ExtResource("2_27g23")]([SubResource("Resource_d5u6i")])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[sub_resource type="Resource" id="Resource_nqeni"]
+script = ExtResource("1_qera5")
+lines = Array[String](["I know you're working on it."])
+animation = "talk"
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[sub_resource type="Resource" id="Resource_27g23"]
+script = ExtResource("3_4r8eg")
+item = ExtResource("4_xjyk2")
+count = 3
+metadata/_custom_type_script = "uid://fw22o8hbosnk"
+
+[sub_resource type="Resource" id="Resource_xjyk2"]
+script = ExtResource("2_4r8eg")
+prereqQuests = Array[String](["Rebuild Standstill#Healing The Land"])
+invalidAfterCompletingQuests = Array[String](["Rebuild Standstill#Sow These Seeds"])
+invalidFromHavingItems = Array[ExtResource("3_4r8eg")]([SubResource("Resource_27g23")])
+metadata/_custom_type_script = "uid://bjesn36acj0uh"
+
+[resource]
+script = ExtResource("3_xjyk2")
+items = Array[ExtResource("1_qera5")]([SubResource("Resource_aiwbb"), SubResource("Resource_nqeni")])
+ordStoryRequirements = Array[ExtResource("2_4r8eg")]([SubResource("Resource_xjyk2")])
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"

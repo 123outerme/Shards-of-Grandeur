@@ -1,12 +1,14 @@
-[gd_resource type="Resource" script_class="NpcShop" load_steps=27 format=3 uid="uid://bj5oava6twfyq"]
+[gd_resource type="Resource" script_class="NpcShop" load_steps=32 format=3 uid="uid://bj5oava6twfyq"]
 
 [ext_resource type="Script" uid="uid://c02s6f1mg2nhw" path="res://scripts/npcs/npc_shop.gd" id="1_2hats"]
 [ext_resource type="Script" uid="uid://dvhu11n6qar12" path="res://scripts/inventory/shop_inventory_slot.gd" id="2_7yktm"]
 [ext_resource type="Resource" uid="uid://cl71ahl7hjw1d" path="res://gamedata/items/armor/darksteel_helm.tres" id="3_nnjj6"]
 [ext_resource type="Resource" uid="uid://rct468lp6aej" path="res://gamedata/items/weapon/darksteel_sword.tres" id="4_jhgu5"]
 [ext_resource type="Script" uid="uid://fw22o8hbosnk" path="res://scripts/inventory/inventory_slot.gd" id="5_2byhs"]
+[ext_resource type="Resource" uid="uid://ci5tnagq4jkci" path="res://gamedata/items/weapon/mushroom_mace.tres" id="6_poqqj"]
 [ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="6_xtlge"]
 [ext_resource type="Resource" uid="uid://cee5cmqs38if0" path="res://gamedata/items/weapon/thunder_mace.tres" id="7_cv4yy"]
+[ext_resource type="Resource" uid="uid://hit2ffdq1l8a" path="res://gamedata/items/armor/mushroom_cap.tres" id="7_hwvtj"]
 [ext_resource type="Resource" uid="uid://jhhxu2gbjenp" path="res://gamedata/items/armor/standard_issue_mail.tres" id="8_3ltlq"]
 [ext_resource type="Resource" uid="uid://df8cprg6vpti3" path="res://gamedata/items/weapon/curved_knife.tres" id="9_qcymx"]
 [ext_resource type="Resource" uid="uid://3a2aqxqx230t" path="res://gamedata/items/armor/tempered_helm.tres" id="10_am35s"]
@@ -22,6 +24,27 @@ script = ExtResource("2_7yktm")
 storyRequirements = SubResource("Resource_mpg84")
 sinceVersion = "0.4.2"
 item = ExtResource("11_mpg84")
+metadata/_custom_type_script = "uid://dvhu11n6qar12"
+
+[sub_resource type="Resource" id="Resource_poqqj"]
+script = ExtResource("6_xtlge")
+minAct = 2
+prereqQuests = Array[String](["Rebuild Standstill#Sow These Seeds"])
+prereqCutscenes = Array[String](["rebuild_standstill_regrowth_seeds_planted"])
+metadata/_custom_type_script = "uid://bjesn36acj0uh"
+
+[sub_resource type="Resource" id="Resource_hwvtj"]
+script = ExtResource("2_7yktm")
+storyRequirements = SubResource("Resource_poqqj")
+sinceVersion = "0.4.2"
+item = ExtResource("6_poqqj")
+metadata/_custom_type_script = "uid://dvhu11n6qar12"
+
+[sub_resource type="Resource" id="Resource_o040v"]
+script = ExtResource("2_7yktm")
+storyRequirements = SubResource("Resource_poqqj")
+sinceVersion = "0.4.2"
+item = ExtResource("7_hwvtj")
 metadata/_custom_type_script = "uid://dvhu11n6qar12"
 
 [sub_resource type="Resource" id="Resource_ovr6d"]
@@ -88,4 +111,4 @@ item = ExtResource("10_am35s")
 
 [resource]
 script = ExtResource("1_2hats")
-shopItemSlots = Array[ExtResource("2_7yktm")]([SubResource("Resource_4xla2"), SubResource("Resource_ovr6d"), SubResource("Resource_wwlcl"), SubResource("Resource_ul4tl"), SubResource("Resource_xyfhi"), SubResource("Resource_u4gnw"), SubResource("Resource_tiwki")])
+shopItemSlots = Array[ExtResource("2_7yktm")]([SubResource("Resource_4xla2"), SubResource("Resource_hwvtj"), SubResource("Resource_o040v"), SubResource("Resource_ovr6d"), SubResource("Resource_wwlcl"), SubResource("Resource_ul4tl"), SubResource("Resource_xyfhi"), SubResource("Resource_u4gnw"), SubResource("Resource_tiwki")])

@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=4 uid="uid://dyya5ljxgcvlx"]
+[gd_scene load_steps=47 format=4 uid="uid://dyya5ljxgcvlx"]
 
 [ext_resource type="Script" uid="uid://vg00rfnn3346" path="res://scripts/overworld/map_script.gd" id="1_2ghcv"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_kph06"]
@@ -26,6 +26,7 @@
 [ext_resource type="SpriteFrames" uid="uid://bknyw6b8fi6f" path="res://graphics/animations/a_alessia_burned.tres" id="19_ll4e0"]
 [ext_resource type="Resource" uid="uid://d0aiblruuxre4" path="res://gamedata/dialogue/alessia/alessia_burned_healed_1.tres" id="20_0076e"]
 [ext_resource type="Resource" uid="uid://b0saocdcj13je" path="res://gamedata/dialogue/lance/rebuild_standstill/lance_rebuild_standstill_heal_alessia_inprogress.tres" id="20_kbqqb"]
+[ext_resource type="Resource" uid="uid://bg0lk8ibt3olh" path="res://gamedata/dialogue/lance/rebuild_standstill/lance_rebuild_standstill_restore_ground_inprogress.tres" id="23_ll4e0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_86df0"]
 atlas = ExtResource("16_ev6bm")
@@ -290,7 +291,7 @@ spriteStatesDict = Dictionary[String, ExtResource("10_o2viv")]({
 "default": SubResource("Resource_ll4e0")
 })
 data = SubResource("Resource_eipj7")
-dialogueEntries = Array[ExtResource("5_fmisr")]([ExtResource("20_kbqqb"), ExtResource("13_ln4wi")])
+dialogueEntries = Array[ExtResource("5_fmisr")]([ExtResource("20_kbqqb"), ExtResource("23_ll4e0"), ExtResource("13_ln4wi")])
 npcShop = ExtResource("12_oygwg")
 
 [node name="NPCSprite" parent="TilemapRoot/Lance" index="0"]

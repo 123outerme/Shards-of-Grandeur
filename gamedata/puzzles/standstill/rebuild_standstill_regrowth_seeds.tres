@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="StatePuzzle" load_steps=7 format=3 uid="uid://c4aq8eghah028"]
+
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="1_b3foh"]
+[ext_resource type="Script" uid="uid://l1a7t2fpf7x4" path="res://scripts/overworld/puzzles/state_puzzle.gd" id="2_dsgab"]
+[ext_resource type="Script" uid="uid://2ggfbo5xh0ho" path="res://scripts/overworld/puzzles/puzzle_mechanic.gd" id="3_ahae6"]
+[ext_resource type="Resource" uid="uid://dhew177ubs6du" path="res://gamedata/items/key_items/regrowth_seeds.tres" id="4_ahae6"]
+[ext_resource type="Script" uid="uid://6y7m1ycv3tei" path="res://scripts/overworld/puzzles/puzzle_mechanics/items_puzzle_mechanic.gd" id="5_xurwe"]
+
+[sub_resource type="Resource" id="Resource_a2pyq"]
+script = ExtResource("5_xurwe")
+item = ExtResource("4_ahae6")
+metadata/_custom_type_script = "uid://6y7m1ycv3tei"
+
+[resource]
+script = ExtResource("2_dsgab")
+defaultStates = Array[String](["default", "default", "default"])
+solvedStates = Array[String](["planted", "planted", "planted"])
+stateTransitionPuzzleMechanics = Dictionary[String, ExtResource("3_ahae6")]({
+"default>planted": SubResource("Resource_a2pyq")
+})
+id = "rebuild_standstill_regrowth_seeds"
+metadata/_custom_type_script = "uid://l1a7t2fpf7x4"

@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=8 format=3 uid="uid://bw0gwrm1dbtd8"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_8xfjl"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_8r76g"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_yyptg"]
+[ext_resource type="Script" uid="uid://b6oofnelefs8o" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_pubny"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_yyptg"]
+
+[sub_resource type="Resource" id="Resource_keqg8"]
+script = ExtResource("2_yyptg")
+choiceBtn = "Oh, Yeah."
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_pubny"]
+script = ExtResource("1_8xfjl")
+lines = Array[String](["This hole already has Regrowth Seeds filled in."])
+choices = Array[ExtResource("2_yyptg")]([SubResource("Resource_keqg8")])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[resource]
+script = ExtResource("3_yyptg")
+items = Array[ExtResource("1_8xfjl")]([SubResource("Resource_pubny")])
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"
