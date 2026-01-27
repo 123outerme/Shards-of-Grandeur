@@ -11,136 +11,53 @@
 [sub_resource type="Resource" id="Resource_co4cg"]
 script = ExtResource("1_swjlq")
 choiceBtn = "You mean, the Cave?"
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("3_jqaqk")]([])
-repeatsItem = false
-buttonDims = Vector2(80, 40)
-turnsInQuest = ""
 isDeclineChoice = true
 
 [sub_resource type="Resource" id="Resource_84smw"]
 script = ExtResource("2_ye5ti")
 lines = Array[String](["Welcome to Leavenport, traveller. I am the prime minister of Leavenport, and attend to all its affairs.", "I can tell you hail from Grandstone. Although we have great relationship with your city, we cannot aid you in your quest."])
-minShowSecs = Array[float]([])
 animation = "talk"
-speakerOverride = ""
-actorAnimation = ""
-animateActorTreePath = ""
-animateActorIsPlayer = false
 choices = Array[ExtResource("1_swjlq")]([SubResource("Resource_co4cg")])
 
 [sub_resource type="Resource" id="Resource_rtd3l"]
 script = ExtResource("1_swjlq")
 choiceBtn = "Yeah, I do, we're at war."
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("3_jqaqk")]([])
-repeatsItem = false
-buttonDims = Vector2(80, 40)
-turnsInQuest = ""
 isDeclineChoice = true
 
 [sub_resource type="Resource" id="Resource_djbng"]
 script = ExtResource("2_ye5ti")
 lines = Array[String](["Right, the Radiant Cave. Leavenport has no great need for the powers of magic. We already thrive without it.", "Furthermore, our cooperation would anger Steelspire, a great military might. You must understand."])
-minShowSecs = Array[float]([])
 animation = "talk"
-speakerOverride = ""
-actorAnimation = ""
-animateActorTreePath = ""
-animateActorIsPlayer = false
 choices = Array[ExtResource("1_swjlq")]([SubResource("Resource_rtd3l")])
 
 [sub_resource type="Resource" id="Resource_65kra"]
 script = ExtResource("1_swjlq")
 choiceBtn = "I understand."
 leadsTo = ExtResource("4_xshmh")
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("3_jqaqk")]([])
-repeatsItem = false
-buttonDims = Vector2(80, 40)
-turnsInQuest = ""
 isDeclineChoice = true
 
 [sub_resource type="Resource" id="Resource_c8dwt"]
 script = ExtResource("4_b7ocu")
-minAct = 0
-maxAct = -1
-prereqQuests = Array[String]([])
-prereqCutscenes = Array[String]([])
 prereqDialogues = Array[String](["leavenport_pm#lp_pm_gift"])
-prereqPlacesVisited = Array[String]([])
-prereqSpecialBattles = Array[String]([])
-prereqDefeatedEnemies = Array[String]([])
-prereqPuzzles = Array[String]([])
-prereqPuzzleStates = Dictionary[String, Array]({})
-prereqDiscoveredEvolutions = Array[String]([])
-prereqHavingFollowers = Array[String]([])
-prereqHasItems = Array[ExtResource("5_ta75d")]([])
-invalidAfterCompletingQuests = Array[String]([])
-invalidAfterFailingQuests = Array[String]([])
-invalidAfterCutscenes = Array[String]([])
-invalidAfterDialogues = Array[String]([])
-invalidAfterVistingPlaces = Array[String]([])
-invalidAfterSpecialBattles = Array[String]([])
-invalidAfterSolvingPuzzles = Array[String]([])
-invalidFromPuzzleStates = Dictionary[String, Array]({})
-invalidFromHavingFollowers = Array[String]([])
-invalidFromHavingItems = Array[ExtResource("5_ta75d")]([])
 
 [sub_resource type="Resource" id="Resource_i26ru"]
 script = ExtResource("1_swjlq")
 choiceBtn = "I understand."
 storyRequirements = SubResource("Resource_c8dwt")
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("3_jqaqk")]([])
-repeatsItem = false
-buttonDims = Vector2(80, 40)
-turnsInQuest = ""
 isDeclineChoice = true
 
 [sub_resource type="Resource" id="Resource_cbwby"]
 script = ExtResource("2_ye5ti")
 lines = Array[String](["At war? I knew that it was just a matter of time. Then you see why we must remain neutral.", "You may remain purely as a visitor, but do not bring your war into our borders."])
-minShowSecs = Array[float]([])
 animation = "talk"
-speakerOverride = ""
-actorAnimation = ""
-animateActorTreePath = ""
-animateActorIsPlayer = false
 choices = Array[ExtResource("1_swjlq")]([SubResource("Resource_65kra"), SubResource("Resource_i26ru")])
 
 [sub_resource type="Resource" id="Resource_75cvf"]
 script = ExtResource("4_b7ocu")
-minAct = 0
-maxAct = -1
-prereqQuests = Array[String]([])
-prereqCutscenes = Array[String]([])
-prereqDialogues = Array[String]([])
-prereqPlacesVisited = Array[String]([])
-prereqSpecialBattles = Array[String]([])
-prereqDefeatedEnemies = Array[String]([])
-prereqPuzzles = Array[String]([])
-prereqPuzzleStates = Dictionary[String, Array]({})
-prereqDiscoveredEvolutions = Array[String]([])
-prereqHavingFollowers = Array[String]([])
-prereqHasItems = Array[ExtResource("5_ta75d")]([])
-invalidAfterCompletingQuests = Array[String]([])
-invalidAfterFailingQuests = Array[String]([])
 invalidAfterCutscenes = Array[String](["leavenport_takeover"])
-invalidAfterDialogues = Array[String]([])
-invalidAfterVistingPlaces = Array[String]([])
-invalidAfterSpecialBattles = Array[String]([])
-invalidAfterSolvingPuzzles = Array[String]([])
-invalidFromPuzzleStates = Dictionary[String, Array]({})
-invalidFromHavingFollowers = Array[String]([])
-invalidFromHavingItems = Array[ExtResource("5_ta75d")]([])
 
 [resource]
 script = ExtResource("3_n2gfd")
 entryId = "lp_pm_intro"
 items = Array[ExtResource("2_ye5ti")]([SubResource("Resource_84smw"), SubResource("Resource_djbng"), SubResource("Resource_cbwby")])
 storyRequirements = SubResource("Resource_75cvf")
-ordStoryRequirements = Array[ExtResource("4_b7ocu")]([])
-closesDialogue = false
-fullHealsPlayer = false
-annotation = ""

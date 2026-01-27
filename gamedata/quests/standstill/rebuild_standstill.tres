@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Quest" load_steps=33 format=3 uid="uid://dnghhx8h5dgtw"]
+[gd_resource type="Resource" script_class="Quest" load_steps=36 format=3 uid="uid://dnghhx8h5dgtw"]
 
 [ext_resource type="Script" uid="uid://bnw42uegqk4wp" path="res://scripts/quests/quest.gd" id="1_ywcmt"]
 [ext_resource type="Script" uid="uid://b3j2bj1p0bkq8" path="res://scripts/quests/quest_step.gd" id="2_io756"]
@@ -15,6 +15,8 @@
 [ext_resource type="Resource" uid="uid://cxhvabgb5jtb4" path="res://gamedata/dialogue/forbidden_desert_east/elder_affinity_tree_touched_turnin.tres" id="12_0v1cp"]
 [ext_resource type="Resource" uid="uid://clxke1qdlsyhg" path="res://gamedata/dialogue/forbidden_desert_east/elder_affinity_tree_start_turnin.tres" id="12_t3ikc"]
 [ext_resource type="Resource" uid="uid://d8ekthe4cbps" path="res://gamedata/dialogue/lance/rebuild_standstill/lance_rebuild_standstill_heal_alessia_turnin.tres" id="15_t3ikc"]
+[ext_resource type="Resource" uid="uid://bdmlv2l6gd2hq" path="res://gamedata/dialogue/leavenport/prime_minister/rebuild_standstill/lp_pm_rebuild_standstill_healing_land.tres" id="16_8ndah"]
+[ext_resource type="Resource" uid="uid://b860uefsncq4i" path="res://gamedata/dialogue/leavenport/prime_minister/rebuild_standstill/lp_pm_rebuild_standstill_healing_land_turnin.tres" id="17_upj30"]
 
 [sub_resource type="Resource" id="Resource_2k0y8"]
 script = ExtResource("6_0vkka")
@@ -161,14 +163,32 @@ name = "Healing the Land"
 description = "Visit the Prime Minister in Leavenport to search for a way to heal the charred land."
 locations = Array[int]([30])
 turnInLocations = Array[int]([30])
-objectiveName = "---#---"
+objectiveName = "leavenport_pm#healing_standstill_land"
 displayObjName = "Prime Minister"
 displayTurnInName = "Prime Minister"
+turnInDialogue = Array[ExtResource("3_rysse")]([ExtResource("17_upj30")])
+inProgressDialogue = Array[ExtResource("3_rysse")]([ExtResource("16_8ndah")])
 metadata/_custom_type_script = "uid://b3j2bj1p0bkq8"
 
 [sub_resource type="Resource" id="Resource_c7yo6"]
 script = ExtResource("2_io756")
-name = "WIP (multiple steps?)"
+name = "Stop The Shrooms"
+description = "Defeat the Shroom Gnomes that eat the magic seeds that can heal Standstill!"
+locations = Array[int]([22])
+type = 2
+count = 4
+objectiveName = "shroom_gnome"
+displayObjName = "Shroom Gnome"
+metadata/_custom_type_script = "uid://b3j2bj1p0bkq8"
+
+[sub_resource type="Resource" id="Resource_ucmca"]
+script = ExtResource("2_io756")
+name = "The Magic Seeds"
+description = "Now that the Shroom Gnomes have been fended off, collect the Regrowth Seeds they like."
+locations = Array[int]([22])
+count = 3
+objectiveName = "Regrowth Seeds"
+displayObjName = "Regrowth Seeds"
 metadata/_custom_type_script = "uid://b3j2bj1p0bkq8"
 
 [sub_resource type="Resource" id="Resource_fkgyy"]
@@ -195,4 +215,5 @@ metadata/_custom_type_script = "uid://b3j2bj1p0bkq8"
 script = ExtResource("1_ywcmt")
 questName = "Rebuild Standstill"
 description = "After the Chain Legion attacked Standstill, the once vibrant village has been reduced to rubble and ash... Grandstone must help them, and you must lead the aid!"
-steps = Array[ExtResource("2_io756")]([SubResource("Resource_yoc8b"), SubResource("Resource_82t2o"), SubResource("Resource_ivwxp"), SubResource("Resource_t3ikc"), SubResource("Resource_8ndah"), SubResource("Resource_v3smn"), SubResource("Resource_2itk1"), SubResource("Resource_l7y7p"), SubResource("Resource_r246m"), SubResource("Resource_0vkka"), SubResource("Resource_c7yo6"), SubResource("Resource_fkgyy"), SubResource("Resource_tgj1o")])
+steps = Array[ExtResource("2_io756")]([SubResource("Resource_yoc8b"), SubResource("Resource_82t2o"), SubResource("Resource_ivwxp"), SubResource("Resource_t3ikc"), SubResource("Resource_8ndah"), SubResource("Resource_v3smn"), SubResource("Resource_2itk1"), SubResource("Resource_l7y7p"), SubResource("Resource_r246m"), SubResource("Resource_0vkka"), SubResource("Resource_c7yo6"), SubResource("Resource_ucmca"), SubResource("Resource_fkgyy"), SubResource("Resource_tgj1o")])
+isMainQuest = true

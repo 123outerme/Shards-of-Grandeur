@@ -12,49 +12,18 @@
 script = ExtResource("2_qn0rw")
 choiceBtn = "You're Welcome."
 leadsTo = ExtResource("3_y608k")
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("4_vfqsn")]([])
-repeatsItem = false
-buttonDims = Vector2(80, 40)
-turnsInQuest = ""
 isDeclineChoice = true
 
 [sub_resource type="Resource" id="Resource_p3xiw"]
 script = ExtResource("1_jg2qn")
 lines = Array[String](["I heard about your exploits on the Leaven River, @. The Skipper told me everything.", "The Sea Wyrms were going to be a major threat to our fair port, so I appreciate your assistance."])
-minShowSecs = Array[float]([])
 animation = "talk"
-speakerOverride = ""
-actorAnimation = ""
-animateActorTreePath = ""
-animateActorIsPlayer = false
 choices = Array[ExtResource("2_qn0rw")]([SubResource("Resource_l2nqp")])
 
 [sub_resource type="Resource" id="Resource_bpcko"]
 script = ExtResource("2_deail")
-minAct = 0
-maxAct = -1
 prereqQuests = Array[String](["Angry Angler#Danger on the Leaven River"])
-prereqCutscenes = Array[String]([])
-prereqDialogues = Array[String]([])
-prereqPlacesVisited = Array[String]([])
-prereqSpecialBattles = Array[String]([])
-prereqDefeatedEnemies = Array[String]([])
-prereqPuzzles = Array[String]([])
-prereqPuzzleStates = Dictionary[String, Array]({})
-prereqDiscoveredEvolutions = Array[String]([])
-prereqHavingFollowers = Array[String]([])
-prereqHasItems = Array[ExtResource("6_g3qfb")]([])
 invalidAfterCompletingQuests = Array[String](["Angry Angler#Sea Wyrms in Retreat"])
-invalidAfterFailingQuests = Array[String]([])
-invalidAfterCutscenes = Array[String]([])
-invalidAfterDialogues = Array[String]([])
-invalidAfterVistingPlaces = Array[String]([])
-invalidAfterSpecialBattles = Array[String]([])
-invalidAfterSolvingPuzzles = Array[String]([])
-invalidFromPuzzleStates = Dictionary[String, Array]({})
-invalidFromHavingFollowers = Array[String]([])
-invalidFromHavingItems = Array[ExtResource("6_g3qfb")]([])
 metadata/_custom_type_script = "uid://bjesn36acj0uh"
 
 [resource]
@@ -62,6 +31,3 @@ script = ExtResource("3_5kabc")
 entryId = "sea_wyrm_report"
 items = Array[ExtResource("1_jg2qn")]([SubResource("Resource_p3xiw")])
 ordStoryRequirements = Array[ExtResource("2_deail")]([SubResource("Resource_bpcko")])
-closesDialogue = false
-fullHealsPlayer = false
-annotation = ""

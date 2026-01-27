@@ -1,0 +1,61 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=16 format=3 uid="uid://bdmlv2l6gd2hq"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_14y2q"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_4ior8"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_i2s34"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="3_utlb5"]
+[ext_resource type="Script" uid="uid://fw22o8hbosnk" path="res://scripts/inventory/inventory_slot.gd" id="4_utlb5"]
+[ext_resource type="Script" uid="uid://fsrd48o26kgo" path="res://scripts/dialogue/story_reqs_dialogue_item.gd" id="4_vy1ht"]
+[ext_resource type="Resource" uid="uid://6pfyouj0uvjd" path="res://gamedata/dialogue/leavenport/prime_minister/rebuild_standstill/lp_pm_rebuild_standstill_healing_land_turnin.tres" id="6_bbr0p"]
+[ext_resource type="Script" uid="uid://b6oofnelefs8o" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="7_tunr5"]
+
+[sub_resource type="Resource" id="Resource_utlb5"]
+script = ExtResource("1_14y2q")
+lines = Array[String](["Hello, @. Are your efforts against the Chain Legion going well?"])
+animation = "talk"
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[sub_resource type="Resource" id="Resource_hpweb"]
+script = ExtResource("1_14y2q")
+lines = Array[String](["It could be better. I'm helping to rebuild Standstill after their town was burned down by the Chain Legion."])
+animation = "stand"
+speakerOverride = "@"
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[sub_resource type="Resource" id="Resource_vy1ht"]
+script = ExtResource("1_14y2q")
+lines = Array[String](["You once gave me magic seeds for instantly growing trees. Do you have enough to cover a whole town?"])
+animation = "talk"
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[sub_resource type="Resource" id="Resource_tunr5"]
+script = ExtResource("2_4ior8")
+prereqDialogues = Array[String](["leavenport_pm#instant_seeds"])
+metadata/_custom_type_script = "uid://bjesn36acj0uh"
+
+[sub_resource type="Resource" id="Resource_bbr0p"]
+script = ExtResource("4_vy1ht")
+alternativeDialogueItems = Array[ExtResource("1_14y2q")]([SubResource("Resource_vy1ht")])
+alternativeStoryReqs = Array[ExtResource("2_4ior8")]([SubResource("Resource_tunr5")])
+lines = Array[String](["I'm wondering if you know of any way to spontaneously re-grow their forest. It's their livelihood."])
+animation = "talk"
+metadata/_custom_type_script = "uid://fsrd48o26kgo"
+
+[sub_resource type="Resource" id="Resource_qwo0i"]
+script = ExtResource("3_utlb5")
+choiceBtn = "You Do?"
+leadsTo = ExtResource("6_bbr0p")
+isDeclineChoice = true
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_q4kdc"]
+script = ExtResource("1_14y2q")
+lines = Array[String](["I do have the magic seeds which can instantly grow plants, but not that many of them."])
+choices = Array[ExtResource("3_utlb5")]([SubResource("Resource_qwo0i")])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[resource]
+script = ExtResource("3_i2s34")
+entryId = "healing_standstill_land"
+items = Array[ExtResource("1_14y2q")]([SubResource("Resource_utlb5"), SubResource("Resource_hpweb"), SubResource("Resource_bbr0p"), SubResource("Resource_q4kdc")])
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"

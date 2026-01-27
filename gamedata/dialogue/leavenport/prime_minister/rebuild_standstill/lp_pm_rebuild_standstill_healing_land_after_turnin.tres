@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://ba8atjy16wuek"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_65tot"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_ipaec"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="3_m6nfa"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="4_o2hbd"]
+
+[sub_resource type="Resource" id="Resource_2qx38"]
+script = ExtResource("1_65tot")
+lines = Array[String](["Great, you only need 3 seeds. You should be able to plant them in the ground and give them a little Affinity, to start the chain reaction and regrow the town's vegetation."])
+animation = "talk"
+
+[resource]
+script = ExtResource("4_o2hbd")
+items = Array[ExtResource("1_65tot")]([SubResource("Resource_2qx38")])

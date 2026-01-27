@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=6 format=3 uid="uid://cy34bd0ejaj0k"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_grcwe"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_vrchs"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_xidkl"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_xidkl"]
+
+[sub_resource type="Resource" id="Resource_p4lw2"]
+script = ExtResource("1_grcwe")
+lines = Array[String](["Now that these Shroom Gnomes are gone, it seems I can finally gather these magic Regrowth Seeds."])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[resource]
+script = ExtResource("3_xidkl")
+items = Array[ExtResource("1_grcwe")]([SubResource("Resource_p4lw2")])
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"

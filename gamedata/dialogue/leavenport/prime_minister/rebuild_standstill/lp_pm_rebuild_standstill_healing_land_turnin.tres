@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=11 format=3 uid="uid://b860uefsncq4i"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_23rt7"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_3f2yt"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_7c0yq"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_7c0yq"]
+[ext_resource type="Script" uid="uid://b6oofnelefs8o" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_xu23u"]
+[ext_resource type="Resource" path="res://gamedata/dialogue/leavenport/prime_minister/rebuild_standstill/lp_pm_rebuild_standstill_healing_land_after_turnin.tres" id="4_xu23u"]
+
+[sub_resource type="Resource" id="Resource_08f7d"]
+script = ExtResource("2_7c0yq")
+choiceBtn = "Not Ready..."
+isDeclineChoice = true
+
+[sub_resource type="Resource" id="Resource_3q6cj"]
+script = ExtResource("2_7c0yq")
+choiceBtn = "Repeat That?"
+repeatsItem = true
+
+[sub_resource type="Resource" id="Resource_botcf"]
+script = ExtResource("2_7c0yq")
+choiceBtn = "I'll Do That."
+leadsTo = ExtResource("4_xu23u")
+turnsInQuest = "Rebuild Standstill#Healing the Land"
+
+[sub_resource type="Resource" id="Resource_xu23u"]
+script = ExtResource("1_23rt7")
+lines = Array[String](["To cover the entire town would take far more than I have. I start gathering these special seeds from the Mushroom Grotto nearby.", "Unfortunately the Shroom Gnomes tend to eat these before I get to them. If you defeat 4 Shroom Gnomes, then there'll be enough seeds for you to collect a few.", "Got all that?"])
+animation = "talk"
+choices = Array[ExtResource("2_7c0yq")]([SubResource("Resource_08f7d"), SubResource("Resource_3q6cj"), SubResource("Resource_botcf")])
+
+[resource]
+script = ExtResource("3_7c0yq")
+items = Array[ExtResource("1_23rt7")]([SubResource("Resource_xu23u")])
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"

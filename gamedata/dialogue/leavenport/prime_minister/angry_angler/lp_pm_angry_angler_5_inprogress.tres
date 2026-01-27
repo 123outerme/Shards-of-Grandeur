@@ -11,78 +11,33 @@
 [sub_resource type="Resource" id="Resource_8fbpi"]
 script = ExtResource("2_xktbf")
 choiceBtn = "Wood For A Boat..."
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("3_2ise1")]([])
-repeatsItem = false
-buttonDims = Vector2(80, 40)
-turnsInQuest = ""
 isDeclineChoice = true
 
 [sub_resource type="Resource" id="Resource_4h4c0"]
 script = ExtResource("1_sf1g7")
 lines = Array[String](["Hello, @. What brings you here?"])
-minShowSecs = Array[float]([])
 animation = "talk"
-speakerOverride = ""
-actorAnimation = ""
-animateActorTreePath = ""
-animateActorIsPlayer = false
 choices = Array[ExtResource("2_xktbf")]([SubResource("Resource_8fbpi")])
 
 [sub_resource type="Resource" id="Resource_34y1d"]
 script = ExtResource("2_xktbf")
 choiceBtn = "You Do?"
 leadsTo = ExtResource("4_o0ni7")
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("3_2ise1")]([])
-repeatsItem = false
-buttonDims = Vector2(80, 40)
-turnsInQuest = ""
 isDeclineChoice = true
 
 [sub_resource type="Resource" id="Resource_50hid"]
 script = ExtResource("1_sf1g7")
 lines = Array[String](["A Sea Wyrm attacked, so you need to build a boat to go drive it back? I think that is a very good idea. I trust the Skipper's judgment on these matters.", "I think I know how I can help you source the wood you'll need."])
-minShowSecs = Array[float]([])
 animation = "talk"
-speakerOverride = ""
-actorAnimation = ""
-animateActorTreePath = ""
-animateActorIsPlayer = false
 choices = Array[ExtResource("2_xktbf")]([SubResource("Resource_34y1d")])
 
 [sub_resource type="Resource" id="Resource_twow4"]
 script = ExtResource("2_3xlmi")
-minAct = 0
-maxAct = -1
 prereqQuests = Array[String](["Angry Angler#See A Storied Sailor"])
-prereqCutscenes = Array[String]([])
-prereqDialogues = Array[String]([])
-prereqPlacesVisited = Array[String]([])
-prereqSpecialBattles = Array[String]([])
-prereqDefeatedEnemies = Array[String]([])
-prereqPuzzles = Array[String]([])
-prereqPuzzleStates = Dictionary[String, Array]({})
-prereqDiscoveredEvolutions = Array[String]([])
-prereqHavingFollowers = Array[String]([])
-prereqHasItems = Array[ExtResource("5_03388")]([])
-invalidAfterCompletingQuests = Array[String]([])
-invalidAfterFailingQuests = Array[String]([])
-invalidAfterCutscenes = Array[String]([])
 invalidAfterDialogues = Array[String](["leavenport_pm#instant_seeds"])
-invalidAfterVistingPlaces = Array[String]([])
-invalidAfterSpecialBattles = Array[String]([])
-invalidAfterSolvingPuzzles = Array[String]([])
-invalidFromPuzzleStates = Dictionary[String, Array]({})
-invalidFromHavingFollowers = Array[String]([])
-invalidFromHavingItems = Array[ExtResource("5_03388")]([])
 
 [resource]
 script = ExtResource("3_145fo")
 entryId = "instant_seeds"
 items = Array[ExtResource("1_sf1g7")]([SubResource("Resource_4h4c0"), SubResource("Resource_50hid")])
 storyRequirements = SubResource("Resource_twow4")
-ordStoryRequirements = Array[ExtResource("2_3xlmi")]([])
-closesDialogue = false
-fullHealsPlayer = false
-annotation = ""

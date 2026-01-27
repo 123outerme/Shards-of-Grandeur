@@ -1,4 +1,4 @@
-[gd_scene load_steps=80 format=4 uid="uid://juq8847hl56c"]
+[gd_scene load_steps=110 format=4 uid="uid://juq8847hl56c"]
 
 [ext_resource type="Script" uid="uid://vg00rfnn3346" path="res://scripts/overworld/map_script.gd" id="1_ajihy"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_x0la4"]
@@ -27,9 +27,14 @@
 [ext_resource type="Resource" uid="uid://cglmo18mfo05y" path="res://gamedata/items/key_items/memory_shard_1.tres" id="15_s6o02"]
 [ext_resource type="Resource" uid="uid://dpbimvvargjw0" path="res://gamedata/dialogue/interactables/ground_items/mushroom_grotto/ground_memory_shard.tres" id="15_wfg5x"]
 [ext_resource type="Resource" uid="uid://ta4xvquq2dev" path="res://gamedata/combatants/tree_bear/tree_bear.tres" id="16_5uw6k"]
+[ext_resource type="Resource" uid="uid://bpo8kvsch2v0j" path="res://gamedata/ground_items/mushroom_grotto/shroom_grotto_regrowth_seeds1.tres" id="19_ulssp"]
+[ext_resource type="Script" uid="uid://fw22o8hbosnk" path="res://scripts/inventory/inventory_slot.gd" id="20_x7ye7"]
+[ext_resource type="Resource" uid="uid://c5wlrr35y7vo0" path="res://gamedata/ground_items/mushroom_grotto/shroom_grotto_regrowth_seeds2.tres" id="21_0dpxv"]
+[ext_resource type="Resource" uid="uid://ejeijn3mg1a8" path="res://gamedata/ground_items/mushroom_grotto/shroom_grotto_regrowth_seeds3.tres" id="22_f0xdx"]
 [ext_resource type="Resource" uid="uid://bwg8cky4fu6ri" path="res://gamedata/combatants/mystic_fox/mystic_fox.tres" id="24_4qonj"]
 [ext_resource type="Resource" uid="uid://bhg4i01ukcdvd" path="res://gamedata/combatants/rat/rat.tres" id="25_dnjs2"]
 [ext_resource type="Script" uid="uid://bvnw0ab8d80ti" path="res://scripts/overworld/overworld_enemy/random_encounter_level_stage.gd" id="25_wqkva"]
+[ext_resource type="Resource" uid="uid://b3j5f6jtio65u" path="res://gamedata/story_requirements/locations/reqs_hilltop_burned.tres" id="29_lhol8"]
 
 [sub_resource type="Resource" id="Resource_c6dpn"]
 script = ExtResource("6_ybkn2")
@@ -72,6 +77,21 @@ script = ExtResource("12_glhvx")
 item = ExtResource("15_s6o02")
 speaker = "@"
 dialogueEntry = ExtResource("15_wfg5x")
+
+[sub_resource type="Resource" id="Resource_nr87w"]
+script = ExtResource("4_q8bhu")
+prereqQuests = Array[String](["Rebuild Standstill#Stop The Shrooms"])
+metadata/_custom_type_script = "uid://bjesn36acj0uh"
+
+[sub_resource type="Resource" id="Resource_mkt3i"]
+script = ExtResource("4_q8bhu")
+prereqQuests = Array[String](["Rebuild Standstill#Stop The Shrooms"])
+metadata/_custom_type_script = "uid://bjesn36acj0uh"
+
+[sub_resource type="Resource" id="Resource_el0dp"]
+script = ExtResource("4_q8bhu")
+prereqQuests = Array[String](["Rebuild Standstill#Stop The Shrooms"])
+metadata/_custom_type_script = "uid://bjesn36acj0uh"
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_hwgpv"]
 vertices = PackedVector2Array(-327, 87, -327, 124, -329, 124, -329, 108, -345, 87, -345, 108, -231, 103, -231, 108, -247, 108, -249, 103, -249, 124, -247, 124, 57, 92, 39, 92, 39, 71, 57, 71, -279, 76, -281, 76, -281, 55, -279, 55, -311, 60, -313, 60, -313, 39, -311, 39, -199, 60, -217, 60, -217, 23, -199, 23, -87.9375, 37.0625, -87, 36.9219, -87, 44, -89, 44, -89, 36.9219, 489, -57, 505, -57, 505, -36, 489, -36, 489, -20, 487, -20, 487, -36, 487, -57, 471, -36, 471, -57, 489, -73, 487, -73, 169, -164, 167, -164, 167, -185, 169, -185, 39, -233, 57, -233, 57, -212, 41, -212, 39, -217, 41, -196, 39, -196, 39, -212, 7, -212, 7, -217, 201, -233, 201, -212, 199, -212, 199, -228, 183, -233, 183, -228, -359, -249, -359, -228, -361, -228, -361, -244, -375, -249, -377, -244, -377, -265, -375, -265, 201, -297, 201, -276, 185, -276, 167, -297, 185, -260, 183, -260, 183, -276, 167, -276, 281, -297, 281, -292, 265, -292, 263, -297, 263, -276, 265, -276, 441, -276, 439, -276, 439, -281, 441, -281, -119, -292, -121, -292, -121, -297, -119, -297, 345, -313, 345, -308, 329, -308, 327, -313, 327, -292, 329, -292, -439, -361, -423, -361, -423, -340, -439, -340, -439, -324, -441, -324, -441, -377, -439, -377, 313, -345, 313, -324, 311, -324, 311, -340, 295, -345, 295, -340, 457, -324, 455, -324, 455, -345, 457, -345, 377, -388, 375, -388, 375, -425, 377, -425, 473, -453.039, 473, -452, 457, -452, 455, -454.406, 455, -436, 457, -436, 261.422, 67.1484, 263.727, 44, 441, 39, 473, 39, 473, 55, 457, 76, 295, 76, -264.273, -164, -183, -169, -135, -169, -167, -164, 295, -217, 455, -217, 407.727, -212, 377, -212, -439, 44, -440.273, 76, -471, 76, -485.656, 70, -492.031, 54.0703, -423.938, 5.0625, -423, 44, -536.273, 28, -439, 3.17969, -136.273, -164, -135, -153, -138.578, -140.852, -423, 4.92188, -103.938, -106.938, -103, -107.07, -103, -89, 568.062, -122.938, 569, -123.07, 569, -116, 344.062, -90.9375, 345, -91.0703, 345, -84, 559.508, -124, 505, -116, 552.062, -122.938, 537, -124.82, 281, -84, 329, -92.8203, 7, -356, 7, -363.07, 8.0625, -362.938, 25, -356, 21.4219, -364.852, 25, -372, 23.7266, -388, 55, -57, 55, -59.0703, 56.0625, -58.9375, 591.656, -132, 582.133, -132, 583.727, -148, 601, -155.562, 471, -233, 473, -233, 505, -100, 358.133, -100, 359.727, -116, 281, -25, 215, -4, 214.133, -4, 215.727, -20, 231, -137, 247, -153, 105, 28, 105, 44, -57.8672, 44, -56.2734, 28, 69.4219, -60.8516, -73.8672, 28, -72.2734, 12, -439, 92, -441.867, 92, 295, -185, 377, -188.82, 329, -116, 137, -457, 153, -457, 153, -441, 121, -388, 185, -441, 185, -436, 169, -436, 169, -404, 153, -404, 153, -388, 121, -372, 73, -372, 87, -441, 103, -457, 73, -356, 71, -356, 71, -372, -121, -425, -7, -388, -7, -372, -103, -372, -153, -409, -153, -425, -103, -356, -151, -356, -185, -393, -185, -409, -233, -361, -217, -377, -151, -276, -167, -276, -249, -329, -167, -244, -183, -244, -265, -249, -265, -329, -103, -153, -103, -132, -119, -132, -87, -89, -87, -57, -105, -20, 71.7266, -84, 71, -84, 71, -89, 87, -89, 87, -121, 105, -121, 105, -105, 185, -20, 135, -105, 135, -121, 199, -121, 199, -137, 231, -153, 247, -180, 231, -180, 231, -185, 455, -233, 487, -265, 487, -281, 489, -281, 489, -260, 473, -260, 471, -265, 503, -233, 503, -249, 519, -249, 601, -212, 537, -148, 503, -308, 487, -308, 487, -313, 505, -313, 505, -297, 503, -292, 519, -292, 521, -297, 521, -281, 551, -281, 551, -377, 633, -377, 633, -361, 663, -361, 663, -377, 665, -377, 665, -340, 633, -340, 633, -260, 617, -260, 617, -212, 231, 28, 297, -25, 297, -12.8203, 233, 44, 326.633, -25, 329, -25, 329, 23, 325.422, -12.8516, 312.062, -10.9375, 441, 23, 489, 55, 489, 76, 457, 92, 295, 92, 233, 76, 248.062, 69.0625, 233, 67.1797, 169, 92, 169, 108, 151, 108, 151, 92, 119, 92, 119, 87, 151, 87, 153, 87, 151, 71, 153, 71, 231, 87, 233, 92, 215, 28, 185, -4, 121, -4, 71, -73, 121, 28, 70.6328, -73, -105, 12, -281, -20, -281, -52, -266.578, -140.852, -167, -140.82, -151.938, -138.938, -119, -108.82, -297, -52, -297, -68, -279.938, -138.938, -313, -68, -313, -84, -295, -140.82, -505, -153, -393, -169, -391, -84, -391, -68, -407, -68, -521, -121, -407, -36, -423, -36, -553, -89, -423, -20, -439, -20, -569, -25, -471, 108, -487, 108, -518, 70, -487, 124, -489, 124, -489, 108, -569, 108, -569, 92, -538.578, 51.1484, -518, 55.1016, -585, 92, -585, 60, -551.938, 53.0625, -601, 60, -601, 39, -585, 39, -567, 51.1797, -585, -25, -567, 28, -569, -89, -553, -121, -521, -153, -505, -169, -393, -185, -375, -185, -375, -153, -281, -169, -281, -249, -249, -361, -233, -377, -217, -393, -121, -441, 87, -457, 103, -473, 137, -473, 405.422, -188.852, 392.062, -186.938, 71, -76.6797, -295, -164, -297, -169, -297, -153, -498.102, 48, -510.898, 48)
@@ -132,11 +152,19 @@ weight = 0.2
 script = ExtResource("15_dgyt7")
 weight = 0.5
 
+[sub_resource type="Resource" id="Resource_ulssp"]
+script = ExtResource("25_wqkva")
+storyRequirements = Array[ExtResource("4_q8bhu")]([ExtResource("29_lhol8")])
+minLevel = 22
+maxLevel = 24
+metadata/_custom_type_script = "uid://bvnw0ab8d80ti"
+
 [sub_resource type="Resource" id="Resource_4scpq"]
 script = ExtResource("14_e43t0")
 combatantsMinLevel = 6
 combatantsMaxLevel = 8
 combatantsLvToPlayerLvRatio = 0.95
+levelStages = Array[ExtResource("25_wqkva")]([SubResource("Resource_ulssp")])
 combatant2Options = Array[ExtResource("15_dgyt7")]([SubResource("Resource_usfdw"), SubResource("Resource_pd32i"), SubResource("Resource_n6a3j")])
 combatant3Options = Array[ExtResource("15_dgyt7")]([SubResource("Resource_dys7r"), SubResource("Resource_vqvoc"), SubResource("Resource_lqi1m")])
 combatant1 = ExtResource("13_yxvax")
@@ -171,11 +199,19 @@ weight = 0.5
 script = ExtResource("15_dgyt7")
 weight = 0.5
 
+[sub_resource type="Resource" id="Resource_x7ye7"]
+script = ExtResource("25_wqkva")
+storyRequirements = Array[ExtResource("4_q8bhu")]([ExtResource("29_lhol8")])
+minLevel = 22
+maxLevel = 24
+metadata/_custom_type_script = "uid://bvnw0ab8d80ti"
+
 [sub_resource type="Resource" id="Resource_tc1yl"]
 script = ExtResource("14_e43t0")
 combatantsMinLevel = 7
 combatantsMaxLevel = 8
 combatantsLvToPlayerLvRatio = 0.95
+levelStages = Array[ExtResource("25_wqkva")]([SubResource("Resource_x7ye7")])
 combatant2Options = Array[ExtResource("15_dgyt7")]([SubResource("Resource_lvgps"), SubResource("Resource_tvom7"), SubResource("Resource_kihof")])
 combatant3Options = Array[ExtResource("15_dgyt7")]([SubResource("Resource_47bet"), SubResource("Resource_bwqu8")])
 combatant1 = ExtResource("16_5uw6k")
@@ -215,11 +251,19 @@ weight = 0.2
 script = ExtResource("15_dgyt7")
 weight = 0.4
 
+[sub_resource type="Resource" id="Resource_0dpxv"]
+script = ExtResource("25_wqkva")
+storyRequirements = Array[ExtResource("4_q8bhu")]([ExtResource("29_lhol8")])
+minLevel = 23
+maxLevel = 24
+metadata/_custom_type_script = "uid://bvnw0ab8d80ti"
+
 [sub_resource type="Resource" id="Resource_o2ca8"]
 script = ExtResource("14_e43t0")
 combatantsMinLevel = 7
 combatantsMaxLevel = 8
 combatantsLvToPlayerLvRatio = 1.05
+levelStages = Array[ExtResource("25_wqkva")]([SubResource("Resource_0dpxv")])
 combatant2Options = Array[ExtResource("15_dgyt7")]([SubResource("Resource_8tx8h"), SubResource("Resource_kecs8"), SubResource("Resource_8as1t")])
 combatant3Options = Array[ExtResource("15_dgyt7")]([SubResource("Resource_ja647"), SubResource("Resource_0wdub"), SubResource("Resource_yerqv")])
 combatant1 = ExtResource("14_pr2nn")
@@ -259,17 +303,127 @@ weight = 0.25
 script = ExtResource("15_dgyt7")
 weight = 0.4
 
+[sub_resource type="Resource" id="Resource_f0xdx"]
+script = ExtResource("25_wqkva")
+storyRequirements = Array[ExtResource("4_q8bhu")]([ExtResource("29_lhol8")])
+minLevel = 23
+maxLevel = 24
+metadata/_custom_type_script = "uid://bvnw0ab8d80ti"
+
 [sub_resource type="Resource" id="Resource_tsk8t"]
 script = ExtResource("14_e43t0")
 combatantsMinLevel = 7
 combatantsMaxLevel = 9
 combatantsLvToPlayerLvRatio = 1.1
+levelStages = Array[ExtResource("25_wqkva")]([SubResource("Resource_f0xdx")])
 combatant2Options = Array[ExtResource("15_dgyt7")]([SubResource("Resource_8ul3h"), SubResource("Resource_8ngyb"), SubResource("Resource_f27w8")])
 combatant3Options = Array[ExtResource("15_dgyt7")]([SubResource("Resource_o2x08"), SubResource("Resource_mkexj"), SubResource("Resource_llw6u")])
 combatant1 = ExtResource("13_yxvax")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u11xh"]
 size = Vector2(177, 186)
+
+[sub_resource type="Resource" id="Resource_jlqa2"]
+script = ExtResource("12_ufwox")
+spawnerId = "shroom_grotto_5"
+metadata/_custom_type_script = "uid://dioty4gjx3hdu"
+
+[sub_resource type="Resource" id="Resource_hwusp"]
+script = ExtResource("15_dgyt7")
+combatant = ExtResource("14_pr2nn")
+weight = 0.5
+metadata/_custom_type_script = "uid://dga8cpwmm0j6h"
+
+[sub_resource type="Resource" id="Resource_bcu2q"]
+script = ExtResource("15_dgyt7")
+combatant = ExtResource("13_yxvax")
+weight = 0.3
+metadata/_custom_type_script = "uid://dga8cpwmm0j6h"
+
+[sub_resource type="Resource" id="Resource_u8g4h"]
+script = ExtResource("15_dgyt7")
+weight = 0.2
+metadata/_custom_type_script = "uid://dga8cpwmm0j6h"
+
+[sub_resource type="Resource" id="Resource_rg7bu"]
+script = ExtResource("15_dgyt7")
+combatant = ExtResource("14_pr2nn")
+weight = 0.4
+metadata/_custom_type_script = "uid://dga8cpwmm0j6h"
+
+[sub_resource type="Resource" id="Resource_tyqcw"]
+script = ExtResource("15_dgyt7")
+combatant = ExtResource("13_yxvax")
+weight = 0.35
+metadata/_custom_type_script = "uid://dga8cpwmm0j6h"
+
+[sub_resource type="Resource" id="Resource_21b4l"]
+script = ExtResource("15_dgyt7")
+weight = 0.25
+metadata/_custom_type_script = "uid://dga8cpwmm0j6h"
+
+[sub_resource type="Resource" id="Resource_lhol8"]
+script = ExtResource("14_e43t0")
+combatantsMinLevel = 23
+combatantsMaxLevel = 24
+combatant2Options = Array[ExtResource("15_dgyt7")]([SubResource("Resource_hwusp"), SubResource("Resource_bcu2q"), SubResource("Resource_u8g4h")])
+combatant3Options = Array[ExtResource("15_dgyt7")]([SubResource("Resource_rg7bu"), SubResource("Resource_tyqcw"), SubResource("Resource_21b4l")])
+combatant1 = ExtResource("14_pr2nn")
+metadata/_custom_type_script = "uid://dllqv5vxrou7r"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ulssp"]
+size = Vector2(225, 129)
+
+[sub_resource type="Resource" id="Resource_gcyhd"]
+script = ExtResource("12_ufwox")
+spawnerId = "shroom_grotto_6"
+metadata/_custom_type_script = "uid://dioty4gjx3hdu"
+
+[sub_resource type="Resource" id="Resource_f5d05"]
+script = ExtResource("15_dgyt7")
+combatant = ExtResource("14_pr2nn")
+weight = 0.5
+metadata/_custom_type_script = "uid://dga8cpwmm0j6h"
+
+[sub_resource type="Resource" id="Resource_hhepn"]
+script = ExtResource("15_dgyt7")
+combatant = ExtResource("13_yxvax")
+weight = 0.3
+metadata/_custom_type_script = "uid://dga8cpwmm0j6h"
+
+[sub_resource type="Resource" id="Resource_3qe32"]
+script = ExtResource("15_dgyt7")
+weight = 0.2
+metadata/_custom_type_script = "uid://dga8cpwmm0j6h"
+
+[sub_resource type="Resource" id="Resource_cfq67"]
+script = ExtResource("15_dgyt7")
+combatant = ExtResource("14_pr2nn")
+weight = 0.45
+metadata/_custom_type_script = "uid://dga8cpwmm0j6h"
+
+[sub_resource type="Resource" id="Resource_g77fy"]
+script = ExtResource("15_dgyt7")
+combatant = ExtResource("13_yxvax")
+weight = 0.3
+metadata/_custom_type_script = "uid://dga8cpwmm0j6h"
+
+[sub_resource type="Resource" id="Resource_vluxb"]
+script = ExtResource("15_dgyt7")
+weight = 0.25
+metadata/_custom_type_script = "uid://dga8cpwmm0j6h"
+
+[sub_resource type="Resource" id="Resource_f2bdl"]
+script = ExtResource("14_e43t0")
+combatantsMinLevel = 23
+combatantsMaxLevel = 25
+combatant2Options = Array[ExtResource("15_dgyt7")]([SubResource("Resource_f5d05"), SubResource("Resource_hhepn"), SubResource("Resource_3qe32")])
+combatant3Options = Array[ExtResource("15_dgyt7")]([SubResource("Resource_cfq67"), SubResource("Resource_g77fy"), SubResource("Resource_vluxb")])
+combatant1 = ExtResource("14_pr2nn")
+metadata/_custom_type_script = "uid://dllqv5vxrou7r"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hwusp"]
+size = Vector2(220, 123)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wexlf"]
 size = Vector2(96, 8)
@@ -350,6 +504,24 @@ position = Vector2(134, -442)
 pickedUpItem = SubResource("Resource_uca2o")
 saveName = "shroom_grotto_memshard"
 
+[node name="GroundItem" parent="TilemapRoot" instance=ExtResource("11_jehcq")]
+position = Vector2(-53, 26)
+pickedUpItem = ExtResource("19_ulssp")
+saveName = "shroom_grotto_regrowth_seeds1"
+storyRequirements = Array[ExtResource("4_q8bhu")]([SubResource("Resource_nr87w")])
+
+[node name="GroundItem2" parent="TilemapRoot" instance=ExtResource("11_jehcq")]
+position = Vector2(80, -86)
+pickedUpItem = ExtResource("21_0dpxv")
+saveName = "shroom_grotto_regrowth_seeds2"
+storyRequirements = Array[ExtResource("4_q8bhu")]([SubResource("Resource_mkt3i")])
+
+[node name="GroundItem3" parent="TilemapRoot" instance=ExtResource("11_jehcq")]
+position = Vector2(375, -213)
+pickedUpItem = ExtResource("22_f0xdx")
+saveName = "shroom_grotto_regrowth_seeds3"
+storyRequirements = Array[ExtResource("4_q8bhu")]([SubResource("Resource_el0dp")])
+
 [node name="OneTileWideNav" type="NavigationRegion2D" parent="."]
 visible = false
 modulate = Color(1, 1, 1, 0)
@@ -407,6 +579,28 @@ tilemap = NodePath("../TilemapRoot")
 position = Vector2(1.5, 1)
 shape = SubResource("RectangleShape2D_u11xh")
 
+[node name="EnemySpawner5" parent="." node_paths=PackedStringArray("tilemap") instance=ExtResource("13_8526p")]
+position = Vector2(357, 57)
+spawnerData = SubResource("Resource_jlqa2")
+enemyEncounter = SubResource("Resource_lhol8")
+storyRequirements = Array[ExtResource("4_q8bhu")]([ExtResource("29_lhol8")])
+tilemap = NodePath("../TilemapRoot")
+
+[node name="SpawnShape" parent="EnemySpawner5/SpawnArea" index="0"]
+position = Vector2(-26.5, -20.5)
+shape = SubResource("RectangleShape2D_ulssp")
+
+[node name="EnemySpawner6" parent="." node_paths=PackedStringArray("tilemap") instance=ExtResource("13_8526p")]
+position = Vector2(100, -420)
+spawnerData = SubResource("Resource_gcyhd")
+enemyEncounter = SubResource("Resource_f2bdl")
+storyRequirements = Array[ExtResource("4_q8bhu")]([ExtResource("29_lhol8")])
+tilemap = NodePath("../TilemapRoot")
+
+[node name="SpawnShape" parent="EnemySpawner6/SpawnArea" index="0"]
+position = Vector2(-23, -1.5)
+shape = SubResource("RectangleShape2D_hwusp")
+
 [node name="HilltopEastWarpZone" parent="." instance=ExtResource("3_8xw1n")]
 position = Vector2(592, -495)
 mapName = "hilltop_east"
@@ -433,5 +627,7 @@ position = Vector2(0, 41)
 [editable path="EnemySpawner2"]
 [editable path="EnemySpawner3"]
 [editable path="EnemySpawner4"]
+[editable path="EnemySpawner5"]
+[editable path="EnemySpawner6"]
 [editable path="HilltopEastWarpZone"]
 [editable path="CameraHoldZone"]
