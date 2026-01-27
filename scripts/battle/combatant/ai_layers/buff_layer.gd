@@ -5,6 +5,7 @@ enum BuffStrategy {
 	BUFF_WEAKEST = 0, ## attempt to buff the weakest stat on the weakest available target
 	BUFF_STRONGEST = 1, ## attempt to buff the strongest stat on the strongest available target
 	BUFF_SELF_ONLY = 2, ## attempt to buff self only if possible
+	BUFF_NONSELF_ALLIES_ONLY = 3, ## attempt to buff any ally but self only if possible
 }
 
 @export var buffStrategy: BuffStrategy = BuffStrategy.BUFF_STRONGEST
@@ -37,6 +38,10 @@ func weight_move_effect_on_target(user: CombatantNode, move: Move, effectType: M
 		if user != target: # only if user is not the target (since we've already calc'd with target boosts)
 			selfWeight = _calc_self_weight(user, move, effectType, orbs, target, battleState)
 		moveWeight *= selfWeight * targetWeight
+		# if the strategy is to try to buff others only, and this move can target others: weight self as 1.0 (no preference)
+		if user == target and buffStrategy == BuffStrategy.BUFF_NONSELF_ALLIES_ONLY and \
+				moveEffect.targets != BattleCommand.Targets.SELF:
+			moveWeight = 1
 	
 	if user.role != target.role:
 		moveWeight = 1 / moveWeight

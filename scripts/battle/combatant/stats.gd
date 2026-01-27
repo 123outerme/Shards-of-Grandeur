@@ -8,7 +8,7 @@ enum Category {
 	RESISTANCE = 2, ## Resistance
 	AFFINITY = 3, ## Affinity
 	SPEED = 4, ## Speed
-	HP = 5, ## not to be used except for StatGrowth 
+	HP = 5, ## not to be used except for StatGrowth
 }
 
 const MAX_MOVES: int = 4
@@ -36,7 +36,7 @@ const MAX_MOVES: int = 4
 
 @export_category("Stats - Moves")
 @export var moves: Array[Move] = []
-@export var movepool: MovePool = MovePool.new([load("res://gamedata/moves/slice/slice.tres") as Move])
+@export var movepool: MovePool = null
 
 static func category_to_string(c: Category) -> String:
 	match c:
@@ -73,8 +73,8 @@ func _init(
 	i_weapon = null,
 	i_armor = null,
 	i_accessory = null,
-	i_moves: Array[Move] = [load("res://gamedata/moves/slice/slice.tres") as Move],
-	i_movepool: MovePool = MovePool.new([load("res://gamedata/moves/slice/slice.tres") as Move]),
+	i_moves: Array[Move] = [],
+	i_movepool: MovePool = null,
 ):
 	displayName = i_displayName
 	saveName = i_saveName
@@ -127,7 +127,7 @@ static func floating_stat_pt_gain(lv: int) -> int:
 	return floor(0.1 * lv + 1)
 
 static func get_required_exp(lv: int) -> int:
-	return round( 1.1*pow(lv - 1, 2) + 25*(lv - 1) + 100 )
+	return round(1.1 * pow(lv - 1, 2) + 25 * (lv - 1) + 100)
 
 func add_exp(addingExp: int) -> int:
 	var newLevel: int = level
@@ -161,7 +161,7 @@ func set_level(lv: int):
 	for i in range(2, level + 1):
 		pts += Stats.floating_stat_pt_gain(i)
 	maxHp = statGrowth.calculate_max_hp(level)
-	physAttack = statGrowth.calculate_stat_category(level, Category.PHYS_ATK) 
+	physAttack = statGrowth.calculate_stat_category(level, Category.PHYS_ATK)
 	magicAttack = statGrowth.calculate_stat_category(level, Category.MAGIC_ATK)
 	affinity = statGrowth.calculate_stat_category(level, Category.AFFINITY)
 	resistance = statGrowth.calculate_stat_category(level, Category.RESISTANCE)

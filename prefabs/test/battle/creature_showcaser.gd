@@ -99,11 +99,10 @@ func _ready() -> void:
 				combatant.switch_evolution(combatant.get_evolution(), null)
 			if combatantLvs[idx] > combatant.stats.level:
 				combatant.level_up_nonplayer(combatantLvs[idx], combatantStatAllocStrats[idx])
-			if len(combatant.stats.moves) == 0:
-				if combatantMoves[idx] != null and len(combatantMoves[idx]) > 0:
-					combatant.stats.moves = combatantMoves[idx].duplicate(false)
-				else:
-					combatant.assign_moves_nonplayer()
+			if combatantMoves[idx] != null and len(combatantMoves[idx]) > 0:
+				combatant.stats.moves = combatantMoves[idx].duplicate(false)
+			elif len(combatant.stats.moves) == 0:
+				combatant.assign_moves_nonplayer()
 			for move: Move in combatant.stats.moves:
 				print(combatant.disp_name(), ': ', move.moveName)
 			if currentHps[idx] == -1:
@@ -130,7 +129,6 @@ func _ready() -> void:
 			for runeIdx: int in range(len(combatantRuneCasters[idx])):
 				var rune: Rune = combatantRunes[idx][runeIdx]
 				if rune != null:
-					var caster: Combatant = null
 					for cNode: CombatantNode in get_all_combatant_nodes():
 						if cNode.battlePosition == combatantRuneCasters[idx][runeIdx]:
 							rune.init_rune_state(combatantNode.combatant, [cNode.combatant], state)
@@ -161,8 +159,7 @@ func _ready() -> void:
 		
 		await start_next_round
 		
-		# advance turn number
-		battleUI.battleController.state.turnNumber += 1
+		# update turn number
 		battleUI.battlePanels.set_turn_counter(battleUI.battleController.state.turnNumber, encounter.winCon)
 
 func _on_battle_cam_menu_state_changed(battleState: BattleState.Menu) -> void:
