@@ -1,31 +1,31 @@
-[gd_resource type="Resource" script_class="WorldLocation" load_steps=7 format=3 uid="uid://utdi2p8kxqyd"]
+[gd_resource type="Resource" script_class="WorldLocation" load_steps=9 format=3 uid="uid://utdi2p8kxqyd"]
 
 [ext_resource type="Script" uid="uid://1kibgfap86bm" path="res://scripts/overworld/map_entry.gd" id="1_8d3t7"]
 [ext_resource type="AudioStream" uid="uid://cfuuyombto64k" path="res://audio/music/overworld/standstill.mp3" id="1_vslq7"]
 [ext_resource type="Script" uid="uid://dd27pbjjyrw7p" path="res://scripts/overworld/world_location.gd" id="1_yxacv"]
 [ext_resource type="Resource" uid="uid://fyqynvxrqkm6" path="res://gamedata/story_requirements/locations/reqs_standstill_burned.tres" id="2_nkt4w"]
+[ext_resource type="Resource" uid="uid://05n00vest46t" path="res://gamedata/story_requirements/locations/reqs_standstill_healing.tres" id="2_xbrus"]
+
+[sub_resource type="Resource" id="Resource_y5610"]
+script = ExtResource("1_8d3t7")
+path = "standstill/healing/standstill_mayor_house_healing"
+requirements = ExtResource("2_xbrus")
+overworldTheme = ExtResource("1_vslq7")
+metadata/_custom_type_script = "uid://1kibgfap86bm"
 
 [sub_resource type="Resource" id="Resource_vsxqu"]
 script = ExtResource("1_8d3t7")
 path = "standstill/burned_down/standstill_mayor_house_burned"
 requirements = ExtResource("2_nkt4w")
 overworldTheme = ExtResource("1_vslq7")
-battleMapName = "forest_battle_map"
-battleMusic = Array[AudioStream]([])
-isRecoverLocation = false
-recoverPosition = Vector2(0, 0)
 
 [sub_resource type="Resource" id="Resource_mjovm"]
 script = ExtResource("1_8d3t7")
 path = "standstill/standstill_mayor_house"
 overworldTheme = ExtResource("1_vslq7")
-battleMapName = "forest_battle_map"
-battleMusic = Array[AudioStream]([])
-isRecoverLocation = false
-recoverPosition = Vector2(0, 0)
 
 [resource]
 script = ExtResource("1_yxacv")
 locationName = "Standstill"
-maps = Array[ExtResource("1_8d3t7")]([SubResource("Resource_vsxqu"), SubResource("Resource_mjovm")])
+maps = Array[ExtResource("1_8d3t7")]([SubResource("Resource_y5610"), SubResource("Resource_vsxqu"), SubResource("Resource_mjovm")])
 mapLocation = 20

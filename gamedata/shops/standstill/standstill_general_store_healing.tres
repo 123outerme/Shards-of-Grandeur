@@ -1,0 +1,49 @@
+[gd_resource type="Resource" script_class="NpcShop" load_steps=13 format=3 uid="uid://bpkt63a7frkwr"]
+
+[ext_resource type="Script" uid="uid://c02s6f1mg2nhw" path="res://scripts/npcs/npc_shop.gd" id="1_r5rgt"]
+[ext_resource type="Script" uid="uid://dvhu11n6qar12" path="res://scripts/inventory/shop_inventory_slot.gd" id="2_opag2"]
+[ext_resource type="Resource" uid="uid://gsi2oasr2ndh" path="res://gamedata/items/healing/distilled_potion.tres" id="3_ug7rh"]
+[ext_resource type="Resource" uid="uid://dg5eb4c64m3nj" path="res://gamedata/items/healing/mushroom.tres" id="4_vxffx"]
+[ext_resource type="Resource" uid="uid://b2rih6hsrjtun" path="res://gamedata/items/healing/natural_remedy.tres" id="5_kgbv8"]
+[ext_resource type="Resource" uid="uid://qq710006qo2e" path="res://gamedata/items/healing/potion.tres" id="6_dx7mq"]
+[ext_resource type="Resource" uid="uid://cylyev1ny8klx" path="res://gamedata/items/key_items/reset_pearl.tres" id="7_vwh0d"]
+
+[sub_resource type="Resource" id="Resource_6ax81"]
+script = ExtResource("2_opag2")
+sinceVersion = "0.4.2"
+item = ExtResource("3_ug7rh")
+count = -1
+metadata/_custom_type_script = "uid://dvhu11n6qar12"
+
+[sub_resource type="Resource" id="Resource_i2huf"]
+script = ExtResource("2_opag2")
+sinceVersion = "0.4.2"
+item = ExtResource("4_vxffx")
+count = -1
+metadata/_custom_type_script = "uid://dvhu11n6qar12"
+
+[sub_resource type="Resource" id="Resource_ikr5v"]
+script = ExtResource("2_opag2")
+sinceVersion = "0.4.2"
+item = ExtResource("5_kgbv8")
+count = -1
+metadata/_custom_type_script = "uid://dvhu11n6qar12"
+
+[sub_resource type="Resource" id="Resource_0ltqw"]
+script = ExtResource("2_opag2")
+sinceVersion = "0.4.2"
+item = ExtResource("6_dx7mq")
+count = -1
+metadata/_custom_type_script = "uid://dvhu11n6qar12"
+
+[sub_resource type="Resource" id="Resource_hmgb3"]
+script = ExtResource("2_opag2")
+sinceVersion = "0.4.2"
+item = ExtResource("7_vwh0d")
+count = 3
+metadata/_custom_type_script = "uid://dvhu11n6qar12"
+
+[resource]
+script = ExtResource("1_r5rgt")
+shopItemSlots = Array[ExtResource("2_opag2")]([SubResource("Resource_6ax81"), SubResource("Resource_i2huf"), SubResource("Resource_ikr5v"), SubResource("Resource_0ltqw"), SubResource("Resource_hmgb3")])
+metadata/_custom_type_script = "uid://c02s6f1mg2nhw"

@@ -10,42 +10,22 @@
 [sub_resource type="Resource" id="Resource_xewkp"]
 script = ExtResource("1_a0r3n")
 choiceBtn = "Goodbye!"
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("3_dlcmq")]([])
-repeatsItem = false
 buttonDims = Vector2(180, 40)
-turnsInQuest = ""
 isDeclineChoice = true
 
 [sub_resource type="Resource" id="Resource_0olfd"]
 script = ExtResource("2_6845v")
 opensShop = true
-addsFollowerId = ""
-removesFollowerId = ""
-choiceBtn = "What do you have?"
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("3_dlcmq")]([])
-repeatsItem = false
+choiceBtn = "What Do You Have?"
 buttonDims = Vector2(320, 40)
-turnsInQuest = ""
-isDeclineChoice = false
 
 [sub_resource type="Resource" id="Resource_qckff"]
 script = ExtResource("2_blvgv")
 lines = Array[String](["Hello! Welcome to my humble general store. Make your preparations here before heading out!"])
-minShowSecs = Array[float]([])
 animation = "talk"
-speakerOverride = ""
-actorAnimation = ""
-animateActorTreePath = ""
-animateActorIsPlayer = false
 choices = Array[ExtResource("1_a0r3n")]([SubResource("Resource_xewkp"), SubResource("Resource_0olfd")])
 
 [resource]
 script = ExtResource("1_a4py2")
 entryId = "1"
 items = Array[ExtResource("2_blvgv")]([SubResource("Resource_qckff")])
-ordStoryRequirements = Array[ExtResource("5_ancmd")]([])
-closesDialogue = false
-fullHealsPlayer = false
-annotation = ""

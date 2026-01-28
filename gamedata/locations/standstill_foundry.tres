@@ -1,31 +1,31 @@
-[gd_resource type="Resource" script_class="WorldLocation" load_steps=7 format=3 uid="uid://dsv7n4j40pywc"]
+[gd_resource type="Resource" script_class="WorldLocation" load_steps=9 format=3 uid="uid://dsv7n4j40pywc"]
 
 [ext_resource type="AudioStream" uid="uid://cfuuyombto64k" path="res://audio/music/overworld/standstill.mp3" id="1_57e1c"]
 [ext_resource type="Script" uid="uid://dd27pbjjyrw7p" path="res://scripts/overworld/world_location.gd" id="1_jkt0g"]
 [ext_resource type="Script" uid="uid://1kibgfap86bm" path="res://scripts/overworld/map_entry.gd" id="1_q1fuv"]
+[ext_resource type="Resource" uid="uid://05n00vest46t" path="res://gamedata/story_requirements/locations/reqs_standstill_healing.tres" id="2_jy1dl"]
 [ext_resource type="Resource" uid="uid://fyqynvxrqkm6" path="res://gamedata/story_requirements/locations/reqs_standstill_burned.tres" id="2_vyg1x"]
+
+[sub_resource type="Resource" id="Resource_4dk5x"]
+script = ExtResource("1_q1fuv")
+path = "standstill/healing/standstill_foundry_healing"
+requirements = ExtResource("2_jy1dl")
+overworldTheme = ExtResource("1_57e1c")
+metadata/_custom_type_script = "uid://1kibgfap86bm"
 
 [sub_resource type="Resource" id="Resource_fmg82"]
 script = ExtResource("1_q1fuv")
 path = "standstill/burned_down/standstill_foundry_burned"
 requirements = ExtResource("2_vyg1x")
 overworldTheme = ExtResource("1_57e1c")
-battleMapName = "forest_battle_map"
-battleMusic = Array[AudioStream]([])
-isRecoverLocation = false
-recoverPosition = Vector2(0, 0)
 
 [sub_resource type="Resource" id="Resource_umsrs"]
 script = ExtResource("1_q1fuv")
 path = "standstill/standstill_foundry"
 overworldTheme = ExtResource("1_57e1c")
-battleMapName = "forest_battle_map"
-battleMusic = Array[AudioStream]([])
-isRecoverLocation = false
-recoverPosition = Vector2(0, 0)
 
 [resource]
 script = ExtResource("1_jkt0g")
 locationName = "Standstill"
-maps = Array[ExtResource("1_q1fuv")]([SubResource("Resource_fmg82"), SubResource("Resource_umsrs")])
+maps = Array[ExtResource("1_q1fuv")]([SubResource("Resource_4dk5x"), SubResource("Resource_fmg82"), SubResource("Resource_umsrs")])
 mapLocation = 20
