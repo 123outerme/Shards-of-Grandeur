@@ -1,0 +1,404 @@
+[gd_resource type="Resource" script_class="Cutscene" load_steps=70 format=3 uid="uid://dgltdu4q6amlu"]
+
+[ext_resource type="Script" uid="uid://cqpl74uk8cjo0" path="res://scripts/cutscenes/cutscene_frame.gd" id="1_1bjer"]
+[ext_resource type="Script" uid="uid://fpa08p2kb0ts" path="res://scripts/cutscenes/cutscene.gd" id="2_7edkn"]
+[ext_resource type="Script" uid="uid://cg21ocaokyfnx" path="res://scripts/cutscenes/actor_anim_set.gd" id="2_fckdi"]
+[ext_resource type="Script" uid="uid://fw22o8hbosnk" path="res://scripts/inventory/inventory_slot.gd" id="3_0yvph"]
+[ext_resource type="Script" uid="uid://dy2r6h7mhh2oc" path="res://scripts/cutscenes/actor_sprite_anim.gd" id="3_mxnpv"]
+[ext_resource type="Resource" uid="uid://bhhs2axr1n15b" path="res://gamedata/cutscenes/reused/player_walk_anim.tres" id="4_034rh"]
+[ext_resource type="Script" uid="uid://8oxtwxpqllgd" path="res://scripts/cutscenes/actor_face_target.gd" id="4_q3js4"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="4_wpboe"]
+[ext_resource type="Script" uid="uid://g5p5b4jsf6bs" path="res://scripts/cutscenes/actor_tween.gd" id="5_034rh"]
+[ext_resource type="Script" uid="uid://jcu0gq2ns4in" path="res://scripts/cutscenes/cutscene_dialogue.gd" id="6_i1t5u"]
+[ext_resource type="Script" uid="uid://b5d2qgg22dgbw" path="res://scripts/cutscenes/tweens/tween_vector2.gd" id="6_mxnpv"]
+[ext_resource type="Script" uid="uid://csrikyyse38e2" path="res://scripts/cutscenes/tweens/tween_bool.gd" id="9_034rh"]
+[ext_resource type="Resource" uid="uid://dcphj1dtjg3mr" path="res://gamedata/cutscenes/reused/player_stand_anim.tres" id="9_i1t5u"]
+
+[sub_resource type="Resource" id="Resource_v2sox"]
+script = ExtResource("4_q3js4")
+isPlayer = true
+metadata/_custom_type_script = "uid://8oxtwxpqllgd"
+
+[sub_resource type="Resource" id="Resource_f2o36"]
+script = ExtResource("1_1bjer")
+frameLength = 0.1
+annotation = "ensure player faces left"
+actorFaceTargets = Array[ExtResource("4_q3js4")]([SubResource("Resource_v2sox")])
+metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
+
+[sub_resource type="Resource" id="Resource_q3js4"]
+script = ExtResource("6_mxnpv")
+value = Vector2(168, -104)
+isPlayer = true
+propertyName = "position"
+metadata/_custom_type_script = "uid://b5d2qgg22dgbw"
+
+[sub_resource type="Resource" id="Resource_njqmu"]
+script = ExtResource("1_1bjer")
+frameLength = 0.9
+annotation = "the player walks forward from the door"
+actorTweens = Array[ExtResource("5_034rh")]([SubResource("Resource_q3js4")])
+actorAnims = Array[ExtResource("3_mxnpv")]([ExtResource("4_034rh")])
+metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
+
+[sub_resource type="Resource" id="Resource_6v7gq"]
+script = ExtResource("1_1bjer")
+frameLength = 0.3
+annotation = "stand and wait a beat"
+actorAnims = Array[ExtResource("3_mxnpv")]([ExtResource("9_i1t5u")])
+metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
+
+[sub_resource type="Resource" id="Resource_i1t5u"]
+script = ExtResource("9_034rh")
+actorTreePath = "TilemapRoot/Lance"
+propertyName = "invisible"
+metadata/_custom_type_script = "uid://csrikyyse38e2"
+
+[sub_resource type="Resource" id="Resource_8eg38"]
+script = ExtResource("1_1bjer")
+frameLength = 0.1
+annotation = "activate Lance"
+actorTweens = Array[ExtResource("5_034rh")]([SubResource("Resource_i1t5u")])
+metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
+
+[sub_resource type="Resource" id="Resource_7u2pf"]
+script = ExtResource("3_mxnpv")
+actorTreePath = "TilemapRoot/Lance"
+animation = "walk"
+metadata/_custom_type_script = "uid://dy2r6h7mhh2oc"
+
+[sub_resource type="Resource" id="Resource_wjtgw"]
+script = ExtResource("6_mxnpv")
+value = Vector2(192, -113)
+actorTreePath = "TilemapRoot/Lance"
+propertyName = "position"
+metadata/_custom_type_script = "uid://b5d2qgg22dgbw"
+
+[sub_resource type="Resource" id="Resource_034rh"]
+script = ExtResource("1_1bjer")
+frameLength = 1.1
+annotation = "Lance walks forward"
+actorTweens = Array[ExtResource("5_034rh")]([SubResource("Resource_wjtgw")])
+actorAnims = Array[ExtResource("3_mxnpv")]([SubResource("Resource_7u2pf")])
+metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
+
+[sub_resource type="Resource" id="Resource_ml13k"]
+script = ExtResource("3_mxnpv")
+actorTreePath = "TilemapRoot/Lance"
+animation = "stand"
+metadata/_custom_type_script = "uid://dy2r6h7mhh2oc"
+
+[sub_resource type="Resource" id="Resource_8ys2q"]
+script = ExtResource("1_1bjer")
+frameLength = 0.5
+annotation = "Lance stands, waits a beat"
+actorAnims = Array[ExtResource("3_mxnpv")]([SubResource("Resource_ml13k")])
+metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
+
+[sub_resource type="Resource" id="Resource_xudss"]
+script = ExtResource("9_034rh")
+actorTreePath = "TilemapRoot/Alessia"
+propertyName = "invisible"
+metadata/_custom_type_script = "uid://csrikyyse38e2"
+
+[sub_resource type="Resource" id="Resource_nni32"]
+script = ExtResource("1_1bjer")
+frameLength = 0.1
+annotation = "Alessia activates"
+actorTweens = Array[ExtResource("5_034rh")]([SubResource("Resource_xudss")])
+metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
+
+[sub_resource type="Resource" id="Resource_jw637"]
+script = ExtResource("3_mxnpv")
+actorTreePath = "TilemapRoot/Alessia"
+animation = "walk"
+metadata/_custom_type_script = "uid://dy2r6h7mhh2oc"
+
+[sub_resource type="Resource" id="Resource_2t614"]
+script = ExtResource("6_mxnpv")
+value = Vector2(164, -126)
+actorTreePath = "TilemapRoot/Alessia"
+propertyName = "position"
+metadata/_custom_type_script = "uid://b5d2qgg22dgbw"
+
+[sub_resource type="Resource" id="Resource_ke3b0"]
+script = ExtResource("1_1bjer")
+frameLength = 1.1
+annotation = "Alessia walks out a little slower than the rest"
+actorTweens = Array[ExtResource("5_034rh")]([SubResource("Resource_2t614")])
+actorAnims = Array[ExtResource("3_mxnpv")]([SubResource("Resource_jw637")])
+metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
+
+[sub_resource type="Resource" id="Resource_dg3jd"]
+script = ExtResource("3_mxnpv")
+actorTreePath = "TilemapRoot/Alessia"
+animation = "stand"
+metadata/_custom_type_script = "uid://dy2r6h7mhh2oc"
+
+[sub_resource type="Resource" id="Resource_dlvxn"]
+script = ExtResource("3_mxnpv")
+actorTreePath = "TilemapRoot/Lance"
+animation = "talk"
+metadata/_custom_type_script = "uid://dy2r6h7mhh2oc"
+
+[sub_resource type="Resource" id="Resource_gjsyb"]
+script = ExtResource("4_q3js4")
+isPlayer = true
+targetTreePath = "TilemapRoot/Lance"
+metadata/_custom_type_script = "uid://8oxtwxpqllgd"
+
+[sub_resource type="Resource" id="Resource_u78d1"]
+script = ExtResource("6_i1t5u")
+speaker = "Lance"
+texts = Array[String](["It's... yeah, it's all growing back..."])
+speakerActorScenePath = "TilemapRoot/Lance"
+metadata/_custom_type_script = "uid://jcu0gq2ns4in"
+
+[sub_resource type="Resource" id="Resource_glc76"]
+script = ExtResource("1_1bjer")
+frameLength = 0.1
+annotation = "Alessia stands, Lance speaks"
+actorAnims = Array[ExtResource("3_mxnpv")]([SubResource("Resource_dg3jd"), SubResource("Resource_dlvxn")])
+actorFaceTargets = Array[ExtResource("4_q3js4")]([SubResource("Resource_gjsyb")])
+dialogues = Array[ExtResource("6_i1t5u")]([SubResource("Resource_u78d1")])
+metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
+
+[sub_resource type="Resource" id="Resource_ramxa"]
+script = ExtResource("1_1bjer")
+frameLength = 0.1
+annotation = "wait for text box to be closed"
+metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
+
+[sub_resource type="Resource" id="Resource_vm6mg"]
+script = ExtResource("3_mxnpv")
+actorTreePath = "TilemapRoot/Lance"
+animation = "stand"
+metadata/_custom_type_script = "uid://dy2r6h7mhh2oc"
+
+[sub_resource type="Resource" id="Resource_l64hn"]
+script = ExtResource("6_i1t5u")
+speaker = "@"
+texts = Array[String](["The seeds worked. But not all the way, it seems.", "There's healthy grass growing here now, so that's a good start, anyways."])
+speakerActorIsPlayer = true
+metadata/_custom_type_script = "uid://jcu0gq2ns4in"
+
+[sub_resource type="Resource" id="Resource_ylh17"]
+script = ExtResource("1_1bjer")
+frameLength = 0.1
+annotation = "The player starts speaking"
+actorAnims = Array[ExtResource("3_mxnpv")]([SubResource("Resource_vm6mg")])
+dialogues = Array[ExtResource("6_i1t5u")]([SubResource("Resource_l64hn")])
+endTextBoxPauses = false
+metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
+
+[sub_resource type="Resource" id="Resource_5y14o"]
+script = ExtResource("6_mxnpv")
+value = Vector2(170, -58)
+isPlayer = true
+propertyName = "position"
+metadata/_custom_type_script = "uid://b5d2qgg22dgbw"
+
+[sub_resource type="Resource" id="Resource_hi7ri"]
+script = ExtResource("1_1bjer")
+frameLength = 1.2
+annotation = "the player walks while talking"
+actorTweens = Array[ExtResource("5_034rh")]([SubResource("Resource_5y14o")])
+actorAnims = Array[ExtResource("3_mxnpv")]([ExtResource("4_034rh")])
+endTextBoxPauses = false
+metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
+
+[sub_resource type="Resource" id="Resource_sflka"]
+script = ExtResource("1_1bjer")
+frameLength = 0.1
+annotation = "the player stands, wait for text box to be closed"
+actorAnims = Array[ExtResource("3_mxnpv")]([ExtResource("9_i1t5u")])
+metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
+
+[sub_resource type="Resource" id="Resource_dxiec"]
+script = ExtResource("6_i1t5u")
+speaker = "@"
+texts = Array[String](["Maybe it just needs some time to heal. Some of the ground is still scorched."])
+speakerActorIsPlayer = true
+metadata/_custom_type_script = "uid://jcu0gq2ns4in"
+
+[sub_resource type="Resource" id="Resource_ya8fh"]
+script = ExtResource("1_1bjer")
+frameLength = 0.1
+annotation = "The player speaks again"
+dialogues = Array[ExtResource("6_i1t5u")]([SubResource("Resource_dxiec")])
+endTextBoxPauses = false
+metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
+
+[sub_resource type="Resource" id="Resource_o4ru8"]
+script = ExtResource("4_q3js4")
+actorTreePath = "TilemapRoot/Lance"
+targetIsPlayer = true
+metadata/_custom_type_script = "uid://8oxtwxpqllgd"
+
+[sub_resource type="Resource" id="Resource_e4n6n"]
+script = ExtResource("4_q3js4")
+actorTreePath = "TilemapRoot/Alessia"
+targetIsPlayer = true
+metadata/_custom_type_script = "uid://8oxtwxpqllgd"
+
+[sub_resource type="Resource" id="Resource_fafet"]
+script = ExtResource("6_mxnpv")
+value = Vector2(192, -93)
+isPlayer = true
+propertyName = "position"
+metadata/_custom_type_script = "uid://b5d2qgg22dgbw"
+
+[sub_resource type="Resource" id="Resource_12vry"]
+script = ExtResource("1_1bjer")
+annotation = "The player speaks walking back towards Lance"
+actorTweens = Array[ExtResource("5_034rh")]([SubResource("Resource_fafet")])
+actorAnims = Array[ExtResource("3_mxnpv")]([ExtResource("4_034rh")])
+actorFaceTargets = Array[ExtResource("4_q3js4")]([SubResource("Resource_o4ru8"), SubResource("Resource_e4n6n")])
+endTextBoxPauses = false
+metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
+
+[sub_resource type="Resource" id="Resource_tql07"]
+script = ExtResource("1_1bjer")
+frameLength = 0.1
+annotation = "the player stands, wait for the textbox to be closed"
+actorAnims = Array[ExtResource("3_mxnpv")]([ExtResource("9_i1t5u")])
+metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
+
+[sub_resource type="Resource" id="Resource_nmylp"]
+script = ExtResource("1_1bjer")
+frameLength = 0.1
+annotation = "double wait for the text box to be closed"
+metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
+
+[sub_resource type="Resource" id="Resource_5hbq5"]
+script = ExtResource("3_mxnpv")
+actorTreePath = "TilemapRoot/Alessia"
+animation = "talk"
+metadata/_custom_type_script = "uid://dy2r6h7mhh2oc"
+
+[sub_resource type="Resource" id="Resource_akts2"]
+script = ExtResource("4_q3js4")
+isPlayer = true
+targetTreePath = "TilemapRoot/Alessia"
+metadata/_custom_type_script = "uid://8oxtwxpqllgd"
+
+[sub_resource type="Resource" id="Resource_gowlp"]
+script = ExtResource("6_i1t5u")
+speaker = "Alessia"
+texts = Array[String](["Right. We still have to repair the burned buildings, and clean up the dead wood.", "I might still be slow on my feet, but I can at least get started there."])
+speakerActorScenePath = "TilemapRoot/Alessia"
+metadata/_custom_type_script = "uid://jcu0gq2ns4in"
+
+[sub_resource type="Resource" id="Resource_lrjgs"]
+script = ExtResource("1_1bjer")
+frameLength = 0.1
+annotation = "Alessia responds to the player"
+actorAnims = Array[ExtResource("3_mxnpv")]([SubResource("Resource_5hbq5")])
+actorFaceTargets = Array[ExtResource("4_q3js4")]([SubResource("Resource_akts2")])
+dialogues = Array[ExtResource("6_i1t5u")]([SubResource("Resource_gowlp")])
+metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
+
+[sub_resource type="Resource" id="Resource_co0sn"]
+script = ExtResource("1_1bjer")
+frameLength = 0.1
+annotation = "wait for the text box to be closed"
+metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
+
+[sub_resource type="Resource" id="Resource_lxex4"]
+script = ExtResource("3_mxnpv")
+actorTreePath = "TilemapRoot/Lance"
+animation = "talk"
+metadata/_custom_type_script = "uid://dy2r6h7mhh2oc"
+
+[sub_resource type="Resource" id="Resource_mibrt"]
+script = ExtResource("3_mxnpv")
+actorTreePath = "TilemapRoot/Alessia"
+animation = "stand"
+metadata/_custom_type_script = "uid://dy2r6h7mhh2oc"
+
+[sub_resource type="Resource" id="Resource_ul8o2"]
+script = ExtResource("6_i1t5u")
+speaker = "Lance"
+texts = Array[String](["And it has been nice for me to see the sun and plants again...", "But my place in rebuilding the town is back in the Foundry.", "I'll be there if you need new equipment, @.", "And... thank you."])
+speakerActorScenePath = "TilemapRoot/Lance"
+metadata/_custom_type_script = "uid://jcu0gq2ns4in"
+
+[sub_resource type="Resource" id="Resource_x45kw"]
+script = ExtResource("1_1bjer")
+frameLength = 0.1
+annotation = "Lance talks"
+actorAnims = Array[ExtResource("3_mxnpv")]([SubResource("Resource_lxex4"), SubResource("Resource_mibrt")])
+dialogues = Array[ExtResource("6_i1t5u")]([SubResource("Resource_ul8o2")])
+metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
+
+[sub_resource type="Resource" id="Resource_n8s0g"]
+script = ExtResource("1_1bjer")
+frameLength = 0.1
+annotation = "wait for text box to be closed"
+metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
+
+[sub_resource type="Resource" id="Resource_xiq1e"]
+script = ExtResource("3_mxnpv")
+actorTreePath = "TilemapRoot/Lance"
+animation = "walk"
+metadata/_custom_type_script = "uid://dy2r6h7mhh2oc"
+
+[sub_resource type="Resource" id="Resource_3t466"]
+script = ExtResource("6_mxnpv")
+value = Vector2(191, -140)
+actorTreePath = "TilemapRoot/Lance"
+propertyName = "position"
+metadata/_custom_type_script = "uid://b5d2qgg22dgbw"
+
+[sub_resource type="Resource" id="Resource_s0cj7"]
+script = ExtResource("1_1bjer")
+annotation = "Lance walks back towards the house, going around Alessia"
+actorTweens = Array[ExtResource("5_034rh")]([SubResource("Resource_3t466")])
+actorAnims = Array[ExtResource("3_mxnpv")]([SubResource("Resource_xiq1e")])
+metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
+
+[sub_resource type="Resource" id="Resource_0g5a0"]
+script = ExtResource("6_mxnpv")
+value = Vector2(167, -142)
+actorTreePath = "TilemapRoot/Lance"
+propertyName = "position"
+metadata/_custom_type_script = "uid://b5d2qgg22dgbw"
+
+[sub_resource type="Resource" id="Resource_3f67p"]
+script = ExtResource("1_1bjer")
+frameLength = 0.6
+annotation = "Lance walks into the Foundry door"
+actorTweens = Array[ExtResource("5_034rh")]([SubResource("Resource_0g5a0")])
+metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
+
+[sub_resource type="Resource" id="Resource_uaptu"]
+script = ExtResource("9_034rh")
+value = true
+actorTreePath = "TilemapRoot/Lance"
+propertyName = "invisible"
+metadata/_custom_type_script = "uid://csrikyyse38e2"
+
+[sub_resource type="Resource" id="Resource_6u7cv"]
+script = ExtResource("1_1bjer")
+frameLength = 0.1
+annotation = "disable Lance"
+actorTweens = Array[ExtResource("5_034rh")]([SubResource("Resource_uaptu")])
+metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
+
+[sub_resource type="Resource" id="Resource_jko1v"]
+script = ExtResource("1_1bjer")
+frameLength = 0.5
+annotation = "pause for a beat"
+metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
+
+[sub_resource type="Resource" id="Resource_u8bfq"]
+script = ExtResource("4_wpboe")
+invalidAfterCutscenes = Array[String](["see_healing_standstill"])
+metadata/_custom_type_script = "uid://bjesn36acj0uh"
+
+[resource]
+script = ExtResource("2_7edkn")
+cutsceneFrames = Array[ExtResource("1_1bjer")]([SubResource("Resource_f2o36"), SubResource("Resource_njqmu"), SubResource("Resource_6v7gq"), SubResource("Resource_8eg38"), SubResource("Resource_034rh"), SubResource("Resource_8ys2q"), SubResource("Resource_nni32"), SubResource("Resource_ke3b0"), SubResource("Resource_glc76"), SubResource("Resource_ramxa"), SubResource("Resource_ylh17"), SubResource("Resource_hi7ri"), SubResource("Resource_sflka"), SubResource("Resource_ya8fh"), SubResource("Resource_12vry"), SubResource("Resource_tql07"), SubResource("Resource_nmylp"), SubResource("Resource_lrjgs"), SubResource("Resource_co0sn"), SubResource("Resource_x45kw"), SubResource("Resource_n8s0g"), SubResource("Resource_s0cj7"), SubResource("Resource_3f67p"), SubResource("Resource_6u7cv"), SubResource("Resource_jko1v")])
+saveName = "see_healing_standstill"
+storyRequirements = SubResource("Resource_u8bfq")
+metadata/_custom_type_script = "uid://fpa08p2kb0ts"

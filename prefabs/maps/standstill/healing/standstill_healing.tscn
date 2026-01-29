@@ -1,17 +1,22 @@
-[gd_scene load_steps=44 format=4 uid="uid://c05leiydb08mb"]
+[gd_scene load_steps=51 format=4 uid="uid://c05leiydb08mb"]
 
 [ext_resource type="Script" uid="uid://vg00rfnn3346" path="res://scripts/overworld/map_script.gd" id="1_v3efe"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_svry7"]
 [ext_resource type="PackedScene" uid="uid://coqeee0n1wuob" path="res://prefabs/entities/interactable_decoration.tscn" id="3_8barj"]
 [ext_resource type="Resource" uid="uid://dpp6m8wi1pbk2" path="res://gamedata/dialogue/standstill/standstill_sign/standstill_sign_burned.tres" id="4_pq0gj"]
+[ext_resource type="SpriteFrames" uid="uid://c6uukt3gc45t2" path="res://graphics/animations/a_lance_burned.tres" id="5_4v6kg"]
 [ext_resource type="Script" uid="uid://py7dqrwagbxi" path="res://scripts/overworld/interactable_dialogue.gd" id="5_w25yq"]
 [ext_resource type="SpriteFrames" uid="uid://buf560cqrdqay" path="res://graphics/animations/a_signpost_burned.tres" id="6_btck5"]
+[ext_resource type="SpriteFrames" uid="uid://bknyw6b8fi6f" path="res://graphics/animations/a_alessia_burned.tres" id="6_jums5"]
 [ext_resource type="PackedScene" uid="uid://bsalesakrx8yy" path="res://prefabs/entities/npc.tscn" id="7_f7igc"]
 [ext_resource type="Script" uid="uid://bwcja16pmp3mf" path="res://scripts/npcs/npc_sprite_state.gd" id="8_e3dde"]
 [ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="10_5evyl"]
 [ext_resource type="Script" uid="uid://8t63d3un22ug" path="res://scripts/npcs/npc_data.gd" id="12_33y68"]
 [ext_resource type="Resource" uid="uid://b4sjq2tyqajjt" path="res://gamedata/dialogue/standstill/standstill_sign/lances_forge_sign.tres" id="14_jums5"]
 [ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="17_swqho"]
+[ext_resource type="PackedScene" uid="uid://ckjsms2r3k2jv" path="res://prefabs/overworld/cutscene_trigger.tscn" id="25_mfi58"]
+[ext_resource type="Script" uid="uid://fpa08p2kb0ts" path="res://scripts/cutscenes/cutscene.gd" id="26_ue0ww"]
+[ext_resource type="Resource" uid="uid://dgltdu4q6amlu" path="res://gamedata/cutscenes/standstill/rebuild_standstill_see_healing_standstill.tres" id="27_hl30d"]
 [ext_resource type="SpriteFrames" uid="uid://c1moum8kfsqrt" path="res://graphics/animations/a_armory_sign.tres" id="29_htvih"]
 [ext_resource type="Texture2D" uid="uid://c3j1nagrqgxic" path="res://graphics/ui/talk_indicator_signpost.png" id="30_qin8e"]
 [ext_resource type="SpriteFrames" uid="uid://bvdn8v51w71g" path="res://graphics/animations/a_burned_inn_sign.tres" id="31_w30g2"]
@@ -22,6 +27,14 @@
 [ext_resource type="PackedScene" uid="uid://d3rsvv5iihm7t" path="res://prefabs/overworld/warp_zone.tscn" id="36_cnt8j"]
 [ext_resource type="Script" uid="uid://fw22o8hbosnk" path="res://scripts/inventory/inventory_slot.gd" id="37_uiaoc"]
 [ext_resource type="PackedScene" uid="uid://b1u1r7encrpgs" path="res://prefabs/overworld/camera_hold_zone.tscn" id="50_h5au4"]
+
+[sub_resource type="Resource" id="Resource_ocne3"]
+script = ExtResource("12_33y68")
+saveName = "npc"
+
+[sub_resource type="Resource" id="Resource_4v6kg"]
+script = ExtResource("12_33y68")
+saveName = "npc"
 
 [sub_resource type="Resource" id="Resource_iq0r8"]
 script = ExtResource("5_w25yq")
@@ -39,7 +52,7 @@ script = ExtResource("8_e3dde")
 id = "default"
 priority = -1
 
-[sub_resource type="Resource" id="Resource_4v6kg"]
+[sub_resource type="Resource" id="Resource_jums5"]
 script = ExtResource("12_33y68")
 saveName = "npc"
 position = Vector2(147, -146)
@@ -55,7 +68,7 @@ script = ExtResource("8_e3dde")
 id = "default"
 priority = -1
 
-[sub_resource type="Resource" id="Resource_jums5"]
+[sub_resource type="Resource" id="Resource_mfi58"]
 script = ExtResource("12_33y68")
 saveName = "npc"
 position = Vector2(-93, -114)
@@ -65,7 +78,7 @@ script = ExtResource("8_e3dde")
 id = "default"
 priority = -1
 
-[sub_resource type="Resource" id="Resource_mfi58"]
+[sub_resource type="Resource" id="Resource_bgyeu"]
 script = ExtResource("12_33y68")
 saveName = "npc"
 position = Vector2(-19, 62)
@@ -125,8 +138,8 @@ agent_radius = 23.0
 
 [node name="OverworldMap" type="Node2D"]
 script = ExtResource("1_v3efe")
-metadata/_edit_vertical_guides_ = [-463.0, 222.0, 367.0, 298.0]
-metadata/_edit_horizontal_guides_ = [-104.0, -70.0]
+metadata/_edit_vertical_guides_ = [164.0, 192.0]
+metadata/_edit_horizontal_guides_ = [-112.0, -126.0, -142.0]
 
 [node name="TilemapRoot" type="Node2D" parent="."]
 y_sort_enabled = true
@@ -165,6 +178,52 @@ modulate = Color(1, 1, 1, 0)
 use_parent_material = true
 tile_set = ExtResource("2_svry7")
 
+[node name="Lance" parent="TilemapRoot" instance=ExtResource("7_f7igc")]
+visible = false
+position = Vector2(167, -150)
+displayName = "Lance"
+saveName = "lance_outside_standstill_healing"
+data = SubResource("Resource_ocne3")
+
+[node name="NPCSprite" parent="TilemapRoot/Lance" index="0"]
+sprite_frames = ExtResource("5_4v6kg")
+animation = &"stand"
+
+[node name="ColliderShape" parent="TilemapRoot/Lance" index="1"]
+position = Vector2(0, 3.5)
+debug_color = Color(0, 0.5950001, 0.7, 0)
+
+[node name="TalkArea" parent="TilemapRoot/Lance" index="3"]
+position = Vector2(0, 4)
+
+[node name="TalkAreaShape" parent="TilemapRoot/Lance/TalkArea" index="0"]
+debug_color = Color(0, 0.5950001, 0.7, 0)
+
+[node name="MoveTrigger" parent="TilemapRoot/Lance" index="4"]
+visible = false
+
+[node name="Alessia" parent="TilemapRoot" instance=ExtResource("7_f7igc")]
+visible = false
+position = Vector2(167, -150)
+displayName = "Alessia"
+saveName = "alessia_outside_standstill_healing"
+data = SubResource("Resource_4v6kg")
+
+[node name="NPCSprite" parent="TilemapRoot/Alessia" index="0"]
+sprite_frames = ExtResource("6_jums5")
+animation = &"stand"
+
+[node name="ColliderShape" parent="TilemapRoot/Alessia" index="1"]
+position = Vector2(0, 3.5)
+debug_color = Color(0, 0.5950001, 0.7, 0)
+
+[node name="TalkAreaShape" parent="TilemapRoot/Alessia/TalkArea" index="0"]
+position = Vector2(0, 4)
+debug_color = Color(0, 0.5950001, 0.7, 0)
+
+[node name="MoveTrigger" parent="TilemapRoot/Alessia" index="4"]
+visible = false
+
 [node name="Signpost" parent="TilemapRoot" instance=ExtResource("3_8barj")]
 position = Vector2(-256, 80)
 saveName = "signpost"
@@ -192,7 +251,7 @@ displayName = "Sign"
 spriteStatesDict = Dictionary[String, ExtResource("8_e3dde")]({
 "default": SubResource("Resource_dkmha")
 })
-data = SubResource("Resource_4v6kg")
+data = SubResource("Resource_jums5")
 dialogueEntries = Array[ExtResource("17_swqho")]([ExtResource("14_jums5")])
 facesPlayer = false
 
@@ -229,7 +288,7 @@ displayName = "Sign"
 spriteStatesDict = Dictionary[String, ExtResource("8_e3dde")]({
 "default": SubResource("Resource_gxlgf")
 })
-data = SubResource("Resource_jums5")
+data = SubResource("Resource_mfi58")
 dialogueEntries = Array[ExtResource("17_swqho")]([ExtResource("4_pq0gj")])
 facesPlayer = false
 
@@ -266,7 +325,7 @@ displayName = "Sign"
 spriteStatesDict = Dictionary[String, ExtResource("8_e3dde")]({
 "default": SubResource("Resource_wx7g8")
 })
-data = SubResource("Resource_mfi58")
+data = SubResource("Resource_bgyeu")
 dialogueEntries = Array[ExtResource("17_swqho")]([ExtResource("32_svt2b")])
 facesPlayer = false
 
@@ -386,6 +445,10 @@ shape = SubResource("RectangleShape2D_7x6ra")
 [node name="PlayerWarpCamPos" parent="CameraHoldZone2" index="1"]
 position = Vector2(-46, 0)
 
+[node name="FoundryDoorCutsceneTrigger" parent="." instance=ExtResource("25_mfi58")]
+position = Vector2(167, -140)
+cutscenes = Array[ExtResource("26_ue0ww")]([ExtResource("27_hl30d")])
+
 [node name="OneTileWideNav" type="NavigationRegion2D" parent="."]
 visible = false
 modulate = Color(1, 1, 1, 0)
@@ -402,6 +465,8 @@ visible = false
 navigation_polygon = SubResource("NavigationPolygon_cgvup")
 navigation_layers = 4
 
+[editable path="TilemapRoot/Lance"]
+[editable path="TilemapRoot/Alessia"]
 [editable path="TilemapRoot/Signpost"]
 [editable path="TilemapRoot/Signpost/AnimatedDecoration"]
 [editable path="TilemapRoot/ArmorySign"]

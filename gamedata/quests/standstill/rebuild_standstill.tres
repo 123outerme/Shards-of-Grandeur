@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Quest" load_steps=36 format=3 uid="uid://dnghhx8h5dgtw"]
+[gd_resource type="Resource" script_class="Quest" load_steps=39 format=3 uid="uid://dnghhx8h5dgtw"]
 
 [ext_resource type="Script" uid="uid://bnw42uegqk4wp" path="res://scripts/quests/quest.gd" id="1_ywcmt"]
 [ext_resource type="Script" uid="uid://b3j2bj1p0bkq8" path="res://scripts/quests/quest_step.gd" id="2_io756"]
@@ -17,6 +17,9 @@
 [ext_resource type="Resource" uid="uid://d8ekthe4cbps" path="res://gamedata/dialogue/lance/rebuild_standstill/lance_rebuild_standstill_heal_alessia_turnin.tres" id="15_t3ikc"]
 [ext_resource type="Resource" uid="uid://bdmlv2l6gd2hq" path="res://gamedata/dialogue/leavenport/prime_minister/rebuild_standstill/lp_pm_rebuild_standstill_healing_land.tres" id="16_8ndah"]
 [ext_resource type="Resource" uid="uid://b860uefsncq4i" path="res://gamedata/dialogue/leavenport/prime_minister/rebuild_standstill/lp_pm_rebuild_standstill_healing_land_turnin.tres" id="17_upj30"]
+[ext_resource type="Resource" uid="uid://bmpeqrcv6fc18" path="res://gamedata/dialogue/lance/rebuild_standstill/lance_rebuild_standstill_seeds_sowed_inprogress.tres" id="18_r246m"]
+[ext_resource type="Resource" uid="uid://6fvewykgmmh5" path="res://gamedata/dialogue/lance/rebuild_standstill/lance_rebuild_standstill_rebirth_seeds_turnin.tres" id="18_ucmca"]
+[ext_resource type="Resource" uid="uid://duw106fy6bf4o" path="res://gamedata/dialogue/lance/rebuild_standstill/lance_rebuild_standstill_seeds_sowed_turnin.tres" id="19_ucmca"]
 
 [sub_resource type="Resource" id="Resource_2k0y8"]
 script = ExtResource("6_0vkka")
@@ -189,7 +192,10 @@ locations = Array[int]([22])
 type = 6
 count = 3
 objectiveName = "Regrowth Seeds"
+turnInNames = Array[String](["lance_standstill_foundry_burned"])
 displayObjName = "Regrowth Seeds"
+displayTurnInName = "Lance"
+turnInDialogue = Array[ExtResource("3_rysse")]([ExtResource("18_ucmca")])
 metadata/_custom_type_script = "uid://b3j2bj1p0bkq8"
 
 [sub_resource type="Resource" id="Resource_fkgyy"]
@@ -200,7 +206,10 @@ locations = Array[int]([20])
 turnInLocations = Array[int]([20])
 type = 5
 objectiveName = "rebuild_standstill_regrowth_seeds"
+turnInNames = Array[String](["lance_standstill_foundry_burned"])
 displayObjName = "Spread Healing Seeds!"
+turnInDialogue = Array[ExtResource("3_rysse")]([ExtResource("19_ucmca")])
+inProgressDialogue = Array[ExtResource("3_rysse")]([ExtResource("18_r246m")])
 metadata/_custom_type_script = "uid://b3j2bj1p0bkq8"
 
 [sub_resource type="Resource" id="Resource_tgj1o"]

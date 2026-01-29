@@ -1,0 +1,50 @@
+[gd_resource type="Resource" script_class="Cutscene" load_steps=14 format=3 uid="uid://c5nh0ybhdnj6y"]
+
+[ext_resource type="Script" uid="uid://cqpl74uk8cjo0" path="res://scripts/cutscenes/cutscene_frame.gd" id="1_2s3m1"]
+[ext_resource type="Script" uid="uid://cg21ocaokyfnx" path="res://scripts/cutscenes/actor_anim_set.gd" id="2_rvgsu"]
+[ext_resource type="Script" uid="uid://dy2r6h7mhh2oc" path="res://scripts/cutscenes/actor_sprite_anim.gd" id="3_h5lbb"]
+[ext_resource type="Script" uid="uid://8oxtwxpqllgd" path="res://scripts/cutscenes/actor_face_target.gd" id="4_oe1o5"]
+[ext_resource type="Script" uid="uid://g5p5b4jsf6bs" path="res://scripts/cutscenes/actor_tween.gd" id="5_g8jul"]
+[ext_resource type="Script" uid="uid://jcu0gq2ns4in" path="res://scripts/cutscenes/cutscene_dialogue.gd" id="6_wubyp"]
+[ext_resource type="Script" uid="uid://fpa08p2kb0ts" path="res://scripts/cutscenes/cutscene.gd" id="7_ccnfn"]
+[ext_resource type="Script" uid="uid://b5d2qgg22dgbw" path="res://scripts/cutscenes/tweens/tween_vector2.gd" id="7_rvgsu"]
+
+[sub_resource type="Resource" id="Resource_38ia2"]
+script = ExtResource("1_2s3m1")
+frameLength = 0.1
+annotation = "start fade out"
+endFade = 1
+endFadeLength = 0.5
+metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
+
+[sub_resource type="Resource" id="Resource_2s3m1"]
+script = ExtResource("1_2s3m1")
+frameLength = 0.5
+annotation = "wait for fade out"
+metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
+
+[sub_resource type="Resource" id="Resource_oe1o5"]
+script = ExtResource("7_rvgsu")
+value = Vector2(-8, 18)
+isPlayer = true
+propertyName = "position"
+metadata/_custom_type_script = "uid://b5d2qgg22dgbw"
+
+[sub_resource type="Resource" id="Resource_rvgsu"]
+script = ExtResource("1_2s3m1")
+frameLength = 0.3
+annotation = "move the player to the warp zone"
+actorTweens = Array[ExtResource("5_g8jul")]([SubResource("Resource_oe1o5")])
+metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
+
+[sub_resource type="Resource" id="Resource_h5lbb"]
+script = ExtResource("1_2s3m1")
+annotation = "wait for the warp to trigger"
+metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
+
+[resource]
+script = ExtResource("7_ccnfn")
+cutsceneFrames = Array[ExtResource("1_2s3m1")]([SubResource("Resource_38ia2"), SubResource("Resource_2s3m1"), SubResource("Resource_rvgsu"), SubResource("Resource_h5lbb")])
+saveName = "rebuild_standstill_regrowth_seeds_planted"
+notes = "Transition point between burned Standstill and \"healing\" Standstill"
+metadata/_custom_type_script = "uid://fpa08p2kb0ts"

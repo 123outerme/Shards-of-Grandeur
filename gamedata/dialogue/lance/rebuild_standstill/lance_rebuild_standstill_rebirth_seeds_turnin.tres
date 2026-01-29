@@ -1,0 +1,42 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=12 format=3 uid="uid://6fvewykgmmh5"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_ev7kt"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_uqjk2"]
+[ext_resource type="Script" uid="uid://b6oofnelefs8o" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_8kfy8"]
+[ext_resource type="Resource" uid="uid://mv2npq1dtfd1" path="res://gamedata/dialogue/lance/rebuild_standstill/lance_rebuild_standstill_restore_ground_after_turnin.tres" id="4_tthui"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="5_t3nf8"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="6_o6o1w"]
+
+[sub_resource type="Resource" id="Resource_yqmkc"]
+script = ExtResource("1_ev7kt")
+lines = Array[String](["What do you have in your hand, @?"])
+animation = "talk"
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[sub_resource type="Resource" id="Resource_huov0"]
+script = ExtResource("1_ev7kt")
+lines = Array[String](["These are Regrowth Seeds, magic seeds that should help the town regrow all its vegetation."])
+animation = "stand"
+speakerOverride = "@"
+
+[sub_resource type="Resource" id="Resource_0ivld"]
+script = ExtResource("2_uqjk2")
+choiceBtn = "Not Yet..."
+isDeclineChoice = true
+
+[sub_resource type="Resource" id="Resource_ikik2"]
+script = ExtResource("2_uqjk2")
+choiceBtn = "Ready."
+leadsTo = ExtResource("4_tthui")
+turnsInQuest = "Rebuild Standstill#The Magic Seeds"
+
+[sub_resource type="Resource" id="Resource_vpoy1"]
+script = ExtResource("1_ev7kt")
+lines = Array[String](["I was hoping it was going to be something like that... I already went and dug up a couple holes in the dirt around the town.", "... If it wasn't something you had to stick into the ground, that would've been embarrassing.", "So, are you ready to get planting?"])
+animation = "talk"
+choices = Array[ExtResource("2_uqjk2")]([SubResource("Resource_0ivld"), SubResource("Resource_ikik2")])
+
+[resource]
+script = ExtResource("6_o6o1w")
+items = Array[ExtResource("1_ev7kt")]([SubResource("Resource_yqmkc"), SubResource("Resource_huov0"), SubResource("Resource_vpoy1")])
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"

@@ -51,7 +51,7 @@ script = ExtResource("10_o2viv")
 id = "default"
 priority = -1
 
-[sub_resource type="Resource" id="Resource_istn8"]
+[sub_resource type="Resource" id="Resource_yo0d8"]
 script = ExtResource("4_eo5tj")
 saveName = "npc"
 position = Vector2(-68, 16)
@@ -91,13 +91,13 @@ script = ExtResource("18_joowq")
 invalidAfterDialogues = Array[String](["heal_alessia"])
 metadata/_custom_type_script = "uid://bjesn36acj0uh"
 
-[sub_resource type="Resource" id="Resource_yo0d8"]
+[sub_resource type="Resource" id="Resource_ot2yn"]
 script = ExtResource("4_eo5tj")
 saveName = "npc"
 spriteState = "in_bed"
 position = Vector2(-88, -22)
 
-[sub_resource type="Resource" id="Resource_ot2yn"]
+[sub_resource type="Resource" id="Resource_eipj7"]
 script = ExtResource("4_eo5tj")
 saveName = "npc"
 position = Vector2(24, -89)
@@ -114,7 +114,7 @@ id = "default"
 priority = -1
 spriteFrames = ExtResource("11_pb102")
 
-[sub_resource type="Resource" id="Resource_eipj7"]
+[sub_resource type="Resource" id="Resource_epvh0"]
 script = ExtResource("4_eo5tj")
 saveName = "npc"
 spriteState = "burned"
@@ -188,7 +188,7 @@ displayName = "Sign"
 spriteStatesDict = Dictionary[String, ExtResource("10_o2viv")]({
 "default": SubResource("Resource_kbqqb")
 })
-data = SubResource("Resource_istn8")
+data = SubResource("Resource_yo0d8")
 dialogueEntries = Array[ExtResource("5_fmisr")]([ExtResource("6_iexth")])
 facesPlayer = false
 
@@ -231,7 +231,7 @@ spriteStatesDict = Dictionary[String, ExtResource("10_o2viv")]({
 "in_bed_awake": SubResource("Resource_l4060")
 })
 orSpawnRequirements = Array[ExtResource("18_joowq")]([SubResource("Resource_tysq4")])
-data = SubResource("Resource_yo0d8")
+data = SubResource("Resource_ot2yn")
 
 [node name="NPCSprite" parent="TilemapRoot/Alessia" index="0"]
 position = Vector2(0, -6)
@@ -261,7 +261,7 @@ loadFlipH = true
 spriteStatesDict = Dictionary[String, ExtResource("10_o2viv")]({
 "default": SubResource("Resource_e8c0q")
 })
-data = SubResource("Resource_ot2yn")
+data = SubResource("Resource_eipj7")
 dialogueEntries = Array[ExtResource("5_fmisr")]([ExtResource("20_0076e")])
 
 [node name="NPCSprite" parent="TilemapRoot/AlessiaHealed" index="0"]
@@ -290,7 +290,7 @@ spriteStatesDict = Dictionary[String, ExtResource("10_o2viv")]({
 "burned": SubResource("Resource_0076e"),
 "default": SubResource("Resource_ll4e0")
 })
-data = SubResource("Resource_eipj7")
+data = SubResource("Resource_epvh0")
 dialogueEntries = Array[ExtResource("5_fmisr")]([ExtResource("20_kbqqb"), ExtResource("23_ll4e0"), ExtResource("13_ln4wi")])
 npcShop = ExtResource("12_oygwg")
 

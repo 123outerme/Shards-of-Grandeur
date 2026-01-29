@@ -1,44 +1,32 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=13 format=3 uid="uid://6fvewykgmmh5"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=10 format=3 uid="uid://dcronhoqtaaht"]
 
 [ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_ekasr"]
 [ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_huov0"]
 [ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_qjao3"]
 [ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_huov0"]
 [ext_resource type="Script" uid="uid://b6oofnelefs8o" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_yqmkc"]
-[ext_resource type="Resource" path="res://gamedata/dialogue/lance/rebuild_standstill/lance_rebuild_standstill_restore_ground_after_turnin.tres" id="4_vpoy1"]
-[ext_resource type="Resource" uid="uid://c5nh0ybhdnj6y" path="res://gamedata/cutscenes/standstill/rebuild_standstill_regrowth_seeds_planted.tres" id="5_huov0"]
-
-[sub_resource type="Resource" id="Resource_yqmkc"]
-script = ExtResource("1_ekasr")
-lines = Array[String](["What do you have in your hand, @?"])
-animation = "talk"
-metadata/_custom_type_script = "uid://grt2yrupha8c"
+[ext_resource type="Resource" uid="uid://bk4q7rk0shyga" path="res://gamedata/dialogue/lance/rebuild_standstill/lance_rebuild_standstill_go_outside_healing_standstill.tres" id="4_yqmkc"]
 
 [sub_resource type="Resource" id="Resource_huov0"]
-script = ExtResource("1_ekasr")
-lines = Array[String](["These are Regrowth Seeds, magic seeds that should help the town regrow all its vegetation."])
-animation = "stand"
-speakerOverride = "@"
-
-[sub_resource type="Resource" id="Resource_0ivld"]
 script = ExtResource("2_huov0")
-choiceBtn = "Not Yet..."
-isDeclineChoice = true
+choiceBtn = "Not Yet."
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
 
-[sub_resource type="Resource" id="Resource_ikik2"]
+[sub_resource type="Resource" id="Resource_yqmkc"]
 script = ExtResource("2_huov0")
-choiceBtn = "Ready."
-leadsTo = ExtResource("4_vpoy1")
-turnsInQuest = "Rebuild Standstill#The Magic Seeds"
+choiceBtn = "Let's Go."
+leadsTo = ExtResource("4_yqmkc")
+turnsInQuest = "Rebuild Standstill#Sow These Seeds"
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
 
-[sub_resource type="Resource" id="Resource_vpoy1"]
+[sub_resource type="Resource" id="Resource_qjao3"]
 script = ExtResource("1_ekasr")
-lines = Array[String](["I was hoping it was going to be something like that... I already went and dug up a couple holes in the dirt around the town.", "... If it wasn't something you had to stick into the ground, that would've been embarrassing.", "So, are you ready to get planting?"])
+lines = Array[String](["Looks like you're done planting those Regrowth Seeds, @. Should we go outside and see if it worked?"])
 animation = "talk"
-choices = Array[ExtResource("2_huov0")]([SubResource("Resource_0ivld"), SubResource("Resource_ikik2")])
+choices = Array[ExtResource("2_huov0")]([SubResource("Resource_huov0"), SubResource("Resource_yqmkc")])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
 
 [resource]
 script = ExtResource("3_huov0")
-items = Array[ExtResource("1_ekasr")]([SubResource("Resource_yqmkc"), SubResource("Resource_huov0"), SubResource("Resource_vpoy1")])
-startsCutscene = ExtResource("5_huov0")
+items = Array[ExtResource("1_ekasr")]([SubResource("Resource_qjao3")])
 metadata/_custom_type_script = "uid://1n6mppc7hmmf"
