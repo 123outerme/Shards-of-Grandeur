@@ -664,13 +664,13 @@ func play_triggered_rune_animations() -> void:
 				runeSprite.looping = false
 				runeSprite.halt = false # in case it was halted, un-halt it now
 				if SettingsHandler.gameSettings.battleAnims:
-					#runeSprite.anim = 
 					var triggerSprites: Array[MoveAnimSprite] = rune.get_trigger_anim_sprites()
-					triggerRuneSpriteCount = len(triggerSprites)
+					triggerRuneSpriteCount = 0
 					for idx: int in range(triggerRuneSpriteCount):
 						var triggerSprite: MoveAnimSprite = triggerSprites[idx]
 						if triggerSprite == null:
 							continue
+						triggerRuneSpriteCount += 1
 						if idx == 0:
 							runeSprite.anim = triggerSprite
 							runeSprite.move_sprite_complete.connect(_on_rune_trigger_animation_complete)
@@ -680,7 +680,10 @@ func play_triggered_rune_animations() -> void:
 							removingRuneSprites.append(triggerRuneSprite)
 							triggerRuneSprite.move_sprite_complete.connect(_on_rune_trigger_animation_complete)
 							triggerRuneSprite.play_sprite_animation()
-					await rune_animation_complete
+						if triggerRuneSpriteCount > 0:
+							await rune_animation_complete
+						else:
+							printerr('Error: Rune ' + rune.resource_path + ' does not have any trigger animations')
 				var casterNode: CombatantNode = null
 				for cNode: CombatantNode in get_all_combatant_nodes():
 					if cNode.combatant == rune.caster:

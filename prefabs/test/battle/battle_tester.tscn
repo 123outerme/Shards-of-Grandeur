@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=3 uid="uid://vgmb5l1ihc2p"]
+[gd_scene load_steps=63 format=3 uid="uid://vgmb5l1ihc2p"]
 
 [ext_resource type="Script" uid="uid://ba1n20fjtp4k5" path="res://prefabs/test/battle/battle_tester.gd" id="1_7scea"]
 [ext_resource type="Resource" uid="uid://0qma1pdmr3vo" path="res://gamedata/combatants/mirage/mirage.tres" id="2_bwnp0"]
@@ -26,6 +26,7 @@
 [ext_resource type="Script" uid="uid://spinf5kv548q" path="res://scripts/battle/weighted_things/weighted_stat_category.gd" id="20_jje8i"]
 [ext_resource type="Script" uid="uid://b1w8kitcsyx7d" path="res://scripts/battle/combatant/stat_allocation_strategies/weighted_random_allocation_strategy.gd" id="21_6efxx"]
 [ext_resource type="PackedScene" uid="uid://dmc2ox37dega8" path="res://prefabs/audio/audio_handler.tscn" id="21_y6pws"]
+[ext_resource type="Script" uid="uid://mk6loduurcg4" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="24_dsmw5"]
 [ext_resource type="Resource" uid="uid://bbhpsfvhk3tnf" path="res://gamedata/moves/dehydration_curse/rune/sprite_rune_dehydration_curse_charge.tres" id="24_tnuo8"]
 [ext_resource type="Script" uid="uid://b5mhqq6ioek3x" path="res://scripts/battle/combatant/runes/timed_rune.gd" id="25_mr7tq"]
 [ext_resource type="Resource" uid="uid://deq4mt22y5vel" path="res://gamedata/moves/dehydration_curse/rune/trigger_sprite_rune_dehydration_curse_charge.tres" id="26_5qbqh"]
@@ -44,54 +45,36 @@
 [sub_resource type="Resource" id="Resource_8ehk7"]
 script = ExtResource("13_5buqe")
 minTurns = 8
-staticTotalDefeatRewards = Array[ExtResource("9_wpvco")]([])
 winText = "You survived the battle!"
-loseText = "You were defeated..."
-escapeText = "You escaped successfully!"
 
 [sub_resource type="Resource" id="Resource_eyqig"]
 script = ExtResource("2_sffs8")
 combatant1Level = 20
-combatant1Moves = Array[ExtResource("4_egeqm")]([])
-combatant1ShardSummoned = false
 combatant2 = ExtResource("9_qqchu")
 combatant2Level = 20
 combatant2Weapon = ExtResource("10_0ecd1")
-combatant2Moves = Array[ExtResource("4_egeqm")]([])
-combatant2ShardSummoned = false
 combatant3 = ExtResource("11_cl2mb")
 combatant3Level = 20
-combatant3Moves = Array[ExtResource("4_egeqm")]([])
-combatant3ShardSummoned = false
 autoAlly = ExtResource("2_bwnp0")
 autoAllyLevel = 22
 autoAllyArmor = ExtResource("3_f7fe8")
 autoAllyWeapon = ExtResource("5_unsrs")
-autoAllyMoves = Array[ExtResource("4_egeqm")]([])
-autoAllyShardSummoned = false
-specialBattleId = ""
 bossBattle = true
 canEscape = false
-rewards = Array[ExtResource("9_wpvco")]([])
 useStaticRewards = true
 battleMusic = ExtResource("6_e5p5n")
 combatant1 = ExtResource("2_sul0p")
 combatant1Weapon = ExtResource("8_x7fe1")
-specialRules = 0
 winCon = SubResource("Resource_8ehk7")
 customWinText = "Wrauuughhhhh...!"
-battleMapPath = ""
 
 [sub_resource type="Resource" id="Resource_snunq"]
 script = ExtResource("9_jd22b")
 type = 1
 move = ExtResource("16_evxqu")
 moveEffectType = 1
-orbChange = 0
 targetPositions = Array[String](["Bottom"])
 randomNums = Array[float]([1.0])
-selfRandomNum = -1.0
-decisionsRandomNum = -1.0
 
 [sub_resource type="Resource" id="Resource_3cd3y"]
 script = ExtResource("20_jje8i")
@@ -100,7 +83,6 @@ weight = 0.3
 
 [sub_resource type="Resource" id="Resource_wm2w7"]
 script = ExtResource("20_jje8i")
-category = 0
 weight = 0.5
 
 [sub_resource type="Resource" id="Resource_pl5yt"]
@@ -121,71 +103,52 @@ categories = Array[ExtResource("20_jje8i")]([SubResource("Resource_3cd3y"), SubR
 script = ExtResource("20_evxqu")
 type = 2
 potency = 1
-overwritesOtherStatuses = false
 turnsLeft = 3
 metadata/_custom_type_script = "uid://cb5exn7dcp5o7"
 
 [sub_resource type="Resource" id="Resource_spqei"]
 script = ExtResource("19_afxxh")
-triggerElement = 0
-triggerCategory = -1
-isHealRune = false
-previousHp = -1
 orbChange = 1
 category = 2
 element = 2
 power = -30
-lifesteal = 0.0
 runeSpriteAnim = ExtResource("18_botcp")
-triggerAnim = ExtResource("20_1btmh")
+triggerAnims = Array[ExtResource("24_dsmw5")]([ExtResource("20_1btmh")])
 
 [sub_resource type="Resource" id="Resource_xsbc3"]
 script = ExtResource("25_mr7tq")
 afterTurns = 3
-turnCounter = 0
-orbChange = 0
 category = 1
 element = 1
 power = 40
 lifesteal = 0.25
 runeSpriteAnim = ExtResource("24_tnuo8")
-triggerAnim = ExtResource("26_5qbqh")
+triggerAnims = Array[ExtResource("24_dsmw5")]([ExtResource("26_5qbqh")])
 
 [sub_resource type="Resource" id="Resource_0al0g"]
 script = ExtResource("19_afxxh")
 triggerElement = 2
-triggerCategory = -1
-isHealRune = false
-previousHp = -1
-orbChange = 0
 category = 1
 element = 2
 power = 50
-lifesteal = 0.0
 runeSpriteAnim = ExtResource("27_1rny2")
-triggerAnim = ExtResource("28_w0nhl")
+triggerAnims = Array[ExtResource("24_dsmw5")]([ExtResource("28_w0nhl")])
 
 [sub_resource type="Resource" id="Resource_cbcj4"]
 script = ExtResource("44_j7j6h")
 item = ExtResource("43_1s0me")
-count = 1
 
 [sub_resource type="Resource" id="Resource_el0wh"]
 script = ExtResource("9_jd22b")
 type = 2
-moveEffectType = 0
-orbChange = 0
 slot = SubResource("Resource_cbcj4")
 targetPositions = Array[String](["Ally"])
 randomNums = Array[float]([0.5])
-selfRandomNum = -1.0
-decisionsRandomNum = -1.0
 
 [sub_resource type="Resource" id="Resource_5gppg"]
 script = ExtResource("20_evxqu")
 type = 2
 potency = 1
-overwritesOtherStatuses = false
 turnsLeft = 3
 metadata/_custom_type_script = "uid://cb5exn7dcp5o7"
 
@@ -197,14 +160,11 @@ moveEffectType = 1
 orbChange = 1
 targetPositions = Array[String](["Center"])
 randomNums = Array[float]([0.0])
-selfRandomNum = -1.0
-decisionsRandomNum = -1.0
 
 [sub_resource type="Resource" id="Resource_f67c7"]
 script = ExtResource("20_evxqu")
 type = 2
 potency = 1
-overwritesOtherStatuses = false
 turnsLeft = 3
 metadata/_custom_type_script = "uid://cb5exn7dcp5o7"
 
@@ -216,15 +176,9 @@ moveEffectType = 1
 orbChange = 1
 targetPositions = Array[String](["Ally"])
 randomNums = Array[float]([0.5])
-selfRandomNum = -1.0
-decisionsRandomNum = -1.0
 
 [sub_resource type="Resource" id="Resource_jgum1"]
 script = ExtResource("20_evxqu")
-type = 0
-potency = 0
-overwritesOtherStatuses = false
-turnsLeft = 0
 metadata/_custom_type_script = "uid://cb5exn7dcp5o7"
 
 [sub_resource type="Resource" id="Resource_hmp4c"]
@@ -234,9 +188,6 @@ move = ExtResource("34_evxqu")
 moveEffectType = 1
 orbChange = 1
 targetPositions = Array[String](["Center", "Top", "Bottom"])
-randomNums = Array[float]([])
-selfRandomNum = -1.0
-decisionsRandomNum = -1.0
 
 [sub_resource type="Resource" id="Resource_lf1pv"]
 script = ExtResource("36_kwrsi")
@@ -244,10 +195,8 @@ element = 7
 power = 40.0
 attackerStat = 110.0
 attackerLv = 20
-damageTriggered = false
 type = 11
 potency = 1
-overwritesOtherStatuses = false
 turnsLeft = 3
 metadata/_custom_type_script = "uid://dohairjlp4nco"
 
