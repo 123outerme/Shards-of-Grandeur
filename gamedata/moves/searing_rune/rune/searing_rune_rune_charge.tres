@@ -1,19 +1,16 @@
-[gd_resource type="Resource" script_class="DamageRune" load_steps=4 format=3 uid="uid://1v533tc2abqm"]
+[gd_resource type="Resource" script_class="DamageRune" load_steps=5 format=3 uid="uid://1v533tc2abqm"]
 
 [ext_resource type="Resource" uid="uid://bq2u7u3bm6k5u" path="res://gamedata/moves/searing_rune/rune/sprite_rune_searing_rune_charge.tres" id="1_tihg5"]
 [ext_resource type="Script" uid="uid://byp0t0da4gqvn" path="res://scripts/battle/combatant/runes/damage_rune.gd" id="2_ik2tj"]
 [ext_resource type="Resource" uid="uid://cntmieslwj8h1" path="res://gamedata/moves/searing_rune/rune/trigger_sprite_rune_searing_rune_charge.tres" id="3_vusbt"]
+[ext_resource type="Script" uid="uid://mk6loduurcg4" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="4_5mgqb"]
 
 [resource]
 script = ExtResource("2_ik2tj")
 triggerElement = 2
-triggerCategory = -1
-isHealRune = false
-previousHp = -1
-orbChange = 0
 category = 1
 element = 2
 power = 50
-lifesteal = 0.0
 runeSpriteAnim = ExtResource("1_tihg5")
 triggerAnim = ExtResource("3_vusbt")
+triggerAnims = Array[ExtResource("4_5mgqb")]([ExtResource("3_vusbt")])

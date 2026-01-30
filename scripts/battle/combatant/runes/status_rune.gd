@@ -23,13 +23,13 @@ func _init(
 	i_surgeChanges: SurgeChanges = null,
 	i_caster: Combatant = null,
 	i_runeSpriteAnim: MoveAnimSprite = null,
-	i_triggerAnim: MoveAnimSprite = null,
+	i_triggerAnims: Array[MoveAnimSprite] = [],
 	i_minPotency: StatusEffect.Potency = StatusEffect.Potency.WEAK,
 	i_type: StatusEffect.Type = StatusEffect.Type.NONE,
 	i_triggerElement: Move.Element = Move.Element.NONE,
 	i_currentStatus: StatusEffect = null,
 ):
-	super(i_orbChange, i_category, i_element, i_power, i_lifesteal, i_statChanges, i_statusEffect, i_surgeChanges, i_caster, i_runeSpriteAnim, i_triggerAnim)
+	super(i_orbChange, i_category, i_element, i_power, i_lifesteal, i_statChanges, i_statusEffect, i_surgeChanges, i_caster, i_runeSpriteAnim, i_triggerAnims)
 	minPotency = i_minPotency
 	type = i_type
 	triggerElement = i_triggerElement
@@ -114,7 +114,7 @@ func copy(copyStorage: bool = false) -> StatusRune:
 		surgeChanges.duplicate() if surgeChanges != null else null,
 		caster if copyStorage else null,
 		runeSpriteAnim,
-		triggerAnim,
+		triggerAnims,
 		minPotency,
 		type,
 		triggerElement,

@@ -1,0 +1,59 @@
+[gd_resource type="Resource" script_class="MoveAnimSprite" load_steps=12 format=3 uid="uid://2vparrsqusga"]
+
+[ext_resource type="Script" uid="uid://n71lfdnd5xrr" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite_frame.gd" id="1_6uqxj"]
+[ext_resource type="Script" uid="uid://mk6loduurcg4" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="2_fcxv7"]
+[ext_resource type="AudioStream" uid="uid://caobmrkda5wu4" path="res://audio/sfx/moves/earth/rocks_falling.mp3" id="2_wyqmi"]
+[ext_resource type="SpriteFrames" uid="uid://dib34m8blt3ov" path="res://graphics/moves/earth/a_wall_wrecker_wall.tres" id="3_fcxv7"]
+
+[sub_resource type="Curve" id="Curve_fcxv7"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Curve" id="Curve_wyqmi"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Resource" id="Resource_fcxv7"]
+script = ExtResource("1_6uqxj")
+annotation = "set up position in front of target, faded out"
+duration = 0.1
+opacity = 0.0
+relativeTo = 1
+position = Vector2(-10, -22)
+offset = 9
+xCurve = SubResource("Curve_fcxv7")
+yCurve = SubResource("Curve_wyqmi")
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[sub_resource type="Resource" id="Resource_wyqmi"]
+script = ExtResource("1_6uqxj")
+annotation = "fade in"
+animation = "wall"
+duration = 0.5
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[sub_resource type="Resource" id="Resource_ku3r0"]
+script = ExtResource("1_6uqxj")
+annotation = "wait for blast to reach the wall"
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[sub_resource type="Resource" id="Resource_hjq2q"]
+script = ExtResource("1_6uqxj")
+annotation = "wait for blast explode anim to get partially through"
+duration = 0.667
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[sub_resource type="Resource" id="Resource_rlgxo"]
+script = ExtResource("1_6uqxj")
+annotation = "the wall crumbles from the blast"
+animation = "wall_crumble"
+duration = 2.833
+sfx = ExtResource("2_wyqmi")
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[resource]
+script = ExtResource("2_fcxv7")
+spriteFrames = ExtResource("3_fcxv7")
+maxSize = Vector2(32, 48)
+frames = Array[ExtResource("1_6uqxj")]([SubResource("Resource_fcxv7"), SubResource("Resource_wyqmi"), SubResource("Resource_ku3r0"), SubResource("Resource_hjq2q"), SubResource("Resource_rlgxo")])
+metadata/_custom_type_script = "uid://mk6loduurcg4"

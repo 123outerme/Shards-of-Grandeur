@@ -1,9 +1,10 @@
-[gd_resource type="Resource" script_class="SurgeRune" load_steps=6 format=3 uid="uid://bi7ee4nim7itg"]
+[gd_resource type="Resource" script_class="SurgeRune" load_steps=7 format=3 uid="uid://bi7ee4nim7itg"]
 
 [ext_resource type="Script" uid="uid://b5xrxa7jwj6bo" path="res://scripts/battle/combatant/runes/surge_rune.gd" id="1_ae0a3"]
 [ext_resource type="Resource" uid="uid://dql8h083nojqn" path="res://gamedata/moves/spike_trap/rune/sprite_spike_trap_rune.tres" id="1_refpk"]
 [ext_resource type="Script" uid="uid://cb5exn7dcp5o7" path="res://scripts/battle/status_effects/bleed.gd" id="2_4xf5u"]
 [ext_resource type="Resource" uid="uid://cxlc2mwtog6oc" path="res://gamedata/moves/spike_trap/rune/sprite_spike_trap_rune_trigger.tres" id="4_3gi0u"]
+[ext_resource type="Script" uid="uid://mk6loduurcg4" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="5_fs2ci"]
 
 [sub_resource type="Resource" id="Resource_o3g47"]
 script = ExtResource("2_4xf5u")
@@ -14,11 +15,9 @@ turnsLeft = 3
 
 [resource]
 script = ExtResource("1_ae0a3")
-orbChange = 0
-category = 0
 element = 7
 power = 60
-lifesteal = 0.0
 statusEffect = SubResource("Resource_o3g47")
 runeSpriteAnim = ExtResource("1_refpk")
 triggerAnim = ExtResource("4_3gi0u")
+triggerAnims = Array[ExtResource("5_fs2ci")]([ExtResource("4_3gi0u")])

@@ -332,6 +332,8 @@ func update_rune_sprites(createNew: bool = true, createTriggered: bool = false, 
 	var countStartedPlaying: int = 0
 	# for each rune sprite this combatant has:
 	for runeSpr: MoveSprite in loadedRuneSprites:
+		if runeSpr == null:
+			continue
 		# if this sprite is in the list of showing idxs:
 		if runeSpr in playingRuneSprites:
 			# if this combatant is being targeted in a move animation or we're not yet playing created triggered runes and this was triggered:
@@ -358,6 +360,26 @@ func update_rune_sprites(createNew: bool = true, createTriggered: bool = false, 
 		elif runeSpr.playing:
 			# otherwise, if this sprite is playing, it shouldn't be anymore
 			_set_rune_sprite_playing_and_shown(runeSpr, false)
+
+func create_rune_triggered_sprite(rune: Rune, triggerSpriteAnim: MoveAnimSprite) -> MoveSprite:
+	if triggerSpriteAnim == null:
+		printerr('ERROR in create_rune_triggered_sprite(): new rune sprite is null')
+		return
+	var spriteNode: MoveSprite = moveSpriteScene.instantiate()
+	spriteNode.z_index -= 1
+	spriteNode.linkedResource = rune
+	spriteNode.looping = false
+	spriteNode.user = self
+	spriteNode.anim = triggerSpriteAnim
+	spriteNode.target = self
+	spriteNode.globalMarker = globalMarker
+	spriteNode.userTeam = allyTeamMarker
+	spriteNode.enemyTeam = enemyTeamMarker
+	spriteNode.halt = false
+	#spriteNode.move_sprite_complete.connect(_rune_sprite_complete)
+	add_child(spriteNode)
+	#loadedRuneSprites.append(spriteNode)
+	return spriteNode
 
 func focus_select_btn():
 	selectCombatantBtn.grab_focus()
@@ -546,7 +568,7 @@ func set_sprite_grayscale_amount(grayscaleAmount: float) -> void:
 
 func get_sprite_grayscale_amount() -> float:
 	var grayscale = animatedSprite.get_instance_shader_parameter('grayscale')
-	return grayscale if grayscale != null else 0 
+	return grayscale if grayscale != null else 0
 
 func set_sprite_modulate(mod: Color) -> void:
 	animatedSprite.modulate = mod
@@ -668,7 +690,7 @@ func get_command(combatantNodes: Array[CombatantNode], battleState: BattleState)
 		combatant.command = battleAi.get_command_for_turn(self, combatantNodes, battleState)
 		battleAi.set_move_used(combatant.command.move, combatant.command.moveEffectType)
 	else:
-		printerr('Error: combatant ', combatant.disp_name(), '(', combatant.save_name(),') did not have a defined AI')
+		printerr('Error: combatant ', combatant.disp_name(), '(', combatant.save_name(), ') did not have a defined AI')
 		combatant.command = BattleCommand.new()
 
 func is_alive() -> bool:
@@ -679,7 +701,7 @@ func is_alive() -> bool:
 func _fade_out_finished():
 	fadeOutTween = null
 	visible = false
-	modulate = Color(1,1,1,1)
+	modulate = Color(1, 1, 1, 1)
 
 func _on_select_combatant_btn_toggled(button_pressed: bool) -> void:
 	#selectCombatantBtn.z_index = 1 if button_pressed else 0
@@ -738,19 +760,24 @@ func _rune_sprite_complete(sprite: MoveSprite):
 		if spriteIdx != -1:
 			var nextIdx: int = (showingRuneSpriteIdxs[len(showingRuneSpriteIdxs) - 1] + 1) % len(loadedRuneSprites)
 			playingRuneSprites.erase(sprite)
-			playingRuneSprites.append(loadedRuneSprites[nextIdx])
-			
-			var minPlaySecs: float = -1
-			for runeSpr: MoveSprite in playingRuneSprites:
-				# ignore minPlaySecs of 0 if there is a timer that has ticked onwards
-				if not runeSpr.halt and (minPlaySecs <= 0 or runeSpr.totalTimer < minPlaySecs):
-					minPlaySecs = runeSpr.totalTimer
-			
-			# if the last rune has played MULTI_RUNE_DELAY_SECS ago or more: play instantly, otherwise delay the difference 
-			if minPlaySecs >= MULTI_RUNE_DELAY_SECS:
-				_set_rune_sprite_playing_and_shown(loadedRuneSprites[nextIdx], true)
-			else:
-				get_tree().create_timer(MULTI_RUNE_DELAY_SECS - minPlaySecs).timeout.connect(_set_rune_sprite_playing_and_shown.bind(loadedRuneSprites[nextIdx], true))
+			var nextSprite: MoveSprite = loadedRuneSprites[nextIdx]
+			if nextSprite != null:
+				playingRuneSprites.append(nextSprite)
+				
+				var minPlaySecs: float = -1
+				for runeSpr: MoveSprite in playingRuneSprites:
+					# ignore minPlaySecs of 0 if there is a timer that has ticked onwards
+					if not runeSpr.halt and (minPlaySecs <= 0 or runeSpr.totalTimer < minPlaySecs):
+						minPlaySecs = runeSpr.totalTimer
+				
+				# if the last rune has played MULTI_RUNE_DELAY_SECS ago or more: play instantly, otherwise delay the difference 
+				if minPlaySecs >= MULTI_RUNE_DELAY_SECS:
+					_set_rune_sprite_playing_and_shown(nextSprite, true)
+				else:
+					if MULTI_RUNE_DELAY_SECS - minPlaySecs > 0:
+						get_tree().create_timer(MULTI_RUNE_DELAY_SECS - minPlaySecs).timeout.connect(_set_rune_sprite_playing_and_shown.bind(nextSprite, true))
+					else:
+						_set_rune_sprite_playing_and_shown(nextSprite, true)
 	if not sprite.looping:
 		sprite.destroy(false)
 		loadedRuneSprites.erase(sprite)

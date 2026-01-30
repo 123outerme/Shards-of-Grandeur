@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="MoveAnimation" load_steps=6 format=3 uid="uid://3gfr80oo7s6k"]
+
+[ext_resource type="Script" uid="uid://mk6loduurcg4" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="1_mf1fy"]
+[ext_resource type="Resource" uid="uid://soty0ogj1wi6" path="res://gamedata/moves/wall_wrecker/sprite_wall_wrecker_blast_charge.tres" id="2_778n6"]
+[ext_resource type="Script" uid="uid://dy6wwno8h0wdl" path="res://scripts/battle/particles/move_animation.gd" id="2_hkqix"]
+[ext_resource type="Resource" uid="uid://2vparrsqusga" path="res://gamedata/moves/wall_wrecker/sprite_wall_wrecker_wall.tres" id="4_778n6"]
+[ext_resource type="Resource" uid="uid://2a3tcq0kh2mh" path="res://gamedata/moves/wall_wrecker/sprite_wall_wrecker_blast_surge.tres" id="5_b8xu2"]
+
+[resource]
+script = ExtResource("2_hkqix")
+combatantAnimation = "attack_magic"
+chargeMoveSprites = Array[ExtResource("1_mf1fy")]([ExtResource("2_778n6")])
+surgeMoveSprites = Array[ExtResource("1_mf1fy")]([ExtResource("4_778n6"), ExtResource("5_b8xu2")])
+metadata/_custom_type_script = "uid://dy6wwno8h0wdl"

@@ -1,10 +1,11 @@
-[gd_resource type="Resource" script_class="DamageRune" load_steps=8 format=3 uid="uid://ckbm82ug6t0m1"]
+[gd_resource type="Resource" script_class="DamageRune" load_steps=9 format=3 uid="uid://ckbm82ug6t0m1"]
 
 [ext_resource type="Resource" uid="uid://bvmqtvhljglvp" path="res://gamedata/moves/splash_zone/rune/sprite_rune_splash_zone.tres" id="1_3yvrm"]
 [ext_resource type="Script" uid="uid://byp0t0da4gqvn" path="res://scripts/battle/combatant/runes/damage_rune.gd" id="1_lrp2s"]
 [ext_resource type="Script" uid="uid://dohairjlp4nco" path="res://scripts/battle/status_effects/element_burn.gd" id="2_opluq"]
 [ext_resource type="Script" uid="uid://cvjnh0a2q6sat" path="res://scripts/battle/combatant/surge_changes.gd" id="2_r0g58"]
 [ext_resource type="Resource" uid="uid://2bn48aapuh51" path="res://gamedata/moves/splash_zone/rune/trigger_sprite_rune_splash_zone.tres" id="5_34dxr"]
+[ext_resource type="Script" uid="uid://mk6loduurcg4" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="6_34dxr"]
 
 [sub_resource type="Resource" id="Resource_lmkib"]
 script = ExtResource("2_opluq")
@@ -34,4 +35,5 @@ statusEffect = SubResource("Resource_lmkib")
 surgeChanges = SubResource("Resource_opluq")
 runeSpriteAnim = ExtResource("1_3yvrm")
 triggerAnim = ExtResource("5_34dxr")
+triggerAnims = Array[ExtResource("6_34dxr")]([ExtResource("5_34dxr")])
 metadata/_custom_type_script = "uid://byp0t0da4gqvn"

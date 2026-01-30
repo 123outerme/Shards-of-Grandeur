@@ -1,9 +1,10 @@
-[gd_resource type="Resource" script_class="TimedRune" load_steps=6 format=3 uid="uid://dxjhvgowd2ifh"]
+[gd_resource type="Resource" script_class="TimedRune" load_steps=7 format=3 uid="uid://dxjhvgowd2ifh"]
 
 [ext_resource type="Resource" uid="uid://bbhpsfvhk3tnf" path="res://gamedata/moves/dehydration_curse/rune/sprite_rune_dehydration_curse_charge.tres" id="1_y0b1b"]
 [ext_resource type="Script" uid="uid://b5mhqq6ioek3x" path="res://scripts/battle/combatant/runes/timed_rune.gd" id="2_lefbl"]
 [ext_resource type="Script" uid="uid://cvjnh0a2q6sat" path="res://scripts/battle/combatant/surge_changes.gd" id="3_0c0o6"]
 [ext_resource type="Resource" uid="uid://deq4mt22y5vel" path="res://gamedata/moves/dehydration_curse/rune/trigger_sprite_rune_dehydration_curse_charge.tres" id="3_q8lqs"]
+[ext_resource type="Script" uid="uid://mk6loduurcg4" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="5_kybc2"]
 
 [sub_resource type="Resource" id="Resource_6ojqr"]
 script = ExtResource("3_0c0o6")
@@ -20,3 +21,4 @@ lifesteal = 0.25
 surgeChanges = SubResource("Resource_6ojqr")
 runeSpriteAnim = ExtResource("1_y0b1b")
 triggerAnim = ExtResource("3_q8lqs")
+triggerAnims = Array[ExtResource("5_kybc2")]([ExtResource("3_q8lqs")])

@@ -1,23 +1,23 @@
-[gd_scene load_steps=8 format=3 uid="uid://b5846p0vn0806"]
+[gd_scene load_steps=8 format=3 uid="uid://cfynuh7wig03b"]
 
-[ext_resource type="Script" uid="uid://1nnb5j8bb75a" path="res://prefabs/test/battle/move_anim_tester.gd" id="1_ukfe0"]
-[ext_resource type="Resource" uid="uid://dos21fp6ussm2" path="res://gamedata/moves/wall_wrecker/wall_wrecker.tres" id="2_g7jvt"]
-[ext_resource type="Resource" uid="uid://cra0rgrw4ujhn" path="res://gamedata/combatants/mesa_golem/mesa_golem.tres" id="3_30sax"]
-[ext_resource type="PackedScene" uid="uid://cjw6dl387qwra" path="res://prefabs/ui/inventory/move_learn_anim_controller.tscn" id="3_gfh4k"]
-[ext_resource type="Resource" uid="uid://0tg5ts3ocpyq" path="res://gamedata/combatants/mesa_golem/evolutions/miner_golem/evolution_miner_golem.tres" id="4_gk1ck"]
-[ext_resource type="PackedScene" uid="uid://dkqxsnv4nyxwj" path="res://prefabs/battle/battle_maps/grandstone_quarry_battle_map.tscn" id="4_oubfq"]
-[ext_resource type="PackedScene" uid="uid://dmc2ox37dega8" path="res://prefabs/audio/audio_handler.tscn" id="6_vbave"]
+[ext_resource type="Script" uid="uid://bj32as52w12l8" path="res://prefabs/test/battle/rune_anim_tester.gd" id="1_tnod4"]
+[ext_resource type="Resource" uid="uid://dos21fp6ussm2" path="res://gamedata/moves/wall_wrecker/wall_wrecker.tres" id="2_5o7ia"]
+[ext_resource type="Resource" uid="uid://cra0rgrw4ujhn" path="res://gamedata/combatants/mesa_golem/mesa_golem.tres" id="3_jnowt"]
+[ext_resource type="Resource" uid="uid://0tg5ts3ocpyq" path="res://gamedata/combatants/mesa_golem/evolutions/miner_golem/evolution_miner_golem.tres" id="4_na0cf"]
+[ext_resource type="PackedScene" uid="uid://dkqxsnv4nyxwj" path="res://prefabs/battle/battle_maps/grandstone_quarry_battle_map.tscn" id="5_7ltfc"]
+[ext_resource type="PackedScene" uid="uid://cjw6dl387qwra" path="res://prefabs/ui/inventory/move_learn_anim_controller.tscn" id="6_0y5m8"]
+[ext_resource type="PackedScene" uid="uid://dmc2ox37dega8" path="res://prefabs/audio/audio_handler.tscn" id="7_dnsn6"]
 
-[node name="MoveAnimTester" type="Node2D"]
-script = ExtResource("1_ukfe0")
-move = ExtResource("2_g7jvt")
-targetCombatant = ExtResource("3_30sax")
-evolution = ExtResource("4_gk1ck")
-battleMap = ExtResource("4_oubfq")
+[node name="RuneAnimTester" type="Node2D"]
+script = ExtResource("1_tnod4")
+move = ExtResource("2_5o7ia")
+targetCombatant = ExtResource("3_jnowt")
+evolution = ExtResource("4_na0cf")
+battleMap = ExtResource("5_7ltfc")
 
 [node name="TilemapParent" type="Node2D" parent="."]
 
-[node name="MoveLearnAnimControl" parent="." instance=ExtResource("3_gfh4k")]
+[node name="MoveLearnAnimControl" parent="." instance=ExtResource("6_0y5m8")]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -58,39 +58,45 @@ position = Vector2(751, 244)
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(4, 4)
 
-[node name="Button" type="Button" parent="."]
+[node name="PlayButton" type="Button" parent="."]
 z_index = 10
-offset_left = -26.0
+offset_left = -71.0
 offset_top = 48.0
-offset_right = 26.0
+offset_right = -19.0
 offset_bottom = 79.0
 text = "Play"
 
 [node name="SwapButton" type="Button" parent="."]
 z_index = 10
-offset_left = 74.0
+offset_left = 99.0
 offset_top = 48.0
-offset_right = 132.0
+offset_right = 157.0
 offset_bottom = 79.0
 text = "Swap"
 
-[node name="AudioHandler" parent="." instance=ExtResource("6_vbave")]
+[node name="AudioHandler" parent="." instance=ExtResource("7_dnsn6")]
 
 [node name="SurgeChargeToggle" type="Button" parent="."]
 z_index = 10
 custom_minimum_size = Vector2(81, 0)
-offset_left = -141.0
-offset_top = 48.0
-offset_right = -60.0
-offset_bottom = 77.0
+offset_left = -159.0
+offset_top = 49.0
+offset_right = -78.0
+offset_bottom = 78.0
 toggle_mode = true
 text = "Charge"
 
-[connection signal="combatant_finished_anim" from="MoveLearnAnimControl" to="." method="_on_move_learn_anim_control_combatant_finished_anim"]
-[connection signal="combatant_started_anim" from="MoveLearnAnimControl" to="." method="_on_move_learn_anim_control_combatant_started_anim"]
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[node name="PlayTriggerButton" type="Button" parent="."]
+offset_left = -12.0
+offset_top = 48.0
+offset_right = 92.0
+offset_bottom = 79.0
+text = "Play Trgr"
+
+[connection signal="pressed" from="PlayButton" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="SwapButton" to="." method="_on_swap_button_pressed"]
 [connection signal="toggled" from="SurgeChargeToggle" to="." method="_on_surge_charge_toggle_toggled"]
+[connection signal="pressed" from="PlayTriggerButton" to="." method="_on_play_trigger_button_pressed"]
 
 [editable path="MoveLearnAnimControl"]
 [editable path="MoveLearnAnimControl/BattlefieldBorder/BattleAnimationManager"]

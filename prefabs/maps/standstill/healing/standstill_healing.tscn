@@ -28,13 +28,15 @@
 [ext_resource type="Script" uid="uid://fw22o8hbosnk" path="res://scripts/inventory/inventory_slot.gd" id="37_uiaoc"]
 [ext_resource type="PackedScene" uid="uid://b1u1r7encrpgs" path="res://prefabs/overworld/camera_hold_zone.tscn" id="50_h5au4"]
 
-[sub_resource type="Resource" id="Resource_ocne3"]
+[sub_resource type="Resource" id="Resource_ue0ww"]
 script = ExtResource("12_33y68")
 saveName = "npc"
+position = Vector2(167, -150)
 
-[sub_resource type="Resource" id="Resource_4v6kg"]
+[sub_resource type="Resource" id="Resource_hl30d"]
 script = ExtResource("12_33y68")
 saveName = "npc"
+position = Vector2(167, -150)
 
 [sub_resource type="Resource" id="Resource_iq0r8"]
 script = ExtResource("5_w25yq")
@@ -52,7 +54,7 @@ script = ExtResource("8_e3dde")
 id = "default"
 priority = -1
 
-[sub_resource type="Resource" id="Resource_jums5"]
+[sub_resource type="Resource" id="Resource_qlwjw"]
 script = ExtResource("12_33y68")
 saveName = "npc"
 position = Vector2(147, -146)
@@ -68,7 +70,7 @@ script = ExtResource("8_e3dde")
 id = "default"
 priority = -1
 
-[sub_resource type="Resource" id="Resource_mfi58"]
+[sub_resource type="Resource" id="Resource_o3l4u"]
 script = ExtResource("12_33y68")
 saveName = "npc"
 position = Vector2(-93, -114)
@@ -78,7 +80,7 @@ script = ExtResource("8_e3dde")
 id = "default"
 priority = -1
 
-[sub_resource type="Resource" id="Resource_bgyeu"]
+[sub_resource type="Resource" id="Resource_8o20g"]
 script = ExtResource("12_33y68")
 saveName = "npc"
 position = Vector2(-19, 62)
@@ -181,9 +183,10 @@ tile_set = ExtResource("2_svry7")
 [node name="Lance" parent="TilemapRoot" instance=ExtResource("7_f7igc")]
 visible = false
 position = Vector2(167, -150)
+collision_layer = 0
 displayName = "Lance"
 saveName = "lance_outside_standstill_healing"
-data = SubResource("Resource_ocne3")
+data = SubResource("Resource_ue0ww")
 
 [node name="NPCSprite" parent="TilemapRoot/Lance" index="0"]
 sprite_frames = ExtResource("5_4v6kg")
@@ -205,9 +208,10 @@ visible = false
 [node name="Alessia" parent="TilemapRoot" instance=ExtResource("7_f7igc")]
 visible = false
 position = Vector2(167, -150)
+collision_layer = 0
 displayName = "Alessia"
 saveName = "alessia_outside_standstill_healing"
-data = SubResource("Resource_4v6kg")
+data = SubResource("Resource_hl30d")
 
 [node name="NPCSprite" parent="TilemapRoot/Alessia" index="0"]
 sprite_frames = ExtResource("6_jums5")
@@ -251,7 +255,7 @@ displayName = "Sign"
 spriteStatesDict = Dictionary[String, ExtResource("8_e3dde")]({
 "default": SubResource("Resource_dkmha")
 })
-data = SubResource("Resource_jums5")
+data = SubResource("Resource_qlwjw")
 dialogueEntries = Array[ExtResource("17_swqho")]([ExtResource("14_jums5")])
 facesPlayer = false
 
@@ -288,7 +292,7 @@ displayName = "Sign"
 spriteStatesDict = Dictionary[String, ExtResource("8_e3dde")]({
 "default": SubResource("Resource_gxlgf")
 })
-data = SubResource("Resource_mfi58")
+data = SubResource("Resource_o3l4u")
 dialogueEntries = Array[ExtResource("17_swqho")]([ExtResource("4_pq0gj")])
 facesPlayer = false
 
@@ -325,7 +329,7 @@ displayName = "Sign"
 spriteStatesDict = Dictionary[String, ExtResource("8_e3dde")]({
 "default": SubResource("Resource_wx7g8")
 })
-data = SubResource("Resource_bgyeu")
+data = SubResource("Resource_8o20g")
 dialogueEntries = Array[ExtResource("17_swqho")]([ExtResource("32_svt2b")])
 facesPlayer = false
 

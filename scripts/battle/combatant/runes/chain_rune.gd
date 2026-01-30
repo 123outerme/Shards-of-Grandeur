@@ -25,5 +25,5 @@ func copy(copyStorage: bool = false) -> ChainRune:
 		surgeChanges.duplicate() if surgeChanges != null else null,
 		caster if copyStorage else null,
 		runeSpriteAnim,
-		triggerAnim,
+		triggerAnims,
 	)

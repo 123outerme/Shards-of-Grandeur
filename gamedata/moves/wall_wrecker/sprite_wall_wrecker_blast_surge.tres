@@ -1,0 +1,104 @@
+[gd_resource type="Resource" script_class="MoveAnimSprite" load_steps=20 format=3 uid="uid://2a3tcq0kh2mh"]
+
+[ext_resource type="Script" uid="uid://n71lfdnd5xrr" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite_frame.gd" id="1_xso5s"]
+[ext_resource type="AudioStream" uid="uid://b06cdggoixugq" path="res://audio/sfx/moves/mage_blast_9.mp3" id="2_cf1g7"]
+[ext_resource type="AudioStream" uid="uid://bdx7pc7unyg2f" path="res://audio/sfx/moves/mage_blast_10.mp3" id="2_u2cw1"]
+[ext_resource type="Resource" uid="uid://60ondpw4gl7q" path="res://gamedata/moves/wall_wrecker/particles_wall_wrecker_blast.tres" id="3_u2cw1"]
+[ext_resource type="Script" uid="uid://mk6loduurcg4" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="3_vavsq"]
+[ext_resource type="SpriteFrames" uid="uid://bfy86hn1opsyp" path="res://graphics/moves/earth/a_wall_wrecker_blast.tres" id="4_cf1g7"]
+[ext_resource type="AudioStream" uid="uid://dwshfhxeh3st" path="res://audio/sfx/moves/fire/fire_impact3.mp3" id="4_vavsq"]
+
+[sub_resource type="Curve" id="Curve_dkhp3"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Curve" id="Curve_u08qx"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Resource" id="Resource_u08qx"]
+script = ExtResource("1_xso5s")
+annotation = "set up position near user"
+duration = 0.1
+relativeTo = 2
+position = Vector2(6, 0)
+offset = 1
+xCurve = SubResource("Curve_dkhp3")
+yCurve = SubResource("Curve_u08qx")
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[sub_resource type="Curve" id="Curve_u2cw1"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_vavsq"]
+_data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="Resource" id="Resource_dkhp3"]
+script = ExtResource("1_xso5s")
+annotation = "fire blast at target's wall"
+animation = "wall_wrecker_blast"
+duration = 1.5
+relativeTo = 1
+position = Vector2(-10, 0)
+offset = 1
+xCurve = SubResource("Curve_u2cw1")
+yCurve = SubResource("Curve_vavsq")
+rotate = true
+sfx = ExtResource("2_cf1g7")
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[sub_resource type="Resource" id="Resource_vavsq"]
+script = ExtResource("1_xso5s")
+annotation = "The blast explodes"
+animation = "wall_wrecker_blast_explode"
+duration = 2.333
+rotate = true
+rotateToFace = 5
+particles = ExtResource("3_u2cw1")
+sfx = ExtResource("4_vavsq")
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[sub_resource type="Resource" id="Resource_cf1g7"]
+script = ExtResource("1_xso5s")
+annotation = "wait for wall to finish crumbling"
+animation = "default"
+duration = 1.167
+opacity = 0.0
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[sub_resource type="Curve" id="Curve_cf1g7"]
+_data = [Vector2(0, 0), 0.0, 1.4, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_g15ml"]
+_data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="Resource" id="Resource_kmvbd"]
+script = ExtResource("1_xso5s")
+annotation = "stealth move the blast to the target"
+animation = "wall_wrecker_blast"
+duration = 0.75
+relativeTo = 1
+xCurve = SubResource("Curve_cf1g7")
+yCurve = SubResource("Curve_g15ml")
+rotate = true
+sfx = ExtResource("2_cf1g7")
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[sub_resource type="Resource" id="Resource_g15ml"]
+script = ExtResource("1_xso5s")
+annotation = "play particles (set blast)"
+animation = "default"
+duration = 0.5
+particles = ExtResource("3_u2cw1")
+sfx = ExtResource("2_u2cw1")
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[resource]
+script = ExtResource("3_vavsq")
+spriteFrames = ExtResource("4_cf1g7")
+frames = Array[ExtResource("1_xso5s")]([SubResource("Resource_u08qx"), SubResource("Resource_dkhp3"), SubResource("Resource_vavsq"), SubResource("Resource_cf1g7"), SubResource("Resource_kmvbd"), SubResource("Resource_g15ml")])
+metadata/_custom_type_script = "uid://mk6loduurcg4"

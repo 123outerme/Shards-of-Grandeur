@@ -1,10 +1,11 @@
-[gd_resource type="Resource" script_class="SurgeRune" load_steps=8 format=3 uid="uid://bi6beorpyh17m"]
+[gd_resource type="Resource" script_class="SurgeRune" load_steps=9 format=3 uid="uid://bi6beorpyh17m"]
 
 [ext_resource type="Script" uid="uid://b5xrxa7jwj6bo" path="res://scripts/battle/combatant/runes/surge_rune.gd" id="1_25pwt"]
 [ext_resource type="Resource" uid="uid://cpcdxyuct4gdk" path="res://gamedata/moves/overcharge/rune/sprite_rune_overcharge.tres" id="1_gi476"]
 [ext_resource type="Script" uid="uid://cvjnh0a2q6sat" path="res://scripts/battle/combatant/surge_changes.gd" id="2_5rmcq"]
 [ext_resource type="Script" uid="uid://bsbsngy6lknn0" path="res://scripts/battle/status_effects/mania.gd" id="2_fmth0"]
 [ext_resource type="Resource" uid="uid://b15dimxdmymfa" path="res://gamedata/moves/overcharge/rune/trigger_sprite_rune_overcharge.tres" id="5_gi476"]
+[ext_resource type="Script" uid="uid://mk6loduurcg4" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="6_ymgv8"]
 
 [sub_resource type="Resource" id="Resource_cygyg"]
 script = ExtResource("2_fmth0")
@@ -29,4 +30,5 @@ statusEffect = SubResource("Resource_cygyg")
 surgeChanges = SubResource("Resource_fmth0")
 runeSpriteAnim = ExtResource("1_gi476")
 triggerAnim = ExtResource("5_gi476")
+triggerAnims = Array[ExtResource("6_ymgv8")]([ExtResource("5_gi476")])
 metadata/_custom_type_script = "uid://b5xrxa7jwj6bo"

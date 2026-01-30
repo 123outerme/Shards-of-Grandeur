@@ -1,9 +1,13 @@
-[gd_resource type="Resource" script_class="TimedRune" load_steps=8 format=3 uid="uid://bofcjw6oyvv3p"]
+[gd_resource type="Resource" script_class="TimedRune" load_steps=12 format=3 uid="uid://bofcjw6oyvv3p"]
 
+[ext_resource type="Resource" uid="uid://lk5daayfdnei" path="res://gamedata/moves/wall_wrecker/rune/sprite_wall_wrecker_rune.tres" id="1_3a8s6"]
 [ext_resource type="Script" uid="uid://b5mhqq6ioek3x" path="res://scripts/battle/combatant/runes/timed_rune.gd" id="1_nxwnj"]
 [ext_resource type="Script" uid="uid://b8q40qhoufelh" path="res://scripts/battle/combatant/element_multiplier.gd" id="2_4osrg"]
 [ext_resource type="Script" uid="uid://dvivnpdo5ga72" path="res://scripts/battle/combatant/stat_changes.gd" id="3_pndha"]
 [ext_resource type="Script" uid="uid://cvjnh0a2q6sat" path="res://scripts/battle/combatant/surge_changes.gd" id="4_vl8c8"]
+[ext_resource type="Script" uid="uid://mk6loduurcg4" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="6_7dwne"]
+[ext_resource type="Resource" uid="uid://d36xxws1cqvdx" path="res://gamedata/moves/wall_wrecker/rune/sprite_wall_wrecker_rune_trigger_blast.tres" id="7_61q6m"]
+[ext_resource type="Resource" uid="uid://cptv1wve17k2l" path="res://gamedata/moves/wall_wrecker/rune/sprite_wall_wrecker_rune_trigger_wall.tres" id="8_hunrv"]
 
 [sub_resource type="Resource" id="Resource_4em6q"]
 script = ExtResource("3_pndha")
@@ -30,4 +34,6 @@ element = 5
 power = 70
 statChanges = SubResource("Resource_4em6q")
 surgeChanges = SubResource("Resource_2gryy")
+runeSpriteAnim = ExtResource("1_3a8s6")
+triggerAnims = Array[ExtResource("6_7dwne")]([ExtResource("7_61q6m"), ExtResource("8_hunrv")])
 metadata/_custom_type_script = "uid://b5mhqq6ioek3x"

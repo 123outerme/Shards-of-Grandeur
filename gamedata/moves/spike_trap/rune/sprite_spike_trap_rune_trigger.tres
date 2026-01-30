@@ -8,21 +8,9 @@
 [sub_resource type="Resource" id="Resource_s2f48"]
 script = ExtResource("1_jojc5")
 annotation = "set up position"
-animation = ""
 duration = 0.1
-speed = 1.0
-opacity = 1.0
-spritePivot = Vector2(0, 0)
 relativeTo = 1
-position = Vector2(0, 0)
 offset = 8
-rotate = false
-rotateToFace = 1
-rotateToFacePosition = Vector2(0, 0)
-rotateToFaceOffset = 0
-trackRotationTarget = false
-randomizeSfxPitch = false
-emitCompleteOnStart = false
 metadata/_custom_type_script = "uid://n71lfdnd5xrr"
 
 [sub_resource type="Resource" id="Resource_8btja"]
@@ -30,29 +18,12 @@ script = ExtResource("1_jojc5")
 annotation = "play trigger anim"
 animation = "spike_trap_rune_trigger"
 duration = 2.0
-speed = 1.0
-opacity = 1.0
-spritePivot = Vector2(0, 0)
-relativeTo = 5
-position = Vector2(0, 0)
-offset = 0
-rotate = false
-rotateToFace = 1
-rotateToFacePosition = Vector2(0, 0)
-rotateToFaceOffset = 0
-trackRotationTarget = false
 sfx = ExtResource("2_tkm6w")
-randomizeSfxPitch = false
-emitCompleteOnStart = false
 metadata/_custom_type_script = "uid://n71lfdnd5xrr"
 
 [resource]
 script = ExtResource("2_25ibb")
 spriteFrames = ExtResource("3_tkm6w")
-centerSprite = true
 maxSize = Vector2(24, 16)
 frames = Array[ExtResource("1_jojc5")]([SubResource("Resource_s2f48"), SubResource("Resource_8btja")])
-delayedUntilReposition = false
-playsOnImpactFrame = true
-onePerTarget = true
 metadata/_custom_type_script = "uid://mk6loduurcg4"

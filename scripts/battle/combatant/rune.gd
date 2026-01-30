@@ -33,8 +33,8 @@ class_name Rune
 ## the animation to play while the rune is applied to the combatant
 @export var runeSpriteAnim: MoveAnimSprite = null
 
-## the animation to play when the rune is triggered
-@export var triggerAnim: MoveAnimSprite = null
+## the sprites to play when the rune is triggered
+@export var triggerAnims: Array[MoveAnimSprite] = []
 
 func _init(
 	i_orbChange: int = 0,
@@ -47,7 +47,7 @@ func _init(
 	i_surgeChanges: SurgeChanges = null,
 	i_caster: Combatant = null,
 	i_runeSpriteAnim: MoveAnimSprite = null,
-	i_triggerAnim: MoveAnimSprite = null,
+	i_triggerAnims: Array[MoveAnimSprite] = [],
 ):
 	orbChange = i_orbChange
 	category = i_category
@@ -59,7 +59,7 @@ func _init(
 	surgeChanges = i_surgeChanges
 	caster = i_caster
 	runeSpriteAnim = i_runeSpriteAnim
-	triggerAnim = i_triggerAnim
+	triggerAnims = i_triggerAnims
 
 func init_rune_state(combatant: Combatant, otherCombatants: Array[Combatant], state: BattleState) -> void:
 	if len(otherCombatants) > 0 and otherCombatants[0] != null:
@@ -85,8 +85,8 @@ func get_rune_tooltip() -> String:
 func get_rune_anim_sprite() -> MoveAnimSprite:
 	return runeSpriteAnim
 
-func get_trigger_anim_sprite() -> MoveAnimSprite:
-	return triggerAnim
+func get_trigger_anim_sprites() -> Array[MoveAnimSprite]:
+	return triggerAnims
 
 func does_rune_trigger(combatant: Combatant, otherCombatants: Array[Combatant], state: BattleState, timing: BattleCommand.ApplyTiming, firstCheck: bool) -> bool:
 	return false # implement in subclasses
@@ -124,5 +124,5 @@ func copy(copyStorage: bool = false) -> Rune:
 		surgeChanges.duplicate() if surgeChanges != null else null,
 		caster if copyStorage else null,
 		runeSpriteAnim,
-		triggerAnim,
+		triggerAnims,
 	)

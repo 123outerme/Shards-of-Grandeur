@@ -54,6 +54,7 @@ const originalCombatantZIndices: Dictionary[String, int] = {
 var waitingForSignals: Array[AnimationType] = []
 var totalWaitingForSignals: Array[AnimationType] = []
 var cancellingAnimation: bool = false
+var triggerRuneSpriteCount: int = 0
 
 func get_all_combatant_nodes() -> Array[CombatantNode]:
 	return [playerCombatantNode, minionCombatantNode, enemy1CombatantNode, enemy2CombatantNode, enemy3CombatantNode]
@@ -393,7 +394,7 @@ func use_move_animation(user: CombatantNode, command: BattleCommand, targets: Ar
 					var equipmentArr: Array[Item] = command.commandResult.equipmentProcd[targetIdx]
 					for equipment: Item in equipmentArr:
 						if equipment == null:
-							printerr('BattleAnimation ERROR: equipment procd was null for target IDX ', targetIdx, ', position = ' , defender.battlePosition, ' ', defender.combatant.disp_name())
+							printerr('BattleAnimation ERROR: equipment procd was null for target IDX ', targetIdx, ', position = ', defender.battlePosition, ' ', defender.combatant.disp_name())
 							continue
 						
 						if equipment.itemType == Item.Type.WEAPON:
@@ -663,9 +664,22 @@ func play_triggered_rune_animations() -> void:
 				runeSprite.looping = false
 				runeSprite.halt = false # in case it was halted, un-halt it now
 				if SettingsHandler.gameSettings.battleAnims:
-					runeSprite.anim = rune.get_trigger_anim_sprite()
-					runeSprite.move_sprite_complete.connect(_on_rune_trigger_animation_complete)
-					runeSprite.play_sprite_animation()
+					#runeSprite.anim = 
+					var triggerSprites: Array[MoveAnimSprite] = rune.get_trigger_anim_sprites()
+					triggerRuneSpriteCount = len(triggerSprites)
+					for idx: int in range(triggerRuneSpriteCount):
+						var triggerSprite: MoveAnimSprite = triggerSprites[idx]
+						if triggerSprite == null:
+							continue
+						if idx == 0:
+							runeSprite.anim = triggerSprite
+							runeSprite.move_sprite_complete.connect(_on_rune_trigger_animation_complete)
+							runeSprite.play_sprite_animation()
+						else:
+							var triggerRuneSprite: MoveSprite = combatantNode.create_rune_triggered_sprite(rune, triggerSprite)
+							removingRuneSprites.append(triggerRuneSprite)
+							triggerRuneSprite.move_sprite_complete.connect(_on_rune_trigger_animation_complete)
+							triggerRuneSprite.play_sprite_animation()
 					await rune_animation_complete
 				var casterNode: CombatantNode = null
 				for cNode: CombatantNode in get_all_combatant_nodes():
@@ -753,6 +767,7 @@ func play_triggered_rune_animations() -> void:
 							update.call()
 				
 				if playedEventTextsCount > 0 and SettingsHandler.gameSettings.battleAnims:
+					triggerRuneSpriteCount = 0 # set to 0 so when the callback triggers, the await will proceed
 					get_tree().create_timer(maxTextDelay + CombatantEventText.FADE_IN_SECS + CombatantEventText.SECS_UNTIL_FADE_OUT) \
 						.timeout.connect(_on_rune_trigger_animation_complete)
 					await rune_animation_complete
@@ -822,4 +837,6 @@ func _on_combatant_animation_unit_complete(type: BattleAnimationManager.Animatio
 		animation_waiting_complete.emit()
 
 func _on_rune_trigger_animation_complete(_arg: Variant = null) -> void:
-	rune_animation_complete.emit()
+	triggerRuneSpriteCount -= 1
+	if triggerRuneSpriteCount <= 0:
+		rune_animation_complete.emit()

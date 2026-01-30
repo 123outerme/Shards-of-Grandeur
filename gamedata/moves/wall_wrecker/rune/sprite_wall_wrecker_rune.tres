@@ -1,0 +1,39 @@
+[gd_resource type="Resource" script_class="MoveAnimSprite" load_steps=8 format=3 uid="uid://lk5daayfdnei"]
+
+[ext_resource type="Script" uid="uid://n71lfdnd5xrr" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite_frame.gd" id="1_1xw1t"]
+[ext_resource type="Script" uid="uid://mk6loduurcg4" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="2_ittf3"]
+[ext_resource type="SpriteFrames" uid="uid://bfy86hn1opsyp" path="res://graphics/moves/earth/a_wall_wrecker_blast.tres" id="3_ittf3"]
+
+[sub_resource type="Resource" id="Resource_x8m2u"]
+script = ExtResource("1_1xw1t")
+annotation = "set up position"
+duration = 0.1
+opacity = 0.0
+relativeTo = 1
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[sub_resource type="Resource" id="Resource_rfjq7"]
+script = ExtResource("1_1xw1t")
+annotation = "play rune anim and fade in"
+animation = "wall_wrecker_blast"
+duration = 0.33
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[sub_resource type="Resource" id="Resource_b37wq"]
+script = ExtResource("1_1xw1t")
+annotation = "hold faded in for a few flickers"
+duration = 1.333
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[sub_resource type="Resource" id="Resource_06a2o"]
+script = ExtResource("1_1xw1t")
+annotation = "fade out"
+duration = 0.33
+opacity = 0.0
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[resource]
+script = ExtResource("2_ittf3")
+spriteFrames = ExtResource("3_ittf3")
+frames = Array[ExtResource("1_1xw1t")]([SubResource("Resource_x8m2u"), SubResource("Resource_rfjq7"), SubResource("Resource_b37wq"), SubResource("Resource_06a2o")])
+metadata/_custom_type_script = "uid://mk6loduurcg4"

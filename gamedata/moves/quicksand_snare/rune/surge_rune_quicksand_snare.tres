@@ -1,8 +1,11 @@
-[gd_resource type="Resource" script_class="KeywordRune" load_steps=6 format=3 uid="uid://6ugbneedulir"]
+[gd_resource type="Resource" script_class="KeywordRune" load_steps=9 format=3 uid="uid://6ugbneedulir"]
 
 [ext_resource type="Script" uid="uid://bhxtvkpc6kuqh" path="res://scripts/battle/combatant/runes/keyword_rune.gd" id="1_hhh8d"]
+[ext_resource type="Resource" uid="uid://757bokylpdae" path="res://gamedata/moves/quicksand_snare/rune/sprite_rune_quicksand_snare.tres" id="1_qec34"]
 [ext_resource type="Script" uid="uid://dohairjlp4nco" path="res://scripts/battle/status_effects/element_burn.gd" id="2_da36w"]
 [ext_resource type="Script" uid="uid://cvjnh0a2q6sat" path="res://scripts/battle/combatant/surge_changes.gd" id="3_iv6h3"]
+[ext_resource type="Script" uid="uid://mk6loduurcg4" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="5_u61w7"]
+[ext_resource type="Resource" uid="uid://bvq530erhrn40" path="res://gamedata/moves/quicksand_snare/rune/trigger_sprite_rune_quicksand_snare.tres" id="6_je0y8"]
 
 [sub_resource type="Resource" id="Resource_iv6h3"]
 script = ExtResource("2_da36w")
@@ -27,4 +30,6 @@ category = 2
 element = 5
 statusEffect = SubResource("Resource_iv6h3")
 surgeChanges = SubResource("Resource_8i3oi")
+runeSpriteAnim = ExtResource("1_qec34")
+triggerAnims = Array[ExtResource("5_u61w7")]([ExtResource("6_je0y8")])
 metadata/_custom_type_script = "uid://bhxtvkpc6kuqh"

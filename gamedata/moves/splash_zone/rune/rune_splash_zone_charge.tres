@@ -1,9 +1,10 @@
-[gd_resource type="Resource" script_class="DamageRune" load_steps=6 format=3 uid="uid://bv1w0ybp84dfs"]
+[gd_resource type="Resource" script_class="DamageRune" load_steps=7 format=3 uid="uid://bv1w0ybp84dfs"]
 
 [ext_resource type="Resource" uid="uid://bvmqtvhljglvp" path="res://gamedata/moves/splash_zone/rune/sprite_rune_splash_zone.tres" id="1_312ic"]
 [ext_resource type="Script" uid="uid://byp0t0da4gqvn" path="res://scripts/battle/combatant/runes/damage_rune.gd" id="1_he36m"]
 [ext_resource type="Script" uid="uid://dohairjlp4nco" path="res://scripts/battle/status_effects/element_burn.gd" id="2_4b4sb"]
 [ext_resource type="Resource" uid="uid://2bn48aapuh51" path="res://gamedata/moves/splash_zone/rune/trigger_sprite_rune_splash_zone.tres" id="4_t002t"]
+[ext_resource type="Script" uid="uid://mk6loduurcg4" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="5_t002t"]
 
 [sub_resource type="Resource" id="Resource_25klf"]
 script = ExtResource("2_4b4sb")
@@ -24,4 +25,5 @@ power = 60
 statusEffect = SubResource("Resource_25klf")
 runeSpriteAnim = ExtResource("1_312ic")
 triggerAnim = ExtResource("4_t002t")
+triggerAnims = Array[ExtResource("5_t002t")]([ExtResource("4_t002t")])
 metadata/_custom_type_script = "uid://byp0t0da4gqvn"

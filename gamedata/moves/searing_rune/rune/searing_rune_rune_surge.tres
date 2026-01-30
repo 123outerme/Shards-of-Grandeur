@@ -1,10 +1,11 @@
-[gd_resource type="Resource" script_class="DamageRune" load_steps=8 format=3 uid="uid://6pfosvmeuier"]
+[gd_resource type="Resource" script_class="DamageRune" load_steps=9 format=3 uid="uid://6pfosvmeuier"]
 
 [ext_resource type="Resource" uid="uid://bq2u7u3bm6k5u" path="res://gamedata/moves/searing_rune/rune/sprite_rune_searing_rune_charge.tres" id="1_g63ud"]
 [ext_resource type="Script" uid="uid://byp0t0da4gqvn" path="res://scripts/battle/combatant/runes/damage_rune.gd" id="2_e1pyh"]
 [ext_resource type="Script" uid="uid://dohairjlp4nco" path="res://scripts/battle/status_effects/element_burn.gd" id="3_7qgaq"]
 [ext_resource type="Script" uid="uid://cvjnh0a2q6sat" path="res://scripts/battle/combatant/surge_changes.gd" id="4_1xpiw"]
 [ext_resource type="Resource" uid="uid://cntmieslwj8h1" path="res://gamedata/moves/searing_rune/rune/trigger_sprite_rune_searing_rune_charge.tres" id="5_oyurg"]
+[ext_resource type="Script" uid="uid://mk6loduurcg4" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="6_romvp"]
 
 [sub_resource type="Resource" id="Resource_5s37y"]
 script = ExtResource("3_7qgaq")
@@ -31,3 +32,4 @@ statusEffect = SubResource("Resource_5s37y")
 surgeChanges = SubResource("Resource_gpngq")
 runeSpriteAnim = ExtResource("1_g63ud")
 triggerAnim = ExtResource("5_oyurg")
+triggerAnims = Array[ExtResource("6_romvp")]([ExtResource("5_oyurg")])

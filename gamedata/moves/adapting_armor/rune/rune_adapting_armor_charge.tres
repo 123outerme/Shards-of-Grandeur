@@ -1,10 +1,11 @@
-[gd_resource type="Resource" script_class="DamageRune" load_steps=7 format=3 uid="uid://f1bhptjjqq3l"]
+[gd_resource type="Resource" script_class="DamageRune" load_steps=8 format=3 uid="uid://f1bhptjjqq3l"]
 
 [ext_resource type="Resource" uid="uid://bg7gb7dbp5fjt" path="res://gamedata/moves/adapting_armor/rune/sprite_rune_adapting_armor.tres" id="1_dtoop"]
 [ext_resource type="Script" uid="uid://byp0t0da4gqvn" path="res://scripts/battle/combatant/runes/damage_rune.gd" id="2_q8b6x"]
 [ext_resource type="Script" uid="uid://b8q40qhoufelh" path="res://scripts/battle/combatant/element_multiplier.gd" id="3_luqs6"]
 [ext_resource type="Script" uid="uid://dvivnpdo5ga72" path="res://scripts/battle/combatant/stat_changes.gd" id="4_d23n7"]
 [ext_resource type="Resource" uid="uid://b2sge4icywjpo" path="res://gamedata/moves/adapting_armor/rune/trigger_sprite_rune_adapting_armor.tres" id="5_desgt"]
+[ext_resource type="Script" uid="uid://mk6loduurcg4" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="6_q8b6x"]
 
 [sub_resource type="Resource" id="Resource_sfmn5"]
 script = ExtResource("4_d23n7")
@@ -18,4 +19,5 @@ orbChange = 1
 statChanges = SubResource("Resource_sfmn5")
 runeSpriteAnim = ExtResource("1_dtoop")
 triggerAnim = ExtResource("5_desgt")
+triggerAnims = Array[ExtResource("6_q8b6x")]([ExtResource("5_desgt")])
 metadata/_custom_type_script = "uid://byp0t0da4gqvn"
