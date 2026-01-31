@@ -1,18 +1,16 @@
-[gd_scene load_steps=8 format=3 uid="uid://b5846p0vn0806"]
+[gd_scene load_steps=7 format=3 uid="uid://b5846p0vn0806"]
 
 [ext_resource type="Script" uid="uid://1nnb5j8bb75a" path="res://prefabs/test/battle/move_anim_tester.gd" id="1_ukfe0"]
-[ext_resource type="Resource" uid="uid://dos21fp6ussm2" path="res://gamedata/moves/wall_wrecker/wall_wrecker.tres" id="2_g7jvt"]
-[ext_resource type="Resource" uid="uid://cra0rgrw4ujhn" path="res://gamedata/combatants/mesa_golem/mesa_golem.tres" id="3_30sax"]
+[ext_resource type="Resource" uid="uid://dg4uixsftewsy" path="res://gamedata/moves/heat_up/heat_up.tres" id="2_oubfq"]
+[ext_resource type="Resource" uid="uid://no8jsodv2ba7" path="res://gamedata/combatants/fireclaw/fireclaw.tres" id="3_g7jvt"]
 [ext_resource type="PackedScene" uid="uid://cjw6dl387qwra" path="res://prefabs/ui/inventory/move_learn_anim_controller.tscn" id="3_gfh4k"]
-[ext_resource type="Resource" uid="uid://0tg5ts3ocpyq" path="res://gamedata/combatants/mesa_golem/evolutions/miner_golem/evolution_miner_golem.tres" id="4_gk1ck"]
 [ext_resource type="PackedScene" uid="uid://dkqxsnv4nyxwj" path="res://prefabs/battle/battle_maps/grandstone_quarry_battle_map.tscn" id="4_oubfq"]
 [ext_resource type="PackedScene" uid="uid://dmc2ox37dega8" path="res://prefabs/audio/audio_handler.tscn" id="6_vbave"]
 
 [node name="MoveAnimTester" type="Node2D"]
 script = ExtResource("1_ukfe0")
-move = ExtResource("2_g7jvt")
-targetCombatant = ExtResource("3_30sax")
-evolution = ExtResource("4_gk1ck")
+move = ExtResource("2_oubfq")
+targetCombatant = ExtResource("3_g7jvt")
 battleMap = ExtResource("4_oubfq")
 
 [node name="TilemapParent" type="Node2D" parent="."]

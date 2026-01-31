@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="MoveAnimation" load_steps=7 format=3 uid="uid://b7qx4gvykerd"]
+
+[ext_resource type="Script" uid="uid://mk6loduurcg4" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="1_cm3gg"]
+[ext_resource type="Script" uid="uid://dy6wwno8h0wdl" path="res://scripts/battle/particles/move_animation.gd" id="2_f4nui"]
+[ext_resource type="Script" uid="uid://c8pibqehmw101" path="res://scripts/battle/battle_scene/battlefield_shade_anim.gd" id="3_f4nui"]
+[ext_resource type="Resource" uid="uid://d03t101igcpc6" path="res://gamedata/moves/heat_up/particles_heat_up.tres" id="4_bt3d5"]
+
+[sub_resource type="Resource" id="Resource_a08cc"]
+script = ExtResource("3_f4nui")
+color = Color(0.82, 0.29806998, 0.2706, 0.19607843)
+metadata/_custom_type_script = "uid://c8pibqehmw101"
+
+[sub_resource type="Resource" id="Resource_bt3d5"]
+script = ExtResource("3_f4nui")
+color = Color(0.82, 0.29806998, 0.2706, 0.27450982)
+metadata/_custom_type_script = "uid://c8pibqehmw101"
+
+[resource]
+script = ExtResource("2_f4nui")
+combatantAnimation = "attack_phys"
+targetsParticlePreset = ExtResource("4_bt3d5")
+chargeBattlefieldShade = SubResource("Resource_a08cc")
+surgeBattlefieldShade = SubResource("Resource_bt3d5")
+metadata/_custom_type_script = "uid://dy6wwno8h0wdl"

@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="ParticlePreset" load_steps=8 format=3 uid="uid://d03t101igcpc6"]
+
+[ext_resource type="Texture2D" uid="uid://d1s0muneaqbmp" path="res://graphics/particles/fire/fire_1.png" id="1_i0jci"]
+[ext_resource type="Script" uid="uid://cdxc0ye8vnah8" path="res://scripts/battle/particles/particle_preset.gd" id="1_vkuyq"]
+[ext_resource type="Texture2D" uid="uid://dt1jful8dnkk7" path="res://graphics/particles/fire/fire_2.png" id="2_aihg8"]
+[ext_resource type="Texture2D" uid="uid://ctxvjxobc6rlo" path="res://graphics/particles/fire/fire_3.png" id="3_vclga"]
+[ext_resource type="Texture2D" uid="uid://o88o6okxdgq3" path="res://graphics/particles/fire/fire_4.png" id="4_4v3kl"]
+[ext_resource type="Material" uid="uid://b8f25i3riy1qq" path="res://gamedata/moves/heat_up/heat_up_particle_process_mat.tres" id="5_vclga"]
+[ext_resource type="AudioStream" uid="uid://1bnigsf5of4m" path="res://audio/sfx/moves/fire/flamewind.mp3" id="6_aihg8"]
+
+[resource]
+script = ExtResource("1_vkuyq")
+emitter = "front"
+count = 6
+lifetime = 0.8
+duration = 1.6099999999999999
+staggered = true
+processMaterial = ExtResource("5_vclga")
+particleTextures = Array[Texture2D]([ExtResource("1_i0jci"), ExtResource("2_aihg8"), ExtResource("3_vclga"), ExtResource("4_4v3kl")])
+sfx = ExtResource("6_aihg8")
+metadata/_custom_type_script = "uid://cdxc0ye8vnah8"

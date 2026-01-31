@@ -13,6 +13,9 @@ class_name ParticlePreset
 ## how long to play particles for
 @export var duration: float = 1.25
 
+## how long after the duration has expired should the existing particles stick around, but new ones not be created for
+@export var decayTime: float = 0
+
 ## if true, will emit particles from one emitter, wait `lifetime` secs, then emit from the next, etc.
 @export var staggered: bool = false
 
@@ -32,6 +35,7 @@ func _init(
 	i_count: int = 0,
 	i_lifetime: float = 0.5,
 	i_duration: float = 1.25,
+	i_decayTime: float = 0,
 	i_staggered: bool = false,
 	i_processMaterial: ParticleProcessMaterial = null,
 	i_particles: Array[Texture2D] = [],
@@ -42,6 +46,7 @@ func _init(
 	count = i_count
 	lifetime = i_lifetime
 	duration = i_duration
+	decayTime
 	staggered = i_staggered
 	processMaterial = i_processMaterial
 	particleTextures = i_particles

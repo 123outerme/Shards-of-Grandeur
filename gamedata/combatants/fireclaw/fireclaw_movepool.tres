@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="MovePool" load_steps=10 format=3 uid="uid://dhlll645as6lm"]
+[gd_resource type="Resource" script_class="MovePool" load_steps=11 format=3 uid="uid://dhlll645as6lm"]
 
 [ext_resource type="Script" uid="uid://dx4lnh4driy7a" path="res://scripts/battle/combatant/move.gd" id="1_qpgmn"]
 [ext_resource type="Resource" uid="uid://crei2j1v6q4jn" path="res://gamedata/moves/slice/slice.tres" id="2_15ypx"]
@@ -9,11 +9,12 @@
 [ext_resource type="Resource" uid="uid://bme7msqml6t6u" path="res://gamedata/moves/flashfire_fist/flashfire_fist.tres" id="5_u0qkk"]
 [ext_resource type="Resource" uid="uid://ch4ub4fjauove" path="res://gamedata/moves/gale_force/gale_force.tres" id="5_ypqkf"]
 [ext_resource type="Resource" uid="uid://c5aij8g3t1avl" path="res://gamedata/moves/approaching_feint/approaching_feint.tres" id="8_nx3xl"]
+[ext_resource type="Resource" uid="uid://dg4uixsftewsy" path="res://gamedata/moves/heat_up/heat_up.tres" id="9_ke3ct"]
 
 [resource]
 script = ExtResource("2_v0ito")
-pool = Array[ExtResource("1_qpgmn")]([ExtResource("2_15ypx"), ExtResource("3_q74en"), ExtResource("4_qtodn"), ExtResource("5_ypqkf"), ExtResource("3_h0j0n"), ExtResource("5_u0qkk"), ExtResource("8_nx3xl")])
-signatureMoves = Array[ExtResource("1_qpgmn")]([ExtResource("3_h0j0n"), ExtResource("5_u0qkk"), ExtResource("8_nx3xl")])
+pool = Array[ExtResource("1_qpgmn")]([ExtResource("2_15ypx"), ExtResource("3_q74en"), ExtResource("4_qtodn"), ExtResource("5_ypqkf"), ExtResource("3_h0j0n"), ExtResource("5_u0qkk"), ExtResource("8_nx3xl"), ExtResource("9_ke3ct")])
+signatureMoves = Array[ExtResource("1_qpgmn")]([ExtResource("3_h0j0n"), ExtResource("5_u0qkk"), ExtResource("8_nx3xl"), ExtResource("9_ke3ct")])
 preferredMove1Role = 2
 preferredMove1DmgType = 0
 preferredMove1Element = 2
@@ -21,8 +22,3 @@ preferredMove2Role = 1
 preferredMove2DmgType = 0
 preferredMove2Element = 2
 preferredMove3Role = 3
-preferredMove3DmgType = -1
-preferredMove3Element = 0
-preferredMove4Role = 0
-preferredMove4DmgType = -1
-preferredMove4Element = 0
