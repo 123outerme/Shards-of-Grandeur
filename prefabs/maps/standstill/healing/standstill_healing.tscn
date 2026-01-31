@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=4 uid="uid://c05leiydb08mb"]
+[gd_scene load_steps=57 format=4 uid="uid://c05leiydb08mb"]
 
 [ext_resource type="Script" uid="uid://vg00rfnn3346" path="res://scripts/overworld/map_script.gd" id="1_v3efe"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_svry7"]
@@ -9,6 +9,8 @@
 [ext_resource type="SpriteFrames" uid="uid://buf560cqrdqay" path="res://graphics/animations/a_signpost_burned.tres" id="6_btck5"]
 [ext_resource type="SpriteFrames" uid="uid://bknyw6b8fi6f" path="res://graphics/animations/a_alessia_burned.tres" id="6_jums5"]
 [ext_resource type="PackedScene" uid="uid://bsalesakrx8yy" path="res://prefabs/entities/npc.tscn" id="7_f7igc"]
+[ext_resource type="Script" uid="uid://bhe5dt53rj7mf" path="res://scripts/npcs/npc_move_point.gd" id="7_hl30d"]
+[ext_resource type="Resource" uid="uid://d0aiblruuxre4" path="res://gamedata/dialogue/alessia/alessia_burned_healed_1.tres" id="7_qlwjw"]
 [ext_resource type="Script" uid="uid://bwcja16pmp3mf" path="res://scripts/npcs/npc_sprite_state.gd" id="8_e3dde"]
 [ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="10_5evyl"]
 [ext_resource type="Script" uid="uid://8t63d3un22ug" path="res://scripts/npcs/npc_data.gd" id="12_33y68"]
@@ -28,15 +30,37 @@
 [ext_resource type="Script" uid="uid://fw22o8hbosnk" path="res://scripts/inventory/inventory_slot.gd" id="37_uiaoc"]
 [ext_resource type="PackedScene" uid="uid://b1u1r7encrpgs" path="res://prefabs/overworld/camera_hold_zone.tscn" id="50_h5au4"]
 
-[sub_resource type="Resource" id="Resource_ue0ww"]
+[sub_resource type="Resource" id="Resource_qlwjw"]
 script = ExtResource("12_33y68")
 saveName = "npc"
 position = Vector2(167, -150)
 
-[sub_resource type="Resource" id="Resource_hl30d"]
+[sub_resource type="Resource" id="Resource_o3l4u"]
 script = ExtResource("12_33y68")
 saveName = "npc"
 position = Vector2(167, -150)
+
+[sub_resource type="Resource" id="Resource_8o20g"]
+script = ExtResource("7_hl30d")
+position = Vector2(48, -112)
+pauseSecs = 0.5
+metadata/_custom_type_script = "uid://bhe5dt53rj7mf"
+
+[sub_resource type="Resource" id="Resource_1l55l"]
+script = ExtResource("7_hl30d")
+position = Vector2(-120, -27)
+metadata/_custom_type_script = "uid://bhe5dt53rj7mf"
+
+[sub_resource type="Resource" id="Resource_hl30d"]
+script = ExtResource("7_hl30d")
+position = Vector2(48, -112)
+pauseSecs = 0.5
+metadata/_custom_type_script = "uid://bhe5dt53rj7mf"
+
+[sub_resource type="Resource" id="Resource_ig4om"]
+script = ExtResource("7_hl30d")
+position = Vector2(260, -46)
+metadata/_custom_type_script = "uid://bhe5dt53rj7mf"
 
 [sub_resource type="Resource" id="Resource_iq0r8"]
 script = ExtResource("5_w25yq")
@@ -54,7 +78,7 @@ script = ExtResource("8_e3dde")
 id = "default"
 priority = -1
 
-[sub_resource type="Resource" id="Resource_qlwjw"]
+[sub_resource type="Resource" id="Resource_4is1m"]
 script = ExtResource("12_33y68")
 saveName = "npc"
 position = Vector2(147, -146)
@@ -70,7 +94,7 @@ script = ExtResource("8_e3dde")
 id = "default"
 priority = -1
 
-[sub_resource type="Resource" id="Resource_o3l4u"]
+[sub_resource type="Resource" id="Resource_eruhf"]
 script = ExtResource("12_33y68")
 saveName = "npc"
 position = Vector2(-93, -114)
@@ -80,7 +104,7 @@ script = ExtResource("8_e3dde")
 id = "default"
 priority = -1
 
-[sub_resource type="Resource" id="Resource_8o20g"]
+[sub_resource type="Resource" id="Resource_p7gmq"]
 script = ExtResource("12_33y68")
 saveName = "npc"
 position = Vector2(-19, 62)
@@ -140,8 +164,8 @@ agent_radius = 23.0
 
 [node name="OverworldMap" type="Node2D"]
 script = ExtResource("1_v3efe")
-metadata/_edit_vertical_guides_ = [164.0, 192.0]
-metadata/_edit_horizontal_guides_ = [-112.0, -126.0, -142.0]
+metadata/_edit_vertical_guides_ = [192.0]
+metadata/_edit_horizontal_guides_ = [-112.0]
 
 [node name="TilemapRoot" type="Node2D" parent="."]
 y_sort_enabled = true
@@ -186,7 +210,7 @@ position = Vector2(167, -150)
 collision_layer = 0
 displayName = "Lance"
 saveName = "lance_outside_standstill_healing"
-data = SubResource("Resource_ue0ww")
+data = SubResource("Resource_qlwjw")
 
 [node name="NPCSprite" parent="TilemapRoot/Lance" index="0"]
 sprite_frames = ExtResource("5_4v6kg")
@@ -211,7 +235,8 @@ position = Vector2(167, -150)
 collision_layer = 0
 displayName = "Alessia"
 saveName = "alessia_outside_standstill_healing"
-data = SubResource("Resource_hl30d")
+data = SubResource("Resource_o3l4u")
+dialogueEntries = Array[ExtResource("17_swqho")]([ExtResource("7_qlwjw")])
 
 [node name="NPCSprite" parent="TilemapRoot/Alessia" index="0"]
 sprite_frames = ExtResource("6_jums5")
@@ -220,6 +245,12 @@ animation = &"stand"
 [node name="ColliderShape" parent="TilemapRoot/Alessia" index="1"]
 position = Vector2(0, 3.5)
 debug_color = Color(0, 0.5950001, 0.7, 0)
+
+[node name="NavAgent" parent="TilemapRoot/Alessia" index="2"]
+targetPoints = Array[ExtResource("7_hl30d")]([SubResource("Resource_8o20g"), SubResource("Resource_1l55l"), SubResource("Resource_hl30d"), SubResource("Resource_ig4om")])
+loops = -1
+waitsForMoveTrigger = false
+maxSpeed = 30
 
 [node name="TalkAreaShape" parent="TilemapRoot/Alessia/TalkArea" index="0"]
 position = Vector2(0, 4)
@@ -255,7 +286,7 @@ displayName = "Sign"
 spriteStatesDict = Dictionary[String, ExtResource("8_e3dde")]({
 "default": SubResource("Resource_dkmha")
 })
-data = SubResource("Resource_qlwjw")
+data = SubResource("Resource_4is1m")
 dialogueEntries = Array[ExtResource("17_swqho")]([ExtResource("14_jums5")])
 facesPlayer = false
 
@@ -292,7 +323,7 @@ displayName = "Sign"
 spriteStatesDict = Dictionary[String, ExtResource("8_e3dde")]({
 "default": SubResource("Resource_gxlgf")
 })
-data = SubResource("Resource_o3l4u")
+data = SubResource("Resource_eruhf")
 dialogueEntries = Array[ExtResource("17_swqho")]([ExtResource("4_pq0gj")])
 facesPlayer = false
 
@@ -329,7 +360,7 @@ displayName = "Sign"
 spriteStatesDict = Dictionary[String, ExtResource("8_e3dde")]({
 "default": SubResource("Resource_wx7g8")
 })
-data = SubResource("Resource_8o20g")
+data = SubResource("Resource_p7gmq")
 dialogueEntries = Array[ExtResource("17_swqho")]([ExtResource("32_svt2b")])
 facesPlayer = false
 
