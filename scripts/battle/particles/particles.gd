@@ -38,7 +38,10 @@ var _waves: float = 5.0
 		else:
 			_waves = -1
 
-var startTime: float = 0
+@export var decayTime: float = 0
+
+var startTime: float = -1
+var particlesVisibility: bool = false
 
 @export var makeParticles: bool:
 	get:
@@ -56,8 +59,12 @@ func _ready() -> void:
 		makeParticles = startParticlesOnLoad
 
 func _process(_delta) -> void:
-	if not duration < 0 and waves > 0 and Time.get_unix_time_from_system() > startTime + duration and makeParticles:
-		set_make_particles(false)
+	if duration >= 0 and waves > 0 and startTime >= 0 and \
+			Time.get_unix_time_from_system() > startTime + duration and \
+			makeParticles:
+		set_make_particles(false, Time.get_unix_time_from_system() > startTime + duration + decayTime)
+	if decayTime > 0 and startTime >= 0 and particlesVisibility and Time.get_unix_time_from_system() > startTime + duration + decayTime:
+		set_make_particles(false, true)
 
 func get_particle_spawners() -> Array[GPUParticles2D]:
 	var particles: Array[GPUParticles2D] = []
@@ -70,6 +77,7 @@ func load_preset() -> void:
 	lifetime = preset.lifetime
 	set_num_particles(preset.count)
 	duration = preset.duration
+	decayTime = preset.decayTime
 	var textureIdx: int = 0
 	for particleSpawner: GPUParticles2D in get_particle_spawners():
 		var particleTexture: Texture2D = null
@@ -79,7 +87,7 @@ func load_preset() -> void:
 		particleSpawner.process_material = preset.processMaterial
 		textureIdx += 1
 
-func set_make_particles(showParticles: bool) -> void:
+func set_make_particles(showParticles: bool, toggleSpawnerVisibility: bool = true) -> void:
 	_makeParticles = showParticles
 	var children: Array[GPUParticles2D] = get_particle_spawners()
 	if showParticles:
@@ -93,7 +101,11 @@ func set_make_particles(showParticles: bool) -> void:
 				await timer.timeout
 			particleSpawner.emitting = showParticles
 		particleSpawner.lifetime = lifetime
-		particleSpawner.visible = showParticles
+		if toggleSpawnerVisibility:
+			particlesVisibility = showParticles
+			particleSpawner.visible = particlesVisibility
+			if not particlesVisibility:
+				startTime = -1
 
 func set_num_particles(value: int) -> void:
 	if value < 1:

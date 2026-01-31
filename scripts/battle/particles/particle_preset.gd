@@ -46,7 +46,7 @@ func _init(
 	count = i_count
 	lifetime = i_lifetime
 	duration = i_duration
-	decayTime
+	decayTime = i_decayTime
 	staggered = i_staggered
 	processMaterial = i_processMaterial
 	particleTextures = i_particles

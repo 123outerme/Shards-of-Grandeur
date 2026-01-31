@@ -1,0 +1,36 @@
+[gd_resource type="Resource" script_class="MoveAnimSprite" load_steps=8 format=3 uid="uid://n1o3321eo4as"]
+
+[ext_resource type="Script" uid="uid://n71lfdnd5xrr" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite_frame.gd" id="1_oacgo"]
+[ext_resource type="Resource" uid="uid://d03t101igcpc6" path="res://gamedata/moves/heat_up/particles_heat_up.tres" id="2_w5r16"]
+[ext_resource type="Script" uid="uid://mk6loduurcg4" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="2_xohnp"]
+
+[sub_resource type="Curve" id="Curve_oacgo"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Curve" id="Curve_xohnp"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Resource" id="Resource_oacgo"]
+script = ExtResource("1_oacgo")
+annotation = "set up position at target's feet"
+duration = 0.1
+relativeTo = 1
+offset = 8
+xCurve = SubResource("Curve_oacgo")
+yCurve = SubResource("Curve_xohnp")
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[sub_resource type="Resource" id="Resource_xohnp"]
+script = ExtResource("1_oacgo")
+annotation = "play particles (duration does not include 0.4s of \"decayTime\" on particles, on purpose to speed up anim)"
+duration = 2.4
+particles = ExtResource("2_w5r16")
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[resource]
+script = ExtResource("2_xohnp")
+frames = Array[ExtResource("1_oacgo")]([SubResource("Resource_oacgo"), SubResource("Resource_xohnp")])
+playsOnImpactFrame = false
+metadata/_custom_type_script = "uid://mk6loduurcg4"

@@ -32,6 +32,8 @@ const originalCombatantZIndices: Dictionary[String, int] = {
 	'Top': 1,
 }
 
+const surgeParticles: ParticlePreset = preload("res://gamedata/moves/particles_surge.tres")
+
 @export var disableEventTexts: bool = false
 @export var disableHpTags: bool = false
 
@@ -124,7 +126,6 @@ func use_move_animation(user: CombatantNode, command: BattleCommand, targets: Ar
 		shade = moveAnimation.chargeBattlefieldShade
 	elif command.moveEffectType == Move.MoveEffectType.SURGE:
 		shade = moveAnimation.surgeBattlefieldShade
-		var surgeParticles: ParticlePreset = preload("res://gamedata/moves/particles_surge.tres")
 		user.play_particles(surgeParticles)
 	
 	user.change_current_orbs(command.orbChange)
