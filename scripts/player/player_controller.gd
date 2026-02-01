@@ -893,7 +893,7 @@ func put_interactable_text(advance: bool = false, playDialogueAnim: bool = false
 		SceneLoader.unpause_autonomous_movers()
 		if interactable != null:
 			interactable.finished_dialogue()
-			if interactable.tree_exiting.is_connected(_dialogue_partner_freed):
+			if interactable != null and interactable.tree_exiting.is_connected(_dialogue_partner_freed):
 				interactable.tree_exiting.disconnect(_dialogue_partner_freed)
 		interactableDialogue = null
 		interactableDialogues = []

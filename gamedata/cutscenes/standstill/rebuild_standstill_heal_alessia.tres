@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Cutscene" load_steps=64 format=3 uid="uid://ckl2lfmonig3y"]
+[gd_resource type="Resource" script_class="Cutscene" load_steps=67 format=3 uid="uid://ckl2lfmonig3y"]
 
 [ext_resource type="Script" uid="uid://cqpl74uk8cjo0" path="res://scripts/cutscenes/cutscene_frame.gd" id="1_a8cen"]
 [ext_resource type="Script" uid="uid://fpa08p2kb0ts" path="res://scripts/cutscenes/cutscene.gd" id="2_assjx"]
@@ -8,8 +8,11 @@
 [ext_resource type="Script" uid="uid://g5p5b4jsf6bs" path="res://scripts/cutscenes/actor_tween.gd" id="5_cb0r3"]
 [ext_resource type="Script" uid="uid://jcu0gq2ns4in" path="res://scripts/cutscenes/cutscene_dialogue.gd" id="6_4rait"]
 [ext_resource type="Script" uid="uid://b5d2qgg22dgbw" path="res://scripts/cutscenes/tweens/tween_vector2.gd" id="7_ka1i6"]
+[ext_resource type="AudioStream" uid="uid://dmehiu0e38fdb" path="res://audio/sfx/moves/heal.ogg" id="8_4rait"]
+[ext_resource type="Resource" uid="uid://c00qhxnt0fi7y" path="res://gamedata/cutscenes/reused/player_attack_affinity_anim.tres" id="8_qnlh0"]
 [ext_resource type="Script" uid="uid://pwprqe15gr3j" path="res://scripts/cutscenes/tweens/tween_color.gd" id="8_v0rw1"]
 [ext_resource type="Script" uid="uid://csrikyyse38e2" path="res://scripts/cutscenes/tweens/tween_bool.gd" id="9_cb0r3"]
+[ext_resource type="Resource" uid="uid://dcphj1dtjg3mr" path="res://gamedata/cutscenes/reused/player_stand_anim.tres" id="10_b7ua7"]
 
 [sub_resource type="Resource" id="Resource_b7ua7"]
 script = ExtResource("1_a8cen")
@@ -100,12 +103,6 @@ frameLength = 0.1
 annotation = "Wait for dialogue to be closed"
 metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
 
-[sub_resource type="Resource" id="Resource_di66f"]
-script = ExtResource("3_ka1i6")
-isPlayer = true
-animation = "attack_affinity"
-metadata/_custom_type_script = "uid://dy2r6h7mhh2oc"
-
 [sub_resource type="Resource" id="Resource_6wtha"]
 script = ExtResource("3_ka1i6")
 actorTreePath = "TilemapRoot/Lance"
@@ -116,7 +113,8 @@ metadata/_custom_type_script = "uid://dy2r6h7mhh2oc"
 script = ExtResource("1_a8cen")
 frameLength = 0.8
 annotation = "Lance stops talking anim; the player starts to heal Alessia"
-actorAnims = Array[ExtResource("3_ka1i6")]([SubResource("Resource_di66f"), SubResource("Resource_6wtha")])
+actorAnims = Array[ExtResource("3_ka1i6")]([ExtResource("8_qnlh0"), SubResource("Resource_6wtha")])
+playSfxs = Array[AudioStream]([ExtResource("8_4rait")])
 metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
 
 [sub_resource type="Resource" id="Resource_sxj1g"]
@@ -131,6 +129,13 @@ script = ExtResource("1_a8cen")
 frameLength = 0.7
 annotation = "Alessia becomes green"
 actorTweens = Array[ExtResource("5_cb0r3")]([SubResource("Resource_sxj1g")])
+metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
+
+[sub_resource type="Resource" id="Resource_5ktp7"]
+script = ExtResource("1_a8cen")
+frameLength = 0.5
+annotation = "pause at full green; player goes back to standing"
+actorAnims = Array[ExtResource("3_ka1i6")]([ExtResource("10_b7ua7")])
 metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
 
 [sub_resource type="Resource" id="Resource_45xyd"]
@@ -247,7 +252,7 @@ metadata/_custom_type_script = "uid://dy2r6h7mhh2oc"
 [sub_resource type="Resource" id="Resource_t8p4v"]
 script = ExtResource("6_4rait")
 speaker = "Lance"
-texts = Array[String](["You're here in the Foundry. @ saved the town from any more damage, and fended off the Chain Legion. Then he went looking for a way to heal you."])
+texts = Array[String](["You're here in the Foundry. @ saved the town from any more damage, and fended off the Chain Legion. Then went looking for a way to heal you."])
 speakerActorScenePath = "TilemapRoot/Lance"
 metadata/_custom_type_script = "uid://jcu0gq2ns4in"
 
@@ -369,6 +374,6 @@ metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
 
 [resource]
 script = ExtResource("2_assjx")
-cutsceneFrames = Array[ExtResource("1_a8cen")]([SubResource("Resource_b7ua7"), SubResource("Resource_c6hht"), SubResource("Resource_ka1i6"), SubResource("Resource_mhcbi"), SubResource("Resource_4rait"), SubResource("Resource_qnlh0"), SubResource("Resource_tobwl"), SubResource("Resource_yei3s"), SubResource("Resource_x3jle"), SubResource("Resource_owmcy"), SubResource("Resource_s7547"), SubResource("Resource_bfbo1"), SubResource("Resource_mvv8g"), SubResource("Resource_t1g1m"), SubResource("Resource_8qcom"), SubResource("Resource_cq66g"), SubResource("Resource_ypvwb"), SubResource("Resource_ll63c"), SubResource("Resource_18iq0"), SubResource("Resource_s2dtj"), SubResource("Resource_vgxvw"), SubResource("Resource_d5egt"), SubResource("Resource_hom05"), SubResource("Resource_48kyu"), SubResource("Resource_yctmv"), SubResource("Resource_erhe0")])
+cutsceneFrames = Array[ExtResource("1_a8cen")]([SubResource("Resource_b7ua7"), SubResource("Resource_c6hht"), SubResource("Resource_ka1i6"), SubResource("Resource_mhcbi"), SubResource("Resource_4rait"), SubResource("Resource_qnlh0"), SubResource("Resource_tobwl"), SubResource("Resource_yei3s"), SubResource("Resource_x3jle"), SubResource("Resource_5ktp7"), SubResource("Resource_owmcy"), SubResource("Resource_s7547"), SubResource("Resource_bfbo1"), SubResource("Resource_mvv8g"), SubResource("Resource_t1g1m"), SubResource("Resource_8qcom"), SubResource("Resource_cq66g"), SubResource("Resource_ypvwb"), SubResource("Resource_ll63c"), SubResource("Resource_18iq0"), SubResource("Resource_s2dtj"), SubResource("Resource_vgxvw"), SubResource("Resource_d5egt"), SubResource("Resource_hom05"), SubResource("Resource_48kyu"), SubResource("Resource_yctmv"), SubResource("Resource_erhe0")])
 saveName = "heal_alessia"
 metadata/_custom_type_script = "uid://fpa08p2kb0ts"

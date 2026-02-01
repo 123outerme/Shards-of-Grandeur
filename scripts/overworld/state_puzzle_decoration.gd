@@ -173,9 +173,11 @@ func _puzzle_reqs_updated(playTransition: bool = true):
 			animatedDecoration.anim_finished.connect(play_current_state_animation)
 		animatedDecoration.play_animation(animation)
 		if state in disableCollisionInStates:
+			animatedDecoration.collisionEnabled = false
 			animatedDecoration.collision.collision_layer = 0
 			animatedDecoration.collision.collision_mask = 0
 		else:
+			animatedDecoration.collisionEnabled = true
 			animatedDecoration.collision.collision_layer = 0b01
 			animatedDecoration.collision.collision_mask = 0b01
 	currentState = state

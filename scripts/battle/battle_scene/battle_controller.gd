@@ -166,7 +166,7 @@ func load_into_battle(saveAfterLoad: bool = true):
 				if len(staticEncounter.autoAllyMoves) == 0:
 					minionCombatant.combatant.assign_moves_nonplayer()
 				else:
-					minionCombatant.combatant.stats.moves = staticEncounter.autoAllyMoves.duplicate() 
+					minionCombatant.combatant.stats.moves = staticEncounter.autoAllyMoves.duplicate()
 				minionCombatant.shardSummoned = staticEncounter.autoAllyShardSummoned
 		else:
 			var randomEncounter: RandomEncounter = PlayerResources.playerInfo.encounter as RandomEncounter
@@ -198,7 +198,7 @@ func load_into_battle(saveAfterLoad: bool = true):
 			var combatant2StatAllocStrat: StatAllocationStrategy = null
 			if PlayerResources.playerInfo.get_spawns_three_face_combatant():
 				enemyCombatant2.combatant = randomEncounter.combatant1.copy().initialize()
-				combatant2StatAllocStrat = randomEncounter.combatant1StatAllocStrat 
+				combatant2StatAllocStrat = randomEncounter.combatant1StatAllocStrat
 				if randomEncounter.combatant1Equipment != null:
 					var equipmentIdx: int = WeightedThing.pick_item(randomEncounter.combatant1Equipment.weightedEquipment)
 					if equipmentIdx > -1:
@@ -222,7 +222,7 @@ func load_into_battle(saveAfterLoad: bool = true):
 				if eCombatant2Idx > -1 and randomEncounter.combatant2Options[eCombatant2Idx].combatant != null and rngBeginnerNoEnemy > 0.5:
 					# load enemy 2
 					state.randomEnemy2Id = eCombatant2Idx
-					var combatantOption: WeightedCombatant = randomEncounter.combatant2Options[eCombatant2Idx] 
+					var combatantOption: WeightedCombatant = randomEncounter.combatant2Options[eCombatant2Idx]
 					enemyCombatant2.combatant = combatantOption.combatant.copy().initialize()
 					combatant2StatAllocStrat = combatantOption.statAllocationStrategy
 					if combatantOption.weightedEquipment != null and len(combatantOption.weightedEquipment.weightedEquipment) > 0:
@@ -246,7 +246,7 @@ func load_into_battle(saveAfterLoad: bool = true):
 			var combatant3StatAllocStrat: StatAllocationStrategy = null
 			if PlayerResources.playerInfo.get_spawns_three_face_combatant():
 				enemyCombatant3.combatant = randomEncounter.combatant1.copy().initialize()
-				combatant3StatAllocStrat = randomEncounter.combatant1StatAllocStrat 
+				combatant3StatAllocStrat = randomEncounter.combatant1StatAllocStrat
 				if randomEncounter.combatant1Equipment != null:
 					var equipmentIdx: int = WeightedThing.pick_item(randomEncounter.combatant1Equipment.weightedEquipment)
 					if equipmentIdx > -1:
@@ -285,8 +285,8 @@ func load_into_battle(saveAfterLoad: bool = true):
 				if enemyCombatant3.combatant.get_evolution() != null:
 					enemyCombatant3.combatant.switch_evolution(enemyCombatant3.combatant.get_evolution(), null)
 				enemyCombatant3.battleAi = enemyCombatant3.combatant.get_ai().copy()
-				enemyCombatant3.combatant.level_up_nonplayer(randomEncounter.get_combatant_level(), combatant3StatAllocStrat)
 				enemyCombatant3.initialCombatantLv = enemyCombatant3.combatant.stats.level
+				enemyCombatant3.combatant.level_up_nonplayer(randomEncounter.get_combatant_level(), combatant3StatAllocStrat)
 				enemyCombatant3.combatant.orbs = enemyCombatant3.combatant.get_starting_orbs()
 				enemyCombatant3.combatant.assign_moves_nonplayer()
 		if minionCombatant.combatant != null:
@@ -321,7 +321,7 @@ func load_into_battle(saveAfterLoad: bool = true):
 		else:
 			battleUI.escapes = false
 			battleUI.battleComplete.playerEscapes = false
-			battleUI.playerWins =  PlayerResources.playerInfo.encounter.get_win_con_result(get_all_combatant_nodes(), state) == WinCon.TurnResult.PLAYER_WIN
+			battleUI.playerWins = PlayerResources.playerInfo.encounter.get_win_con_result(get_all_combatant_nodes(), state) == WinCon.TurnResult.PLAYER_WIN
 			battleUI.battleComplete.playerWins = battleUI.playerWins
 	
 	battleUI.commandingMinion = state.commandingMinion

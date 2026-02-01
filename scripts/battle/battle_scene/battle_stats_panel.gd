@@ -72,8 +72,8 @@ func load_battle_stats_panel():
 		hasBeatenStoryReq.prereqDefeatedEnemies = [combatant.save_name() + '#' + evolution.evolutionSaveName]
 	else:
 		hasBeatenStoryReq.prereqDefeatedEnemies = [combatant.save_name()]
-		
-	if hasBeatenStoryReq.is_valid() or combatant.save_name() == 'player':
+	
+	if hasBeatenStoryReq.is_valid() or combatantNode.role == CombatantNode.Role.ALLY or combatant.save_name() == 'player':
 		elementWeaknessesText.text = '[center]'
 		var elementWeaknesses: Array[Move.Element] = combatant.get_element_weaknesses()
 		if len(elementWeaknesses) > 0:

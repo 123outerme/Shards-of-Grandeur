@@ -32,6 +32,26 @@ static func type_to_string(t: Type) -> String:
 			return 'All'
 	return 'Unknown'
 
+static func type_to_debug_string(t: Type) -> String:
+	match t:
+		Type.TALK:
+			return 'TALK'
+		Type.COLLECT_ITEM:
+			return 'COLLECT'
+		Type.ACQUIRE_ITEM:
+			return 'ACQUIRE'
+		Type.DEFEAT:
+			return 'DEFEAT'
+		Type.STATIC_ENCOUNTER:
+			return 'STATIC_ENCOUNTER'
+		Type.CUTSCENE:
+			return 'CUTSCENE'
+		Type.SOLVE_PUZZLE:
+			return 'SOLVE_PUZZLE'
+		Type.ALL:
+			return 'ALL'
+	return String.num_int64(t)
+
 @export_category("Quest Step - Details")
 
 @export var name: String

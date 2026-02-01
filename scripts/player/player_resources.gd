@@ -50,7 +50,7 @@ func get_cur_act_save_str() -> String:
 func set_cutscene_seen(saveName: String):
 	playerInfo.set_cutscene_seen(saveName)
 	questInventory.progress_quest(saveName, QuestStep.Type.CUTSCENE)
-	questInventory.auto_turn_in_cutscene_steps(saveName)
+	questInventory.auto_turn_in_steps_of_type(saveName, QuestStep.Type.CUTSCENE)
 
 func set_follower_active(followerId: String) -> void:
 	if playerInfo.set_follower_active(followerId):
@@ -77,7 +77,7 @@ func load_data(save_path):
 			playerInfo.combatant.currentHp = playerInfo.combatant.stats.maxHp
 		if playerInfo.combatant.evolutions == null:
 			# compatibility fix: load player evolutions if not present
-			playerInfo.combatant.evolutions = load('res://gamedata/combatants/player/player_evolutions.tres') as Evolutions	
+			playerInfo.combatant.evolutions = load('res://gamedata/combatants/player/player_evolutions.tres') as Evolutions
 		if playerInfo.combatant.sprite == null:
 			# combatibility fix: load player sprite if not present
 			playerInfo.combatant.sprite = load('res://gamedata/combatants/player/player_sprite.tres') as CombatantSprite
@@ -180,5 +180,3 @@ func load_npc_shared_inventory(savePath: String, id: String) -> Inventory:
 		printerr('load_npc_shared_inventory ERROR: Could not load NPC inventory for ', savePath, ', at ID ', id)
 		return Inventory.new()
 	return inv
-	
-	

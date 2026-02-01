@@ -132,38 +132,38 @@ func is_textbox_complete() -> bool:
 			(len(TextBoxText.text) == 0 and len(speakerText.text) == 0))
 
 func update_speaker_sprite() -> void:
-	if speakerSpriteFrames == null or speakerAnim == '':
-		speakerSpriteControl.visible = false
-		speakerSprite.sprite_frames = SpriteFrames.new()
-		speakerSprite.animation = 'default'
-	else:
-		speakerSpriteControl.visible = true
-		var spriteFrames: SpriteFrames = speakerSpriteFrames
-		var spriteScale: int = speakerSpriteScale
-		if speakerIsPlayer:
-			var playerSpriteFrames: SpriteFrames = null
-			if PlayerFinder.player != null:
-				playerSpriteFrames = PlayerFinder.player.get_sprite_frames()
-			var playerSpriteObj: CombatantSprite = PlayerResources.playerInfo.combatant.get_sprite_obj()
-			if playerSpriteFrames == null:
-				playerSpriteFrames = playerSpriteObj.spriteFrames
-			if playerSpriteFrames != null:
-				spriteFrames = playerSpriteFrames
-			# use idle size since `maxSize` means sprite's canvas size
-			var maxDimensionSize: float = max(playerSpriteObj.idleSize.x, playerSpriteObj.idleSize.y)
-			# scale of 3x if [16x16, 16x16], 1.5x if (16x16, 32x32], 1x if bigger than that
-			spriteScale = max(1, 3.0 / ceil(maxDimensionSize / 16.0))
+	var spriteFrames: SpriteFrames = speakerSpriteFrames
+	var spriteScale: int = speakerSpriteScale
+	speakerSpriteControl.visible = true
+	if speakerIsPlayer:
+		var playerSpriteFrames: SpriteFrames = null
+		if PlayerFinder.player != null:
+			playerSpriteFrames = PlayerFinder.player.get_sprite_frames()
+		var playerSpriteObj: CombatantSprite = PlayerResources.playerInfo.combatant.get_sprite_obj()
+		if playerSpriteFrames == null:
+			playerSpriteFrames = playerSpriteObj.spriteFrames
+		if playerSpriteFrames != null:
+			spriteFrames = playerSpriteFrames
+		# use idle size since `maxSize` means sprite's canvas size
+		var maxDimensionSize: float = max(playerSpriteObj.idleSize.x, playerSpriteObj.idleSize.y)
+		# scale of 3x if [16x16, 16x16], 1.5x if (16x16, 32x32], 1x if bigger than that
+		spriteScale = max(1, 3.0 / ceil(maxDimensionSize / 16.0))
+	elif speakerText.text == '<Stephen>:':
 		# NOTE: for "demo end" dialogue purposes only. TODO Remove this in released game
-		if speakerText.text == '<Stephen>:':
-			spriteFrames = SpriteFrames.new()
-			speakerAnim = 'default'
-		speakerSprite.sprite_frames = spriteFrames
-		speakerSprite.offset = speakerSpriteOffset
-		if speakerSprite.sprite_frames.has_animation(speakerAnim):
-			speakerSprite.play(speakerAnim)
-		else:
-			print('update_speaker_sprite WARNING: animation ', speakerAnim, ' not found in: ', spriteFrames.resource_path)
-		speakerSprite.scale = Vector2.ONE * spriteScale
+		spriteFrames = null
+	
+	if spriteFrames == null or speakerAnim == '':
+		speakerSpriteControl.visible = false
+		spriteFrames = SpriteFrames.new()
+		speakerSprite.animation = 'default'
+	
+	speakerSprite.sprite_frames = spriteFrames
+	speakerSprite.scale = Vector2.ONE * spriteScale
+	speakerSprite.offset = speakerSpriteOffset
+	if speakerSprite.sprite_frames.has_animation(speakerAnim):
+		speakerSprite.play(speakerAnim)
+	else:
+		print('update_speaker_sprite WARNING: animation ', speakerAnim, ' not found in: ', spriteFrames.resource_path)
 
 func add_choices():
 	if dialogueItem == null:

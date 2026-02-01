@@ -22,17 +22,33 @@ class MapPanelLocation:
 	var buttonText: String = ''
 	var type: MapLocationType = MapLocationType.LOCATION
 	var quest: Quest = null
+	var sortOrder: int = -1
+	
+	static func _sort(a: MapPanelLocation, b: MapPanelLocation) -> bool:
+		if a.sortOrder < 0:
+			if b.sortOrder < 0:
+				return true
+			else:
+				return false
+		if b.sortOrder < 0:
+			return true
+		
+		if a.sortOrder > b.sortOrder:
+			return false
+		return true
 	
 	func _init(
 		i_locations: Array[WorldLocation.MapLocation] = [],
 		i_buttonText: String = '',
 		i_type: MapLocationType = MapLocationType.LOCATION,
-		i_quest: Quest = null
+		i_quest: Quest = null,
+		i_sortOrder: int = -1,
 	):
 		locations = i_locations
 		buttonText = i_buttonText
 		type = i_type
 		quest = i_quest
+		sortOrder = i_sortOrder
 
 signal back_pressed
 
@@ -247,10 +263,10 @@ func build_key_locations_options() -> Array[MapPanelLocation]:
 		if keyLocation.is_valid() and \
 				(not keyLocMap.has(keyLocation.id) or keyLocMap[keyLocation.id].priority < keyLocation.priority):
 			keyLocMap[keyLocation.id] = keyLocation
-			options[keyLocation.id] = MapPanelLocation.new(keyLocation.locations, TextUtils.substitute_playername(keyLocation.name), MapLocationType.KEY_LOCATION)
+			options[keyLocation.id] = MapPanelLocation.new(keyLocation.locations, TextUtils.substitute_playername(keyLocation.name), MapLocationType.KEY_LOCATION, null, keyLocation.sortOrder)
 	
 	var optionsList: Array[MapPanelLocation] = options.values()
-	optionsList.sort_custom(KeyMapLocation._sort)
+	optionsList.sort_custom(MapPanelLocation._sort)
 	return optionsList
 
 func get_current_location() -> MapPanelLocation:

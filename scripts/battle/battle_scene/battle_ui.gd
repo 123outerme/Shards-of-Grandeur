@@ -317,8 +317,12 @@ func build_rewards() -> Array[Reward]:
 						reward = battleController.enemyCombatant1.combatant.get_drop_table().weightedRewards[dropIdx].reward
 				if reward != null:
 					# if there was a reward, scale it up by the combatant's level
-					reward = reward.scale_reward_by_level(battleController.enemyCombatant1.initialCombatantLv, battleController.enemyCombatant1.combatant.stats.level, PlayerResources.playerInfo.combatant.stats.level, Reward.CUSTOM_WIN_SCALE if playerWins else Reward.CUSTOM_LOSE_SCALE) \
-						.scale_reward_by_modifiers(expModifier, goldModifier, itemsModifier)
+					reward = reward.scale_reward_by_level(
+						battleController.enemyCombatant1.initialCombatantLv,
+						battleController.enemyCombatant1.combatant.stats.level,
+						PlayerResources.playerInfo.combatant.stats.level,
+						Reward.CUSTOM_WIN_SCALE if playerWins else Reward.CUSTOM_LOSE_SCALE
+					).scale_reward_by_modifiers(expModifier, goldModifier, itemsModifier)
 					
 			# no matter what, at least one reward should be returned here, even if null:
 			rewards.append(reward)
@@ -348,8 +352,12 @@ func build_rewards() -> Array[Reward]:
 							reward = battleController.enemyCombatant2.combatant.get_drop_table().weightedRewards[dropIdx].reward
 					if reward != null:
 						# if there was a reward, scale it up by the combatant's level
-						reward = reward.scale_reward_by_level(battleController.enemyCombatant2.initialCombatantLv, battleController.enemyCombatant2.combatant.stats.level, PlayerResources.playerInfo.combatant.stats.level, Reward.CUSTOM_WIN_SCALE if playerWins else Reward.CUSTOM_LOSE_SCALE) \
-							.scale_reward_by_modifiers(expModifier, goldModifier, itemsModifier)
+						reward = reward.scale_reward_by_level(
+							battleController.enemyCombatant2.initialCombatantLv,
+							battleController.enemyCombatant2.combatant.stats.level,
+							PlayerResources.playerInfo.combatant.stats.level,
+							Reward.CUSTOM_WIN_SCALE if playerWins else Reward.CUSTOM_LOSE_SCALE
+						).scale_reward_by_modifiers(expModifier, goldModifier, itemsModifier)
 				# if the enemy was present but not defeated, it explicitly gets null rewards. otherwise gets the found rewards
 				rewards.append(reward)
 			reward = null
@@ -378,8 +386,12 @@ func build_rewards() -> Array[Reward]:
 							reward = battleController.enemyCombatant3.combatant.get_drop_table().weightedRewards[dropIdx].reward
 					if reward != null:
 						# if there was a reward, scale it up by the combatant's level
-						reward = reward.scale_reward_by_level(battleController.enemyCombatant3.initialCombatantLv, battleController.enemyCombatant3.combatant.stats.level, PlayerResources.playerInfo.combatant.stats.level, Reward.CUSTOM_WIN_SCALE if playerWins else Reward.CUSTOM_LOSE_SCALE) \
-						.scale_reward_by_modifiers(expModifier, goldModifier, itemsModifier)
+						reward = reward.scale_reward_by_level(
+							battleController.enemyCombatant3.initialCombatantLv,
+							battleController.enemyCombatant3.combatant.stats.level,
+							PlayerResources.playerInfo.combatant.stats.level,
+							Reward.CUSTOM_WIN_SCALE if playerWins else Reward.CUSTOM_LOSE_SCALE
+						).scale_reward_by_modifiers(expModifier, goldModifier, itemsModifier)
 				# if the enemy was present but not defeated, it explicitly gets null rewards. otherwise gets the found rewards
 				rewards.append(reward)
 		# if the win con is a Survive win con:

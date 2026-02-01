@@ -29,7 +29,7 @@ func _init(
 	i_path = '',
 	i_requirements = null,
 	i_overworldTheme = null,
-	i_battleMapName = '',
+	i_battleMapName = 'forest_battle_map',
 	i_battleMusic: Array[AudioStream] = [],
 	i_isRecover = false,
 	i_recoverPos = Vector2(),

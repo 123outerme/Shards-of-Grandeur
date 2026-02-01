@@ -15,6 +15,7 @@
 [ext_resource type="Resource" uid="uid://dcphj1dtjg3mr" path="res://gamedata/cutscenes/reused/player_stand_anim.tres" id="9_3xjv0"]
 [ext_resource type="Script" uid="uid://bll87t0wwopow" path="res://scripts/cutscenes/anim_curve_2d.gd" id="9_5j7cy"]
 [ext_resource type="SpriteFrames" uid="uid://bh5ntodb3lou0" path="res://graphics/animations/a_nomad_elder_collapsed.tres" id="10_loiv1"]
+[ext_resource type="Resource" uid="uid://c00qhxnt0fi7y" path="res://gamedata/cutscenes/reused/player_attack_affinity_anim.tres" id="11_407i2"]
 [ext_resource type="Script" uid="uid://fw22o8hbosnk" path="res://scripts/inventory/inventory_slot.gd" id="14_ko5dt"]
 
 [sub_resource type="Resource" id="Resource_1mi1f"]
@@ -79,16 +80,11 @@ script = ExtResource("1_55v27")
 frameLength = 0.1
 annotation = "Wait for the text box to be closed"
 
-[sub_resource type="Resource" id="Resource_eqdyw"]
-script = ExtResource("3_q6b2v")
-isPlayer = true
-animation = "attack_affinity"
-
 [sub_resource type="Resource" id="Resource_v0mpl"]
 script = ExtResource("1_55v27")
 frameLength = 0.8
 annotation = "The player tries to wake the elder with Affinity"
-actorAnims = Array[ExtResource("3_q6b2v")]([SubResource("Resource_eqdyw")])
+actorAnims = Array[ExtResource("3_q6b2v")]([ExtResource("11_407i2")])
 
 [sub_resource type="Resource" id="Resource_obwwu"]
 script = ExtResource("7_74gs7")

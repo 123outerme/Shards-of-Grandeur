@@ -667,7 +667,7 @@ func play_triggered_rune_animations() -> void:
 				if SettingsHandler.gameSettings.battleAnims:
 					var triggerSprites: Array[MoveAnimSprite] = rune.get_trigger_anim_sprites()
 					triggerRuneSpriteCount = 0
-					for idx: int in range(triggerRuneSpriteCount):
+					for idx: int in range(len(triggerSprites)):
 						var triggerSprite: MoveAnimSprite = triggerSprites[idx]
 						if triggerSprite == null:
 							continue

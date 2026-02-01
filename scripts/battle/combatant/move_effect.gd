@@ -142,11 +142,17 @@ func get_short_description(dmgCategory: Move.DmgCategory = Move.DmgCategory.PHYS
 		var accuracyString: String = String.num_int64(roundi(statusChance * 100)) + ' Chance'
 		if statusChance >= 1:
 			accuracyString = 'Guaranteed'
-		var statusString: String = StatusEffect.potency_to_string(statusEffect.potency) \
-			+ ' ' + statusEffect.get_status_type_string() \
-			+ ' (' + accuracyString + ')'
-		if statusEffect.overwritesOtherStatuses:
-			statusString += ', Replaces'
+		var statusString: String = ''
+		if statusEffect.type == StatusEffect.Type.NONE:
+			statusString = 'Cures ' \
+				+ StatusEffect.potency_to_string(statusEffect.potency) \
+				+ ' Status (' + accuracyString + ')'
+		else:
+			statusString = StatusEffect.potency_to_string(statusEffect.potency) \
+				+ ' ' + statusEffect.get_status_type_string() \
+				+ ' (' + accuracyString + ')'
+			if statusEffect.overwritesOtherStatuses:
+				statusString += ', Replaces'
 		effects.append(statusString)
 	
 	if rune != null:

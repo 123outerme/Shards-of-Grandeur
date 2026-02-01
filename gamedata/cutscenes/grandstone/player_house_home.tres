@@ -13,59 +13,23 @@
 script = ExtResource("1_x4qsh")
 speaker = "@"
 texts = Array[String](["Ah... home, sweet home."])
-textboxSfxs = Array[AudioStream]([])
-speakerActorScenePath = ""
 speakerActorIsPlayer = true
 speakerAnim = "stand"
-speakerAnimScale = 3
-animSpeakerOffset = Vector2(0, 0)
 
 [sub_resource type="Resource" id="Resource_35hm5"]
 script = ExtResource("1_ytspw")
 frameLength = 0.1
 annotation = "Say \"Home sweet home\""
-actorTweens = Array[ExtResource("6_c8awi")]([])
 actorAnims = Array[ExtResource("3_dgoo2")]([ExtResource("1_5xf0u")])
-actorAnimSets = Array[ExtResource("2_vv6uk")]([])
-actorFaceTargets = Array[ExtResource("5_g5hti")]([])
 dialogues = Array[ExtResource("1_x4qsh")]([SubResource("Resource_g6rb5")])
-playSfxs = Array[AudioStream]([])
-endTextBoxPauses = true
-shakeCamForDuration = false
-endHoldCamera = false
-endFade = 0
-endFadeLength = 0.0
-healsPlayer = false
-addsFollowerId = ""
-removesFollowerId = ""
-endStartsShardLearnTutorial = false
 
 [sub_resource type="Resource" id="Resource_t60mn"]
 script = ExtResource("1_ytspw")
 frameLength = 0.1
 annotation = "Wait for text box to close"
-actorTweens = Array[ExtResource("6_c8awi")]([])
-actorAnims = Array[ExtResource("3_dgoo2")]([])
-actorAnimSets = Array[ExtResource("2_vv6uk")]([])
-actorFaceTargets = Array[ExtResource("5_g5hti")]([])
-dialogues = Array[ExtResource("1_x4qsh")]([])
-playSfxs = Array[AudioStream]([])
-endTextBoxPauses = true
-shakeCamForDuration = false
-endHoldCamera = false
-endFade = 0
-endFadeLength = 0.0
-healsPlayer = false
-addsFollowerId = ""
-removesFollowerId = ""
-endStartsShardLearnTutorial = false
 
 [resource]
 script = ExtResource("1_weie0")
 cutsceneFrames = Array[ExtResource("1_ytspw")]([SubResource("Resource_35hm5"), SubResource("Resource_t60mn")])
 saveName = "player_home"
-unlockCameraHoldAfter = true
-activateActorsBefore = Array[String]([])
-deactivateActorsAfter = Array[String]([])
 tempDisabledAfter = true
-notes = ""

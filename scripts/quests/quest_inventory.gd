@@ -128,12 +128,13 @@ func auto_update_quests(recursiveCall: bool = false) -> bool:
 	for specialBattle in PlayerResources.playerInfo.completedSpecialBattles:
 		if PlayerResources.playerInfo.has_completed_special_battle(specialBattle):
 			progress_quest(specialBattle, QuestStep.Type.STATIC_ENCOUNTER)
+			emitChanges = emitChanges or auto_turn_in_steps_of_type(specialBattle, QuestStep.Type.STATIC_ENCOUNTER) # only auto-turns in if no turn-in entity has been specified
 	for puzzle in PlayerResources.playerInfo.puzzlesSolved:
 		progress_quest(puzzle, QuestStep.Type.SOLVE_PUZZLE)
-		emitChanges = emitChanges or auto_turn_in_puzzle_steps(puzzle) # only auto-turns in if no turn-in entity has been specified
+		emitChanges = emitChanges or auto_turn_in_steps_of_type(puzzle, QuestStep.Type.SOLVE_PUZZLE) # only auto-turns in if no turn-in entity has been specified
 	for cutscene in PlayerResources.playerInfo.cutscenesPlayed:
 		progress_quest(cutscene, QuestStep.Type.CUTSCENE)
-		emitChanges = emitChanges or auto_turn_in_cutscene_steps(cutscene)
+		emitChanges = emitChanges or auto_turn_in_steps_of_type(cutscene, QuestStep.Type.CUTSCENE)
 	
 	if emitChanges:
 		# prevent more than one recursive call from happening to update quest states
@@ -152,21 +153,11 @@ func progress_quest(target: String, type: QuestStep.Type, progress: int = 1):
 			if tracker.get_current_step().type == type and (tracker.quest.storyRequirements == null or tracker.quest.storyRequirements.is_valid()):
 				tracker.add_current_step_progress(progress)
 
-func auto_turn_in_cutscene_steps(target: String) -> bool:
+func auto_turn_in_steps_of_type(target: String, type: QuestStep.Type) -> bool:
 	var hasTurnedIn: bool = false
 	for tracker in get_cur_trackers_for_target(target):
 		if tracker.get_current_status() == QuestTracker.Status.READY_TO_TURN_IN_STEP \
-				and tracker.get_current_step().type == QuestStep.Type.CUTSCENE \
-				and len(tracker.get_current_step().turnInNames) == 0:
-			turn_in_cur_step(tracker, true)
-			hasTurnedIn = true
-	return hasTurnedIn
-
-func auto_turn_in_puzzle_steps(target: String) -> bool:
-	var hasTurnedIn: bool = false
-	for tracker in get_cur_trackers_for_target(target):
-		if tracker.get_current_status() == QuestTracker.Status.READY_TO_TURN_IN_STEP \
-				and tracker.get_current_step().type == QuestStep.Type.SOLVE_PUZZLE \
+				and tracker.get_current_step().type == type \
 				and len(tracker.get_current_step().turnInNames) == 0:
 			# only turn in if completed and there are no turn in names specified
 			turn_in_cur_step(tracker, true)

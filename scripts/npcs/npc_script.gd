@@ -274,7 +274,7 @@ func add_shop_items_to_inventory(savePath: String, newInventory: bool):
 	for shopItemSlot: ShopInventorySlot in npcShop.shopItemSlots:
 		var existingSlot: InventorySlot = inventory.get_slot_for_item(shopItemSlot.item)
 		# if there is no slot for this object: add it to the inventory
-		if existingSlot == null: #or shopItemSlot.should_add(data.version):
+		if existingSlot == null: # or shopItemSlot.should_add(data.version):
 			inventory.add_slot(shopItemSlot.copy())
 
 func _sort_shop_items(a: InventorySlot, b: InventorySlot) -> bool:
@@ -465,7 +465,7 @@ func advance_dialogue() -> bool:
 					if node.has_method('play_animation'):
 						node.play_animation(data.dialogueItems[data.dialogueIndex].items[data.dialogueItemIdx].actorAnimation)
 					else:
-						print('Actor ' , node.name, ' was asked to play an animation but it doesn\'t implement play_animation()')
+						print('Actor ', node.name, ' was asked to play an animation but it doesn\'t implement play_animation()')
 
 	if data.dialogueIndex == 0 and data.dialogueItemIdx == 0 and data.dialogueLine == 0: # conversation just started
 		data.previousDisableMove = true # make sure NPC movement state is paused on save/load
@@ -489,8 +489,8 @@ func fetch_all_dialogues() -> Array[DialogueEntry]:
 			if curStep.inProgressDialogue != null and len(curStep.inProgressDialogue) > 0 \
 					and questTracker.get_step_status(curStep) == QuestTracker.Status.IN_PROGRESS \
 					and (questTracker.quest.storyRequirements == null or questTracker.quest.storyRequirements.is_valid()):
-				if saveName in questTracker.get_prev_step().turnInNames \
-						or (len(questTracker.get_prev_step().turnInNames) == 0 and saveName in curStep.turnInNames):
+				if (len(curStep.turnInNames) == 0 and saveName in questTracker.get_prev_step().turnInNames) \
+						or saveName in curStep.turnInNames:
 					dialogueItems.append_array(curStep.inProgressDialogue)
 	for s in turningInSteps:
 		if s.turnInDialogue != null and len(s.turnInDialogue) > 0:
@@ -536,8 +536,8 @@ func update_dialogues_in_between():
 			if curStep.inProgressDialogue != null and len(curStep.inProgressDialogue) > 0 \
 					and questTracker.get_step_status(curStep) == QuestTracker.Status.IN_PROGRESS \
 					and (questTracker.quest.storyRequirements == null or questTracker.quest.storyRequirements.is_valid()):
-				if saveName in questTracker.get_prev_step().turnInNames \
-						or (questTracker.get_prev_step().turnInNames == [] and saveName in curStep.turnInNames):
+				if (len(curStep.turnInNames) == 0 and saveName in questTracker.get_prev_step().turnInNames) \
+						or saveName in curStep.turnInNames:
 					for dialogue in curStep.inProgressDialogue:
 						if dialogue == null:
 							continue

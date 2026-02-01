@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Cutscene" load_steps=34 format=3 uid="uid://dppxsolpag41t"]
+[gd_resource type="Resource" script_class="Cutscene" load_steps=35 format=3 uid="uid://dppxsolpag41t"]
 
 [ext_resource type="Script" uid="uid://cqpl74uk8cjo0" path="res://scripts/cutscenes/cutscene_frame.gd" id="1_rjcf2"]
 [ext_resource type="Script" uid="uid://fpa08p2kb0ts" path="res://scripts/cutscenes/cutscene.gd" id="2_skpn5"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://g5p5b4jsf6bs" path="res://scripts/cutscenes/actor_tween.gd" id="5_02nam"]
 [ext_resource type="Script" uid="uid://jcu0gq2ns4in" path="res://scripts/cutscenes/cutscene_dialogue.gd" id="6_1w8qu"]
 [ext_resource type="Script" uid="uid://b5d2qgg22dgbw" path="res://scripts/cutscenes/tweens/tween_vector2.gd" id="7_1w8qu"]
+[ext_resource type="AudioStream" uid="uid://dmehiu0e38fdb" path="res://audio/sfx/moves/heal.ogg" id="9_1w8qu"]
 [ext_resource type="Script" uid="uid://pwprqe15gr3j" path="res://scripts/cutscenes/tweens/tween_color.gd" id="9_02nam"]
 
 [sub_resource type="Resource" id="Resource_h18pr"]
@@ -27,7 +28,7 @@ metadata/_custom_type_script = "uid://8oxtwxpqllgd"
 
 [sub_resource type="Resource" id="Resource_ty715"]
 script = ExtResource("7_1w8qu")
-value = Vector2(1582, 118)
+value = Vector2(1570, 118)
 actorTreePath = "TilemapRoot/Nomad2Training"
 propertyName = "position"
 metadata/_custom_type_script = "uid://b5d2qgg22dgbw"
@@ -107,6 +108,7 @@ script = ExtResource("1_rjcf2")
 frameLength = 2.333
 annotation = "the nomad elder uses Affinity"
 actorAnims = Array[ExtResource("3_s7fqj")]([SubResource("Resource_qm6ms")])
+playSfxs = Array[AudioStream]([ExtResource("9_1w8qu")])
 metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
 
 [sub_resource type="Resource" id="Resource_ydmuw"]

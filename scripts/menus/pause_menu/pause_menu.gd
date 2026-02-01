@@ -41,6 +41,9 @@ func toggle_pause():
 	if isPaused:
 		pause_game()
 	else:
+		if mapPanel.visible:
+			# if the pause menu was opened to view the location of a quest, this will properly trigger going back to the Quests menu
+			mapPanel._on_back_button_pressed()
 		unpause_game()
 
 func pause_game():
