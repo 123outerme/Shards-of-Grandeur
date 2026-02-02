@@ -17,39 +17,21 @@
 script = ExtResource("1_bo05w")
 speaker = "@"
 texts = Array[String](["I can't leave yet...!"])
-speakerActorScenePath = ""
 speakerActorIsPlayer = true
 speakerAnim = "stand"
-speakerAnimScale = 3
-animSpeakerOffset = Vector2(0, 0)
 
 [sub_resource type="Resource" id="Resource_2ycfn"]
 script = ExtResource("1_m6me8")
 frameLength = 0.1
 annotation = "Text box opens"
-actorTweens = Array[ExtResource("5_1ja04")]([])
-actorAnims = Array[ExtResource("3_crtak")]([])
-actorAnimSets = Array[ExtResource("2_no0d6")]([])
-actorFaceTargets = Array[ExtResource("4_d34xm")]([])
 dialogues = Array[ExtResource("1_bo05w")]([SubResource("Resource_uum3i")])
 endTextBoxPauses = false
-shakeCamForDuration = false
-endHoldCamera = false
-endFade = 0
-endFadeLength = 0.0
-healsPlayer = false
-addsFollowerId = ""
-removesFollowerId = ""
-endStartsShardLearnTutorial = false
 
 [sub_resource type="Resource" id="Resource_tob3d"]
 script = ExtResource("3_q02ng")
 value = Vector2(-396, -185)
-actorTreePath = ""
 isPlayer = true
 propertyName = "position"
-easeType = 2
-transitionType = 0
 
 [sub_resource type="Resource" id="Resource_qbscm"]
 script = ExtResource("1_m6me8")
@@ -57,71 +39,23 @@ frameLength = 0.5
 annotation = "Player walks back to be in front of cave entrance, Dr. Hudson"
 actorTweens = Array[ExtResource("5_1ja04")]([SubResource("Resource_tob3d")])
 actorAnims = Array[ExtResource("3_crtak")]([ExtResource("2_knpel")])
-actorAnimSets = Array[ExtResource("2_no0d6")]([])
-actorFaceTargets = Array[ExtResource("4_d34xm")]([])
-dialogues = Array[ExtResource("1_bo05w")]([])
 endTextBoxPauses = false
-shakeCamForDuration = false
-endHoldCamera = false
-endFade = 0
-endFadeLength = 0.0
-healsPlayer = false
-addsFollowerId = ""
-removesFollowerId = ""
-endStartsShardLearnTutorial = false
 
 [sub_resource type="Resource" id="Resource_p3c7j"]
 script = ExtResource("1_m6me8")
 frameLength = 0.1
 annotation = "Pause for text box reading, set player to standing"
-actorTweens = Array[ExtResource("5_1ja04")]([])
 actorAnims = Array[ExtResource("3_crtak")]([ExtResource("4_v6m6w")])
-actorAnimSets = Array[ExtResource("2_no0d6")]([])
-actorFaceTargets = Array[ExtResource("4_d34xm")]([])
-dialogues = Array[ExtResource("1_bo05w")]([])
-endTextBoxPauses = true
-shakeCamForDuration = false
-endHoldCamera = false
-endFade = 0
-endFadeLength = 0.0
-healsPlayer = false
-addsFollowerId = ""
-removesFollowerId = ""
-endStartsShardLearnTutorial = false
 
 [sub_resource type="Resource" id="Resource_sqk6e"]
 script = ExtResource("6_a0oxb")
-minAct = 0
 maxAct = 0
-prereqQuests = Array[String]([])
 prereqCutscenes = Array[String](["hilltop_ambush"])
-prereqDialogues = Array[String]([])
-prereqPlacesVisited = Array[String]([])
-prereqSpecialBattles = Array[String]([])
-prereqDefeatedEnemies = Array[String]([])
-prereqPuzzles = Array[String]([])
-prereqPuzzleStates = Dictionary[String, Array]({})
-prereqDiscoveredEvolutions = Array[String]([])
-prereqHavingFollowers = Array[String]([])
-prereqHasItems = Array[ExtResource("11_uvkvq")]([])
 invalidAfterCompletingQuests = Array[String](["Protect the Convoy#Ambush!"])
-invalidAfterFailingQuests = Array[String]([])
 invalidAfterCutscenes = Array[String](["exit_hilltop_after_ambush"])
-invalidAfterDialogues = Array[String]([])
-invalidAfterVistingPlaces = Array[String]([])
-invalidAfterSpecialBattles = Array[String]([])
-invalidAfterSolvingPuzzles = Array[String]([])
-invalidFromPuzzleStates = Dictionary[String, Array]({})
-invalidFromHavingFollowers = Array[String]([])
-invalidFromHavingItems = Array[ExtResource("11_uvkvq")]([])
 
 [resource]
 script = ExtResource("5_a0ukw")
 cutsceneFrames = Array[ExtResource("1_m6me8")]([SubResource("Resource_2ycfn"), SubResource("Resource_qbscm"), SubResource("Resource_p3c7j")])
 saveName = "return_to_ambush"
 storyRequirements = SubResource("Resource_sqk6e")
-unlockCameraHoldAfter = true
-activateActorsBefore = Array[String]([])
-deactivateActorsAfter = Array[String]([])
-tempDisabledAfter = false
-notes = ""

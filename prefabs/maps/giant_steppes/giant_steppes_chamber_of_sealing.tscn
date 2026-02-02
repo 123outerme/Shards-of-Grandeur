@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=4 uid="uid://c1m3kg17xcxre"]
+[gd_scene load_steps=29 format=4 uid="uid://c1m3kg17xcxre"]
 
 [ext_resource type="Script" uid="uid://vg00rfnn3346" path="res://scripts/overworld/map_script.gd" id="1_2wdq7"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_cfw4e"]
@@ -17,37 +17,16 @@
 [ext_resource type="Resource" uid="uid://3q1lqg0v1u8x" path="res://gamedata/cutscenes/giant_steppes/giant_steppes_chamber_of_sealing_access_denied_top_left.tres" id="10_m0cgo"]
 [ext_resource type="Resource" uid="uid://cr13eh1n05qpn" path="res://gamedata/cutscenes/giant_steppes/giant_steppes_chamber_of_sealing_access_denied_bottom_left.tres" id="11_dckxy"]
 [ext_resource type="Resource" uid="uid://eq2l0udri31v" path="res://gamedata/cutscenes/giant_steppes/giant_steppes_chamber_of_sealing_access_denied_right.tres" id="11_m0cgo"]
-[ext_resource type="PackedScene" uid="uid://blb38hmic2jvq" path="res://prefabs/overworld/test_camera.tscn" id="14_d1w6t"]
 
 [sub_resource type="Resource" id="Resource_swvae"]
 script = ExtResource("4_idrjy")
 id = "default"
 priority = -1
-storyRequirements = Array[ExtResource("5_vl4w1")]([])
-autoApplyState = false
 
-[sub_resource type="Resource" id="Resource_gg66f"]
+[sub_resource type="Resource" id="Resource_bd3v8"]
 script = ExtResource("6_h4c06")
 saveName = "npc"
-spriteState = "default"
-animation = "stand"
 position = Vector2(-4, -84)
-flipH = false
-visible = true
-selectedTarget = 0
-loops = 0
-disableMovement = false
-previousDisableMove = false
-afterMoveWaitAccum = 0.0
-followerHomePosition = Vector2(0, 0)
-followingPlayer = false
-followerHomeSet = false
-combatMode = false
-version = ""
-dialogueItems = []
-dialogueIndex = -1
-dialogueItemIdx = -1
-dialogueLine = -1
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_idrjy"]
 size = Vector2(24, 30)
@@ -56,31 +35,11 @@ size = Vector2(24, 30)
 script = ExtResource("4_idrjy")
 id = "default"
 priority = -1
-storyRequirements = Array[ExtResource("5_vl4w1")]([])
-autoApplyState = false
 
-[sub_resource type="Resource" id="Resource_gjjeh"]
+[sub_resource type="Resource" id="Resource_j3w3o"]
 script = ExtResource("6_h4c06")
 saveName = "npc"
-spriteState = "default"
-animation = "stand"
 position = Vector2(190, 53)
-flipH = false
-visible = true
-selectedTarget = 0
-loops = 0
-disableMovement = false
-previousDisableMove = false
-afterMoveWaitAccum = 0.0
-followerHomePosition = Vector2(0, 0)
-followingPlayer = false
-followerHomeSet = false
-combatMode = false
-version = ""
-dialogueItems = []
-dialogueIndex = -1
-dialogueItemIdx = -1
-dialogueLine = -1
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vl4w1"]
 size = Vector2(24, 9)
@@ -174,7 +133,7 @@ saveName = "gs_chamber_master_ground_floor"
 spriteStatesDict = Dictionary[String, ExtResource("4_idrjy")]({
 "default": SubResource("Resource_swvae")
 })
-data = SubResource("Resource_gg66f")
+data = SubResource("Resource_bd3v8")
 dialogueEntries = Array[ExtResource("7_jbply")]([ExtResource("8_bd3v8")])
 npcShop = ExtResource("9_bd3v8")
 
@@ -199,7 +158,7 @@ position = Vector2(190, 53)
 spriteStatesDict = Dictionary[String, ExtResource("4_idrjy")]({
 "default": SubResource("Resource_2yuxa")
 })
-data = SubResource("Resource_gjjeh")
+data = SubResource("Resource_j3w3o")
 
 [node name="NPCSprite" parent="TilemapRoot/Warlock1" index="0"]
 sprite_frames = ExtResource("7_idrjy")
@@ -259,9 +218,6 @@ navigation_layers = 4
 position = Vector2(-8, 18)
 mapName = "giant_steppes_l1"
 mapPos = Vector2(88, -337)
-
-[node name="TestCamera" parent="." instance=ExtResource("14_d1w6t")]
-position = Vector2(136, 8)
 
 [editable path="TilemapRoot/ChamberMaster"]
 [editable path="TilemapRoot/Warlock1"]

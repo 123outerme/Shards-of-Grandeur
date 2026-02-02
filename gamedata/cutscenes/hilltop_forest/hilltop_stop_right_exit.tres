@@ -17,39 +17,22 @@
 script = ExtResource("2_qk4bc")
 speaker = "@"
 texts = Array[String](["I shouldn't go too far, we need to get back to Grandstone soon!"])
-speakerActorScenePath = ""
 speakerActorIsPlayer = true
 speakerAnim = "stand"
-speakerAnimScale = 3
-animSpeakerOffset = Vector2(0, 0)
 
 [sub_resource type="Resource" id="Resource_ebtlb"]
 script = ExtResource("3_pud1f")
 frameLength = 0.15
 annotation = "Player stops moving and announces required destination"
-actorTweens = Array[ExtResource("6_yip7w")]([])
 actorAnims = Array[ExtResource("3_uy07b")]([ExtResource("1_carr6")])
-actorAnimSets = Array[ExtResource("2_jlb4i")]([])
-actorFaceTargets = Array[ExtResource("5_rbe47")]([])
 dialogues = Array[ExtResource("2_qk4bc")]([SubResource("Resource_exfd1")])
 endTextBoxPauses = false
-shakeCamForDuration = false
-endHoldCamera = false
-endFade = 0
-endFadeLength = 0.0
-healsPlayer = false
-addsFollowerId = ""
-removesFollowerId = ""
-endStartsShardLearnTutorial = false
 
 [sub_resource type="Resource" id="Resource_knium"]
 script = ExtResource("5_cqt4h")
 value = Vector2(-554, 16)
-actorTreePath = ""
 isPlayer = true
 propertyName = "position"
-easeType = 2
-transitionType = 0
 
 [sub_resource type="Resource" id="Resource_j0wry"]
 script = ExtResource("3_pud1f")
@@ -57,71 +40,22 @@ frameLength = 0.5
 annotation = "Player reverses course back to intended path"
 actorTweens = Array[ExtResource("6_yip7w")]([SubResource("Resource_knium")])
 actorAnims = Array[ExtResource("3_uy07b")]([ExtResource("4_sfdwd")])
-actorAnimSets = Array[ExtResource("2_jlb4i")]([])
-actorFaceTargets = Array[ExtResource("5_rbe47")]([])
-dialogues = Array[ExtResource("2_qk4bc")]([])
 endTextBoxPauses = false
-shakeCamForDuration = false
-endHoldCamera = false
-endFade = 0
-endFadeLength = 0.0
-healsPlayer = false
-addsFollowerId = ""
-removesFollowerId = ""
-endStartsShardLearnTutorial = false
 
 [sub_resource type="Resource" id="Resource_g1moo"]
 script = ExtResource("3_pud1f")
 frameLength = 0.1
 annotation = "Player stands and waits for textbox to be closed"
-actorTweens = Array[ExtResource("6_yip7w")]([])
 actorAnims = Array[ExtResource("3_uy07b")]([ExtResource("1_carr6")])
-actorAnimSets = Array[ExtResource("2_jlb4i")]([])
-actorFaceTargets = Array[ExtResource("5_rbe47")]([])
-dialogues = Array[ExtResource("2_qk4bc")]([])
-endTextBoxPauses = true
-shakeCamForDuration = false
-endHoldCamera = false
-endFade = 0
-endFadeLength = 0.0
-healsPlayer = false
-addsFollowerId = ""
-removesFollowerId = ""
-endStartsShardLearnTutorial = false
 
 [sub_resource type="Resource" id="Resource_d6p30"]
 script = ExtResource("7_tgmsh")
-minAct = 0
 maxAct = 1
 prereqQuests = Array[String](["Protect the Convoy#Ambush!"])
-prereqCutscenes = Array[String]([])
-prereqDialogues = Array[String]([])
-prereqPlacesVisited = Array[String]([])
-prereqSpecialBattles = Array[String]([])
-prereqDefeatedEnemies = Array[String]([])
-prereqPuzzles = Array[String]([])
-prereqPuzzleStates = Dictionary[String, Array]({})
-prereqDiscoveredEvolutions = Array[String]([])
-prereqHavingFollowers = Array[String]([])
-prereqHasItems = Array[ExtResource("11_sqilr")]([])
 invalidAfterCompletingQuests = Array[String](["The Radiant War Begins#To Grandstone!"])
-invalidAfterFailingQuests = Array[String]([])
-invalidAfterCutscenes = Array[String]([])
-invalidAfterDialogues = Array[String]([])
-invalidAfterVistingPlaces = Array[String]([])
-invalidAfterSpecialBattles = Array[String]([])
-invalidAfterSolvingPuzzles = Array[String]([])
-invalidFromPuzzleStates = Dictionary[String, Array]({})
-invalidFromHavingFollowers = Array[String]([])
-invalidFromHavingItems = Array[ExtResource("11_sqilr")]([])
 
 [resource]
 script = ExtResource("6_cllqe")
 cutsceneFrames = Array[ExtResource("3_pud1f")]([SubResource("Resource_ebtlb"), SubResource("Resource_j0wry"), SubResource("Resource_g1moo")])
 saveName = "goto_cave"
 storyRequirements = SubResource("Resource_d6p30")
-unlockCameraHoldAfter = true
-activateActorsBefore = Array[String]([])
-deactivateActorsAfter = Array[String]([])
-tempDisabledAfter = false
-notes = ""

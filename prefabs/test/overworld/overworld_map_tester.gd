@@ -5,6 +5,7 @@ func _ready() -> void:
 	#print(paths)
 	#'''
 	var forceShownCollisionMaps: Dictionary[String, Array] = {}
+	var hasTestTools: Dictionary[String, Array] = {}
 	
 	for path: String in paths:
 		print('Checking map at ', path)
@@ -23,6 +24,14 @@ func _ready() -> void:
 						else:
 							forceShownCollisionMaps[path] = [child.name]
 						#printerr('Scene', path, ' / tilemap layer ', child.name, ' has force show collision visibility enabled')
+			add_child(map)
+			var testTools: Array[Node] = get_tree().get_nodes_in_group('TestTool')
+			var testToolNames: Array[String] = []
+			for node: Node in testTools:
+				testToolNames.append(node.name)
+			if len(testToolNames) > 0:
+				hasTestTools[path] = testToolNames
+			remove_child(map)
 			map.queue_free()
 	print()
 	print('==================================')
@@ -33,6 +42,11 @@ func _ready() -> void:
 		var layers: Array[String] = forceShownCollisionMaps[collisionShownMap]
 		for layer: String in layers:
 			printerr('Map ', collisionShownMap, ' / TileMapLayer ', layer, ' has force show collision visibility enabled')
+	print('----------------------------------')
+	print('Maps with test tools still instantiated:')
+	for testToolMap: String in hasTestTools.keys():
+		var toolNames: Array[String] = hasTestTools[testToolMap]
+		printerr('Map ', testToolMap, ' has tools: ', toolNames)
 	print('----------------------------------')
 	#'''
 

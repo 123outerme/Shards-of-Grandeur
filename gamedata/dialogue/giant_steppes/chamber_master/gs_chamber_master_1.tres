@@ -11,58 +11,29 @@
 [sub_resource type="Resource" id="Resource_hg70w"]
 script = ExtResource("2_sk5ug")
 choiceBtn = "None..."
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("3_h5yuo")]([])
-repeatsItem = false
-buttonDims = Vector2(80, 40)
-turnsInQuest = ""
 isDeclineChoice = true
 metadata/_custom_type_script = "uid://bk6klhv2ls55w"
 
 [sub_resource type="Resource" id="Resource_dr8eo"]
 script = ExtResource("5_ccbr0")
 opensShop = true
-addsFollowerId = ""
-removesFollowerId = ""
 choiceBtn = "... Are You Selling Anything?"
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("3_h5yuo")]([])
-repeatsItem = false
-buttonDims = Vector2(80, 40)
-turnsInQuest = ""
-isDeclineChoice = false
 metadata/_custom_type_script = "uid://c5cim8hvxtg3h"
 
 [sub_resource type="Resource" id="Resource_42x2u"]
 script = ExtResource("2_sk5ug")
 choiceBtn = "What is This Place?"
 leadsTo = ExtResource("4_h5yuo")
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("3_h5yuo")]([])
-repeatsItem = false
-buttonDims = Vector2(80, 40)
-turnsInQuest = ""
-isDeclineChoice = false
 metadata/_custom_type_script = "uid://bk6klhv2ls55w"
 
 [sub_resource type="Resource" id="Resource_h5yuo"]
 script = ExtResource("1_jn0k5")
 lines = Array[String](["This is the Chamber of Sealing. What business do you have here, adventurer of Grandstone?"])
-minShowSecs = Array[float]([])
 animation = "talk"
-speakerOverride = ""
-actorAnimation = ""
-animateActorTreePath = ""
-animateActorIsPlayer = false
 choices = Array[ExtResource("2_sk5ug")]([SubResource("Resource_hg70w"), SubResource("Resource_dr8eo"), SubResource("Resource_42x2u")])
 metadata/_custom_type_script = "uid://grt2yrupha8c"
 
 [resource]
 script = ExtResource("3_sk5ug")
-entryId = ""
 items = Array[ExtResource("1_jn0k5")]([SubResource("Resource_h5yuo")])
-ordStoryRequirements = Array[ExtResource("2_krckc")]([])
-closesDialogue = false
-fullHealsPlayer = false
-annotation = ""
 metadata/_custom_type_script = "uid://1n6mppc7hmmf"

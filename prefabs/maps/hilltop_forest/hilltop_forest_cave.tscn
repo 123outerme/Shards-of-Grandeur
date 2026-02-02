@@ -1,4 +1,4 @@
-[gd_scene load_steps=85 format=4 uid="uid://ktp3y18vdj1c"]
+[gd_scene load_steps=83 format=4 uid="uid://ktp3y18vdj1c"]
 
 [ext_resource type="Script" uid="uid://vg00rfnn3346" path="res://scripts/overworld/map_script.gd" id="1_n4lqr"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_outha"]
@@ -51,31 +51,12 @@
 [ext_resource type="Script" uid="uid://fpa08p2kb0ts" path="res://scripts/cutscenes/cutscene.gd" id="24_3tnta"]
 [ext_resource type="AudioStream" uid="uid://cw87dvihj0h8p" path="res://audio/sfx/npc/horse/horse_step_16.mp3" id="24_72oa5"]
 [ext_resource type="Resource" uid="uid://ce4g0qxc138r5" path="res://gamedata/cutscenes/hilltop_forest/after_ambush.tres" id="24_jx57i"]
-[ext_resource type="PackedScene" uid="uid://b4bahmif0u56p" path="res://prefabs/overworld/tool_cutscene_visualizer.tscn" id="28_7haeu"]
 [ext_resource type="PackedScene" uid="uid://b1u1r7encrpgs" path="res://prefabs/overworld/camera_hold_zone.tscn" id="29_jjvhg"]
 
-[sub_resource type="Resource" id="Resource_hr6f6"]
+[sub_resource type="Resource" id="Resource_clwwb"]
 script = ExtResource("4_jaiux")
 saveName = "npc"
-spriteState = "default"
-animation = "stand"
 position = Vector2(-1054, 538)
-flipH = false
-visible = true
-selectedTarget = 0
-loops = 0
-disableMovement = false
-previousDisableMove = false
-afterMoveWaitAccum = 0.0
-followerHomePosition = Vector2(0, 0)
-followingPlayer = false
-followerHomeSet = false
-combatMode = false
-version = ""
-dialogueItems = []
-dialogueIndex = -1
-dialogueItemIdx = -1
-dialogueLine = -1
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fij8e"]
 size = Vector2(64, 14)
@@ -83,94 +64,30 @@ size = Vector2(64, 14)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y1k16"]
 size = Vector2(34, 32)
 
-[sub_resource type="Resource" id="Resource_pa31u"]
+[sub_resource type="Resource" id="Resource_3474l"]
 script = ExtResource("4_jaiux")
 saveName = "npc"
-spriteState = "default"
-animation = "stand"
 position = Vector2(-1006, 522)
-flipH = false
-visible = true
-selectedTarget = 0
-loops = 0
-disableMovement = false
-previousDisableMove = false
-afterMoveWaitAccum = 0.0
-followerHomePosition = Vector2(0, 0)
-followingPlayer = false
-followerHomeSet = false
-combatMode = false
-version = ""
-dialogueItems = []
-dialogueIndex = -1
-dialogueItemIdx = -1
-dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_yoim4"]
+[sub_resource type="Resource" id="Resource_ucj8c"]
 script = ExtResource("4_jaiux")
 saveName = "npc"
-spriteState = "default"
-animation = "stand"
 position = Vector2(-391, -250)
-flipH = false
-visible = true
-selectedTarget = 0
-loops = 0
-disableMovement = false
-previousDisableMove = false
-afterMoveWaitAccum = 0.0
-followerHomePosition = Vector2(0, 0)
-followingPlayer = false
-followerHomeSet = false
-combatMode = false
-version = ""
-dialogueItems = []
-dialogueIndex = -1
-dialogueItemIdx = -1
-dialogueLine = -1
 
-[sub_resource type="Resource" id="Resource_p1wpw"]
+[sub_resource type="Resource" id="Resource_vj8d8"]
 script = ExtResource("4_jaiux")
 saveName = "npc"
-spriteState = "default"
-animation = "stand"
 position = Vector2(-300, -248)
-flipH = false
-visible = true
-selectedTarget = 0
-loops = 0
-disableMovement = false
-previousDisableMove = false
-afterMoveWaitAccum = 0.0
-followerHomePosition = Vector2(0, 0)
-followingPlayer = false
-followerHomeSet = false
-combatMode = false
-version = ""
-dialogueItems = []
-dialogueIndex = -1
-dialogueItemIdx = -1
-dialogueLine = -1
 
 [sub_resource type="Resource" id="Resource_0t6sl"]
 script = ExtResource("4_x3xnl")
 spawnerId = "hilltop_forest_1"
-disabled = false
-spawnedLastEncounter = false
 
 [sub_resource type="Resource" id="Resource_ii441"]
 script = ExtResource("17_a0epf")
-combatantsMinLevel = 1
-combatantsMaxLevel = 1
 combatantsLvToPlayerLvRatio = 0.8
-levelStages = Array[ExtResource("20_4efq5")]([])
 combatant1Rewards = ExtResource("17_s8jsx")
-combatant2Options = Array[ExtResource("19_ifdf4")]([])
-combatant3Options = Array[ExtResource("19_ifdf4")]([])
 combatant1 = ExtResource("4_d1muk")
-specialRules = 0
-customWinText = ""
-battleMapPath = ""
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_15iao"]
 size = Vector2(145, 197)
@@ -178,22 +95,11 @@ size = Vector2(145, 197)
 [sub_resource type="Resource" id="Resource_w2gg0"]
 script = ExtResource("4_x3xnl")
 spawnerId = "hilltop_forest_2"
-disabled = false
-spawnedLastEncounter = false
 
 [sub_resource type="Resource" id="Resource_w7ypf"]
 script = ExtResource("17_a0epf")
-combatantsMinLevel = 1
-combatantsMaxLevel = 1
-combatantsLvToPlayerLvRatio = 1.0
-levelStages = Array[ExtResource("20_4efq5")]([])
 combatant1Rewards = ExtResource("17_v8tpu")
-combatant2Options = Array[ExtResource("19_ifdf4")]([])
-combatant3Options = Array[ExtResource("19_ifdf4")]([])
 combatant1 = ExtResource("4_utc70")
-specialRules = 0
-customWinText = ""
-battleMapPath = ""
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3ekqt"]
 size = Vector2(157, 185)
@@ -201,22 +107,13 @@ size = Vector2(157, 185)
 [sub_resource type="Resource" id="Resource_otb8j"]
 script = ExtResource("4_x3xnl")
 spawnerId = "hilltop_forest_3"
-disabled = false
-spawnedLastEncounter = false
 
 [sub_resource type="Resource" id="Resource_sg12l"]
 script = ExtResource("17_a0epf")
-combatantsMinLevel = 1
 combatantsMaxLevel = 2
 combatantsLvToPlayerLvRatio = 0.8
-levelStages = Array[ExtResource("20_4efq5")]([])
 combatant1Rewards = ExtResource("17_v8tpu")
-combatant2Options = Array[ExtResource("19_ifdf4")]([])
-combatant3Options = Array[ExtResource("19_ifdf4")]([])
 combatant1 = ExtResource("4_utc70")
-specialRules = 0
-customWinText = ""
-battleMapPath = ""
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cga0g"]
 size = Vector2(299, 129)
@@ -224,22 +121,13 @@ size = Vector2(299, 129)
 [sub_resource type="Resource" id="Resource_srcdu"]
 script = ExtResource("4_x3xnl")
 spawnerId = "hilltop_forest_4"
-disabled = false
-spawnedLastEncounter = false
 
 [sub_resource type="Resource" id="Resource_4g0ru"]
 script = ExtResource("17_a0epf")
-combatantsMinLevel = 1
 combatantsMaxLevel = 3
 combatantsLvToPlayerLvRatio = 0.8
-levelStages = Array[ExtResource("20_4efq5")]([])
 combatant1Rewards = ExtResource("17_s8jsx")
-combatant2Options = Array[ExtResource("19_ifdf4")]([])
-combatant3Options = Array[ExtResource("19_ifdf4")]([])
 combatant1 = ExtResource("4_d1muk")
-specialRules = 0
-customWinText = ""
-battleMapPath = ""
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5pj3e"]
 size = Vector2(171, 191)
@@ -297,29 +185,6 @@ source_geometry_mode = 1
 source_geometry_group_name = &"NavigationGroup"
 agent_radius = 23.0
 
-[sub_resource type="Resource" id="Resource_pxx3r"]
-script = ExtResource("4_jaiux")
-saveName = "npc"
-spriteState = "default"
-animation = "stand"
-position = Vector2(-360, -221)
-flipH = false
-visible = true
-selectedTarget = 0
-loops = 0
-disableMovement = false
-previousDisableMove = false
-afterMoveWaitAccum = 0.0
-followerHomePosition = Vector2(0, 0)
-followingPlayer = false
-followerHomeSet = false
-combatMode = false
-version = ""
-dialogueItems = []
-dialogueIndex = -1
-dialogueItemIdx = -1
-dialogueLine = -1
-
 [node name="OverworldMap" type="Node2D"]
 script = ExtResource("1_n4lqr")
 
@@ -366,7 +231,7 @@ saveName = "horse_cart_hilltop_cave"
 spriteSize = Vector2i(64, 32)
 overrideSpeakerSprite = ExtResource("4_25l7r")
 overrideSpeakerSpriteSize = Vector2i(32, 32)
-data = SubResource("Resource_hr6f6")
+data = SubResource("Resource_clwwb")
 dialogueEntries = Array[ExtResource("5_1sy3c")]([ExtResource("4_c3eo2")])
 facesPlayer = false
 
@@ -405,7 +270,7 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 position = Vector2(-1006, 522)
 displayName = "Dr. Hudson"
 saveName = "dr_hudson_hilltop"
-data = SubResource("Resource_pa31u")
+data = SubResource("Resource_3474l")
 dialogueEntries = Array[ExtResource("5_1sy3c")]([ExtResource("6_85ri0"), ExtResource("7_681wq")])
 
 [node name="NPCSprite" parent="TilemapRoot/DrHudson" index="0"]
@@ -437,7 +302,7 @@ collision_layer = 0
 displayName = "Spelunker"
 saveName = "spelunker_hilltop"
 loadFlipH = true
-data = SubResource("Resource_yoim4")
+data = SubResource("Resource_ucj8c")
 dialogueEntries = Array[ExtResource("5_1sy3c")]([ExtResource("8_hangc")])
 
 [node name="NPCSprite" parent="TilemapRoot/Spelunker" index="0"]
@@ -463,7 +328,7 @@ visible = false
 position = Vector2(-300, -248)
 displayName = "Ambusher"
 saveName = "ambusher"
-data = SubResource("Resource_p1wpw")
+data = SubResource("Resource_vj8d8")
 dialogueEntries = Array[ExtResource("5_1sy3c")]([ExtResource("9_py2uj")])
 
 [node name="NPCSprite" parent="TilemapRoot/ChainLegionSoldier" index="0"]
@@ -625,22 +490,6 @@ navigation_polygon = SubResource("NavigationPolygon_5xm4w")
 use_edge_connections = false
 navigation_layers = 4
 
-[node name="ToolCutsceneVisualizer" parent="." node_paths=PackedStringArray("triggerOrNPC", "rootNode") instance=ExtResource("28_7haeu")]
-visible = false
-triggerOrNPC = NodePath("../AmbushCutsceneTrigger")
-cutscene = ExtResource("16_s3h3f")
-rootNode = NodePath("..")
-
-[node name="MockPlayer" parent="ToolCutsceneVisualizer" index="0"]
-position = Vector2(-360, -221)
-data = SubResource("Resource_pxx3r")
-
-[node name="NPCSprite" parent="ToolCutsceneVisualizer/MockPlayer" index="0"]
-frame_progress = 0.632757
-
-[node name="ColliderShape" parent="ToolCutsceneVisualizer/MockPlayer" index="1"]
-disabled = true
-
 [editable path="TilemapRoot/HorseCart"]
 [editable path="TilemapRoot/DrHudson"]
 [editable path="TilemapRoot/Spelunker"]
@@ -658,5 +507,3 @@ disabled = true
 [editable path="AfterAmbushCutsceneTrigger"]
 [editable path="StandstillWarpZone"]
 [editable path="CameraHoldZone"]
-[editable path="ToolCutsceneVisualizer"]
-[editable path="ToolCutsceneVisualizer/MockPlayer"]

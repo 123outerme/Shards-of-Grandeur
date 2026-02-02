@@ -10,40 +10,22 @@
 [sub_resource type="Resource" id="Resource_770qi"]
 script = ExtResource("1_dv5bk")
 choiceBtn = "Hold On..."
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("3_vc11j")]([])
-repeatsItem = false
 buttonDims = Vector2(200, 40)
-turnsInQuest = ""
 isDeclineChoice = true
 
 [sub_resource type="Resource" id="Resource_ipr86"]
 script = ExtResource("1_dv5bk")
 choiceBtn = "Yeah."
 leadsTo = ExtResource("2_sd7nv")
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("3_vc11j")]([])
-repeatsItem = false
 buttonDims = Vector2(140, 40)
 turnsInQuest = "Protect the Convoy#Ambush!"
-isDeclineChoice = false
 
 [sub_resource type="Resource" id="Resource_vnmu6"]
 script = ExtResource("1_ok13b")
 lines = Array[String](["You fought him off! Thank you so much. Let's get the rest of these Shards loaded up and get out of here already."])
-minShowSecs = Array[float]([])
 animation = "talk"
-speakerOverride = ""
-actorAnimation = ""
-animateActorTreePath = ""
-animateActorIsPlayer = false
 choices = Array[ExtResource("1_dv5bk")]([SubResource("Resource_770qi"), SubResource("Resource_ipr86")])
 
 [resource]
 script = ExtResource("1_qa6wl")
-entryId = ""
 items = Array[ExtResource("1_ok13b")]([SubResource("Resource_vnmu6")])
-ordStoryRequirements = Array[ExtResource("5_gq16n")]([])
-closesDialogue = false
-fullHealsPlayer = false
-annotation = ""

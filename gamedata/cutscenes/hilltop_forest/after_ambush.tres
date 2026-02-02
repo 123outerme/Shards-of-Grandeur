@@ -17,7 +17,6 @@
 [sub_resource type="Resource" id="Resource_w6ahn"]
 script = ExtResource("1_rnr4i")
 actorTreePath = "TilemapRoot/ChainLegionSoldier"
-isPlayer = false
 animation = "talk"
 
 [sub_resource type="Resource" id="Resource_1knuu"]
@@ -25,167 +24,67 @@ script = ExtResource("1_aoois")
 speaker = "Ambusher"
 texts = Array[String](["Fine, then! If it's a war you want, it's a war you'll get. The Chain Legion won't be turned away so easily..."])
 speakerActorScenePath = "TilemapRoot/ChainLegionSoldier"
-speakerActorIsPlayer = false
-speakerAnim = "talk"
-speakerAnimScale = 3
-animSpeakerOffset = Vector2(0, 0)
 
 [sub_resource type="Resource" id="Resource_cckdo"]
 script = ExtResource("1_hvvit")
 frameLength = 0.1
 annotation = "The ambusher speaks"
-actorTweens = Array[ExtResource("5_4ps1e")]([])
 actorAnims = Array[ExtResource("1_rnr4i")]([SubResource("Resource_w6ahn")])
-actorAnimSets = Array[ExtResource("2_1a7qg")]([])
-actorFaceTargets = Array[ExtResource("4_mo821")]([])
 dialogues = Array[ExtResource("1_aoois")]([SubResource("Resource_1knuu")])
-endTextBoxPauses = true
-shakeCamForDuration = false
-endHoldCamera = false
-endFade = 0
-endFadeLength = 0.0
-healsPlayer = false
-addsFollowerId = ""
-removesFollowerId = ""
-endStartsShardLearnTutorial = false
 
 [sub_resource type="Resource" id="Resource_vgn2d"]
 script = ExtResource("1_hvvit")
 frameLength = 0.1
 annotation = "Wait for the textbox to be cleared before fading out"
-actorTweens = Array[ExtResource("5_4ps1e")]([])
-actorAnims = Array[ExtResource("1_rnr4i")]([])
-actorAnimSets = Array[ExtResource("2_1a7qg")]([])
-actorFaceTargets = Array[ExtResource("4_mo821")]([])
-dialogues = Array[ExtResource("1_aoois")]([])
-endTextBoxPauses = true
-shakeCamForDuration = false
-endHoldCamera = false
-endFade = 0
-endFadeLength = 0.0
-healsPlayer = false
-addsFollowerId = ""
-removesFollowerId = ""
-endStartsShardLearnTutorial = false
 
 [sub_resource type="Resource" id="Resource_4ymml"]
 script = ExtResource("1_rnr4i")
 actorTreePath = "TilemapRoot/ChainLegionSoldier"
-isPlayer = false
 animation = "stand"
 
 [sub_resource type="Resource" id="Resource_0u5ah"]
 script = ExtResource("1_hvvit")
 frameLength = 0.1
 annotation = "The screen fades out"
-actorTweens = Array[ExtResource("5_4ps1e")]([])
 actorAnims = Array[ExtResource("1_rnr4i")]([SubResource("Resource_4ymml")])
-actorAnimSets = Array[ExtResource("2_1a7qg")]([])
-actorFaceTargets = Array[ExtResource("4_mo821")]([])
-dialogues = Array[ExtResource("1_aoois")]([])
-endTextBoxPauses = true
-shakeCamForDuration = false
-endHoldCamera = false
 endFade = 1
 endFadeLength = 0.5
-healsPlayer = false
-addsFollowerId = ""
-removesFollowerId = ""
-endStartsShardLearnTutorial = false
 
 [sub_resource type="Resource" id="Resource_18ai2"]
 script = ExtResource("1_hvvit")
 frameLength = 0.75
 annotation = "Delay while the screen is fading out (since the fade-out happens after the frame ends, we need to wait)"
-actorTweens = Array[ExtResource("5_4ps1e")]([])
-actorAnims = Array[ExtResource("1_rnr4i")]([])
-actorAnimSets = Array[ExtResource("2_1a7qg")]([])
-actorFaceTargets = Array[ExtResource("4_mo821")]([])
-dialogues = Array[ExtResource("1_aoois")]([])
 endTextBoxPauses = false
-shakeCamForDuration = false
-endHoldCamera = false
-endFade = 0
-endFadeLength = 0.0
-healsPlayer = false
-addsFollowerId = ""
-removesFollowerId = ""
-endStartsShardLearnTutorial = false
 
 [sub_resource type="Resource" id="Resource_xjit7"]
 script = ExtResource("2_ugjbm")
 value = true
 actorTreePath = "TilemapRoot/ChainLegionSoldier"
-isPlayer = false
 propertyName = "invisible"
-easeType = 2
-transitionType = 0
 
 [sub_resource type="Resource" id="Resource_tpigd"]
 script = ExtResource("1_hvvit")
 frameLength = 0.1
 annotation = "The ambusher is made invisible"
 actorTweens = Array[ExtResource("5_4ps1e")]([SubResource("Resource_xjit7")])
-actorAnims = Array[ExtResource("1_rnr4i")]([])
-actorAnimSets = Array[ExtResource("2_1a7qg")]([])
-actorFaceTargets = Array[ExtResource("4_mo821")]([])
-dialogues = Array[ExtResource("1_aoois")]([])
-endTextBoxPauses = true
-shakeCamForDuration = false
-endHoldCamera = false
-endFade = 0
-endFadeLength = 0.0
-healsPlayer = false
-addsFollowerId = ""
-removesFollowerId = ""
-endStartsShardLearnTutorial = false
 
 [sub_resource type="Resource" id="Resource_07ip4"]
 script = ExtResource("1_hvvit")
 frameLength = 0.1
 annotation = "The scene fades back in"
-actorTweens = Array[ExtResource("5_4ps1e")]([])
-actorAnims = Array[ExtResource("1_rnr4i")]([])
-actorAnimSets = Array[ExtResource("2_1a7qg")]([])
-actorFaceTargets = Array[ExtResource("4_mo821")]([])
-dialogues = Array[ExtResource("1_aoois")]([])
-endTextBoxPauses = true
-shakeCamForDuration = false
-endHoldCamera = false
 endFade = 2
 endFadeLength = 0.5
-healsPlayer = false
-addsFollowerId = ""
-removesFollowerId = ""
-endStartsShardLearnTutorial = false
 
 [sub_resource type="Resource" id="Resource_ohtox"]
 script = ExtResource("1_hvvit")
 frameLength = 0.75
 annotation = "Wait for the screen to fade back in after the previous frame ends"
-actorTweens = Array[ExtResource("5_4ps1e")]([])
-actorAnims = Array[ExtResource("1_rnr4i")]([])
-actorAnimSets = Array[ExtResource("2_1a7qg")]([])
-actorFaceTargets = Array[ExtResource("4_mo821")]([])
-dialogues = Array[ExtResource("1_aoois")]([])
-endTextBoxPauses = true
-shakeCamForDuration = false
-endHoldCamera = false
-endFade = 0
-endFadeLength = 0.0
-healsPlayer = false
-addsFollowerId = ""
-removesFollowerId = ""
-endStartsShardLearnTutorial = false
 
 [sub_resource type="Resource" id="Resource_7ewx0"]
 script = ExtResource("1_qipqy")
 value = Vector2(-344, -205)
-actorTreePath = ""
 isPlayer = true
 propertyName = "position"
-easeType = 2
-transitionType = 0
 
 [sub_resource type="Resource" id="Resource_xo2je"]
 script = ExtResource("1_hvvit")
@@ -193,99 +92,34 @@ frameLength = 0.75
 annotation = "The player walks towards the spelunker (matching the target Y position)"
 actorTweens = Array[ExtResource("5_4ps1e")]([SubResource("Resource_7ewx0")])
 actorAnims = Array[ExtResource("1_rnr4i")]([ExtResource("3_hdoow")])
-actorAnimSets = Array[ExtResource("2_1a7qg")]([])
-actorFaceTargets = Array[ExtResource("4_mo821")]([])
-dialogues = Array[ExtResource("1_aoois")]([])
-endTextBoxPauses = true
-shakeCamForDuration = false
-endHoldCamera = false
-endFade = 0
-endFadeLength = 0.0
-healsPlayer = false
-addsFollowerId = ""
-removesFollowerId = ""
-endStartsShardLearnTutorial = false
 
 [sub_resource type="Resource" id="Resource_l0kiu"]
 script = ExtResource("1_qipqy")
 value = Vector2(-382, -205)
-actorTreePath = ""
 isPlayer = true
 propertyName = "position"
-easeType = 2
-transitionType = 0
 
 [sub_resource type="Resource" id="Resource_mfdvy"]
 script = ExtResource("1_hvvit")
 frameLength = 0.75
 annotation = "The player walks right in front of the spelunker"
 actorTweens = Array[ExtResource("5_4ps1e")]([SubResource("Resource_l0kiu")])
-actorAnims = Array[ExtResource("1_rnr4i")]([])
-actorAnimSets = Array[ExtResource("2_1a7qg")]([])
-actorFaceTargets = Array[ExtResource("4_mo821")]([])
-dialogues = Array[ExtResource("1_aoois")]([])
-endTextBoxPauses = true
-shakeCamForDuration = false
-endHoldCamera = false
-endFade = 0
-endFadeLength = 0.0
-healsPlayer = false
-addsFollowerId = ""
-removesFollowerId = ""
-endStartsShardLearnTutorial = false
 
 [sub_resource type="Resource" id="Resource_c2ghu"]
 script = ExtResource("1_hvvit")
 frameLength = 0.1
 annotation = "Make the player stand before resuming play"
-actorTweens = Array[ExtResource("5_4ps1e")]([])
 actorAnims = Array[ExtResource("1_rnr4i")]([ExtResource("5_6ghks")])
-actorAnimSets = Array[ExtResource("2_1a7qg")]([])
-actorFaceTargets = Array[ExtResource("4_mo821")]([])
-dialogues = Array[ExtResource("1_aoois")]([])
-endTextBoxPauses = true
-shakeCamForDuration = false
-endHoldCamera = false
-endFade = 0
-endFadeLength = 0.0
-healsPlayer = false
-addsFollowerId = ""
-removesFollowerId = ""
-endStartsShardLearnTutorial = false
 
 [sub_resource type="Resource" id="Resource_1ml4k"]
 script = ExtResource("2_djo6s")
-minAct = 0
 maxAct = 5
-prereqQuests = Array[String]([])
-prereqCutscenes = Array[String]([])
-prereqDialogues = Array[String]([])
-prereqPlacesVisited = Array[String]([])
 prereqSpecialBattles = Array[String](["hilltop_ambusher"])
-prereqDefeatedEnemies = Array[String]([])
-prereqPuzzles = Array[String]([])
-prereqPuzzleStates = Dictionary[String, Array]({})
-prereqDiscoveredEvolutions = Array[String]([])
-prereqHavingFollowers = Array[String]([])
-prereqHasItems = Array[ExtResource("12_qsk4g")]([])
-invalidAfterCompletingQuests = Array[String]([])
-invalidAfterFailingQuests = Array[String]([])
 invalidAfterCutscenes = Array[String](["after_ambush"])
-invalidAfterDialogues = Array[String]([])
-invalidAfterVistingPlaces = Array[String]([])
-invalidAfterSpecialBattles = Array[String]([])
-invalidAfterSolvingPuzzles = Array[String]([])
-invalidFromPuzzleStates = Dictionary[String, Array]({})
-invalidFromHavingFollowers = Array[String]([])
-invalidFromHavingItems = Array[ExtResource("12_qsk4g")]([])
 
 [resource]
 script = ExtResource("1_d00tx")
 cutsceneFrames = Array[ExtResource("1_hvvit")]([SubResource("Resource_cckdo"), SubResource("Resource_vgn2d"), SubResource("Resource_0u5ah"), SubResource("Resource_18ai2"), SubResource("Resource_tpigd"), SubResource("Resource_07ip4"), SubResource("Resource_ohtox"), SubResource("Resource_xo2je"), SubResource("Resource_mfdvy"), SubResource("Resource_c2ghu")])
 saveName = "after_ambush"
 storyRequirements = SubResource("Resource_1ml4k")
-unlockCameraHoldAfter = true
-activateActorsBefore = Array[String]([])
 deactivateActorsAfter = Array[String](["TilemapRoot/ChainLegionSoldier"])
-tempDisabledAfter = false
-notes = ""

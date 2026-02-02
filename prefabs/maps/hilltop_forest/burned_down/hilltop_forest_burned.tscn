@@ -1,4 +1,4 @@
-[gd_scene load_steps=103 format=4 uid="uid://digivf1opqsj8"]
+[gd_scene load_steps=102 format=4 uid="uid://digivf1opqsj8"]
 
 [ext_resource type="Script" uid="uid://vg00rfnn3346" path="res://scripts/overworld/map_script.gd" id="1_wyxfu"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_he5en"]
@@ -22,13 +22,10 @@
 [ext_resource type="PackedScene" uid="uid://d3rsvv5iihm7t" path="res://prefabs/overworld/warp_zone.tscn" id="17_mtiaa"]
 [ext_resource type="PackedScene" uid="uid://b1u1r7encrpgs" path="res://prefabs/overworld/camera_hold_zone.tscn" id="18_16skw"]
 [ext_resource type="Resource" uid="uid://btnde87dlhjhu" path="res://gamedata/combatants/soot_spider/soot_spider.tres" id="18_ajuhk"]
-[ext_resource type="PackedScene" uid="uid://blb38hmic2jvq" path="res://prefabs/overworld/test_camera.tscn" id="21_dlaov"]
 
 [sub_resource type="Resource" id="Resource_0t6sl"]
 script = ExtResource("4_4cp5i")
 spawnerId = "hilltop_forest_1"
-disabled = false
-spawnedLastEncounter = false
 
 [sub_resource type="Resource" id="Resource_yhbaw"]
 script = ExtResource("6_1kwfo")
@@ -65,14 +62,10 @@ script = ExtResource("9_hyktm")
 combatantsMinLevel = 18
 combatantsMaxLevel = 20
 combatantsLvToPlayerLvRatio = 0.8
-levelStages = Array[ExtResource("8_u2hp6")]([])
 combatant2Options = Array[ExtResource("6_1kwfo")]([SubResource("Resource_yhbaw"), SubResource("Resource_hajfl"), SubResource("Resource_wvspj")])
 combatant3Options = Array[ExtResource("6_1kwfo")]([SubResource("Resource_xrc2o"), SubResource("Resource_nimxu"), SubResource("Resource_nk8bu")])
 combatant1 = ExtResource("5_ibrvy")
 combatant1Weapon = ExtResource("6_v21v5")
-specialRules = 0
-customWinText = ""
-battleMapPath = ""
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_15iao"]
 size = Vector2(145, 197)
@@ -80,8 +73,6 @@ size = Vector2(145, 197)
 [sub_resource type="Resource" id="Resource_w2gg0"]
 script = ExtResource("4_4cp5i")
 spawnerId = "hilltop_forest_2"
-disabled = false
-spawnedLastEncounter = false
 
 [sub_resource type="Resource" id="Resource_hxcp5"]
 script = ExtResource("6_1kwfo")
@@ -116,14 +107,9 @@ weight = 0.25
 script = ExtResource("9_hyktm")
 combatantsMinLevel = 18
 combatantsMaxLevel = 20
-combatantsLvToPlayerLvRatio = 1.0
-levelStages = Array[ExtResource("8_u2hp6")]([])
 combatant2Options = Array[ExtResource("6_1kwfo")]([SubResource("Resource_hxcp5"), SubResource("Resource_7ciow"), SubResource("Resource_11sg4")])
 combatant3Options = Array[ExtResource("6_1kwfo")]([SubResource("Resource_q1m4l"), SubResource("Resource_jijs8"), SubResource("Resource_p4jdu")])
 combatant1 = ExtResource("14_jam01")
-specialRules = 0
-customWinText = ""
-battleMapPath = ""
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3ekqt"]
 size = Vector2(157, 185)
@@ -131,8 +117,6 @@ size = Vector2(157, 185)
 [sub_resource type="Resource" id="Resource_otb8j"]
 script = ExtResource("4_4cp5i")
 spawnerId = "hilltop_forest_3"
-disabled = false
-spawnedLastEncounter = false
 
 [sub_resource type="Resource" id="Resource_82cqg"]
 script = ExtResource("6_1kwfo")
@@ -169,13 +153,9 @@ script = ExtResource("9_hyktm")
 combatantsMinLevel = 19
 combatantsMaxLevel = 20
 combatantsLvToPlayerLvRatio = 0.8
-levelStages = Array[ExtResource("8_u2hp6")]([])
 combatant2Options = Array[ExtResource("6_1kwfo")]([SubResource("Resource_82cqg"), SubResource("Resource_g5742"), SubResource("Resource_tw206")])
 combatant3Options = Array[ExtResource("6_1kwfo")]([SubResource("Resource_g82f6"), SubResource("Resource_s3j5q"), SubResource("Resource_e4jka")])
 combatant1 = ExtResource("14_jam01")
-specialRules = 0
-customWinText = ""
-battleMapPath = ""
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cga0g"]
 size = Vector2(299, 129)
@@ -183,8 +163,6 @@ size = Vector2(299, 129)
 [sub_resource type="Resource" id="Resource_srcdu"]
 script = ExtResource("4_4cp5i")
 spawnerId = "hilltop_forest_4"
-disabled = false
-spawnedLastEncounter = false
 
 [sub_resource type="Resource" id="Resource_j2fyn"]
 script = ExtResource("6_1kwfo")
@@ -221,14 +199,10 @@ script = ExtResource("9_hyktm")
 combatantsMinLevel = 19
 combatantsMaxLevel = 20
 combatantsLvToPlayerLvRatio = 0.8
-levelStages = Array[ExtResource("8_u2hp6")]([])
 combatant2Options = Array[ExtResource("6_1kwfo")]([SubResource("Resource_j2fyn"), SubResource("Resource_ck257"), SubResource("Resource_jd3u5")])
 combatant3Options = Array[ExtResource("6_1kwfo")]([SubResource("Resource_a0sgy"), SubResource("Resource_h517j"), SubResource("Resource_xjnlr")])
 combatant1 = ExtResource("5_ibrvy")
 combatant1Weapon = ExtResource("6_v21v5")
-specialRules = 0
-customWinText = ""
-battleMapPath = ""
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5pj3e"]
 size = Vector2(171, 191)
@@ -236,8 +210,6 @@ size = Vector2(171, 191)
 [sub_resource type="Resource" id="Resource_x0xbl"]
 script = ExtResource("4_4cp5i")
 spawnerId = "hilltop_forest_5"
-disabled = false
-spawnedLastEncounter = false
 
 [sub_resource type="Resource" id="Resource_voecf"]
 script = ExtResource("6_1kwfo")
@@ -267,13 +239,9 @@ script = ExtResource("9_hyktm")
 combatantsMinLevel = 20
 combatantsMaxLevel = 21
 combatantsLvToPlayerLvRatio = 0.8
-levelStages = Array[ExtResource("8_u2hp6")]([])
 combatant2Options = Array[ExtResource("6_1kwfo")]([SubResource("Resource_voecf"), SubResource("Resource_v5l8j")])
 combatant3Options = Array[ExtResource("6_1kwfo")]([SubResource("Resource_ow4wp"), SubResource("Resource_hk1lq"), SubResource("Resource_yfic4")])
 combatant1 = ExtResource("10_2xr35")
-specialRules = 0
-customWinText = ""
-battleMapPath = ""
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sg6m8"]
 size = Vector2(83, 100)
@@ -281,8 +249,6 @@ size = Vector2(83, 100)
 [sub_resource type="Resource" id="Resource_6lngp"]
 script = ExtResource("4_4cp5i")
 spawnerId = "hilltop_forest_6"
-disabled = false
-spawnedLastEncounter = false
 
 [sub_resource type="Resource" id="Resource_2ywwn"]
 script = ExtResource("6_1kwfo")
@@ -317,13 +283,9 @@ script = ExtResource("9_hyktm")
 combatantsMinLevel = 19
 combatantsMaxLevel = 21
 combatantsLvToPlayerLvRatio = 0.85
-levelStages = Array[ExtResource("8_u2hp6")]([])
 combatant2Options = Array[ExtResource("6_1kwfo")]([SubResource("Resource_2ywwn"), SubResource("Resource_efkrb"), SubResource("Resource_6sxme")])
 combatant3Options = Array[ExtResource("6_1kwfo")]([SubResource("Resource_c88do"), SubResource("Resource_eq7bf"), SubResource("Resource_sb372")])
 combatant1 = ExtResource("18_ajuhk")
-specialRules = 0
-customWinText = ""
-battleMapPath = ""
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fq3wx"]
 size = Vector2(156, 139)
@@ -331,8 +293,6 @@ size = Vector2(156, 139)
 [sub_resource type="Resource" id="Resource_kgkyv"]
 script = ExtResource("4_4cp5i")
 spawnerId = "hilltop_forest_7"
-disabled = false
-spawnedLastEncounter = false
 
 [sub_resource type="Resource" id="Resource_mpnil"]
 script = ExtResource("6_1kwfo")
@@ -368,13 +328,9 @@ script = ExtResource("9_hyktm")
 combatantsMinLevel = 19
 combatantsMaxLevel = 21
 combatantsLvToPlayerLvRatio = 0.8
-levelStages = Array[ExtResource("8_u2hp6")]([])
 combatant2Options = Array[ExtResource("6_1kwfo")]([SubResource("Resource_mpnil"), SubResource("Resource_36s6o"), SubResource("Resource_v2t7v")])
 combatant3Options = Array[ExtResource("6_1kwfo")]([SubResource("Resource_cl51r"), SubResource("Resource_hb62e"), SubResource("Resource_30m4t")])
 combatant1 = ExtResource("14_jam01")
-specialRules = 0
-customWinText = ""
-battleMapPath = ""
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_utinw"]
 size = Vector2(158.5, 205)
@@ -382,8 +338,6 @@ size = Vector2(158.5, 205)
 [sub_resource type="Resource" id="Resource_kxgap"]
 script = ExtResource("4_4cp5i")
 spawnerId = "hilltop_forest_8"
-disabled = false
-spawnedLastEncounter = false
 
 [sub_resource type="Resource" id="Resource_jf5dt"]
 script = ExtResource("6_1kwfo")
@@ -424,14 +378,10 @@ script = ExtResource("9_hyktm")
 combatantsMinLevel = 19
 combatantsMaxLevel = 21
 combatantsLvToPlayerLvRatio = 0.9
-levelStages = Array[ExtResource("8_u2hp6")]([])
 combatant2Options = Array[ExtResource("6_1kwfo")]([SubResource("Resource_jf5dt"), SubResource("Resource_8w5nj"), SubResource("Resource_8tnhf"), SubResource("Resource_75px5")])
 combatant3Options = Array[ExtResource("6_1kwfo")]([SubResource("Resource_qypoc"), SubResource("Resource_orpji"), SubResource("Resource_ol6ef")])
 combatant1 = ExtResource("5_ibrvy")
 combatant1Weapon = ExtResource("6_v21v5")
-specialRules = 0
-customWinText = ""
-battleMapPath = ""
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uegk0"]
 size = Vector2(136, 166)
@@ -672,8 +622,6 @@ navigation_polygon = SubResource("NavigationPolygon_5xm4w")
 use_edge_connections = false
 navigation_layers = 4
 metadata/_edit_lock_ = true
-
-[node name="TestCamera" parent="." instance=ExtResource("21_dlaov")]
 
 [editable path="EnemySpawner"]
 [editable path="EnemySpawner2"]

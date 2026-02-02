@@ -1,4 +1,4 @@
-[gd_scene load_steps=142 format=4 uid="uid://bg7ma3bqrivmp"]
+[gd_scene load_steps=138 format=4 uid="uid://bg7ma3bqrivmp"]
 
 [ext_resource type="Script" uid="uid://vg00rfnn3346" path="res://scripts/overworld/map_script.gd" id="1_2bivy"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_6a431"]
@@ -19,7 +19,6 @@
 [ext_resource type="Resource" uid="uid://4jm8oh3eyfa4" path="res://gamedata/dialogue/solius/leavenport/follower_leavenport1.tres" id="9_x0eeb"]
 [ext_resource type="SpriteFrames" uid="uid://m5ighpim50c6" path="res://graphics/animations/a_chain_legion_soldier_3.tres" id="11_jmbbv"]
 [ext_resource type="PackedScene" uid="uid://cdnsjlf3gwbkf" path="res://prefabs/entities/ground_item.tscn" id="12_6xs76"]
-[ext_resource type="PackedScene" uid="uid://b4bahmif0u56p" path="res://prefabs/overworld/tool_cutscene_visualizer.tscn" id="12_8fbvy"]
 [ext_resource type="Resource" uid="uid://bvfmtuhh1im8u" path="res://gamedata/dialogue/leavenport/fisherman/lp_fisherman1.tres" id="12_ccnp4"]
 [ext_resource type="Script" uid="uid://dc62fqcsqe6d4" path="res://scripts/inventory/picked_up_item.gd" id="13_lrtnp"]
 [ext_resource type="Resource" uid="uid://b2rih6hsrjtun" path="res://gamedata/items/healing/natural_remedy.tres" id="13_n502q"]
@@ -72,345 +71,120 @@
 [ext_resource type="SpriteFrames" uid="uid://vjnpidcqa4jj" path="res://graphics/animations/a_skipper.tres" id="55_l27rt"]
 [ext_resource type="Resource" uid="uid://cg4sxdfw5r04x" path="res://gamedata/cutscenes/leavenport/leavenport_takeover.tres" id="62_8qub5"]
 [ext_resource type="Resource" uid="uid://dk6bkelodxs4w" path="res://gamedata/cutscenes/leavenport/disembark_lp_ship_river.tres" id="65_4krdv"]
-[ext_resource type="Resource" uid="uid://ydff1vm7b584" path="res://gamedata/cutscenes/leavenport/board_lp_ship_river.tres" id="69_l0ctu"]
 
 [sub_resource type="Resource" id="Resource_6p4g5"]
 script = ExtResource("6_xya6j")
 id = "default"
 priority = -1
-storyRequirements = Array[ExtResource("6_3up7i")]([])
-autoApplyState = false
 
 [sub_resource type="Resource" id="Resource_1n4ns"]
 script = ExtResource("6_3up7i")
-minAct = 0
 maxAct = 1
-prereqQuests = Array[String]([])
-prereqCutscenes = Array[String]([])
-prereqDialogues = Array[String]([])
-prereqPlacesVisited = Array[String]([])
-prereqSpecialBattles = Array[String]([])
-prereqDefeatedEnemies = Array[String]([])
-prereqPuzzles = Array[String]([])
-prereqPuzzleStates = Dictionary[String, Array]({})
-prereqDiscoveredEvolutions = Array[String]([])
-prereqHavingFollowers = Array[String]([])
-prereqHasItems = Array[ExtResource("7_dmgij")]([])
-invalidAfterCompletingQuests = Array[String]([])
-invalidAfterFailingQuests = Array[String]([])
 invalidAfterCutscenes = Array[String](["etreus_appears"])
-invalidAfterDialogues = Array[String]([])
-invalidAfterVistingPlaces = Array[String]([])
-invalidAfterSpecialBattles = Array[String]([])
-invalidAfterSolvingPuzzles = Array[String]([])
-invalidFromPuzzleStates = Dictionary[String, Array]({})
-invalidFromHavingFollowers = Array[String]([])
-invalidFromHavingItems = Array[ExtResource("7_dmgij")]([])
 
 [sub_resource type="Resource" id="Resource_48sfc"]
 script = ExtResource("6_3up7i")
-minAct = 0
 maxAct = 2
-prereqQuests = Array[String]([])
-prereqCutscenes = Array[String]([])
-prereqDialogues = Array[String]([])
-prereqPlacesVisited = Array[String]([])
 prereqSpecialBattles = Array[String](["etreus_fight1"])
-prereqDefeatedEnemies = Array[String]([])
-prereqPuzzles = Array[String]([])
-prereqPuzzleStates = Dictionary[String, Array]({})
-prereqDiscoveredEvolutions = Array[String]([])
-prereqHavingFollowers = Array[String]([])
-prereqHasItems = Array[ExtResource("7_dmgij")]([])
-invalidAfterCompletingQuests = Array[String]([])
-invalidAfterFailingQuests = Array[String]([])
 invalidAfterCutscenes = Array[String](["standstill_defeated_helia"])
-invalidAfterDialogues = Array[String]([])
-invalidAfterVistingPlaces = Array[String]([])
-invalidAfterSpecialBattles = Array[String]([])
-invalidAfterSolvingPuzzles = Array[String]([])
-invalidFromPuzzleStates = Dictionary[String, Array]({})
-invalidFromHavingFollowers = Array[String]([])
-invalidFromHavingItems = Array[ExtResource("7_dmgij")]([])
 
-[sub_resource type="Resource" id="Resource_nesj1"]
+[sub_resource type="Resource" id="Resource_gav4j"]
 script = ExtResource("6_jui48")
 saveName = "npc"
-spriteState = "default"
-animation = "stand"
 position = Vector2(98, 202)
-flipH = false
-visible = true
-selectedTarget = 0
-loops = 0
-disableMovement = false
-previousDisableMove = false
-afterMoveWaitAccum = 0.0
-followerHomePosition = Vector2(0, 0)
-followingPlayer = false
-followerHomeSet = false
-combatMode = false
-version = ""
-dialogueItems = []
-dialogueIndex = -1
-dialogueItemIdx = -1
-dialogueLine = -1
 
 [sub_resource type="Resource" id="Resource_t3vvo"]
 script = ExtResource("6_xya6j")
 id = "default"
 priority = -1
-storyRequirements = Array[ExtResource("6_3up7i")]([])
-autoApplyState = false
 
 [sub_resource type="Resource" id="Resource_o0dwe"]
 script = ExtResource("6_3up7i")
 minAct = 1
 maxAct = 2
-prereqQuests = Array[String]([])
-prereqCutscenes = Array[String]([])
-prereqDialogues = Array[String]([])
-prereqPlacesVisited = Array[String]([])
 prereqSpecialBattles = Array[String](["etreus_fight1"])
-prereqDefeatedEnemies = Array[String]([])
-prereqPuzzles = Array[String]([])
-prereqPuzzleStates = Dictionary[String, Array]({})
-prereqDiscoveredEvolutions = Array[String]([])
-prereqHavingFollowers = Array[String]([])
-prereqHasItems = Array[ExtResource("7_dmgij")]([])
-invalidAfterCompletingQuests = Array[String]([])
-invalidAfterFailingQuests = Array[String]([])
 invalidAfterCutscenes = Array[String](["standstill_defeated_helia"])
-invalidAfterDialogues = Array[String]([])
-invalidAfterVistingPlaces = Array[String]([])
-invalidAfterSpecialBattles = Array[String]([])
-invalidAfterSolvingPuzzles = Array[String]([])
-invalidFromPuzzleStates = Dictionary[String, Array]({})
-invalidFromHavingFollowers = Array[String]([])
-invalidFromHavingItems = Array[ExtResource("7_dmgij")]([])
 
-[sub_resource type="Resource" id="Resource_vrhpi"]
+[sub_resource type="Resource" id="Resource_ov73p"]
 script = ExtResource("6_jui48")
 saveName = "npc"
-spriteState = "default"
-animation = "stand"
 position = Vector2(1405, 522)
-flipH = false
-visible = true
-selectedTarget = 0
-loops = 0
-disableMovement = false
-previousDisableMove = false
-afterMoveWaitAccum = 0.0
-followerHomePosition = Vector2(0, 0)
-followingPlayer = false
-followerHomeSet = false
-combatMode = false
-version = ""
-dialogueItems = []
-dialogueIndex = -1
-dialogueItemIdx = -1
-dialogueLine = -1
 
 [sub_resource type="Resource" id="Resource_tp0y3"]
 script = ExtResource("6_xya6j")
 id = "default"
 priority = -1
-storyRequirements = Array[ExtResource("6_3up7i")]([])
-autoApplyState = false
 
 [sub_resource type="Resource" id="Resource_chj7w"]
 script = ExtResource("6_3up7i")
 minAct = 1
 maxAct = 2
-prereqQuests = Array[String]([])
-prereqCutscenes = Array[String]([])
-prereqDialogues = Array[String]([])
-prereqPlacesVisited = Array[String]([])
 prereqSpecialBattles = Array[String](["etreus_fight1"])
-prereqDefeatedEnemies = Array[String]([])
-prereqPuzzles = Array[String]([])
-prereqPuzzleStates = Dictionary[String, Array]({})
-prereqDiscoveredEvolutions = Array[String]([])
-prereqHavingFollowers = Array[String]([])
-prereqHasItems = Array[ExtResource("7_dmgij")]([])
-invalidAfterCompletingQuests = Array[String]([])
-invalidAfterFailingQuests = Array[String]([])
 invalidAfterCutscenes = Array[String](["standstill_defeated_helia"])
-invalidAfterDialogues = Array[String]([])
-invalidAfterVistingPlaces = Array[String]([])
-invalidAfterSpecialBattles = Array[String]([])
-invalidAfterSolvingPuzzles = Array[String]([])
-invalidFromPuzzleStates = Dictionary[String, Array]({})
-invalidFromHavingFollowers = Array[String]([])
-invalidFromHavingItems = Array[ExtResource("7_dmgij")]([])
 
-[sub_resource type="Resource" id="Resource_xm7fs"]
+[sub_resource type="Resource" id="Resource_xya6j"]
 script = ExtResource("6_jui48")
 saveName = "npc"
-spriteState = "default"
-animation = "stand"
 position = Vector2(1386, 573)
-flipH = false
-visible = true
-selectedTarget = 0
-loops = 0
-disableMovement = false
-previousDisableMove = false
-afterMoveWaitAccum = 0.0
-followerHomePosition = Vector2(0, 0)
-followingPlayer = false
-followerHomeSet = false
-combatMode = false
-version = ""
-dialogueItems = []
-dialogueIndex = -1
-dialogueItemIdx = -1
-dialogueLine = -1
 
 [sub_resource type="Resource" id="Resource_h24ud"]
 script = ExtResource("6_xya6j")
 id = "default"
 priority = -1
-storyRequirements = Array[ExtResource("6_3up7i")]([])
-autoApplyState = false
 
-[sub_resource type="Resource" id="Resource_j66p2"]
+[sub_resource type="Resource" id="Resource_nesj1"]
 script = ExtResource("6_jui48")
 saveName = "npc"
-spriteState = "default"
-animation = "stand"
 position = Vector2(625, -42)
-flipH = false
-visible = true
-selectedTarget = 0
-loops = 0
-disableMovement = false
-previousDisableMove = false
-afterMoveWaitAccum = 0.0
-followerHomePosition = Vector2(0, 0)
-followingPlayer = false
-followerHomeSet = false
-combatMode = false
-version = ""
-dialogueItems = []
-dialogueIndex = -1
-dialogueItemIdx = -1
-dialogueLine = -1
 
 [sub_resource type="Resource" id="Resource_a8igx"]
 script = ExtResource("6_xya6j")
 id = "default"
 priority = -1
-storyRequirements = Array[ExtResource("6_3up7i")]([])
-autoApplyState = false
 
-[sub_resource type="Resource" id="Resource_1525k"]
+[sub_resource type="Resource" id="Resource_vrhpi"]
 script = ExtResource("6_jui48")
 saveName = "npc"
-spriteState = "default"
-animation = "stand"
 position = Vector2(996, 108)
-flipH = false
-visible = true
-selectedTarget = 0
-loops = 0
-disableMovement = false
-previousDisableMove = false
-afterMoveWaitAccum = 0.0
-followerHomePosition = Vector2(0, 0)
-followingPlayer = false
-followerHomeSet = false
-combatMode = false
-version = ""
-dialogueItems = []
-dialogueIndex = -1
-dialogueItemIdx = -1
-dialogueLine = -1
 
 [sub_resource type="Resource" id="Resource_tke7r"]
 script = ExtResource("22_ts673")
 position = Vector2(1046, 159)
-relativeToCurrentPos = false
 pauseSecs = 1.25
 
 [sub_resource type="Resource" id="Resource_v17gy"]
 script = ExtResource("22_ts673")
 position = Vector2(1082, 219)
-relativeToCurrentPos = false
 pauseSecs = 1.25
 
 [sub_resource type="Resource" id="Resource_8mdfq"]
 script = ExtResource("22_ts673")
 position = Vector2(972, 196)
-relativeToCurrentPos = false
 pauseSecs = 1.25
 
 [sub_resource type="Resource" id="Resource_oy6ko"]
 script = ExtResource("22_ts673")
 position = Vector2(996, 108)
-relativeToCurrentPos = false
-pauseSecs = 0.0
 
 [sub_resource type="Resource" id="Resource_v7kax"]
 script = ExtResource("6_xya6j")
 id = "default"
 priority = -1
-storyRequirements = Array[ExtResource("6_3up7i")]([])
-autoApplyState = false
 
-[sub_resource type="Resource" id="Resource_oscug"]
+[sub_resource type="Resource" id="Resource_xm7fs"]
 script = ExtResource("6_jui48")
 saveName = "npc"
-spriteState = "default"
-animation = "stand"
 position = Vector2(397, 315)
-flipH = false
-visible = true
-selectedTarget = 0
-loops = 0
-disableMovement = false
-previousDisableMove = false
-afterMoveWaitAccum = 0.0
-followerHomePosition = Vector2(0, 0)
-followingPlayer = false
-followerHomeSet = false
-combatMode = false
-version = ""
-dialogueItems = []
-dialogueIndex = -1
-dialogueItemIdx = -1
-dialogueLine = -1
 
 [sub_resource type="Resource" id="Resource_i5fku"]
 script = ExtResource("6_xya6j")
 id = "default"
 priority = -1
-storyRequirements = Array[ExtResource("6_3up7i")]([])
-autoApplyState = false
 
-[sub_resource type="Resource" id="Resource_psktw"]
+[sub_resource type="Resource" id="Resource_j66p2"]
 script = ExtResource("6_jui48")
 saveName = "npc"
-spriteState = "default"
-animation = "stand"
 position = Vector2(765, 286)
-flipH = false
-visible = true
-selectedTarget = 0
-loops = 0
-disableMovement = false
-previousDisableMove = false
-afterMoveWaitAccum = 0.0
-followerHomePosition = Vector2(0, 0)
-followingPlayer = false
-followerHomeSet = false
-combatMode = false
-version = ""
-dialogueItems = []
-dialogueIndex = -1
-dialogueItemIdx = -1
-dialogueLine = -1
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hw8wp"]
 size = Vector2(16, 6)
@@ -422,31 +196,11 @@ size = Vector2(24, 14)
 script = ExtResource("6_xya6j")
 id = "default"
 priority = -1
-storyRequirements = Array[ExtResource("6_3up7i")]([])
-autoApplyState = false
 
-[sub_resource type="Resource" id="Resource_b2v2q"]
+[sub_resource type="Resource" id="Resource_1525k"]
 script = ExtResource("6_jui48")
 saveName = "npc"
-spriteState = "default"
-animation = "stand"
 position = Vector2(995, 446)
-flipH = false
-visible = true
-selectedTarget = 0
-loops = 0
-disableMovement = false
-previousDisableMove = false
-afterMoveWaitAccum = 0.0
-followerHomePosition = Vector2(0, 0)
-followingPlayer = false
-followerHomeSet = false
-combatMode = false
-version = ""
-dialogueItems = []
-dialogueIndex = -1
-dialogueItemIdx = -1
-dialogueLine = -1
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ce7j4"]
 size = Vector2(16, 6)
@@ -457,101 +211,31 @@ size = Vector2(24, 14)
 [sub_resource type="Resource" id="Resource_c70i6"]
 script = ExtResource("13_lrtnp")
 item = ExtResource("13_n502q")
-wasPickedUp = false
-speaker = ""
 dialogueEntry = ExtResource("13_q8qvf")
-savedItemIdx = 0
-savedTextIdx = 0
 
 [sub_resource type="Resource" id="Resource_5qtwl"]
 script = ExtResource("6_3up7i")
 minAct = 2
-maxAct = -1
-prereqQuests = Array[String]([])
 prereqCutscenes = Array[String](["standstill_defeated_helia"])
-prereqDialogues = Array[String]([])
-prereqPlacesVisited = Array[String]([])
-prereqSpecialBattles = Array[String]([])
-prereqDefeatedEnemies = Array[String]([])
-prereqPuzzles = Array[String]([])
-prereqPuzzleStates = Dictionary[String, Array]({})
-prereqDiscoveredEvolutions = Array[String]([])
-prereqHavingFollowers = Array[String]([])
-prereqHasItems = Array[ExtResource("7_dmgij")]([])
-invalidAfterCompletingQuests = Array[String]([])
-invalidAfterFailingQuests = Array[String]([])
-invalidAfterCutscenes = Array[String]([])
-invalidAfterDialogues = Array[String]([])
-invalidAfterVistingPlaces = Array[String]([])
-invalidAfterSpecialBattles = Array[String]([])
-invalidAfterSolvingPuzzles = Array[String]([])
-invalidFromPuzzleStates = Dictionary[String, Array]({})
-invalidFromHavingFollowers = Array[String]([])
-invalidFromHavingItems = Array[ExtResource("7_dmgij")]([])
 
 [sub_resource type="Resource" id="Resource_tnd1n"]
 script = ExtResource("37_7p5dm")
 speaker = "Sea Wyrm"
 dialogueEntry = ExtResource("36_eqxmc")
-savedItemIdx = 0
-savedTextIdx = 0
 
 [sub_resource type="Resource" id="Resource_wh0ig"]
 script = ExtResource("7_dmgij")
 item = ExtResource("36_2ax8b")
-count = 1
 
 [sub_resource type="Resource" id="Resource_apipf"]
 script = ExtResource("6_3up7i")
-minAct = 0
-maxAct = -1
-prereqQuests = Array[String]([])
-prereqCutscenes = Array[String]([])
-prereqDialogues = Array[String]([])
-prereqPlacesVisited = Array[String]([])
-prereqSpecialBattles = Array[String]([])
-prereqDefeatedEnemies = Array[String]([])
-prereqPuzzles = Array[String]([])
-prereqPuzzleStates = Dictionary[String, Array]({})
-prereqDiscoveredEvolutions = Array[String]([])
-prereqHavingFollowers = Array[String]([])
 prereqHasItems = Array[ExtResource("7_dmgij")]([SubResource("Resource_wh0ig")])
-invalidAfterCompletingQuests = Array[String]([])
-invalidAfterFailingQuests = Array[String]([])
-invalidAfterCutscenes = Array[String]([])
-invalidAfterDialogues = Array[String]([])
-invalidAfterVistingPlaces = Array[String]([])
 invalidAfterSpecialBattles = Array[String](["sea_wyrm_lp_attack"])
-invalidAfterSolvingPuzzles = Array[String]([])
-invalidFromPuzzleStates = Dictionary[String, Array]({})
-invalidFromHavingFollowers = Array[String]([])
-invalidFromHavingItems = Array[ExtResource("7_dmgij")]([])
 
 [sub_resource type="Resource" id="Resource_swubd"]
 script = ExtResource("6_3up7i")
-minAct = 0
-maxAct = -1
 prereqQuests = Array[String](["Angry Angler#Lunch on the Water"])
-prereqCutscenes = Array[String]([])
-prereqDialogues = Array[String]([])
-prereqPlacesVisited = Array[String]([])
-prereqSpecialBattles = Array[String]([])
-prereqDefeatedEnemies = Array[String]([])
-prereqPuzzles = Array[String]([])
-prereqPuzzleStates = Dictionary[String, Array]({})
-prereqDiscoveredEvolutions = Array[String]([])
-prereqHavingFollowers = Array[String]([])
-prereqHasItems = Array[ExtResource("7_dmgij")]([])
-invalidAfterCompletingQuests = Array[String]([])
-invalidAfterFailingQuests = Array[String]([])
-invalidAfterCutscenes = Array[String]([])
-invalidAfterDialogues = Array[String]([])
-invalidAfterVistingPlaces = Array[String]([])
 invalidAfterSpecialBattles = Array[String](["sea_wyrm_lp_attack"])
-invalidAfterSolvingPuzzles = Array[String]([])
-invalidFromPuzzleStates = Dictionary[String, Array]({})
-invalidFromHavingFollowers = Array[String]([])
-invalidFromHavingItems = Array[ExtResource("7_dmgij")]([])
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fykup"]
 size = Vector2(29, 37.5)
@@ -563,41 +247,16 @@ size = Vector2(27, 31)
 script = ExtResource("37_7p5dm")
 speaker = "@"
 dialogueEntry = ExtResource("42_jgtcv")
-savedItemIdx = 0
-savedTextIdx = 0
 
 [sub_resource type="Resource" id="Resource_ic76d"]
 script = ExtResource("37_7p5dm")
 speaker = "@"
 dialogueEntry = ExtResource("43_p1b1i")
-savedItemIdx = 0
-savedTextIdx = 0
 
 [sub_resource type="Resource" id="Resource_3shsi"]
 script = ExtResource("6_3up7i")
-minAct = 0
-maxAct = -1
-prereqQuests = Array[String]([])
-prereqCutscenes = Array[String]([])
 prereqDialogues = Array[String](["leavenport_pm#instant_seeds"])
-prereqPlacesVisited = Array[String]([])
-prereqSpecialBattles = Array[String]([])
-prereqDefeatedEnemies = Array[String]([])
-prereqPuzzles = Array[String]([])
-prereqPuzzleStates = Dictionary[String, Array]({})
-prereqDiscoveredEvolutions = Array[String]([])
-prereqHavingFollowers = Array[String]([])
-prereqHasItems = Array[ExtResource("7_dmgij")]([])
 invalidAfterCompletingQuests = Array[String](["Angry Angler#Seeds to Lumber"])
-invalidAfterFailingQuests = Array[String]([])
-invalidAfterCutscenes = Array[String]([])
-invalidAfterDialogues = Array[String]([])
-invalidAfterVistingPlaces = Array[String]([])
-invalidAfterSpecialBattles = Array[String]([])
-invalidAfterSolvingPuzzles = Array[String]([])
-invalidFromPuzzleStates = Dictionary[String, Array]({})
-invalidFromHavingFollowers = Array[String]([])
-invalidFromHavingItems = Array[ExtResource("7_dmgij")]([])
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8gxp0"]
 size = Vector2(16, 13)
@@ -609,55 +268,25 @@ size = Vector2(17, 15)
 script = ExtResource("37_7p5dm")
 speaker = "@"
 dialogueEntry = ExtResource("46_0wcjt")
-savedItemIdx = 0
-savedTextIdx = 0
 
 [sub_resource type="Resource" id="Resource_0b1cn"]
 script = ExtResource("37_7p5dm")
 speaker = "@"
 dialogueEntry = ExtResource("46_d68ry")
-savedItemIdx = 0
-savedTextIdx = 0
 
 [sub_resource type="Resource" id="Resource_m6qt2"]
 script = ExtResource("37_7p5dm")
 speaker = "@"
 dialogueEntry = ExtResource("48_0tq40")
-savedItemIdx = 0
-savedTextIdx = 0
 
 [sub_resource type="Resource" id="Resource_5jg1k"]
 script = ExtResource("37_7p5dm")
 speaker = "@"
 dialogueEntry = ExtResource("43_qcuah")
-savedItemIdx = 0
-savedTextIdx = 0
 
 [sub_resource type="Resource" id="Resource_wxsc7"]
 script = ExtResource("6_3up7i")
-minAct = 0
-maxAct = -1
 prereqQuests = Array[String](["Angry Angler#Birds of a Feather"])
-prereqCutscenes = Array[String]([])
-prereqDialogues = Array[String]([])
-prereqPlacesVisited = Array[String]([])
-prereqSpecialBattles = Array[String]([])
-prereqDefeatedEnemies = Array[String]([])
-prereqPuzzles = Array[String]([])
-prereqPuzzleStates = Dictionary[String, Array]({})
-prereqDiscoveredEvolutions = Array[String]([])
-prereqHavingFollowers = Array[String]([])
-prereqHasItems = Array[ExtResource("7_dmgij")]([])
-invalidAfterCompletingQuests = Array[String]([])
-invalidAfterFailingQuests = Array[String]([])
-invalidAfterCutscenes = Array[String]([])
-invalidAfterDialogues = Array[String]([])
-invalidAfterVistingPlaces = Array[String]([])
-invalidAfterSpecialBattles = Array[String]([])
-invalidAfterSolvingPuzzles = Array[String]([])
-invalidFromPuzzleStates = Dictionary[String, Array]({})
-invalidFromHavingFollowers = Array[String]([])
-invalidFromHavingItems = Array[ExtResource("7_dmgij")]([])
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g7p5b"]
 size = Vector2(45, 11)
@@ -666,57 +295,15 @@ size = Vector2(45, 11)
 script = ExtResource("6_xya6j")
 id = "default"
 priority = -1
-storyRequirements = Array[ExtResource("6_3up7i")]([])
-autoApplyState = false
 
 [sub_resource type="Resource" id="Resource_2gerc"]
 script = ExtResource("6_3up7i")
-minAct = 0
-maxAct = -1
 prereqQuests = Array[String](["Angry Angler#Birds of a Feather"])
-prereqCutscenes = Array[String]([])
-prereqDialogues = Array[String]([])
-prereqPlacesVisited = Array[String]([])
-prereqSpecialBattles = Array[String]([])
-prereqDefeatedEnemies = Array[String]([])
-prereqPuzzles = Array[String]([])
-prereqPuzzleStates = Dictionary[String, Array]({})
-prereqDiscoveredEvolutions = Array[String]([])
-prereqHavingFollowers = Array[String]([])
-prereqHasItems = Array[ExtResource("7_dmgij")]([])
-invalidAfterCompletingQuests = Array[String]([])
-invalidAfterFailingQuests = Array[String]([])
-invalidAfterCutscenes = Array[String]([])
-invalidAfterDialogues = Array[String]([])
-invalidAfterVistingPlaces = Array[String]([])
-invalidAfterSpecialBattles = Array[String]([])
-invalidAfterSolvingPuzzles = Array[String]([])
-invalidFromPuzzleStates = Dictionary[String, Array]({})
-invalidFromHavingFollowers = Array[String]([])
-invalidFromHavingItems = Array[ExtResource("7_dmgij")]([])
 
-[sub_resource type="Resource" id="Resource_0fgun"]
+[sub_resource type="Resource" id="Resource_oscug"]
 script = ExtResource("6_jui48")
 saveName = "npc"
-spriteState = "default"
-animation = "stand"
 position = Vector2(759, -60)
-flipH = false
-visible = true
-selectedTarget = 0
-loops = 0
-disableMovement = false
-previousDisableMove = false
-afterMoveWaitAccum = 0.0
-followerHomePosition = Vector2(0, 0)
-followingPlayer = false
-followerHomeSet = false
-combatMode = false
-version = ""
-dialogueItems = []
-dialogueIndex = -1
-dialogueItemIdx = -1
-dialogueLine = -1
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t4jb7"]
 size = Vector2(18, 17)
@@ -780,36 +367,6 @@ size = Vector2(128, 56)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ftvu4"]
 size = Vector2(128, 55)
-
-[sub_resource type="Resource" id="Resource_gcnnu"]
-script = ExtResource("6_xya6j")
-id = "default"
-priority = -1
-storyRequirements = Array[ExtResource("6_3up7i")]([])
-autoApplyState = false
-
-[sub_resource type="Resource" id="Resource_8wxqo"]
-script = ExtResource("6_jui48")
-saveName = "npc"
-spriteState = "default"
-animation = "stand"
-position = Vector2(789, -331)
-flipH = false
-visible = true
-selectedTarget = 0
-loops = 0
-disableMovement = false
-previousDisableMove = false
-afterMoveWaitAccum = 0.0
-followerHomePosition = Vector2(0, 0)
-followingPlayer = false
-followerHomeSet = false
-combatMode = false
-version = ""
-dialogueItems = []
-dialogueIndex = -1
-dialogueItemIdx = -1
-dialogueLine = -1
 
 [node name="OverworldMap" type="Node2D"]
 script = ExtResource("1_2bivy")
@@ -978,7 +535,7 @@ spriteStatesDict = Dictionary[String, ExtResource("6_xya6j")]({
 "default": SubResource("Resource_6p4g5")
 })
 orSpawnRequirements = Array[ExtResource("6_3up7i")]([SubResource("Resource_1n4ns"), SubResource("Resource_48sfc")])
-data = SubResource("Resource_nesj1")
+data = SubResource("Resource_gav4j")
 dialogueEntries = Array[ExtResource("7_lofl8")]([ExtResource("7_2c63l"), ExtResource("9_x0eeb")])
 
 [node name="NPCSprite" parent="TilemapRoot/Solius" index="0"]
@@ -1008,7 +565,7 @@ spriteStatesDict = Dictionary[String, ExtResource("6_xya6j")]({
 "default": SubResource("Resource_t3vvo")
 })
 spawnRequirements = SubResource("Resource_o0dwe")
-data = SubResource("Resource_vrhpi")
+data = SubResource("Resource_ov73p")
 
 [node name="NPCSprite" parent="TilemapRoot/ChainLegionSoldier3" index="0"]
 sprite_frames = ExtResource("11_jmbbv")
@@ -1029,7 +586,7 @@ spriteStatesDict = Dictionary[String, ExtResource("6_xya6j")]({
 "default": SubResource("Resource_tp0y3")
 })
 spawnRequirements = SubResource("Resource_chj7w")
-data = SubResource("Resource_xm7fs")
+data = SubResource("Resource_xya6j")
 
 [node name="NPCSprite" parent="TilemapRoot/ChainLegionSoldier4" index="0"]
 sprite_frames = ExtResource("11_jmbbv")
@@ -1051,7 +608,7 @@ saveName = "lp_fisherman"
 spriteStatesDict = Dictionary[String, ExtResource("6_xya6j")]({
 "default": SubResource("Resource_h24ud")
 })
-data = SubResource("Resource_j66p2")
+data = SubResource("Resource_nesj1")
 dialogueEntries = Array[ExtResource("7_lofl8")]([ExtResource("12_ccnp4"), ExtResource("15_qki57"), ExtResource("14_06j2w")])
 
 [node name="NPCSprite" parent="TilemapRoot/Fisherman" index="0"]
@@ -1074,7 +631,7 @@ saveName = "lp_elder"
 spriteStatesDict = Dictionary[String, ExtResource("6_xya6j")]({
 "default": SubResource("Resource_a8igx")
 })
-data = SubResource("Resource_1525k")
+data = SubResource("Resource_vrhpi")
 dialogueEntries = Array[ExtResource("7_lofl8")]([ExtResource("21_ijlcf")])
 
 [node name="NPCSprite" parent="TilemapRoot/Elder" index="0"]
@@ -1102,7 +659,7 @@ saveName = "lp_elder_lady"
 spriteStatesDict = Dictionary[String, ExtResource("6_xya6j")]({
 "default": SubResource("Resource_v7kax")
 })
-data = SubResource("Resource_oscug")
+data = SubResource("Resource_xm7fs")
 dialogueEntries = Array[ExtResource("7_lofl8")]([ExtResource("16_81mpk")])
 
 [node name="NPCSprite" parent="TilemapRoot/ElderLady" index="0"]
@@ -1124,7 +681,7 @@ displayName = "Sign"
 spriteStatesDict = Dictionary[String, ExtResource("6_xya6j")]({
 "default": SubResource("Resource_i5fku")
 })
-data = SubResource("Resource_psktw")
+data = SubResource("Resource_j66p2")
 dialogueEntries = Array[ExtResource("7_lofl8")]([ExtResource("21_i5v2d")])
 facesPlayer = false
 
@@ -1161,7 +718,7 @@ displayName = "Sign"
 spriteStatesDict = Dictionary[String, ExtResource("6_xya6j")]({
 "default": SubResource("Resource_a657y")
 })
-data = SubResource("Resource_b2v2q")
+data = SubResource("Resource_1525k")
 dialogueEntries = Array[ExtResource("7_lofl8")]([ExtResource("24_jrwa5")])
 facesPlayer = false
 
@@ -1381,7 +938,7 @@ spriteStatesDict = Dictionary[String, ExtResource("6_xya6j")]({
 "default": SubResource("Resource_ghyeo")
 })
 orSpawnRequirements = Array[ExtResource("6_3up7i")]([SubResource("Resource_2gerc")])
-data = SubResource("Resource_0fgun")
+data = SubResource("Resource_oscug")
 dialogueEntries = Array[ExtResource("7_lofl8")]([ExtResource("51_lxhr4"), ExtResource("52_qarxk"), ExtResource("53_rhckk"), ExtResource("52_h7g2h")])
 
 [node name="NPCSprite" parent="TilemapRoot/Skipper" index="0"]
@@ -1581,30 +1138,6 @@ shape = SubResource("RectangleShape2D_ftvu4")
 [node name="PlayerWarpCamPos" parent="CameraHoldZone3" index="1"]
 position = Vector2(0, -45)
 
-[node name="ToolCutsceneVisualizer" parent="." node_paths=PackedStringArray("triggerOrNPC", "rootNode") instance=ExtResource("12_8fbvy")]
-visible = false
-triggerOrNPC = NodePath("../DisembarkShipCutsceneTrigger")
-cutscene = ExtResource("69_l0ctu")
-rootNode = NodePath("..")
-
-[node name="MockPlayer" parent="ToolCutsceneVisualizer" index="0"]
-position = Vector2(789, -331)
-facingLeft = true
-spriteStatesDict = Dictionary[String, ExtResource("6_xya6j")]({
-"default": SubResource("Resource_gcnnu")
-})
-data = SubResource("Resource_8wxqo")
-
-[node name="NPCSprite" parent="ToolCutsceneVisualizer/MockPlayer" index="0"]
-frame_progress = 0.818204
-flip_h = true
-
-[node name="ColliderShape" parent="ToolCutsceneVisualizer/MockPlayer" index="1"]
-disabled = true
-
-[node name="MockShadeCenter" parent="ToolCutsceneVisualizer/MockPlayer/MockShade" index="0"]
-modulate = Color(1, 1, 1, 1)
-
 [editable path="TilemapRoot/FloatingRockColumnDecoration"]
 [editable path="TilemapRoot/FloatingRockColumnDecoration2"]
 [editable path="TilemapRoot/FloatingRockColumnDecoration3"]
@@ -1656,5 +1189,3 @@ modulate = Color(1, 1, 1, 1)
 [editable path="CameraHoldZone"]
 [editable path="CameraHoldZone2"]
 [editable path="CameraHoldZone3"]
-[editable path="ToolCutsceneVisualizer"]
-[editable path="ToolCutsceneVisualizer/MockPlayer"]

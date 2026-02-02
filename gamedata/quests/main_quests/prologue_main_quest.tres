@@ -13,56 +13,36 @@ script = ExtResource("2_y7ojr")
 name = "Get to Standstill"
 description = "The small town Standstill has agreed to support the expedition. When you arrive, you will need to gear up for the rest of the journey,"
 locations = Array[int]([20])
-turnInLocations = Array[int]([])
 type = 3
-count = 1
 objectiveName = "standstill_enter"
-turnInNames = Array[String]([])
 displayObjName = "Standstill"
-displayTurnInName = ""
 customStatusStr = "Arrive at Standstill!"
-turnInDialogue = Array[ExtResource("3_rxgpr")]([])
-inProgressDialogue = Array[ExtResource("3_rxgpr")]([])
 
 [sub_resource type="Resource" id="Resource_5nirr"]
 script = ExtResource("2_y7ojr")
 name = "Gear Up, Get Out"
 description = "The spelunking team is expecting you. Make your preparations, check with Dr. Hudson, and leave for the trail on the other side of town."
 locations = Array[int]([21])
-turnInLocations = Array[int]([])
 type = 3
-count = 1
 objectiveName = "hilltop_enter"
-turnInNames = Array[String]([])
 displayObjName = "Hilltop"
-displayTurnInName = ""
 customStatusStr = "Leave the Town!"
-turnInDialogue = Array[ExtResource("3_rxgpr")]([])
-inProgressDialogue = Array[ExtResource("3_rxgpr")]([])
 
 [sub_resource type="Resource" id="Resource_0hu12"]
 script = ExtResource("2_y7ojr")
 name = "Reach the Cave"
 description = "The cave is a stone's throw away. Secure the trail as best you can and make it to the Cave."
 locations = Array[int]([21])
-turnInLocations = Array[int]([])
 type = 3
-count = 1
 objectiveName = "hilltop_ambush"
-turnInNames = Array[String]([])
 displayObjName = "Hilltop"
-displayTurnInName = ""
 customStatusStr = "Get to the Cave!"
-turnInDialogue = Array[ExtResource("3_rxgpr")]([])
-inProgressDialogue = Array[ExtResource("3_rxgpr")]([])
 
 [sub_resource type="Resource" id="Resource_wrl1p"]
 script = ExtResource("4_lrp1d")
 experience = 30
 gold = 10
 item = ExtResource("3_c8yf2")
-itemCount = 1
-fullyAttuneCombatantSaveName = ""
 
 [sub_resource type="Resource" id="Resource_xmsla"]
 script = ExtResource("2_y7ojr")
@@ -72,12 +52,10 @@ reward = SubResource("Resource_wrl1p")
 locations = Array[int]([21])
 turnInLocations = Array[int]([11])
 type = 2
-count = 1
 objectiveName = "ambusher"
 turnInNames = Array[String](["spelunker_hilltop"])
 displayObjName = "Ambusher"
 displayTurnInName = "Spelunker"
-customStatusStr = ""
 turnInDialogue = Array[ExtResource("3_rxgpr")]([ExtResource("3_5tyuu")])
 inProgressDialogue = Array[ExtResource("3_rxgpr")]([ExtResource("3_vwp4v")])
 
@@ -86,23 +64,14 @@ script = ExtResource("2_y7ojr")
 name = "Return to Standstill"
 description = "Bring the Spelunker and Dr. Hudson back to Standstill."
 locations = Array[int]([20])
-turnInLocations = Array[int]([])
 type = 3
-count = 1
 objectiveName = "exit_hilltop_after_ambush"
-turnInNames = Array[String]([])
 displayObjName = "Standstill"
-displayTurnInName = ""
 customStatusStr = "Return to the Town!"
-turnInDialogue = Array[ExtResource("3_rxgpr")]([])
-inProgressDialogue = Array[ExtResource("3_rxgpr")]([])
 
 [sub_resource type="Resource" id="Resource_gmhha"]
 script = ExtResource("4_lrp1d")
 experience = 30
-gold = 0
-itemCount = 1
-fullyAttuneCombatantSaveName = ""
 
 [sub_resource type="Resource" id="Resource_uxnm8"]
 script = ExtResource("2_y7ojr")
@@ -111,15 +80,10 @@ description = "Dr. Hudson knows what this \"Chain Legion\" is. Ask him to explai
 reward = SubResource("Resource_gmhha")
 locations = Array[int]([20])
 turnInLocations = Array[int]([20])
-type = 0
-count = 1
 objectiveName = "dr_hudson_inn#explain_prologue"
 turnInNames = Array[String](["dr_hudson_inn"])
 displayObjName = "Dr. Hudson"
 displayTurnInName = "Dr. Hudson"
-customStatusStr = ""
-turnInDialogue = Array[ExtResource("3_rxgpr")]([])
-inProgressDialogue = Array[ExtResource("3_rxgpr")]([])
 
 [resource]
 script = ExtResource("1_lqkgd")

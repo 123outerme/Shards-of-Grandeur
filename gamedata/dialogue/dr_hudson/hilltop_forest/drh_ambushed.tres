@@ -9,46 +9,15 @@
 [sub_resource type="Resource" id="Resource_m5vej"]
 script = ExtResource("1_vjejn")
 lines = Array[String](["Go on, @, summon a minion with that Shard you were given!"])
-minShowSecs = Array[float]([])
 animation = "talk"
-speakerOverride = ""
-actorAnimation = ""
-animateActorTreePath = ""
-animateActorIsPlayer = false
-choices = Array[ExtResource("2_bawvg")]([])
 
 [sub_resource type="Resource" id="Resource_rc763"]
 script = ExtResource("3_6ofdm")
-minAct = 0
 maxAct = 0
-prereqQuests = Array[String]([])
 prereqCutscenes = Array[String](["hilltop_ambush"])
-prereqDialogues = Array[String]([])
-prereqPlacesVisited = Array[String]([])
-prereqSpecialBattles = Array[String]([])
-prereqDefeatedEnemies = Array[String]([])
-prereqPuzzles = Array[String]([])
-prereqPuzzleStates = Dictionary[String, Array]({})
-prereqDiscoveredEvolutions = Array[String]([])
-prereqHavingFollowers = Array[String]([])
-prereqHasItems = Array[ExtResource("5_sda7s")]([])
-invalidAfterCompletingQuests = Array[String]([])
-invalidAfterFailingQuests = Array[String]([])
-invalidAfterCutscenes = Array[String]([])
-invalidAfterDialogues = Array[String]([])
-invalidAfterVistingPlaces = Array[String]([])
 invalidAfterSpecialBattles = Array[String](["hilltop_ambusher"])
-invalidAfterSolvingPuzzles = Array[String]([])
-invalidFromPuzzleStates = Dictionary[String, Array]({})
-invalidFromHavingFollowers = Array[String]([])
-invalidFromHavingItems = Array[ExtResource("5_sda7s")]([])
 
 [resource]
 script = ExtResource("1_uyrek")
-entryId = ""
 items = Array[ExtResource("1_vjejn")]([SubResource("Resource_m5vej")])
 storyRequirements = SubResource("Resource_rc763")
-ordStoryRequirements = Array[ExtResource("3_6ofdm")]([])
-closesDialogue = false
-fullHealsPlayer = false
-annotation = ""

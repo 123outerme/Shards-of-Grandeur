@@ -1,4 +1,4 @@
-[gd_scene load_steps=66 format=4 uid="uid://cwh0ho74p6tyh"]
+[gd_scene load_steps=63 format=4 uid="uid://cwh0ho74p6tyh"]
 
 [ext_resource type="Script" uid="uid://vg00rfnn3346" path="res://scripts/overworld/map_script.gd" id="1_s6d62"]
 [ext_resource type="PackedScene" uid="uid://ckjsms2r3k2jv" path="res://prefabs/overworld/cutscene_trigger.tscn" id="2_1jl0p"]
@@ -28,7 +28,6 @@
 [ext_resource type="AudioStream" uid="uid://cp5cb22x66lr5" path="res://audio/sfx/npc/horse/horse_step_3.mp3" id="20_647gc"]
 [ext_resource type="Resource" uid="uid://esbe7p26orvx" path="res://gamedata/items/weapon/standard_issue_sword.tres" id="21_0r0hi"]
 [ext_resource type="AudioStream" uid="uid://2uhg5d3k0hej" path="res://audio/sfx/npc/horse/horse_step_4.mp3" id="21_4pmmf"]
-[ext_resource type="PackedScene" uid="uid://b4bahmif0u56p" path="res://prefabs/overworld/tool_cutscene_visualizer.tscn" id="22_mlmt5"]
 [ext_resource type="Script" uid="uid://dc62fqcsqe6d4" path="res://scripts/inventory/picked_up_item.gd" id="22_s43kv"]
 [ext_resource type="AudioStream" uid="uid://bf8of4u47gboy" path="res://audio/sfx/npc/horse/horse_step_5.mp3" id="22_wrsnn"]
 [ext_resource type="AudioStream" uid="uid://dtn3p2nhgajo2" path="res://audio/sfx/npc/horse/horse_step_6.mp3" id="23_sgfsf"]
@@ -49,41 +48,17 @@
 [sub_resource type="Resource" id="Resource_ams7q"]
 script = ExtResource("22_s43kv")
 item = ExtResource("21_0r0hi")
-wasPickedUp = false
-speaker = ""
 dialogueEntry = ExtResource("4_gdydo")
-savedItemIdx = 0
-savedTextIdx = 0
 
 [sub_resource type="Resource" id="Resource_647gc"]
 script = ExtResource("8_4e20k")
 id = "default"
 priority = -1
-storyRequirements = Array[ExtResource("18_481j8")]([])
-autoApplyState = false
 
-[sub_resource type="Resource" id="Resource_4pmmf"]
+[sub_resource type="Resource" id="Resource_8chcn"]
 script = ExtResource("4_cq1x4")
 saveName = "npc"
-spriteState = "default"
-animation = "stand"
 position = Vector2(1, 16)
-flipH = false
-visible = true
-selectedTarget = 0
-loops = 0
-disableMovement = false
-previousDisableMove = false
-afterMoveWaitAccum = 0.0
-followerHomePosition = Vector2(0, 0)
-followingPlayer = false
-followerHomeSet = false
-combatMode = false
-version = ""
-dialogueItems = []
-dialogueIndex = -1
-dialogueItemIdx = -1
-dialogueLine = -1
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3ntff"]
 size = Vector2(15, 14)
@@ -92,51 +67,21 @@ size = Vector2(15, 14)
 script = ExtResource("8_4e20k")
 id = "default"
 priority = -1
-storyRequirements = Array[ExtResource("18_481j8")]([])
-autoApplyState = false
 
-[sub_resource type="Resource" id="Resource_sgfsf"]
+[sub_resource type="Resource" id="Resource_4e20k"]
 script = ExtResource("4_cq1x4")
 saveName = "npc"
-spriteState = "default"
-animation = "stand"
 position = Vector2(-98, 4)
-flipH = false
-visible = true
-selectedTarget = 0
-loops = 0
-disableMovement = false
-previousDisableMove = false
-afterMoveWaitAccum = 0.0
-followerHomePosition = Vector2(0, 0)
-followingPlayer = false
-followerHomeSet = false
-combatMode = false
-version = ""
-dialogueItems = []
-dialogueIndex = -1
-dialogueItemIdx = -1
-dialogueLine = -1
 
 [sub_resource type="Resource" id="Resource_cvvun"]
 script = ExtResource("7_4in6g")
 lines = Array[String](["Neigh!"])
-minShowSecs = Array[float]([])
 animation = "talk"
-speakerOverride = ""
-actorAnimation = ""
-animateActorTreePath = ""
-animateActorIsPlayer = false
-choices = Array[ExtResource("25_x155i")]([])
 
 [sub_resource type="Resource" id="Resource_3n8lp"]
 script = ExtResource("8_paddf")
 entryId = "1"
 items = Array[ExtResource("7_4in6g")]([SubResource("Resource_cvvun")])
-ordStoryRequirements = Array[ExtResource("18_481j8")]([])
-closesDialogue = false
-fullHealsPlayer = false
-annotation = ""
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_erjr7"]
 size = Vector2(64, 14)
@@ -153,34 +98,10 @@ size = Vector2(16, 64)
 [sub_resource type="Resource" id="Resource_mb2oe"]
 script = ExtResource("14_6nead")
 spawnerId = "intro_rat"
-disabled = false
-spawnedLastEncounter = false
 
 [sub_resource type="Resource" id="Resource_noxp6"]
 script = ExtResource("18_481j8")
-minAct = 0
-maxAct = -1
-prereqQuests = Array[String]([])
-prereqCutscenes = Array[String]([])
-prereqDialogues = Array[String]([])
-prereqPlacesVisited = Array[String]([])
-prereqSpecialBattles = Array[String]([])
-prereqDefeatedEnemies = Array[String]([])
-prereqPuzzles = Array[String]([])
-prereqPuzzleStates = Dictionary[String, Array]({})
-prereqDiscoveredEvolutions = Array[String]([])
-prereqHavingFollowers = Array[String]([])
-prereqHasItems = Array[ExtResource("25_8fngi")]([])
-invalidAfterCompletingQuests = Array[String]([])
-invalidAfterFailingQuests = Array[String]([])
-invalidAfterCutscenes = Array[String]([])
-invalidAfterDialogues = Array[String]([])
-invalidAfterVistingPlaces = Array[String]([])
 invalidAfterSpecialBattles = Array[String](["first_rat"])
-invalidAfterSolvingPuzzles = Array[String]([])
-invalidFromPuzzleStates = Dictionary[String, Array]({})
-invalidFromHavingFollowers = Array[String]([])
-invalidFromHavingItems = Array[ExtResource("25_8fngi")]([])
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vs8ye"]
 size = Vector2(128, 64)
@@ -199,36 +120,6 @@ agent_radius = 7.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m5j4p"]
 size = Vector2(48, 59)
-
-[sub_resource type="Resource" id="Resource_pc5tc"]
-script = ExtResource("8_4e20k")
-id = "default"
-priority = -1
-storyRequirements = Array[ExtResource("18_481j8")]([])
-autoApplyState = false
-
-[sub_resource type="Resource" id="Resource_rt1yj"]
-script = ExtResource("4_cq1x4")
-saveName = "npc"
-spriteState = "default"
-animation = "stand"
-position = Vector2(1008, 8)
-flipH = false
-visible = true
-selectedTarget = 0
-loops = 0
-disableMovement = false
-previousDisableMove = false
-afterMoveWaitAccum = 0.0
-followerHomePosition = Vector2(0, 0)
-followingPlayer = false
-followerHomeSet = false
-combatMode = false
-version = ""
-dialogueItems = []
-dialogueIndex = -1
-dialogueItemIdx = -1
-dialogueLine = -1
 
 [node name="OverworldMap" type="Node2D"]
 script = ExtResource("1_s6d62")
@@ -282,7 +173,7 @@ saveName = "dr_hudson_intro"
 spriteStatesDict = Dictionary[String, ExtResource("8_4e20k")]({
 "default": SubResource("Resource_647gc")
 })
-data = SubResource("Resource_4pmmf")
+data = SubResource("Resource_8chcn")
 dialogueEntries = Array[ExtResource("8_paddf")]([ExtResource("4_xxhfb"), ExtResource("5_5bmok")])
 
 [node name="NPCSprite" parent="TilemapRoot/DrHudson" index="0"]
@@ -313,7 +204,7 @@ spriteStatesDict = Dictionary[String, ExtResource("8_4e20k")]({
 })
 overrideSpeakerSprite = ExtResource("13_47plv")
 overrideSpeakerSpriteSize = Vector2i(32, 32)
-data = SubResource("Resource_sgfsf")
+data = SubResource("Resource_4e20k")
 dialogueEntries = Array[ExtResource("8_paddf")]([SubResource("Resource_3n8lp")])
 facesPlayer = false
 
@@ -397,30 +288,6 @@ shape = SubResource("RectangleShape2D_m5j4p")
 [node name="PlayerWarpCamPos" parent="HoldCameraZone" index="1"]
 visible = false
 
-[node name="ToolCutsceneVisualizer" parent="." node_paths=PackedStringArray("triggerOrNPC", "rootNode") instance=ExtResource("22_mlmt5")]
-visible = false
-triggerOrNPC = NodePath("../ExitCutsceneTrigger")
-cutscene = ExtResource("12_ci2fb")
-rootNode = NodePath("..")
-
-[node name="MockPlayer" parent="ToolCutsceneVisualizer" index="0"]
-position = Vector2(1008, 8)
-spriteStatesDict = Dictionary[String, ExtResource("8_4e20k")]({
-"default": SubResource("Resource_pc5tc")
-})
-data = SubResource("Resource_rt1yj")
-
-[node name="NPCSprite" parent="ToolCutsceneVisualizer/MockPlayer" index="0"]
-animation = &"walk"
-frame_progress = 0.906958
-
-[node name="MockShade" parent="ToolCutsceneVisualizer/MockPlayer" index="5"]
-offset_left = -528.0
-offset_right = 752.0
-
-[node name="MockShadeCenter" parent="ToolCutsceneVisualizer/MockPlayer/MockShade" index="0"]
-modulate = Color(1, 1, 1, 1)
-
 [editable path="TilemapRoot/DrHudson"]
 [editable path="TilemapRoot/HorseCart"]
 [editable path="IntroCutsceneTrigger"]
@@ -428,5 +295,3 @@ modulate = Color(1, 1, 1, 1)
 [editable path="EnemySpawner"]
 [editable path="WarpZone"]
 [editable path="HoldCameraZone"]
-[editable path="ToolCutsceneVisualizer"]
-[editable path="ToolCutsceneVisualizer/MockPlayer"]
