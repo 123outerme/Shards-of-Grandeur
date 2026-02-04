@@ -1,0 +1,71 @@
+[gd_resource type="Resource" script_class="MoveAnimSprite" load_steps=14 format=3 uid="uid://ddwmt75ddrkyt"]
+
+[ext_resource type="Script" uid="uid://n71lfdnd5xrr" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite_frame.gd" id="1_w451n"]
+[ext_resource type="AudioStream" uid="uid://cu8bukgtknwti" path="res://audio/sfx/moves/swing.ogg" id="2_5857a"]
+[ext_resource type="Script" uid="uid://mk6loduurcg4" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="2_a44yb"]
+[ext_resource type="SpriteFrames" uid="uid://djlryd7vq788f" path="res://graphics/moves/earth/a_break_ground.tres" id="3_a44yb"]
+[ext_resource type="Resource" uid="uid://dxaxbbl7qwjct" path="res://gamedata/moves/break_ground/particles_break_ground.tres" id="3_js4nr"]
+
+[sub_resource type="Curve" id="Curve_js4nr"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Curve" id="Curve_jirlx"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Resource" id="Resource_a44yb"]
+script = ExtResource("1_w451n")
+annotation = "set up position"
+duration = 0.1
+opacity = 0.0
+relativeTo = 1
+position = Vector2(0, -12)
+offset = 8
+xCurve = SubResource("Curve_js4nr")
+yCurve = SubResource("Curve_jirlx")
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[sub_resource type="Resource" id="Resource_8xvg2"]
+script = ExtResource("1_w451n")
+annotation = "fade in ground"
+animation = "ground"
+duration = 0.5
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[sub_resource type="Resource" id="Resource_5857a"]
+script = ExtResource("1_w451n")
+annotation = "play break ground anim"
+animation = "break_ground"
+duration = 0.333
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[sub_resource type="Resource" id="Resource_c7rp1"]
+script = ExtResource("1_w451n")
+annotation = "play arm swinging sfx"
+duration = 0.333
+sfx = ExtResource("2_5857a")
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[sub_resource type="Resource" id="Resource_js4nr"]
+script = ExtResource("1_w451n")
+annotation = "play particles"
+duration = 1.333
+particles = ExtResource("3_js4nr")
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[sub_resource type="Resource" id="Resource_jirlx"]
+script = ExtResource("1_w451n")
+annotation = "fade out"
+animation = "broken_ground"
+duration = 0.3
+opacity = 0.0
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[resource]
+script = ExtResource("2_a44yb")
+spriteFrames = ExtResource("3_a44yb")
+maxSize = Vector2(48, 32)
+frames = Array[ExtResource("1_w451n")]([SubResource("Resource_a44yb"), SubResource("Resource_8xvg2"), SubResource("Resource_5857a"), SubResource("Resource_c7rp1"), SubResource("Resource_js4nr"), SubResource("Resource_jirlx")])
+playsOnImpactFrame = false
+metadata/_custom_type_script = "uid://mk6loduurcg4"

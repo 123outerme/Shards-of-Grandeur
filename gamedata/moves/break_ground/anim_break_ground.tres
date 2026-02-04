@@ -1,7 +1,8 @@
-[gd_resource type="Resource" script_class="MoveAnimation" load_steps=5 format=3 uid="uid://b8fnt1p7sjcj2"]
+[gd_resource type="Resource" script_class="MoveAnimation" load_steps=6 format=3 uid="uid://b8fnt1p7sjcj2"]
 
 [ext_resource type="Script" uid="uid://mk6loduurcg4" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="1_d6841"]
 [ext_resource type="Script" uid="uid://dy6wwno8h0wdl" path="res://scripts/battle/particles/move_animation.gd" id="2_asnkf"]
+[ext_resource type="Resource" uid="uid://ddwmt75ddrkyt" path="res://gamedata/moves/break_ground/sprite_break_ground.tres" id="2_e0ra5"]
 [ext_resource type="Script" uid="uid://c8pibqehmw101" path="res://scripts/battle/battle_scene/battlefield_shade_anim.gd" id="3_asnkf"]
 
 [sub_resource type="Resource" id="Resource_e0ra5"]
@@ -14,5 +15,7 @@ script = ExtResource("2_asnkf")
 combatantAnimation = "attack_phys"
 makesContact = true
 hideTargetHpTag = true
+chargeMoveSprites = Array[ExtResource("1_d6841")]([ExtResource("2_e0ra5")])
+surgeMoveSprites = Array[ExtResource("1_d6841")]([ExtResource("2_e0ra5")])
 surgeBattlefieldShade = SubResource("Resource_e0ra5")
 metadata/_custom_type_script = "uid://dy6wwno8h0wdl"
