@@ -59,7 +59,7 @@ func load_rune_effect_details() -> void:
 		if rune.orbChange > 0:
 			orbText += '+'
 		else:
-			orbText += '-' 
+			orbText += '-'
 		orbText += String.num_int64(absi(rune.orbChange)) + ' $orb)'
 	
 	detailsTitleLabel.text = TextUtils.rich_text_substitute(titleText + orbText, Vector2i(32, 32))
@@ -90,7 +90,7 @@ func load_rune_effect_details() -> void:
 		runeStatusEffect.text = '[center]'
 		if rune.statusEffect.type != StatusEffect.Type.NONE:
 			runeStatusEffect.text += StatusEffect.potency_to_string(rune.statusEffect.potency) \
-					+ ' ' + rune.statusEffect.get_status_type_string()
+					+' ' + rune.statusEffect.get_status_type_string()
 		else:
 			runeStatusEffect.text += 'Cures ' + StatusEffect.potency_to_string(rune.statusEffect.potency) + ' Statuses'
 		if rune.statusEffect.overwritesOtherStatuses:
@@ -113,17 +113,22 @@ func load_rune_effect_details() -> void:
 	
 	if isSurgeEffect and rune.surgeChanges != null:
 		var changes: Array[SurgeChanges.SurgeChangeDescRow] = rune.surgeChanges.get_description()
-		for change: SurgeChanges.SurgeChangeDescRow in changes:
-			var row: SurgeChangesRow = surgeChangesRowScene.instantiate()
-			if change.title == 'Target(s) Boost Per Orb:':
-				row.changeHeader = 'Boosts Per Orb:'
-			else:
-				row.changeHeader = change.title
-			row.changeDetails = change.description
-			surgeVBox.add_child(row)
-		surgePanel.visible = true
-		size.y = MAX_SURGE_HEIGHT
-		custom_minimum_size.y = MAX_SURGE_HEIGHT
+		if len(changes) > 0:
+			for change: SurgeChanges.SurgeChangeDescRow in changes:
+				var row: SurgeChangesRow = surgeChangesRowScene.instantiate()
+				if change.title == 'Target(s) Boost Per Orb:':
+					row.changeHeader = 'Boosts Per Orb:'
+				else:
+					row.changeHeader = change.title
+				row.changeDetails = change.description
+				surgeVBox.add_child(row)
+			surgePanel.visible = true
+			size.y = MAX_SURGE_HEIGHT
+			custom_minimum_size.y = MAX_SURGE_HEIGHT
+		else:
+			surgePanel.visible = false
+			size.y = MAX_CHARGE_HEIGHT
+			custom_minimum_size.y = MAX_CHARGE_HEIGHT
 	else:
 		surgePanel.visible = false
 		size.y = MAX_CHARGE_HEIGHT

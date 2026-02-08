@@ -175,14 +175,19 @@ func load_move_effect_details_panel():
 	
 	if isSurgeEffect and moveEffect.surgeChanges != null:
 		var changes: Array[SurgeChanges.SurgeChangeDescRow] = moveEffect.surgeChanges.get_description()
-		for change: SurgeChanges.SurgeChangeDescRow in changes:
-			var row: SurgeChangesRow = surgeChangesRowScene.instantiate()
-			row.changeHeader = change.title
-			row.changeDetails = change.description
-			surgeVBox.add_child(row)
-		surgePanel.visible = true
-		moveEffPanel.custom_minimum_size.y = SURGE_HEIGHT
-		moveEffPanel.size.y = SURGE_HEIGHT
+		if len(changes) > 0:
+			for change: SurgeChanges.SurgeChangeDescRow in changes:
+				var row: SurgeChangesRow = surgeChangesRowScene.instantiate()
+				row.changeHeader = change.title
+				row.changeDetails = change.description
+				surgeVBox.add_child(row)
+			surgePanel.visible = true
+			moveEffPanel.custom_minimum_size.y = SURGE_HEIGHT
+			moveEffPanel.size.y = SURGE_HEIGHT
+		else:
+			surgePanel.visible = false
+			moveEffPanel.custom_minimum_size.y = CHARGE_HEIGHT
+			moveEffPanel.size.y = CHARGE_HEIGHT
 	else:
 		surgePanel.visible = false
 		moveEffPanel.custom_minimum_size.y = CHARGE_HEIGHT

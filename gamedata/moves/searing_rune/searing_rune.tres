@@ -1,10 +1,11 @@
-[gd_resource type="Resource" script_class="Move" load_steps=8 format=3 uid="uid://c4mkngg5jwoxd"]
+[gd_resource type="Resource" script_class="Move" load_steps=10 format=3 uid="uid://c4mkngg5jwoxd"]
 
 [ext_resource type="Resource" uid="uid://1v533tc2abqm" path="res://gamedata/moves/searing_rune/rune/searing_rune_rune_charge.tres" id="1_f8sv2"]
 [ext_resource type="Script" uid="uid://drwve0pkx3g5o" path="res://scripts/battle/combatant/move_effect.gd" id="2_oy0kt"]
 [ext_resource type="Resource" uid="uid://dqnn4nvfs3b70" path="res://gamedata/moves/searing_rune/anim_searing_rune.tres" id="3_mdlcb"]
 [ext_resource type="Script" uid="uid://dx4lnh4driy7a" path="res://scripts/battle/combatant/move.gd" id="4_jo1qe"]
 [ext_resource type="Resource" uid="uid://6pfosvmeuier" path="res://gamedata/moves/searing_rune/rune/searing_rune_rune_surge.tres" id="5_06t1d"]
+[ext_resource type="Script" uid="uid://cvjnh0a2q6sat" path="res://scripts/battle/combatant/surge_changes.gd" id="6_pbrkf"]
 
 [sub_resource type="Resource" id="Resource_qwp7e"]
 script = ExtResource("2_oy0kt")
@@ -13,12 +14,17 @@ orbChange = 1
 targets = 5
 rune = ExtResource("1_f8sv2")
 
+[sub_resource type="Resource" id="Resource_pbrkf"]
+script = ExtResource("6_pbrkf")
+metadata/_custom_type_script = "uid://cvjnh0a2q6sat"
+
 [sub_resource type="Resource" id="Resource_0aplw"]
 script = ExtResource("2_oy0kt")
 role = 6
 orbChange = -4
 targets = 5
 rune = ExtResource("5_06t1d")
+surgeChanges = SubResource("Resource_pbrkf")
 
 [resource]
 script = ExtResource("4_jo1qe")

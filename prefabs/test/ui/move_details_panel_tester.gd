@@ -15,6 +15,7 @@ func _ready() -> void:
 		PlayerResources.questInventory.currentAct = 1
 		PlayerResources.playerInfo.set_dialogue_seen('grandstone_dr_ildran', 'surge')
 	if allowRunes:
+		PlayerResources.questInventory.currentAct = 2
 		PlayerResources.playerInfo.set_cutscene_seen('standstill_helia_approach')
 	if runTests:
 		await run_tests()
