@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://g5p5b4jsf6bs" path="res://scripts/cutscenes/actor_tween.gd" id="6_nlntr"]
 [ext_resource type="Script" uid="uid://jcu0gq2ns4in" path="res://scripts/cutscenes/cutscene_dialogue.gd" id="7_fbxya"]
 [ext_resource type="Resource" uid="uid://bhhs2axr1n15b" path="res://gamedata/cutscenes/reused/player_walk_anim.tres" id="8_r0cu1"]
+[ext_resource type="Resource" uid="uid://cnxvdd6u7i2kh" path="res://gamedata/dialogue/cutscenes/gs_quarry/gs_quarry_spelunker_block_b2f.tres" id="8_rmhww"]
 [ext_resource type="Script" uid="uid://b5d2qgg22dgbw" path="res://scripts/cutscenes/tweens/tween_vector2.gd" id="9_c54tk"]
 [ext_resource type="Script" uid="uid://fpa08p2kb0ts" path="res://scripts/cutscenes/cutscene.gd" id="10_030mh"]
 [ext_resource type="Script" uid="uid://fw22o8hbosnk" path="res://scripts/inventory/inventory_slot.gd" id="11_3fuqk"]
@@ -31,20 +32,13 @@ actorTreePath = "TilemapRoot/Spelunker"
 targetIsPlayer = true
 metadata/_custom_type_script = "uid://8oxtwxpqllgd"
 
-[sub_resource type="Resource" id="Resource_ou8rs"]
-script = ExtResource("7_fbxya")
-speaker = "Spelunker"
-texts = Array[String](["Hold on! The Foreman doesn't want just anybody to go any deeper without his permission.", "There's a dangerous monster down there, and we're looking for a way to get rid of it!", "If you're strong enough, @, ask the Foreman! He'll probably give you permission."])
-speakerActorScenePath = "TilemapRoot/Spelunker"
-metadata/_custom_type_script = "uid://jcu0gq2ns4in"
-
 [sub_resource type="Resource" id="Resource_76eml"]
 script = ExtResource("1_6t3aa")
 frameLength = 0.1
 annotation = "The spelunker stops you"
 actorAnims = Array[ExtResource("3_42t0p")]([ExtResource("4_0k702"), SubResource("Resource_dcyg1")])
 actorFaceTargets = Array[ExtResource("5_bbu4m")]([SubResource("Resource_q8m8a"), SubResource("Resource_h30bs")])
-dialogues = Array[ExtResource("7_fbxya")]([SubResource("Resource_ou8rs")])
+dialogues = Array[ExtResource("7_fbxya")]([ExtResource("8_rmhww")])
 endTextBoxPauses = false
 metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
 

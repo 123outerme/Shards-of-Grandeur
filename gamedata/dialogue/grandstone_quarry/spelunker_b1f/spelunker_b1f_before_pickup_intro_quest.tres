@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=8 format=3 uid="uid://6w6hx4hthhjf"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_a6ay3"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_3gfhu"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_gfn1v"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_3gfhu"]
+[ext_resource type="Script" uid="uid://fw22o8hbosnk" path="res://scripts/inventory/inventory_slot.gd" id="3_gfn1v"]
+
+[sub_resource type="Resource" id="Resource_dd30b"]
+script = ExtResource("1_a6ay3")
+lines = Array[String](["The Foreman doesn't want just anybody to go any deeper without his permission.", "There's a dangerous monster down there, and we're looking for a way to get rid of it!", "If you're strong enough, ask the Foreman. He'll probably give you permission."])
+animation = "talk"
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[sub_resource type="Resource" id="Resource_3gfhu"]
+script = ExtResource("2_gfn1v")
+invalidAfterCompletingQuests = Array[String](["Quarry Quandary#"])
+metadata/_custom_type_script = "uid://bjesn36acj0uh"
+
+[resource]
+script = ExtResource("3_3gfhu")
+items = Array[ExtResource("1_a6ay3")]([SubResource("Resource_dd30b")])
+ordStoryRequirements = Array[ExtResource("2_gfn1v")]([SubResource("Resource_3gfhu")])
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"

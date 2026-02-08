@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=8 format=3 uid="uid://cmku5gprb4aya"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_38t7d"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_od10x"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="3_wvcr8"]
+[ext_resource type="Script" uid="uid://fw22o8hbosnk" path="res://scripts/inventory/inventory_slot.gd" id="4_p1jj7"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="5_kkchu"]
+
+[sub_resource type="Resource" id="Resource_njici"]
+script = ExtResource("1_38t7d")
+lines = Array[String](["You defeated the $highlight{Titan}color$ deep in our caverns? Incredible... The Foreman said those were just myths!"])
+animation = "talk"
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[sub_resource type="Resource" id="Resource_cmvbd"]
+script = ExtResource("3_wvcr8")
+prereqQuests = Array[String](["Quarry Quandary#The Titan"])
+metadata/_custom_type_script = "uid://bjesn36acj0uh"
+
+[resource]
+script = ExtResource("5_kkchu")
+items = Array[ExtResource("1_38t7d")]([SubResource("Resource_njici")])
+ordStoryRequirements = Array[ExtResource("3_wvcr8")]([SubResource("Resource_cmvbd")])
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"

@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=8 format=3 uid="uid://dadvt3hvh4k3w"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_50sgf"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_cmvbd"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_di334"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_cmvbd"]
+[ext_resource type="Script" uid="uid://fw22o8hbosnk" path="res://scripts/inventory/inventory_slot.gd" id="3_di334"]
+
+[sub_resource type="Resource" id="Resource_u0p5u"]
+script = ExtResource("1_50sgf")
+lines = Array[String](["Are you taking care of our monster problem, @? Be careful down there!"])
+animation = "talk"
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[sub_resource type="Resource" id="Resource_ckcsv"]
+script = ExtResource("2_di334")
+prereqQuests = Array[String](["Quarry Quandary#"])
+invalidAfterCompletingQuests = Array[String](["Quarry Quandary#The Titan"])
+metadata/_custom_type_script = "uid://bjesn36acj0uh"
+
+[resource]
+script = ExtResource("3_cmvbd")
+items = Array[ExtResource("1_50sgf")]([SubResource("Resource_u0p5u")])
+ordStoryRequirements = Array[ExtResource("2_di334")]([SubResource("Resource_ckcsv")])
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"
