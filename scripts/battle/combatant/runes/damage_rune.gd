@@ -147,7 +147,7 @@ func does_rune_trigger(combatant: Combatant, otherCombatants: Array[Combatant], 
 				matchesElementTrigger = true
 			
 			# if this rune cares about triggering from a certain category, and that category was used for the move:
-			if user.command.move.category == triggerCategory:
+			if user.command.type == BattleCommand.Type.MOVE and user.command.move.category == triggerCategory:
 				matchesCategoryTrigger = true
 			
 			# if this combatant was a target, the rune is triggered if this command dealt damage

@@ -279,11 +279,6 @@ func update_select_btn(showing: bool, disable: bool = false):
 func update_rune_sprites(createNew: bool = true, createTriggered: bool = false, playCreatedTriggeredRunes: bool = false) -> void:
 	if combatant == null or not is_alive():
 		return
-	
-	var currentlyShowingSprites: Array[MoveSprite] = []
-	for runeSpr: MoveSprite in playingRuneSprites:
-		if runeSpr != null:
-			currentlyShowingSprites.append(runeSpr)
 
 	playingRuneSprites = playingRuneSprites.filter(_filter_out_null)
 	loadedRuneSprites = loadedRuneSprites.filter(_filter_out_null)
@@ -749,7 +744,8 @@ func _rune_sprite_complete(sprite: MoveSprite):
 	var spriteIdx: int = loadedRuneSprites.find(sprite)
 	if len(loadedRuneSprites) == 0:
 		playingRuneSprites = [] # if we're now out of runes; get rid of them all
-	else:
+	elif not targetOfMoveAnimation:
+		# if there are more sprites to play and we're not currently a subject in a move animation:
 		# make a new rune sprite show up
 		var showingRuneSpriteIdxs: Array[int] = []
 		for runeSpr: MoveSprite in playingRuneSprites:

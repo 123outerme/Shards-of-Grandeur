@@ -521,7 +521,7 @@ func use_move_animation(user: CombatantNode, command: BattleCommand, targets: Ar
 	if shadeCallbackFunc != Callable():
 		battlefieldShade.shade_faded_up.disconnect(shadeCallbackFunc)
 
-	await play_triggered_rune_animations()
+	await play_triggered_rune_animations(BattleCommand.ApplyTiming.AFTER_DMG_CALC)
 	
 	# post-move animations?
 	
@@ -611,7 +611,7 @@ func play_intermediate_round_animations(state: BattleState):
 				# start/complete events are only emitted if the subject is found and animations are playing
 				await animation_waiting_complete
 
-			await play_triggered_rune_animations()
+			await play_triggered_rune_animations(BattleCommand.ApplyTiming.AFTER_ROUND, subjectNode)
 			combatant_animation_complete.emit()
 
 func skip_intermediate_animations(state: BattleState, menuState: BattleState.Menu) -> bool:
@@ -632,8 +632,11 @@ func skip_intermediate_animations(state: BattleState, menuState: BattleState.Men
 	# otherwise, if not pre-battle then don't cancel the active animations, continue as normal
 	return false
 
-func play_triggered_rune_animations() -> void:
+func play_triggered_rune_animations(timing: BattleCommand.ApplyTiming, subjectNode: CombatantNode = null) -> void:
 	for combatantNode: CombatantNode in get_all_combatant_nodes():
+		# if only a particular node is being shown for (post-round), only play those trigger anims
+		if subjectNode != null and combatantNode != subjectNode:
+			continue
 		combatantNode.update_rune_sprites(false, true)
 		var removingRuneSprites: Array[MoveSprite] = []
 		# gather the list of triggered runes, sort them by the order in which they were actually triggered
@@ -664,6 +667,7 @@ func play_triggered_rune_animations() -> void:
 				removingRuneSprites.append(runeSprite)
 				runeSprite.looping = false
 				runeSprite.halt = false # in case it was halted, un-halt it now
+				set_combatant_above_shade(combatantNode) # make it above the shade so all its animations play above the other combatants
 				if SettingsHandler.gameSettings.battleAnims:
 					var triggerSprites: Array[MoveAnimSprite] = rune.get_trigger_anim_sprites()
 					triggerRuneSpriteCount = 0
@@ -674,6 +678,7 @@ func play_triggered_rune_animations() -> void:
 						triggerRuneSpriteCount += 1
 						if idx == 0:
 							runeSprite.anim = triggerSprite
+							runeSprite.looping = false # this would have been set to true before; ensure it is destroyed when the animation finishes
 							runeSprite.move_sprite_complete.connect(_on_rune_trigger_animation_complete)
 							runeSprite.play_sprite_animation()
 						else:
@@ -681,10 +686,10 @@ func play_triggered_rune_animations() -> void:
 							removingRuneSprites.append(triggerRuneSprite)
 							triggerRuneSprite.move_sprite_complete.connect(_on_rune_trigger_animation_complete)
 							triggerRuneSprite.play_sprite_animation()
-						if triggerRuneSpriteCount > 0:
-							await rune_animation_complete
-						else:
-							printerr('Error: Rune ' + rune.resource_path + ' does not have any trigger animations')
+					if triggerRuneSpriteCount > 0:
+						await rune_animation_complete
+					else:
+						printerr('Error: Rune ' + rune.resource_path + ' does not have any trigger animations')
 				var casterNode: CombatantNode = null
 				for cNode: CombatantNode in get_all_combatant_nodes():
 					if cNode.combatant == rune.caster:
@@ -775,13 +780,16 @@ func play_triggered_rune_animations() -> void:
 					get_tree().create_timer(maxTextDelay + CombatantEventText.FADE_IN_SECS + CombatantEventText.SECS_UNTIL_FADE_OUT) \
 						.timeout.connect(_on_rune_trigger_animation_complete)
 					await rune_animation_complete
+				set_combatant_between_shade(combatantNode)
 		if not SettingsHandler.gameSettings.battleAnims:
 			for runeSprite: MoveSprite in removingRuneSprites:
 				if runeSprite == null:
 					continue
-				var runeSpriteIdx: int = combatantNode.loadedRuneSprites.find(runeSprite)
-				if runeSpriteIdx != -1 and runeSpriteIdx != combatantNode.playingRuneSpriteIdx:
-					runeSprite.destroy()
+				runeSprite.destroy()
+		if timing == BattleCommand.ApplyTiming.AFTER_ROUND:
+			combatantNode.combatant.triggeredRunes = []
+			combatantNode.combatant.triggeredRunesDmg = []
+			combatantNode.combatant.triggeredRunesStatus = []
 
 func _sort_triggered_rune_sprites_by_trigger_order(a: MoveSprite, b: MoveSprite, combatantNode: CombatantNode) -> bool:
 	var aIdx: int = combatantNode.combatant.triggeredRunes.find(a.linkedResource)
