@@ -178,22 +178,22 @@ alignment = 1
 custom_minimum_size = Vector2(160, 0)
 layout_mode = 2
 mouse_filter = 1
+theme_override_font_sizes/normal_font_size = 15
+theme_override_font_sizes/bold_font_size = 15
 theme_override_font_sizes/bold_italics_font_size = 15
 theme_override_font_sizes/italics_font_size = 15
 theme_override_font_sizes/mono_font_size = 15
-theme_override_font_sizes/normal_font_size = 15
-theme_override_font_sizes/bold_font_size = 15
 text = "Self Boosts:"
 
 [node name="UserStatChanges" type="RichTextLabel" parent="ScrollContainer/VBoxContainer/Panel/BaseEffectPanel/VBoxContainer/UserBoostsRow"]
 custom_minimum_size = Vector2(360, 0)
 layout_mode = 2
 mouse_filter = 1
+theme_override_font_sizes/normal_font_size = 15
+theme_override_font_sizes/bold_font_size = 15
 theme_override_font_sizes/bold_italics_font_size = 15
 theme_override_font_sizes/italics_font_size = 15
 theme_override_font_sizes/mono_font_size = 15
-theme_override_font_sizes/normal_font_size = 15
-theme_override_font_sizes/bold_font_size = 15
 bbcode_enabled = true
 text = "[center]+900% Phys Atk, +900% Magic Atk, +900% Resistance, +900% Affinity, and +900% Speed[/center]"
 
@@ -206,22 +206,22 @@ alignment = 1
 custom_minimum_size = Vector2(160, 0)
 layout_mode = 2
 mouse_filter = 1
+theme_override_font_sizes/normal_font_size = 15
+theme_override_font_sizes/bold_font_size = 15
 theme_override_font_sizes/bold_italics_font_size = 15
 theme_override_font_sizes/italics_font_size = 15
 theme_override_font_sizes/mono_font_size = 15
-theme_override_font_sizes/normal_font_size = 15
-theme_override_font_sizes/bold_font_size = 15
 text = "Target Boosts:"
 
 [node name="TargetStatChanges" type="RichTextLabel" parent="ScrollContainer/VBoxContainer/Panel/BaseEffectPanel/VBoxContainer/TargetBoostsRow"]
 custom_minimum_size = Vector2(360, 0)
 layout_mode = 2
 mouse_filter = 1
+theme_override_font_sizes/normal_font_size = 15
+theme_override_font_sizes/bold_font_size = 15
 theme_override_font_sizes/bold_italics_font_size = 15
 theme_override_font_sizes/italics_font_size = 15
 theme_override_font_sizes/mono_font_size = 15
-theme_override_font_sizes/normal_font_size = 15
-theme_override_font_sizes/bold_font_size = 15
 bbcode_enabled = true
 text = "[center]+900% Phys Atk, +900% Magic Atk, +900% Resistance, +900% Affinity, and +900% Speed[/center]"
 
@@ -234,22 +234,22 @@ alignment = 1
 custom_minimum_size = Vector2(160, 0)
 layout_mode = 2
 mouse_filter = 1
+theme_override_font_sizes/normal_font_size = 15
+theme_override_font_sizes/bold_font_size = 15
 theme_override_font_sizes/bold_italics_font_size = 15
 theme_override_font_sizes/italics_font_size = 15
 theme_override_font_sizes/mono_font_size = 15
-theme_override_font_sizes/normal_font_size = 15
-theme_override_font_sizes/bold_font_size = 15
 text = "Status (Target):"
 
 [node name="MoveStatusEffect" type="RichTextLabel" parent="ScrollContainer/VBoxContainer/Panel/BaseEffectPanel/VBoxContainer/StatusEffectRow"]
 custom_minimum_size = Vector2(290, 0)
 layout_mode = 2
 mouse_filter = 1
+theme_override_font_sizes/normal_font_size = 15
+theme_override_font_sizes/bold_font_size = 15
 theme_override_font_sizes/bold_italics_font_size = 15
 theme_override_font_sizes/italics_font_size = 15
 theme_override_font_sizes/mono_font_size = 15
-theme_override_font_sizes/normal_font_size = 15
-theme_override_font_sizes/bold_font_size = 15
 bbcode_enabled = true
 text = "[center]Overwhelming Exhaustion (Guaranteed, Replaces)[/center]"
 
@@ -300,6 +300,9 @@ focus_neighbor_bottom = NodePath(".")
 icon = ExtResource("6_3l4s7")
 expand_icon = true
 
+[node name="StatusButtonOnscreenNotifier" type="VisibleOnScreenNotifier2D" parent="ScrollContainer/VBoxContainer/Panel/BaseEffectPanel/VBoxContainer/StatusEffectRow/StatusHelpSection"]
+rect = Rect2(0, 6, 32, 32)
+
 [node name="RuneRow" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/Panel/BaseEffectPanel/VBoxContainer"]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
@@ -309,28 +312,29 @@ alignment = 1
 custom_minimum_size = Vector2(160, 0)
 layout_mode = 2
 mouse_filter = 1
+theme_override_font_sizes/normal_font_size = 15
+theme_override_font_sizes/bold_font_size = 15
 theme_override_font_sizes/bold_italics_font_size = 15
 theme_override_font_sizes/italics_font_size = 15
 theme_override_font_sizes/mono_font_size = 15
-theme_override_font_sizes/normal_font_size = 15
-theme_override_font_sizes/bold_font_size = 15
 text = "Rune (Target):"
 
 [node name="RuneDetails" type="RichTextLabel" parent="ScrollContainer/VBoxContainer/Panel/BaseEffectPanel/VBoxContainer/RuneRow"]
 custom_minimum_size = Vector2(360, 0)
 layout_mode = 2
 mouse_filter = 1
+theme_override_font_sizes/normal_font_size = 15
+theme_override_font_sizes/bold_font_size = 15
 theme_override_font_sizes/bold_italics_font_size = 15
 theme_override_font_sizes/italics_font_size = 15
 theme_override_font_sizes/mono_font_size = 15
-theme_override_font_sizes/normal_font_size = 15
-theme_override_font_sizes/bold_font_size = 15
 bbcode_enabled = true
 text = "[center]Physical Lightning Damage Rune
 (Details Below)[/center]"
 
 [node name="MiscRow" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/Panel/BaseEffectPanel"]
 custom_minimum_size = Vector2(0, 21)
+layout_mode = 0
 offset_left = 8.0
 offset_top = 254.0
 offset_right = 532.0
@@ -341,22 +345,22 @@ alignment = 1
 custom_minimum_size = Vector2(160, 0)
 layout_mode = 2
 mouse_filter = 1
+theme_override_font_sizes/normal_font_size = 15
+theme_override_font_sizes/bold_font_size = 15
 theme_override_font_sizes/bold_italics_font_size = 15
 theme_override_font_sizes/italics_font_size = 15
 theme_override_font_sizes/mono_font_size = 15
-theme_override_font_sizes/normal_font_size = 15
-theme_override_font_sizes/bold_font_size = 15
 text = "Spd. Priority: +3"
 
 [node name="Keywords" type="RichTextLabel" parent="ScrollContainer/VBoxContainer/Panel/BaseEffectPanel/MiscRow"]
 custom_minimum_size = Vector2(360, 0)
 layout_mode = 2
 mouse_filter = 1
+theme_override_font_sizes/normal_font_size = 15
+theme_override_font_sizes/bold_font_size = 15
 theme_override_font_sizes/bold_italics_font_size = 15
 theme_override_font_sizes/italics_font_size = 15
 theme_override_font_sizes/mono_font_size = 15
-theme_override_font_sizes/normal_font_size = 15
-theme_override_font_sizes/bold_font_size = 15
 bbcode_enabled = true
 text = "[center]Keywords: Harvest, This, That, Other[/center]"
 
@@ -413,6 +417,8 @@ scrollPx = 180
 
 [connection signal="visibility_changed" from="ScrollContainer" to="ScrollContainer" method="_on_visibility_changed"]
 [connection signal="pressed" from="ScrollContainer/VBoxContainer/Panel/BaseEffectPanel/VBoxContainer/StatusEffectRow/StatusHelpSection/StatusHelpButton" to="." method="_on_status_help_button_pressed"]
+[connection signal="screen_entered" from="ScrollContainer/VBoxContainer/Panel/BaseEffectPanel/VBoxContainer/StatusEffectRow/StatusHelpSection/StatusButtonOnscreenNotifier" to="." method="_on_status_button_onscreen_notifier_screen_entered"]
+[connection signal="screen_exited" from="ScrollContainer/VBoxContainer/Panel/BaseEffectPanel/VBoxContainer/StatusEffectRow/StatusHelpSection/StatusButtonOnscreenNotifier" to="." method="_on_status_button_onscreen_notifier_screen_exited"]
 [connection signal="rune_help_button_onscreen_update" from="ScrollContainer/VBoxContainer/RuneEffectDetailsPanel" to="." method="_on_rune_effect_details_panel_rune_help_button_onscreen_update"]
 [connection signal="status_button_onscreen_update" from="ScrollContainer/VBoxContainer/RuneEffectDetailsPanel" to="." method="_on_rune_effect_details_panel_status_button_onscreen_update"]
 [connection signal="tooltip_panel_opened" from="ScrollContainer/VBoxContainer/RuneEffectDetailsPanel" to="." method="_on_rune_effect_details_panel_tooltip_panel_opened"]

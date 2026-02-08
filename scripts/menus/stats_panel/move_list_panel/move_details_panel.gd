@@ -57,6 +57,10 @@ func connect_help_buttons():
 	backButton.focus_neighbor_left = '.'
 	backButton.focus_neighbor_right = '.'
 	
+	if chargeEffectDetails.statusEffectRow.visible and surgeEffectDetails.statusEffectRow.visible:
+		chargeEffectDetails.statusHelpButton.focus_neighbor_right = chargeEffectDetails.statusHelpButton.get_path_to(surgeEffectDetails.statusHelpButton)
+		surgeEffectDetails.statusHelpButton.focus_neighbor_left = surgeEffectDetails.statusHelpButton.get_path_to(chargeEffectDetails.statusHelpButton)
+	
 	if move.surgeEffect.rune != null:
 		if surgeEffectDetails.runeEffectDetailsPanel.statusEffectRow.visible:
 			backButton.focus_neighbor_top = backButton.get_path_to(surgeEffectDetails.runeEffectDetailsPanel.statusHelpButton)

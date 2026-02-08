@@ -145,7 +145,7 @@ func load_move_effect_details_panel():
 		moveStatusEffect.text = '[center]'
 		if moveEffect.statusEffect.type != StatusEffect.Type.NONE:
 			moveStatusEffect.text += StatusEffect.potency_to_string(moveEffect.statusEffect.potency) \
-					+ ' ' + moveEffect.statusEffect.get_status_type_string()
+					+' ' + moveEffect.statusEffect.get_status_type_string()
 		else:
 			moveStatusEffect.text += 'Cures ' + StatusEffect.potency_to_string(moveEffect.statusEffect.potency) + ' Statuses'
 		var accuracyString: String = String.num_int64(roundi(moveEffect.statusChance * 100)) + ' Chance'
@@ -206,11 +206,9 @@ func load_move_effect_details_panel():
 	runeEffectDetailsPanel.casterPosition = ''
 	runeEffectDetailsPanel.load_rune_effect_details()
 	
-	if runeRow.visible and runeEffectDetailsPanel.statusEffectRow.visible:
-		if statusEffectRow.visible:
-			statusHelpButton.focus_neighbor_bottom = statusHelpButton.get_path_to(runeEffectDetailsPanel.statusHelpButton)
-			runeEffectDetailsPanel.statusHelpButton.focus_neighbor_top = runeEffectDetailsPanel.statusHelpButton.get_path_to(statusHelpButton)
-		runeEffectDetailsPanel.statusHelpButton.focus_neighbor_bottom = runeEffectDetailsPanel.statusHelpButton.get_path_to(scrollerBottomFocusNeighbor)
+	if runeRow.visible:
+		statusHelpButton.focus_neighbor_bottom = statusHelpButton.get_path_to(runeEffectDetailsPanel.runeHelpButton)
+		runeEffectDetailsPanel.runeHelpButton.focus_neighbor_top = runeEffectDetailsPanel.runeHelpButton.get_path_to(statusHelpButton)
 
 func _on_status_help_button_pressed():
 	if moveEffect.statusEffect == null:
@@ -292,3 +290,43 @@ func _on_rune_effect_details_panel_rune_help_button_onscreen_update(isOnscreen: 
 		else:
 			boxContainerScroller.connect_scroll_down_top_neighbor(boxContainerScroller.scrollUpBtn)
 			boxContainerScroller.connect_scroll_up_bottom_neighbor(boxContainerScroller.scrollDownBtn)
+
+func _on_status_button_onscreen_notifier_screen_entered() -> void:
+	if runeRow.visible:
+		# only surge moves with runes scroll currently
+		if isSurgeEffect:
+			boxContainerScroller.connect_scroll_up_bottom_neighbor(statusHelpButton)
+			boxContainerScroller.connect_scroll_up_left_neighbor(statusHelpButton)
+			if runeEffectDetailsPanel.statusHelpButtonOnscreen:
+				boxContainerScroller.connect_scroll_down_top_neighbor(runeEffectDetailsPanel.statusHelpButton)
+				statusHelpButton.focus_neighbor_bottom = statusHelpButton.get_path_to(runeEffectDetailsPanel.runeHelpButton)
+				runeEffectDetailsPanel.runeHelpButton.focus_neighbor_top = runeEffectDetailsPanel.statusHelpButton.get_path_to(statusHelpButton)
+			elif runeEffectDetailsPanel.runeHelpButtonOnscreen:
+				boxContainerScroller.connect_scroll_down_top_neighbor(runeEffectDetailsPanel.runeHelpButton)
+				statusHelpButton.focus_neighbor_bottom = statusHelpButton.get_path_to(runeEffectDetailsPanel.runeHelpButton)
+				runeEffectDetailsPanel.runeHelpButton.focus_neighbor_top = runeEffectDetailsPanel.runeHelpButton.get_path_to(statusHelpButton)
+			else:
+				boxContainerScroller.connect_scroll_down_top_neighbor(statusHelpButton)
+		elif runeRow.visible:
+			statusHelpButton.focus_neighbor_bottom = statusHelpButton.get_path_to(runeEffectDetailsPanel.runeHelpButton)
+
+func _on_status_button_onscreen_notifier_screen_exited() -> void:
+	# only surge moves with runes scroll currently
+	if runeRow.visible and isSurgeEffect:
+		if runeEffectDetailsPanel.runeHelpButtonOnscreen:
+			boxContainerScroller.connect_scroll_up_bottom_neighbor(runeEffectDetailsPanel.runeHelpButton)
+			boxContainerScroller.connect_scroll_up_left_neighbor(runeEffectDetailsPanel.runeHelpButton)
+			if runeEffectDetailsPanel.statusHelpButtonOnscreen:
+				boxContainerScroller.connect_scroll_down_top_neighbor(runeEffectDetailsPanel.statusHelpButton)
+				runeEffectDetailsPanel.runeHelpButton.focus_neighbor_bottom = runeEffectDetailsPanel.runeHelpButton.get_path_to(runeEffectDetailsPanel.statusHelpButton)
+				runeEffectDetailsPanel.statusHelpButton.focus_neighbor_top = runeEffectDetailsPanel.statusHelpButton.get_path_to(runeEffectDetailsPanel.runeHelpButton)
+			else:
+				boxContainerScroller.connect_scroll_down_top_neighbor(runeEffectDetailsPanel.runeHelpButton)
+		elif runeEffectDetailsPanel.statusHelpButtonOnscreen:
+			boxContainerScroller.connect_scroll_up_bottom_neighbor(runeEffectDetailsPanel.statusHelpButton)
+			boxContainerScroller.connect_scroll_up_left_neighbor(runeEffectDetailsPanel.statusHelpButton)
+			boxContainerScroller.connect_scroll_down_top_neighbor(runeEffectDetailsPanel.statusHelpButton)
+		else:
+			boxContainerScroller.connect_scroll_down_top_neighbor(boxContainerScroller.scrollUpBtn)
+			boxContainerScroller.connect_scroll_up_bottom_neighbor(boxContainerScroller.scrollDownBtn)
+			boxContainerScroller.connect_scroll_up_left_neighbor(boxContainerScroller.scrollDownBtn)
