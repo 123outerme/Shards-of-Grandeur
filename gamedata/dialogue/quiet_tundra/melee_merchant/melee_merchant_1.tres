@@ -12,86 +12,35 @@
 [sub_resource type="Resource" id="Resource_sywvo"]
 script = ExtResource("2_prgnm")
 choiceBtn = "Goodbye!"
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("3_t3wnm")]([])
-repeatsItem = false
-buttonDims = Vector2(80, 40)
-turnsInQuest = ""
 isDeclineChoice = true
 metadata/_custom_type_script = "uid://bk6klhv2ls55w"
 
 [sub_resource type="Resource" id="Resource_v7sjm"]
 script = ExtResource("2_u7245")
-minAct = 0
-maxAct = -1
 prereqQuests = Array[String](["The Melee Merchant#I'll Make You Pay"])
-prereqCutscenes = Array[String]([])
-prereqDialogues = Array[String]([])
-prereqPlacesVisited = Array[String]([])
-prereqSpecialBattles = Array[String]([])
-prereqDefeatedEnemies = Array[String]([])
-prereqPuzzles = Array[String]([])
-prereqPuzzleStates = Dictionary[String, Array]({})
-prereqDiscoveredEvolutions = Array[String]([])
-prereqHavingFollowers = Array[String]([])
-prereqHasItems = Array[ExtResource("5_g1230")]([])
-invalidAfterCompletingQuests = Array[String]([])
-invalidAfterFailingQuests = Array[String]([])
-invalidAfterCutscenes = Array[String]([])
-invalidAfterDialogues = Array[String]([])
-invalidAfterVistingPlaces = Array[String]([])
-invalidAfterSpecialBattles = Array[String]([])
-invalidAfterSolvingPuzzles = Array[String]([])
-invalidFromPuzzleStates = Dictionary[String, Array]({})
-invalidFromHavingFollowers = Array[String]([])
-invalidFromHavingItems = Array[ExtResource("5_g1230")]([])
 metadata/_custom_type_script = "uid://bjesn36acj0uh"
 
 [sub_resource type="Resource" id="Resource_8a6ew"]
 script = ExtResource("5_sywvo")
 opensShop = true
-addsFollowerId = ""
-removesFollowerId = ""
 choiceBtn = "Shop!"
 storyRequirements = SubResource("Resource_v7sjm")
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("3_t3wnm")]([])
-repeatsItem = false
-buttonDims = Vector2(80, 40)
-turnsInQuest = ""
-isDeclineChoice = false
 metadata/_custom_type_script = "uid://c5cim8hvxtg3h"
 
 [sub_resource type="Resource" id="Resource_g1230"]
 script = ExtResource("2_prgnm")
 choiceBtn = "Spar!"
 leadsTo = ExtResource("4_t3wnm")
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("3_t3wnm")]([])
-repeatsItem = false
-buttonDims = Vector2(80, 40)
-turnsInQuest = ""
-isDeclineChoice = false
 metadata/_custom_type_script = "uid://bk6klhv2ls55w"
 
 [sub_resource type="Resource" id="Resource_t3wnm"]
 script = ExtResource("1_b8gp8")
 lines = Array[String](["Welcome to Spar 'n' Shop, @! How can I help you?"])
-minShowSecs = Array[float]([])
 animation = "talk"
-speakerOverride = ""
-actorAnimation = ""
-animateActorTreePath = ""
-animateActorIsPlayer = false
 choices = Array[ExtResource("2_prgnm")]([SubResource("Resource_sywvo"), SubResource("Resource_8a6ew"), SubResource("Resource_g1230")])
 metadata/_custom_type_script = "uid://grt2yrupha8c"
 
 [resource]
 script = ExtResource("3_prgnm")
-entryId = ""
 items = Array[ExtResource("1_b8gp8")]([SubResource("Resource_t3wnm")])
-ordStoryRequirements = Array[ExtResource("2_u7245")]([])
-closesDialogue = false
-fullHealsPlayer = false
-annotation = ""
 metadata/_custom_type_script = "uid://1n6mppc7hmmf"

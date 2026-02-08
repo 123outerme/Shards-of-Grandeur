@@ -7,7 +7,7 @@ enum Type {
 	DEFEAT = 2, ## defeat `X` number of enemies
 	CUTSCENE = 3, ## see the specified cutscene
 	STATIC_ENCOUNTER = 4, ## achieve victory in the specified static encounter
-	SOLVE_PUZZLE = 5, ##  solve the specified puzzle
+	SOLVE_PUZZLE = 5, ## solve the specified puzzle
 	ACQUIRE_ITEM = 6, ## acquire `X` number of items, NOT giving them to the turn-in NPC
 	ALL = -1, ## use only for filtering
 }
@@ -86,7 +86,7 @@ static func type_to_debug_string(t: Type) -> String:
 ## the name to tell the player to turn this step into
 @export var displayTurnInName: String
 
-## if specified, the quest status will be displayed as this until completed. If defined, no `displayObjName` or `displayTurnInName` need be defined.
+## if specified, the quest status will be displayed as this until completed. If defined, no `displayObjName` need be defined.
 @export var customStatusStr: String
 
 @export_category("Quest Step - Dialogue")

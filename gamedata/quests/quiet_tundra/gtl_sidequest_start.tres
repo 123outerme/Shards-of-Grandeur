@@ -10,32 +10,20 @@ name = "See the Stargazer"
 description = "The Stargazer in Giant Steppes may know what the dust is. Seek answers from him!"
 locations = Array[int]([50])
 turnInLocations = Array[int]([50])
-type = 0
-count = 1
 objectiveName = "stargazer_warlock_observatory#dusty_footprints"
 turnInNames = Array[String](["stargazer_warlock_observatory"])
 displayObjName = "The Stargazer"
 displayTurnInName = "The Stargazer"
-customStatusStr = ""
-turnInDialogue = Array[ExtResource("3_ustke")]([])
-inProgressDialogue = Array[ExtResource("3_ustke")]([])
 metadata/_custom_type_script = "uid://b3j2bj1p0bkq8"
 
 [sub_resource type="Resource" id="Resource_ustke"]
 script = ExtResource("2_ustke")
 name = "End the War"
 description = "If you want the Stargazer's help, this will have to wait until the Radiant War is over. However, investigating on your own may prove fruitful."
-locations = Array[int]([])
-turnInLocations = Array[int]([])
+locations = Array[int]([0])
 type = 3
-count = 1
 objectiveName = "---"
-turnInNames = Array[String]([])
-displayObjName = ""
-displayTurnInName = ""
 customStatusStr = "End the Radiant War!"
-turnInDialogue = Array[ExtResource("3_ustke")]([])
-inProgressDialogue = Array[ExtResource("3_ustke")]([])
 metadata/_custom_type_script = "uid://b3j2bj1p0bkq8"
 
 [resource]
@@ -43,6 +31,4 @@ script = ExtResource("1_3afq0")
 questName = "A Pile of Stardust"
 description = "Some dusty footprints were discovered on a hill in Giant Steppes. What, or who, made those prints?"
 steps = Array[ExtResource("2_ustke")]([SubResource("Resource_fqqb4"), SubResource("Resource_ustke")])
-isMainQuest = false
-advanceActAfterComplete = false
 metadata/_custom_type_script = "uid://bnw42uegqk4wp"

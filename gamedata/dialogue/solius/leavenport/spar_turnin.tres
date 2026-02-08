@@ -12,40 +12,19 @@
 script = ExtResource("1_3at4t")
 choiceBtn = "Hold On..."
 leadsTo = ExtResource("1_uqoth")
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("4_yi1hm")]([])
-repeatsItem = false
-buttonDims = Vector2(80, 40)
-turnsInQuest = ""
-isDeclineChoice = false
 
 [sub_resource type="Resource" id="Resource_48b1m"]
 script = ExtResource("1_3at4t")
 choiceBtn = "Let's Go!"
 leadsTo = ExtResource("3_6rm1m")
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("4_yi1hm")]([])
-repeatsItem = false
-buttonDims = Vector2(80, 40)
 turnsInQuest = "The Radiant War Begins#Sparring Partner"
-isDeclineChoice = false
 
 [sub_resource type="Resource" id="Resource_wm1au"]
 script = ExtResource("1_7dxr2")
 lines = Array[String](["Whoo... huh... you're not too bad, @. I don't recall you being this strong before!", "I think we'll clear a path to the Cave just fine. Are you ready for me to show you the way there?"])
-minShowSecs = Array[float]([])
 animation = "talk"
-speakerOverride = ""
-actorAnimation = ""
-animateActorTreePath = ""
-animateActorIsPlayer = false
 choices = Array[ExtResource("1_3at4t")]([SubResource("Resource_q0k0t"), SubResource("Resource_48b1m")])
 
 [resource]
 script = ExtResource("1_5iq37")
-entryId = ""
 items = Array[ExtResource("1_7dxr2")]([SubResource("Resource_wm1au")])
-ordStoryRequirements = Array[ExtResource("6_x83su")]([])
-closesDialogue = false
-fullHealsPlayer = false
-annotation = ""

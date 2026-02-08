@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=9 format=3 uid="uid://djjs5ibstvrgc"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=8 format=3 uid="uid://djjs5ibstvrgc"]
 
 [ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_dlrsa"]
 [ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_3h6ne"]
@@ -10,42 +10,17 @@
 script = ExtResource("2_bodi7")
 choiceBtn = "Interesting..."
 returnsToParentId = "stargazer_questions_1"
-randomDialogues = Array[ExtResource("3_i4v5s")]([])
-repeatsItem = false
-buttonDims = Vector2(80, 40)
-turnsInQuest = ""
 isDeclineChoice = true
-metadata/_custom_type_script = "uid://bk6klhv2ls55w"
-
-[sub_resource type="Resource" id="Resource_bodi7"]
-script = ExtResource("2_bodi7")
-choiceBtn = "Can People Evolve?"
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("3_i4v5s")]([])
-repeatsItem = false
-buttonDims = Vector2(80, 40)
-turnsInQuest = ""
-isDeclineChoice = false
 metadata/_custom_type_script = "uid://bk6klhv2ls55w"
 
 [sub_resource type="Resource" id="Resource_v1ise"]
 script = ExtResource("1_dlrsa")
 lines = Array[String](["All lifeforms exhibit a certain Affinity towards specific objects. It seems to be baked into the very nature of life.", "For example, on your journey through the Quiet Tundra, you saw $highlight{Arctic Foxes}color$ and $highlight{Blocks}color$.", "These were Evolutions of the Mystic Fox and the Blob, respectively. They reacted to Equipment in their environment and became changed.", "These Evolutions affect the combat capabilities of the creature, including their strengths and weaknesses."])
-minShowSecs = Array[float]([])
 animation = "talk"
-speakerOverride = ""
-actorAnimation = ""
-animateActorTreePath = ""
-animateActorIsPlayer = false
-choices = Array[ExtResource("2_bodi7")]([SubResource("Resource_rntu2"), SubResource("Resource_bodi7")])
+choices = Array[ExtResource("2_bodi7")]([SubResource("Resource_rntu2")])
 metadata/_custom_type_script = "uid://grt2yrupha8c"
 
 [resource]
 script = ExtResource("3_bodi7")
-entryId = ""
 items = Array[ExtResource("1_dlrsa")]([SubResource("Resource_v1ise")])
-ordStoryRequirements = Array[ExtResource("2_3h6ne")]([])
-closesDialogue = false
-fullHealsPlayer = false
-annotation = ""
 metadata/_custom_type_script = "uid://1n6mppc7hmmf"

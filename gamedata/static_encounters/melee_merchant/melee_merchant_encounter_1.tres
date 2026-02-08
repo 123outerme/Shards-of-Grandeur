@@ -11,37 +11,19 @@
 [sub_resource type="Resource" id="Resource_g8qoj"]
 script = ExtResource("2_mbjfl")
 experience = 135
-gold = 0
-itemCount = 1
-fullyAttuneCombatantSaveName = ""
 metadata/_custom_type_script = "uid://flaq3s0m3pf2"
 
 [sub_resource type="Resource" id="Resource_gn1r1"]
 script = ExtResource("7_g8qoj")
-enemyPosition = "Center"
 targetPercentHp = 0.2
 winText = "#opp surrendered!"
 loseText = "You surrendered to #opp..."
-escapeText = "You escaped successfully!"
 metadata/_custom_type_script = "uid://dbngrb7ibw487"
 
 [resource]
 script = ExtResource("3_awtux")
 combatant1Level = 20
-combatant1Moves = Array[ExtResource("1_phls6")]([])
-combatant1ShardSummoned = false
-combatant2Level = 1
-combatant2Moves = Array[ExtResource("1_phls6")]([])
-combatant2ShardSummoned = false
-combatant3Level = 1
-combatant3Moves = Array[ExtResource("1_phls6")]([])
-combatant3ShardSummoned = false
-autoAllyLevel = 1
-autoAllyMoves = Array[ExtResource("1_phls6")]([])
-autoAllyShardSummoned = false
 specialBattleId = "melee_merchant_1"
-bossBattle = false
-canEscape = true
 rewards = Array[ExtResource("2_mbjfl")]([SubResource("Resource_g8qoj")])
 useStaticRewards = true
 combatant1 = ExtResource("2_awtux")

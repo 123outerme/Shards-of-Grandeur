@@ -15,39 +15,23 @@ script = ExtResource("2_8mv8e")
 name = "Head Outside"
 description = "Go outside to prepare for the journey back to Grandstone."
 locations = Array[int]([20])
-turnInLocations = Array[int]([])
 type = 3
-count = 1
 objectiveName = "act1_start"
-turnInNames = Array[String]([])
-displayObjName = "Standstill"
-displayTurnInName = ""
-customStatusStr = "Leave the inn!"
-turnInDialogue = Array[ExtResource("3_4gvsg")]([])
-inProgressDialogue = Array[ExtResource("3_4gvsg")]([])
+customStatusStr = "Leave The Inn!"
 
 [sub_resource type="Resource" id="Resource_idvsa"]
 script = ExtResource("2_8mv8e")
 name = "Back to the Cave"
 description = "Return to Hilltop Forest to ensure the Radiant Cave hasn't been destroyed."
 locations = Array[int]([21])
-turnInLocations = Array[int]([])
 type = 3
-count = 1
 objectiveName = "hilltop_cave_gone"
-turnInNames = Array[String]([])
-displayObjName = "Radiant Cave"
-displayTurnInName = ""
 customStatusStr = "Head to the Cave!"
-turnInDialogue = Array[ExtResource("3_4gvsg")]([])
-inProgressDialogue = Array[ExtResource("3_4gvsg")]([])
 
 [sub_resource type="Resource" id="Resource_e32iq"]
 script = ExtResource("4_801qh")
 experience = 40
 gold = 10
-itemCount = 1
-fullyAttuneCombatantSaveName = ""
 
 [sub_resource type="Resource" id="Resource_mrxk6"]
 script = ExtResource("2_8mv8e")
@@ -56,22 +40,16 @@ description = "The Radiant Cave is just... gone! Report your findings to Dr. Hud
 reward = SubResource("Resource_e32iq")
 locations = Array[int]([20])
 turnInLocations = Array[int]([20])
-type = 0
-count = 1
 objectiveName = "dr_hudson_standstill#standstill_cave_report"
 turnInNames = Array[String](["dr_hudson_standstill"])
 displayObjName = "Dr. Hudson"
 displayTurnInName = "Dr. Hudson"
-customStatusStr = ""
 turnInDialogue = Array[ExtResource("3_4gvsg")]([ExtResource("4_0vfgl")])
 inProgressDialogue = Array[ExtResource("3_4gvsg")]([ExtResource("3_qpgt1")])
 
 [sub_resource type="Resource" id="Resource_c0wbw"]
 script = ExtResource("4_801qh")
 experience = 30
-gold = 0
-itemCount = 1
-fullyAttuneCombatantSaveName = ""
 
 [sub_resource type="Resource" id="Resource_dbahe"]
 script = ExtResource("2_8mv8e")
@@ -80,39 +58,25 @@ description = "Return to Grandstone immediately. Dr. Ildran is going to want to 
 reward = SubResource("Resource_c0wbw")
 locations = Array[int]([10])
 turnInLocations = Array[int]([10])
-type = 0
-count = 1
 objectiveName = "grandstone_dr_ildran#dr_ildran_1"
 turnInNames = Array[String](["grandstone_dr_ildran"])
 displayObjName = "Dr. Ildran"
 displayTurnInName = "Dr. Ildran"
-customStatusStr = ""
-turnInDialogue = Array[ExtResource("3_4gvsg")]([])
-inProgressDialogue = Array[ExtResource("3_4gvsg")]([])
 
 [sub_resource type="Resource" id="Resource_wntyx"]
 script = ExtResource("2_8mv8e")
 name = "On the Trail"
 description = "If the mouth of the Radiant Cave didn't appear closer to Grandstone, then it must be farther away. It's time to look east towards Leavenport!"
 locations = Array[int]([30])
-turnInLocations = Array[int]([])
 type = 3
-count = 1
 objectiveName = "meet_solius"
-turnInNames = Array[String]([])
-displayObjName = "Leavenport"
-displayTurnInName = ""
 customStatusStr = "Reach Leavenport!"
-turnInDialogue = Array[ExtResource("3_4gvsg")]([])
-inProgressDialogue = Array[ExtResource("3_4gvsg")]([])
 
 [sub_resource type="Resource" id="Resource_t68es"]
 script = ExtResource("4_801qh")
 experience = 80
 gold = 10
 item = ExtResource("7_redr7")
-itemCount = 1
-fullyAttuneCombatantSaveName = ""
 
 [sub_resource type="Resource" id="Resource_efjqq"]
 script = ExtResource("2_8mv8e")
@@ -122,12 +86,10 @@ reward = SubResource("Resource_t68es")
 locations = Array[int]([30])
 turnInLocations = Array[int]([30])
 type = 4
-count = 1
 objectiveName = "solius_spar"
 turnInNames = Array[String](["solius_leavenport"])
 displayObjName = "Solius"
 displayTurnInName = "Solius"
-customStatusStr = ""
 turnInDialogue = Array[ExtResource("3_4gvsg")]([ExtResource("7_cbync")])
 inProgressDialogue = Array[ExtResource("3_4gvsg")]([ExtResource("6_c8xco")])
 
@@ -136,64 +98,36 @@ script = ExtResource("2_8mv8e")
 name = "Wild Cave Chase"
 description = "The Cave is in the swamps near Leavenport. We'd better secure it this time, for good!"
 locations = Array[int]([31])
-turnInLocations = Array[int]([])
 type = 3
-count = 1
 objectiveName = "etreus_appears"
-turnInNames = Array[String]([])
-displayObjName = "Radiant Cave"
-displayTurnInName = ""
 customStatusStr = "Reach the Radiant Cave!"
-turnInDialogue = Array[ExtResource("3_4gvsg")]([])
-inProgressDialogue = Array[ExtResource("3_4gvsg")]([])
 
 [sub_resource type="Resource" id="Resource_rnfyw"]
 script = ExtResource("2_8mv8e")
 name = "Etreus Appears!"
 description = "The Chain Legion commander Etreus has appeared at the mouth of the Radiant Cave, standing between Grandstone and the Shards!"
 locations = Array[int]([31])
-turnInLocations = Array[int]([])
 type = 3
-count = 1
 objectiveName = "etreus1_defeated"
-turnInNames = Array[String]([])
-displayObjName = "Etreus"
-displayTurnInName = ""
 customStatusStr = "Defeat Etreus!"
-turnInDialogue = Array[ExtResource("3_4gvsg")]([])
-inProgressDialogue = Array[ExtResource("3_4gvsg")]([])
 
 [sub_resource type="Resource" id="Resource_8kfnv"]
 script = ExtResource("2_8mv8e")
 name = "Escape Leavenport!"
 description = "Solius is creating a diversion for the Chain Legion, giving you an opportunity to escape! Don't let this chance go to waste!"
 locations = Array[int]([32])
-turnInLocations = Array[int]([])
 type = 3
-count = 1
 objectiveName = "sea_leg_south_escape"
-turnInNames = Array[String]([])
-displayObjName = ""
-displayTurnInName = ""
 customStatusStr = "Escape Leavenport!"
-turnInDialogue = Array[ExtResource("3_4gvsg")]([])
-inProgressDialogue = Array[ExtResource("3_4gvsg")]([])
 
 [sub_resource type="Resource" id="Resource_bdslt"]
 script = ExtResource("2_8mv8e")
 name = "Press On"
 description = "Continue to travel the road until you reach Grandstone. If you keep moving forward, eventually you'll get there, right?"
 locations = Array[int]([10])
-turnInLocations = Array[int]([])
 type = 3
-count = 1
 objectiveName = "player_collapse"
-turnInNames = Array[String]([])
-displayObjName = ""
-displayTurnInName = ""
 customStatusStr = "Reach Grandstone!"
-turnInDialogue = Array[ExtResource("3_4gvsg")]([])
-inProgressDialogue = Array[ExtResource("3_4gvsg")]([])
 
 [sub_resource type="Resource" id="Resource_2vrqx"]
 script = ExtResource("2_8mv8e")
@@ -201,15 +135,10 @@ name = "Get Your Bearings"
 description = "Last thing you remember, you were losing strength in the desert, and now you've awakened in a strange town..."
 locations = Array[int]([40])
 turnInLocations = Array[int]([40])
-type = 0
-count = 1
 objectiveName = "nomad1#player_awake"
 turnInNames = Array[String](["nomad1"])
 displayObjName = "Nomad"
 displayTurnInName = "Nomad"
-customStatusStr = ""
-turnInDialogue = Array[ExtResource("3_4gvsg")]([])
-inProgressDialogue = Array[ExtResource("3_4gvsg")]([])
 
 [resource]
 script = ExtResource("1_jiru6")
@@ -217,4 +146,3 @@ questName = "The Radiant War Begins"
 description = "The Radiant Cave, an ever-shifting target. The city-state of Grandstone requires the resources within in order to sustain and grow. Face Steelspire for control of the Cave!"
 steps = Array[ExtResource("2_8mv8e")]([SubResource("Resource_ce6e6"), SubResource("Resource_idvsa"), SubResource("Resource_mrxk6"), SubResource("Resource_dbahe"), SubResource("Resource_wntyx"), SubResource("Resource_efjqq"), SubResource("Resource_a8qhh"), SubResource("Resource_rnfyw"), SubResource("Resource_8kfnv"), SubResource("Resource_bdslt"), SubResource("Resource_2vrqx")])
 isMainQuest = true
-advanceActAfterComplete = false
