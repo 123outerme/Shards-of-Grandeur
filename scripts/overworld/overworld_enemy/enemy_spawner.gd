@@ -45,6 +45,9 @@ const enemiesDir: String = 'enemies/'
 ## set before loading; points to the tilemap to place the enemy object in
 @export var tilemap: Node2D
 
+## if true, will not print errors/warnings when data is invalid. ONLY FOR USE FOR WIP SPAWNERS IN WIP AREAS
+@export var quietWarnings: bool = false
+
 @export_storage var enemy: OverworldEnemy = null
 
 var spawnedLastEncounterDisabled: bool = false
@@ -55,19 +58,23 @@ var overworldEnemyScene = load("res://prefabs/entities/overworld_enemy.tscn")
 
 func _ready():
 	if spawnerData == null:
-		printerr('EnemySpawner (name ', name, ') error: no spawner data defined')
+		if not quietWarnings:
+			printerr('EnemySpawner (name ', name, ') error: no spawner data defined')
 		queue_free()
 		return
 	if enemyEncounter == null:
-		printerr('EnemySpawner ', spawnerData.spawnerId, ' (name ', name, ') error: no encounter defined')
+		if not quietWarnings:
+			printerr('EnemySpawner ', spawnerData.spawnerId, ' (name ', name, ') error: no encounter defined')
 		queue_free()
 		return
 	if tilemap == null:
-		printerr('EnemySpawner ', spawnerData.spawnerId, ' (name ', name, ') error: Tilemap root node not defined')
+		if not quietWarnings:
+			printerr('EnemySpawner ', spawnerData.spawnerId, ' (name ', name, ') error: Tilemap root node not defined')
 		queue_free()
 		return
 	if enemyEncounter.combatant1 == null:
-		printerr('EnemySpawner ', spawnerData.spawnerId, ' (name ', name, ') error: no combatant1 provided')
+		if not quietWarnings:
+			printerr('EnemySpawner ', spawnerData.spawnerId, ' (name ', name, ') error: no combatant1 provided')
 		queue_free()
 	
 	PlayerResources.story_requirements_updated.connect(_story_reqs_updated)

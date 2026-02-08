@@ -70,7 +70,7 @@ func _on_play_trigger_button_pressed() -> void:
 	newRune.caster = userNode.combatant
 	userNode.combatant.runes.append(newRune)
 	userNode.combatant.apply_rune_effect(rune)
-	moveLearnAnimController.battleAnimManager.play_triggered_rune_animations()
+	moveLearnAnimController.battleAnimManager.play_triggered_rune_animations(BattleCommand.ApplyTiming.AFTER_ROUND, userNode)
 	await moveLearnAnimController.battleAnimManager.rune_animation_complete
 	rune_anim_finished()
 

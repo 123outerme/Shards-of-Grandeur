@@ -17,7 +17,11 @@ class_name GroundItem
 ## dialogue speaker sprite for picking-up dialogue
 @export var speakerSprite: SpriteFrames = null
 
+## dialogue speaker sprite animation for picking-up dialogue
 @export var speakerSpriteAnimation: String = ''
+
+## If true, will not print errors/warnings for the data being invalid. ONLY MEANT FOR USE FOR WIP GROUNDITEMS IN WIP AREAS
+@export var quietWarnings: bool = false
 
 @onready var sprite: Sprite2D = get_node('Sprite2D')
 @onready var staticBody: StaticBody2D = get_node('StaticBody2D')
@@ -30,7 +34,8 @@ var disabled: bool = false
 func _ready():
 	if not Engine.is_editor_hint():
 		if pickedUpItem == null or pickedUpItem.item == null or pickedUpItem.dialogueEntry == null or saveName == '':
-			printerr('GroundItem ERR: PickedUpItem not defined properly')
+			if not quietWarnings:
+				printerr('GroundItem ERR: PickedUpItem not defined properly')
 			queue_free()
 			return
 		

@@ -6,6 +6,8 @@ func _ready() -> void:
 	#'''
 	var forceShownCollisionMaps: Dictionary[String, Array] = {}
 	var hasTestTools: Dictionary[String, Array] = {}
+	var hasSpawnersQuietingWarnings: Dictionary[String, Array] = {}
+	var hasGroundItemsQuietingWarnings: Dictionary[String, Array] = {}
 	
 	for path: String in paths:
 		print('Checking map at ', path)
@@ -25,12 +27,32 @@ func _ready() -> void:
 							forceShownCollisionMaps[path] = [child.name]
 						#printerr('Scene', path, ' / tilemap layer ', child.name, ' has force show collision visibility enabled')
 			add_child(map)
+			# check test tools
 			var testTools: Array[Node] = get_tree().get_nodes_in_group('TestTool')
 			var testToolNames: Array[String] = []
 			for node: Node in testTools:
 				testToolNames.append(node.name)
 			if len(testToolNames) > 0:
 				hasTestTools[path] = testToolNames
+			# check spawners
+			var spawners: Array[Node] = get_tree().get_nodes_in_group('EnemySpawner')
+			var quietedWarningSpawnerNames: Array[String] = []
+			for node: Node in spawners:
+				var spawner: EnemySpawner = node as EnemySpawner
+				if spawner.quietWarnings:
+					quietedWarningSpawnerNames.append(node.name)
+				if len(quietedWarningSpawnerNames) > 0:
+					hasSpawnersQuietingWarnings[path] = quietedWarningSpawnerNames
+			var interactables: Array[Node] = get_tree().get_nodes_in_group('Interactable')
+			var quietedWarningGroundItemNames: Array[String] = []
+			for node: Node in interactables:
+				if node is GroundItem:
+					var groundItem: GroundItem = node as GroundItem
+					if groundItem.quietWarnings:
+						quietedWarningGroundItemNames.append(node.name)
+					if len(quietedWarningGroundItemNames) > 0:
+						hasGroundItemsQuietingWarnings[path] = quietedWarningGroundItemNames
+			# check ground items
 			remove_child(map)
 			map.queue_free()
 	print()
@@ -47,6 +69,16 @@ func _ready() -> void:
 	for testToolMap: String in hasTestTools.keys():
 		var toolNames: Array[String] = hasTestTools[testToolMap]
 		printerr('Map ', testToolMap, ' has tools: ', toolNames)
+	print('----------------------------------')
+	print('Maps with spawners quieting warnings:')
+	for spawnerMap: String in hasSpawnersQuietingWarnings.keys():
+		var spawnerNames: Array[String] = hasSpawnersQuietingWarnings[spawnerMap]
+		printerr('Map ', spawnerMap, ' has spawners quieting warnings: ', spawnerNames)
+	print('----------------------------------')
+	print('Maps with ground items quieting warnings:')
+	for groundItemMap: String in hasGroundItemsQuietingWarnings.keys():
+		var groundItemNames: Array[String] = hasGroundItemsQuietingWarnings[groundItemMap]
+		printerr('Map ', groundItemMap, ' has ground items quieting warnings: ', groundItemNames)
 	print('----------------------------------')
 	#'''
 
