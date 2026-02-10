@@ -10,40 +10,11 @@
 [sub_resource type="Resource" id="Resource_qmiv8"]
 script = ExtResource("1_qw20s")
 lines = Array[String](["This is a tattered scrap of Solius' robes...", "It looks like from here, he went to this village down the road."])
-minShowSecs = Array[float]([])
-animation = ""
-speakerOverride = ""
-actorAnimation = ""
-animateActorTreePath = ""
-animateActorIsPlayer = false
-choices = Array[ExtResource("2_qmiv8")]([])
 metadata/_custom_type_script = "uid://grt2yrupha8c"
 
 [sub_resource type="Resource" id="Resource_n8g8t"]
 script = ExtResource("2_uo05p")
-minAct = 0
-maxAct = -1
 prereqQuests = Array[String](["A Lost Comrade#Pick Up On His Trail"])
-prereqCutscenes = Array[String]([])
-prereqDialogues = Array[String]([])
-prereqPlacesVisited = Array[String]([])
-prereqSpecialBattles = Array[String]([])
-prereqDefeatedEnemies = Array[String]([])
-prereqPuzzles = Array[String]([])
-prereqPuzzleStates = Dictionary[String, Array]({})
-prereqDiscoveredEvolutions = Array[String]([])
-prereqHavingFollowers = Array[String]([])
-prereqHasItems = Array[ExtResource("4_6wepq")]([])
-invalidAfterCompletingQuests = Array[String]([])
-invalidAfterFailingQuests = Array[String]([])
-invalidAfterCutscenes = Array[String]([])
-invalidAfterDialogues = Array[String]([])
-invalidAfterVistingPlaces = Array[String]([])
-invalidAfterSpecialBattles = Array[String]([])
-invalidAfterSolvingPuzzles = Array[String]([])
-invalidFromPuzzleStates = Dictionary[String, Array]({})
-invalidFromHavingFollowers = Array[String]([])
-invalidFromHavingItems = Array[ExtResource("4_6wepq")]([])
 metadata/_custom_type_script = "uid://bjesn36acj0uh"
 
 [sub_resource type="Resource" id="Resource_6wepq"]
@@ -51,21 +22,10 @@ script = ExtResource("4_qmiv8")
 alternativeDialogueItems = Array[ExtResource("1_qw20s")]([SubResource("Resource_qmiv8")])
 alternativeStoryReqs = Array[ExtResource("2_uo05p")]([SubResource("Resource_n8g8t")])
 lines = Array[String](["This is a tattered scrap of Solius' robes... but which way did he go? I need to find more clues."])
-minShowSecs = Array[float]([])
-animation = ""
-speakerOverride = ""
-actorAnimation = ""
-animateActorTreePath = ""
-animateActorIsPlayer = false
-choices = Array[ExtResource("2_qmiv8")]([])
 metadata/_custom_type_script = "uid://fsrd48o26kgo"
 
 [resource]
 script = ExtResource("3_qmiv8")
 entryId = "cloth_found"
 items = Array[ExtResource("1_qw20s")]([SubResource("Resource_6wepq")])
-ordStoryRequirements = Array[ExtResource("2_uo05p")]([])
-closesDialogue = false
-fullHealsPlayer = false
-annotation = ""
 metadata/_custom_type_script = "uid://1n6mppc7hmmf"

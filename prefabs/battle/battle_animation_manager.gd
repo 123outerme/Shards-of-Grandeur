@@ -678,6 +678,7 @@ func play_triggered_rune_animations(timing: BattleCommand.ApplyTiming, subjectNo
 						triggerRuneSpriteCount += 1
 						if idx == 0:
 							runeSprite.anim = triggerSprite
+							runeSprite.halt = false
 							runeSprite.looping = false # this would have been set to true before; ensure it is destroyed when the animation finishes
 							runeSprite.move_sprite_complete.connect(_on_rune_trigger_animation_complete)
 							runeSprite.play_sprite_animation()

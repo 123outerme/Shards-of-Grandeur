@@ -13,13 +13,8 @@
 [sub_resource type="Resource" id="Resource_aqhjf"]
 script = ExtResource("1_opnba")
 lines = Array[String](["Your king was leading you out away from the destruction. This is a safer place than a burning forest, for sure."])
-minShowSecs = Array[float]([])
 animation = "stand"
 speakerOverride = "@"
-actorAnimation = ""
-animateActorTreePath = ""
-animateActorIsPlayer = false
-choices = Array[ExtResource("2_2krn7")]([])
 metadata/_custom_type_script = "uid://grt2yrupha8c"
 
 [sub_resource type="Resource" id="Resource_sbw2s"]
@@ -31,11 +26,6 @@ setsState = "solved"
 leadsToIfSolveFails = ExtResource("3_jwe6j")
 choiceBtn = "Your Home Can't Burn Here."
 leadsTo = ExtResource("3_jwe6j")
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("3_aqhjf")]([])
-repeatsItem = false
-buttonDims = Vector2(80, 40)
-turnsInQuest = ""
 isDeclineChoice = true
 metadata/_custom_type_script = "uid://rq70khw4bw6c"
 
@@ -43,32 +33,16 @@ metadata/_custom_type_script = "uid://rq70khw4bw6c"
 script = ExtResource("2_2krn7")
 choiceBtn = "The Fire Was Back There."
 leadsTo = ExtResource("5_aimby")
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("3_aqhjf")]([])
-repeatsItem = false
-buttonDims = Vector2(80, 40)
-turnsInQuest = ""
-isDeclineChoice = false
 metadata/_custom_type_script = "uid://bk6klhv2ls55w"
 
 [sub_resource type="Resource" id="Resource_2gj5p"]
 script = ExtResource("1_opnba")
 lines = Array[String](["\"Out of the frying pan, and into the fire\", as you bipeds say. Well, I sure wish there was fire here, that'd make things more bearable!"])
-minShowSecs = Array[float]([])
 animation = "talk"
-speakerOverride = ""
-actorAnimation = ""
-animateActorTreePath = ""
-animateActorIsPlayer = false
 choices = Array[ExtResource("2_2krn7")]([SubResource("Resource_sbw2s"), SubResource("Resource_jwe6j")])
 metadata/_custom_type_script = "uid://grt2yrupha8c"
 
 [resource]
 script = ExtResource("3_2krn7")
-entryId = ""
 items = Array[ExtResource("1_opnba")]([SubResource("Resource_aqhjf"), SubResource("Resource_2gj5p")])
-ordStoryRequirements = Array[ExtResource("2_2gj5p")]([])
-closesDialogue = false
-fullHealsPlayer = false
-annotation = ""
 metadata/_custom_type_script = "uid://1n6mppc7hmmf"

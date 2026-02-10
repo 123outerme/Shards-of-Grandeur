@@ -16,23 +16,11 @@ point_count = 1
 [sub_resource type="Resource" id="Resource_jasdm"]
 script = ExtResource("1_4gyth")
 annotation = "set up position at enemy's feet"
-animation = ""
 duration = 0.1
-speed = 1.0
-opacity = 1.0
-spritePivot = Vector2(0, 0)
 relativeTo = 1
-position = Vector2(0, 0)
 offset = 8
 xCurve = SubResource("Curve_jasdm")
 yCurve = SubResource("Curve_nkur8")
-rotate = false
-rotateToFace = 1
-rotateToFacePosition = Vector2(0, 0)
-rotateToFaceOffset = 0
-trackRotationTarget = false
-randomizeSfxPitch = false
-emitCompleteOnStart = false
 metadata/_custom_type_script = "uid://n71lfdnd5xrr"
 
 [sub_resource type="Resource" id="Resource_nkur8"]
@@ -40,49 +28,19 @@ script = ExtResource("1_4gyth")
 annotation = "play set animation"
 animation = "spike_trap_set"
 duration = 1.333
-speed = 1.0
-opacity = 1.0
-spritePivot = Vector2(0, 0)
-relativeTo = 5
-position = Vector2(0, 0)
-offset = 0
-rotate = false
-rotateToFace = 1
-rotateToFacePosition = Vector2(0, 0)
-rotateToFaceOffset = 0
-trackRotationTarget = false
 sfx = ExtResource("2_tywy1")
-randomizeSfxPitch = false
-emitCompleteOnStart = false
 metadata/_custom_type_script = "uid://n71lfdnd5xrr"
 
 [sub_resource type="Resource" id="Resource_ruv4t"]
 script = ExtResource("1_4gyth")
 annotation = "fade out"
-animation = ""
 duration = 0.5
-speed = 1.0
 opacity = 0.0
-spritePivot = Vector2(0, 0)
-relativeTo = 5
-position = Vector2(0, 0)
-offset = 0
-rotate = false
-rotateToFace = 1
-rotateToFacePosition = Vector2(0, 0)
-rotateToFaceOffset = 0
-trackRotationTarget = false
-randomizeSfxPitch = false
-emitCompleteOnStart = false
 metadata/_custom_type_script = "uid://n71lfdnd5xrr"
 
 [resource]
 script = ExtResource("2_jasdm")
 spriteFrames = ExtResource("3_jasdm")
-centerSprite = true
 maxSize = Vector2(24, 16)
 frames = Array[ExtResource("1_4gyth")]([SubResource("Resource_jasdm"), SubResource("Resource_nkur8"), SubResource("Resource_ruv4t")])
-delayedUntilReposition = false
-playsOnImpactFrame = true
-onePerTarget = true
 metadata/_custom_type_script = "uid://mk6loduurcg4"

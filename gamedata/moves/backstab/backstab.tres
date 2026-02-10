@@ -10,130 +10,69 @@
 
 [sub_resource type="Resource" id="Resource_q4mtg"]
 script = ExtResource("3_q4mtg")
-physAttackIncrease = 0
-magicAttackIncrease = 0
-affinityIncrease = 0
-resistanceIncrease = 0
-speedIncrease = 0
-physAttackMultiplier = 1.0
-magicAttackMultiplier = 1.0
-affinityMultiplier = 1.0
 resistanceMultiplier = 0.9
-speedMultiplier = 1.0
-elementMultipliers = Array[ExtResource("2_2r4um")]([])
-keywordMultipliers = Dictionary[String, float]({})
 metadata/_custom_type_script = "uid://dvivnpdo5ga72"
 
 [sub_resource type="Resource" id="Resource_it2ww"]
 script = ExtResource("5_q4mtg")
 type = 2
 potency = 1
-overwritesOtherStatuses = false
 turnsLeft = 2
 metadata/_custom_type_script = "uid://cb5exn7dcp5o7"
 
 [sub_resource type="Resource" id="Resource_0d4h5"]
 script = ExtResource("3_q4mtg")
-physAttackIncrease = 0
-magicAttackIncrease = 0
-affinityIncrease = 0
-resistanceIncrease = 0
-speedIncrease = 0
-physAttackMultiplier = 1.0
-magicAttackMultiplier = 1.0
-affinityMultiplier = 1.0
 resistanceMultiplier = 0.8
-speedMultiplier = 1.0
-elementMultipliers = Array[ExtResource("2_2r4um")]([])
-keywordMultipliers = Dictionary[String, float]({})
 metadata/_custom_type_script = "uid://dvivnpdo5ga72"
 
 [sub_resource type="Resource" id="Resource_b5cic"]
 script = ExtResource("1_15pby")
 role = 1
-keywords = Array[String]([])
-orbChange = 0
 power = 40
-lifesteal = 0.0
-selfHpSacrifice = 0.0
 priority = 1
 targets = 5
 selfStatChanges = SubResource("Resource_q4mtg")
 targetStatChanges = SubResource("Resource_0d4h5")
 statusEffect = SubResource("Resource_it2ww")
-selfGetsStatus = false
 statusChance = 0.5
-statusRequiredForTargetStatChanges = false
 metadata/_custom_type_script = "uid://drwve0pkx3g5o"
 
 [sub_resource type="Resource" id="Resource_2r4um"]
 script = ExtResource("3_q4mtg")
-physAttackIncrease = 0
-magicAttackIncrease = 0
-affinityIncrease = 0
-resistanceIncrease = 0
-speedIncrease = 0
-physAttackMultiplier = 1.0
-magicAttackMultiplier = 1.0
-affinityMultiplier = 1.0
 resistanceMultiplier = 0.85
-speedMultiplier = 1.0
-elementMultipliers = Array[ExtResource("2_2r4um")]([])
-keywordMultipliers = Dictionary[String, float]({})
 metadata/_custom_type_script = "uid://dvivnpdo5ga72"
 
 [sub_resource type="Resource" id="Resource_ebwxd"]
 script = ExtResource("5_q4mtg")
 type = 2
 potency = 1
-overwritesOtherStatuses = false
 turnsLeft = 3
 metadata/_custom_type_script = "uid://cb5exn7dcp5o7"
 
 [sub_resource type="Resource" id="Resource_e6unr"]
 script = ExtResource("5_2r4um")
 powerPerOrb = 3
-lifestealPerOrb = 0.0
-selfHpSacrificePerOrb = 0.0
-weakThresholdOrbs = 0
 strongThresholdOrbs = 6
 overwhelmingThresholdOrbs = 8
 additionalStatusTurnsPerOrb = 0.25
-additionalStatusChancePerOrb = 0.0
 metadata/_custom_type_script = "uid://cvjnh0a2q6sat"
 
 [sub_resource type="Resource" id="Resource_2c4hq"]
 script = ExtResource("3_q4mtg")
-physAttackIncrease = 0
-magicAttackIncrease = 0
-affinityIncrease = 0
-resistanceIncrease = 0
-speedIncrease = 0
-physAttackMultiplier = 1.0
-magicAttackMultiplier = 1.0
-affinityMultiplier = 1.0
 resistanceMultiplier = 0.75
-speedMultiplier = 1.0
-elementMultipliers = Array[ExtResource("2_2r4um")]([])
-keywordMultipliers = Dictionary[String, float]({})
 metadata/_custom_type_script = "uid://dvivnpdo5ga72"
 
 [sub_resource type="Resource" id="Resource_c63r1"]
 script = ExtResource("1_15pby")
 role = 1
-keywords = Array[String]([])
 orbChange = -1
 power = 55
-lifesteal = 0.0
-selfHpSacrifice = 0.0
 priority = 1
 targets = 5
 selfStatChanges = SubResource("Resource_2r4um")
 targetStatChanges = SubResource("Resource_2c4hq")
 statusEffect = SubResource("Resource_ebwxd")
-selfGetsStatus = false
 statusChance = 0.65
-statusRequiredForTargetStatChanges = false
 surgeChanges = SubResource("Resource_e6unr")
 metadata/_custom_type_script = "uid://drwve0pkx3g5o"
 
@@ -141,7 +80,6 @@ metadata/_custom_type_script = "uid://drwve0pkx3g5o"
 script = ExtResource("1_iywre")
 moveName = "Backstab"
 requiredLv = 27
-category = 0
 element = 7
 chargeEffect = SubResource("Resource_b5cic")
 surgeEffect = SubResource("Resource_c63r1")

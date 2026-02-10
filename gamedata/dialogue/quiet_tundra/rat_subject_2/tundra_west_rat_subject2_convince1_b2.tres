@@ -13,13 +13,8 @@
 [sub_resource type="Resource" id="Resource_str2p"]
 script = ExtResource("1_fg417")
 lines = Array[String](["This land isn't so bad, actually. It's free of us bipeds. Completely unclaimed territory to build a new kingdom in."])
-minShowSecs = Array[float]([])
 animation = "stand"
 speakerOverride = "@"
-actorAnimation = ""
-animateActorTreePath = ""
-animateActorIsPlayer = false
-choices = Array[ExtResource("2_ilar4")]([])
 metadata/_custom_type_script = "uid://grt2yrupha8c"
 
 [sub_resource type="Resource" id="Resource_wuebq"]
@@ -31,11 +26,6 @@ setsState = "solved"
 leadsToIfSolveFails = ExtResource("3_0cn0w")
 choiceBtn = "He Sees Opportunity."
 leadsTo = ExtResource("3_0cn0w")
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("5_glceb")]([])
-repeatsItem = false
-buttonDims = Vector2(80, 40)
-turnsInQuest = ""
 isDeclineChoice = true
 metadata/_custom_type_script = "uid://rq70khw4bw6c"
 
@@ -43,32 +33,16 @@ metadata/_custom_type_script = "uid://rq70khw4bw6c"
 script = ExtResource("2_ilar4")
 choiceBtn = "You'll Get Used To It!"
 leadsTo = ExtResource("3_hgkv3")
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("5_glceb")]([])
-repeatsItem = false
-buttonDims = Vector2(80, 40)
-turnsInQuest = ""
-isDeclineChoice = false
 metadata/_custom_type_script = "uid://bk6klhv2ls55w"
 
 [sub_resource type="Resource" id="Resource_dn11d"]
 script = ExtResource("1_fg417")
 lines = Array[String](["Of course it's unclaimed, nobody sane would want to live here. It's absolutely bone-chilling!"])
-minShowSecs = Array[float]([])
 animation = "talk"
-speakerOverride = ""
-actorAnimation = ""
-animateActorTreePath = ""
-animateActorIsPlayer = false
 choices = Array[ExtResource("2_ilar4")]([SubResource("Resource_wuebq"), SubResource("Resource_ah2ax")])
 metadata/_custom_type_script = "uid://grt2yrupha8c"
 
 [resource]
 script = ExtResource("3_ilar4")
-entryId = ""
 items = Array[ExtResource("1_fg417")]([SubResource("Resource_str2p"), SubResource("Resource_dn11d")])
-ordStoryRequirements = Array[ExtResource("2_dn11d")]([])
-closesDialogue = false
-fullHealsPlayer = false
-annotation = ""
 metadata/_custom_type_script = "uid://1n6mppc7hmmf"

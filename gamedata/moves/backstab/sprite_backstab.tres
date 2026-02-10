@@ -9,41 +9,15 @@
 [sub_resource type="Resource" id="Resource_5ava5"]
 script = ExtResource("1_m8tw1")
 annotation = "set up position at target"
-animation = ""
 duration = 0.1
-speed = 1.0
-opacity = 1.0
-spritePivot = Vector2(0, 0)
 relativeTo = 1
-position = Vector2(0, 0)
 offset = 2
-rotate = false
-rotateToFace = 1
-rotateToFacePosition = Vector2(0, 0)
-rotateToFaceOffset = 0
-trackRotationTarget = false
-randomizeSfxPitch = false
-emitCompleteOnStart = false
 metadata/_custom_type_script = "uid://n71lfdnd5xrr"
 
 [sub_resource type="Resource" id="Resource_8cby4"]
 script = ExtResource("1_m8tw1")
 annotation = "wait some for the user sprite to play"
-animation = ""
 duration = 0.667
-speed = 1.0
-opacity = 1.0
-spritePivot = Vector2(0, 0)
-relativeTo = 5
-position = Vector2(0, 0)
-offset = 0
-rotate = false
-rotateToFace = 1
-rotateToFacePosition = Vector2(0, 0)
-rotateToFaceOffset = 0
-trackRotationTarget = false
-randomizeSfxPitch = false
-emitCompleteOnStart = false
 metadata/_custom_type_script = "uid://n71lfdnd5xrr"
 
 [sub_resource type="Resource" id="Resource_weiak"]
@@ -51,70 +25,27 @@ script = ExtResource("1_m8tw1")
 annotation = "play backstab anim"
 animation = "backstab"
 duration = 0.333
-speed = 1.0
-opacity = 1.0
-spritePivot = Vector2(0, 0)
-relativeTo = 5
-position = Vector2(0, 0)
-offset = 0
-rotate = false
-rotateToFace = 1
-rotateToFacePosition = Vector2(0, 0)
-rotateToFaceOffset = 0
-trackRotationTarget = false
-randomizeSfxPitch = false
-emitCompleteOnStart = false
 metadata/_custom_type_script = "uid://n71lfdnd5xrr"
 
 [sub_resource type="Resource" id="Resource_morp4"]
 script = ExtResource("1_m8tw1")
 annotation = "play hit particles"
-animation = ""
 duration = 0.833
-speed = 1.0
-opacity = 1.0
-spritePivot = Vector2(0, 0)
-relativeTo = 5
-position = Vector2(0, 0)
-offset = 0
-rotate = false
-rotateToFace = 1
-rotateToFacePosition = Vector2(0, 0)
-rotateToFaceOffset = 0
-trackRotationTarget = false
 particles = ExtResource("2_morp4")
-randomizeSfxPitch = false
-emitCompleteOnStart = false
 metadata/_custom_type_script = "uid://n71lfdnd5xrr"
 
 [sub_resource type="Resource" id="Resource_b55tm"]
 script = ExtResource("1_m8tw1")
 annotation = "play more hit particles"
-animation = ""
 duration = 0.667
-speed = 1.0
-opacity = 1.0
-spritePivot = Vector2(0, 0)
-relativeTo = 5
-position = Vector2(0, 0)
-offset = 0
-rotate = false
-rotateToFace = 1
-rotateToFacePosition = Vector2(0, 0)
-rotateToFaceOffset = 0
-trackRotationTarget = false
 particles = ExtResource("3_b55tm")
-randomizeSfxPitch = false
-emitCompleteOnStart = false
 metadata/_custom_type_script = "uid://n71lfdnd5xrr"
 
 [resource]
 script = ExtResource("2_5ava5")
 spriteFrames = ExtResource("3_5ava5")
-centerSprite = true
 maxSize = Vector2(32, 16)
 frames = Array[ExtResource("1_m8tw1")]([SubResource("Resource_5ava5"), SubResource("Resource_8cby4"), SubResource("Resource_weiak"), SubResource("Resource_morp4"), SubResource("Resource_b55tm")])
 delayedUntilReposition = true
 playsOnImpactFrame = false
-onePerTarget = true
 metadata/_custom_type_script = "uid://mk6loduurcg4"

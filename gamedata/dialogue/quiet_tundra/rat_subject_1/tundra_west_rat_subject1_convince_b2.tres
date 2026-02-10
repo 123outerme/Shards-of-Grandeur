@@ -13,29 +13,18 @@
 [sub_resource type="Resource" id="Resource_ofkem"]
 script = ExtResource("1_dwtia")
 lines = Array[String](["Your doubt in your king betrays his trust. How can he lead a group of unwilling subjects? This is why you're all scattered now."])
-minShowSecs = Array[float]([])
 animation = "stand"
 speakerOverride = "@"
-actorAnimation = ""
-animateActorTreePath = ""
-animateActorIsPlayer = false
-choices = Array[ExtResource("2_sm8oy")]([])
 metadata/_custom_type_script = "uid://grt2yrupha8c"
 
 [sub_resource type="Resource" id="Resource_bg58y"]
 script = ExtResource("5_544hx")
 puzzle = ExtResource("4_xalk7")
-puzzleStateIndex = 0
 acceptsSolve = true
 setsState = "solved"
 leadsToIfSolveFails = ExtResource("3_xalk7")
 choiceBtn = "Not True."
 leadsTo = ExtResource("3_xalk7")
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("3_iwltv")]([])
-repeatsItem = false
-buttonDims = Vector2(80, 40)
-turnsInQuest = ""
 isDeclineChoice = true
 metadata/_custom_type_script = "uid://rq70khw4bw6c"
 
@@ -43,32 +32,16 @@ metadata/_custom_type_script = "uid://rq70khw4bw6c"
 script = ExtResource("2_sm8oy")
 choiceBtn = "Only... His Crown?"
 leadsTo = ExtResource("7_544hx")
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("3_iwltv")]([])
-repeatsItem = false
-buttonDims = Vector2(80, 40)
-turnsInQuest = ""
-isDeclineChoice = false
 metadata/_custom_type_script = "uid://bk6klhv2ls55w"
 
 [sub_resource type="Resource" id="Resource_db7lq"]
 script = ExtResource("1_dwtia")
 lines = Array[String](["No, he has scattered us! He's only concerned about the loss of his crown."])
-minShowSecs = Array[float]([])
 animation = "talk"
-speakerOverride = ""
-actorAnimation = ""
-animateActorTreePath = ""
-animateActorIsPlayer = false
 choices = Array[ExtResource("2_sm8oy")]([SubResource("Resource_bg58y"), SubResource("Resource_2d375")])
 metadata/_custom_type_script = "uid://grt2yrupha8c"
 
 [resource]
 script = ExtResource("3_sm8oy")
-entryId = ""
 items = Array[ExtResource("1_dwtia")]([SubResource("Resource_ofkem"), SubResource("Resource_db7lq")])
-ordStoryRequirements = Array[ExtResource("2_db7lq")]([])
-closesDialogue = false
-fullHealsPlayer = false
-annotation = ""
 metadata/_custom_type_script = "uid://1n6mppc7hmmf"

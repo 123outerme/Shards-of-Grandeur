@@ -13,62 +13,34 @@
 [sub_resource type="Resource" id="Resource_wxigl"]
 script = ExtResource("1_6qsyk")
 lines = Array[String](["It's the fault of the bipeds. The Chain Legion burned down your forest in the first place.", "They used magic more powerful than either you or the other bipeds could handle. I failed to stop them."])
-minShowSecs = Array[float]([])
 animation = "stand"
 speakerOverride = "@"
-actorAnimation = ""
-animateActorTreePath = ""
-animateActorIsPlayer = false
-choices = Array[ExtResource("2_0l2q7")]([])
 metadata/_custom_type_script = "uid://grt2yrupha8c"
 
 [sub_resource type="Resource" id="Resource_n3iuu"]
 script = ExtResource("5_qxv5a")
 puzzle = ExtResource("3_wxigl")
-puzzleStateIndex = 0
 acceptsSolve = true
 setsState = "solved"
 leadsToIfSolveFails = ExtResource("3_unq25")
 choiceBtn = "He's On That Hill."
 leadsTo = ExtResource("3_unq25")
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("3_0l2q7")]([])
-repeatsItem = false
-buttonDims = Vector2(80, 40)
-turnsInQuest = ""
-isDeclineChoice = false
 metadata/_custom_type_script = "uid://rq70khw4bw6c"
 
 [sub_resource type="Resource" id="Resource_unq25"]
 script = ExtResource("2_0l2q7")
 choiceBtn = "He Already Tried."
 leadsTo = ExtResource("5_wxigl")
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("3_0l2q7")]([])
-repeatsItem = false
-buttonDims = Vector2(80, 40)
-turnsInQuest = ""
-isDeclineChoice = false
 metadata/_custom_type_script = "uid://bk6klhv2ls55w"
 
 [sub_resource type="Resource" id="Resource_6qsyk"]
 script = ExtResource("1_6qsyk")
 lines = Array[String](["So, it's YOUR fault?! How dare you let this happen!", "I'll take our revenge, for all my kin!", "... Well, on second thought, you seem too tough for me, but not for the King Rat!", "I'll find him again, and have him settle the score on behalf of all of us!"])
-minShowSecs = Array[float]([])
 animation = "talk"
-speakerOverride = ""
-actorAnimation = ""
-animateActorTreePath = ""
-animateActorIsPlayer = false
 choices = Array[ExtResource("2_0l2q7")]([SubResource("Resource_n3iuu"), SubResource("Resource_unq25")])
 metadata/_custom_type_script = "uid://grt2yrupha8c"
 
 [resource]
 script = ExtResource("4_unq25")
-entryId = ""
 items = Array[ExtResource("1_6qsyk")]([SubResource("Resource_wxigl"), SubResource("Resource_6qsyk")])
-ordStoryRequirements = Array[ExtResource("3_kntg6")]([])
-closesDialogue = false
-fullHealsPlayer = false
-annotation = ""
 metadata/_custom_type_script = "uid://1n6mppc7hmmf"

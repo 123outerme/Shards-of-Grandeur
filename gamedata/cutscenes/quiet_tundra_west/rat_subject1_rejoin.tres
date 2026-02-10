@@ -13,7 +13,6 @@
 [sub_resource type="Resource" id="Resource_css6j"]
 script = ExtResource("3_dcg0g")
 actorTreePath = "TilemapRoot/RatSubject1"
-isPlayer = false
 animation = "stand"
 metadata/_custom_type_script = "uid://dy2r6h7mhh2oc"
 
@@ -21,56 +20,22 @@ metadata/_custom_type_script = "uid://dy2r6h7mhh2oc"
 script = ExtResource("1_ast6m")
 frameLength = 0.1
 annotation = "Rat stands; start the fade out"
-actorTweens = Array[ExtResource("5_6o3w0")]([])
 actorAnims = Array[ExtResource("3_dcg0g")]([SubResource("Resource_css6j")])
-actorAnimSets = Array[ExtResource("2_yaght")]([])
-actorFaceTargets = Array[ExtResource("4_12xxx")]([])
-dialogues = Array[ExtResource("6_1v1do")]([])
-playSfxs = Array[AudioStream]([])
-snapshotActorPaths = Array[String]([])
-restoreSnapshotActorPaths = Array[String]([])
-endTextBoxPauses = true
-shakeCamForDuration = false
-endHoldCamera = false
 endFade = 1
 endFadeLength = 0.5
-healsPlayer = false
-addsFollowerId = ""
-removesFollowerId = ""
-endStartsShardLearnTutorial = false
 metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
 
 [sub_resource type="Resource" id="Resource_12xxx"]
 script = ExtResource("1_ast6m")
 frameLength = 0.6
 annotation = "wait for the fade out to complete plus 0.1s"
-actorTweens = Array[ExtResource("5_6o3w0")]([])
-actorAnims = Array[ExtResource("3_dcg0g")]([])
-actorAnimSets = Array[ExtResource("2_yaght")]([])
-actorFaceTargets = Array[ExtResource("4_12xxx")]([])
-dialogues = Array[ExtResource("6_1v1do")]([])
-playSfxs = Array[AudioStream]([])
-snapshotActorPaths = Array[String]([])
-restoreSnapshotActorPaths = Array[String]([])
-endTextBoxPauses = true
-shakeCamForDuration = false
-endHoldCamera = false
-endFade = 0
-endFadeLength = 0.0
-healsPlayer = false
-addsFollowerId = ""
-removesFollowerId = ""
-endStartsShardLearnTutorial = false
 metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
 
 [sub_resource type="Resource" id="Resource_6o3w0"]
 script = ExtResource("7_dcg0g")
 value = Vector2(280, -2030)
 actorTreePath = "TilemapRoot/RatSubject1"
-isPlayer = false
 propertyName = "position"
-easeType = 2
-transitionType = 0
 metadata/_custom_type_script = "uid://b5d2qgg22dgbw"
 
 [sub_resource type="Resource" id="Resource_1v1do"]
@@ -78,32 +43,13 @@ script = ExtResource("1_ast6m")
 frameLength = 0.2
 annotation = "move the rat to nearby the king rat"
 actorTweens = Array[ExtResource("5_6o3w0")]([SubResource("Resource_6o3w0")])
-actorAnims = Array[ExtResource("3_dcg0g")]([])
-actorAnimSets = Array[ExtResource("2_yaght")]([])
-actorFaceTargets = Array[ExtResource("4_12xxx")]([])
-dialogues = Array[ExtResource("6_1v1do")]([])
-playSfxs = Array[AudioStream]([])
-snapshotActorPaths = Array[String]([])
-restoreSnapshotActorPaths = Array[String]([])
-endTextBoxPauses = true
-shakeCamForDuration = false
-endHoldCamera = false
-endFade = 0
-endFadeLength = 0.0
-healsPlayer = false
-addsFollowerId = ""
-removesFollowerId = ""
-endStartsShardLearnTutorial = false
 metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
 
 [sub_resource type="Resource" id="Resource_5vu3v"]
 script = ExtResource("8_12xxx")
 value = true
 actorTreePath = "TilemapRoot/RatSubject1"
-isPlayer = false
 propertyName = "flip_h"
-easeType = 2
-transitionType = 0
 metadata/_custom_type_script = "uid://csrikyyse38e2"
 
 [sub_resource type="Resource" id="Resource_1y5k3"]
@@ -111,54 +57,18 @@ script = ExtResource("1_ast6m")
 frameLength = 0.1
 annotation = "make the rat face right; start the fade in"
 actorTweens = Array[ExtResource("5_6o3w0")]([SubResource("Resource_5vu3v")])
-actorAnims = Array[ExtResource("3_dcg0g")]([])
-actorAnimSets = Array[ExtResource("2_yaght")]([])
-actorFaceTargets = Array[ExtResource("4_12xxx")]([])
-dialogues = Array[ExtResource("6_1v1do")]([])
-playSfxs = Array[AudioStream]([])
-snapshotActorPaths = Array[String]([])
-restoreSnapshotActorPaths = Array[String]([])
-endTextBoxPauses = true
-shakeCamForDuration = false
-endHoldCamera = false
 endFade = 2
 endFadeLength = 0.5
-healsPlayer = false
-addsFollowerId = ""
-removesFollowerId = ""
-endStartsShardLearnTutorial = false
 metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
 
 [sub_resource type="Resource" id="Resource_p0egy"]
 script = ExtResource("1_ast6m")
 frameLength = 0.5
 annotation = "let the camera fade in"
-actorTweens = Array[ExtResource("5_6o3w0")]([])
-actorAnims = Array[ExtResource("3_dcg0g")]([])
-actorAnimSets = Array[ExtResource("2_yaght")]([])
-actorFaceTargets = Array[ExtResource("4_12xxx")]([])
-dialogues = Array[ExtResource("6_1v1do")]([])
-playSfxs = Array[AudioStream]([])
-snapshotActorPaths = Array[String]([])
-restoreSnapshotActorPaths = Array[String]([])
-endTextBoxPauses = true
-shakeCamForDuration = false
-endHoldCamera = false
-endFade = 0
-endFadeLength = 0.0
-healsPlayer = false
-addsFollowerId = ""
-removesFollowerId = ""
-endStartsShardLearnTutorial = false
 metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
 
 [resource]
 script = ExtResource("2_hnr7g")
 cutsceneFrames = Array[ExtResource("1_ast6m")]([SubResource("Resource_jjxjk"), SubResource("Resource_12xxx"), SubResource("Resource_1v1do"), SubResource("Resource_1y5k3"), SubResource("Resource_p0egy")])
 saveName = "tundra_w_rat_subject1_rejoin"
-unlockCameraHoldAfter = true
-activateActorsBefore = Array[String]([])
-deactivateActorsAfter = Array[String]([])
-tempDisabledAfter = false
-notes = ""
 metadata/_custom_type_script = "uid://fpa08p2kb0ts"

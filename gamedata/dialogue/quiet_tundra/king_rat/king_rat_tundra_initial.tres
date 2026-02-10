@@ -13,40 +13,12 @@
 [sub_resource type="Resource" id="Resource_ivel6"]
 script = ExtResource("1_2ugst")
 lines = Array[String](["YOU again?! Your appearance here insults me, crown-stealer!", "First I lost my crown, then I lost my forested throne. What more shall your kind take?"])
-minShowSecs = Array[float]([])
 animation = "talk"
-speakerOverride = ""
-actorAnimation = ""
-animateActorTreePath = ""
-animateActorIsPlayer = false
-choices = Array[ExtResource("2_1gmjq")]([])
 metadata/_custom_type_script = "uid://grt2yrupha8c"
 
 [sub_resource type="Resource" id="Resource_2h034"]
 script = ExtResource("2_s3y4j")
-minAct = 0
-maxAct = -1
-prereqQuests = Array[String]([])
-prereqCutscenes = Array[String]([])
-prereqDialogues = Array[String]([])
-prereqPlacesVisited = Array[String]([])
 prereqSpecialBattles = Array[String](["king_rat_encounter"])
-prereqDefeatedEnemies = Array[String]([])
-prereqPuzzles = Array[String]([])
-prereqPuzzleStates = Dictionary[String, Array]({})
-prereqDiscoveredEvolutions = Array[String]([])
-prereqHavingFollowers = Array[String]([])
-prereqHasItems = Array[ExtResource("3_s3y4j")]([])
-invalidAfterCompletingQuests = Array[String]([])
-invalidAfterFailingQuests = Array[String]([])
-invalidAfterCutscenes = Array[String]([])
-invalidAfterDialogues = Array[String]([])
-invalidAfterVistingPlaces = Array[String]([])
-invalidAfterSpecialBattles = Array[String]([])
-invalidAfterSolvingPuzzles = Array[String]([])
-invalidFromPuzzleStates = Dictionary[String, Array]({})
-invalidFromHavingFollowers = Array[String]([])
-invalidFromHavingItems = Array[ExtResource("3_s3y4j")]([])
 metadata/_custom_type_script = "uid://bjesn36acj0uh"
 
 [sub_resource type="Resource" id="Resource_3245m"]
@@ -54,24 +26,13 @@ script = ExtResource("5_cvfqd")
 alternativeDialogueItems = Array[ExtResource("1_2ugst")]([SubResource("Resource_ivel6")])
 alternativeStoryReqs = Array[ExtResource("2_s3y4j")]([SubResource("Resource_2h034")])
 lines = Array[String](["Agh- a biped!! Begone, you infernal beast! After what your kind did to my forest home... I can never forgive that!", "I lost my kingly crown, fleeing from the flames! How can a King rule without his crown?"])
-minShowSecs = Array[float]([])
 animation = "talk"
-speakerOverride = ""
-actorAnimation = ""
-animateActorTreePath = ""
-animateActorIsPlayer = false
-choices = Array[ExtResource("2_1gmjq")]([])
 metadata/_custom_type_script = "uid://fsrd48o26kgo"
 
 [sub_resource type="Resource" id="Resource_m2ht8"]
 script = ExtResource("2_1gmjq")
 choiceBtn = "I Refuse!"
 leadsTo = ExtResource("6_ivel6")
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("6_cvfqd")]([])
-repeatsItem = false
-buttonDims = Vector2(80, 40)
-turnsInQuest = ""
 isDeclineChoice = true
 metadata/_custom_type_script = "uid://bk6klhv2ls55w"
 
@@ -79,51 +40,19 @@ metadata/_custom_type_script = "uid://bk6klhv2ls55w"
 script = ExtResource("2_1gmjq")
 choiceBtn = "En Garde!"
 leadsTo = ExtResource("8_2h034")
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("6_cvfqd")]([])
-repeatsItem = false
-buttonDims = Vector2(80, 40)
-turnsInQuest = ""
-isDeclineChoice = false
 metadata/_custom_type_script = "uid://bk6klhv2ls55w"
 
 [sub_resource type="Resource" id="Resource_1gmjq"]
 script = ExtResource("1_2ugst")
 lines = Array[String](["Not to mention, some of my rodent kin did not survive the blaze...", "Maybe it's time I took something from one of you.", "Stand your ground, you bidpedal monster!"])
-minShowSecs = Array[float]([])
 animation = "talk"
-speakerOverride = ""
-actorAnimation = ""
-animateActorTreePath = ""
-animateActorIsPlayer = false
 choices = Array[ExtResource("2_1gmjq")]([SubResource("Resource_m2ht8"), SubResource("Resource_m1t7e")])
 metadata/_custom_type_script = "uid://grt2yrupha8c"
 
 [sub_resource type="Resource" id="Resource_dhtpj"]
 script = ExtResource("2_s3y4j")
-minAct = 0
-maxAct = -1
-prereqQuests = Array[String]([])
-prereqCutscenes = Array[String]([])
-prereqDialogues = Array[String]([])
-prereqPlacesVisited = Array[String]([])
-prereqSpecialBattles = Array[String]([])
-prereqDefeatedEnemies = Array[String]([])
-prereqPuzzles = Array[String]([])
-prereqPuzzleStates = Dictionary[String, Array]({})
-prereqDiscoveredEvolutions = Array[String]([])
-prereqHavingFollowers = Array[String]([])
-prereqHasItems = Array[ExtResource("3_s3y4j")]([])
-invalidAfterCompletingQuests = Array[String]([])
-invalidAfterFailingQuests = Array[String]([])
-invalidAfterCutscenes = Array[String]([])
-invalidAfterDialogues = Array[String](["king_rat_tundra_west#king_rat_tundra_initial"])
-invalidAfterVistingPlaces = Array[String]([])
-invalidAfterSpecialBattles = Array[String]([])
-invalidAfterSolvingPuzzles = Array[String]([])
-invalidFromPuzzleStates = Dictionary[String, Array]({})
-invalidFromHavingFollowers = Array[String]([])
-invalidFromHavingItems = Array[ExtResource("3_s3y4j")]([])
+invalidAfterCompletingQuests = Array[String](["The Crownless King#"])
+invalidAfterSpecialBattles = Array[String](["usurped_king_rat_encounter"])
 metadata/_custom_type_script = "uid://bjesn36acj0uh"
 
 [resource]
@@ -131,7 +60,4 @@ script = ExtResource("3_dhtpj")
 entryId = "king_rat_tundra_initial"
 items = Array[ExtResource("1_2ugst")]([SubResource("Resource_3245m"), SubResource("Resource_1gmjq")])
 ordStoryRequirements = Array[ExtResource("2_s3y4j")]([SubResource("Resource_dhtpj")])
-closesDialogue = false
-fullHealsPlayer = false
-annotation = ""
 metadata/_custom_type_script = "uid://1n6mppc7hmmf"

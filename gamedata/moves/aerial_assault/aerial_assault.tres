@@ -10,40 +10,29 @@
 script = ExtResource("2_s43pv")
 type = 2
 potency = 1
-overwritesOtherStatuses = false
 turnsLeft = 2
 metadata/_custom_type_script = "uid://cb5exn7dcp5o7"
 
 [sub_resource type="Resource" id="Resource_30hlq"]
 script = ExtResource("1_0rvdk")
 role = 1
-keywords = Array[String]([])
 orbChange = 1
 power = 40
-lifesteal = 0.0
-selfHpSacrifice = 0.0
-priority = 0
 targets = 5
 statusEffect = SubResource("Resource_rf48y")
-selfGetsStatus = false
 statusChance = 0.6
-statusRequiredForTargetStatChanges = false
 metadata/_custom_type_script = "uid://drwve0pkx3g5o"
 
 [sub_resource type="Resource" id="Resource_6ncwc"]
 script = ExtResource("2_s43pv")
 type = 2
 potency = 1
-overwritesOtherStatuses = false
 turnsLeft = 3
 metadata/_custom_type_script = "uid://cb5exn7dcp5o7"
 
 [sub_resource type="Resource" id="Resource_cnpk2"]
 script = ExtResource("4_s43pv")
 powerPerOrb = 2
-lifestealPerOrb = 0.0
-selfHpSacrificePerOrb = 0.0
-weakThresholdOrbs = 0
 strongThresholdOrbs = 7
 overwhelmingThresholdOrbs = 9
 additionalStatusTurnsPerOrb = 0.34
@@ -53,17 +42,11 @@ metadata/_custom_type_script = "uid://cvjnh0a2q6sat"
 [sub_resource type="Resource" id="Resource_s43pv"]
 script = ExtResource("1_0rvdk")
 role = 1
-keywords = Array[String]([])
 orbChange = -4
 power = 80
-lifesteal = 0.0
-selfHpSacrifice = 0.0
-priority = 0
 targets = 5
 statusEffect = SubResource("Resource_6ncwc")
-selfGetsStatus = false
 statusChance = 0.65
-statusRequiredForTargetStatChanges = false
 surgeChanges = SubResource("Resource_cnpk2")
 metadata/_custom_type_script = "uid://drwve0pkx3g5o"
 
@@ -71,7 +54,6 @@ metadata/_custom_type_script = "uid://drwve0pkx3g5o"
 script = ExtResource("1_d2kh3")
 moveName = "Aerial Assault"
 requiredLv = 24
-category = 0
 element = 4
 chargeEffect = SubResource("Resource_30hlq")
 surgeEffect = SubResource("Resource_s43pv")

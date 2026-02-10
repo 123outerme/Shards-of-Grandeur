@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=10 format=3 uid="uid://dqdlcsnpvy3ls"]
+[gd_resource type="Resource" script_class="DialogueEntry" load_steps=14 format=3 uid="uid://dqdlcsnpvy3ls"]
 
 [ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_4dqlq"]
 [ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_mnwyq"]
@@ -6,6 +6,8 @@
 [ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="3_pah2g"]
 [ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="4_ovre7"]
 [ext_resource type="Resource" uid="uid://dg1yrtrx1hj0i" path="res://gamedata/dialogue/frostmint_village/smith/the_crownless_king/frostmint_smith_king_rat_crown_raw_gold_after_turnin.tres" id="4_pah2g"]
+[ext_resource type="Script" uid="uid://fw22o8hbosnk" path="res://scripts/inventory/inventory_slot.gd" id="6_vwy4v"]
+[ext_resource type="Resource" uid="uid://nohx6v4a6ji7" path="res://gamedata/items/key_items/raw_gold_chunk.tres" id="7_x53fw"]
 
 [sub_resource type="Resource" id="Resource_pah2g"]
 script = ExtResource("2_mnwyq")
@@ -24,6 +26,18 @@ lines = Array[String](["Ah, I see you've brought the raw gold! Give it here, and
 animation = "talk"
 choices = Array[ExtResource("2_mnwyq")]([SubResource("Resource_pah2g"), SubResource("Resource_ovre7")])
 
+[sub_resource type="Resource" id="Resource_848yv"]
+script = ExtResource("6_vwy4v")
+item = ExtResource("7_x53fw")
+count = 3
+metadata/_custom_type_script = "uid://fw22o8hbosnk"
+
+[sub_resource type="Resource" id="Resource_26bsm"]
+script = ExtResource("3_pah2g")
+prereqHasItems = Array[ExtResource("6_vwy4v")]([SubResource("Resource_848yv")])
+metadata/_custom_type_script = "uid://bjesn36acj0uh"
+
 [resource]
 script = ExtResource("4_ovre7")
 items = Array[ExtResource("1_4dqlq")]([SubResource("Resource_vwy4v")])
+ordStoryRequirements = Array[ExtResource("3_pah2g")]([SubResource("Resource_26bsm")])

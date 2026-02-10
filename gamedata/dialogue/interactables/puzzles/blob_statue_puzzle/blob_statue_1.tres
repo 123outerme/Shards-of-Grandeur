@@ -14,82 +14,35 @@
 [sub_resource type="Resource" id="Resource_pa7hm"]
 script = ExtResource("2_yuioa")
 choiceBtn = "Leave"
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("3_lff13")]([])
-repeatsItem = false
-buttonDims = Vector2(80, 40)
-turnsInQuest = ""
 isDeclineChoice = true
 metadata/_custom_type_script = "uid://bk6klhv2ls55w"
 
 [sub_resource type="Resource" id="Resource_sc5ce"]
 script = ExtResource("7_5iwkg")
 item = ExtResource("8_jgyxx")
-count = 1
 metadata/_custom_type_script = "uid://fw22o8hbosnk"
 
 [sub_resource type="Resource" id="Resource_qcw6v"]
 script = ExtResource("9_yggqo")
-minAct = 0
-maxAct = -1
-prereqQuests = Array[String]([])
-prereqCutscenes = Array[String]([])
-prereqDialogues = Array[String]([])
-prereqPlacesVisited = Array[String]([])
-prereqSpecialBattles = Array[String]([])
-prereqDefeatedEnemies = Array[String]([])
-prereqPuzzles = Array[String]([])
-prereqPuzzleStates = Dictionary[String, Array]({})
-prereqDiscoveredEvolutions = Array[String]([])
-prereqHavingFollowers = Array[String]([])
 prereqHasItems = Array[ExtResource("7_5iwkg")]([SubResource("Resource_sc5ce")])
-invalidAfterCompletingQuests = Array[String]([])
-invalidAfterFailingQuests = Array[String]([])
-invalidAfterCutscenes = Array[String]([])
-invalidAfterDialogues = Array[String]([])
-invalidAfterVistingPlaces = Array[String]([])
-invalidAfterSpecialBattles = Array[String]([])
-invalidAfterSolvingPuzzles = Array[String]([])
-invalidFromPuzzleStates = Dictionary[String, Array]({})
-invalidFromHavingFollowers = Array[String]([])
-invalidFromHavingItems = Array[ExtResource("7_5iwkg")]([])
 metadata/_custom_type_script = "uid://bjesn36acj0uh"
 
 [sub_resource type="Resource" id="Resource_kn83i"]
 script = ExtResource("6_pghne")
 puzzle = ExtResource("5_5omcy")
-puzzleStateIndex = 0
 acceptsSolve = true
-setsState = ""
 choiceBtn = "Offer Ice Gem"
 storyRequirements = SubResource("Resource_qcw6v")
 leadsTo = ExtResource("4_y4leu")
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("3_lff13")]([])
-repeatsItem = false
-buttonDims = Vector2(80, 40)
-turnsInQuest = ""
-isDeclineChoice = false
 metadata/_custom_type_script = "uid://rq70khw4bw6c"
 
 [sub_resource type="Resource" id="Resource_ckkuq"]
 script = ExtResource("1_2s7g2")
 lines = Array[String](["This is a statue of a Blob. The inscription reads:", "\"I must adapt to the frozen landscape. Fetch me the stone colder than any ice.\""])
-minShowSecs = Array[float]([])
-animation = ""
-speakerOverride = ""
-actorAnimation = ""
-animateActorTreePath = ""
-animateActorIsPlayer = false
 choices = Array[ExtResource("2_yuioa")]([SubResource("Resource_pa7hm"), SubResource("Resource_kn83i")])
 metadata/_custom_type_script = "uid://grt2yrupha8c"
 
 [resource]
 script = ExtResource("10_7rxvv")
-entryId = ""
 items = Array[ExtResource("1_2s7g2")]([SubResource("Resource_ckkuq")])
-ordStoryRequirements = Array[ExtResource("9_yggqo")]([])
-closesDialogue = false
-fullHealsPlayer = false
-annotation = ""
 metadata/_custom_type_script = "uid://1n6mppc7hmmf"
