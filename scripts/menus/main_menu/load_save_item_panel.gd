@@ -54,6 +54,26 @@ func load_save_item_panel():
 	update_buttons_visibility()
 
 func update_buttons_visibility():
+	if parentPanel.choosingExportSlot:
+		saveButton.visible = false
+		loadBtnControl.visible = false
+		copyButton.text = 'Export'
+		copyButton.disabled = false
+		deleteButton.disabled = true
+		update_focus_neighbor_lr()
+		return
+	if parentPanel.choosingImportSlot:
+		saveButton.visible = true
+		saveButton.text = 'Import'
+		loadBtnControl.visible = false
+		copyButton.disabled = true
+		deleteButton.disabled = true
+		update_focus_neighbor_lr()
+		return
+	
+	copyButton.text = 'Copy'
+	saveButton.text = 'Save'
+	
 	if parentPanel.isLoading:
 		saveButton.visible = false
 		loadBtnControl.visible = true
@@ -156,13 +176,19 @@ func update_focus_neighbor_lr():
 	deleteButton.focus_neighbor_left = deleteButton.get_path_to(copyButton) if copyButton.visible else NodePath('.')
 
 func _on_save_button_pressed():
-	parentPanel.save_to(saveFolder)
+	if parentPanel.choosingImportSlot:
+		parentPanel.import_save_slot_chosen(saveFolder)
+	else:
+		parentPanel.save_to(saveFolder)
 
 func _on_load_button_pressed():
 	parentPanel.load_save(saveFolder)
 
 func _on_copy_button_pressed():
-	parentPanel.copy_save_pressed(saveFolder, showCopyTo)
+	if parentPanel.choosingExportSlot:
+		parentPanel.export_save_chosen(saveFolder)
+	else:
+		parentPanel.copy_save_pressed(saveFolder, showCopyTo)
 
 func _on_delete_button_pressed():
 	parentPanel.delete_save_pressed(saveFolder)

@@ -202,3 +202,103 @@ func delete_directory_recursive(path: String) -> int:
 	else:
 		printerr('Error deleting ', path)
 		return -1
+
+func create_zip_of_save_file(saveFolder: String, zipPath: String) -> bool:
+	if not save_file_exists(saveFolder):
+		printerr('Zipping save file: ', saveFolder, ' does not exist')
+		return false
+	
+	var writer := ZIPPacker.new()
+	var err := writer.open(zipPath)
+	if err != OK:
+		printerr('Could not start writing ZIP file targeted at ', zipPath, ': Error ', err, ' (', error_string(err), ')')
+		return false
+	
+	var saveFileLocation: String = get_save_file_location(saveFolder).trim_suffix('/')
+	var success: bool = _write_save_zip_recursive_helper(saveFileLocation, '/', writer)
+	err = writer.close()
+	return success
+
+func _write_save_zip_recursive_helper(saveFileLocation: String, path: String, writer: ZIPPacker) -> bool:
+	var savePath: String = saveFileLocation + path
+	var files: PackedStringArray = DirAccess.get_files_at(savePath)
+	for filename: String in files:
+		# just in case there's a ".remap" in the path that's not at the end (although this should never be the case):
+		# get everything except the LAST file extension present
+		var resourceFilename: String = filename.get_basename()
+			# if it doesn't have ".tres" at the end (only if being played in the editor): add it
+		if not resourceFilename.ends_with('.tres'):
+			resourceFilename += '.tres'
+		var file := FileAccess.open(savePath + resourceFilename, FileAccess.READ)
+		if file == null:
+			printerr('Could not open save file for ', savePath + resourceFilename, ': Error ', FileAccess.get_open_error(), ' (', error_string(FileAccess.get_open_error()), ')')
+			return false
+		var fileContents: String = file.get_as_text()
+		var err := writer.start_file(path + resourceFilename)
+		if err != OK:
+			printerr('Could not start file in zip for ', path, ': Error ', err, ' (', error_string(err), ')')
+			return false
+		err = writer.write_file(fileContents.to_utf8_buffer())
+		if err != OK:
+			printerr('Could not write file into zip for ', path, ': Error ', err, ' (', error_string(err), ')')
+			return false
+		err = writer.close_file()
+		if err != OK:
+			printerr('Could not close file in zip for ', path, ': Error ', DirAccess.get_open_error(), ' (', error_string(err), ')')
+			return false
+	var directories: PackedStringArray = DirAccess.get_directories_at(savePath)
+	for dir: String in directories:
+		var success := _write_save_zip_recursive_helper(saveFileLocation, path + '/' + dir + '/', writer)
+		if not success:
+			return false
+	return true
+
+func import_zip_of_save_file(saveFolder: String, zipPath: String) -> bool:
+	var reader := ZIPReader.new()
+	var err := reader.open(zipPath)
+	if err != OK:
+		printerr('Could not start reading ZIP file at ', zipPath, ': Error ', err, ' (', error_string(err), ')')
+		return false
+	
+	var saveFileLocation: String = get_save_file_location(saveFolder).trim_suffix('/')
+	if save_file_exists(saveFolder):
+		var success := delete_save(saveFolder)
+		if not success:
+			printerr('Import failed: Deleting save ', saveFolder, 'failed')
+			return false
+	err = DirAccess.make_dir_recursive_absolute(saveFileLocation)
+	if err != OK:
+		printerr('Could not create new save directory at ', saveFileLocation, ': Error ', err, ' (', error_string(err), ')')
+		return false
+	
+	var saveDir := DirAccess.open(saveFileLocation)
+	if saveDir == null:
+		printerr('Could not start reading ZIP file at ', zipPath, ': Error ', DirAccess.get_open_error(), ' (', error_string(DirAccess.get_open_error()), ')')
+		return false
+	
+	## From the Godot docs for ZIPReader class
+	var files := reader.get_files()
+	for filepath: String in files:
+		if filepath.ends_with('/'):
+			err = saveDir.make_dir_recursive(filepath)
+			if err != OK:
+				printerr('Could not create new save subdirectory at ', filepath, ' for ', saveFolder, ': Error ', err, ' (', error_string(err), ')')
+				return false
+			continue
+		
+		err = saveDir.make_dir_recursive(saveDir.get_current_dir().path_join(filepath).get_base_dir())
+		if err != OK:
+			printerr('Could not create new save subdirectory at ', saveDir.get_current_dir().path_join(filepath).get_base_dir(), ' for ', saveFolder, ': Error ', err, ' (', error_string(err), ')')
+			return false
+		var file := FileAccess.open(saveDir.get_current_dir().path_join(filepath), FileAccess.WRITE)
+		if file == null:
+			printerr('Could not start writing save file at ', saveDir.get_current_dir().path_join(filepath), ': Error ', FileAccess.get_open_error(), ' (', error_string(FileAccess.get_open_error()), ')')
+			return false
+		
+		var buffer := reader.read_file(filepath)
+		var storeBufferSuccess: bool = file.store_buffer(buffer)
+		if not storeBufferSuccess:
+			printerr('Writing file ', saveDir.get_current_dir().path_join(filepath).get_base_dir(), ' with contents from zip ', filepath, ' failed')
+			return false
+	
+	return true

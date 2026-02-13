@@ -11,10 +11,6 @@ var forceConfirm: bool = false
 @onready var titleLabel: RichTextLabel = get_node('Panel/TitleLabel')
 @onready var descriptionLabel: RichTextLabel = get_node('Panel/DescriptionLabel')
 @onready var noButton: Button = get_node('Panel/HBoxContainer/NoButton')
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
 	
 func _unhandled_input(event):
 	if visible and event.is_action_pressed("game_decline") and not noButton.disabled:

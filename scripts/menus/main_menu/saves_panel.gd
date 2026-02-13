@@ -7,6 +7,7 @@ signal back_pressed
 
 @export var isLoading: bool = true
 @export var shade: ColorRect = null
+@export var fromMainMenu: bool = false
 
 var fromSave: String = ''
 var toSave: String = ''
@@ -14,15 +15,21 @@ var deleteSaveFolder: String = ''
 var savingFolder: String = ''
 var loadPressed: bool = false
 
+var choosingExportSlot: bool = false
+var choosingImportSlot: bool = false
+var exportImportSaveFolder: String = ''
+var importZipFilePath: String = ''
+var fileDialog: FileDialog = null
+
 @onready var savesPanelLabel: RichTextLabel = get_node('SavesPanelLabel')
 @onready var savePanelVbox: VBoxContainer = get_node('ScrollContainer/VBoxContainer')
 @onready var backButton: Button = get_node('BackButton')
+@onready var exportButton: Button = get_node('ExportButton')
+@onready var importButton: Button = get_node('ImportButton')
 @onready var confirmPanel: ItemConfirmPanel = get_node('ItemConfirmPanel')
+@onready var tooltipPanel: TooltipPanel = get_node('TooltipPanel')
 
 const loadSaveItemPanelScene = preload('res://prefabs/ui/main_menu/load_save_item_panel.tscn')
-
-func _ready():
-	savesPanelLabel.text = '[center]' + ('Load' if isLoading else 'Save') + ' Game[/center]'
 
 func _unhandled_input(event):
 	if visible:
@@ -31,7 +38,27 @@ func _unhandled_input(event):
 			get_viewport().set_input_as_handled()
 
 func initial_focus():
-	if isLoading:
+	if choosingExportSlot:
+		var setFocus: bool = false
+		var children = savePanelVbox.get_children()
+		for node in children:
+			var panel: LoadSaveItemPanel = node as LoadSaveItemPanel
+			if panel.playerInfo != null and not setFocus:
+				panel.copyButton.grab_focus()
+				setFocus = true
+		if not setFocus:
+			backButton.grab_focus()
+	elif choosingImportSlot:
+		var setFocus: bool = false
+		var children = savePanelVbox.get_children()
+		for node in children:
+			var panel: LoadSaveItemPanel = node as LoadSaveItemPanel
+			if panel.playerInfo != null and not setFocus:
+				panel.saveButton.grab_focus()
+				setFocus = true
+		if not setFocus:
+			backButton.grab_focus()
+	elif isLoading:
 		var setFocus: bool = false
 		var children = savePanelVbox.get_children()
 		for node in children:
@@ -56,7 +83,21 @@ func initial_focus():
 func load_saves_panel():
 	fromSave = ''
 	toSave = ''
+	if choosingExportSlot:
+		savesPanelLabel.text = '[center]Export Save[/center]'
+	elif choosingImportSlot:
+		savesPanelLabel.text = '[center]Choose Import Destination[/center]'
+	else:
+		savesPanelLabel.text = '[center]' + ('Load' if isLoading else 'Save') + ' Game[/center]'
 	load_save_item_panels()
+	if fromMainMenu and not choosingExportSlot and not choosingImportSlot:
+		exportButton.visible = true
+		importButton.visible = true
+		backButton.focus_neighbor_left = backButton.get_path_to(importButton)
+	else:
+		exportButton.visible = false
+		importButton.visible = false
+		backButton.focus_neighbor_left = '.'
 	initial_focus()
 
 func toggle_saves_panel(showing: bool) -> void:
@@ -249,6 +290,42 @@ func delete_save(saveFolder: String):
 	load_save_item_panels()
 	initial_focus()
 
+func export_save_chosen(saveFolder: String) -> void:
+	exportImportSaveFolder = saveFolder
+	fileDialog = FileDialog.new()
+	fileDialog.file_mode = FileDialog.FileMode.FILE_MODE_SAVE_FILE
+	fileDialog.access = FileDialog.Access.ACCESS_FILESYSTEM
+	fileDialog.use_native_dialog = true
+	fileDialog.filters = ['*.zip']
+	fileDialog.position = get_viewport_rect().size / 2.0 - fileDialog.size / 2.0
+	fileDialog.display_mode = FileDialog.DISPLAY_LIST
+	fileDialog.file_selected.connect(_on_export_save_location_chosen)
+	add_child(fileDialog)
+	fileDialog.visible = true
+	fileDialog.get_line_edit().grab_focus.call_deferred()
+
+func import_save_slot_chosen(saveFolder: String) -> void:
+	exportImportSaveFolder = saveFolder
+	if SaveHandler.save_file_exists(saveFolder):
+		confirmPanel.title = 'Overwrite Save On Import?'
+		var saveNumber: String = saveFolder.trim_prefix('save')
+		confirmPanel.description = 'Save File ' + saveNumber + ' already exists. Overwrite this existing save and import the new save?'
+		confirmPanel.load_item_confirm_panel()
+	else:
+		load_imported_save_slot()
+
+func load_imported_save_slot() -> void:
+	var success: bool = SaveHandler.import_zip_of_save_file(exportImportSaveFolder, importZipFilePath)
+	_on_back_button_pressed()
+	if success:
+		tooltipPanel.title = 'Import Success'
+		tooltipPanel.details = 'Save file was imported successfully!'
+	else:
+		tooltipPanel.title = 'Import FAILURE'
+		tooltipPanel.details = 'An error has occurred. Save file was not imported successfully. Please try again.'
+	tooltipPanel.load_tooltip_panel()
+	await tooltipPanel.ok_pressed
+
 func fade_out_panel() -> void:
 	SceneLoader.audioHandler.fade_out_music(0.5)
 	if shade == null:
@@ -262,6 +339,21 @@ func fade_out_panel() -> void:
 func _on_back_button_pressed():
 	if loadPressed:
 		return
+	if choosingImportSlot or choosingExportSlot:
+		var wasChoosingImport: bool = choosingImportSlot
+		choosingExportSlot = false
+		choosingImportSlot = false
+		exportImportSaveFolder = ''
+		importZipFilePath = ''
+		if fileDialog != null:
+			fileDialog.visible = false
+			fileDialog.queue_free()
+		load_saves_panel()
+		if wasChoosingImport:
+			importButton.grab_focus()
+		else:
+			exportButton.grab_focus()
+		return
 	visible = false
 	if fromSave != '':
 		copy_save_pressed(fromSave, true) # resets state from "copy save" being mid-action
@@ -269,7 +361,66 @@ func _on_back_button_pressed():
 	savingFolder = ''
 	back_pressed.emit()
 
+func _on_export_button_pressed() -> void:
+	choosingExportSlot = true
+	load_saves_panel()
+
+func _on_import_button_pressed() -> void:
+	fileDialog = FileDialog.new()
+	fileDialog.file_mode = FileDialog.FileMode.FILE_MODE_OPEN_FILE
+	fileDialog.access = FileDialog.Access.ACCESS_FILESYSTEM
+	fileDialog.use_native_dialog = true
+	fileDialog.filters = ['*.zip']
+	fileDialog.position = get_viewport_rect().size / 2.0 - fileDialog.size / 2.0
+	fileDialog.display_mode = FileDialog.DISPLAY_LIST
+	fileDialog.file_selected.connect(_on_import_file_chosen)
+	add_child(fileDialog)
+	fileDialog.visible = true
+	fileDialog.get_line_edit().grab_focus.call_deferred()
+
+func _on_export_save_location_chosen(path: String) -> void:
+	fileDialog.visible = false
+	fileDialog.queue_free()
+	if path == '':
+		_on_back_button_pressed()
+		return
+	if not path.ends_with(".zip"):
+		path += ".zip"
+	var success: bool = SaveHandler.create_zip_of_save_file(exportImportSaveFolder, path)
+	if success:
+		tooltipPanel.title = 'Export Success'
+		tooltipPanel.details = 'Save file was exported successfully.'
+	else:
+		tooltipPanel.title = 'Export FAILURE'
+		tooltipPanel.details = 'An error has occurred. Save file was not exported successfully. Please try again.'
+	tooltipPanel.load_tooltip_panel()
+	await tooltipPanel.ok_pressed
+	_on_back_button_pressed()
+
+func _on_import_file_chosen(path: String) -> void:
+	fileDialog.visible = false
+	fileDialog.queue_free()
+	if path == '':
+		_on_back_button_pressed()
+		return
+	if not FileAccess.file_exists(path):
+		tooltipPanel.title = 'Import FAILURE'
+		tooltipPanel.details = 'File name provided does not exist or could not be opened.'
+		tooltipPanel.load_tooltip_panel()
+		await tooltipPanel.ok_pressed
+		_on_back_button_pressed()
+		return
+	choosingImportSlot = true
+	importZipFilePath = path
+	load_saves_panel()
+
 func _on_item_confirm_panel_confirm_option(yes: bool):
+	if choosingImportSlot:
+		if yes:
+			load_imported_save_slot()
+		else:
+			_on_back_button_pressed()
+		return
 	if fromSave != '' and toSave != '':
 		# copy save confirm
 		copy_save(yes)
