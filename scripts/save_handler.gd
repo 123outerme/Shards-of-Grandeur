@@ -234,6 +234,7 @@ func _write_save_zip_recursive_helper(saveFileLocation: String, path: String, wr
 			printerr('Could not open save file for ', savePath + resourceFilename, ': Error ', FileAccess.get_open_error(), ' (', error_string(FileAccess.get_open_error()), ')')
 			return false
 		var fileContents: String = file.get_as_text()
+		file.close()
 		var err := writer.start_file(path + resourceFilename)
 		if err != OK:
 			printerr('Could not start file in zip for ', path, ': Error ', err, ' (', error_string(err), ')')
