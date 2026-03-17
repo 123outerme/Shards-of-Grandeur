@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="DialogueEntry" load_steps=14 format=3 uid="uid://bay4subucd5tt"]
+[gd_resource type="Resource" script_class="DialogueEntry" format=3 uid="uid://bay4subucd5tt"]
 
 [ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_acjcu"]
 [ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_foe53"]
@@ -12,11 +12,6 @@
 [sub_resource type="Resource" id="Resource_w4ypg"]
 script = ExtResource("2_ubqt2")
 choiceBtn = "Never Mind."
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("3_kd5lx")]([])
-repeatsItem = false
-buttonDims = Vector2(80, 40)
-turnsInQuest = ""
 isDeclineChoice = true
 metadata/_custom_type_script = "uid://bk6klhv2ls55w"
 
@@ -24,47 +19,24 @@ metadata/_custom_type_script = "uid://bk6klhv2ls55w"
 script = ExtResource("2_ubqt2")
 choiceBtn = "Training."
 leadsTo = ExtResource("4_w4ypg")
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("3_kd5lx")]([])
-repeatsItem = false
-buttonDims = Vector2(80, 40)
-turnsInQuest = ""
-isDeclineChoice = false
 metadata/_custom_type_script = "uid://bk6klhv2ls55w"
 
 [sub_resource type="Resource" id="Resource_aof28"]
 script = ExtResource("2_ubqt2")
 choiceBtn = "A Mystery."
 leadsTo = ExtResource("4_kd5lx")
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("3_kd5lx")]([])
-repeatsItem = false
-buttonDims = Vector2(80, 40)
-turnsInQuest = ""
-isDeclineChoice = false
 metadata/_custom_type_script = "uid://bk6klhv2ls55w"
 
 [sub_resource type="Resource" id="Resource_yvq38"]
 script = ExtResource("2_ubqt2")
 choiceBtn = "Answers."
 leadsTo = ExtResource("6_aof28")
-returnsToParentId = ""
-randomDialogues = Array[ExtResource("3_kd5lx")]([])
-repeatsItem = false
-buttonDims = Vector2(80, 40)
-turnsInQuest = ""
-isDeclineChoice = false
 metadata/_custom_type_script = "uid://bk6klhv2ls55w"
 
 [sub_resource type="Resource" id="Resource_kd5lx"]
 script = ExtResource("1_acjcu")
 lines = Array[String](["Welcome to the Giant Steppes Observatory, @. What do you seek?"])
-minShowSecs = Array[float]([])
 animation = "talk"
-speakerOverride = ""
-actorAnimation = ""
-animateActorTreePath = ""
-animateActorIsPlayer = false
 choices = Array[ExtResource("2_ubqt2")]([SubResource("Resource_w4ypg"), SubResource("Resource_u5531"), SubResource("Resource_aof28"), SubResource("Resource_yvq38")])
 metadata/_custom_type_script = "uid://grt2yrupha8c"
 
@@ -72,8 +44,4 @@ metadata/_custom_type_script = "uid://grt2yrupha8c"
 script = ExtResource("3_ubqt2")
 entryId = "stargazer_obs_1"
 items = Array[ExtResource("1_acjcu")]([SubResource("Resource_kd5lx")])
-ordStoryRequirements = Array[ExtResource("2_foe53")]([])
-closesDialogue = false
-fullHealsPlayer = false
-annotation = ""
 metadata/_custom_type_script = "uid://1n6mppc7hmmf"

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Cutscene" load_steps=40 format=3 uid="uid://dyj8w3r046uik"]
+[gd_resource type="Resource" script_class="Cutscene" format=3 uid="uid://dyj8w3r046uik"]
 
 [ext_resource type="Script" uid="uid://cqpl74uk8cjo0" path="res://scripts/cutscenes/cutscene_frame.gd" id="1_kk8mb"]
 [ext_resource type="Script" uid="uid://cg21ocaokyfnx" path="res://scripts/cutscenes/actor_anim_set.gd" id="2_art2m"]
@@ -17,28 +17,21 @@
 [sub_resource type="Resource" id="Resource_5x1w8"]
 script = ExtResource("3_36qhm")
 actorTreePath = "TilemapRoot/WarlockAgent"
-isPlayer = false
 animation = "walk"
 metadata/_custom_type_script = "uid://dy2r6h7mhh2oc"
 
 [sub_resource type="Resource" id="Resource_hnyl3"]
 script = ExtResource("7_5x1w8")
 value = Vector2(0, 30)
-actorTreePath = ""
 isPlayer = true
 propertyName = "position"
-easeType = 2
-transitionType = 0
 metadata/_custom_type_script = "uid://b5d2qgg22dgbw"
 
 [sub_resource type="Resource" id="Resource_voxvj"]
 script = ExtResource("7_5x1w8")
 value = Vector2(0, 12)
 actorTreePath = "TilemapRoot/WarlockAgent"
-isPlayer = false
 propertyName = "position"
-easeType = 2
-transitionType = 0
 metadata/_custom_type_script = "uid://b5d2qgg22dgbw"
 
 [sub_resource type="Resource" id="Resource_tv84d"]
@@ -47,41 +40,20 @@ frameLength = 1.5
 annotation = "walk the warlock agent to the top of the steps, player behind"
 actorTweens = Array[ExtResource("5_hnyl3")]([SubResource("Resource_hnyl3"), SubResource("Resource_voxvj")])
 actorAnims = Array[ExtResource("3_36qhm")]([SubResource("Resource_5x1w8"), ExtResource("4_36qhm")])
-actorAnimSets = Array[ExtResource("2_art2m")]([])
-actorFaceTargets = Array[ExtResource("4_5x1w8")]([])
-dialogues = Array[ExtResource("6_voxvj")]([])
-playSfxs = Array[AudioStream]([])
-snapshotActorPaths = Array[String]([])
-restoreSnapshotActorPaths = Array[String]([])
-endTextBoxPauses = true
-shakeCamForDuration = false
-endHoldCamera = false
-endFade = 0
-endFadeLength = 0.0
-healsPlayer = false
-addsFollowerId = ""
-removesFollowerId = ""
-endStartsShardLearnTutorial = false
 metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
 
 [sub_resource type="Resource" id="Resource_g3de4"]
 script = ExtResource("7_5x1w8")
 value = Vector2(0, 12)
-actorTreePath = ""
 isPlayer = true
 propertyName = "position"
-easeType = 2
-transitionType = 0
 metadata/_custom_type_script = "uid://b5d2qgg22dgbw"
 
 [sub_resource type="Resource" id="Resource_fflq8"]
 script = ExtResource("7_5x1w8")
 value = Vector2(-32, 6)
 actorTreePath = "TilemapRoot/WarlockAgent"
-isPlayer = false
 propertyName = "position"
-easeType = 2
-transitionType = 0
 metadata/_custom_type_script = "uid://b5d2qgg22dgbw"
 
 [sub_resource type="Resource" id="Resource_1rwwk"]
@@ -89,80 +61,37 @@ script = ExtResource("1_kk8mb")
 frameLength = 0.75
 annotation = "move the player to the top"
 actorTweens = Array[ExtResource("5_hnyl3")]([SubResource("Resource_g3de4"), SubResource("Resource_fflq8")])
-actorAnims = Array[ExtResource("3_36qhm")]([])
-actorAnimSets = Array[ExtResource("2_art2m")]([])
-actorFaceTargets = Array[ExtResource("4_5x1w8")]([])
-dialogues = Array[ExtResource("6_voxvj")]([])
-playSfxs = Array[AudioStream]([])
-snapshotActorPaths = Array[String]([])
-restoreSnapshotActorPaths = Array[String]([])
-endTextBoxPauses = true
-shakeCamForDuration = false
-endHoldCamera = false
-endFade = 0
-endFadeLength = 0.0
-healsPlayer = false
-addsFollowerId = ""
-removesFollowerId = ""
-endStartsShardLearnTutorial = false
 metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
 
 [sub_resource type="Resource" id="Resource_nljnx"]
 script = ExtResource("7_5x1w8")
 value = Vector2(-32, 6)
-actorTreePath = ""
 isPlayer = true
 propertyName = "position"
-easeType = 2
-transitionType = 0
 metadata/_custom_type_script = "uid://b5d2qgg22dgbw"
 
 [sub_resource type="Resource" id="Resource_wl0ej"]
 script = ExtResource("7_5x1w8")
 value = Vector2(-56, -12)
 actorTreePath = "TilemapRoot/WarlockAgent"
-isPlayer = false
 propertyName = "position"
-easeType = 2
-transitionType = 0
 metadata/_custom_type_script = "uid://b5d2qgg22dgbw"
 
 [sub_resource type="Resource" id="Resource_wwq0j"]
 script = ExtResource("1_kk8mb")
-frameLength = 1.0
 annotation = "the warlock agent approaches the door"
 actorTweens = Array[ExtResource("5_hnyl3")]([SubResource("Resource_nljnx"), SubResource("Resource_wl0ej")])
-actorAnims = Array[ExtResource("3_36qhm")]([])
-actorAnimSets = Array[ExtResource("2_art2m")]([])
-actorFaceTargets = Array[ExtResource("4_5x1w8")]([])
-dialogues = Array[ExtResource("6_voxvj")]([])
-playSfxs = Array[AudioStream]([])
-snapshotActorPaths = Array[String]([])
-restoreSnapshotActorPaths = Array[String]([])
-endTextBoxPauses = true
-shakeCamForDuration = false
-endHoldCamera = false
-endFade = 0
-endFadeLength = 0.0
-healsPlayer = false
-addsFollowerId = ""
-removesFollowerId = ""
-endStartsShardLearnTutorial = false
 metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
 
 [sub_resource type="Resource" id="Resource_h0lm5"]
 script = ExtResource("3_36qhm")
 actorTreePath = "TilemapRoot/WarlockAgent"
-isPlayer = false
 animation = "talk"
 metadata/_custom_type_script = "uid://dy2r6h7mhh2oc"
 
 [sub_resource type="Resource" id="Resource_th8g2"]
 script = ExtResource("4_5x1w8")
 actorTreePath = "TilemapRoot/WarlockAgent"
-isPlayer = false
-targetTreePath = ""
-targetPosition = Vector2(0, 0)
 targetIsPlayer = true
 metadata/_custom_type_script = "uid://8oxtwxpqllgd"
 
@@ -170,64 +99,27 @@ metadata/_custom_type_script = "uid://8oxtwxpqllgd"
 script = ExtResource("6_voxvj")
 speaker = "Warlock Agent"
 texts = Array[String](["This is it, the Grand Hall. Inside are the King and his advisors.", "They will see you now."])
-textboxSfxs = Array[AudioStream]([])
 speakerActorScenePath = "TilemapRoot/WarlockAgent"
-speakerActorIsPlayer = false
-speakerAnim = "talk"
-speakerAnimScale = 3
-animSpeakerOffset = Vector2(0, 0)
 metadata/_custom_type_script = "uid://jcu0gq2ns4in"
 
 [sub_resource type="Resource" id="Resource_3w665"]
 script = ExtResource("1_kk8mb")
 frameLength = 0.1
 annotation = "they both stop, the warlock agent turns to the player and speaks"
-actorTweens = Array[ExtResource("5_hnyl3")]([])
 actorAnims = Array[ExtResource("3_36qhm")]([SubResource("Resource_h0lm5"), ExtResource("9_hnyl3")])
-actorAnimSets = Array[ExtResource("2_art2m")]([])
 actorFaceTargets = Array[ExtResource("4_5x1w8")]([SubResource("Resource_th8g2")])
 dialogues = Array[ExtResource("6_voxvj")]([SubResource("Resource_ng0nm")])
-playSfxs = Array[AudioStream]([])
-snapshotActorPaths = Array[String]([])
-restoreSnapshotActorPaths = Array[String]([])
-endTextBoxPauses = true
-shakeCamForDuration = false
-endHoldCamera = false
-endFade = 0
-endFadeLength = 0.0
-healsPlayer = false
-addsFollowerId = ""
-removesFollowerId = ""
-endStartsShardLearnTutorial = false
 metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
 
 [sub_resource type="Resource" id="Resource_xk4ot"]
 script = ExtResource("1_kk8mb")
 frameLength = 0.1
 annotation = "wait for the text box to be closed"
-actorTweens = Array[ExtResource("5_hnyl3")]([])
-actorAnims = Array[ExtResource("3_36qhm")]([])
-actorAnimSets = Array[ExtResource("2_art2m")]([])
-actorFaceTargets = Array[ExtResource("4_5x1w8")]([])
-dialogues = Array[ExtResource("6_voxvj")]([])
-playSfxs = Array[AudioStream]([])
-snapshotActorPaths = Array[String]([])
-restoreSnapshotActorPaths = Array[String]([])
-endTextBoxPauses = true
-shakeCamForDuration = false
-endHoldCamera = false
-endFade = 0
-endFadeLength = 0.0
-healsPlayer = false
-addsFollowerId = ""
-removesFollowerId = ""
-endStartsShardLearnTutorial = false
 metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
 
 [sub_resource type="Resource" id="Resource_yauos"]
 script = ExtResource("3_36qhm")
 actorTreePath = "TilemapRoot/WarlockAgent"
-isPlayer = false
 animation = "walk"
 metadata/_custom_type_script = "uid://dy2r6h7mhh2oc"
 
@@ -235,10 +127,7 @@ metadata/_custom_type_script = "uid://dy2r6h7mhh2oc"
 script = ExtResource("7_5x1w8")
 value = Vector2(-56, -28)
 actorTreePath = "TilemapRoot/WarlockAgent"
-isPlayer = false
 propertyName = "position"
-easeType = 2
-transitionType = 0
 metadata/_custom_type_script = "uid://b5d2qgg22dgbw"
 
 [sub_resource type="Resource" id="Resource_65e60"]
@@ -247,31 +136,13 @@ frameLength = 0.5
 annotation = "the warlock agent walks in by himself"
 actorTweens = Array[ExtResource("5_hnyl3")]([SubResource("Resource_81r4s")])
 actorAnims = Array[ExtResource("3_36qhm")]([SubResource("Resource_yauos")])
-actorAnimSets = Array[ExtResource("2_art2m")]([])
-actorFaceTargets = Array[ExtResource("4_5x1w8")]([])
-dialogues = Array[ExtResource("6_voxvj")]([])
-playSfxs = Array[AudioStream]([])
-snapshotActorPaths = Array[String]([])
-restoreSnapshotActorPaths = Array[String]([])
-endTextBoxPauses = true
-shakeCamForDuration = false
-endHoldCamera = false
-endFade = 0
-endFadeLength = 0.0
-healsPlayer = false
-addsFollowerId = ""
-removesFollowerId = ""
-endStartsShardLearnTutorial = false
 metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
 
 [sub_resource type="Resource" id="Resource_wi8p3"]
 script = ExtResource("10_voxvj")
 value = true
 actorTreePath = "TilemapRoot/WarlockAgent"
-isPlayer = false
 propertyName = "invisible"
-easeType = 2
-transitionType = 0
 metadata/_custom_type_script = "uid://csrikyyse38e2"
 
 [sub_resource type="Resource" id="Resource_rh2fu"]
@@ -279,88 +150,33 @@ script = ExtResource("1_kk8mb")
 frameLength = 0.1
 annotation = "The Warlock Agent is hidden"
 actorTweens = Array[ExtResource("5_hnyl3")]([SubResource("Resource_wi8p3")])
-actorAnims = Array[ExtResource("3_36qhm")]([])
-actorAnimSets = Array[ExtResource("2_art2m")]([])
-actorFaceTargets = Array[ExtResource("4_5x1w8")]([])
-dialogues = Array[ExtResource("6_voxvj")]([])
-playSfxs = Array[AudioStream]([])
-snapshotActorPaths = Array[String]([])
-restoreSnapshotActorPaths = Array[String]([])
-endTextBoxPauses = true
-shakeCamForDuration = false
-endHoldCamera = false
-endFade = 0
-endFadeLength = 0.0
-healsPlayer = false
-addsFollowerId = ""
-removesFollowerId = ""
-endStartsShardLearnTutorial = false
 metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
 
 [sub_resource type="Resource" id="Resource_1ox3e"]
 script = ExtResource("1_kk8mb")
 frameLength = 0.5
 annotation = "the player hesistates for a beat"
-actorTweens = Array[ExtResource("5_hnyl3")]([])
-actorAnims = Array[ExtResource("3_36qhm")]([])
-actorAnimSets = Array[ExtResource("2_art2m")]([])
-actorFaceTargets = Array[ExtResource("4_5x1w8")]([])
-dialogues = Array[ExtResource("6_voxvj")]([])
-playSfxs = Array[AudioStream]([])
-snapshotActorPaths = Array[String]([])
-restoreSnapshotActorPaths = Array[String]([])
-endTextBoxPauses = true
-shakeCamForDuration = false
-endHoldCamera = false
-endFade = 0
-endFadeLength = 0.0
-healsPlayer = false
-addsFollowerId = ""
-removesFollowerId = ""
-endStartsShardLearnTutorial = false
 metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
 
 [sub_resource type="Resource" id="Resource_lijdd"]
 script = ExtResource("7_5x1w8")
 value = Vector2(-56, -12)
-actorTreePath = ""
 isPlayer = true
 propertyName = "position"
-easeType = 2
-transitionType = 0
 metadata/_custom_type_script = "uid://b5d2qgg22dgbw"
 
 [sub_resource type="Resource" id="Resource_7ce4n"]
 script = ExtResource("1_kk8mb")
-frameLength = 1.0
 annotation = "the player walks up to the door"
 actorTweens = Array[ExtResource("5_hnyl3")]([SubResource("Resource_lijdd")])
 actorAnims = Array[ExtResource("3_36qhm")]([ExtResource("4_36qhm")])
-actorAnimSets = Array[ExtResource("2_art2m")]([])
-actorFaceTargets = Array[ExtResource("4_5x1w8")]([])
-dialogues = Array[ExtResource("6_voxvj")]([])
-playSfxs = Array[AudioStream]([])
-snapshotActorPaths = Array[String]([])
-restoreSnapshotActorPaths = Array[String]([])
-endTextBoxPauses = true
-shakeCamForDuration = false
-endHoldCamera = false
-endFade = 0
-endFadeLength = 0.0
-healsPlayer = false
-addsFollowerId = ""
-removesFollowerId = ""
-endStartsShardLearnTutorial = false
 metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
 
 [sub_resource type="Resource" id="Resource_6oro8"]
 script = ExtResource("7_5x1w8")
 value = Vector2(-56, -28)
-actorTreePath = ""
 isPlayer = true
 propertyName = "position"
-easeType = 2
-transitionType = 0
 metadata/_custom_type_script = "uid://b5d2qgg22dgbw"
 
 [sub_resource type="Resource" id="Resource_d2yud"]
@@ -368,49 +184,11 @@ script = ExtResource("1_kk8mb")
 frameLength = 0.5
 annotation = "the player walks in"
 actorTweens = Array[ExtResource("5_hnyl3")]([SubResource("Resource_6oro8")])
-actorAnims = Array[ExtResource("3_36qhm")]([])
-actorAnimSets = Array[ExtResource("2_art2m")]([])
-actorFaceTargets = Array[ExtResource("4_5x1w8")]([])
-dialogues = Array[ExtResource("6_voxvj")]([])
-playSfxs = Array[AudioStream]([])
-snapshotActorPaths = Array[String]([])
-restoreSnapshotActorPaths = Array[String]([])
-endTextBoxPauses = true
-shakeCamForDuration = false
-endHoldCamera = false
-endFade = 0
-endFadeLength = 0.0
-healsPlayer = false
-addsFollowerId = ""
-removesFollowerId = ""
-endStartsShardLearnTutorial = false
 metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
 
 [sub_resource type="Resource" id="Resource_hqvns"]
 script = ExtResource("4_rjhs2")
-minAct = 0
-maxAct = -1
-prereqQuests = Array[String]([])
-prereqCutscenes = Array[String]([])
-prereqDialogues = Array[String]([])
-prereqPlacesVisited = Array[String]([])
-prereqSpecialBattles = Array[String]([])
-prereqDefeatedEnemies = Array[String]([])
-prereqPuzzles = Array[String]([])
-prereqPuzzleStates = Dictionary[String, Array]({})
-prereqDiscoveredEvolutions = Array[String]([])
-prereqHavingFollowers = Array[String]([])
-prereqHasItems = Array[ExtResource("3_767ak")]([])
-invalidAfterCompletingQuests = Array[String]([])
-invalidAfterFailingQuests = Array[String]([])
 invalidAfterCutscenes = Array[String](["giant_steppes_arrive_l2"])
-invalidAfterDialogues = Array[String]([])
-invalidAfterVistingPlaces = Array[String]([])
-invalidAfterSpecialBattles = Array[String]([])
-invalidAfterSolvingPuzzles = Array[String]([])
-invalidFromPuzzleStates = Dictionary[String, Array]({})
-invalidFromHavingFollowers = Array[String]([])
-invalidFromHavingItems = Array[ExtResource("3_767ak")]([])
 metadata/_custom_type_script = "uid://bjesn36acj0uh"
 
 [resource]
@@ -418,9 +196,4 @@ script = ExtResource("2_hx0b2")
 cutsceneFrames = Array[ExtResource("1_kk8mb")]([SubResource("Resource_tv84d"), SubResource("Resource_1rwwk"), SubResource("Resource_wwq0j"), SubResource("Resource_3w665"), SubResource("Resource_xk4ot"), SubResource("Resource_65e60"), SubResource("Resource_rh2fu"), SubResource("Resource_1ox3e"), SubResource("Resource_7ce4n"), SubResource("Resource_d2yud")])
 saveName = "giant_steppes_arrive_l2"
 storyRequirements = SubResource("Resource_hqvns")
-unlockCameraHoldAfter = true
-activateActorsBefore = Array[String]([])
-deactivateActorsAfter = Array[String]([])
-tempDisabledAfter = false
-notes = ""
 metadata/_custom_type_script = "uid://fpa08p2kb0ts"

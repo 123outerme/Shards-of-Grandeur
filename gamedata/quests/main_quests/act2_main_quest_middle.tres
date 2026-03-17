@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Quest" load_steps=8 format=3 uid="uid://bqap3r2hhv5w2"]
+[gd_resource type="Resource" script_class="Quest" format=3 uid="uid://bqap3r2hhv5w2"]
 
 [ext_resource type="Script" uid="uid://bnw42uegqk4wp" path="res://scripts/quests/quest.gd" id="1_b7v4m"]
 [ext_resource type="Script" uid="uid://b3j2bj1p0bkq8" path="res://scripts/quests/quest_step.gd" id="2_ex5ee"]
@@ -26,10 +26,12 @@ metadata/_custom_type_script = "uid://b3j2bj1p0bkq8"
 [sub_resource type="Resource" id="Resource_i7exl"]
 script = ExtResource("2_ex5ee")
 name = "Warlock-in-Training"
-description = "You agreed to train with the Warlocks in order to team up against Steelspire! Work with the Stargazer and the Keeper of History."
+description = "You agreed to train with the Warlocks in order to team up against Steelspire! See the Stargazer first."
 locations = Array[int]([50])
+turnInLocations = Array[int]([50])
 objectiveName = "---"
-customStatusStr = "???"
+displayObjName = "The Stargazer"
+displayTurnInName = "The Stargazer"
 metadata/_custom_type_script = "uid://b3j2bj1p0bkq8"
 
 [sub_resource type="Resource" id="Resource_6lwe2"]

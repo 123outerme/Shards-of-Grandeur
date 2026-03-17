@@ -1,10 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://cr3tawrk6li8u"]
+[gd_scene format=3 uid="uid://cr3tawrk6li8u"]
 
 [ext_resource type="Script" uid="uid://bur742tma2ena" path="res://prefabs/tools/dialogue_editor/dialogue_editor.gd" id="1_7w1wt"]
-[ext_resource type="Resource" uid="uid://dcronhoqtaaht" path="res://gamedata/dialogue/lance/rebuild_standstill/lance_rebuild_standstill_seeds_sowed_turnin.tres" id="2_073l1"]
 [ext_resource type="PackedScene" uid="uid://dx00oa0dadpvj" path="res://prefabs/ui/text_box.tscn" id="2_nr7ai"]
+[ext_resource type="PackedScene" uid="uid://boodxee7p55bd" path="res://prefabs/maps/giant_steppes/giant_steppes_observatory.tscn" id="3_073l1"]
 [ext_resource type="PackedScene" uid="uid://dmc2ox37dega8" path="res://prefabs/audio/audio_handler.tscn" id="3_lbw1y"]
-[ext_resource type="PackedScene" uid="uid://dyya5ljxgcvlx" path="res://prefabs/maps/standstill/burned_down/standstill_foundry_burned.tscn" id="3_sjffm"]
 [ext_resource type="PackedScene" uid="uid://blb38hmic2jvq" path="res://prefabs/overworld/test_camera.tscn" id="4_k3rpk"]
 [ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="5_3xu4k"]
 [ext_resource type="PackedScene" uid="uid://bojquldxuq7di" path="res://prefabs/tools/dialogue_editor/dialogue_item_editor/dialogue_choices_editor/dialogue_choices_editor.tscn" id="5_jlx2h"]
@@ -12,27 +11,26 @@
 [ext_resource type="PackedScene" uid="uid://djat5vf5bcbma" path="res://prefabs/ui/sfx_check_button.tscn" id="7_i5rnn"]
 [ext_resource type="PackedScene" uid="uid://n24hm66wn3s5" path="res://prefabs/tools/dialogue_editor/entry_quest_picker/entry_quest_picker.tscn" id="7_qy48t"]
 
-[node name="DialogueEditor" type="Node2D"]
+[node name="DialogueEditor" type="Node2D" unique_id=1750314649]
 script = ExtResource("1_7w1wt")
-loadDialogueEntry = ExtResource("2_073l1")
-loadMap = ExtResource("3_sjffm")
+loadMap = ExtResource("3_073l1")
 metadata/_edit_vertical_guides_ = [20.0]
 metadata/_edit_horizontal_guides_ = [-70.0]
 
-[node name="AudioHandler" parent="." instance=ExtResource("3_lbw1y")]
+[node name="AudioHandler" parent="." unique_id=1526361321 instance=ExtResource("3_lbw1y")]
 
-[node name="MapRoot" type="Node2D" parent="."]
+[node name="MapRoot" type="Node2D" parent="." unique_id=20483168]
 
-[node name="NpcButtons" type="Node2D" parent="MapRoot"]
+[node name="NpcButtons" type="Node2D" parent="MapRoot" unique_id=1122000038]
 z_index = 10
 
-[node name="TestCamera" parent="." instance=ExtResource("4_k3rpk")]
+[node name="TestCamera" parent="." unique_id=1326853165 instance=ExtResource("4_k3rpk")]
 disableInputHandling = true
 
-[node name="TextBoxRoot" parent="TestCamera" instance=ExtResource("2_nr7ai")]
+[node name="TextBoxRoot" parent="TestCamera" unique_id=429382258 instance=ExtResource("2_nr7ai")]
 scale = Vector2(0.25, 0.25)
 
-[node name="HudRoot" type="Control" parent="TestCamera"]
+[node name="HudRoot" type="Control" parent="TestCamera" unique_id=185135655]
 z_index = 20
 layout_mode = 3
 anchors_preset = 0
@@ -43,7 +41,7 @@ offset_bottom = 630.0
 scale = Vector2(0.25, 0.25)
 mouse_filter = 2
 
-[node name="MenuStateTitle" type="RichTextLabel" parent="TestCamera/HudRoot"]
+[node name="MenuStateTitle" type="RichTextLabel" parent="TestCamera/HudRoot" unique_id=1345542575]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -58,7 +56,7 @@ theme_override_font_sizes/mono_font_size = 32
 bbcode_enabled = true
 text = "[center]Menu State Title[/center]"
 
-[node name="ActionButtonsHFlow" type="HFlowContainer" parent="TestCamera/HudRoot"]
+[node name="ActionButtonsHFlow" type="HFlowContainer" parent="TestCamera/HudRoot" unique_id=1172263829]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -70,14 +68,14 @@ grow_vertical = 2
 mouse_filter = 2
 alignment = 1
 
-[node name="DialogueItemsTabContainer" type="TabContainer" parent="TestCamera/HudRoot"]
+[node name="DialogueItemsTabContainer" type="TabContainer" parent="TestCamera/HudRoot" unique_id=1706958587]
 visible = false
 layout_mode = 0
 offset_top = 80.0
 offset_right = 720.0
 offset_bottom = 468.0
 
-[node name="EntrySettings" type="Control" parent="TestCamera/HudRoot"]
+[node name="EntrySettings" type="Control" parent="TestCamera/HudRoot" unique_id=468514959]
 visible = false
 anchors_preset = 0
 offset_left = 720.0
@@ -86,14 +84,14 @@ offset_right = 1280.0
 offset_bottom = 468.0
 mouse_filter = 2
 
-[node name="SelectForChoiceControl" type="Control" parent="TestCamera/HudRoot/EntrySettings"]
+[node name="SelectForChoiceControl" type="Control" parent="TestCamera/HudRoot/EntrySettings" unique_id=1358196134]
 visible = false
 anchors_preset = 0
 offset_right = 420.0
 offset_bottom = 32.0
 mouse_filter = 2
 
-[node name="ControlLabel" type="RichTextLabel" parent="TestCamera/HudRoot/EntrySettings/SelectForChoiceControl"]
+[node name="ControlLabel" type="RichTextLabel" parent="TestCamera/HudRoot/EntrySettings/SelectForChoiceControl" unique_id=1136214541]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -111,7 +109,7 @@ theme_override_font_sizes/italics_font_size = 16
 theme_override_font_sizes/mono_font_size = 16
 text = "Select For Choice?"
 
-[node name="SelectForChoiceButton" parent="TestCamera/HudRoot/EntrySettings/SelectForChoiceControl" instance=ExtResource("5_3xu4k")]
+[node name="SelectForChoiceButton" parent="TestCamera/HudRoot/EntrySettings/SelectForChoiceControl" unique_id=361064821 instance=ExtResource("5_3xu4k")]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -125,7 +123,7 @@ grow_horizontal = 0
 grow_vertical = 2
 text = "Select"
 
-[node name="InteractableSpeakerControl" type="Control" parent="TestCamera/HudRoot/EntrySettings"]
+[node name="InteractableSpeakerControl" type="Control" parent="TestCamera/HudRoot/EntrySettings" unique_id=1655453902]
 visible = false
 anchors_preset = 0
 offset_top = 32.0
@@ -133,7 +131,7 @@ offset_right = 420.0
 offset_bottom = 64.0
 mouse_filter = 2
 
-[node name="ControlLabel" type="RichTextLabel" parent="TestCamera/HudRoot/EntrySettings/InteractableSpeakerControl"]
+[node name="ControlLabel" type="RichTextLabel" parent="TestCamera/HudRoot/EntrySettings/InteractableSpeakerControl" unique_id=267646597]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -151,7 +149,7 @@ theme_override_font_sizes/italics_font_size = 16
 theme_override_font_sizes/mono_font_size = 16
 text = "Interactable: Speaker"
 
-[node name="InteractableSpeaker" type="LineEdit" parent="TestCamera/HudRoot/EntrySettings/InteractableSpeakerControl"]
+[node name="InteractableSpeaker" type="LineEdit" parent="TestCamera/HudRoot/EntrySettings/InteractableSpeakerControl" unique_id=83307169]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -165,14 +163,14 @@ grow_horizontal = 0
 grow_vertical = 2
 placeholder_text = "Required"
 
-[node name="EntryIdControl" type="Control" parent="TestCamera/HudRoot/EntrySettings"]
+[node name="EntryIdControl" type="Control" parent="TestCamera/HudRoot/EntrySettings" unique_id=414128224]
 anchors_preset = 0
 offset_top = 64.0
 offset_right = 420.0
 offset_bottom = 96.0
 mouse_filter = 2
 
-[node name="ControlLabel" type="RichTextLabel" parent="TestCamera/HudRoot/EntrySettings/EntryIdControl"]
+[node name="ControlLabel" type="RichTextLabel" parent="TestCamera/HudRoot/EntrySettings/EntryIdControl" unique_id=1285440423]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -190,7 +188,7 @@ theme_override_font_sizes/italics_font_size = 16
 theme_override_font_sizes/mono_font_size = 16
 text = "Entry ID"
 
-[node name="EntryId" type="LineEdit" parent="TestCamera/HudRoot/EntrySettings/EntryIdControl"]
+[node name="EntryId" type="LineEdit" parent="TestCamera/HudRoot/EntrySettings/EntryIdControl" unique_id=1487356465]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -204,14 +202,14 @@ grow_horizontal = 0
 grow_vertical = 2
 placeholder_text = "(optional)"
 
-[node name="ClosesDialogueControl" type="Control" parent="TestCamera/HudRoot/EntrySettings"]
+[node name="ClosesDialogueControl" type="Control" parent="TestCamera/HudRoot/EntrySettings" unique_id=1887781835]
 anchors_preset = 0
 offset_top = 100.0
 offset_right = 420.0
 offset_bottom = 132.0
 mouse_filter = 2
 
-[node name="ControlLabel" type="RichTextLabel" parent="TestCamera/HudRoot/EntrySettings/ClosesDialogueControl"]
+[node name="ControlLabel" type="RichTextLabel" parent="TestCamera/HudRoot/EntrySettings/ClosesDialogueControl" unique_id=115303536]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -229,7 +227,7 @@ theme_override_font_sizes/italics_font_size = 16
 theme_override_font_sizes/mono_font_size = 16
 text = "Closes Dialogue"
 
-[node name="ClosesDialogue" parent="TestCamera/HudRoot/EntrySettings/ClosesDialogueControl" instance=ExtResource("7_i5rnn")]
+[node name="ClosesDialogue" parent="TestCamera/HudRoot/EntrySettings/ClosesDialogueControl" unique_id=1665423698 instance=ExtResource("7_i5rnn")]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -242,14 +240,14 @@ offset_bottom = 12.0
 grow_horizontal = 0
 grow_vertical = 2
 
-[node name="GivesQuestControl" type="Control" parent="TestCamera/HudRoot/EntrySettings"]
+[node name="GivesQuestControl" type="Control" parent="TestCamera/HudRoot/EntrySettings" unique_id=1740620797]
 anchors_preset = 0
 offset_top = 132.0
 offset_right = 420.0
 offset_bottom = 164.0
 mouse_filter = 2
 
-[node name="ControlLabel" type="RichTextLabel" parent="TestCamera/HudRoot/EntrySettings/GivesQuestControl"]
+[node name="ControlLabel" type="RichTextLabel" parent="TestCamera/HudRoot/EntrySettings/GivesQuestControl" unique_id=1890498314]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -267,7 +265,7 @@ theme_override_font_sizes/italics_font_size = 16
 theme_override_font_sizes/mono_font_size = 16
 text = "Gives Quest"
 
-[node name="GivesQuestButton" parent="TestCamera/HudRoot/EntrySettings/GivesQuestControl" instance=ExtResource("5_3xu4k")]
+[node name="GivesQuestButton" parent="TestCamera/HudRoot/EntrySettings/GivesQuestControl" unique_id=1740653679 instance=ExtResource("5_3xu4k")]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -281,14 +279,14 @@ grow_horizontal = 0
 grow_vertical = 2
 text = "(No Quest)"
 
-[node name="FullyHealsControl" type="Control" parent="TestCamera/HudRoot/EntrySettings"]
+[node name="FullyHealsControl" type="Control" parent="TestCamera/HudRoot/EntrySettings" unique_id=1608563713]
 anchors_preset = 0
 offset_top = 168.0
 offset_right = 420.0
 offset_bottom = 200.0
 mouse_filter = 2
 
-[node name="ControlLabel" type="RichTextLabel" parent="TestCamera/HudRoot/EntrySettings/FullyHealsControl"]
+[node name="ControlLabel" type="RichTextLabel" parent="TestCamera/HudRoot/EntrySettings/FullyHealsControl" unique_id=1760685267]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -306,7 +304,7 @@ theme_override_font_sizes/italics_font_size = 16
 theme_override_font_sizes/mono_font_size = 16
 text = "Fully Heals Player"
 
-[node name="FullyHeals" parent="TestCamera/HudRoot/EntrySettings/FullyHealsControl" instance=ExtResource("7_i5rnn")]
+[node name="FullyHeals" parent="TestCamera/HudRoot/EntrySettings/FullyHealsControl" unique_id=674457717 instance=ExtResource("7_i5rnn")]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -319,11 +317,11 @@ offset_bottom = 12.0
 grow_horizontal = 0
 grow_vertical = 2
 
-[node name="DialogueChoicesEditor" parent="TestCamera/HudRoot" instance=ExtResource("5_jlx2h")]
+[node name="DialogueChoicesEditor" parent="TestCamera/HudRoot" unique_id=1193421312 instance=ExtResource("5_jlx2h")]
 visible = false
 layout_mode = 1
 
-[node name="EntryQuestPicker" parent="TestCamera/HudRoot" instance=ExtResource("7_qy48t")]
+[node name="EntryQuestPicker" parent="TestCamera/HudRoot" unique_id=29276165 instance=ExtResource("7_qy48t")]
 visible = false
 layout_mode = 1
 
