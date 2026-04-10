@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="Combatant" format=3 uid="uid://bgkw22bxemg7v"]
+
+[ext_resource type="Script" uid="uid://c8dxuthm1qd7s" path="res://scripts/battle/combatant/stats.gd" id="1_3xhtg"]
+[ext_resource type="Resource" uid="uid://bspemhmto6qrf" path="res://gamedata/combatants/stargazer_warlock/stargazer_warlock_ai.tres" id="1_il137"]
+[ext_resource type="Resource" uid="uid://47gxprxf6hm8" path="res://gamedata/combatants/stargazer_warlock/stargazer_warlock_rewards.tres" id="2_1adwm"]
+[ext_resource type="Script" uid="uid://biq3088m28kr2" path="res://scripts/battle/combatant/rune.gd" id="2_b0jnw"]
+[ext_resource type="Script" uid="uid://dyckeornewpwi" path="res://scripts/battle/combatant.gd" id="3_uvvjg"]
+[ext_resource type="Resource" uid="uid://b0s34ix71ymg1" path="res://gamedata/combatants/stargazer_warlock/stargazer_warlock_sprite.tres" id="4_b0jnw"]
+[ext_resource type="Resource" uid="uid://c8nupw0ie4tix" path="res://gamedata/combatants/stargazer_warlock/stagazer_warlock_evolutions.tres" id="4_xwb1f"]
+[ext_resource type="Resource" uid="uid://d3fmv8ok0mf54" path="res://gamedata/combatants/stargazer_warlock/stargazer_warlock_effectiveness.tres" id="5_7j26p"]
+[ext_resource type="Script" uid="uid://dx4lnh4driy7a" path="res://scripts/battle/combatant/move.gd" id="5_uvvjg"]
+[ext_resource type="Resource" uid="uid://cux8pabwxan1o" path="res://gamedata/combatants/stargazer_warlock/stargazer_warlock_movepool.tres" id="5_ypb25"]
+[ext_resource type="Resource" uid="uid://bh0bi0w7tmymv" path="res://gamedata/combatants/stargazer_warlock/stargazer_warlock_stat_alloc_strategy.tres" id="9_ej11h"]
+[ext_resource type="Resource" uid="uid://btxik22g77pfp" path="res://gamedata/combatants/stargazer_warlock/stargazer_warlock_stat_growth.tres" id="12_5gh1f"]
+[ext_resource type="Resource" uid="uid://c188huhy5h8p6" path="res://gamedata/combatants/stargazer_warlock/stargazer_warlock_equipment.tres" id="13_ygdwy"]
+
+[sub_resource type="Resource" id="Resource_ypb25"]
+script = ExtResource("1_3xhtg")
+displayName = "The Stargazer"
+saveName = "stargazer_warlock"
+statGrowth = ExtResource("12_5gh1f")
+movepool = ExtResource("5_ypb25")
+metadata/_custom_type_script = "uid://c8dxuthm1qd7s"
+
+[resource]
+script = ExtResource("3_uvvjg")
+sprite = ExtResource("4_b0jnw")
+stats = SubResource("Resource_ypb25")
+evolutions = ExtResource("4_xwb1f")
+ai = ExtResource("1_il137")
+moveEffectiveness = ExtResource("5_7j26p")
+weightedEquipment = ExtResource("13_ygdwy")
+dropTable = ExtResource("2_1adwm")
+statAllocationStrategy = ExtResource("9_ej11h")
+metadata/_custom_type_script = "uid://dyckeornewpwi"

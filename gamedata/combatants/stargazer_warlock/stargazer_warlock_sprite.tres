@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="CombatantSprite" format=3 uid="uid://b0s34ix71ymg1"]
+
+[ext_resource type="Resource" uid="uid://c3ieup4u8fj5" path="res://gamedata/combatants/stargazer_warlock/stargazer_warlock_overworld.tres" id="1_7j8bq"]
+[ext_resource type="Script" uid="uid://70gbsrstamsf" path="res://scripts/battle/combatant/combatant_sprite.gd" id="1_iksy5"]
+[ext_resource type="SpriteFrames" uid="uid://diwgg48f5d5va" path="res://graphics/animations/a_stargazer_warlock.tres" id="3_4ici0"]
+
+[resource]
+script = ExtResource("1_iksy5")
+spriteFrames = ExtResource("3_4ici0")
+combatantOverworld = ExtResource("1_7j8bq")
+feetPosition = Vector2(8, 15)
+headPosition = Vector2(9, 5)
+spriteFacesRight = true
+attackPhysStartMoveFrame = 2
+attackAffinityArrivalFrame = 3
+attackMagicArrivalFrame = 3
+attackPhysArrivalFrame = 4
+attackAffinityImpactFrame = 4
+attackMagicImpactFrame = 4
+attackPhysImpactFrame = 5
+metadata/_custom_type_script = "uid://70gbsrstamsf"

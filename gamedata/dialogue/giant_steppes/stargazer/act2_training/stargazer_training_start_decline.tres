@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="DialogueEntry" format=3 uid="uid://cilo8sp0jcm1o"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_23u6y"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_8wdnb"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_215vx"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_215vx"]
+
+[sub_resource type="Resource" id="Resource_qhvgw"]
+script = ExtResource("1_23u6y")
+lines = Array[String](["Return once you are prepared to duel."])
+animation = "talk"
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[resource]
+script = ExtResource("3_215vx")
+items = Array[ExtResource("1_23u6y")]([SubResource("Resource_qhvgw")])
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"

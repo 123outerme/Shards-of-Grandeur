@@ -1,0 +1,67 @@
+[gd_resource type="Resource" script_class="CombatantAi" format=3 uid="uid://bspemhmto6qrf"]
+
+[ext_resource type="Script" uid="uid://dflemol3c36f5" path="res://scripts/battle/combatant/abstract_combatant_ai_layer.gd" id="1_42yu1"]
+[ext_resource type="Script" uid="uid://w2owehn7fmot" path="res://scripts/battle/combatant/combatant_ai.gd" id="2_c1bwe"]
+[ext_resource type="Script" uid="uid://vxl3qi4y0tbk" path="res://scripts/battle/combatant/ai_layers/damage_layer.gd" id="2_xx6xb"]
+[ext_resource type="Script" uid="uid://bt3pb5c4p23hj" path="res://scripts/battle/combatant/combatant_ai_layer_base.gd" id="3_dgw3i"]
+[ext_resource type="Script" uid="uid://0yxyfr70qvwu" path="res://scripts/battle/combatant/ai_layers/aggro_layer.gd" id="4_4rxea"]
+[ext_resource type="Script" uid="uid://dw68jtuc0bxvn" path="res://scripts/battle/combatant/ai_layers/orbs_layer.gd" id="5_4cq6s"]
+[ext_resource type="Script" uid="uid://ocu7mpk38fmc" path="res://scripts/battle/combatant/ai_layers/rune_layer.gd" id="6_1dyuu"]
+[ext_resource type="Script" uid="uid://isq1ycq00u4s" path="res://scripts/battle/combatant/ai_layers/buff_layer.gd" id="7_q032n"]
+[ext_resource type="Script" uid="uid://0ddrq70do5nq" path="res://scripts/battle/combatant/ai_layers/status_layer.gd" id="8_5y7mh"]
+[ext_resource type="Script" uid="uid://blh5vf7fjpy88" path="res://scripts/battle/combatant/ai_layers/debuff_layer.gd" id="9_stg0s"]
+[ext_resource type="Script" uid="uid://b1f1xty1kium3" path="res://scripts/battle/combatant/ai_layers/signature_layer.gd" id="10_4fx8n"]
+[ext_resource type="Script" uid="uid://dim2s6pbuqjth" path="res://scripts/battle/combatant/ai_layers/random_layer.gd" id="11_4cuce"]
+
+[sub_resource type="Resource" id="Resource_5krpc"]
+script = ExtResource("4_4rxea")
+aggroStrategy = 2
+weight = 0.35
+metadata/_custom_type_script = "uid://0yxyfr70qvwu"
+
+[sub_resource type="Resource" id="Resource_7sl37"]
+script = ExtResource("2_xx6xb")
+subLayers = Array[ExtResource("3_dgw3i")]([SubResource("Resource_5krpc")])
+weight = 0.7
+metadata/_custom_type_script = "uid://vxl3qi4y0tbk"
+
+[sub_resource type="Resource" id="Resource_rul4b"]
+script = ExtResource("5_4cq6s")
+weight = 0.55
+metadata/_custom_type_script = "uid://dw68jtuc0bxvn"
+
+[sub_resource type="Resource" id="Resource_f60sa"]
+script = ExtResource("6_1dyuu")
+weight = 0.4
+metadata/_custom_type_script = "uid://ocu7mpk38fmc"
+
+[sub_resource type="Resource" id="Resource_c1tp8"]
+script = ExtResource("7_q032n")
+weight = 0.35
+metadata/_custom_type_script = "uid://isq1ycq00u4s"
+
+[sub_resource type="Resource" id="Resource_efpyd"]
+script = ExtResource("8_5y7mh")
+weight = 0.3
+metadata/_custom_type_script = "uid://0ddrq70do5nq"
+
+[sub_resource type="Resource" id="Resource_ahimx"]
+script = ExtResource("9_stg0s")
+weight = 0.2
+metadata/_custom_type_script = "uid://blh5vf7fjpy88"
+
+[sub_resource type="Resource" id="Resource_jddck"]
+script = ExtResource("10_4fx8n")
+weight = 0.3
+metadata/_custom_type_script = "uid://b1f1xty1kium3"
+
+[sub_resource type="Resource" id="Resource_3bwmh"]
+script = ExtResource("11_4cuce")
+weight = 0.2
+metadata/_custom_type_script = "uid://dim2s6pbuqjth"
+
+[resource]
+script = ExtResource("2_c1bwe")
+layers = Array[ExtResource("1_42yu1")]([SubResource("Resource_7sl37"), SubResource("Resource_rul4b"), SubResource("Resource_f60sa"), SubResource("Resource_c1tp8"), SubResource("Resource_efpyd"), SubResource("Resource_ahimx"), SubResource("Resource_jddck"), SubResource("Resource_3bwmh")])
+orbSpendStrategy = 1
+metadata/_custom_type_script = "uid://w2owehn7fmot"

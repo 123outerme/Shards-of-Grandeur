@@ -1,4 +1,4 @@
-[gd_scene load_steps=99 format=3 uid="uid://b30y3m18vx5o"]
+[gd_scene format=3 uid="uid://b30y3m18vx5o"]
 
 [ext_resource type="Script" uid="uid://dhmojhkjsk61d" path="res://prefabs/test/battle/creature_showcaser.gd" id="1_k85it"]
 [ext_resource type="PackedScene" uid="uid://dkqxsnv4nyxwj" path="res://prefabs/battle/battle_maps/grandstone_quarry_battle_map.tscn" id="2_u5hre"]
@@ -207,7 +207,7 @@ script = ExtResource("37_utb7i")
 categories = Array[ExtResource("36_gp340")]([SubResource("Resource_yikgk"), SubResource("Resource_55col"), SubResource("Resource_omihv")])
 metadata/_custom_type_script = "uid://b1w8kitcsyx7d"
 
-[node name="CreatureShowcaser" type="Node2D" node_paths=PackedStringArray("globalMarker")]
+[node name="CreatureShowcaser" type="Node2D" unique_id=1167874986 node_paths=PackedStringArray("globalMarker")]
 script = ExtResource("1_k85it")
 bgMap = ExtResource("2_u5hre")
 encounter = SubResource("Resource_02djh")
@@ -218,11 +218,11 @@ playerStatAllocStrat = SubResource("Resource_7jsjh")
 minionOrbs = 1
 globalMarker = NodePath("BattleAnimationManager/GlobalMarker")
 
-[node name="TileMapParent" type="Node2D" parent="."]
+[node name="TileMapParent" type="Node2D" parent="." unique_id=1852846772]
 
-[node name="BattleAnimationManager" parent="." instance=ExtResource("2_ud7cv")]
+[node name="BattleAnimationManager" parent="." unique_id=1538016684 instance=ExtResource("2_ud7cv")]
 
-[node name="BattleCam" type="Camera2D" parent="." node_paths=PackedStringArray("battleController")]
+[node name="BattleCam" type="Camera2D" parent="." unique_id=1468296171 node_paths=PackedStringArray("battleController")]
 z_index = 2
 offset = Vector2(0, -8)
 zoom = Vector2(4, 4)
@@ -230,10 +230,10 @@ script = ExtResource("3_53ny3")
 menuState = 8
 battleController = NodePath("..")
 
-[node name="BattleTextBox" type="Node2D" parent="BattleCam"]
+[node name="BattleTextBox" type="Node2D" parent="BattleCam" unique_id=1897799992]
 z_index = 3
 
-[node name="TextContainer" type="PanelContainer" parent="BattleCam/BattleTextBox"]
+[node name="TextContainer" type="PanelContainer" parent="BattleCam/BattleTextBox" unique_id=366666587]
 offset_left = -160.0
 offset_top = 20.0
 offset_right = 1120.0
@@ -242,7 +242,7 @@ scale = Vector2(0.25, 0.25)
 theme = ExtResource("4_lutwl")
 theme_override_styles/panel = ExtResource("5_wuy8n")
 
-[node name="MarginContainer" type="MarginContainer" parent="BattleCam/BattleTextBox/TextContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="BattleCam/BattleTextBox/TextContainer" unique_id=1250897128]
 layout_mode = 2
 theme = ExtResource("6_02djh")
 theme_override_constants/margin_left = 8
@@ -251,13 +251,13 @@ theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 0
 metadata/_edit_lock_ = true
 
-[node name="Summon" type="Control" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer" node_paths=PackedStringArray("battleUI")]
+[node name="Summon" type="Control" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer" unique_id=1785605185 node_paths=PackedStringArray("battleUI")]
 visible = false
 layout_mode = 2
 script = ExtResource("7_hvieh")
 battleUI = NodePath("../../../..")
 
-[node name="SummonPrompt" type="RichTextLabel" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Summon"]
+[node name="SummonPrompt" type="RichTextLabel" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Summon" unique_id=809929247]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.498
@@ -271,7 +271,7 @@ bbcode_enabled = true
 text = "[center]Would you like to summon a minion?[/center]"
 fit_content = true
 
-[node name="YesSummon" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Summon" instance=ExtResource("8_f34sn")]
+[node name="YesSummon" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Summon" unique_id=1536804444 instance=ExtResource("8_f34sn")]
 custom_minimum_size = Vector2(80, 50)
 layout_mode = 1
 anchors_preset = 8
@@ -288,7 +288,7 @@ grow_vertical = 2
 focus_neighbor_top = NodePath("../../../../../UIPanels/FlowOfBattle/ToggleFobButton")
 text = "Summon"
 
-[node name="NoSummon" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Summon" instance=ExtResource("8_f34sn")]
+[node name="NoSummon" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Summon" unique_id=44592164 instance=ExtResource("8_f34sn")]
 custom_minimum_size = Vector2(80, 50)
 layout_mode = 1
 anchors_preset = 8
@@ -305,14 +305,14 @@ grow_vertical = 2
 focus_neighbor_top = NodePath("../../../../../UIPanels/FlowOfBattle/ToggleFobButton")
 text = "No"
 
-[node name="AllCommands" type="Control" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer" node_paths=PackedStringArray("battleUI")]
+[node name="AllCommands" type="Control" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer" unique_id=862120894 node_paths=PackedStringArray("battleUI")]
 visible = false
 layout_mode = 2
 script = ExtResource("9_jdnii")
 battleUI = NodePath("../../../..")
 surgeIcon = ExtResource("10_gkbrp")
 
-[node name="CommandLabel" type="RichTextLabel" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/AllCommands"]
+[node name="CommandLabel" type="RichTextLabel" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/AllCommands" unique_id=1390639623]
 clip_contents = false
 layout_mode = 1
 anchors_preset = 8
@@ -330,7 +330,7 @@ bbcode_enabled = true
 text = "[center]Command Player Name Here[/center]"
 fit_content = true
 
-[node name="ChargeButton" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/AllCommands" instance=ExtResource("8_f34sn")]
+[node name="ChargeButton" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/AllCommands" unique_id=830855239 instance=ExtResource("8_f34sn")]
 custom_minimum_size = Vector2(180, 51)
 layout_mode = 1
 anchors_preset = 8
@@ -350,7 +350,7 @@ text = "Charge Moves"
 icon_alignment = 1
 expand_icon = true
 
-[node name="InventoryButton" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/AllCommands" instance=ExtResource("8_f34sn")]
+[node name="InventoryButton" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/AllCommands" unique_id=731370688 instance=ExtResource("8_f34sn")]
 custom_minimum_size = Vector2(180, 51)
 layout_mode = 1
 anchors_preset = 8
@@ -368,7 +368,7 @@ focus_neighbor_top = NodePath("../../../../../UIPanels/FlowOfBattle/ToggleFobBut
 theme_override_font_sizes/font_size = 20
 text = "Inventory"
 
-[node name="SurgeButton" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/AllCommands" instance=ExtResource("8_f34sn")]
+[node name="SurgeButton" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/AllCommands" unique_id=155998592 instance=ExtResource("8_f34sn")]
 custom_minimum_size = Vector2(180, 51)
 layout_mode = 1
 anchors_preset = 8
@@ -388,7 +388,7 @@ icon = ExtResource("10_gkbrp")
 icon_alignment = 1
 expand_icon = true
 
-[node name="EscapeButton" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/AllCommands" instance=ExtResource("8_f34sn")]
+[node name="EscapeButton" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/AllCommands" unique_id=1696774340 instance=ExtResource("8_f34sn")]
 custom_minimum_size = Vector2(180, 51)
 layout_mode = 1
 anchors_preset = 8
@@ -405,7 +405,7 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 20
 text = "Escape"
 
-[node name="BackToPlayerButton" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/AllCommands" instance=ExtResource("8_f34sn")]
+[node name="BackToPlayerButton" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/AllCommands" unique_id=341140001 instance=ExtResource("8_f34sn")]
 custom_minimum_size = Vector2(220, 0)
 layout_mode = 1
 anchors_preset = 7
@@ -423,13 +423,13 @@ theme_override_font_sizes/font_size = 20
 text = "Back to
 Player Command"
 
-[node name="Moves" type="Control" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer" node_paths=PackedStringArray("battleUI")]
+[node name="Moves" type="Control" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer" unique_id=65926362 node_paths=PackedStringArray("battleUI")]
 visible = false
 layout_mode = 2
 script = ExtResource("11_254jr")
 battleUI = NodePath("../../../..")
 
-[node name="MoveButton1" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Moves" instance=ExtResource("8_f34sn")]
+[node name="MoveButton1" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Moves" unique_id=509120399 instance=ExtResource("8_f34sn")]
 custom_minimum_size = Vector2(360, 50)
 layout_mode = 1
 anchors_preset = 8
@@ -446,7 +446,7 @@ grow_vertical = 2
 focus_neighbor_top = NodePath("../../../../../UIPanels/FlowOfBattle/ToggleFobButton")
 text = "Move Name Goes Here (-10 Orbs)"
 
-[node name="MoveButton2" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Moves" instance=ExtResource("8_f34sn")]
+[node name="MoveButton2" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Moves" unique_id=1046139263 instance=ExtResource("8_f34sn")]
 custom_minimum_size = Vector2(360, 50)
 layout_mode = 1
 anchors_preset = 8
@@ -463,7 +463,7 @@ grow_vertical = 2
 focus_neighbor_top = NodePath("../../../../../UIPanels/FlowOfBattle/ToggleFobButton")
 text = "-----"
 
-[node name="MoveButton3" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Moves" instance=ExtResource("8_f34sn")]
+[node name="MoveButton3" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Moves" unique_id=410143292 instance=ExtResource("8_f34sn")]
 custom_minimum_size = Vector2(360, 50)
 layout_mode = 1
 anchors_preset = 8
@@ -479,7 +479,7 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "-----"
 
-[node name="MoveButton4" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Moves" instance=ExtResource("8_f34sn")]
+[node name="MoveButton4" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Moves" unique_id=69293977 instance=ExtResource("8_f34sn")]
 custom_minimum_size = Vector2(360, 50)
 layout_mode = 1
 anchors_preset = 8
@@ -495,7 +495,7 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "-----"
 
-[node name="BackButton" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Moves" instance=ExtResource("8_f34sn")]
+[node name="BackButton" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Moves" unique_id=2009669787 instance=ExtResource("8_f34sn")]
 custom_minimum_size = Vector2(80, 60)
 layout_mode = 1
 anchors_preset = 8
@@ -511,7 +511,7 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "Back"
 
-[node name="Move1InfoButton" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Moves" instance=ExtResource("8_f34sn")]
+[node name="Move1InfoButton" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Moves" unique_id=1741658625 instance=ExtResource("8_f34sn")]
 custom_minimum_size = Vector2(16, 16)
 layout_mode = 0
 offset_left = 214.0
@@ -522,7 +522,7 @@ scale = Vector2(2, 2)
 icon = ExtResource("12_cj6x2")
 icon_alignment = 1
 
-[node name="Move2InfoButton" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Moves" instance=ExtResource("8_f34sn")]
+[node name="Move2InfoButton" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Moves" unique_id=1095133901 instance=ExtResource("8_f34sn")]
 custom_minimum_size = Vector2(16, 16)
 layout_mode = 0
 offset_left = 1006.0
@@ -533,7 +533,7 @@ scale = Vector2(2, 2)
 icon = ExtResource("12_cj6x2")
 icon_alignment = 1
 
-[node name="Move3InfoButton" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Moves" instance=ExtResource("8_f34sn")]
+[node name="Move3InfoButton" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Moves" unique_id=1301900911 instance=ExtResource("8_f34sn")]
 custom_minimum_size = Vector2(16, 16)
 layout_mode = 0
 offset_left = 214.0
@@ -544,7 +544,7 @@ scale = Vector2(2, 2)
 icon = ExtResource("12_cj6x2")
 icon_alignment = 1
 
-[node name="Move4InfoButton" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Moves" instance=ExtResource("8_f34sn")]
+[node name="Move4InfoButton" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Moves" unique_id=1927759122 instance=ExtResource("8_f34sn")]
 custom_minimum_size = Vector2(16, 16)
 layout_mode = 0
 offset_left = 1006.0
@@ -555,13 +555,13 @@ scale = Vector2(2, 2)
 icon = ExtResource("12_cj6x2")
 icon_alignment = 1
 
-[node name="Targets" type="Control" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer" node_paths=PackedStringArray("battleUI")]
+[node name="Targets" type="Control" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer" unique_id=2048274593 node_paths=PackedStringArray("battleUI")]
 visible = false
 layout_mode = 2
 script = ExtResource("13_8p1nk")
 battleUI = NodePath("../../../..")
 
-[node name="CommandText" type="RichTextLabel" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Targets"]
+[node name="CommandText" type="RichTextLabel" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Targets" unique_id=393602283]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -576,7 +576,7 @@ bbcode_enabled = true
 text = "[center]Combatant Name Here will use Move or Item Name Goes Here.[/center]"
 fit_content = true
 
-[node name="TargetsLabel" type="RichTextLabel" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Targets"]
+[node name="TargetsLabel" type="RichTextLabel" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Targets" unique_id=856308040]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -593,7 +593,7 @@ bbcode_enabled = true
 text = "[center]Targeting:[/center]"
 fit_content = true
 
-[node name="TargetsListing" type="RichTextLabel" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Targets"]
+[node name="TargetsListing" type="RichTextLabel" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Targets" unique_id=1353579604]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -615,7 +615,7 @@ bbcode_enabled = true
 text = "[center]Player Name Here, Minion Name Here, Enemy 1 Name, Enemy 2 Name, Enemy 3 Name[/center]"
 fit_content = true
 
-[node name="EffectDesc" type="RichTextLabel" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Targets"]
+[node name="EffectDesc" type="RichTextLabel" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Targets" unique_id=181321635]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -641,7 +641,7 @@ text = "[center]1
 6
 7[/center]"
 
-[node name="ConfirmButton" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Targets" instance=ExtResource("8_f34sn")]
+[node name="ConfirmButton" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Targets" unique_id=2112944725 instance=ExtResource("8_f34sn")]
 custom_minimum_size = Vector2(100, 50)
 layout_mode = 1
 anchors_preset = 8
@@ -657,7 +657,7 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "Confirm"
 
-[node name="BackButton" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Targets" instance=ExtResource("8_f34sn")]
+[node name="BackButton" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Targets" unique_id=1737275220 instance=ExtResource("8_f34sn")]
 custom_minimum_size = Vector2(80, 50)
 layout_mode = 1
 anchors_preset = 8
@@ -673,13 +673,13 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "Back"
 
-[node name="Surge" type="Control" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer" node_paths=PackedStringArray("battleUI")]
+[node name="Surge" type="Control" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer" unique_id=2120777559 node_paths=PackedStringArray("battleUI")]
 visible = false
 layout_mode = 2
 script = ExtResource("14_qifex")
 battleUI = NodePath("../../../..")
 
-[node name="OrbDisplay" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Surge" instance=ExtResource("15_vdlc4")]
+[node name="OrbDisplay" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Surge" unique_id=889029960 instance=ExtResource("15_vdlc4")]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -697,7 +697,7 @@ alignment = 1
 readOnly = false
 particlesMode = 1
 
-[node name="ConfirmButton" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Surge" instance=ExtResource("8_f34sn")]
+[node name="ConfirmButton" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Surge" unique_id=812324718 instance=ExtResource("8_f34sn")]
 custom_minimum_size = Vector2(100, 50)
 layout_mode = 1
 anchors_preset = 8
@@ -713,7 +713,7 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "Confirm"
 
-[node name="BackButton" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Surge" instance=ExtResource("8_f34sn")]
+[node name="BackButton" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Surge" unique_id=1683744491 instance=ExtResource("8_f34sn")]
 custom_minimum_size = Vector2(80, 50)
 layout_mode = 1
 anchors_preset = 8
@@ -729,7 +729,7 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "Back"
 
-[node name="CommandText" type="RichTextLabel" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Surge"]
+[node name="CommandText" type="RichTextLabel" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Surge" unique_id=1642709728]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -740,7 +740,7 @@ bbcode_enabled = true
 text = "[center]Spend Orbs For Surge:[/center]"
 fit_content = true
 
-[node name="SurgeChangesText" type="RichTextLabel" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Surge"]
+[node name="SurgeChangesText" type="RichTextLabel" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Surge" unique_id=491718660]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -766,12 +766,12 @@ text = "[center]1
 6
 7[/center]"
 
-[node name="Results" type="Control" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer" node_paths=PackedStringArray("battleUI")]
+[node name="Results" type="Control" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer" unique_id=1585959103 node_paths=PackedStringArray("battleUI")]
 layout_mode = 2
 script = ExtResource("16_phs7o")
 battleUI = NodePath("../../../..")
 
-[node name="RichTextLabelScroller" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Results" node_paths=PackedStringArray("label", "bailoutFocusControl") instance=ExtResource("17_26y4l")]
+[node name="RichTextLabelScroller" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Results" unique_id=105215545 node_paths=PackedStringArray("label", "bailoutFocusControl") instance=ExtResource("17_26y4l")]
 layout_mode = 1
 offset_right = 2.0
 offset_bottom = -74.0
@@ -779,7 +779,7 @@ label = NodePath("../TextBoxText")
 scrollLinesApprox = 3.0
 bailoutFocusControl = NodePath("../OkButton")
 
-[node name="TextBoxText" type="RichTextLabel" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Results"]
+[node name="TextBoxText" type="RichTextLabel" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Results" unique_id=641755725]
 layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 0.696
@@ -790,7 +790,7 @@ text = "Combatant Name Here Charged With Move Name Here, gaining 10 [img=32x32]r
 Combatant Name Here dealt 10,000 super-effective Lightning damage to self, Combatant Name Here, Combatant Name Here, Combatant Name Here, and Combatant Name Here, afflicting Overwhelming Interception on self, Combatant Name Here, Combatant Name Here, Combatant Name Here, and Combatant Name Here! Combatant Name Here intercepted 10,000 super-effective Lightning damage! Combatant Name Here intercepted 10,000 super-effective Lightning damage! Combatant Name Here intercepted 10,000 super-effective Lightning damage! Combatant Name Here intercepted 10,000 super-effective Lightning damage! Combatant Name Here intercepted 10,000 super-effective Lightning damage!
 Combatant Name Here boosted self +900% Phys Atk, +900% Magic Atk, +900% Resistance, +900% Affinity, and +900% Speed, and Combatant Name Here, Combatant Name Here, Combatant Name Here, and Combatant Name Here +900% Phys Atk, +900% Magic Atk, +900% Resistance, +900% Affinity, and +900% Speed."
 
-[node name="OkButton" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Results" instance=ExtResource("8_f34sn")]
+[node name="OkButton" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Results" unique_id=1176295913 instance=ExtResource("8_f34sn")]
 custom_minimum_size = Vector2(80, 50)
 layout_mode = 1
 anchors_preset = 7
@@ -810,7 +810,7 @@ focus_neighbor_right = NodePath(".")
 focus_neighbor_bottom = NodePath(".")
 text = "OK"
 
-[node name="InitialOKButton" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Results" instance=ExtResource("8_f34sn")]
+[node name="InitialOKButton" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/Results" unique_id=967515904 instance=ExtResource("8_f34sn")]
 custom_minimum_size = Vector2(80, 50)
 layout_mode = 1
 anchors_preset = 7
@@ -830,7 +830,7 @@ focus_neighbor_right = NodePath(".")
 focus_neighbor_bottom = NodePath(".")
 text = "OK"
 
-[node name="BattleComplete" type="Control" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer" node_paths=PackedStringArray("battleUI")]
+[node name="BattleComplete" type="Control" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer" unique_id=461288263 node_paths=PackedStringArray("battleUI")]
 visible = false
 layout_mode = 2
 script = ExtResource("18_a7gfh")
@@ -838,7 +838,7 @@ battleUI = NodePath("../../../..")
 winMusic = ExtResource("19_fda74")
 loseMusic = ExtResource("20_wjcxo")
 
-[node name="RewardsVBox" type="VBoxContainer" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/BattleComplete"]
+[node name="RewardsVBox" type="VBoxContainer" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/BattleComplete" unique_id=273925645]
 custom_minimum_size = Vector2(0, 170)
 layout_mode = 1
 anchors_preset = 15
@@ -849,7 +849,7 @@ offset_bottom = -79.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="BattleWinLabel" type="RichTextLabel" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/BattleComplete"]
+[node name="BattleWinLabel" type="RichTextLabel" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/BattleComplete" unique_id=701739828]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -859,7 +859,7 @@ offset_right = 556.0
 grow_vertical = 0
 text = "You won the battle!"
 
-[node name="BattleRewardsLabel" type="RichTextLabel" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/BattleComplete"]
+[node name="BattleRewardsLabel" type="RichTextLabel" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/BattleComplete" unique_id=1689110385]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -873,7 +873,7 @@ grow_vertical = 0
 bbcode_enabled = true
 text = "[right]Battle Rewards! [/right]"
 
-[node name="BattleLoseLabel" type="RichTextLabel" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/BattleComplete"]
+[node name="BattleLoseLabel" type="RichTextLabel" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/BattleComplete" unique_id=1823979426]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -889,7 +889,7 @@ grow_vertical = 2
 bbcode_enabled = true
 text = "[center]You were defeated...[/center]"
 
-[node name="BattleEscapeLabel" type="RichTextLabel" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/BattleComplete"]
+[node name="BattleEscapeLabel" type="RichTextLabel" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/BattleComplete" unique_id=1157749659]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -905,7 +905,7 @@ grow_vertical = 2
 bbcode_enabled = true
 text = "[center]You escaped successfully![/center]"
 
-[node name="OkButton" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/BattleComplete" instance=ExtResource("8_f34sn")]
+[node name="OkButton" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/BattleComplete" unique_id=1679659374 instance=ExtResource("8_f34sn")]
 custom_minimum_size = Vector2(80, 50)
 layout_mode = 1
 anchors_preset = 7
@@ -921,14 +921,14 @@ grow_horizontal = 2
 grow_vertical = 0
 text = "OK"
 
-[node name="UIPanels" type="Node2D" parent="BattleCam" node_paths=PackedStringArray("battleUI")]
+[node name="UIPanels" type="Node2D" parent="BattleCam" unique_id=1789370425 node_paths=PackedStringArray("battleUI")]
 z_index = 11
 position = Vector2(0, -8)
 scale = Vector2(0.25, 0.25)
 script = ExtResource("21_7pwb1")
 battleUI = NodePath("..")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="BattleCam/UIPanels"]
+[node name="VBoxContainer" type="VBoxContainer" parent="BattleCam/UIPanels" unique_id=2080528806]
 custom_minimum_size = Vector2(176, 0)
 anchors_preset = 5
 anchor_left = 0.5
@@ -939,13 +939,13 @@ offset_right = 105.0
 offset_bottom = -252.0
 grow_horizontal = 2
 
-[node name="SurviveCounterPanel" type="Panel" parent="BattleCam/UIPanels/VBoxContainer"]
+[node name="SurviveCounterPanel" type="Panel" parent="BattleCam/UIPanels/VBoxContainer" unique_id=919392520]
 custom_minimum_size = Vector2(210, 44)
 layout_mode = 2
 mouse_filter = 2
 theme = ExtResource("22_cbcg6")
 
-[node name="SurviveCounter" type="RichTextLabel" parent="BattleCam/UIPanels/VBoxContainer/SurviveCounterPanel"]
+[node name="SurviveCounter" type="RichTextLabel" parent="BattleCam/UIPanels/VBoxContainer/SurviveCounterPanel" unique_id=1677217960]
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
@@ -960,14 +960,14 @@ bbcode_enabled = true
 text = "[center]Survive 999 Turns![/center]"
 fit_content = true
 
-[node name="TurnCounterPanel" type="Panel" parent="BattleCam/UIPanels/VBoxContainer"]
+[node name="TurnCounterPanel" type="Panel" parent="BattleCam/UIPanels/VBoxContainer" unique_id=115439096]
 custom_minimum_size = Vector2(176, 44)
 layout_mode = 2
 size_flags_horizontal = 4
 mouse_filter = 2
 theme_override_styles/panel = ExtResource("23_8rdwt")
 
-[node name="TurnCounter" type="RichTextLabel" parent="BattleCam/UIPanels/VBoxContainer/TurnCounterPanel"]
+[node name="TurnCounter" type="RichTextLabel" parent="BattleCam/UIPanels/VBoxContainer/TurnCounterPanel" unique_id=193387361]
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
@@ -982,14 +982,14 @@ bbcode_enabled = true
 text = "[center]Turn 9999[/center]"
 fit_content = true
 
-[node name="ButtonsBackdrop" type="Panel" parent="BattleCam/UIPanels"]
+[node name="ButtonsBackdrop" type="Panel" parent="BattleCam/UIPanels" unique_id=1511007135]
 offset_left = -632.0
 offset_top = -352.0
 offset_right = -360.0
 offset_bottom = -272.0
 mouse_filter = 2
 
-[node name="PanelsButtons" type="HBoxContainer" parent="BattleCam/UIPanels"]
+[node name="PanelsButtons" type="HBoxContainer" parent="BattleCam/UIPanels" unique_id=1284771132]
 z_index = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -1004,14 +1004,14 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 32
 
-[node name="QuestsOpenButton" parent="BattleCam/UIPanels/PanelsButtons" instance=ExtResource("8_f34sn")]
+[node name="QuestsOpenButton" parent="BattleCam/UIPanels/PanelsButtons" unique_id=1018581134 instance=ExtResource("8_f34sn")]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 icon = ExtResource("24_xjh8w")
 icon_alignment = 1
 expand_icon = true
 
-[node name="StatsOpenButton" parent="BattleCam/UIPanels/PanelsButtons" instance=ExtResource("8_f34sn")]
+[node name="StatsOpenButton" parent="BattleCam/UIPanels/PanelsButtons" unique_id=620625533 instance=ExtResource("8_f34sn")]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 focus_neighbor_left = NodePath("../QuestsOpenButton")
@@ -1020,7 +1020,7 @@ icon = ExtResource("25_dmi3s")
 icon_alignment = 1
 expand_icon = true
 
-[node name="PauseButton" parent="BattleCam/UIPanels/PanelsButtons" instance=ExtResource("8_f34sn")]
+[node name="PauseButton" parent="BattleCam/UIPanels/PanelsButtons" unique_id=1484387265 instance=ExtResource("8_f34sn")]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 focus_neighbor_left = NodePath("../StatsOpenButton")
@@ -1029,14 +1029,14 @@ icon = ExtResource("26_c73tl")
 icon_alignment = 1
 expand_icon = true
 
-[node name="FlowOfBattleBackdrop" type="Panel" parent="BattleCam/UIPanels"]
+[node name="FlowOfBattleBackdrop" type="Panel" parent="BattleCam/UIPanels" unique_id=1824020453]
 offset_left = 344.0
 offset_top = -352.0
 offset_right = 628.0
 offset_bottom = -252.0
 mouse_filter = 2
 
-[node name="FlowOfBattle" type="Control" parent="BattleCam/UIPanels" node_paths=PackedStringArray("battleController")]
+[node name="FlowOfBattle" type="Control" parent="BattleCam/UIPanels" unique_id=1864143012 node_paths=PackedStringArray("battleController")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -1048,7 +1048,7 @@ theme = ExtResource("4_lutwl")
 script = ExtResource("27_qxkce")
 battleController = NodePath("../../..")
 
-[node name="ColorRect" type="ColorRect" parent="BattleCam/UIPanels/FlowOfBattle"]
+[node name="ColorRect" type="ColorRect" parent="BattleCam/UIPanels/FlowOfBattle" unique_id=633801138]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -1063,7 +1063,7 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 0.431373)
 
-[node name="ToggleFobButton" parent="BattleCam/UIPanels/FlowOfBattle" instance=ExtResource("8_f34sn")]
+[node name="ToggleFobButton" parent="BattleCam/UIPanels/FlowOfBattle" unique_id=1278329502 instance=ExtResource("8_f34sn")]
 layout_mode = 0
 anchor_left = 1.0
 anchor_right = 1.0
@@ -1078,7 +1078,7 @@ toggle_mode = true
 text = "Read the
 Flow of Battle"
 
-[node name="TabContainer" type="TabContainer" parent="BattleCam/UIPanels/FlowOfBattle"]
+[node name="TabContainer" type="TabContainer" parent="BattleCam/UIPanels/FlowOfBattle" unique_id=1579803546]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -1093,7 +1093,7 @@ offset_bottom = 352.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="AnimatedBgPanel" parent="BattleCam/UIPanels" instance=ExtResource("30_71qgg")]
+[node name="AnimatedBgPanel" parent="BattleCam/UIPanels" unique_id=167250541 instance=ExtResource("30_71qgg")]
 visible = false
 z_index = 1
 offset_left = -640.0
@@ -1101,7 +1101,7 @@ offset_top = -360.0
 offset_right = 640.0
 offset_bottom = 360.0
 
-[node name="SummonMinionPanel" parent="BattleCam/UIPanels" instance=ExtResource("31_4jx00")]
+[node name="SummonMinionPanel" parent="BattleCam/UIPanels" unique_id=2090500626 instance=ExtResource("31_4jx00")]
 visible = false
 z_index = 1
 offset_left = -640.0
@@ -1109,29 +1109,29 @@ offset_top = -360.0
 offset_right = 640.0
 offset_bottom = 360.0
 
-[node name="InventoryPanelNode" parent="BattleCam/UIPanels" instance=ExtResource("32_0mhiy")]
+[node name="InventoryPanelNode" parent="BattleCam/UIPanels" unique_id=1321231914 instance=ExtResource("32_0mhiy")]
 visible = false
 z_index = 1
 position = Vector2(-640, -360)
 inBattle = true
 
-[node name="QuestsPanelNode" parent="BattleCam/UIPanels" instance=ExtResource("33_qpogj")]
+[node name="QuestsPanelNode" parent="BattleCam/UIPanels" unique_id=1815072464 instance=ExtResource("33_qpogj")]
 visible = false
 z_index = 1
 position = Vector2(-640, -360)
 
-[node name="StatsPanelNode" parent="BattleCam/UIPanels" instance=ExtResource("34_ljdcp")]
+[node name="StatsPanelNode" parent="BattleCam/UIPanels" unique_id=1948414077 instance=ExtResource("34_ljdcp")]
 visible = false
 z_index = 1
 position = Vector2(-640, -360)
 readOnly = true
 
-[node name="PauseMenu" parent="BattleCam/UIPanels" instance=ExtResource("35_arf2n")]
+[node name="PauseMenu" parent="BattleCam/UIPanels" unique_id=899832373 instance=ExtResource("35_arf2n")]
 visible = false
 z_index = 1
 position = Vector2(-640, -360)
 
-[node name="ItemDetailsPanel" parent="BattleCam/UIPanels" instance=ExtResource("36_vnsia")]
+[node name="ItemDetailsPanel" parent="BattleCam/UIPanels" unique_id=1420695516 instance=ExtResource("36_vnsia")]
 visible = false
 z_index = 1
 offset_left = -640.0
@@ -1139,19 +1139,19 @@ offset_top = -360.0
 offset_right = -640.0
 offset_bottom = -360.0
 
-[node name="MoveDetailsPanel" parent="BattleCam/UIPanels" instance=ExtResource("37_u5hre")]
+[node name="MoveDetailsPanel" parent="BattleCam/UIPanels" unique_id=1288364143 instance=ExtResource("37_u5hre")]
 visible = false
 offset_left = -640.0
 offset_top = -360.0
 offset_right = 640.0
 offset_bottom = 360.0
 
-[node name="TurnExecutor" type="Node" parent="." node_paths=PackedStringArray("battleController", "battleUI")]
+[node name="TurnExecutor" type="Node" parent="." unique_id=885809782 node_paths=PackedStringArray("battleController", "battleUI")]
 script = ExtResource("28_0u2ip")
 battleController = NodePath("..")
 battleUI = NodePath("../BattleCam")
 
-[node name="AudioHandler" parent="." instance=ExtResource("29_av008")]
+[node name="AudioHandler" parent="." unique_id=1515839390 instance=ExtResource("29_av008")]
 
 [connection signal="combatant_animation_complete" from="BattleAnimationManager" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/Results" method="_on_battle_animation_manager_combatant_animation_complete"]
 [connection signal="combatant_animation_start" from="BattleAnimationManager" to="BattleCam/BattleTextBox/TextContainer/MarginContainer/Results" method="_on_battle_animation_manager_combatant_animation_start"]

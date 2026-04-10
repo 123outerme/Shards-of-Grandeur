@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="PredeterminedAllocationStrategy" format=3 uid="uid://bh0bi0w7tmymv"]
+
+[ext_resource type="Script" uid="uid://dwp1xuvcmi88j" path="res://scripts/battle/combatant/stat_allocation_strategies/predetermined_allocation.gd" id="1_omatv"]
+[ext_resource type="Script" uid="uid://chtagsu3ofpvu" path="res://scripts/battle/combatant/stat_allocation_strategies/predetermined_allocation_strategy.gd" id="2_rrudq"]
+
+[sub_resource type="Resource" id="Resource_omatv"]
+script = ExtResource("1_omatv")
+allocations = Array[int]([1, 1, 2, 1, 4, 2, 1, 1, 4, 2])
+forStatPoints = 10
+metadata/_custom_type_script = "uid://dwp1xuvcmi88j"
+
+[resource]
+script = ExtResource("2_rrudq")
+allocations = Array[ExtResource("1_omatv")]([SubResource("Resource_omatv")])
+metadata/_custom_type_script = "uid://chtagsu3ofpvu"

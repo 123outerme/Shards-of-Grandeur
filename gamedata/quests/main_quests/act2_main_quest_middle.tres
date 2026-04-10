@@ -3,6 +3,9 @@
 [ext_resource type="Script" uid="uid://bnw42uegqk4wp" path="res://scripts/quests/quest.gd" id="1_b7v4m"]
 [ext_resource type="Script" uid="uid://b3j2bj1p0bkq8" path="res://scripts/quests/quest_step.gd" id="2_ex5ee"]
 [ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_e4sjh"]
+[ext_resource type="Resource" uid="uid://bsn2av18hslfm" path="res://gamedata/dialogue/giant_steppes/stargazer/act2_training/stargazer_training_start_turnin.tres" id="4_i7exl"]
+[ext_resource type="Resource" uid="uid://yxtx1p2rsb6q" path="res://gamedata/dialogue/giant_steppes/stargazer/act2_training/stargazer_spar_rematch.tres" id="5_6lwe2"]
+[ext_resource type="Resource" uid="uid://bs6wichd7ddki" path="res://gamedata/dialogue/giant_steppes/stargazer/act2_training/stargazer_spar_turnin.tres" id="6_tpfrd"]
 
 [sub_resource type="Resource" id="Resource_n5131"]
 script = ExtResource("2_ex5ee")
@@ -29,19 +32,36 @@ name = "Warlock-in-Training"
 description = "You agreed to train with the Warlocks in order to team up against Steelspire! See the Stargazer first."
 locations = Array[int]([50])
 turnInLocations = Array[int]([50])
-objectiveName = "---"
+objectiveName = "stargazer_warlock_observatory#stargazer_training_start"
+turnInNames = Array[String](["stargazer_warlock_observatory"])
 displayObjName = "The Stargazer"
 displayTurnInName = "The Stargazer"
+turnInDialogue = Array[ExtResource("3_e4sjh")]([ExtResource("4_i7exl")])
 metadata/_custom_type_script = "uid://b3j2bj1p0bkq8"
 
 [sub_resource type="Resource" id="Resource_6lwe2"]
 script = ExtResource("2_ex5ee")
-name = "TBD"
+name = "Duel of the Stars"
+description = "The Stargazer wants to test your might for himself. He has challenged you to a friendly duel!"
+locations = Array[int]([50])
+turnInLocations = Array[int]([50])
+objectiveName = "giant_steppes_observatory_battle_map"
+turnInNames = Array[String](["stargazer_warlock_observatory"])
+customStatusStr = "Duel The Stargazer!"
+turnInDialogue = Array[ExtResource("3_e4sjh")]([ExtResource("6_tpfrd")])
+inProgressDialogue = Array[ExtResource("3_e4sjh")]([ExtResource("5_6lwe2")])
+metadata/_custom_type_script = "uid://b3j2bj1p0bkq8"
+
+[sub_resource type="Resource" id="Resource_i7m18"]
+script = ExtResource("2_ex5ee")
+name = "WIP"
+objectiveName = "---"
+customStatusStr = "WIP"
 metadata/_custom_type_script = "uid://b3j2bj1p0bkq8"
 
 [resource]
 script = ExtResource("1_b7v4m")
 questName = "An Ancient Ally"
 description = "The Warlocks, a secluded society of magic, have offered to help you fight against the Chain Legion. Pursue this newly opened avenue!"
-steps = Array[ExtResource("2_ex5ee")]([SubResource("Resource_n5131"), SubResource("Resource_7hikv"), SubResource("Resource_i7exl"), SubResource("Resource_6lwe2")])
+steps = Array[ExtResource("2_ex5ee")]([SubResource("Resource_n5131"), SubResource("Resource_7hikv"), SubResource("Resource_i7exl"), SubResource("Resource_6lwe2"), SubResource("Resource_i7m18")])
 isMainQuest = true

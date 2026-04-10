@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cr3tawrk6li8u"]
 
 [ext_resource type="Script" uid="uid://bur742tma2ena" path="res://prefabs/tools/dialogue_editor/dialogue_editor.gd" id="1_7w1wt"]
+[ext_resource type="Resource" uid="uid://bsn2av18hslfm" path="res://gamedata/dialogue/giant_steppes/stargazer/act2_training/stargazer_training_start_turnin.tres" id="2_073l1"]
 [ext_resource type="PackedScene" uid="uid://dx00oa0dadpvj" path="res://prefabs/ui/text_box.tscn" id="2_nr7ai"]
 [ext_resource type="PackedScene" uid="uid://boodxee7p55bd" path="res://prefabs/maps/giant_steppes/giant_steppes_observatory.tscn" id="3_073l1"]
 [ext_resource type="PackedScene" uid="uid://dmc2ox37dega8" path="res://prefabs/audio/audio_handler.tscn" id="3_lbw1y"]
@@ -13,6 +14,7 @@
 
 [node name="DialogueEditor" type="Node2D" unique_id=1750314649]
 script = ExtResource("1_7w1wt")
+loadDialogueEntry = ExtResource("2_073l1")
 loadMap = ExtResource("3_073l1")
 metadata/_edit_vertical_guides_ = [20.0]
 metadata/_edit_horizontal_guides_ = [-70.0]

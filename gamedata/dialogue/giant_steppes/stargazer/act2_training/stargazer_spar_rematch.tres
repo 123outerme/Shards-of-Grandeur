@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="DialogueEntry" format=3 uid="uid://yxtx1p2rsb6q"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_mjlmo"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_pvpdv"]
+[ext_resource type="Script" uid="uid://b6oofnelefs8o" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_mrwl1"]
+[ext_resource type="Resource" uid="uid://cilo8sp0jcm1o" path="res://gamedata/dialogue/giant_steppes/stargazer/act2_training/stargazer_training_start_decline.tres" id="3_pvpdv"]
+[ext_resource type="Resource" uid="uid://ch3rhiidw2uyl" path="res://gamedata/dialogue/giant_steppes/stargazer/act2_training/stargazer_spar_start.tres" id="4_0vfjg"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="5_2opsc"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="6_vabmp"]
+
+[sub_resource type="Resource" id="Resource_h80yb"]
+script = ExtResource("2_pvpdv")
+choiceBtn = "Wait..."
+leadsTo = ExtResource("3_pvpdv")
+isDeclineChoice = true
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_nd5ul"]
+script = ExtResource("2_pvpdv")
+choiceBtn = "Ready."
+leadsTo = ExtResource("4_0vfjg")
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_c5uvk"]
+script = ExtResource("1_mjlmo")
+lines = Array[String](["I didn't get enough of a read on your skill. Try to keep up with me for a little bit longer. Are you prepared to continue our duel?"])
+animation = "talk"
+choices = Array[ExtResource("2_pvpdv")]([SubResource("Resource_h80yb"), SubResource("Resource_nd5ul")])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[resource]
+script = ExtResource("6_vabmp")
+items = Array[ExtResource("1_mjlmo")]([SubResource("Resource_c5uvk")])
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"

@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="DialogueEntry" format=3]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_item.gd" id="1_knt44"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_choice.gd" id="2_kbeh0"]
+[ext_resource type="Script" path="res://scripts/quests/story_requirements.gd" id="2_od7sj"]
+[ext_resource type="Script" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_ddt8f"]
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_entry.gd" id="3_kbeh0"]
+[ext_resource type="Resource" path="res://gamedata/dialogue/giant_steppes/stargazer/act2_training/stargazer_training_start_decline.tres" id="3_lj0sx"]
+[ext_resource type="Resource" path="res://gamedata/dialogue/giant_steppes/stargazer/act2_training/stargazer_spar_start.tres" id="5_lj0sx"]
+
+[sub_resource type="Resource" id="Resource_lj0sx"]
+script = ExtResource("2_kbeh0")
+choiceBtn = "Wait..."
+leadsTo = ExtResource("3_lj0sx")
+isDeclineChoice = true
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_4mh5k"]
+script = ExtResource("2_kbeh0")
+choiceBtn = "Let's Go."
+leadsTo = ExtResource("5_lj0sx")
+turnsInQuest = "An Ancient Ally#Warlock-in-Training"
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_ddt8f"]
+script = ExtResource("1_knt44")
+lines = Array[String](["I will first need to gauge your skills. We will have a friendly duel. No Shards, no Potions, and no holding back on me!"])
+animation = "talk"
+choices = Array[ExtResource("2_kbeh0")]([SubResource("Resource_lj0sx"), SubResource("Resource_4mh5k")])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[resource]
+script = ExtResource("3_kbeh0")
+items = Array[ExtResource("1_knt44")]([SubResource("Resource_ddt8f")])
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"
