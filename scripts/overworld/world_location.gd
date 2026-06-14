@@ -20,6 +20,8 @@ enum MapLocation {
 	FORBIDDEN_DESERT_NORTH = 43, ## Forbidden Desert, north of Nomad Camp
 	GIANT_STEPPES = 50, ## Giant Steppes
 	QUIET_TUNDRA_WEST = 51, ## Quiet Tundra, south-west of Giant Steppes
+	QUIET_TUNDRA_EAST = 52, ## Quiet Tundra, south-east of Giant Steppes
+	ICEBERG_CASTLE = 53, ## Iceberg Castle
 	FROSTMINT_VILLAGE = 55, ## Frostmint Village
 	STEELSPIRE = 60, ## Steelspire
 }

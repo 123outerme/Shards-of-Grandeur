@@ -1,0 +1,41 @@
+[gd_resource type="Resource" script_class="StaticEncounter" format=3 uid="uid://tgby2cutlyyg"]
+
+[ext_resource type="Script" uid="uid://dx4lnh4driy7a" path="res://scripts/battle/combatant/move.gd" id="1_ak32w"]
+[ext_resource type="AudioStream" uid="uid://2enxrtp1rr6y" path="res://audio/music/battle/gateway_into_action.mp3" id="2_btq0r"]
+[ext_resource type="Resource" uid="uid://bgkw22bxemg7v" path="res://gamedata/combatants/stargazer_warlock/stargazer_warlock.tres" id="3_dn4oi"]
+[ext_resource type="Resource" uid="uid://bq2ud6hfwjar5" path="res://gamedata/items/armor/warlock_cape.tres" id="4_eq1j6"]
+[ext_resource type="Resource" uid="uid://baxahxj1rxfy1" path="res://gamedata/items/weapon/storm_ampule.tres" id="5_4trhm"]
+[ext_resource type="Script" uid="uid://flaq3s0m3pf2" path="res://scripts/reward/reward.gd" id="6_n1k62"]
+[ext_resource type="Resource" uid="uid://gsi2oasr2ndh" path="res://gamedata/items/healing/distilled_potion.tres" id="7_frb0n"]
+[ext_resource type="Script" uid="uid://by2yp7g75qdn0" path="res://scripts/overworld/overworld_enemy/static_encounter.gd" id="8_mv6w3"]
+[ext_resource type="Script" uid="uid://dbngrb7ibw487" path="res://scripts/battle/win_conditions/weaken_enemy_win_con.gd" id="9_lfvyu"]
+
+[sub_resource type="Resource" id="Resource_bk1l7"]
+script = ExtResource("6_n1k62")
+experience = 250
+gold = 15
+item = ExtResource("7_frb0n")
+metadata/_custom_type_script = "uid://flaq3s0m3pf2"
+
+[sub_resource type="Resource" id="Resource_b0icw"]
+script = ExtResource("9_lfvyu")
+targetPercentHp = 0.25
+winText = "#opp surrendered!"
+loseText = "You surrendered to #opp..."
+
+[resource]
+script = ExtResource("8_mv6w3")
+combatant1Level = 25
+specialBattleId = "stargazer_warlock_spar"
+bossBattle = true
+canEscape = false
+rewards = Array[ExtResource("6_n1k62")]([SubResource("Resource_bk1l7")])
+useStaticRewards = true
+battleMusic = ExtResource("2_btq0r")
+combatant1 = ExtResource("3_dn4oi")
+combatant1Weapon = ExtResource("5_4trhm")
+combatant1Armor = ExtResource("4_eq1j6")
+specialRules = 7
+winCon = SubResource("Resource_b0icw")
+battleMapPath = "giant_steppes_observatory_battle_map"
+metadata/_custom_type_script = "uid://by2yp7g75qdn0"
