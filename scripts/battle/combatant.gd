@@ -198,10 +198,7 @@ func _init(
 ):
 	nickname = i_nickname
 	stats = i_stats
-	if i_curHp != -1:
-		currentHp = i_curHp
-	else:
-		currentHp = stats.maxHp
+	currentHp = min(i_curHp, stats.maxHp)
 	evolutions = i_evolutions
 	
 	evolutionStats = i_evolutionStats
