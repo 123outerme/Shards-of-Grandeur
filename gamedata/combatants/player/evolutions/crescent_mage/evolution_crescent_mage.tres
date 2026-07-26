@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="Evolution" format=3 uid="uid://djfqx4htvmy5o"]
+
+[ext_resource type="Script" uid="uid://bajcategxhmyx" path="res://scripts/battle/combatant/evolution.gd" id="1_filtg"]
+[ext_resource type="Resource" uid="uid://m73ic1ttbi07" path="res://gamedata/combatants/player/evolutions/crescent_adventurer/crescent_adventurer_sprite.tres" id="1_j4r07"]
+[ext_resource type="Resource" uid="uid://bn4pyq15qaod6" path="res://gamedata/combatants/player/evolutions/crescent_mage/crescent_mage_effectiveness.tres" id="2_j4r07"]
+[ext_resource type="Resource" uid="uid://sx5xmdndacnf" path="res://gamedata/items/accessory/moon_sigil.tres" id="2_od5hx"]
+[ext_resource type="Resource" uid="uid://ue4yjsj74uc8" path="res://gamedata/items/armor/mage_robes.tres" id="3_qu5dc"]
+[ext_resource type="Script" uid="uid://dx4lnh4driy7a" path="res://scripts/battle/combatant/move.gd" id="5_xndii"]
+[ext_resource type="Resource" uid="uid://dlqesvwffiham" path="res://gamedata/combatants/player/evolutions/crescent_mage/crescent_mage_movepool.tres" id="6_cg4vg"]
+[ext_resource type="Script" uid="uid://c8dxuthm1qd7s" path="res://scripts/battle/combatant/stats.gd" id="6_qijll"]
+[ext_resource type="Resource" uid="uid://brts63e0pj1ii" path="res://gamedata/combatants/player/evolutions/crescent_mage/crescent_mage_stat_growth.tres" id="9_sgkla"]
+
+[sub_resource type="Resource" id="Resource_xndii"]
+script = ExtResource("6_qijll")
+displayName = "Crescent Mage"
+saveName = "player"
+statGrowth = ExtResource("9_sgkla")
+movepool = ExtResource("6_cg4vg")
+metadata/_custom_type_script = "uid://c8dxuthm1qd7s"
+
+[resource]
+script = ExtResource("1_filtg")
+evolutionSaveName = "crescent_mage"
+combatantSprite = ExtResource("1_j4r07")
+requiredArmor = ExtResource("3_qu5dc")
+requiredAccessory = ExtResource("2_od5hx")
+stats = SubResource("Resource_xndii")
+moveEffectiveness = ExtResource("2_j4r07")
+metadata/_custom_type_script = "uid://bajcategxhmyx"

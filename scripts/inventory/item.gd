@@ -36,13 +36,29 @@ static func type_to_string(t: Type) -> String:
 @export var itemName: String
 @export var itemType: Type
 @export_multiline var itemDescription: String
+
+## if cost < 0, unsellable; otherwise, buy price and sell price
 @export var cost: int
+
+## max amount the player can hold in their inventory; <= 0 for no limit
 @export var maxCount: int
+
+## if true, item can be used
 @export var usable: bool = true
+
+## if true and `usable` is true, item can be used for a combatant's action in battles
 @export var battleUsable: bool = true
+
+## if true and `usable`, when item is used, it is consumed
 @export var consumable: bool = true
+
+## if true, item can be equipped (only use for Accessory, Armor, or Weapon)
 @export var equippable: bool = false
+
+## if true, item can be trashed
 @export var trashable: bool = true
+
+## if `battleUsable`, determines who can be selected for the target of the item
 @export var battleTargets: BattleCommand.Targets = BattleCommand.Targets.SELF
 
 func _init(

@@ -17,14 +17,17 @@ func add_slot(slot: InventorySlot) -> bool:
 	for existingSlot in inventorySlots:
 		# if there's an existing slot with this item and we aren't inserting a ShopInventorySlot:
 		# NOTE: haven't yet decided to allow this; UI would look weird with no reason why from player's perspective
-		if existingSlot.item == slot.item:# and not (slot is ShopInventorySlot):
+		if existingSlot.item == slot.item: # and not (slot is ShopInventorySlot):
 			found = true # if there's a slot with this item, either it has capacity, or it doesn't,
 			# either way we aren't creating a new slot
-			if existingSlot.count < slot.item.maxCount or slot.item.maxCount == 0:
+			if existingSlot.count < slot.item.maxCount or slot.item.maxCount <= 0:
 				if slot.count < 0:
 					return true # if negative (infinite-size shop slot), don't do anything
 				# combine stacks of this item, capping at max count for this item
-				existingSlot.count = min(existingSlot.item.maxCount, existingSlot.count + slot.count)
+				if slot.item.maxCount > 0:
+					existingSlot.count = min(existingSlot.item.maxCount, existingSlot.count + slot.count)
+				else:
+					existingSlot.count += slot.count
 				add_shard_minion_entry(existingSlot.item)
 				var updatedQuests: bool = PlayerResources.questInventory.auto_update_quests()
 				if not updatedQuests:
@@ -146,7 +149,7 @@ func is_equipped(item: Item) -> bool:
 	if item is Armor:
 		return PlayerResources.playerInfo.combatant.stats.equippedArmor == item or PlayerResources.minions.which_minion_equipped(item) != ''
 	if item is Accessory:
-		return PlayerResources.playerInfo.combatant.stats.equippedAccessory == item or  PlayerResources.minions.which_minion_equipped(item) != ''
+		return PlayerResources.playerInfo.combatant.stats.equippedAccessory == item or PlayerResources.minions.which_minion_equipped(item) != ''
 	return false
 
 func is_slot_for_item_full(item: Item) -> bool:
@@ -224,7 +227,7 @@ func load_data(save_path):
 	if ResourceLoader.exists(save_path + save_name):
 		data = ResourceLoader.load(save_path + save_name, '', ResourceLoader.CACHE_MODE_IGNORE)
 		if data != null:
-			return data #.duplicate(true)
+			return data # .duplicate(true)
 	return data
 
 func save_data(save_path, data) -> int:

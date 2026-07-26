@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="Evolution" format=3 uid="uid://dlol72ufufhfr"]
+
+[ext_resource type="Resource" uid="uid://m73ic1ttbi07" path="res://gamedata/combatants/player/evolutions/crescent_adventurer/crescent_adventurer_sprite.tres" id="1_ihe4b"]
+[ext_resource type="Script" uid="uid://bajcategxhmyx" path="res://scripts/battle/combatant/evolution.gd" id="1_j4msw"]
+[ext_resource type="Resource" uid="uid://di3dct47ryp22" path="res://gamedata/combatants/player/evolutions/crescent_enchanter/crescent_enchanter_effectiveness.tres" id="2_ihe4b"]
+[ext_resource type="Resource" uid="uid://sx5xmdndacnf" path="res://gamedata/items/accessory/moon_sigil.tres" id="2_v1o64"]
+[ext_resource type="Resource" uid="uid://c5kv12qhdpe5p" path="res://gamedata/items/armor/tunic.tres" id="3_s46a8"]
+[ext_resource type="Script" uid="uid://dx4lnh4driy7a" path="res://scripts/battle/combatant/move.gd" id="5_s46a8"]
+[ext_resource type="Resource" uid="uid://bw8fvbfjdnqxb" path="res://gamedata/combatants/player/evolutions/crescent_enchanter/crescent_enchanter_movepool.tres" id="6_8itir"]
+[ext_resource type="Script" uid="uid://c8dxuthm1qd7s" path="res://scripts/battle/combatant/stats.gd" id="6_051h2"]
+[ext_resource type="Resource" uid="uid://dcv4sd5350dxh" path="res://gamedata/combatants/player/evolutions/crescent_enchanter/crescent_enchanter_stat_growth.tres" id="9_bcvmg"]
+
+[sub_resource type="Resource" id="Resource_nengk"]
+script = ExtResource("6_051h2")
+displayName = "Crescent Enchanter"
+saveName = "player"
+statGrowth = ExtResource("9_bcvmg")
+movepool = ExtResource("6_8itir")
+metadata/_custom_type_script = "uid://c8dxuthm1qd7s"
+
+[resource]
+script = ExtResource("1_j4msw")
+evolutionSaveName = "crescent_enchanter"
+combatantSprite = ExtResource("1_ihe4b")
+requiredArmor = ExtResource("3_s46a8")
+requiredAccessory = ExtResource("2_v1o64")
+stats = SubResource("Resource_nengk")
+moveEffectiveness = ExtResource("2_ihe4b")
+metadata/_custom_type_script = "uid://bajcategxhmyx"

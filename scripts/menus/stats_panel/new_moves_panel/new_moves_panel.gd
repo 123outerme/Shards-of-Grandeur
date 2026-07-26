@@ -24,8 +24,22 @@ func load_new_moves_panel() -> void:
 		child.visible = false
 		child.queue_free()
 	
-	
 	var panels: Array[NewMoveListItemPanel] = []
+	
+	var baseFormStats: Stats = PlayerResources.playerInfo.combatant.get_evolution_stats(null)
+	for move: Move in get_new_moves(baseFormStats.movepool):
+		panels.append(
+			build_new_move_list_item_panel(move, PlayerResources.playerInfo.combatant, null)
+		)
+	
+	for playerEvolution: Evolution in PlayerResources.playerInfo.combatant.evolutions:
+		if not PlayerResources.playerInfo.has_found_evolution(playerEvolution.evolutionSaveName):
+			continue
+		for move: Move in get_new_moves(playerEvolution.stats.movepool):
+			panels.append(
+				build_new_move_list_item_panel(move, PlayerResources.playerInfo.combatant, playerEvolution)
+			)
+	
 	for minion: Combatant in PlayerResources.minions.get_minion_list():
 		var minionMoves: Array[Move] = get_new_moves(minion.stats.movepool)
 		var moveEvolutions: Array[Evolution] = []
@@ -44,18 +58,10 @@ func load_new_moves_panel() -> void:
 					moveEvolutions.append(evolution)
 		
 		for moveIdx: int in range(len(minionMoves)):
-			var move: Move = minionMoves[moveIdx]
-			var panel: NewMoveListItemPanel = newMoveListItemPanel.instantiate()
-			panel.combatant = minion
-			panel.evolution = moveEvolutions[moveIdx]
-			panel.move = move
-			if not panelsByMove.has(move):
-				panelsByMove[move] = []
-			panelsByMove[move].append(panel)
-			panel.details_pressed.connect(_panel_details_pressed)
-			panel.learn_pressed.connect(_panel_learn_pressed)
-			panels.append(panel)
-	
+			panels.append(
+				build_new_move_list_item_panel(minionMoves[moveIdx], minion, moveEvolutions[moveIdx])
+			)
+
 	if len(panels) == 0:
 		visible = false
 		return
@@ -78,6 +84,18 @@ func get_new_moves(movepool: MovePool) -> Array[Move]:
 		if move.requiredLv == PlayerResources.playerInfo.combatant.stats.level:
 			newMoves.append(move)
 	return newMoves
+
+func build_new_move_list_item_panel(move: Move, combatant: Combatant, evolution: Evolution) -> NewMoveListItemPanel:
+	var panel: NewMoveListItemPanel = newMoveListItemPanel.instantiate()
+	panel.combatant = combatant
+	panel.evolution = evolution
+	panel.move = move
+	if not panelsByMove.has(move):
+		panelsByMove[move] = []
+	panelsByMove[move].append(panel)
+	panel.details_pressed.connect(_panel_details_pressed)
+	panel.learn_pressed.connect(_panel_learn_pressed)
+	return panel
 
 func _panel_details_pressed(panel: NewMoveListItemPanel) -> void:
 	lastFocusedPanel = panel
