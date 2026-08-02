@@ -21,53 +21,53 @@ source_geometry_mode = 1
 source_geometry_group_name = &"NavigationGroup"
 agent_radius = 23.0
 
-[node name="OverworldMap" type="Node2D"]
+[node name="OverworldMap" type="Node2D" unique_id=562057779]
 script = ExtResource("1_m257g")
 
-[node name="TilemapRoot" type="Node2D" parent="."]
+[node name="TilemapRoot" type="Node2D" parent="." unique_id=1181218849]
 y_sort_enabled = true
 
-[node name="Background" type="TileMapLayer" parent="TilemapRoot" groups=["NavigationGroup"]]
+[node name="Background" type="TileMapLayer" parent="TilemapRoot" unique_id=1405626392 groups=["NavigationGroup"]]
 z_index = -20
 use_parent_material = true
 tile_set = ExtResource("2_fj0uw")
 
-[node name="Paths" type="TileMapLayer" parent="TilemapRoot" groups=["NavigationGroup"]]
+[node name="Paths" type="TileMapLayer" parent="TilemapRoot" unique_id=1265149658 groups=["NavigationGroup"]]
 z_index = -19
 use_parent_material = true
 tile_set = ExtResource("2_fj0uw")
 
-[node name="Paths2" type="TileMapLayer" parent="TilemapRoot" groups=["NavigationGroup"]]
+[node name="Paths2" type="TileMapLayer" parent="TilemapRoot" unique_id=2103421940 groups=["NavigationGroup"]]
 z_index = -18
 tile_set = ExtResource("2_fj0uw")
 
-[node name="Midground" type="TileMapLayer" parent="TilemapRoot" groups=["NavigationGroup"]]
+[node name="Midground" type="TileMapLayer" parent="TilemapRoot" unique_id=907756635 groups=["NavigationGroup"]]
 z_index = -10
 y_sort_enabled = true
 use_parent_material = true
 tile_set = ExtResource("2_fj0uw")
 
-[node name="Foreground" type="TileMapLayer" parent="TilemapRoot" groups=["NavigationGroup"]]
+[node name="Foreground" type="TileMapLayer" parent="TilemapRoot" unique_id=2047654899 groups=["NavigationGroup"]]
 use_parent_material = true
 tile_set = ExtResource("2_fj0uw")
 
-[node name="Sky" type="TileMapLayer" parent="TilemapRoot"]
+[node name="Sky" type="TileMapLayer" parent="TilemapRoot" unique_id=1828830557]
 z_index = 1
 use_parent_material = true
 tile_set = ExtResource("2_fj0uw")
 
-[node name="Invisible" type="TileMapLayer" parent="TilemapRoot" groups=["NavigationGroup"]]
+[node name="Invisible" type="TileMapLayer" parent="TilemapRoot" unique_id=899966461 groups=["NavigationGroup"]]
 modulate = Color(1, 1, 1, 0)
 use_parent_material = true
 tile_set = ExtResource("2_fj0uw")
 
-[node name="OneTileWideNav" type="NavigationRegion2D" parent="."]
+[node name="OneTileWideNav" type="NavigationRegion2D" parent="." unique_id=335919733]
 navigation_polygon = SubResource("NavigationPolygon_hwgpv")
 
-[node name="TwoTilesWideNav" type="NavigationRegion2D" parent="."]
+[node name="TwoTilesWideNav" type="NavigationRegion2D" parent="." unique_id=570693454]
 navigation_polygon = SubResource("NavigationPolygon_tohlk")
 navigation_layers = 2
 
-[node name="ThreeTilesWideNav" type="NavigationRegion2D" parent="."]
+[node name="ThreeTilesWideNav" type="NavigationRegion2D" parent="." unique_id=292026139]
 navigation_polygon = SubResource("NavigationPolygon_8fg56")
 navigation_layers = 4
