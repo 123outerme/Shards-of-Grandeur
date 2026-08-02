@@ -21,7 +21,7 @@ enum MapLocation {
 	GIANT_STEPPES = 50, ## Giant Steppes
 	QUIET_TUNDRA_WEST = 51, ## Quiet Tundra, south-west of Giant Steppes
 	QUIET_TUNDRA_EAST = 52, ## Quiet Tundra, south-east of Giant Steppes
-	ICEBERG_CASTLE = 53, ## Iceberg Castle
+	ICEBERG_PALACE = 53, ## Iceberg Palace
 	FROSTMINT_VILLAGE = 55, ## Frostmint Village
 	STEELSPIRE = 60, ## Steelspire
 }
@@ -62,6 +62,8 @@ static func map_location_to_string(location: MapLocation) -> String:
 			return 'Frostmint Village'
 		MapLocation.GIANT_STEPPES:
 			return 'Giant Steppes'
+		MapLocation.ICEBERG_PALACE:
+			return 'Iceberg Palace'
 		MapLocation.STEELSPIRE:
 			return 'Steelspire'
 	return 'Unknown'

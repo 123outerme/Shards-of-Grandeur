@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="WorldLocation" format=3 uid="uid://d4mby38solh3w"]
+
+[ext_resource type="Script" uid="uid://1kibgfap86bm" path="res://scripts/overworld/map_entry.gd" id="1_shkaj"]
+[ext_resource type="AudioStream" uid="uid://bqteksvyw463i" path="res://audio/music/overworld/tundra.mp3" id="2_73rj5"]
+[ext_resource type="Script" uid="uid://dd27pbjjyrw7p" path="res://scripts/overworld/world_location.gd" id="2_ybhta"]
+
+[sub_resource type="Resource" id="Resource_73rj5"]
+script = ExtResource("1_shkaj")
+path = "iceberg_palace/iceberg_palace_entrance"
+overworldTheme = ExtResource("2_73rj5")
+metadata/_custom_type_script = "uid://1kibgfap86bm"
+
+[resource]
+script = ExtResource("2_ybhta")
+locationName = "Iceberg Palace"
+maps = Array[ExtResource("1_shkaj")]([SubResource("Resource_73rj5")])
+mapLocation = 53
+metadata/_custom_type_script = "uid://dd27pbjjyrw7p"

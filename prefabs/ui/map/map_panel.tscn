@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://cfxdils72sliv"]
+[gd_scene format=3 uid="uid://cfxdils72sliv"]
 
 [ext_resource type="Script" uid="uid://bpsykw1b5wnl1" path="res://scripts/menus/pause_menu/map_panel.gd" id="1_smrfh"]
 [ext_resource type="AudioStream" uid="uid://id2wnvgxdsnm" path="res://audio/sfx/moves/wind/wind_whoosh.mp3" id="2_mua6g"]
@@ -32,6 +32,7 @@
 [ext_resource type="Texture2D" uid="uid://dle0wsjcefamr" path="res://graphics/ui/map/world_map_giant_steppes_clouds.png" id="18_avs5h"]
 [ext_resource type="Texture2D" uid="uid://biscd4ubrdmwc" path="res://graphics/ui/question_mark.png" id="22_cvrl2"]
 [ext_resource type="PackedScene" uid="uid://bdaddlnr5cve" path="res://prefabs/ui/box_container_scroller.tscn" id="24_gc6op"]
+[ext_resource type="Texture2D" uid="uid://bn3k61pb7f571" path="res://graphics/ui/map/world_map_iceberg_palace_clouds.png" id="28_idv5k"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c6vr2"]
 bg_color = Color(0, 0, 0, 0)
@@ -50,7 +51,7 @@ allow_unpress = true
 [sub_resource type="ButtonGroup" id="ButtonGroup_di1g8"]
 allow_unpress = true
 
-[node name="MapPanel" type="Control"]
+[node name="MapPanel" type="Control" unique_id=1836696263]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -60,7 +61,7 @@ grow_vertical = 2
 script = ExtResource("1_smrfh")
 cloudHideSfx = ExtResource("2_mua6g")
 
-[node name="MapPanelLabel" type="RichTextLabel" parent="."]
+[node name="MapPanelLabel" type="RichTextLabel" parent="." unique_id=1402617566]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -76,7 +77,7 @@ bbcode_enabled = true
 text = "[center]Map[/center]"
 fit_content = true
 
-[node name="MapSpritesControl" type="Panel" parent="."]
+[node name="MapSpritesControl" type="Panel" parent="." unique_id=1927133718]
 z_index = 2
 layout_mode = 1
 anchors_preset = 15
@@ -90,7 +91,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_c6vr2")
 
-[node name="BaseMap" type="TextureRect" parent="MapSpritesControl"]
+[node name="BaseMap" type="TextureRect" parent="MapSpritesControl" unique_id=1510384802]
 z_index = -2
 layout_mode = 1
 anchors_preset = 15
@@ -104,7 +105,7 @@ scale = Vector2(4, 4)
 texture = ExtResource("3_ajkb5")
 stretch_mode = 2
 
-[node name="MapOverlaysControl" type="Control" parent="MapSpritesControl"]
+[node name="MapOverlaysControl" type="Control" parent="MapSpritesControl" unique_id=212356128]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -112,19 +113,19 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ForestBurnedOverlay" parent="MapSpritesControl/MapOverlaysControl" instance=ExtResource("5_fll8l")]
+[node name="ForestBurnedOverlay" parent="MapSpritesControl/MapOverlaysControl" unique_id=586816951 instance=ExtResource("5_fll8l")]
 layout_mode = 1
 texture = ExtResource("6_fb6ox")
 storyRequirements = Array[ExtResource("7_uiqb2")]([ExtResource("8_3xx0i")])
 validateOnReady = false
 validateOnStoryReqsUpdate = false
 
-[node name="StandstillHealingOverlay" parent="MapSpritesControl/MapOverlaysControl" instance=ExtResource("5_fll8l")]
+[node name="StandstillHealingOverlay" parent="MapSpritesControl/MapOverlaysControl" unique_id=334696095 instance=ExtResource("5_fll8l")]
 layout_mode = 1
 texture = ExtResource("6_7ffcl")
 storyRequirements = Array[ExtResource("7_uiqb2")]([ExtResource("7_3xx0i")])
 
-[node name="CloudsControl" type="Control" parent="MapSpritesControl"]
+[node name="CloudsControl" type="Control" parent="MapSpritesControl" unique_id=107897910]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -132,87 +133,93 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="StandstillCloudLayer" parent="MapSpritesControl/CloudsControl" instance=ExtResource("5_0xsm1")]
+[node name="StandstillCloudLayer" parent="MapSpritesControl/CloudsControl" unique_id=1500102049 instance=ExtResource("5_0xsm1")]
 layout_mode = 1
 texture = ExtResource("6_wxfme")
 location = 20
 
-[node name="HilltopCloudLayer" parent="MapSpritesControl/CloudsControl" instance=ExtResource("5_0xsm1")]
+[node name="HilltopCloudLayer" parent="MapSpritesControl/CloudsControl" unique_id=1456746424 instance=ExtResource("5_0xsm1")]
 layout_mode = 1
 texture = ExtResource("6_r08rx")
 location = 21
 
-[node name="MushroomGrottoCloudLayer" parent="MapSpritesControl/CloudsControl" instance=ExtResource("5_0xsm1")]
+[node name="MushroomGrottoCloudLayer" parent="MapSpritesControl/CloudsControl" unique_id=562418399 instance=ExtResource("5_0xsm1")]
 layout_mode = 1
 texture = ExtResource("7_sbt08")
 location = 22
 
-[node name="LeavenportCloudLayer" parent="MapSpritesControl/CloudsControl" instance=ExtResource("5_0xsm1")]
+[node name="LeavenportCloudLayer" parent="MapSpritesControl/CloudsControl" unique_id=1074593587 instance=ExtResource("5_0xsm1")]
 layout_mode = 1
 texture = ExtResource("8_k3b6f")
 location = 30
 
-[node name="SeaLegEastCloudLayer" parent="MapSpritesControl/CloudsControl" instance=ExtResource("5_0xsm1")]
+[node name="SeaLegEastCloudLayer" parent="MapSpritesControl/CloudsControl" unique_id=1961178440 instance=ExtResource("5_0xsm1")]
 layout_mode = 1
 texture = ExtResource("9_g8ukx")
 location = 31
 
-[node name="SeaLegSouthCloudLayer" parent="MapSpritesControl/CloudsControl" instance=ExtResource("5_0xsm1")]
+[node name="SeaLegSouthCloudLayer" parent="MapSpritesControl/CloudsControl" unique_id=1692101549 instance=ExtResource("5_0xsm1")]
 layout_mode = 1
 texture = ExtResource("10_x2kn6")
 location = 32
 
-[node name="DesertSouthCloudLayer" parent="MapSpritesControl/CloudsControl" instance=ExtResource("5_0xsm1")]
+[node name="DesertSouthCloudLayer" parent="MapSpritesControl/CloudsControl" unique_id=1550793016 instance=ExtResource("5_0xsm1")]
 layout_mode = 1
 texture = ExtResource("11_wwqaa")
 location = 41
 
-[node name="NomadCampCloudLayer" parent="MapSpritesControl/CloudsControl" instance=ExtResource("5_0xsm1")]
+[node name="NomadCampCloudLayer" parent="MapSpritesControl/CloudsControl" unique_id=1485758910 instance=ExtResource("5_0xsm1")]
 layout_mode = 1
 texture = ExtResource("12_robpo")
 location = 40
 
-[node name="DesertEastCloudLayer" parent="MapSpritesControl/CloudsControl" instance=ExtResource("5_0xsm1")]
+[node name="DesertEastCloudLayer" parent="MapSpritesControl/CloudsControl" unique_id=1713655450 instance=ExtResource("5_0xsm1")]
 layout_mode = 1
 texture = ExtResource("13_1j61r")
 location = 42
 
-[node name="DesertNorthCloudLayer" parent="MapSpritesControl/CloudsControl" instance=ExtResource("5_0xsm1")]
+[node name="DesertNorthCloudLayer" parent="MapSpritesControl/CloudsControl" unique_id=1828115104 instance=ExtResource("5_0xsm1")]
 layout_mode = 1
 texture = ExtResource("14_jetsf")
 location = 43
 
-[node name="GrandstoneForestCloudLayer" parent="MapSpritesControl/CloudsControl" instance=ExtResource("5_0xsm1")]
+[node name="GrandstoneForestCloudLayer" parent="MapSpritesControl/CloudsControl" unique_id=471828968 instance=ExtResource("5_0xsm1")]
 layout_mode = 1
 texture = ExtResource("15_mgly6")
 location = 11
 
-[node name="GrandstoneQuarryCloudLayer" parent="MapSpritesControl/CloudsControl" instance=ExtResource("5_0xsm1")]
+[node name="GrandstoneQuarryCloudLayer" parent="MapSpritesControl/CloudsControl" unique_id=61582928 instance=ExtResource("5_0xsm1")]
 layout_mode = 1
 texture = ExtResource("16_dn8ps")
 location = 12
 
-[node name="SeaLegNorthCloudLayer" parent="MapSpritesControl/CloudsControl" instance=ExtResource("5_0xsm1")]
+[node name="SeaLegNorthCloudLayer" parent="MapSpritesControl/CloudsControl" unique_id=1126367126 instance=ExtResource("5_0xsm1")]
 layout_mode = 1
 texture = ExtResource("15_jetsf")
 location = 33
 
-[node name="QuietTundraWestCloudLayer" parent="MapSpritesControl/CloudsControl" instance=ExtResource("5_0xsm1")]
+[node name="QuietTundraWestCloudLayer" parent="MapSpritesControl/CloudsControl" unique_id=1466302547 instance=ExtResource("5_0xsm1")]
 layout_mode = 1
 texture = ExtResource("16_mx16o")
 location = 51
 
-[node name="FrostmintVillageCloudLayer" parent="MapSpritesControl/CloudsControl" instance=ExtResource("5_0xsm1")]
+[node name="FrostmintVillageCloudLayer" parent="MapSpritesControl/CloudsControl" unique_id=1955324247 instance=ExtResource("5_0xsm1")]
 layout_mode = 1
 texture = ExtResource("17_q8m2d")
 location = 55
 
-[node name="GiantSteppesCloudLayer" parent="MapSpritesControl/CloudsControl" instance=ExtResource("5_0xsm1")]
+[node name="GiantSteppesCloudLayer" parent="MapSpritesControl/CloudsControl" unique_id=110309785 instance=ExtResource("5_0xsm1")]
 layout_mode = 1
 texture = ExtResource("18_avs5h")
 location = 50
 
-[node name="MarkersControl" type="Control" parent="MapSpritesControl"]
+[node name="IcebergPalaceCloudLayer" parent="MapSpritesControl/CloudsControl" unique_id=1175944607 instance=ExtResource("5_0xsm1")]
+layout_mode = 0
+anchors_preset = 0
+texture = ExtResource("28_idv5k")
+location = 53
+
+[node name="MarkersControl" type="Control" parent="MapSpritesControl" unique_id=1611423394]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -220,7 +227,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="GrandstoneMarker" parent="MapSpritesControl/MarkersControl" instance=ExtResource("4_w0vni")]
+[node name="GrandstoneMarker" parent="MapSpritesControl/MarkersControl" unique_id=981637129 instance=ExtResource("4_w0vni")]
 layout_mode = 1
 offset_left = 250.0
 offset_top = 213.0
@@ -228,7 +235,7 @@ offset_right = -742.0
 offset_bottom = -203.0
 location = 10
 
-[node name="GrandstoneQuarryMarker" parent="MapSpritesControl/MarkersControl" instance=ExtResource("4_w0vni")]
+[node name="GrandstoneQuarryMarker" parent="MapSpritesControl/MarkersControl" unique_id=1352323579 instance=ExtResource("4_w0vni")]
 layout_mode = 1
 offset_left = 150.0
 offset_top = 240.0
@@ -236,7 +243,7 @@ offset_right = -842.0
 offset_bottom = -176.0
 location = 12
 
-[node name="GrandstoneForestMarker" parent="MapSpritesControl/MarkersControl" instance=ExtResource("4_w0vni")]
+[node name="GrandstoneForestMarker" parent="MapSpritesControl/MarkersControl" unique_id=458968703 instance=ExtResource("4_w0vni")]
 layout_mode = 1
 offset_left = 222.0
 offset_top = 245.0
@@ -244,7 +251,7 @@ offset_right = -770.0
 offset_bottom = -171.0
 location = 11
 
-[node name="StandstillMarker" parent="MapSpritesControl/MarkersControl" instance=ExtResource("4_w0vni")]
+[node name="StandstillMarker" parent="MapSpritesControl/MarkersControl" unique_id=126107039 instance=ExtResource("4_w0vni")]
 layout_mode = 1
 offset_left = 337.0
 offset_top = 202.0
@@ -252,7 +259,7 @@ offset_right = -655.0
 offset_bottom = -214.0
 location = 20
 
-[node name="HilltopMarker" parent="MapSpritesControl/MarkersControl" instance=ExtResource("4_w0vni")]
+[node name="HilltopMarker" parent="MapSpritesControl/MarkersControl" unique_id=1827847213 instance=ExtResource("4_w0vni")]
 layout_mode = 1
 offset_left = 407.0
 offset_top = 202.0
@@ -260,7 +267,7 @@ offset_right = -585.0
 offset_bottom = -214.0
 location = 21
 
-[node name="MushroomGrottoMarker" parent="MapSpritesControl/MarkersControl" instance=ExtResource("4_w0vni")]
+[node name="MushroomGrottoMarker" parent="MapSpritesControl/MarkersControl" unique_id=913692744 instance=ExtResource("4_w0vni")]
 layout_mode = 1
 offset_left = 393.0
 offset_top = 259.0
@@ -268,7 +275,7 @@ offset_right = -599.0
 offset_bottom = -157.0
 location = 22
 
-[node name="LeavenportMarker" parent="MapSpritesControl/MarkersControl" instance=ExtResource("4_w0vni")]
+[node name="LeavenportMarker" parent="MapSpritesControl/MarkersControl" unique_id=1853331882 instance=ExtResource("4_w0vni")]
 layout_mode = 1
 offset_left = 455.0
 offset_top = 246.0
@@ -276,7 +283,7 @@ offset_right = -537.0
 offset_bottom = -170.0
 location = 30
 
-[node name="LeavenRiverMarker" parent="MapSpritesControl/MarkersControl" instance=ExtResource("4_w0vni")]
+[node name="LeavenRiverMarker" parent="MapSpritesControl/MarkersControl" unique_id=1381027759 instance=ExtResource("4_w0vni")]
 layout_mode = 1
 offset_left = 433.0
 offset_top = 157.0
@@ -284,7 +291,7 @@ offset_right = -559.0
 offset_bottom = -259.0
 location = 35
 
-[node name="SwampEastMarker" parent="MapSpritesControl/MarkersControl" instance=ExtResource("4_w0vni")]
+[node name="SwampEastMarker" parent="MapSpritesControl/MarkersControl" unique_id=2137253748 instance=ExtResource("4_w0vni")]
 layout_mode = 1
 offset_left = 524.0
 offset_top = 260.0
@@ -292,7 +299,7 @@ offset_right = -468.0
 offset_bottom = -156.0
 location = 31
 
-[node name="SwampSouthMarker" parent="MapSpritesControl/MarkersControl" instance=ExtResource("4_w0vni")]
+[node name="SwampSouthMarker" parent="MapSpritesControl/MarkersControl" unique_id=1174298213 instance=ExtResource("4_w0vni")]
 layout_mode = 1
 offset_left = 456.0
 offset_top = 307.0
@@ -300,7 +307,7 @@ offset_right = -536.0
 offset_bottom = -109.0
 location = 32
 
-[node name="SwampNorthMarker" parent="MapSpritesControl/MarkersControl" instance=ExtResource("4_w0vni")]
+[node name="SwampNorthMarker" parent="MapSpritesControl/MarkersControl" unique_id=1651717969 instance=ExtResource("4_w0vni")]
 layout_mode = 1
 offset_left = 532.0
 offset_top = 221.0
@@ -308,7 +315,7 @@ offset_right = -460.0
 offset_bottom = -195.0
 location = 33
 
-[node name="NomadCampMarker" parent="MapSpritesControl/MarkersControl" instance=ExtResource("4_w0vni")]
+[node name="NomadCampMarker" parent="MapSpritesControl/MarkersControl" unique_id=1183359914 instance=ExtResource("4_w0vni")]
 layout_mode = 1
 offset_left = 195.0
 offset_top = 309.0
@@ -316,7 +323,7 @@ offset_right = -797.0
 offset_bottom = -107.0
 location = 40
 
-[node name="DesertSouthMarker" parent="MapSpritesControl/MarkersControl" instance=ExtResource("4_w0vni")]
+[node name="DesertSouthMarker" parent="MapSpritesControl/MarkersControl" unique_id=1094557088 instance=ExtResource("4_w0vni")]
 layout_mode = 1
 offset_left = 304.0
 offset_top = 340.0
@@ -324,7 +331,7 @@ offset_right = -688.0
 offset_bottom = -76.0
 location = 41
 
-[node name="DesertEastMarker" parent="MapSpritesControl/MarkersControl" instance=ExtResource("4_w0vni")]
+[node name="DesertEastMarker" parent="MapSpritesControl/MarkersControl" unique_id=1530013759 instance=ExtResource("4_w0vni")]
 layout_mode = 1
 offset_left = 281.0
 offset_top = 298.0
@@ -332,7 +339,7 @@ offset_right = -711.0
 offset_bottom = -118.0
 location = 42
 
-[node name="DesertNorthMarker" parent="MapSpritesControl/MarkersControl" instance=ExtResource("4_w0vni")]
+[node name="DesertNorthMarker" parent="MapSpritesControl/MarkersControl" unique_id=1811196542 instance=ExtResource("4_w0vni")]
 layout_mode = 1
 offset_left = 240.0
 offset_top = 282.0
@@ -340,7 +347,7 @@ offset_right = -752.0
 offset_bottom = -134.0
 location = 43
 
-[node name="QuietTundraWestMarker" parent="MapSpritesControl/MarkersControl" instance=ExtResource("4_w0vni")]
+[node name="QuietTundraWestMarker" parent="MapSpritesControl/MarkersControl" unique_id=736769365 instance=ExtResource("4_w0vni")]
 layout_mode = 1
 offset_left = 472.0
 offset_top = 109.0
@@ -348,7 +355,7 @@ offset_right = -520.0
 offset_bottom = -307.0
 location = 51
 
-[node name="FrostmintVillageMarker" parent="MapSpritesControl/MarkersControl" instance=ExtResource("4_w0vni")]
+[node name="FrostmintVillageMarker" parent="MapSpritesControl/MarkersControl" unique_id=2088582809 instance=ExtResource("4_w0vni")]
 layout_mode = 1
 offset_left = 537.0
 offset_top = 153.0
@@ -356,7 +363,7 @@ offset_right = -455.0
 offset_bottom = -263.0
 location = 55
 
-[node name="GiantSteppesMarker" parent="MapSpritesControl/MarkersControl" instance=ExtResource("4_w0vni")]
+[node name="GiantSteppesMarker" parent="MapSpritesControl/MarkersControl" unique_id=252870470 instance=ExtResource("4_w0vni")]
 layout_mode = 1
 offset_left = 503.0
 offset_top = 29.0
@@ -364,7 +371,15 @@ offset_right = -489.0
 offset_bottom = -387.0
 location = 50
 
-[node name="UnknownOverlay" type="TextureRect" parent="MapSpritesControl"]
+[node name="IcebergPalaceMarker" parent="MapSpritesControl/MarkersControl" unique_id=716263284 instance=ExtResource("4_w0vni")]
+layout_mode = 1
+offset_left = 618.0
+offset_top = 7.0
+offset_right = -374.0
+offset_bottom = -409.0
+location = 53
+
+[node name="UnknownOverlay" type="TextureRect" parent="MapSpritesControl" unique_id=514443772]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -378,7 +393,7 @@ grow_vertical = 2
 texture = ExtResource("22_cvrl2")
 stretch_mode = 5
 
-[node name="LocationsControl" type="Control" parent="."]
+[node name="LocationsControl" type="Control" parent="." unique_id=1873997076]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -390,14 +405,14 @@ offset_bottom = -80.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="LocationsControl"]
+[node name="HBoxContainer" type="HBoxContainer" parent="LocationsControl" unique_id=844425292]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
 grow_horizontal = 2
 alignment = 1
 
-[node name="AllButton" parent="LocationsControl/HBoxContainer" instance=ExtResource("4_g45t3")]
+[node name="AllButton" parent="LocationsControl/HBoxContainer" unique_id=1333946603 instance=ExtResource("4_g45t3")]
 custom_minimum_size = Vector2(80, 40)
 layout_mode = 2
 focus_neighbor_left = NodePath(".")
@@ -408,7 +423,7 @@ button_pressed = true
 button_group = SubResource("ButtonGroup_7ffcl")
 text = "All"
 
-[node name="LocationsButton" parent="LocationsControl/HBoxContainer" instance=ExtResource("4_g45t3")]
+[node name="LocationsButton" parent="LocationsControl/HBoxContainer" unique_id=1059603241 instance=ExtResource("4_g45t3")]
 custom_minimum_size = Vector2(80, 40)
 layout_mode = 2
 focus_neighbor_left = NodePath("../AllButton")
@@ -418,7 +433,7 @@ toggle_mode = true
 button_group = SubResource("ButtonGroup_idv5k")
 text = "Locations"
 
-[node name="QuestsButton" parent="LocationsControl/HBoxContainer" instance=ExtResource("4_g45t3")]
+[node name="QuestsButton" parent="LocationsControl/HBoxContainer" unique_id=1465458829 instance=ExtResource("4_g45t3")]
 custom_minimum_size = Vector2(80, 40)
 layout_mode = 2
 focus_neighbor_left = NodePath("../LocationsButton")
@@ -428,7 +443,7 @@ toggle_mode = true
 button_group = SubResource("ButtonGroup_di1g8")
 text = "Quests"
 
-[node name="KeyLocationsButton" parent="LocationsControl/HBoxContainer" instance=ExtResource("4_g45t3")]
+[node name="KeyLocationsButton" parent="LocationsControl/HBoxContainer" unique_id=1753697311 instance=ExtResource("4_g45t3")]
 layout_mode = 2
 focus_neighbor_left = NodePath("../QuestsButton")
 focus_neighbor_top = NodePath(".")
@@ -436,7 +451,7 @@ focus_neighbor_right = NodePath(".")
 toggle_mode = true
 text = "Key Places"
 
-[node name="BoxContainerScroller" parent="LocationsControl" node_paths=PackedStringArray("scrollContainer", "bailoutFocusControl") instance=ExtResource("24_gc6op")]
+[node name="BoxContainerScroller" parent="LocationsControl" unique_id=954088113 node_paths=PackedStringArray("scrollContainer", "bailoutFocusControl") instance=ExtResource("24_gc6op")]
 layout_mode = 1
 offset_left = -51.0
 offset_top = 64.0
@@ -445,7 +460,7 @@ scrollContainer = NodePath("../ScrollContainer")
 scrollPx = 240
 bailoutFocusControl = NodePath("../../BackButton")
 
-[node name="ScrollContainer" type="ScrollContainer" parent="LocationsControl" node_paths=PackedStringArray("boxContainer")]
+[node name="ScrollContainer" type="ScrollContainer" parent="LocationsControl" unique_id=2136002883 node_paths=PackedStringArray("boxContainer")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -458,14 +473,14 @@ vertical_scroll_mode = 0
 script = ExtResource("5_pcbcm")
 boxContainer = NodePath("HBoxContainer")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="LocationsControl/ScrollContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="LocationsControl/ScrollContainer" unique_id=2057537442]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 6
 alignment = 1
 
-[node name="BackButton" parent="." instance=ExtResource("4_g45t3")]
+[node name="BackButton" parent="." unique_id=1831673435 instance=ExtResource("4_g45t3")]
 custom_minimum_size = Vector2(80, 50)
 layout_mode = 1
 anchors_preset = 7
