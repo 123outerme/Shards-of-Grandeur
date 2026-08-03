@@ -42,13 +42,13 @@ border_width_right = 4
 border_width_bottom = 4
 border_color = Color(0, 0, 0, 1)
 
-[sub_resource type="ButtonGroup" id="ButtonGroup_7ffcl"]
-allow_unpress = true
-
 [sub_resource type="ButtonGroup" id="ButtonGroup_idv5k"]
 allow_unpress = true
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_di1g8"]
+allow_unpress = true
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_1utuj"]
 allow_unpress = true
 
 [node name="MapPanel" type="Control" unique_id=1836696263]
@@ -214,8 +214,7 @@ texture = ExtResource("18_avs5h")
 location = 50
 
 [node name="IcebergPalaceCloudLayer" parent="MapSpritesControl/CloudsControl" unique_id=1175944607 instance=ExtResource("5_0xsm1")]
-layout_mode = 0
-anchors_preset = 0
+layout_mode = 1
 texture = ExtResource("28_idv5k")
 location = 53
 
@@ -420,7 +419,7 @@ focus_neighbor_top = NodePath(".")
 focus_neighbor_right = NodePath("../LocationsButton")
 toggle_mode = true
 button_pressed = true
-button_group = SubResource("ButtonGroup_7ffcl")
+button_group = SubResource("ButtonGroup_idv5k")
 text = "All"
 
 [node name="LocationsButton" parent="LocationsControl/HBoxContainer" unique_id=1059603241 instance=ExtResource("4_g45t3")]
@@ -430,7 +429,7 @@ focus_neighbor_left = NodePath("../AllButton")
 focus_neighbor_top = NodePath(".")
 focus_neighbor_right = NodePath("../QuestsButton")
 toggle_mode = true
-button_group = SubResource("ButtonGroup_idv5k")
+button_group = SubResource("ButtonGroup_di1g8")
 text = "Locations"
 
 [node name="QuestsButton" parent="LocationsControl/HBoxContainer" unique_id=1465458829 instance=ExtResource("4_g45t3")]
@@ -440,7 +439,7 @@ focus_neighbor_left = NodePath("../LocationsButton")
 focus_neighbor_top = NodePath(".")
 focus_neighbor_right = NodePath("../KeyLocationsButton")
 toggle_mode = true
-button_group = SubResource("ButtonGroup_di1g8")
+button_group = SubResource("ButtonGroup_1utuj")
 text = "Quests"
 
 [node name="KeyLocationsButton" parent="LocationsControl/HBoxContainer" unique_id=1753697311 instance=ExtResource("4_g45t3")]
