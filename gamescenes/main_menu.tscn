@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://bbg1t1b1aah7h"]
+[gd_scene format=3 uid="uid://bbg1t1b1aah7h"]
 
 [ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://themes/root_theme.tres" id="1_gmnpf"]
 [ext_resource type="Script" uid="uid://1gqssc14h4wx" path="res://scripts/menus/main_menu/main_menu.gd" id="2_viou1"]
@@ -28,7 +28,7 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_eqwdb"]
 
-[node name="MainMenu" type="Control" groups=["Scenes"]]
+[node name="MainMenu" type="Control" unique_id=810396640 groups=["Scenes"]]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -41,10 +41,10 @@ script = ExtResource("2_viou1")
 mainMenuMusic = ExtResource("3_eni48")
 activateDebugModeSfx = ExtResource("4_467y5")
 
-[node name="AnimatedBgPanel" parent="." instance=ExtResource("5_bi187")]
+[node name="AnimatedBgPanel" parent="." unique_id=1068912602 instance=ExtResource("5_bi187")]
 layout_mode = 1
 
-[node name="Panel" type="Panel" parent="."]
+[node name="Panel" type="Panel" parent="." unique_id=2142240412]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -53,7 +53,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_e75oi")
 
-[node name="MainMenuPage" type="Control" parent="Panel"]
+[node name="MainMenuPage" type="Control" parent="Panel" unique_id=2060461075]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -61,7 +61,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MainMenuPage"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MainMenuPage" unique_id=744768164]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -76,7 +76,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 4
 
-[node name="ResumeGameButton" parent="Panel/MainMenuPage/VBoxContainer" instance=ExtResource("4_rb8pb")]
+[node name="ResumeGameButton" parent="Panel/MainMenuPage/VBoxContainer" unique_id=636807409 instance=ExtResource("4_rb8pb")]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 keep_pressed_outside = true
@@ -84,7 +84,7 @@ text = "Load Game"
 icon = ExtResource("5_t85f5")
 expand_icon = true
 
-[node name="NewGameButton" parent="Panel/MainMenuPage/VBoxContainer" instance=ExtResource("4_rb8pb")]
+[node name="NewGameButton" parent="Panel/MainMenuPage/VBoxContainer" unique_id=281892910 instance=ExtResource("4_rb8pb")]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 keep_pressed_outside = true
@@ -92,7 +92,7 @@ text = "New Game"
 icon = ExtResource("6_8y84x")
 expand_icon = true
 
-[node name="SettingsButton" parent="Panel/MainMenuPage/VBoxContainer" instance=ExtResource("4_rb8pb")]
+[node name="SettingsButton" parent="Panel/MainMenuPage/VBoxContainer" unique_id=598043745 instance=ExtResource("4_rb8pb")]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 keep_pressed_outside = true
@@ -100,14 +100,14 @@ text = "Settings"
 icon = ExtResource("5_a7rkf")
 expand_icon = true
 
-[node name="CreditsButton" parent="Panel/MainMenuPage/VBoxContainer" instance=ExtResource("4_rb8pb")]
+[node name="CreditsButton" parent="Panel/MainMenuPage/VBoxContainer" unique_id=772830727 instance=ExtResource("4_rb8pb")]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 text = "Credits"
 icon = ExtResource("8_3vdg2")
 expand_icon = true
 
-[node name="QuitButton" parent="Panel/MainMenuPage/VBoxContainer" instance=ExtResource("4_rb8pb")]
+[node name="QuitButton" parent="Panel/MainMenuPage/VBoxContainer" unique_id=179531726 instance=ExtResource("4_rb8pb")]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 keep_pressed_outside = true
@@ -115,7 +115,7 @@ text = "Quit Game"
 icon = ExtResource("9_jdjmu")
 expand_icon = true
 
-[node name="TitleText" type="RichTextLabel" parent="Panel/MainMenuPage"]
+[node name="TitleText" type="RichTextLabel" parent="Panel/MainMenuPage" unique_id=27245458]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -132,20 +132,20 @@ bbcode_enabled = true
 text = "[center]Shards of Grandeur[/center]"
 fit_content = true
 
-[node name="PlayerSprite" type="AnimatedSprite2D" parent="Panel/MainMenuPage"]
+[node name="PlayerSprite" type="AnimatedSprite2D" parent="Panel/MainMenuPage" unique_id=1521179972]
 position = Vector2(426, 306)
 scale = Vector2(4, 4)
 sprite_frames = ExtResource("13_ycmgk")
 animation = &"stand"
 
-[node name="SoliusSprite" type="AnimatedSprite2D" parent="Panel/MainMenuPage"]
+[node name="SoliusSprite" type="AnimatedSprite2D" parent="Panel/MainMenuPage" unique_id=440772828]
 position = Vector2(854, 306)
 scale = Vector2(4, 4)
 sprite_frames = ExtResource("14_amh01")
 animation = &"stand"
 flip_h = true
 
-[node name="VersionLabel" type="RichTextLabel" parent="Panel/MainMenuPage"]
+[node name="VersionLabel" type="RichTextLabel" parent="Panel/MainMenuPage" unique_id=837686306]
 clip_contents = false
 layout_mode = 1
 anchors_preset = 12
@@ -161,13 +161,13 @@ grow_vertical = 0
 mouse_filter = 2
 fit_content = true
 
-[node name="LoadGamePanel" parent="Panel" node_paths=PackedStringArray("shade") instance=ExtResource("17_qsm70")]
+[node name="LoadGamePanel" parent="Panel" unique_id=679892366 node_paths=PackedStringArray("shade") instance=ExtResource("17_qsm70")]
 visible = false
 layout_mode = 1
 shade = NodePath("../../MainMenuShade")
 fromMainMenu = true
 
-[node name="NewGameConfirmPanel" type="Panel" parent="Panel"]
+[node name="NewGameConfirmPanel" type="Panel" parent="Panel" unique_id=1515657327]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -177,7 +177,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_bf22s")
 
-[node name="NewGameConfirmLabel" type="RichTextLabel" parent="Panel/NewGameConfirmPanel"]
+[node name="NewGameConfirmLabel" type="RichTextLabel" parent="Panel/NewGameConfirmPanel" unique_id=1365577352]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -193,7 +193,7 @@ bbcode_enabled = true
 text = "[center]Create A New Game?[/center]"
 fit_content = true
 
-[node name="OverwriteWarningLabel" type="RichTextLabel" parent="Panel/NewGameConfirmPanel"]
+[node name="OverwriteWarningLabel" type="RichTextLabel" parent="Panel/NewGameConfirmPanel" unique_id=1157560164]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -206,7 +206,7 @@ grow_horizontal = 2
 bbcode_enabled = true
 text = "[center]Starting a new game will overwrite your Auto-Save.[/center]"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Panel/NewGameConfirmPanel"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/NewGameConfirmPanel" unique_id=1671828755]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -222,7 +222,7 @@ grow_vertical = 2
 theme_override_constants/separation = 30
 alignment = 1
 
-[node name="YesButton" parent="Panel/NewGameConfirmPanel/HBoxContainer" instance=ExtResource("4_rb8pb")]
+[node name="YesButton" parent="Panel/NewGameConfirmPanel/HBoxContainer" unique_id=1508988949 instance=ExtResource("4_rb8pb")]
 layout_mode = 2
 focus_neighbor_left = NodePath(".")
 focus_neighbor_top = NodePath(".")
@@ -230,7 +230,7 @@ focus_neighbor_right = NodePath("../NoButton")
 focus_neighbor_bottom = NodePath(".")
 text = "Yes, New Game!"
 
-[node name="NoButton" parent="Panel/NewGameConfirmPanel/HBoxContainer" instance=ExtResource("4_rb8pb")]
+[node name="NoButton" parent="Panel/NewGameConfirmPanel/HBoxContainer" unique_id=790751706 instance=ExtResource("4_rb8pb")]
 layout_mode = 2
 focus_neighbor_left = NodePath("../YesButton")
 focus_neighbor_top = NodePath(".")
@@ -238,7 +238,7 @@ focus_neighbor_right = NodePath(".")
 focus_neighbor_bottom = NodePath(".")
 text = "No, Never Mind..."
 
-[node name="PlayerNamePanel" type="Panel" parent="Panel"]
+[node name="PlayerNamePanel" type="Panel" parent="Panel" unique_id=1032321442]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -248,7 +248,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_8w0dn")
 
-[node name="NewGameConfirmLabel" type="RichTextLabel" parent="Panel/PlayerNamePanel"]
+[node name="NewGameConfirmLabel" type="RichTextLabel" parent="Panel/PlayerNamePanel" unique_id=300435002]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -264,7 +264,7 @@ bbcode_enabled = true
 text = "[center]What Is Your Name?[/center]"
 fit_content = true
 
-[node name="NameInput" type="LineEdit" parent="Panel/PlayerNamePanel"]
+[node name="NameInput" type="LineEdit" parent="Panel/PlayerNamePanel" unique_id=1929305309]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -284,7 +284,7 @@ max_length = 20
 clear_button_enabled = true
 caret_blink = true
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Panel/PlayerNamePanel"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/PlayerNamePanel" unique_id=105100873]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -299,7 +299,7 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="ConfirmButton" parent="Panel/PlayerNamePanel/HBoxContainer" instance=ExtResource("4_rb8pb")]
+[node name="ConfirmButton" parent="Panel/PlayerNamePanel/HBoxContainer" unique_id=250456922 instance=ExtResource("4_rb8pb")]
 layout_mode = 2
 focus_neighbor_left = NodePath(".")
 focus_neighbor_top = NodePath("../../NameInput")
@@ -308,7 +308,7 @@ focus_neighbor_bottom = NodePath(".")
 disabled = true
 text = "Confirm & Start!"
 
-[node name="CancelButton" parent="Panel/PlayerNamePanel/HBoxContainer" instance=ExtResource("4_rb8pb")]
+[node name="CancelButton" parent="Panel/PlayerNamePanel/HBoxContainer" unique_id=1540382782 instance=ExtResource("4_rb8pb")]
 layout_mode = 2
 focus_neighbor_left = NodePath(".")
 focus_neighbor_top = NodePath("../../NameInput")
@@ -316,7 +316,7 @@ focus_neighbor_right = NodePath("../ConfirmButton")
 focus_neighbor_bottom = NodePath(".")
 text = "Cancel! Go Back."
 
-[node name="VirtualKeyboard" parent="Panel/PlayerNamePanel" instance=ExtResource("12_h6rgv")]
+[node name="VirtualKeyboard" parent="Panel/PlayerNamePanel" unique_id=97945180 instance=ExtResource("12_h6rgv")]
 visible = false
 layout_mode = 1
 offset_left = 81.0
@@ -324,7 +324,7 @@ offset_top = 458.0
 offset_right = -91.0
 offset_bottom = -24.0
 
-[node name="CreditsPanel" type="Panel" parent="Panel"]
+[node name="CreditsPanel" type="Panel" parent="Panel" unique_id=1441144697]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -335,7 +335,7 @@ grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_eqwdb")
 script = ExtResource("18_54oth")
 
-[node name="CreditsLabel" type="RichTextLabel" parent="Panel/CreditsPanel"]
+[node name="CreditsLabel" type="RichTextLabel" parent="Panel/CreditsPanel" unique_id=1856953766]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -352,7 +352,7 @@ bbcode_enabled = true
 text = "[center]Credits[/center]"
 fit_content = true
 
-[node name="RichTextLabelScroller" parent="Panel/CreditsPanel" node_paths=PackedStringArray("label", "bailoutFocusControl") instance=ExtResource("19_21m3e")]
+[node name="RichTextLabelScroller" parent="Panel/CreditsPanel" unique_id=1525645231 node_paths=PackedStringArray("label", "bailoutFocusControl") instance=ExtResource("19_21m3e")]
 layout_mode = 1
 offset_left = 240.0
 offset_top = 121.0
@@ -362,7 +362,7 @@ label = NodePath("../CreditsText")
 scrollLinesApprox = 2.0
 bailoutFocusControl = NodePath("../BackButton")
 
-[node name="CreditsText" type="RichTextLabel" parent="Panel/CreditsPanel"]
+[node name="CreditsText" type="RichTextLabel" parent="Panel/CreditsPanel" unique_id=2015365079]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -380,7 +380,7 @@ theme_override_font_sizes/bold_italics_font_size = 24
 theme_override_font_sizes/italics_font_size = 24
 theme_override_font_sizes/mono_font_size = 24
 bbcode_enabled = true
-text = "[center]Programming, Game Design, UI, Art, Story:
+text = "[center]Programming, Game Design, UI, Art, Story, Music:
 Stephen Policelli
 
 Music:
@@ -420,7 +420,7 @@ Bug Testing, Feedback:
 All the players who've tried a pre-final release so far!
 [/center]"
 
-[node name="BackButton" parent="Panel/CreditsPanel" instance=ExtResource("4_rb8pb")]
+[node name="BackButton" parent="Panel/CreditsPanel" unique_id=1627734637 instance=ExtResource("4_rb8pb")]
 custom_minimum_size = Vector2(80, 40)
 layout_mode = 1
 anchors_preset = 7
@@ -440,7 +440,7 @@ focus_neighbor_right = NodePath(".")
 focus_neighbor_bottom = NodePath(".")
 text = "Back"
 
-[node name="DebugClickControl" type="Control" parent="Panel/CreditsPanel"]
+[node name="DebugClickControl" type="Control" parent="Panel/CreditsPanel" unique_id=1312082255]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -455,11 +455,11 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 
-[node name="SettingsMenu" parent="." instance=ExtResource("10_650uu")]
+[node name="SettingsMenu" parent="." unique_id=1604589 instance=ExtResource("10_650uu")]
 visible = false
 layout_mode = 1
 
-[node name="MainMenuShade" type="ColorRect" parent="."]
+[node name="MainMenuShade" type="ColorRect" parent="." unique_id=505230994]
 visible = false
 layout_mode = 1
 anchors_preset = 15

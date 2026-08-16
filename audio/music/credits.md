@@ -11,6 +11,8 @@ Here is where I will credit the artist who created each individual track used in
 ## `battle` Subdirectory
 
 - `battletheme_uvutudx_demo.mp3`: By Ian Groat.
+- `battle_victory_jingle.mp3`: By Stephen Policelli.
+- `boss_battle_victory_jingle.mp3`: By Stephen Policelli.
 - `deathsound.mp3`: By Henry Guckes.
 - `gateway_into_action.mp3`: By Ian Groat.
 - `newbattlethemev2.mp3`: By Henry Guckes.

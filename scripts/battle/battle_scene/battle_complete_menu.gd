@@ -4,6 +4,7 @@ class_name BattleCompleteMenu
 @export var battleUI: BattleUI
 @export var itemDetailsPanel: ItemDetailsPanel
 @export var winMusic: AudioStream = null
+@export var bossWinMusic: AudioStream = null
 @export var loseMusic: AudioStream = null
 @export var escapeMusic: AudioStream = null
 
@@ -64,7 +65,10 @@ func load_battle_over_menu():
 			rewardsVBox.add_child(instantiatedPanel)
 			instantiatedPanel.load_reward_panel()
 			instantiatedPanel.show_item_details.connect(_on_item_details_clicked)
-		SceneLoader.audioHandler.play_music(winMusic, -1)
+		if PlayerResources.playerInfo.encounter is StaticEncounter and (PlayerResources.playerInfo.encounter as StaticEncounter).bossBattle:
+			SceneLoader.audioHandler.play_music(bossWinMusic, 0)
+		else:
+			SceneLoader.audioHandler.play_music(winMusic, 0)
 	elif playerEscapes:
 		SceneLoader.audioHandler.play_music(escapeMusic, -1)
 	else:

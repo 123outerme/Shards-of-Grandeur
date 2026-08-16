@@ -23,13 +23,14 @@
 [ext_resource type="Script" uid="uid://b0kyxgnoypqw6" path="res://scripts/battle/battle_scene/flow_of_battle.gd" id="14_wt520"]
 [ext_resource type="Script" uid="uid://cbb5diqsv44du" path="res://scripts/battle/battle_scene/turn_executor.gd" id="15_2cnm6"]
 [ext_resource type="AudioStream" uid="uid://bpvsiiko743cd" path="res://audio/music/battle/deathsound.mp3" id="15_7udvk"]
-[ext_resource type="AudioStream" uid="uid://s4uhsjhn0j4e" path="res://audio/music/gtl_4.mp3" id="16_f0dtb"]
 [ext_resource type="PackedScene" uid="uid://bc2kbh31hfy6" path="res://prefabs/ui/rich_text_label_scroller.tscn" id="16_keyhh"]
 [ext_resource type="PackedScene" uid="uid://bw758t8yxr7j1" path="res://prefabs/ui/inventory/item_details_panel.tscn" id="16_m8w6j"]
 [ext_resource type="PackedScene" uid="uid://dhtqpe8pcg80v" path="res://prefabs/ui/stats/stats_panel.tscn" id="17_tq7tc"]
 [ext_resource type="PackedScene" uid="uid://dxbd23grq477d" path="res://prefabs/ui/pause_menu.tscn" id="18_h5paw"]
 [ext_resource type="Texture2D" uid="uid://ccwjppr5j8lfb" path="res://graphics/ui/touch_ui_icons/stats_icon.png" id="19_rcmd4"]
 [ext_resource type="StyleBox" uid="uid://cqjpxgwhrhqj2" path="res://themes/nested_ui/inner_panel.tres" id="19_soy02"]
+[ext_resource type="AudioStream" uid="uid://dl4egppcsywqv" path="res://audio/music/battle/battle_victory_jingle.mp3" id="19_vpfmi"]
+[ext_resource type="AudioStream" uid="uid://ci25ci3383y2v" path="res://audio/music/battle/boss_battle_victory_jingle.mp3" id="20_7iawy"]
 [ext_resource type="PackedScene" uid="uid://dx5i04ygfxw3m" path="res://prefabs/battle/summon_minion_panel.tscn" id="20_gbnnj"]
 [ext_resource type="Script" uid="uid://d3h5wm0r4wmv" path="res://scripts/battle/battle_scene/custom_win_text_panel.gd" id="20_qmlyh"]
 [ext_resource type="Texture2D" uid="uid://22hp4pirngip" path="res://graphics/ui/touch_ui_icons/quests_icon.png" id="20_tmnh1"]
@@ -656,7 +657,8 @@ layout_mode = 2
 script = ExtResource("12_ip5fm")
 battleUI = NodePath("../../../..")
 itemDetailsPanel = NodePath("../../../../UIPanels/ItemDetailsPanel")
-winMusic = ExtResource("16_f0dtb")
+winMusic = ExtResource("19_vpfmi")
+bossWinMusic = ExtResource("20_7iawy")
 loseMusic = ExtResource("15_7udvk")
 
 [node name="RewardsVBox" type="VBoxContainer" parent="BattleCam/BattleTextBox/TextContainer/MarginContainer/BattleComplete" unique_id=1936518878]
