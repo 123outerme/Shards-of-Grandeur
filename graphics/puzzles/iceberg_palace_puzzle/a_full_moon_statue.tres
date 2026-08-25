@@ -1,0 +1,100 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://dewqkqsjtnmie"]
+
+[ext_resource type="Texture2D" uid="uid://87u7yuaxp5an" path="res://graphics/puzzles/iceberg_palace_puzzle/full_moon_statue.png" id="1_rmq60"]
+[ext_resource type="Texture2D" uid="uid://cm7kbxgv07y48" path="res://graphics/puzzles/iceberg_palace_puzzle/full_moon_statue_land_token.png" id="2_beedi"]
+[ext_resource type="Texture2D" uid="uid://cu5iyoujc3gyw" path="res://graphics/puzzles/iceberg_palace_puzzle/full_moon_statue_sea_token.png" id="3_cpnli"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_beedi"]
+atlas = ExtResource("1_rmq60")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cpnli"]
+atlas = ExtResource("2_beedi")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e2aya"]
+atlas = ExtResource("2_beedi")
+region = Rect2(16, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d6328"]
+atlas = ExtResource("2_beedi")
+region = Rect2(32, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fl6tj"]
+atlas = ExtResource("2_beedi")
+region = Rect2(48, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lrk5o"]
+atlas = ExtResource("2_beedi")
+region = Rect2(64, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7vofy"]
+atlas = ExtResource("3_cpnli")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dh884"]
+atlas = ExtResource("3_cpnli")
+region = Rect2(16, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_floqp"]
+atlas = ExtResource("3_cpnli")
+region = Rect2(32, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x1ogf"]
+atlas = ExtResource("3_cpnli")
+region = Rect2(48, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_651ku"]
+atlas = ExtResource("3_cpnli")
+region = Rect2(64, 0, 16, 32)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_beedi")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cpnli")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e2aya")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d6328")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fl6tj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lrk5o")
+}],
+"loop": 1,
+"name": &"land_token",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7vofy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dh884")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_floqp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x1ogf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_651ku")
+}],
+"loop": 1,
+"name": &"sea_token",
+"speed": 5.0
+}]
