@@ -31,6 +31,7 @@ var onscreen: bool = false
 @onready var sellButton: Button = get_node("CenterButtons/HBoxContainer/SellButton")
 @onready var detailsButton: Button = get_node("CenterButtons/HBoxContainer/DetailsButton")
 @onready var onscreenNotifier: VisibleOnScreenNotifier2D = get_node('OnscreenNotifier')
+@onready var itemGlow: Panel = get_node('GlowColor')
 
 # shows the Inventory panel where the tutorial arrow should go
 # (but not nested in here, so it isn't clipped by the scroll container)
@@ -96,11 +97,14 @@ func load_inventory_slot_panel():
 		itemCount.text = ''
 		equippedTo.text = ''
 		centerItemCost.visible = false
+		itemGlow.visible = false
 		await onscreenNotifier.screen_entered
 	
 	# once it's onscreen, load the sprites, texts, etc.
 	itemSprite.texture = inventorySlot.item.itemSprite
 	itemName.text = inventorySlot.item.itemName
+	var willEvolvePlayer: bool = PlayerResources.playerInfo.combatant.will_equipping_item_cause_evolution(inventorySlot.item)
+	itemGlow.visible = willEvolvePlayer
 	itemType.text = Item.type_to_string(inventorySlot.item.itemType)
 	if inventorySlot.count > 0:
 		itemCount.text = 'x' + TextUtils.num_to_comma_string(displayCount)
@@ -119,6 +123,8 @@ func load_inventory_slot_panel():
 			combatant = PlayerResources.minions.get_minion(minionName)
 		if combatant != null and isPlayerItem:
 			equippedTo.text = '[right]Equipped to:\n' + combatant.disp_name() + '[/right]'
+		elif willEvolvePlayer:
+			equippedTo.text = '[right]You feel drawn to this...[/right]'
 	else:
 		# if this item can't be used right now, and it's not a shop item or there's no other reason we can't buy it:
 		if not inventorySlot.item.can_be_used_now() and \

@@ -1,0 +1,79 @@
+[gd_resource type="Resource" script_class="DialogueEntry" format=3 uid="uid://camxe1u1cwb0m"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_7x8mv"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_yanww"]
+[ext_resource type="Script" uid="uid://b6oofnelefs8o" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_g406v"]
+[ext_resource type="Resource" uid="uid://7nm8vwuc4k0n" path="res://gamedata/puzzles/iceberg_palace/iceberg_palace_puzzle.tres" id="4_bcb4c"]
+[ext_resource type="Script" uid="uid://rq70khw4bw6c" path="res://scripts/dialogue/choice_types/puzzle_dialogue_choice.gd" id="5_ggi7k"]
+[ext_resource type="Resource" uid="uid://dih1mcxerfxg3" path="res://gamedata/dialogue/interactables/puzzles/iceberg_palace_puzzle/statue_take_land_token.tres" id="6_1rhvd"]
+[ext_resource type="Script" uid="uid://fw22o8hbosnk" path="res://scripts/inventory/inventory_slot.gd" id="7_775nr"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="8_k0vsp"]
+[ext_resource type="Resource" uid="uid://cbqlqkvku4usa" path="res://gamedata/dialogue/interactables/puzzles/iceberg_palace_puzzle/statue_take_sea_token.tres" id="9_76rey"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="10_oef4d"]
+
+[sub_resource type="Resource" id="Resource_cpnli"]
+script = ExtResource("2_yanww")
+choiceBtn = "Leave"
+isDeclineChoice = true
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_of3by"]
+script = ExtResource("5_ggi7k")
+puzzle = ExtResource("4_bcb4c")
+puzzleStateIndex = 2
+setsState = "land_token"
+choiceBtn = "Present Land Token"
+metadata/_custom_type_script = "uid://rq70khw4bw6c"
+
+[sub_resource type="Resource" id="Resource_s0h5m"]
+script = ExtResource("5_ggi7k")
+puzzle = ExtResource("4_bcb4c")
+puzzleStateIndex = 2
+setsState = "sea_token"
+choiceBtn = "Present Sea Token"
+metadata/_custom_type_script = "uid://rq70khw4bw6c"
+
+[sub_resource type="Resource" id="Resource_54x72"]
+script = ExtResource("8_k0vsp")
+prereqPuzzleStates = Dictionary[String, Array]({
+"iceberg_palace_puzzle": ["", "", "land_token"]
+})
+metadata/_custom_type_script = "uid://bjesn36acj0uh"
+
+[sub_resource type="Resource" id="Resource_to5p4"]
+script = ExtResource("5_ggi7k")
+puzzle = ExtResource("4_bcb4c")
+puzzleStateIndex = 2
+setsState = "default"
+choiceBtn = "Take Land Token"
+storyRequirements = SubResource("Resource_54x72")
+leadsTo = ExtResource("6_1rhvd")
+metadata/_custom_type_script = "uid://rq70khw4bw6c"
+
+[sub_resource type="Resource" id="Resource_0cmbp"]
+script = ExtResource("8_k0vsp")
+prereqPuzzleStates = Dictionary[String, Array]({
+"iceberg_palace_puzzle": ["", "", "sea_token"]
+})
+metadata/_custom_type_script = "uid://bjesn36acj0uh"
+
+[sub_resource type="Resource" id="Resource_n60x7"]
+script = ExtResource("5_ggi7k")
+puzzle = ExtResource("4_bcb4c")
+puzzleStateIndex = 2
+setsState = "default"
+choiceBtn = "Take Sea Token"
+storyRequirements = SubResource("Resource_0cmbp")
+leadsTo = ExtResource("9_76rey")
+metadata/_custom_type_script = "uid://rq70khw4bw6c"
+
+[sub_resource type="Resource" id="Resource_l8iv8"]
+script = ExtResource("1_7x8mv")
+lines = Array[String](["This is a statue depicting the full moon. What will you do?"])
+choices = Array[ExtResource("2_yanww")]([SubResource("Resource_cpnli"), SubResource("Resource_of3by"), SubResource("Resource_s0h5m"), SubResource("Resource_to5p4"), SubResource("Resource_n60x7")])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[resource]
+script = ExtResource("10_oef4d")
+items = Array[ExtResource("1_7x8mv")]([SubResource("Resource_l8iv8")])
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"

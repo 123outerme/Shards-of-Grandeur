@@ -18,7 +18,7 @@ class_name StatePuzzleDecoration
 ## a dictionary String -> AudioStream, where key is `state1>state2` for a transition from `state1` to `state2`, where `state1` can be a state string or *. * matches all unmatched start states. Value is the SFX to play for that transition
 @export var stateTransitionSfxs: Dictionary[String, AudioStream] = {}
 
-## dictionary of String -> InteractableDialogue objects. Each key is a state of the StatePuzzle, each InteractableDialogue the dialogue that will be played when interacting with this decoration in that puzzle state
+## dictionary of String -> InteractableDialogue objects. Each key is a state of the StatePuzzle, each InteractableDialogue the dialogue that will be played when interacting with this decoration in that puzzle state. '*' state will play that dialogue if no specific states match
 @export var stateDialogues: Dictionary[String, InteractableDialogue] = {}
 
 ## the dialogue to show when the player doesn't have the prerequisite story requirements to attempt the puzzle. `Interactable.dialogue` is for the "unsolved but passes prereqs" dialogue
@@ -93,9 +93,9 @@ func interact(_args: Array = []):
 	if not puzzle.passes_prereqs():
 		args.append(failedPrereqsDialogue)
 	else:
-		var state: String = get_decoration_state()
-		if stateDialogues.has(state):
-			args.append(stateDialogues[state] as InteractableDialogue)
+		var stateDialogue: InteractableDialogue = get_current_state_dialogue()
+		if stateDialogue != null and stateDialogue.can_use_dialogue():
+			args.append(stateDialogue)
 	
 	super.interact(args)
 
@@ -103,12 +103,17 @@ func has_dialogue() -> bool:
 	if not puzzle.passes_prereqs():
 		return failedPrereqsDialogue != null and failedPrereqsDialogue.can_use_dialogue() and not invisible
 	else:
-		var state: String = get_decoration_state()
-		if stateDialogues.has(state):
-			var stateDialogue: InteractableDialogue = stateDialogues[state] as InteractableDialogue
-			return stateDialogue != null and stateDialogue.can_use_dialogue() and not invisible
-		return false
+		var stateDialogue: InteractableDialogue = get_current_state_dialogue()
+		return stateDialogue != null and stateDialogue.can_use_dialogue() and not invisible
 	#return super.has_dialogue()
+
+func get_current_state_dialogue() -> InteractableDialogue:
+	var state: String = get_decoration_state()
+	if stateDialogues.has(state):
+		return stateDialogues[state]
+	elif stateDialogues.has('*'):
+		return stateDialogues['*']
+	return null
 
 func play_animation(animName: String):
 	if not playingTransitionAnim:
@@ -143,9 +148,8 @@ func _on_area_entered(area):
 	if area.name == 'PlayerEventCollider':
 		# add this puzzle to the list of interactables for the player
 		enter_player_range()
-		var state: String = get_decoration_state()
 		# if invalid (using invalid-dialogue) or has a dialogue for the current state:
-		if not puzzle.passes_prereqs() or stateDialogues.has(state):
+		if not puzzle.passes_prereqs() or get_current_state_dialogue() != null:
 			show_interact_sprite()
 
 func _on_area_exited(area):
@@ -159,19 +163,20 @@ func _puzzle_reqs_updated(playTransition: bool = true):
 	var state: String = get_decoration_state()
 	if currentState != state:
 		show_interact_sprite(false)
-		var animation: String = stateAnimations[state]
-		if playTransition:
-			if stateTransitionAnimations.has(currentState + '>' + state):
-				animation = stateTransitionAnimations[currentState + '>' + state]
-			if stateTransitionSfxs.has(currentState + '>' + state):
-				SceneLoader.audioHandler.play_sfx(stateTransitionSfxs[currentState + '>' + state])
-			elif stateTransitionSfxs.has('*>' + state):
-				SceneLoader.audioHandler.play_sfx(stateTransitionSfxs['*>' + state])
-		if not animatedDecoration.anim_finished.is_connected(_transition_anim_finished):
-			animatedDecoration.anim_finished.connect(_transition_anim_finished)
-		if updateAnimOnTransitionAnimEnd and not animatedDecoration.anim_finished.is_connected(play_current_state_animation):
-			animatedDecoration.anim_finished.connect(play_current_state_animation)
-		animatedDecoration.play_animation(animation)
+		if stateAnimations.has(state):
+			var animation: String = stateAnimations[state]
+			if playTransition:
+				if stateTransitionAnimations.has(currentState + '>' + state):
+					animation = stateTransitionAnimations[currentState + '>' + state]
+				if stateTransitionSfxs.has(currentState + '>' + state):
+					SceneLoader.audioHandler.play_sfx(stateTransitionSfxs[currentState + '>' + state])
+				elif stateTransitionSfxs.has('*>' + state):
+					SceneLoader.audioHandler.play_sfx(stateTransitionSfxs['*>' + state])
+			if not animatedDecoration.anim_finished.is_connected(_transition_anim_finished):
+				animatedDecoration.anim_finished.connect(_transition_anim_finished)
+			if updateAnimOnTransitionAnimEnd and not animatedDecoration.anim_finished.is_connected(play_current_state_animation):
+				animatedDecoration.anim_finished.connect(play_current_state_animation)
+			animatedDecoration.play_animation(animation)
 		if state in disableCollisionInStates:
 			animatedDecoration.collisionEnabled = false
 			animatedDecoration.collision.collision_layer = 0

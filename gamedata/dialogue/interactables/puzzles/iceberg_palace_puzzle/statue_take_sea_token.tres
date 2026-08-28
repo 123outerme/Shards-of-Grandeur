@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="DialogueEntry" format=3 uid="uid://cbqlqkvku4usa"]
+
+[ext_resource type="Resource" uid="uid://dcpyo7oowwl8p" path="res://gamedata/items/key_items/sea_token.tres" id="1_8w5wg"]
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="2_nlp23"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="3_mwchb"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="4_o0102"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="5_7wkuk"]
+
+[sub_resource type="Resource" id="Resource_xq3y2"]
+script = ExtResource("2_nlp23")
+lines = Array[String](["You receive the $highlight{Sea Token}color$ back from the statue."])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[resource]
+script = ExtResource("5_7wkuk")
+items = Array[ExtResource("2_nlp23")]([SubResource("Resource_xq3y2")])
+givesItem = ExtResource("1_8w5wg")
+closesDialogue = true
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"

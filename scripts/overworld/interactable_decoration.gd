@@ -13,8 +13,12 @@ class_name InteractableDecoration
 ## if true, will start a fadeout animation that then deactivates this interactable on complete
 @export var fadeOutOnRequirementsInvalidated: bool = false
 
+## if true, will start a fadeout animation that then deactivates this interactable on complete
+@export var fadeInOnRequirementsRevalidated: bool = false
+
 var animatedDecorations: Array[AnimatedDecoration] = []
 var fadeoutTween: Tween = null
+var fadeinTween: Tween = null
 
 @onready var interactSprite: AnimatedSprite2D = get_node('InteractSprite')
 
@@ -91,18 +95,41 @@ func set_invisible(value: bool) -> void:
 func _story_requirements_updated(initializing: bool = false) -> void:
 	if not StoryRequirements.list_is_valid(storyRequirements):
 		if not initializing and fadeOutOnRequirementsInvalidated and fadeoutTween == null:
+			if fadeinTween != null and fadeinTween.is_valid():
+				fadeinTween.stop()
+				fadeinTween = null
 			fadeoutTween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_LINEAR)
 			fadeoutTween.tween_property(self, 'modulate', Color(0, 0, 0, 0), 1.0)
 			fadeoutTween.tween_callback(deactivate)
 		else:
 			deactivate()
+	else:
+		if not initializing and (fadeoutTween != null or invisible) and fadeInOnRequirementsRevalidated and fadeinTween == null:
+			if fadeoutTween != null and fadeoutTween.is_valid():
+				fadeoutTween.stop()
+				fadeoutTween = null
+			else:
+				modulate = Color(0, 0, 0, 0)
+				invisible = false
+			fadeinTween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_LINEAR)
+			fadeinTween.tween_property(self, 'modulate', Color(1, 1, 1, 1), 1.0)
+			fadeinTween.tween_callback(activate)
+		else:
+			activate()
 	
 	## check if interact sprite can be shown
 	if PlayerFinder.player != null and self in PlayerFinder.player.interactables and can_show_interact_sprite():
 		show_interact_sprite()
+
+func activate() -> void:
+	invisible = false
+	modulate = Color(1, 1, 1, 1) # reset modulate if faded out
+	fadeoutTween = null
+	fadeinTween = null
 
 func deactivate() -> void:
 	invisible = true
 	show_interact_sprite(false)
 	modulate = Color(1, 1, 1, 1) # reset modulate if faded out
 	fadeoutTween = null
+	fadeinTween = null

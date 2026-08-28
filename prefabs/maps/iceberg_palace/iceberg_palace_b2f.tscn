@@ -6,11 +6,31 @@
 [ext_resource type="SpriteFrames" uid="uid://d2twvpugfcflu" path="res://graphics/structures/a_energy_wall_speaker.tres" id="4_dexbd"]
 [ext_resource type="SpriteFrames" uid="uid://dliedtl5d221b" path="res://graphics/structures/a_energy_wall.tres" id="5_dry5w"]
 [ext_resource type="PackedScene" uid="uid://bmaqkuubonmf2" path="res://prefabs/entities/animated_decoration.tscn" id="6_al8fa"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="7_bk8pi"]
 [ext_resource type="PackedScene" uid="uid://dtd7cphrp2han" path="res://prefabs/entities/state_puzzle_decoration.tscn" id="7_dry5w"]
 [ext_resource type="SpriteFrames" uid="uid://d307ahuqse8wm" path="res://graphics/puzzles/iceberg_palace_puzzle/a_new_moon_statue.tres" id="8_al8fa"]
 [ext_resource type="Resource" uid="uid://7nm8vwuc4k0n" path="res://gamedata/puzzles/iceberg_palace/iceberg_palace_puzzle.tres" id="8_e1co5"]
+[ext_resource type="Script" uid="uid://fw22o8hbosnk" path="res://scripts/inventory/inventory_slot.gd" id="8_egya6"]
 [ext_resource type="SpriteFrames" uid="uid://c62xjdwoettpw" path="res://graphics/puzzles/iceberg_palace_puzzle/a_crescent_moon_statue.tres" id="9_al8fa"]
+[ext_resource type="Script" uid="uid://py7dqrwagbxi" path="res://scripts/overworld/interactable_dialogue.gd" id="9_hik8u"]
 [ext_resource type="SpriteFrames" uid="uid://dewqkqsjtnmie" path="res://graphics/puzzles/iceberg_palace_puzzle/a_full_moon_statue.tres" id="10_7hma3"]
+[ext_resource type="Resource" uid="uid://dbjypgwstggcl" path="res://gamedata/dialogue/interactables/puzzles/iceberg_palace_puzzle/new_moon_statue1.tres" id="10_r1so8"]
+[ext_resource type="Resource" uid="uid://dgt3386sin20r" path="res://gamedata/dialogue/interactables/puzzles/iceberg_palace_puzzle/crescent_moon_statue1.tres" id="12_r1so8"]
+[ext_resource type="Resource" uid="uid://b38j1warskjm" path="res://gamedata/dialogue/interactables/puzzles/iceberg_palace_puzzle/full_moon_statue1.tres" id="14_2tekp"]
+
+[sub_resource type="Resource" id="Resource_bk8pi"]
+script = ExtResource("7_bk8pi")
+prereqPuzzleStates = Dictionary[String, Array]({
+"iceberg_palace_puzzle": ["sea_token", "default", "land_token"]
+})
+metadata/_custom_type_script = "uid://bjesn36acj0uh"
+
+[sub_resource type="Resource" id="Resource_egya6"]
+script = ExtResource("7_bk8pi")
+prereqPuzzleStates = Dictionary[String, Array]({
+"iceberg_palace_puzzle": ["default", "sea_token", "land_token"]
+})
+metadata/_custom_type_script = "uid://bjesn36acj0uh"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_73u7y"]
 size = Vector2(102, 18.5)
@@ -35,6 +55,13 @@ size = Vector2(16, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bk8pi"]
 size = Vector2(16, 16)
+
+[sub_resource type="Resource" id="Resource_0pkaf"]
+script = ExtResource("7_bk8pi")
+prereqPuzzleStates = Dictionary[String, Array]({
+"iceberg_palace_puzzle": ["default", "default", "default"]
+})
+metadata/_custom_type_script = "uid://bjesn36acj0uh"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7hma3"]
 size = Vector2(102, 18.5)
@@ -72,7 +99,7 @@ tile_set = ExtResource("2_11xal")
 [node name="Paths" type="TileMapLayer" parent="TilemapRoot" unique_id=1497251339 groups=["NavigationGroup"]]
 z_index = -19
 use_parent_material = true
-tile_map_data = PackedByteArray("AAD4/wQABAAGAAkAAAD5/wQABAAHAAkAAAD5/wUABAAIAAsAAAD6/wUABAAGAAkAAAD7/wUABAAGAAkAAAD8/wUABAAGAAkAAAD9/wUABAAGAAkAAAD+/wUABAAGAAkAAAD//wUABAAGAAkAAAAAAAUABAAGAAkAAAABAAUABAAGAAkAAAACAAUABAAGAAkAAAADAAUABAAGAAkAAAAEAAUABAAGAAkAAAAFAAUABAAJAAsAAAAFAAQABAAFAAkAAAAGAAQABAAGAAkAAAAHAAQABAAGAAkAAAAIAAMABAAFAAoAAAAIAAIABAAFAAkAAAAJAAIABAAJAAsAAAAJAAEABAAFAAoAAAAJAAAABAAFAAoAAAAJAP//BAAJAAoAAAACAPb/BAAIAAoAAAD7//j/BAAGAAsAAAD6//f/BAAJAAoAAAD5//f/BAAGAAsAAAD4//f/BAAGAAsAAAD3//f/BAAIAAoAAAD3//j/BAAHAAoAAAD2//n/BAAIAAoAAAD2//r/BAAHAAsAAAD1//v/BAAHAAoAAAD1//z/BAAHAAoAAAD1//3/BAAHAAoAAAD1//7/BAAHAAoAAAD1////BAAHAAoAAAD1/wAABAAHAAoAAAD1/wEABAAHAAoAAAD1/wIABAAHAAoAAAD1/wMABAAIAAsAAAD2/wQABAAIAAsAAAD3/wQABAAGAAkAAAD+////BAAFAAsAAAAFAPn/BAAJAAkAAAAHAPb/BAAJAAoAAAD5//v/BAAJAAkAAAD//wIABAAJAAkAAAD2/wMABAAHAAkAAAAIAAQABAAJAAsAAAAHAPf/BAAFAAsAAAAIAPf/BAAJAAoAAAACAPf/BAAHAAoAAAD1//r/BAAIAAoAAAD3//n/BAAHAAsAAAD6//j/BAAFAAsAAAAGAPb/BAAGAAsAAAAFAPb/BAAGAAsAAAAEAPb/BAAGAAsAAAADAPb/BAAGAAsAAAD4/woABAAGAAsAAAD5/woABAAGAAsAAAD6/woABAAGAAsAAAD7/woABAAGAAsAAAD8/woABAAGAAsAAAD9/wkABAAIAAoAAAD+/wkABAAGAAsAAAD//wkABAAGAAsAAAAAAAkABAAGAAsAAAABAAkABAAGAAsAAAACAAkABAAGAAsAAAADAAkABAAGAAsAAAAEAAkABAAJAAoAAAAFAAoABAAGAAsAAAAGAAoABAAGAAsAAAAHAAoABAAGAAsAAAAIAAoABAAGAAsAAAD3/wkABAAJAAoAAAD2/wkABAAGAAsAAAD1/wgABAAJAAoAAAD0/wYABAAJAAoAAADz/wUABAAJAAoAAADy/wQABAAJAAoAAADy//n/BAAJAAsAAADz//f/BAAJAAsAAAD1//b/BAAJAAsAAAD2//T/BAAJAAsAAAACAPP/BAAJAAsAAAAHAPP/BAAIAAsAAAAJAPT/BAAIAAsAAAAKAPX/BAAIAAsAAAALAPb/BAAIAAsAAAAMAPj/BAAIAAsAAAAMAP3/BAAIAAoAAAALAAQABAAIAAoAAAAKAAgABAAIAAoAAAAJAAkABAAIAAoAAAAJAAoABAAHAAsAAAAKAAkABAAHAAsAAAALAAgABAAHAAsAAAAMAAQABAAHAAsAAAANAP3/BAAHAAsAAAD9/woABAAHAAsAAAAEAAoABAAFAAsAAAD3/woABAAFAAsAAAD1/wkABAAFAAsAAAD0/wgABAAFAAsAAADz/wYABAAFAAsAAADy/wUABAAFAAsAAADx/wQABAAFAAsAAADx//n/BAAFAAkAAADy//f/BAAFAAkAAADz//b/BAAFAAkAAAD1//T/BAAFAAkAAAACAPL/BAAFAAkAAAAHAPL/BAAHAAkAAAAKAPT/BAAHAAkAAAALAPX/BAAHAAkAAAAMAPb/BAAHAAkAAAANAPj/BAAHAAkAAAANAPn/BAAHAAoAAAANAPr/BAAHAAoAAAANAPv/BAAHAAoAAAANAPz/BAAHAAoAAAAMAPf/BAAHAAoAAAAMAP//BAAHAAoAAAAMAP7/BAAHAAoAAAAMAAAABAAHAAoAAAAMAAEABAAHAAoAAAAMAAIABAAHAAoAAAAMAAMABAAHAAoAAAALAAUABAAHAAoAAAALAAYABAAHAAoAAAALAAcABAAHAAoAAAD0/wcABAAFAAoAAADx/wMABAAFAAoAAADx/wIABAAFAAoAAADx/wEABAAFAAoAAADx/wAABAAFAAoAAADx////BAAFAAoAAADx//7/BAAFAAoAAADx//3/BAAFAAoAAADx//z/BAAFAAoAAADx//v/BAAFAAoAAADx//r/BAAFAAoAAADy//j/BAAFAAoAAAD1//X/BAAFAAoAAAD0//b/BAAGAAkAAAD3//P/BAAGAAkAAAD4//P/BAAGAAkAAAD5//P/BAAGAAkAAAD6//P/BAAGAAkAAAD7//P/BAAGAAkAAAD8//P/BAAGAAkAAAD9//P/BAAGAAkAAAD+//P/BAAGAAkAAAD///P/BAAGAAkAAAAAAPP/BAAGAAkAAAABAPP/BAAGAAkAAAADAPL/BAAGAAkAAAAEAPL/BAAGAAkAAAAFAPL/BAAGAAkAAAAGAPL/BAAGAAkAAAAIAPP/BAAGAAkAAAAJAPP/BAAHAAkAAAD2//P/BAAFAAkAAAACAPn/BAAHAAoAAAACAPr/BAAHAAoAAAACAPv/BAAHAAoAAAACAPz/BAAHAAoAAAABAP7/BAAIAAoAAAACAP3/BAAHAAoAAAACAP7/BAAHAAsAAAAAAP//BAAGAAsAAAABAP//BAAHAAsAAAD/////BAAGAAsAAAACAPj/BAAHAAoAAAAIAPn/BAAFAAoAAAAIAPr/BAAFAAoAAAAIAPv/BAAFAAoAAAAIAPz/BAAFAAoAAAAIAP3/BAAFAAoAAAAIAP7/BAAFAAoAAAAIAP//BAAFAAsAAAAIAPj/BAAFAAoAAAD8//j/BAAGAAsAAAD9//j/BAAJAAoAAAD9//n/BAAFAAoAAAD9//r/BAAFAAsAAAD+//r/BAAJAAoAAAD+//v/BAAFAAoAAAD+//z/BAAFAAoAAAD+//3/BAAFAAoAAAD+//7/BAAFAAoAAAA=")
+tile_map_data = PackedByteArray("AAD4/wQABAAGAAkAAAD5/wQABAAHAAkAAAD5/wUABAAIAAsAAAD6/wUABAAGAAkAAAD7/wUABAAGAAkAAAD8/wUABAAGAAkAAAD9/wUABAAGAAkAAAD+/wUABAAGAAkAAAD//wUABAAGAAkAAAAAAAUABAAGAAkAAAABAAUABAAGAAkAAAACAAUABAAGAAkAAAADAAUABAAGAAkAAAAEAAUABAAGAAkAAAAFAAUABAAJAAsAAAAFAAQABAAFAAkAAAAGAAQABAAGAAkAAAAHAAQABAAGAAkAAAAIAAMABAAFAAoAAAAIAAIABAAFAAkAAAAJAAIABAAJAAsAAAAJAAEABAAFAAoAAAAJAAAABAAFAAoAAAAJAP//BAAJAAoAAAACAPb/BAAIAAoAAAD7//j/BAAGAAsAAAD6//f/BAAJAAoAAAD5//f/BAAGAAsAAAD4//f/BAAGAAsAAAD3//f/BAAIAAoAAAD3//j/BAAHAAoAAAD2//n/BAAIAAoAAAD2//r/BAAHAAsAAAD1//v/BAAHAAoAAAD1//z/BAAHAAoAAAD1//3/BAAHAAoAAAD1//7/BAAHAAoAAAD1////BAAHAAoAAAD1/wAABAAHAAoAAAD1/wEABAAHAAoAAAD1/wIABAAHAAoAAAD1/wMABAAIAAsAAAD2/wQABAAIAAsAAAD3/wQABAAGAAkAAAAFAPn/BAAJAAkAAAAHAPb/BAAJAAoAAAD5//v/BAAJAAkAAAD//wIABAAJAAkAAAD2/wMABAAHAAkAAAAIAAQABAAJAAsAAAAHAPf/BAAFAAsAAAAIAPf/BAAJAAoAAAACAPf/BAAHAAoAAAD1//r/BAAIAAoAAAD3//n/BAAHAAsAAAD6//j/BAAFAAsAAAAGAPb/BAAGAAsAAAAFAPb/BAAGAAsAAAAEAPb/BAAGAAsAAAADAPb/BAAGAAsAAAD4/woABAAGAAsAAAD5/woABAAGAAsAAAD6/woABAAGAAsAAAD7/woABAAGAAsAAAD8/woABAAGAAsAAAD9/wkABAAIAAoAAAD+/wkABAAGAAsAAAD//wkABAAGAAsAAAAAAAkABAAGAAsAAAABAAkABAAGAAsAAAACAAkABAAGAAsAAAADAAkABAAGAAsAAAAEAAkABAAJAAoAAAAFAAoABAAGAAsAAAAGAAoABAAGAAsAAAAHAAoABAAGAAsAAAAIAAoABAAGAAsAAAD3/wkABAAJAAoAAAD2/wkABAAGAAsAAAD1/wgABAAJAAoAAAD0/wYABAAJAAoAAADz/wUABAAJAAoAAADy/wQABAAJAAoAAADy//n/BAAJAAsAAADz//f/BAAJAAsAAAD1//b/BAAJAAsAAAD2//T/BAAJAAsAAAACAPP/BAAJAAsAAAAHAPP/BAAIAAsAAAAJAPT/BAAIAAsAAAAKAPX/BAAIAAsAAAALAPb/BAAIAAsAAAAMAPj/BAAIAAsAAAAMAP3/BAAIAAoAAAALAAQABAAIAAoAAAAKAAgABAAIAAoAAAAJAAkABAAIAAoAAAAJAAoABAAHAAsAAAAKAAkABAAHAAsAAAALAAgABAAHAAsAAAAMAAQABAAHAAsAAAANAP3/BAAHAAsAAAD9/woABAAHAAsAAAAEAAoABAAFAAsAAAD3/woABAAFAAsAAAD1/wkABAAFAAsAAAD0/wgABAAFAAsAAADz/wYABAAFAAsAAADy/wUABAAFAAsAAADx/wQABAAFAAsAAADx//n/BAAFAAkAAADy//f/BAAFAAkAAADz//b/BAAFAAkAAAD1//T/BAAFAAkAAAACAPL/BAAFAAkAAAAHAPL/BAAHAAkAAAAKAPT/BAAHAAkAAAALAPX/BAAHAAkAAAAMAPb/BAAHAAkAAAANAPj/BAAHAAkAAAANAPn/BAAHAAoAAAANAPr/BAAHAAoAAAANAPv/BAAHAAoAAAANAPz/BAAHAAoAAAAMAPf/BAAHAAoAAAAMAP//BAAHAAoAAAAMAP7/BAAHAAoAAAAMAAAABAAHAAoAAAAMAAEABAAHAAoAAAAMAAIABAAHAAoAAAAMAAMABAAHAAoAAAALAAUABAAHAAoAAAALAAYABAAHAAoAAAALAAcABAAHAAoAAAD0/wcABAAFAAoAAADx/wMABAAFAAoAAADx/wIABAAFAAoAAADx/wEABAAFAAoAAADx/wAABAAFAAoAAADx////BAAFAAoAAADx//7/BAAFAAoAAADx//3/BAAFAAoAAADx//z/BAAFAAoAAADx//v/BAAFAAoAAADx//r/BAAFAAoAAADy//j/BAAFAAoAAAD1//X/BAAFAAoAAAD0//b/BAAGAAkAAAD3//P/BAAGAAkAAAD4//P/BAAGAAkAAAD5//P/BAAGAAkAAAD6//P/BAAGAAkAAAD7//P/BAAGAAkAAAD8//P/BAAGAAkAAAD9//P/BAAGAAkAAAD+//P/BAAGAAkAAAD///P/BAAGAAkAAAAAAPP/BAAGAAkAAAABAPP/BAAGAAkAAAADAPL/BAAGAAkAAAAEAPL/BAAGAAkAAAAFAPL/BAAGAAkAAAAGAPL/BAAGAAkAAAAIAPP/BAAGAAkAAAAJAPP/BAAHAAkAAAD2//P/BAAFAAkAAAACAPn/BAAHAAoAAAACAPr/BAAHAAoAAAACAPv/BAAHAAoAAAACAPz/BAAHAAoAAAABAP7/BAAIAAoAAAACAP3/BAAHAAoAAAACAP7/BAAHAAsAAAAAAP//BAAGAAsAAAABAP//BAAHAAsAAAD/////BAAFAAsAAAACAPj/BAAHAAoAAAAIAPn/BAAFAAoAAAAIAPr/BAAFAAoAAAAIAPv/BAAFAAoAAAAIAPz/BAAFAAoAAAAIAP3/BAAFAAoAAAAIAP7/BAAFAAoAAAAIAP//BAAFAAsAAAAIAPj/BAAFAAoAAAD8//j/BAAGAAsAAAD9//j/BAAJAAoAAAD9//n/BAAFAAoAAAD9//r/BAAFAAsAAAD+//r/BAAJAAoAAAD+//v/BAAFAAsAAAD///z/BAAFAAoAAAD///3/BAAFAAoAAAD///7/BAAFAAoAAAD///v/BAAJAAoAAAD7//7/BAAFAAkAAAD8//7/BAAHAAkAAAD7////BAAFAAsAAAD8////BAAHAAsAAAA=")
 tile_set = ExtResource("2_11xal")
 
 [node name="Paths2" type="TileMapLayer" parent="TilemapRoot" unique_id=767665021 groups=["NavigationGroup"]]
@@ -104,6 +131,8 @@ position = Vector2(88, -36)
 interactAnim = "default"
 combinedSpriteFrames = ExtResource("4_dexbd")
 fadeOutOnRequirementsInvalidated = true
+fadeInOnRequirementsRevalidated = true
+storyRequirements = Array[ExtResource("7_bk8pi")]([SubResource("Resource_bk8pi"), SubResource("Resource_egya6")])
 
 [node name="CollisionShape2D" parent="TilemapRoot/EnergyWall1" index="0"]
 position = Vector2(0, 9.75)
@@ -199,6 +228,8 @@ position = Vector2(-120, -17)
 interactAnim = "default"
 combinedSpriteFrames = ExtResource("4_dexbd")
 fadeOutOnRequirementsInvalidated = true
+fadeInOnRequirementsRevalidated = true
+storyRequirements = Array[ExtResource("7_bk8pi")]([SubResource("Resource_0pkaf")])
 
 [node name="CollisionShape2D" parent="TilemapRoot/EnergyWall2" index="0"]
 position = Vector2(0, 9.75)
@@ -290,12 +321,15 @@ animation = &"energy_wall_no_sparks"
 shape = SubResource("RectangleShape2D_bk8pi")
 
 [node name="NewMoonStatue" parent="TilemapRoot" unique_id=1147698485 instance=ExtResource("7_dry5w")]
-position = Vector2(-63, -25)
+position = Vector2(-47, -25)
 puzzle = ExtResource("8_e1co5")
 stateAnimations = Dictionary[String, String]({
 "default": "default",
 "land_token": "land_token",
 "sea_token": "sea_token"
+})
+stateDialogues = Dictionary[String, ExtResource("9_hik8u")]({
+"*": ExtResource("10_r1so8")
 })
 
 [node name="AnimatedSprite2D" parent="TilemapRoot/NewMoonStatue/AnimatedDecoration" index="0"]
@@ -311,8 +345,17 @@ position = Vector2(0, 10)
 position = Vector2(0, 8)
 
 [node name="CrescentMoonStatue" parent="TilemapRoot" unique_id=1212170866 instance=ExtResource("7_dry5w")]
-position = Vector2(-47, -25)
+position = Vector2(-31, -25)
+puzzle = ExtResource("8_e1co5")
 puzzleStateIndex = 1
+stateAnimations = Dictionary[String, String]({
+"default": "default",
+"land_token": "land_token",
+"sea_token": "sea_token"
+})
+stateDialogues = Dictionary[String, ExtResource("9_hik8u")]({
+"*": ExtResource("12_r1so8")
+})
 
 [node name="AnimatedSprite2D" parent="TilemapRoot/CrescentMoonStatue/AnimatedDecoration" index="0"]
 sprite_frames = ExtResource("9_al8fa")
@@ -327,8 +370,17 @@ position = Vector2(0, 10)
 position = Vector2(0, 8)
 
 [node name="FullMoonStatue" parent="TilemapRoot" unique_id=2112789703 instance=ExtResource("7_dry5w")]
-position = Vector2(-31, -25)
+position = Vector2(-15, -25)
+puzzle = ExtResource("8_e1co5")
 puzzleStateIndex = 2
+stateAnimations = Dictionary[String, String]({
+"default": "default",
+"land_token": "land_token",
+"sea_token": "sea_token"
+})
+stateDialogues = Dictionary[String, ExtResource("9_hik8u")]({
+"*": ExtResource("14_2tekp")
+})
 
 [node name="AnimatedSprite2D" parent="TilemapRoot/FullMoonStatue/AnimatedDecoration" index="0"]
 sprite_frames = ExtResource("10_7hma3")

@@ -33,7 +33,10 @@ func fix_empty_puzzle_states():
 
 func transition_state(nextState: String, puzzleStateIndex: int, currentState: String = '*'):
 	if can_state_transition(nextState, currentState, puzzleStateIndex):
-		PlayerResources.playerInfo.set_puzzle_state_at_index(id, puzzleStateIndex, nextState, defaultStates)
+		var transitionMechanic: PuzzleMechanic = get_transition_mechanic(nextState, currentState)
+		var transitionSuccess = transitionMechanic.solve()
+		if transitionSuccess:
+			PlayerResources.playerInfo.set_puzzle_state_at_index(id, puzzleStateIndex, nextState, defaultStates)
 
 func get_transition_mechanic(nextState: String, currentState: String = '*') -> PuzzleMechanic:
 	if stateTransitionPuzzleMechanics.has(currentState + '>' + nextState):
@@ -47,10 +50,7 @@ func can_state_transition(nextState: String, currentState: String = '*', puzzleS
 	if transitionMechanic != null:
 		if transitionMechanic.can_solve():
 			return true
-	else:
-		print('StatePuzzle can_state_transition Warning: ', currentState, ' -> ', nextState, ' has no defined transition puzzle mechanic (passed index ', puzzleStateIndex, ')')
-		#print(PlayerResources.playerInfo.get_puzzle_states(id))
-	if currentState != '*':
+	elif currentState != '*':
 		transitionMechanic = get_transition_mechanic(nextState)
 		if transitionMechanic != null:
 			if transitionMechanic.can_solve():

@@ -96,7 +96,8 @@ func play_evolve_anim() -> void:
 	evolveAnimTween.tween_callback(_play_evolution_sprite_animation)
 	evolveAnimTween.tween_property(combatantSprite, 'rotation', 0, 0.5) # no-op to wait 0.5s (4 frames at 8 FPS [evolve sprite animation])
 	evolveAnimTween.tween_callback(_update_combatant_sprite)
-	evolveSprite.animation_finished.connect(_evolve_tween_finished)
+	if not evolveSprite.animation_finished.is_connected(_evolve_tween_finished):
+		evolveSprite.animation_finished.connect(_evolve_tween_finished)
 
 func _play_evolution_sprite_animation() -> void:
 	evolveSprite.visible = true

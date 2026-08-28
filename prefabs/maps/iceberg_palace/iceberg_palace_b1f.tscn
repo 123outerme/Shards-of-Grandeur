@@ -10,6 +10,15 @@
 [ext_resource type="PackedScene" uid="uid://qx5fovogo7h3" path="res://prefabs/entities/enemy_spawner.tscn" id="9_eh75q"]
 [ext_resource type="SpriteFrames" uid="uid://dliedtl5d221b" path="res://graphics/structures/a_energy_wall.tres" id="9_g3kew"]
 [ext_resource type="PackedScene" uid="uid://bmaqkuubonmf2" path="res://prefabs/entities/animated_decoration.tscn" id="10_k3551"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="10_u6idb"]
+[ext_resource type="Script" uid="uid://fw22o8hbosnk" path="res://scripts/inventory/inventory_slot.gd" id="11_262uf"]
+
+[sub_resource type="Resource" id="Resource_262uf"]
+script = ExtResource("10_u6idb")
+prereqPuzzleStates = Dictionary[String, Array]({
+"iceberg_palace_puzzle": ["", "sea_token", ""]
+})
+metadata/_custom_type_script = "uid://bjesn36acj0uh"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sty7u"]
 size = Vector2(102, 18.5)
@@ -35,8 +44,22 @@ size = Vector2(16, 16)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_anxow"]
 size = Vector2(16, 16)
 
+[sub_resource type="Resource" id="Resource_lhh2u"]
+script = ExtResource("10_u6idb")
+prereqPuzzleStates = Dictionary[String, Array]({
+"iceberg_palace_puzzle": ["sea_token", "default", "land_token"]
+})
+metadata/_custom_type_script = "uid://bjesn36acj0uh"
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_37cdj"]
 size = Vector2(54, 18.5)
+
+[sub_resource type="Resource" id="Resource_u6idb"]
+script = ExtResource("10_u6idb")
+prereqPuzzleStates = Dictionary[String, Array]({
+"iceberg_palace_puzzle": ["sea_token", "default", "land_token"]
+})
+metadata/_custom_type_script = "uid://bjesn36acj0uh"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eh75q"]
 size = Vector2(102, 18.5)
@@ -115,6 +138,7 @@ position = Vector2(83, 201)
 interactAnim = "default"
 combinedSpriteFrames = ExtResource("5_1jjqt")
 fadeOutOnRequirementsInvalidated = true
+storyRequirements = Array[ExtResource("10_u6idb")]([SubResource("Resource_262uf")])
 
 [node name="CollisionShape2D" parent="TilemapRoot/EnergyWall1" index="0"]
 position = Vector2(0, 9.75)
@@ -209,23 +233,7 @@ shape = SubResource("RectangleShape2D_anxow")
 interactAnim = "default"
 combinedSpriteFrames = ExtResource("5_1jjqt")
 fadeOutOnRequirementsInvalidated = true
-
-[node name="CollisionShape2D" parent="TilemapRoot/EnergyWall2" index="0"]
-position = Vector2(-8, 9.75)
-shape = SubResource("RectangleShape2D_37cdj")
-
-[node name="AnimatedDecoration" parent="TilemapRoot/EnergyWall2" index="1"]
-animName = "energy_wall_1"
-
-[node name="AnimatedSprite2D" parent="TilemapRoot/EnergyWall2/AnimatedDecoration" index="0"]
-sprite_frames = ExtResource("9_g3kew")
-animation = &"energy_wall_1"
-
-[node name="CollisionShape2D" parent="TilemapRoot/EnergyWall2/AnimatedDecoration/Collision" index="0"]
-shape = SubResource("RectangleShape2D_fbsvq")
-
-[node name="InteractSprite" parent="TilemapRoot/EnergyWall2" index="2"]
-position = Vector2(-8, -10)
+storyRequirements = Array[ExtResource("10_u6idb")]([SubResource("Resource_lhh2u")])
 
 [node name="AnimatedDecoration2" parent="TilemapRoot/EnergyWall2" unique_id=1114430920 instance=ExtResource("10_k3551")]
 z_index = 0
@@ -266,11 +274,29 @@ animation = &"energy_wall_no_sparks"
 [node name="CollisionShape2D" parent="TilemapRoot/EnergyWall2/AnimatedDecoration4/Collision" index="0"]
 shape = SubResource("RectangleShape2D_c2oum")
 
+[node name="CollisionShape2D" parent="TilemapRoot/EnergyWall2" index="3"]
+position = Vector2(-8, 9.75)
+shape = SubResource("RectangleShape2D_37cdj")
+
+[node name="AnimatedDecoration" parent="TilemapRoot/EnergyWall2" index="4"]
+animName = "energy_wall_1"
+
+[node name="AnimatedSprite2D" parent="TilemapRoot/EnergyWall2/AnimatedDecoration" index="0"]
+sprite_frames = ExtResource("9_g3kew")
+animation = &"energy_wall_1"
+
+[node name="CollisionShape2D" parent="TilemapRoot/EnergyWall2/AnimatedDecoration/Collision" index="0"]
+shape = SubResource("RectangleShape2D_fbsvq")
+
+[node name="InteractSprite" parent="TilemapRoot/EnergyWall2" index="5"]
+position = Vector2(-8, -10)
+
 [node name="EnergyWall3" parent="TilemapRoot" unique_id=103581363 instance=ExtResource("4_ontqh")]
 position = Vector2(-153, -97)
 interactAnim = "default"
 combinedSpriteFrames = ExtResource("5_1jjqt")
 fadeOutOnRequirementsInvalidated = true
+storyRequirements = Array[ExtResource("10_u6idb")]([SubResource("Resource_u6idb")])
 
 [node name="CollisionShape2D" parent="TilemapRoot/EnergyWall3" index="0"]
 position = Vector2(0, 9.75)
@@ -393,6 +419,9 @@ position = Vector2(-192, 204)
 [node name="EnemySpawner7" parent="." unique_id=1751694026 instance=ExtResource("9_eh75q")]
 position = Vector2(-298, 26)
 
+[node name="EnemySpawner8" parent="." unique_id=1310463816 instance=ExtResource("9_eh75q")]
+position = Vector2(56, 151)
+
 [editable path="TilemapRoot/EnergyWall1"]
 [editable path="TilemapRoot/EnergyWall1/AnimatedDecoration"]
 [editable path="TilemapRoot/EnergyWall1/AnimatedDecoration2"]
@@ -402,10 +431,10 @@ position = Vector2(-298, 26)
 [editable path="TilemapRoot/EnergyWall1/AnimatedDecoration6"]
 [editable path="TilemapRoot/EnergyWall1/AnimatedDecoration7"]
 [editable path="TilemapRoot/EnergyWall2"]
-[editable path="TilemapRoot/EnergyWall2/AnimatedDecoration"]
 [editable path="TilemapRoot/EnergyWall2/AnimatedDecoration2"]
 [editable path="TilemapRoot/EnergyWall2/AnimatedDecoration3"]
 [editable path="TilemapRoot/EnergyWall2/AnimatedDecoration4"]
+[editable path="TilemapRoot/EnergyWall2/AnimatedDecoration"]
 [editable path="TilemapRoot/EnergyWall3"]
 [editable path="TilemapRoot/EnergyWall3/AnimatedDecoration"]
 [editable path="TilemapRoot/EnergyWall3/AnimatedDecoration2"]

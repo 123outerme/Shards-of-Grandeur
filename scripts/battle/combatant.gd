@@ -305,10 +305,23 @@ func switch_evolution(evolution: Evolution, prevEvolution: Evolution, isMinion: 
 		print('adjust movepool for player evo')
 		var movepool: MovePool = get_evolution_stats(null).movepool.copy()
 		# for each move granted by this evolution, if not in the movepool, add it
+		var unlockedEvoMoves: Array[Move] = []
 		for move: Move in evolution.stats.movepool.pool:
 			if not (move in movepool.pool):
 				movepool.pool.append(move)
+				if evolutionStats[prevIdx].level >= move.requiredLv:
+					unlockedEvoMoves.append(move)
 		stats.movepool = movepool
+		# first time evolution was unlocked:
+		if len(stats.moves) == 0:
+			# auto-assign new and unlocked evolution moves
+			if len(unlockedEvoMoves) > 0:
+				for idx in range(min(len(unlockedEvoMoves), 4)):
+					stats.moves.append(unlockedEvoMoves[idx])
+				# for the rest of the available move slots (up to the 4th one), allocate moves from the previous evo moves list
+				for idx in range(min(len(evolutionStats[prevIdx].moves), 4 - len(stats.moves))):
+					stats.moves.append(evolutionStats[prevIdx].moves[idx])
+				returnCode += 0b01100 # move list WAS invalid, this logic just cleaned it up before validate_moves()
 	
 	# if this stats set is underlevelled, level it up now
 	if stats.level < evolutionStats[prevIdx].level:
@@ -327,8 +340,6 @@ func switch_evolution(evolution: Evolution, prevEvolution: Evolution, isMinion: 
 			statAllocStrat.allocate_stats(stats)
 			returnCode += 0b10000
 	
-	# copy over moves
-	#stats.moves = evolutionStats[prevIdx].moves
 	# copy over equipment
 	stats.equippedArmor = evolutionStats[prevIdx].equippedArmor
 	stats.equippedWeapon = evolutionStats[prevIdx].equippedWeapon
@@ -344,6 +355,33 @@ func switch_evolution(evolution: Evolution, prevEvolution: Evolution, isMinion: 
 	if nullMoves == Stats.MAX_MOVES:
 		returnCode += 0b01000
 	return returnCode
+
+func will_equipping_item_cause_evolution(item: Item) -> bool:
+	if item == null:
+		return false
+	var weapon: Weapon = stats.equippedWeapon
+	var armor: Armor = stats.equippedArmor
+	var accessory: Accessory = stats.equippedAccessory
+	if item.itemType == Item.Type.WEAPON:
+		if weapon == item:
+			return false
+		weapon = item as Weapon
+	elif item.itemType == Item.Type.ARMOR:
+		if armor == item:
+			return false
+		armor = item as Armor
+	elif item.itemType == Item.Type.ACCESSORY:
+		if accessory == item:
+			return false
+		accessory = item as Accessory
+	else:
+		return false
+	for evolution: Evolution in evolutions.evolutionList:
+		if (evolution.requiredWeapon == null or evolution.requiredWeapon == weapon) and \
+				(evolution.requiredArmor == null or evolution.requiredArmor == armor) and \
+				(evolution.requiredAccessory == null or evolution.requiredAccessory == accessory):
+			return true
+	return false
 
 func validate_all_evolutions_stat_totals():
 	validate_evolution_stats()

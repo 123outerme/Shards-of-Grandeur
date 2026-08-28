@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="WorldLocation" format=3 uid="uid://w2wtbo8ltc3r"]
+
+[ext_resource type="Script" uid="uid://1kibgfap86bm" path="res://scripts/overworld/map_entry.gd" id="1_vfp5f"]
+[ext_resource type="Script" uid="uid://dd27pbjjyrw7p" path="res://scripts/overworld/world_location.gd" id="2_ehkry"]
+[ext_resource type="AudioStream" uid="uid://dnfsxipd2v2xo" path="res://audio/music/battle/battletheme_uvutudx_demo.mp3" id="2_xkrry"]
+[ext_resource type="AudioStream" uid="uid://bqteksvyw463i" path="res://audio/music/overworld/tundra.mp3" id="2_y7hy2"]
+[ext_resource type="AudioStream" uid="uid://c7d7pycfjgo44" path="res://audio/music/battle/newbattlethemev2.mp3" id="3_k8r6q"]
+
+[sub_resource type="Resource" id="Resource_dcrx1"]
+script = ExtResource("1_vfp5f")
+path = "iceberg_palace/iceberg_palace_b2f"
+overworldTheme = ExtResource("2_y7hy2")
+battleMapName = "iceberg_underwater_battle_map"
+battleMusic = Array[AudioStream]([ExtResource("2_xkrry"), ExtResource("3_k8r6q")])
+metadata/_custom_type_script = "uid://1kibgfap86bm"
+
+[resource]
+script = ExtResource("2_ehkry")
+locationName = "Iceberg Palace (B2F)"
+maps = Array[ExtResource("1_vfp5f")]([SubResource("Resource_dcrx1")])
+mapLocation = 53
+metadata/_custom_type_script = "uid://dd27pbjjyrw7p"

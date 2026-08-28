@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://xascm0kyyw75"]
+[gd_scene format=3 uid="uid://xascm0kyyw75"]
 
 [ext_resource type="Theme" uid="uid://c4x43hephx6al" path="res://themes/list_item_panel/list_item_panel_theme.tres" id="1_b0c2f"]
 [ext_resource type="Script" uid="uid://cudy8hrwu51k" path="res://scripts/menus/inventory_panel/inventory_slot_panel.gd" id="2_6x7us"]
@@ -8,19 +8,42 @@
 [ext_resource type="Theme" uid="uid://cr8ed0igvvahw" path="res://themes/button_row_theme.tres" id="7_5a212"]
 [ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="7_ygii6"]
 
-[node name="InventorySlotPanel" type="Panel" groups=["InventorySlotPanel"]]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5836c"]
+bg_color = Color(0.8980392, 0.7411765, 0, 1)
+border_width_left = 8
+border_width_top = 10
+border_width_right = 8
+border_width_bottom = 10
+border_color = Color(0.8, 0.8, 0.8, 0)
+border_blend = true
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+corner_detail = 6
+anti_aliasing = false
+
+[node name="InventorySlotPanel" type="Panel" unique_id=747857086 groups=["InventorySlotPanel"]]
 custom_minimum_size = Vector2(1120, 76)
 mouse_filter = 1
 theme = ExtResource("1_b0c2f")
 script = ExtResource("2_6x7us")
 isShopItem = true
 
-[node name="ItemSprite" type="Sprite2D" parent="."]
+[node name="GlowColor" type="Panel" parent="." unique_id=481017957]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 64.0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_5836c")
+
+[node name="ItemSprite" type="Sprite2D" parent="." unique_id=519244350]
 position = Vector2(32, 38)
 scale = Vector2(4, 4)
 texture = ExtResource("3_e278v")
 
-[node name="CenterItemName" type="VBoxContainer" parent="."]
+[node name="CenterItemName" type="VBoxContainer" parent="." unique_id=1998666117]
 layout_mode = 1
 anchors_preset = -1
 anchor_bottom = 1.0
@@ -29,20 +52,21 @@ offset_right = 337.0
 grow_vertical = 2
 alignment = 1
 
-[node name="ItemName" type="RichTextLabel" parent="CenterItemName"]
+[node name="ItemName" type="RichTextLabel" parent="CenterItemName" unique_id=1326077753]
 clip_contents = false
 layout_mode = 2
 mouse_filter = 1
 theme = ExtResource("3_4ev4x")
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/normal_font_size = 20
+theme_override_font_sizes/bold_font_size = 20
 theme_override_font_sizes/bold_italics_font_size = 20
 theme_override_font_sizes/italics_font_size = 20
 theme_override_font_sizes/mono_font_size = 20
-theme_override_font_sizes/normal_font_size = 20
-theme_override_font_sizes/bold_font_size = 20
 text = "Item Name Goes Here"
 fit_content = true
 
-[node name="CenterItemType" type="VBoxContainer" parent="."]
+[node name="CenterItemType" type="VBoxContainer" parent="." unique_id=188171808]
 layout_mode = 1
 anchors_preset = -1
 anchor_bottom = 1.0
@@ -51,19 +75,19 @@ offset_right = 484.0
 grow_vertical = 2
 alignment = 1
 
-[node name="ItemType" type="RichTextLabel" parent="CenterItemType"]
+[node name="ItemType" type="RichTextLabel" parent="CenterItemType" unique_id=654782312]
 clip_contents = false
 layout_mode = 2
 mouse_filter = 1
+theme_override_font_sizes/normal_font_size = 14
+theme_override_font_sizes/bold_font_size = 14
 theme_override_font_sizes/bold_italics_font_size = 14
 theme_override_font_sizes/italics_font_size = 14
 theme_override_font_sizes/mono_font_size = 14
-theme_override_font_sizes/normal_font_size = 14
-theme_override_font_sizes/bold_font_size = 14
 text = "Item Type Here"
 fit_content = true
 
-[node name="CenterItemCount" type="VBoxContainer" parent="."]
+[node name="CenterItemCount" type="VBoxContainer" parent="." unique_id=1595664006]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -75,19 +99,19 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="ItemCount" type="RichTextLabel" parent="CenterItemCount"]
+[node name="ItemCount" type="RichTextLabel" parent="CenterItemCount" unique_id=1820840689]
 clip_contents = false
 layout_mode = 2
 mouse_filter = 1
+theme_override_font_sizes/normal_font_size = 12
+theme_override_font_sizes/bold_font_size = 12
 theme_override_font_sizes/bold_italics_font_size = 12
 theme_override_font_sizes/italics_font_size = 12
 theme_override_font_sizes/mono_font_size = 12
-theme_override_font_sizes/normal_font_size = 12
-theme_override_font_sizes/bold_font_size = 12
 text = "x999 / 999"
 fit_content = true
 
-[node name="CenterItemCost" type="VBoxContainer" parent="."]
+[node name="CenterItemCost" type="VBoxContainer" parent="." unique_id=1340218539]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -97,24 +121,24 @@ offset_left = 52.0
 offset_right = 121.0
 alignment = 1
 
-[node name="GoldSprite" type="Sprite2D" parent="CenterItemCost"]
+[node name="GoldSprite" type="Sprite2D" parent="CenterItemCost" unique_id=1615443479]
 position = Vector2(-15, 38)
 scale = Vector2(2, 2)
 texture = ExtResource("5_yl2n0")
 
-[node name="ItemCost" type="RichTextLabel" parent="CenterItemCost"]
+[node name="ItemCost" type="RichTextLabel" parent="CenterItemCost" unique_id=464470469]
 clip_contents = false
 layout_mode = 2
 mouse_filter = 1
+theme_override_font_sizes/normal_font_size = 12
+theme_override_font_sizes/bold_font_size = 12
 theme_override_font_sizes/bold_italics_font_size = 12
 theme_override_font_sizes/italics_font_size = 12
 theme_override_font_sizes/mono_font_size = 12
-theme_override_font_sizes/normal_font_size = 12
-theme_override_font_sizes/bold_font_size = 12
 text = "456,789"
 fit_content = true
 
-[node name="CenterEquippedTo" type="VBoxContainer" parent="."]
+[node name="CenterEquippedTo" type="VBoxContainer" parent="." unique_id=933212772]
 layout_mode = 1
 anchors_preset = 13
 anchor_left = 0.5
@@ -128,20 +152,20 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="EquippedTo" type="RichTextLabel" parent="CenterEquippedTo"]
+[node name="EquippedTo" type="RichTextLabel" parent="CenterEquippedTo" unique_id=211933967]
 layout_mode = 2
 mouse_filter = 1
+theme_override_font_sizes/normal_font_size = 12
+theme_override_font_sizes/bold_font_size = 12
 theme_override_font_sizes/bold_italics_font_size = 12
 theme_override_font_sizes/italics_font_size = 12
 theme_override_font_sizes/mono_font_size = 12
-theme_override_font_sizes/normal_font_size = 12
-theme_override_font_sizes/bold_font_size = 12
 bbcode_enabled = true
 text = "[right]Equipped to:
 Combatant_Name_Here[/right]"
 fit_content = true
 
-[node name="CenterBuySellNotes" type="VBoxContainer" parent="."]
+[node name="CenterBuySellNotes" type="VBoxContainer" parent="." unique_id=810100710]
 visible = false
 layout_mode = 1
 anchors_preset = 11
@@ -154,19 +178,19 @@ grow_horizontal = 0
 grow_vertical = 2
 alignment = 1
 
-[node name="BuySellNotes" type="RichTextLabel" parent="CenterBuySellNotes"]
+[node name="BuySellNotes" type="RichTextLabel" parent="CenterBuySellNotes" unique_id=1175896516]
 layout_mode = 2
 mouse_filter = 1
+theme_override_font_sizes/normal_font_size = 14
+theme_override_font_sizes/bold_font_size = 4
 theme_override_font_sizes/bold_italics_font_size = 14
 theme_override_font_sizes/italics_font_size = 14
 theme_override_font_sizes/mono_font_size = 14
-theme_override_font_sizes/normal_font_size = 14
-theme_override_font_sizes/bold_font_size = 4
 bbcode_enabled = true
 text = "[center]Not available for purchase yet...[/center]"
 fit_content = true
 
-[node name="CenterButtons" type="VBoxContainer" parent="."]
+[node name="CenterButtons" type="VBoxContainer" parent="." unique_id=1033545093]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 1.0
@@ -178,19 +202,19 @@ grow_horizontal = 0
 grow_vertical = 2
 alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CenterButtons"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterButtons" unique_id=905232279]
 layout_mode = 2
 theme = ExtResource("7_5a212")
 theme_override_constants/separation = 8
 alignment = 2
 
-[node name="UseButton" parent="CenterButtons/HBoxContainer" instance=ExtResource("7_ygii6")]
+[node name="UseButton" parent="CenterButtons/HBoxContainer" unique_id=527208446 instance=ExtResource("7_ygii6")]
 custom_minimum_size = Vector2(70, 50)
 layout_mode = 2
 focus_neighbor_left = NodePath(".")
 text = "Use"
 
-[node name="TutorialArrowTargetControl" type="Control" parent="CenterButtons/HBoxContainer/UseButton"]
+[node name="TutorialArrowTargetControl" type="Control" parent="CenterButtons/HBoxContainer/UseButton" unique_id=1416026366]
 visible = false
 custom_minimum_size = Vector2(64, 96)
 layout_mode = 1
@@ -203,36 +227,36 @@ offset_right = 32.0
 grow_horizontal = 2
 mouse_filter = 2
 
-[node name="EquipButton" parent="CenterButtons/HBoxContainer" instance=ExtResource("7_ygii6")]
+[node name="EquipButton" parent="CenterButtons/HBoxContainer" unique_id=2131952889 instance=ExtResource("7_ygii6")]
 custom_minimum_size = Vector2(70, 50)
 layout_mode = 2
 focus_neighbor_left = NodePath(".")
 text = "Equip"
 
-[node name="TrashButton" parent="CenterButtons/HBoxContainer" instance=ExtResource("7_ygii6")]
+[node name="TrashButton" parent="CenterButtons/HBoxContainer" unique_id=1936409927 instance=ExtResource("7_ygii6")]
 custom_minimum_size = Vector2(70, 50)
 layout_mode = 2
 text = "Trash"
 
-[node name="BuyButton" parent="CenterButtons/HBoxContainer" instance=ExtResource("7_ygii6")]
+[node name="BuyButton" parent="CenterButtons/HBoxContainer" unique_id=798531569 instance=ExtResource("7_ygii6")]
 custom_minimum_size = Vector2(70, 50)
 layout_mode = 2
 focus_neighbor_left = NodePath(".")
 text = "Buy"
 
-[node name="SellButton" parent="CenterButtons/HBoxContainer" instance=ExtResource("7_ygii6")]
+[node name="SellButton" parent="CenterButtons/HBoxContainer" unique_id=1685837405 instance=ExtResource("7_ygii6")]
 custom_minimum_size = Vector2(70, 50)
 layout_mode = 2
 focus_neighbor_left = NodePath(".")
 text = "Sell
 "
 
-[node name="DetailsButton" parent="CenterButtons/HBoxContainer" instance=ExtResource("7_ygii6")]
+[node name="DetailsButton" parent="CenterButtons/HBoxContainer" unique_id=93770144 instance=ExtResource("7_ygii6")]
 custom_minimum_size = Vector2(70, 50)
 layout_mode = 2
 text = "Details"
 
-[node name="OnscreenNotifier" type="VisibleOnScreenNotifier2D" parent="."]
+[node name="OnscreenNotifier" type="VisibleOnScreenNotifier2D" parent="." unique_id=1449545982]
 rect = Rect2(0, 0, 1120, 76)
 
 [connection signal="pressed" from="CenterButtons/HBoxContainer/UseButton" to="." method="_on_use_button_pressed"]

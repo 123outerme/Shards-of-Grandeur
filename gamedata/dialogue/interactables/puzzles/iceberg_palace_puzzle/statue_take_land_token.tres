@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="DialogueEntry" format=3 uid="uid://dih1mcxerfxg3"]
+
+[ext_resource type="Resource" uid="uid://pxotrrj8bug7" path="res://gamedata/items/key_items/land_token.tres" id="1_hip3q"]
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="2_kh0bo"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="3_ifq2g"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="4_wcl4w"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="5_fftul"]
+
+[sub_resource type="Resource" id="Resource_xq3y2"]
+script = ExtResource("2_kh0bo")
+lines = Array[String](["You receive the $highlight{Land Token}color$ back from the statue."])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[resource]
+script = ExtResource("5_fftul")
+items = Array[ExtResource("2_kh0bo")]([SubResource("Resource_xq3y2")])
+givesItem = ExtResource("1_hip3q")
+closesDialogue = true
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"
