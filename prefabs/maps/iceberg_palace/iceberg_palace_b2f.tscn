@@ -63,6 +63,48 @@ prereqPuzzleStates = Dictionary[String, Array]({
 })
 metadata/_custom_type_script = "uid://bjesn36acj0uh"
 
+[sub_resource type="Resource" id="Resource_evbvu"]
+script = ExtResource("7_bk8pi")
+prereqPuzzleStates = Dictionary[String, Array]({
+"iceberg_palace_puzzle": ["land_token", "", "sea_token"]
+})
+metadata/_custom_type_script = "uid://bjesn36acj0uh"
+
+[sub_resource type="Resource" id="Resource_duobm"]
+script = ExtResource("7_bk8pi")
+prereqPuzzleStates = Dictionary[String, Array]({
+"iceberg_palace_puzzle": ["land_token", "sea_token", ""]
+})
+metadata/_custom_type_script = "uid://bjesn36acj0uh"
+
+[sub_resource type="Resource" id="Resource_b00dp"]
+script = ExtResource("7_bk8pi")
+prereqPuzzleStates = Dictionary[String, Array]({
+"iceberg_palace_puzzle": ["", "land_token", "sea_token"]
+})
+metadata/_custom_type_script = "uid://bjesn36acj0uh"
+
+[sub_resource type="Resource" id="Resource_obo0g"]
+script = ExtResource("7_bk8pi")
+prereqPuzzleStates = Dictionary[String, Array]({
+"iceberg_palace_puzzle": ["sea_token", "", "land_token"]
+})
+metadata/_custom_type_script = "uid://bjesn36acj0uh"
+
+[sub_resource type="Resource" id="Resource_vh5dk"]
+script = ExtResource("7_bk8pi")
+prereqPuzzleStates = Dictionary[String, Array]({
+"iceberg_palace_puzzle": ["sea_token", "land_token", ""]
+})
+metadata/_custom_type_script = "uid://bjesn36acj0uh"
+
+[sub_resource type="Resource" id="Resource_5w21v"]
+script = ExtResource("7_bk8pi")
+prereqPuzzleStates = Dictionary[String, Array]({
+"iceberg_palace_puzzle": ["", "sea_token", "land_token"]
+})
+metadata/_custom_type_script = "uid://bjesn36acj0uh"
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7hma3"]
 size = Vector2(102, 18.5)
 
@@ -224,12 +266,12 @@ animation = &"energy_wall_no_sparks"
 shape = SubResource("RectangleShape2D_bk8pi")
 
 [node name="EnergyWall2" parent="TilemapRoot" unique_id=824899280 instance=ExtResource("3_73u7y")]
-position = Vector2(-120, -17)
+position = Vector2(-120, -15)
 interactAnim = "default"
 combinedSpriteFrames = ExtResource("4_dexbd")
 fadeOutOnRequirementsInvalidated = true
 fadeInOnRequirementsRevalidated = true
-storyRequirements = Array[ExtResource("7_bk8pi")]([SubResource("Resource_0pkaf")])
+storyRequirements = Array[ExtResource("7_bk8pi")]([SubResource("Resource_0pkaf"), SubResource("Resource_evbvu"), SubResource("Resource_duobm"), SubResource("Resource_b00dp"), SubResource("Resource_obo0g"), SubResource("Resource_vh5dk"), SubResource("Resource_5w21v")])
 
 [node name="CollisionShape2D" parent="TilemapRoot/EnergyWall2" index="0"]
 position = Vector2(0, 9.75)

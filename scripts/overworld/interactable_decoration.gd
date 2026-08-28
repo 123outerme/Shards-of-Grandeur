@@ -95,7 +95,7 @@ func set_invisible(value: bool) -> void:
 func _story_requirements_updated(initializing: bool = false) -> void:
 	if not StoryRequirements.list_is_valid(storyRequirements):
 		if not initializing and fadeOutOnRequirementsInvalidated and fadeoutTween == null:
-			if fadeinTween != null and fadeinTween.is_valid():
+			if fadeinTween != null and fadeinTween.is_valid() and fadeinTween.get_total_elapsed_time() > 0:
 				fadeinTween.stop()
 				fadeinTween = null
 			fadeoutTween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_LINEAR)
@@ -105,12 +105,12 @@ func _story_requirements_updated(initializing: bool = false) -> void:
 			deactivate()
 	else:
 		if not initializing and (fadeoutTween != null or invisible) and fadeInOnRequirementsRevalidated and fadeinTween == null:
-			if fadeoutTween != null and fadeoutTween.is_valid():
+			if fadeoutTween != null and fadeoutTween.is_valid() and fadeoutTween.get_total_elapsed_time() > 0:
 				fadeoutTween.stop()
 				fadeoutTween = null
 			else:
 				modulate = Color(0, 0, 0, 0)
-				invisible = false
+			visible = true
 			fadeinTween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_LINEAR)
 			fadeinTween.tween_property(self, 'modulate', Color(1, 1, 1, 1), 1.0)
 			fadeinTween.tween_callback(activate)
