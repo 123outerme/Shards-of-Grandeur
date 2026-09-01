@@ -1,0 +1,91 @@
+[gd_resource type="Resource" script_class="MoveAnimSprite" format=3 uid="uid://bkobq4uqaql8g"]
+
+[ext_resource type="Script" uid="uid://n71lfdnd5xrr" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite_frame.gd" id="1_iuluf"]
+[ext_resource type="AudioStream" uid="uid://bdx7pc7unyg2f" path="res://audio/sfx/moves/mage_blast_10.mp3" id="2_2oyag"]
+[ext_resource type="Script" uid="uid://mk6loduurcg4" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="2_4ucap"]
+[ext_resource type="SpriteFrames" uid="uid://dt80kwwsxifep" path="res://graphics/moves/astral/a_star_ball.tres" id="3_4ucap"]
+[ext_resource type="AudioStream" uid="uid://3i1k5kjsjhug" path="res://audio/sfx/moves/mage_blast_8.mp3" id="3_74782"]
+
+[sub_resource type="Curve" id="Curve_3vhcp"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Curve" id="Curve_8klwx"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Resource" id="Resource_xnnnq"]
+script = ExtResource("1_iuluf")
+annotation = "position in front of user"
+animation = "default"
+duration = 0.1
+relativeTo = 2
+position = Vector2(8, 0)
+offset = 1
+xCurve = SubResource("Curve_3vhcp")
+yCurve = SubResource("Curve_8klwx")
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[sub_resource type="Resource" id="Resource_4ucap"]
+script = ExtResource("1_iuluf")
+annotation = "create star ball"
+animation = "star_ball_create"
+duration = 0.5
+sfx = ExtResource("2_2oyag")
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[sub_resource type="Curve" id="Curve_2oyag"]
+_data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_74782"]
+_data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="Resource" id="Resource_y6u31"]
+script = ExtResource("1_iuluf")
+annotation = "fire the star ball (partway towards the target)"
+animation = "star_ball_spin"
+relativeTo = 0
+xCurve = SubResource("Curve_2oyag")
+yCurve = SubResource("Curve_74782")
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[sub_resource type="Curve" id="Curve_4ucap"]
+_data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_y6u31"]
+_data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="Resource" id="Resource_2oyag"]
+script = ExtResource("1_iuluf")
+annotation = "the star ball heads towards the target"
+animation = "star_ball_spin_down"
+duration = 1.333
+relativeTo = 1
+xCurve = SubResource("Curve_4ucap")
+yCurve = SubResource("Curve_y6u31")
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[sub_resource type="Resource" id="Resource_74782"]
+script = ExtResource("1_iuluf")
+annotation = "play collide animation"
+animation = "star_ball_collide"
+duration = 0.5
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[sub_resource type="Resource" id="Resource_hgvgt"]
+script = ExtResource("1_iuluf")
+annotation = "play sfx, wait out rest of anim"
+duration = 1.167
+sfx = ExtResource("3_74782")
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[resource]
+script = ExtResource("2_4ucap")
+spriteFrames = ExtResource("3_4ucap")
+maxSize = Vector2(32, 32)
+frames = Array[ExtResource("1_iuluf")]([SubResource("Resource_xnnnq"), SubResource("Resource_4ucap"), SubResource("Resource_y6u31"), SubResource("Resource_2oyag"), SubResource("Resource_74782"), SubResource("Resource_hgvgt")])
+metadata/_custom_type_script = "uid://mk6loduurcg4"

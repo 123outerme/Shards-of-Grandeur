@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="Move" format=3 uid="uid://ck347j1w48ir7"]
+
+[ext_resource type="Script" uid="uid://dx4lnh4driy7a" path="res://scripts/battle/combatant/move.gd" id="1_2nmm8"]
+[ext_resource type="Script" uid="uid://drwve0pkx3g5o" path="res://scripts/battle/combatant/move_effect.gd" id="1_rwxoi"]
+[ext_resource type="Resource" uid="uid://et5s11saphka" path="res://gamedata/moves/star_ball/anim_star_ball.tres" id="2_hgvgt"]
+
+[sub_resource type="Resource" id="Resource_xnnnq"]
+script = ExtResource("1_rwxoi")
+role = 1
+targets = 5
+metadata/_custom_type_script = "uid://drwve0pkx3g5o"
+
+[sub_resource type="Resource" id="Resource_crrn0"]
+script = ExtResource("1_rwxoi")
+role = 1
+targets = 5
+metadata/_custom_type_script = "uid://drwve0pkx3g5o"
+
+[resource]
+script = ExtResource("1_2nmm8")
+moveName = "Star Ball"
+category = 1
+element = 8
+chargeEffect = SubResource("Resource_xnnnq")
+surgeEffect = SubResource("Resource_crrn0")
+moveAnimation = ExtResource("2_hgvgt")
+metadata/_custom_type_script = "uid://dx4lnh4driy7a"

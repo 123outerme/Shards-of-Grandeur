@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="Move" format=3 uid="uid://c5jbja2q5xhmt"]
+
+[ext_resource type="Script" uid="uid://drwve0pkx3g5o" path="res://scripts/battle/combatant/move_effect.gd" id="1_16ogb"]
+[ext_resource type="Script" uid="uid://dx4lnh4driy7a" path="res://scripts/battle/combatant/move.gd" id="1_nj2yj"]
+[ext_resource type="Resource" uid="uid://gcv2kkd2ya63" path="res://gamedata/moves/lunar_shield/anim_lunar_shield.tres" id="2_cmig0"]
+
+[sub_resource type="Resource" id="Resource_16ogb"]
+script = ExtResource("1_16ogb")
+role = 3
+metadata/_custom_type_script = "uid://drwve0pkx3g5o"
+
+[sub_resource type="Resource" id="Resource_cmig0"]
+script = ExtResource("1_16ogb")
+role = 3
+metadata/_custom_type_script = "uid://drwve0pkx3g5o"
+
+[resource]
+script = ExtResource("1_nj2yj")
+moveName = "Lunar Shield"
+category = 2
+element = 8
+chargeEffect = SubResource("Resource_16ogb")
+surgeEffect = SubResource("Resource_cmig0")
+moveAnimation = ExtResource("2_cmig0")
+metadata/_custom_type_script = "uid://dx4lnh4driy7a"

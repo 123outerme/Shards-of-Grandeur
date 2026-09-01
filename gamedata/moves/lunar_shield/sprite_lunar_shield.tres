@@ -1,0 +1,69 @@
+[gd_resource type="Resource" script_class="MoveAnimSprite" format=3 uid="uid://cke8g3p4nwib3"]
+
+[ext_resource type="Script" uid="uid://n71lfdnd5xrr" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite_frame.gd" id="1_fyegk"]
+[ext_resource type="Script" uid="uid://mk6loduurcg4" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="2_klbah"]
+[ext_resource type="AudioStream" uid="uid://dmehiu0e38fdb" path="res://audio/sfx/moves/heal.ogg" id="2_xnnnq"]
+[ext_resource type="SpriteFrames" uid="uid://ci2w30exl78rc" path="res://graphics/moves/astral/a_lunar_shield.tres" id="3_klbah"]
+
+[sub_resource type="Curve" id="Curve_7k1nj"]
+_data = [Vector2(0, 1), -0.5, 0.0, 1, 0]
+point_count = 1
+
+[sub_resource type="Curve" id="Curve_pqylf"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Resource" id="Resource_7k1nj"]
+script = ExtResource("1_fyegk")
+annotation = "start faded out on top of user"
+animation = "default"
+duration = 0.1
+opacity = 0.0
+relativeTo = 2
+position = Vector2(-4, 4)
+xCurve = SubResource("Curve_7k1nj")
+yCurve = SubResource("Curve_pqylf")
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[sub_resource type="Curve" id="Curve_cmig0"]
+_data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_53wm0"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 1.4, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Resource" id="Resource_klbah"]
+script = ExtResource("1_fyegk")
+annotation = "fade in while moving forward into position"
+animation = "lunar_shield"
+opacity = 0.6
+relativeTo = 2
+position = Vector2(0, -4)
+xCurve = SubResource("Curve_cmig0")
+yCurve = SubResource("Curve_53wm0")
+sfx = ExtResource("2_xnnnq")
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[sub_resource type="Resource" id="Resource_crrn0"]
+script = ExtResource("1_fyegk")
+annotation = "fade all the way in to fully opaque"
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[sub_resource type="Resource" id="Resource_unp1m"]
+script = ExtResource("1_fyegk")
+annotation = "stay for some time"
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[sub_resource type="Resource" id="Resource_xnnnq"]
+script = ExtResource("1_fyegk")
+annotation = "fade out"
+opacity = 0.0
+metadata/_custom_type_script = "uid://n71lfdnd5xrr"
+
+[resource]
+script = ExtResource("2_klbah")
+spriteFrames = ExtResource("3_klbah")
+maxSize = Vector2(32, 32)
+frames = Array[ExtResource("1_fyegk")]([SubResource("Resource_7k1nj"), SubResource("Resource_klbah"), SubResource("Resource_crrn0"), SubResource("Resource_unp1m"), SubResource("Resource_xnnnq")])
+metadata/_custom_type_script = "uid://mk6loduurcg4"

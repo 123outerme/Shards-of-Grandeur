@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="MoveAnimation" format=3 uid="uid://et5s11saphka"]
+
+[ext_resource type="Script" uid="uid://mk6loduurcg4" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="1_61mte"]
+[ext_resource type="Script" uid="uid://c8pibqehmw101" path="res://scripts/battle/battle_scene/battlefield_shade_anim.gd" id="1_tnq0f"]
+[ext_resource type="Script" uid="uid://dy6wwno8h0wdl" path="res://scripts/battle/particles/move_animation.gd" id="2_tnq0f"]
+[ext_resource type="Resource" uid="uid://bkobq4uqaql8g" path="res://gamedata/moves/star_ball/sprite_star_ball.tres" id="3_fm48a"]
+
+[sub_resource type="Resource" id="Resource_61mte"]
+script = ExtResource("1_tnq0f")
+metadata/_custom_type_script = "uid://c8pibqehmw101"
+
+[sub_resource type="Resource" id="Resource_tnq0f"]
+script = ExtResource("1_tnq0f")
+color = Color(0, 0, 0, 0.5176471)
+metadata/_custom_type_script = "uid://c8pibqehmw101"
+
+[resource]
+script = ExtResource("2_tnq0f")
+combatantAnimation = "attack_magic"
+chargeMoveSprites = Array[ExtResource("1_61mte")]([ExtResource("3_fm48a")])
+surgeMoveSprites = Array[ExtResource("1_61mte")]([ExtResource("3_fm48a")])
+chargeBattlefieldShade = SubResource("Resource_61mte")
+surgeBattlefieldShade = SubResource("Resource_tnq0f")
+metadata/_custom_type_script = "uid://dy6wwno8h0wdl"
