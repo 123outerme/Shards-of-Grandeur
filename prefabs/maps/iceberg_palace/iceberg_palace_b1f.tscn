@@ -13,6 +13,9 @@
 [ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="10_u6idb"]
 [ext_resource type="Script" uid="uid://fw22o8hbosnk" path="res://scripts/inventory/inventory_slot.gd" id="11_262uf"]
 [ext_resource type="Script" uid="uid://dioty4gjx3hdu" path="res://scripts/overworld/overworld_enemy/spawner_data.gd" id="13_262uf"]
+[ext_resource type="Script" uid="uid://dga8cpwmm0j6h" path="res://scripts/battle/weighted_things/weighted_combatants.gd" id="14_k3551"]
+[ext_resource type="Script" uid="uid://bvnw0ab8d80ti" path="res://scripts/overworld/overworld_enemy/random_encounter_level_stage.gd" id="15_sty7u"]
+[ext_resource type="Script" uid="uid://dllqv5vxrou7r" path="res://scripts/overworld/overworld_enemy/random_encounter.gd" id="16_fbsvq"]
 
 [sub_resource type="Resource" id="Resource_262uf"]
 script = ExtResource("10_u6idb")
@@ -88,40 +91,88 @@ script = ExtResource("13_262uf")
 spawnerId = "iceberg_palace_b1f_1"
 metadata/_custom_type_script = "uid://dioty4gjx3hdu"
 
+[sub_resource type="Resource" id="Resource_aj0lc"]
+script = ExtResource("16_fbsvq")
+combatantsMinLevel = 25
+combatantsMaxLevel = 27
+metadata/_custom_type_script = "uid://dllqv5vxrou7r"
+
 [sub_resource type="Resource" id="Resource_g3kew"]
 script = ExtResource("13_262uf")
 spawnerId = "iceberg_palace_b1f_2"
 metadata/_custom_type_script = "uid://dioty4gjx3hdu"
+
+[sub_resource type="Resource" id="Resource_x20mq"]
+script = ExtResource("16_fbsvq")
+combatantsMinLevel = 25
+combatantsMaxLevel = 27
+metadata/_custom_type_script = "uid://dllqv5vxrou7r"
 
 [sub_resource type="Resource" id="Resource_k3551"]
 script = ExtResource("13_262uf")
 spawnerId = "iceberg_palace_b1f_3"
 metadata/_custom_type_script = "uid://dioty4gjx3hdu"
 
+[sub_resource type="Resource" id="Resource_77oqv"]
+script = ExtResource("16_fbsvq")
+combatantsMinLevel = 26
+combatantsMaxLevel = 27
+metadata/_custom_type_script = "uid://dllqv5vxrou7r"
+
 [sub_resource type="Resource" id="Resource_sty7u"]
 script = ExtResource("13_262uf")
 spawnerId = "iceberg_palace_b1f_4"
 metadata/_custom_type_script = "uid://dioty4gjx3hdu"
+
+[sub_resource type="Resource" id="Resource_anxow"]
+script = ExtResource("16_fbsvq")
+combatantsMinLevel = 26
+combatantsMaxLevel = 27
+metadata/_custom_type_script = "uid://dllqv5vxrou7r"
 
 [sub_resource type="Resource" id="Resource_fbsvq"]
 script = ExtResource("13_262uf")
 spawnerId = "iceberg_palace_b1f_5"
 metadata/_custom_type_script = "uid://dioty4gjx3hdu"
 
+[sub_resource type="Resource" id="Resource_ug0et"]
+script = ExtResource("16_fbsvq")
+combatantsMinLevel = 26
+combatantsMaxLevel = 27
+metadata/_custom_type_script = "uid://dllqv5vxrou7r"
+
 [sub_resource type="Resource" id="Resource_15a8c"]
 script = ExtResource("13_262uf")
 spawnerId = "iceberg_palace_b1f_6"
 metadata/_custom_type_script = "uid://dioty4gjx3hdu"
+
+[sub_resource type="Resource" id="Resource_ny62w"]
+script = ExtResource("16_fbsvq")
+combatantsMinLevel = 26
+combatantsMaxLevel = 27
+metadata/_custom_type_script = "uid://dllqv5vxrou7r"
 
 [sub_resource type="Resource" id="Resource_i3b62"]
 script = ExtResource("13_262uf")
 spawnerId = "iceberg_palace_b1f_7"
 metadata/_custom_type_script = "uid://dioty4gjx3hdu"
 
+[sub_resource type="Resource" id="Resource_0vjss"]
+script = ExtResource("16_fbsvq")
+combatantsMinLevel = 26
+combatantsMaxLevel = 28
+metadata/_custom_type_script = "uid://dllqv5vxrou7r"
+
 [sub_resource type="Resource" id="Resource_c2oum"]
 script = ExtResource("13_262uf")
 spawnerId = "iceberg_palace_b1f_8"
 metadata/_custom_type_script = "uid://dioty4gjx3hdu"
+
+[sub_resource type="Resource" id="Resource_nvelm"]
+script = ExtResource("16_fbsvq")
+combatantsMinLevel = 26
+combatantsMaxLevel = 28
+metadata/_custom_type_script = "uid://dllqv5vxrou7r"
 
 [node name="OverworldMap" type="Node2D" unique_id=562057779]
 script = ExtResource("1_m257g")
@@ -447,41 +498,49 @@ navigation_layers = 4
 [node name="EnemySpawner" parent="." unique_id=1588593383 node_paths=PackedStringArray("tilemap") instance=ExtResource("9_eh75q")]
 position = Vector2(180, 72)
 spawnerData = SubResource("Resource_q0as3")
+enemyEncounter = SubResource("Resource_aj0lc")
 tilemap = NodePath("../TilemapRoot")
 
 [node name="EnemySpawner2" parent="." unique_id=837300823 node_paths=PackedStringArray("tilemap") instance=ExtResource("9_eh75q")]
 position = Vector2(196, 257)
 spawnerData = SubResource("Resource_g3kew")
+enemyEncounter = SubResource("Resource_x20mq")
 tilemap = NodePath("../TilemapRoot")
 
 [node name="EnemySpawner3" parent="." unique_id=1092051821 node_paths=PackedStringArray("tilemap") instance=ExtResource("9_eh75q")]
 position = Vector2(17, 376)
 spawnerData = SubResource("Resource_k3551")
+enemyEncounter = SubResource("Resource_77oqv")
 tilemap = NodePath("../TilemapRoot")
 
 [node name="EnemySpawner4" parent="." unique_id=1553362451 node_paths=PackedStringArray("tilemap") instance=ExtResource("9_eh75q")]
 position = Vector2(-77, 273)
 spawnerData = SubResource("Resource_sty7u")
+enemyEncounter = SubResource("Resource_anxow")
 tilemap = NodePath("../TilemapRoot")
 
 [node name="EnemySpawner5" parent="." unique_id=971281154 node_paths=PackedStringArray("tilemap") instance=ExtResource("9_eh75q")]
 position = Vector2(-198, 364)
 spawnerData = SubResource("Resource_fbsvq")
+enemyEncounter = SubResource("Resource_ug0et")
 tilemap = NodePath("../TilemapRoot")
 
 [node name="EnemySpawner6" parent="." unique_id=1827553501 node_paths=PackedStringArray("tilemap") instance=ExtResource("9_eh75q")]
 position = Vector2(-192, 204)
 spawnerData = SubResource("Resource_15a8c")
+enemyEncounter = SubResource("Resource_ny62w")
 tilemap = NodePath("../TilemapRoot")
 
 [node name="EnemySpawner7" parent="." unique_id=1751694026 node_paths=PackedStringArray("tilemap") instance=ExtResource("9_eh75q")]
 position = Vector2(-298, 26)
 spawnerData = SubResource("Resource_i3b62")
+enemyEncounter = SubResource("Resource_0vjss")
 tilemap = NodePath("../TilemapRoot")
 
 [node name="EnemySpawner8" parent="." unique_id=1310463816 node_paths=PackedStringArray("tilemap") instance=ExtResource("9_eh75q")]
 position = Vector2(56, 151)
 spawnerData = SubResource("Resource_c2oum")
+enemyEncounter = SubResource("Resource_nvelm")
 tilemap = NodePath("../TilemapRoot")
 
 [editable path="TilemapRoot/EnergyWall1"]

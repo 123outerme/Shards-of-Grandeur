@@ -1,23 +1,23 @@
-[gd_scene load_steps=8 format=3 uid="uid://cfynuh7wig03b"]
+[gd_scene format=3 uid="uid://cfynuh7wig03b"]
 
 [ext_resource type="Script" uid="uid://bj32as52w12l8" path="res://prefabs/test/battle/rune_anim_tester.gd" id="1_tnod4"]
-[ext_resource type="Resource" uid="uid://dos21fp6ussm2" path="res://gamedata/moves/wall_wrecker/wall_wrecker.tres" id="2_5o7ia"]
+[ext_resource type="Resource" uid="uid://c5jbja2q5xhmt" path="res://gamedata/moves/lunar_shield/lunar_shield.tres" id="2_tnod4"]
 [ext_resource type="Resource" uid="uid://cra0rgrw4ujhn" path="res://gamedata/combatants/mesa_golem/mesa_golem.tres" id="3_jnowt"]
 [ext_resource type="Resource" uid="uid://0tg5ts3ocpyq" path="res://gamedata/combatants/mesa_golem/evolutions/miner_golem/evolution_miner_golem.tres" id="4_na0cf"]
 [ext_resource type="PackedScene" uid="uid://dkqxsnv4nyxwj" path="res://prefabs/battle/battle_maps/grandstone_quarry_battle_map.tscn" id="5_7ltfc"]
 [ext_resource type="PackedScene" uid="uid://cjw6dl387qwra" path="res://prefabs/ui/inventory/move_learn_anim_controller.tscn" id="6_0y5m8"]
 [ext_resource type="PackedScene" uid="uid://dmc2ox37dega8" path="res://prefabs/audio/audio_handler.tscn" id="7_dnsn6"]
 
-[node name="RuneAnimTester" type="Node2D"]
+[node name="RuneAnimTester" type="Node2D" unique_id=1466386046]
 script = ExtResource("1_tnod4")
-move = ExtResource("2_5o7ia")
+move = ExtResource("2_tnod4")
 targetCombatant = ExtResource("3_jnowt")
 evolution = ExtResource("4_na0cf")
 battleMap = ExtResource("5_7ltfc")
 
-[node name="TilemapParent" type="Node2D" parent="."]
+[node name="TilemapParent" type="Node2D" parent="." unique_id=1592563957]
 
-[node name="MoveLearnAnimControl" parent="." instance=ExtResource("6_0y5m8")]
+[node name="MoveLearnAnimControl" parent="." unique_id=299587008 instance=ExtResource("6_0y5m8")]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -55,10 +55,10 @@ position = Vector2(751, 195)
 [node name="Enemy1MultiPos" parent="MoveLearnAnimControl" index="4"]
 position = Vector2(751, 244)
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=383785792]
 zoom = Vector2(4, 4)
 
-[node name="PlayButton" type="Button" parent="."]
+[node name="PlayButton" type="Button" parent="." unique_id=1817217164]
 z_index = 10
 offset_left = -71.0
 offset_top = 48.0
@@ -66,7 +66,7 @@ offset_right = -19.0
 offset_bottom = 79.0
 text = "Play"
 
-[node name="SwapButton" type="Button" parent="."]
+[node name="SwapButton" type="Button" parent="." unique_id=982446514]
 z_index = 10
 offset_left = 99.0
 offset_top = 48.0
@@ -74,9 +74,9 @@ offset_right = 157.0
 offset_bottom = 79.0
 text = "Swap"
 
-[node name="AudioHandler" parent="." instance=ExtResource("7_dnsn6")]
+[node name="AudioHandler" parent="." unique_id=201932579 instance=ExtResource("7_dnsn6")]
 
-[node name="SurgeChargeToggle" type="Button" parent="."]
+[node name="SurgeChargeToggle" type="Button" parent="." unique_id=1046846152]
 z_index = 10
 custom_minimum_size = Vector2(81, 0)
 offset_left = -159.0
@@ -86,7 +86,7 @@ offset_bottom = 78.0
 toggle_mode = true
 text = "Charge"
 
-[node name="PlayTriggerButton" type="Button" parent="."]
+[node name="PlayTriggerButton" type="Button" parent="." unique_id=1983277544]
 offset_left = -12.0
 offset_top = 48.0
 offset_right = 92.0

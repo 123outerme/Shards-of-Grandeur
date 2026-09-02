@@ -47,10 +47,11 @@ func _on_button_pressed():
 	playTriggerButton.disabled = true
 	surgeChargeToggle.disabled = true
 	swapButton.disabled = true
-	var rune: Rune = move.chargeEffect.rune if not playSurge else move.surgeEffect.rune
-	if rune == null:
+	var moveEffect: MoveEffect = move.chargeEffect if not playSurge else move.surgeEffect
+	if moveEffect.rune == null:
 		return
-	var newRune: Rune = rune.copy()
+	var newRune: Rune = moveEffect.rune.copy()
+	set_user_node_from_targets(moveEffect.targets)
 	newRune.init_rune_state(userNode.combatant, [userNode.combatant], BattleState.new())
 	userNode.combatant.runes.append(newRune)
 	userNode.update_rune_sprites(true, false)
@@ -62,10 +63,12 @@ func _on_play_trigger_button_pressed() -> void:
 	playTriggerButton.disabled = true
 	surgeChargeToggle.disabled = true
 	swapButton.disabled = true
-	var rune: Rune = move.chargeEffect.rune if not playSurge else move.surgeEffect.rune
+	var moveEffect: MoveEffect = move.chargeEffect if not playSurge else move.surgeEffect
+	var rune: Rune = moveEffect.rune
 	if rune == null:
 		return
 	var newRune: Rune = rune.copy()
+	set_user_node_from_targets(moveEffect.targets)
 	newRune.init_rune_state(userNode.combatant, [userNode.combatant], BattleState.new())
 	newRune.caster = userNode.combatant
 	userNode.combatant.runes.append(newRune)
@@ -73,6 +76,18 @@ func _on_play_trigger_button_pressed() -> void:
 	moveLearnAnimController.battleAnimManager.play_triggered_rune_animations(BattleCommand.ApplyTiming.AFTER_ROUND, userNode)
 	await moveLearnAnimController.battleAnimManager.rune_animation_complete
 	rune_anim_finished()
+
+func set_user_node_from_targets(targets: BattleCommand.Targets):
+	userNode = moveLearnAnimController.battleAnimManager.playerCombatantNode if not moveLearnAnimController.swapUsersAndTargets else moveLearnAnimController.battleAnimManager.enemy1CombatantNode
+	if BattleCommand.is_command_ally_targeting(targets):
+		if not moveLearnAnimController.swapUsersAndTargets:
+			userNode = moveLearnAnimController.battleAnimManager.minionCombatantNode
+		else:
+			userNode = moveLearnAnimController.battleAnimManager.enemy2CombatantNode
+	elif BattleCommand.is_command_enemy_targeting(targets):
+		if not moveLearnAnimController.swapUsersAndTargets:
+			userNode = moveLearnAnimController.battleAnimManager.enemy1CombatantNode
+			#otherwise target player combatant
 
 func _on_swap_button_pressed():
 	if userNode == moveLearnAnimController.battleAnimManager.playerCombatantNode:

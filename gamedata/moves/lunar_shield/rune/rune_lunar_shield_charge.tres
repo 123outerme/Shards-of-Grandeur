@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="KeywordRune" format=3 uid="uid://5nqrh0hh8imv"]
+
+[ext_resource type="Resource" uid="uid://cecvtxxvqay7a" path="res://gamedata/moves/lunar_shield/rune/sprite_rune_lunar_shield.tres" id="1_wdhgw"]
+[ext_resource type="Script" uid="uid://bhxtvkpc6kuqh" path="res://scripts/battle/combatant/runes/keyword_rune.gd" id="1_y8nbr"]
+[ext_resource type="Script" uid="uid://b8q40qhoufelh" path="res://scripts/battle/combatant/element_multiplier.gd" id="2_a6jmx"]
+[ext_resource type="Script" uid="uid://mk6loduurcg4" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="2_afvwq"]
+[ext_resource type="Script" uid="uid://dvivnpdo5ga72" path="res://scripts/battle/combatant/stat_changes.gd" id="3_wdhgw"]
+[ext_resource type="Resource" uid="uid://dfxtpjcp7sale" path="res://gamedata/moves/lunar_shield/rune/trigger_sprite_rune_lunar_shield.tres" id="6_qg3gj"]
+
+[sub_resource type="Resource" id="Resource_lbfmc"]
+script = ExtResource("3_wdhgw")
+affinityMultiplier = 1.04
+resistanceMultiplier = 1.04
+metadata/_custom_type_script = "uid://dvivnpdo5ga72"
+
+[resource]
+script = ExtResource("1_y8nbr")
+keyword = "Moon"
+category = 2
+element = 8
+power = -20
+statChanges = SubResource("Resource_lbfmc")
+runeSpriteAnim = ExtResource("1_wdhgw")
+triggerAnims = Array[ExtResource("2_afvwq")]([ExtResource("6_qg3gj")])
+metadata/_custom_type_script = "uid://bhxtvkpc6kuqh"

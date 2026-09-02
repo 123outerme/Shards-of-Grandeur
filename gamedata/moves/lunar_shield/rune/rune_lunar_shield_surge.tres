@@ -1,0 +1,40 @@
+[gd_resource type="Resource" script_class="KeywordRune" format=3 uid="uid://vwtfubsjoc4l"]
+
+[ext_resource type="Resource" uid="uid://cecvtxxvqay7a" path="res://gamedata/moves/lunar_shield/rune/sprite_rune_lunar_shield.tres" id="1_efbv5"]
+[ext_resource type="Script" uid="uid://bhxtvkpc6kuqh" path="res://scripts/battle/combatant/runes/keyword_rune.gd" id="1_u5y1w"]
+[ext_resource type="Script" uid="uid://cvjnh0a2q6sat" path="res://scripts/battle/combatant/surge_changes.gd" id="2_kelwf"]
+[ext_resource type="Script" uid="uid://b8q40qhoufelh" path="res://scripts/battle/combatant/element_multiplier.gd" id="2_lbfmc"]
+[ext_resource type="Script" uid="uid://mk6loduurcg4" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="2_ppn2g"]
+[ext_resource type="Script" uid="uid://dvivnpdo5ga72" path="res://scripts/battle/combatant/stat_changes.gd" id="3_rpua2"]
+[ext_resource type="Resource" uid="uid://dfxtpjcp7sale" path="res://gamedata/moves/lunar_shield/rune/trigger_sprite_rune_lunar_shield.tres" id="7_r5qs5"]
+
+[sub_resource type="Resource" id="Resource_jo77y"]
+script = ExtResource("3_rpua2")
+affinityMultiplier = 1.08
+resistanceMultiplier = 1.08
+metadata/_custom_type_script = "uid://dvivnpdo5ga72"
+
+[sub_resource type="Resource" id="Resource_qg3gj"]
+script = ExtResource("3_rpua2")
+affinityMultiplier = 1.02
+resistanceMultiplier = 1.02
+metadata/_custom_type_script = "uid://dvivnpdo5ga72"
+
+[sub_resource type="Resource" id="Resource_u5y1w"]
+script = ExtResource("2_kelwf")
+powerPerOrb = -3
+targetStatChangesPerOrb = SubResource("Resource_qg3gj")
+metadata/_custom_type_script = "uid://cvjnh0a2q6sat"
+
+[resource]
+script = ExtResource("1_u5y1w")
+keyword = "Moon"
+orbChange = 1
+category = 2
+element = 8
+power = -40
+statChanges = SubResource("Resource_jo77y")
+surgeChanges = SubResource("Resource_u5y1w")
+runeSpriteAnim = ExtResource("1_efbv5")
+triggerAnims = Array[ExtResource("2_ppn2g")]([ExtResource("7_r5qs5")])
+metadata/_custom_type_script = "uid://bhxtvkpc6kuqh"

@@ -1,0 +1,40 @@
+[gd_resource type="Resource" script_class="MoveAnimSprite" format=3 uid="uid://dfxtpjcp7sale"]
+
+[ext_resource type="Script" uid="uid://n71lfdnd5xrr" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite_frame.gd" id="1_jnf1f"]
+[ext_resource type="AudioStream" uid="uid://b06cdggoixugq" path="res://audio/sfx/moves/mage_blast_9.mp3" id="2_5nao8"]
+[ext_resource type="Script" uid="uid://mk6loduurcg4" path="res://scripts/battle/battle_scene/move_sprite/move_animation_sprite.gd" id="2_i7doe"]
+[ext_resource type="Resource" uid="uid://b4ipo642gwihl" path="res://gamedata/moves/lunar_shield/rune/particles_trigger_rune_lunar_shield.tres" id="2_xhrxd"]
+[ext_resource type="SpriteFrames" uid="uid://ci2w30exl78rc" path="res://graphics/moves/astral/a_lunar_shield.tres" id="3_i7doe"]
+
+[sub_resource type="Curve" id="Curve_i7doe"]
+_data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_5nao8"]
+_limits = [-0.5, 1.5, 0.0, 1.0]
+_data = [Vector2(0, -0.5), 0.0, 2.8, 0, 0, Vector2(1, 1.5), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Resource" id="Resource_xhrxd"]
+script = ExtResource("1_jnf1f")
+annotation = "move to combatant's center"
+animation = "lunar_shield_rune"
+duration = 2.0
+relativeTo = 1
+xCurve = SubResource("Curve_i7doe")
+yCurve = SubResource("Curve_5nao8")
+
+[sub_resource type="Resource" id="Resource_ubmn8"]
+script = ExtResource("1_jnf1f")
+annotation = "play trigger animation"
+animation = "lunar_shield_rune_trigger"
+duration = 2.667
+particles = ExtResource("2_xhrxd")
+sfx = ExtResource("2_5nao8")
+
+[resource]
+script = ExtResource("2_i7doe")
+spriteFrames = ExtResource("3_i7doe")
+maxSize = Vector2(32, 32)
+frames = Array[ExtResource("1_jnf1f")]([SubResource("Resource_xhrxd"), SubResource("Resource_ubmn8")])
+metadata/_custom_type_script = "uid://mk6loduurcg4"
