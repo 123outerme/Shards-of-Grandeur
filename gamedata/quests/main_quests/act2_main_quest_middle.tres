@@ -28,7 +28,7 @@ metadata/_custom_type_script = "uid://b3j2bj1p0bkq8"
 
 [sub_resource type="Resource" id="Resource_i7exl"]
 script = ExtResource("2_ex5ee")
-name = "Warlock-in-Training"
+name = "Warlock Training"
 description = "You agreed to train with the Warlocks in order to team up against Steelspire! See the Stargazer first."
 locations = Array[int]([50])
 turnInLocations = Array[int]([50])
@@ -45,9 +45,10 @@ name = "Duel of the Stars"
 description = "The Stargazer wants to test your might for himself. He has challenged you to a friendly duel!"
 locations = Array[int]([50])
 turnInLocations = Array[int]([50])
-objectiveName = "giant_steppes_observatory_battle_map"
+objectiveName = "stargazer_warlock_spar_1"
 turnInNames = Array[String](["stargazer_warlock_observatory"])
-customStatusStr = "Duel The Stargazer!"
+displayTurnInName = "The Stargazer"
+customStatusStr = "Duel the Stargazer!"
 turnInDialogue = Array[ExtResource("3_e4sjh")]([ExtResource("6_tpfrd")])
 inProgressDialogue = Array[ExtResource("3_e4sjh")]([ExtResource("5_6lwe2")])
 metadata/_custom_type_script = "uid://b3j2bj1p0bkq8"
@@ -55,24 +56,39 @@ metadata/_custom_type_script = "uid://b3j2bj1p0bkq8"
 [sub_resource type="Resource" id="Resource_i7m18"]
 script = ExtResource("2_ex5ee")
 name = "Into the Iceberg"
-description = "The Iceberg Palace "
-objectiveName = "---"
-customStatusStr = "WIP"
+description = "The Warlocks have directed you to undergo a trial in the Iceberg Palace. Visit and collect their artifact!"
+locations = Array[int]([53])
+turnInLocations = Array[int]([50])
+type = 1
+objectiveName = "Moon Sigil"
+turnInNames = Array[String](["stargazer_warlock_observatory"])
+displayObjName = "Moon Sigil"
+displayTurnInName = "The Stargazer"
 metadata/_custom_type_script = "uid://b3j2bj1p0bkq8"
 
 [sub_resource type="Resource" id="Resource_tpfrd"]
 script = ExtResource("2_ex5ee")
 name = "Duel of the Moon"
-locations = Array[int]([53])
+description = "The Stargazer's second challenge forms the last challenge of your trial. Accept his friendly duel!"
+locations = Array[int]([50])
 turnInLocations = Array[int]([50])
-type = 6
-objectiveName = "Sigil of the Moon"
-displayObjName = "Sigil of the Moon"
+type = 4
+objectiveName = "stargazer_warlock_spar_2"
+turnInNames = Array[String](["stargazer_warlock_observatory"])
+displayTurnInName = "The Stargazer"
+customStatusStr = "Duel the Stargazer!"
+metadata/_custom_type_script = "uid://b3j2bj1p0bkq8"
+
+[sub_resource type="Resource" id="Resource_3tuse"]
+script = ExtResource("2_ex5ee")
+name = "TBD"
+objectiveName = "---"
+customStatusStr = "???"
 metadata/_custom_type_script = "uid://b3j2bj1p0bkq8"
 
 [resource]
 script = ExtResource("1_b7v4m")
 questName = "An Ancient Ally"
 description = "The Warlocks, a secluded society of magic, have offered to help you fight against the Chain Legion. Pursue this newly opened avenue!"
-steps = Array[ExtResource("2_ex5ee")]([SubResource("Resource_n5131"), SubResource("Resource_7hikv"), SubResource("Resource_i7exl"), SubResource("Resource_6lwe2"), SubResource("Resource_i7m18"), SubResource("Resource_tpfrd")])
+steps = Array[ExtResource("2_ex5ee")]([SubResource("Resource_n5131"), SubResource("Resource_7hikv"), SubResource("Resource_i7exl"), SubResource("Resource_6lwe2"), SubResource("Resource_i7m18"), SubResource("Resource_tpfrd"), SubResource("Resource_3tuse")])
 isMainQuest = true
