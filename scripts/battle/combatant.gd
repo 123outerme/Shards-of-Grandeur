@@ -376,7 +376,11 @@ func will_equipping_item_cause_evolution(item: Item) -> bool:
 		accessory = item as Accessory
 	else:
 		return false
+	var currentEvolution: Evolution = get_evolution()
 	for evolution: Evolution in evolutions.evolutionList:
+		# doesn't count; this evolution is already applied
+		if currentEvolution != null and evolution.evolutionSaveName == currentEvolution.evolutionSaveName:
+			continue
 		if (evolution.requiredWeapon == null or evolution.requiredWeapon == weapon) and \
 				(evolution.requiredArmor == null or evolution.requiredArmor == armor) and \
 				(evolution.requiredAccessory == null or evolution.requiredAccessory == accessory):
