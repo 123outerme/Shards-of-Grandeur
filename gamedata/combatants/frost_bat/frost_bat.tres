@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="Combatant" format=3 uid="uid://cta7t0245kgnp"]
+
+[ext_resource type="Resource" uid="uid://dt5o83r8n43o6" path="res://gamedata/combatants/frost_bat/frost_bat_ai.tres" id="1_5lp7n"]
+[ext_resource type="Script" uid="uid://c8dxuthm1qd7s" path="res://scripts/battle/combatant/stats.gd" id="1_83cgg"]
+[ext_resource type="Script" uid="uid://biq3088m28kr2" path="res://scripts/battle/combatant/rune.gd" id="2_a5a8y"]
+[ext_resource type="Resource" uid="uid://ch76kt6m3r4qa" path="res://gamedata/combatants/frost_bat/frost_bat_rewards.tres" id="2_mqd88"]
+[ext_resource type="Script" uid="uid://dyckeornewpwi" path="res://scripts/battle/combatant.gd" id="3_yovq7"]
+[ext_resource type="Resource" uid="uid://8rybw2n3uo7x" path="res://gamedata/combatants/frost_bat/frost_bat_evolutions.tres" id="4_7tnxh"]
+[ext_resource type="Resource" uid="uid://mldxdjoc80us" path="res://gamedata/combatants/frost_bat/frost_bat_sprite.tres" id="4_a5a8y"]
+[ext_resource type="Resource" uid="uid://j4c6noxst87c" path="res://gamedata/combatants/frost_bat/frost_bat_effectiveness.tres" id="5_j6kc4"]
+[ext_resource type="Script" uid="uid://dx4lnh4driy7a" path="res://scripts/battle/combatant/move.gd" id="5_yovq7"]
+[ext_resource type="Resource" uid="uid://bfgauuwuj7noc" path="res://gamedata/combatants/frost_bat/frost_bat_stat_alloc_strategy.tres" id="9_weukw"]
+[ext_resource type="Resource" uid="uid://bn3gc23rtx0hg" path="res://gamedata/combatants/frost_bat/frost_bat_movepool.tres" id="10_82g3t"]
+[ext_resource type="Resource" uid="uid://djpxcawx2iquc" path="res://gamedata/combatants/frost_bat/frost_bat_stat_growth.tres" id="12_aflu7"]
+[ext_resource type="Resource" uid="uid://cpv0m38bru2a7" path="res://gamedata/combatants/frost_bat/frost_bat_equipment.tres" id="13_anvnv"]
+
+[sub_resource type="Resource" id="Resource_wydc1"]
+script = ExtResource("1_83cgg")
+displayName = "Frost Bat"
+saveName = "frost_bat"
+statGrowth = ExtResource("12_aflu7")
+movepool = ExtResource("10_82g3t")
+metadata/_custom_type_script = "uid://c8dxuthm1qd7s"
+
+[resource]
+script = ExtResource("3_yovq7")
+sprite = ExtResource("4_a5a8y")
+stats = SubResource("Resource_wydc1")
+evolutions = ExtResource("4_7tnxh")
+ai = ExtResource("1_5lp7n")
+moveEffectiveness = ExtResource("5_j6kc4")
+weightedEquipment = ExtResource("13_anvnv")
+dropTable = ExtResource("2_mqd88")
+statAllocationStrategy = ExtResource("9_weukw")
+metadata/_custom_type_script = "uid://dyckeornewpwi"

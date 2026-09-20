@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="DialogueEntry" format=3 uid="uid://c72bkyfxy650c"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_0l7jt"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_ng4k0"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="3_gtcf0"]
+[ext_resource type="Script" uid="uid://b6oofnelefs8o" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_ng4k0"]
+[ext_resource type="Resource" uid="uid://qq8hu84o1cwr" path="res://gamedata/dialogue/iceberg_palace/frost_bat_1_fight.tres" id="4_gtcf0"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="4_mt4us"]
+
+[sub_resource type="Resource" id="Resource_b0lwb"]
+script = ExtResource("2_ng4k0")
+choiceBtn = "(Walk Away)"
+isDeclineChoice = true
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_6ht1n"]
+script = ExtResource("2_ng4k0")
+choiceBtn = "(Fight!)"
+leadsTo = ExtResource("4_gtcf0")
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_gseop"]
+script = ExtResource("1_0l7jt")
+lines = Array[String](["Screeeeeeee!!"])
+choices = Array[ExtResource("2_ng4k0")]([SubResource("Resource_b0lwb"), SubResource("Resource_6ht1n")])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[resource]
+script = ExtResource("4_mt4us")
+items = Array[ExtResource("1_0l7jt")]([SubResource("Resource_gseop")])
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"

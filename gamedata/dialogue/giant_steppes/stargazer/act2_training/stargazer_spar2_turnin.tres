@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="DialogueEntry" format=3 uid="uid://wrxf3a4gjk7s"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_im4bn"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_vpeso"]
+[ext_resource type="Script" uid="uid://b6oofnelefs8o" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="3_faxln"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="4_q77t3"]
+[ext_resource type="Resource" uid="uid://s3be6j6o3w2k" path="res://gamedata/dialogue/giant_steppes/stargazer/act2_training/stargazer_training_complete.tres" id="4_vpeso"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="5_dsi45"]
+
+[sub_resource type="Resource" id="Resource_ytgse"]
+script = ExtResource("2_vpeso")
+choiceBtn = "Wait..."
+isDeclineChoice = true
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_xyj7u"]
+script = ExtResource("2_vpeso")
+choiceBtn = "I Will."
+leadsTo = ExtResource("4_vpeso")
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_nurtq"]
+script = ExtResource("1_im4bn")
+lines = Array[String](["From your journey through the Iceberg Palace, I can see you have reflected much on your place in the cosmos.", "You will illuminate the path to victory against the Chain Legion, I can now be confident in that.", "Your training with me is complete now. You must go see the Keeper of History for your next task."])
+animation = "talk"
+choices = Array[ExtResource("2_vpeso")]([SubResource("Resource_ytgse"), SubResource("Resource_xyj7u")])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[resource]
+script = ExtResource("5_dsi45")
+items = Array[ExtResource("1_im4bn")]([SubResource("Resource_nurtq")])
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"

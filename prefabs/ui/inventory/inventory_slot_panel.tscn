@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://chpi5qfgk1cqj" path="res://prefabs/ui/sfx_button.tscn" id="7_ygii6"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5836c"]
-bg_color = Color(0.8980392, 0.7411765, 0, 1)
+bg_color = Color(1, 1, 1, 1)
 border_width_left = 8
 border_width_top = 10
 border_width_right = 8
@@ -31,11 +31,16 @@ script = ExtResource("2_6x7us")
 isShopItem = true
 
 [node name="GlowColor" type="Panel" parent="." unique_id=481017957]
+visible = false
+modulate = Color(1, 1, 1, 0.5882353)
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
-offset_right = 64.0
+offset_left = 33.0
+offset_right = 89.0
+offset_bottom = -20.0
 grow_vertical = 2
+rotation = 0.7853982
 theme_override_styles/panel = SubResource("StyleBoxFlat_5836c")
 
 [node name="ItemSprite" type="Sprite2D" parent="." unique_id=519244350]

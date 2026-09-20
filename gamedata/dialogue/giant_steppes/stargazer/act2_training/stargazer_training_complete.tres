@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="DialogueEntry" format=3 uid="uid://s3be6j6o3w2k"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_g0oap"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_mw1kr"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_uvx8t"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_uvx8t"]
+
+[sub_resource type="Resource" id="Resource_rmrd8"]
+script = ExtResource("1_g0oap")
+lines = Array[String](["I will remain here and work to ensure the stars align for you on your journey to Steelspire. Stay safe."])
+animation = "talk"
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[resource]
+script = ExtResource("3_uvx8t")
+items = Array[ExtResource("1_g0oap")]([SubResource("Resource_rmrd8")])
+closesDialogue = true
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"

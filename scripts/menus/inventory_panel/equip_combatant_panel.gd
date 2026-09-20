@@ -15,6 +15,7 @@ var currentEquipment: Item = null
 @onready var statsButton: Button = get_node('CenterButtons/HBoxContainer/StatsButton')
 @onready var equipButton: Button = get_node('CenterButtons/HBoxContainer/EquipButton')
 @onready var unequipButton: Button = get_node('CenterButtons/HBoxContainer/UnequipButton')
+@onready var glowColor: Panel = get_node('GlowColor')
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -46,6 +47,8 @@ func load_equip_combatant_panel():
 	
 	if unequipButton.visible:
 		currentEquipment = item
+	
+	glowColor.visible = combatant.will_equipping_item_cause_evolution(item)
 	
 	combatantName.text = combatant.disp_name()
 	

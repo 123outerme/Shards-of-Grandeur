@@ -6,6 +6,11 @@
 [ext_resource type="Resource" uid="uid://ctq4g075u1qi0" path="res://gamedata/dialogue/giant_steppes/stargazer/act2_training/stargazer_training_start_turnin.tres" id="4_i7exl"]
 [ext_resource type="Resource" uid="uid://yxtx1p2rsb6q" path="res://gamedata/dialogue/giant_steppes/stargazer/act2_training/stargazer_spar_rematch.tres" id="5_6lwe2"]
 [ext_resource type="Resource" uid="uid://bs6wichd7ddki" path="res://gamedata/dialogue/giant_steppes/stargazer/act2_training/stargazer_spar_turnin.tres" id="6_tpfrd"]
+[ext_resource type="Resource" uid="uid://dw2jw33550jcn" path="res://gamedata/dialogue/giant_steppes/stargazer/act2_training/stargazer_iceberg_palace_inprogress.tres" id="7_3tuse"]
+[ext_resource type="Script" uid="uid://flaq3s0m3pf2" path="res://scripts/reward/reward.gd" id="8_012dd"]
+[ext_resource type="Resource" uid="uid://bliieleku5pnm" path="res://gamedata/dialogue/giant_steppes/stargazer/act2_training/stargazer_iceberg_palace_turnin.tres" id="8_i7m18"]
+[ext_resource type="Resource" uid="uid://cx0n2w7sh56s" path="res://gamedata/dialogue/giant_steppes/stargazer/act2_training/stargazer_spar2_rematch.tres" id="9_cxi2t"]
+[ext_resource type="Resource" uid="uid://wrxf3a4gjk7s" path="res://gamedata/dialogue/giant_steppes/stargazer/act2_training/stargazer_spar2_turnin.tres" id="10_012dd"]
 
 [sub_resource type="Resource" id="Resource_n5131"]
 script = ExtResource("2_ex5ee")
@@ -53,10 +58,17 @@ turnInDialogue = Array[ExtResource("3_e4sjh")]([ExtResource("6_tpfrd")])
 inProgressDialogue = Array[ExtResource("3_e4sjh")]([ExtResource("5_6lwe2")])
 metadata/_custom_type_script = "uid://b3j2bj1p0bkq8"
 
+[sub_resource type="Resource" id="Resource_cxi2t"]
+script = ExtResource("8_012dd")
+experience = 250
+gold = 10
+metadata/_custom_type_script = "uid://flaq3s0m3pf2"
+
 [sub_resource type="Resource" id="Resource_i7m18"]
 script = ExtResource("2_ex5ee")
 name = "Into the Iceberg"
 description = "The Warlocks have directed you to undergo a trial in the Iceberg Palace. Visit and collect their artifact!"
+reward = SubResource("Resource_cxi2t")
 locations = Array[int]([53])
 turnInLocations = Array[int]([50])
 type = 1
@@ -64,6 +76,8 @@ objectiveName = "Moon Sigil"
 turnInNames = Array[String](["stargazer_warlock_observatory"])
 displayObjName = "Moon Sigil"
 displayTurnInName = "The Stargazer"
+turnInDialogue = Array[ExtResource("3_e4sjh")]([ExtResource("8_i7m18")])
+inProgressDialogue = Array[ExtResource("3_e4sjh")]([ExtResource("7_3tuse")])
 metadata/_custom_type_script = "uid://b3j2bj1p0bkq8"
 
 [sub_resource type="Resource" id="Resource_tpfrd"]
@@ -77,18 +91,32 @@ objectiveName = "stargazer_warlock_spar_2"
 turnInNames = Array[String](["stargazer_warlock_observatory"])
 displayTurnInName = "The Stargazer"
 customStatusStr = "Duel the Stargazer!"
+turnInDialogue = Array[ExtResource("3_e4sjh")]([ExtResource("10_012dd")])
+inProgressDialogue = Array[ExtResource("3_e4sjh")]([ExtResource("9_cxi2t")])
 metadata/_custom_type_script = "uid://b3j2bj1p0bkq8"
 
 [sub_resource type="Resource" id="Resource_3tuse"]
 script = ExtResource("2_ex5ee")
+name = "The Keeper of History"
+description = "The next step in your training is to visit the Keeper of History."
+locations = Array[int]([50])
+turnInLocations = Array[int]([50])
+objectiveName = "keeper_of_history_library#"
+turnInNames = Array[String](["keeper_of_history_library"])
+displayObjName = "Keeper of History"
+displayTurnInName = "Keeper of History"
+metadata/_custom_type_script = "uid://b3j2bj1p0bkq8"
+
+[sub_resource type="Resource" id="Resource_fkcgs"]
+script = ExtResource("2_ex5ee")
 name = "TBD"
 objectiveName = "---"
-customStatusStr = "???"
+customStatusStr = "TBD"
 metadata/_custom_type_script = "uid://b3j2bj1p0bkq8"
 
 [resource]
 script = ExtResource("1_b7v4m")
 questName = "An Ancient Ally"
 description = "The Warlocks, a secluded society of magic, have offered to help you fight against the Chain Legion. Pursue this newly opened avenue!"
-steps = Array[ExtResource("2_ex5ee")]([SubResource("Resource_n5131"), SubResource("Resource_7hikv"), SubResource("Resource_i7exl"), SubResource("Resource_6lwe2"), SubResource("Resource_i7m18"), SubResource("Resource_tpfrd"), SubResource("Resource_3tuse")])
+steps = Array[ExtResource("2_ex5ee")]([SubResource("Resource_n5131"), SubResource("Resource_7hikv"), SubResource("Resource_i7exl"), SubResource("Resource_6lwe2"), SubResource("Resource_i7m18"), SubResource("Resource_tpfrd"), SubResource("Resource_3tuse"), SubResource("Resource_fkcgs")])
 isMainQuest = true

@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="DialogueEntry" format=3 uid="uid://dw2jw33550jcn"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_wu3ro"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_kfgy2"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_u12g4"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_kfgy2"]
+
+[sub_resource type="Resource" id="Resource_onnhs"]
+script = ExtResource("1_wu3ro")
+lines = Array[String](["From here, the Iceberg Palace is down the eastern side of the mountain, then north through the tundra. Retrieve the $highlight{Moon Sigil}color$ from there."])
+animation = "talk"
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[resource]
+script = ExtResource("3_kfgy2")
+items = Array[ExtResource("1_wu3ro")]([SubResource("Resource_onnhs")])
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"

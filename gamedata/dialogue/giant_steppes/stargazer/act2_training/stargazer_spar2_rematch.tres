@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="DialogueEntry" format=3 uid="uid://cx0n2w7sh56s"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_30858"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_cp2jj"]
+[ext_resource type="Resource" uid="uid://cilo8sp0jcm1o" path="res://gamedata/dialogue/giant_steppes/stargazer/act2_training/stargazer_training_start_decline.tres" id="3_b1nhh"]
+[ext_resource type="Script" uid="uid://b6oofnelefs8o" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="4_x81gj"]
+[ext_resource type="Resource" uid="uid://ch3rhiidw2uyl" path="res://gamedata/dialogue/giant_steppes/stargazer/act2_training/stargazer_spar_start.tres" id="5_eqy15"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="6_phy7s"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="7_1w0ks"]
+
+[sub_resource type="Resource" id="Resource_h80yb"]
+script = ExtResource("2_cp2jj")
+choiceBtn = "Wait..."
+leadsTo = ExtResource("3_b1nhh")
+isDeclineChoice = true
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_nd5ul"]
+script = ExtResource("2_cp2jj")
+choiceBtn = "Ready."
+leadsTo = ExtResource("5_eqy15")
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_c5uvk"]
+script = ExtResource("1_30858")
+lines = Array[String](["I need you to dig deep and bring out that power you honed inside the Iceberg Palace. Are you prepared to duel?"])
+animation = "talk"
+choices = Array[ExtResource("2_cp2jj")]([SubResource("Resource_h80yb"), SubResource("Resource_nd5ul")])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[resource]
+script = ExtResource("7_1w0ks")
+items = Array[ExtResource("1_30858")]([SubResource("Resource_c5uvk")])
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"

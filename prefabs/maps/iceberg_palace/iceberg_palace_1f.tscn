@@ -2,7 +2,9 @@
 
 [ext_resource type="Script" uid="uid://vg00rfnn3346" path="res://scripts/overworld/map_script.gd" id="1_12irk"]
 [ext_resource type="TileSet" uid="uid://ccf5vxiigjqru" path="res://graphics/tileset.tres" id="2_wuf1o"]
+[ext_resource type="PackedScene" uid="uid://cdnsjlf3gwbkf" path="res://prefabs/entities/ground_item.tscn" id="3_f7n24"]
 [ext_resource type="PackedScene" uid="uid://qx5fovogo7h3" path="res://prefabs/entities/enemy_spawner.tscn" id="3_j5nkc"]
+[ext_resource type="Resource" uid="uid://blacufiuq2xor" path="res://gamedata/ground_items/iceberg_palace/tome_volume_3_1.tres" id="4_1eqyj"]
 [ext_resource type="Script" uid="uid://dioty4gjx3hdu" path="res://scripts/overworld/overworld_enemy/spawner_data.gd" id="4_dtn4n"]
 [ext_resource type="Resource" uid="uid://c23es3y2q44ce" path="res://gamedata/combatants/scout_penguin/scout_penguin.tres" id="5_q0as3"]
 [ext_resource type="Script" uid="uid://dga8cpwmm0j6h" path="res://scripts/battle/weighted_things/weighted_combatants.gd" id="6_fyqec"]
@@ -364,6 +366,9 @@ size = Vector2(82, 50)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q0as3"]
 size = Vector2(82, 8)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wf7oi"]
+size = Vector2(1, 1)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q5ptv"]
 size = Vector2(54, 219)
 
@@ -413,6 +418,10 @@ tile_set = ExtResource("2_wuf1o")
 modulate = Color(1, 1, 1, 0)
 use_parent_material = true
 tile_set = ExtResource("2_wuf1o")
+
+[node name="GroundItem" parent="TilemapRoot" unique_id=769666465 instance=ExtResource("3_f7n24")]
+position = Vector2(-156, 47)
+pickedUpItem = ExtResource("4_1eqyj")
 
 [node name="OneTileWideNav" type="NavigationRegion2D" parent="." unique_id=1450480321]
 visible = false
@@ -504,6 +513,14 @@ mapPos = Vector2(56, -363)
 [node name="WarpArea" parent="EntranceWarpZone" index="0"]
 shape = SubResource("RectangleShape2D_q0as3")
 
+[node name="B1FWarpZone" parent="." unique_id=249162040 instance=ExtResource("15_dtn4n")]
+position = Vector2(56, -695)
+mapName = "iceberg_palace_b1f"
+mapPos = Vector2(121, -138)
+
+[node name="WarpArea" parent="B1FWarpZone" index="0"]
+shape = SubResource("RectangleShape2D_wf7oi")
+
 [node name="EnemyDeaggroZone" parent="." unique_id=1585370867 instance=ExtResource("16_dtn4n")]
 position = Vector2(21, -696)
 
@@ -526,5 +543,6 @@ shape = SubResource("RectangleShape2D_xr1y6")
 [editable path="EnemySpawner6"]
 [editable path="CameraHoldZone"]
 [editable path="EntranceWarpZone"]
+[editable path="B1FWarpZone"]
 [editable path="EnemyDeaggroZone"]
 [editable path="EnemyDeaggroZone2"]

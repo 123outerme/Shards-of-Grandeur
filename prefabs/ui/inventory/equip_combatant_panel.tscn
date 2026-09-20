@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://durkokegvqco7"]
+[gd_scene format=3 uid="uid://durkokegvqco7"]
 
 [ext_resource type="Theme" uid="uid://c4x43hephx6al" path="res://themes/list_item_panel/list_item_panel_theme.tres" id="1_nlyrs"]
 [ext_resource type="Script" uid="uid://sdcstgyacd5t" path="res://scripts/menus/inventory_panel/equip_combatant_panel.gd" id="2_wxlof"]
@@ -10,7 +10,22 @@
 [ext_resource type="PackedScene" uid="uid://dhtlgjfm14evh" path="res://prefabs/ui/texture_sfx_button.tscn" id="6_quaih"]
 [ext_resource type="Texture2D" uid="uid://l1mon0vxhkb5" path="res://graphics/ui/sprite_button_focused.png" id="7_bry84"]
 
-[node name="EquipCombatantPanel" type="Panel" groups=["EquipCombatantPanel"]]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6b72k"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 8
+border_width_top = 10
+border_width_right = 8
+border_width_bottom = 10
+border_color = Color(0.8, 0.8, 0.8, 0)
+border_blend = true
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+corner_detail = 6
+anti_aliasing = false
+
+[node name="EquipCombatantPanel" type="Panel" unique_id=580742095 groups=["EquipCombatantPanel"]]
 custom_minimum_size = Vector2(1040, 112)
 anchors_preset = 15
 anchor_right = 1.0
@@ -24,7 +39,20 @@ theme = ExtResource("1_nlyrs")
 script = ExtResource("2_wxlof")
 noCurrentEquipmentSprite = ExtResource("5_lbk02")
 
-[node name="SpriteControl" type="Control" parent="."]
+[node name="GlowColor" type="Panel" parent="." unique_id=744599071]
+modulate = Color(1, 1, 1, 0.5882353)
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 48.0
+offset_top = 2.0
+offset_right = 124.0
+offset_bottom = -34.0
+grow_vertical = 2
+rotation = 0.7853982
+theme_override_styles/panel = SubResource("StyleBoxFlat_6b72k")
+
+[node name="SpriteControl" type="Control" parent="." unique_id=1425256330]
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 1
 anchors_preset = 4
@@ -36,13 +64,13 @@ offset_bottom = 20.0
 grow_vertical = 2
 mouse_filter = 1
 
-[node name="CombatantSprite" type="AnimatedSprite2D" parent="SpriteControl"]
+[node name="CombatantSprite" type="AnimatedSprite2D" parent="SpriteControl" unique_id=1522613132]
 position = Vector2(48, 48)
 scale = Vector2(3, 3)
 sprite_frames = ExtResource("3_k65ns")
 animation = &"walk"
 
-[node name="CenterCombatantName" type="VBoxContainer" parent="."]
+[node name="CenterCombatantName" type="VBoxContainer" parent="." unique_id=237233383]
 layout_mode = 1
 anchors_preset = -1
 anchor_bottom = 1.0
@@ -51,20 +79,20 @@ offset_right = 519.0
 grow_vertical = 2
 alignment = 1
 
-[node name="CombatantName" type="RichTextLabel" parent="CenterCombatantName"]
+[node name="CombatantName" type="RichTextLabel" parent="CenterCombatantName" unique_id=141632568]
 clip_contents = false
 layout_mode = 2
 mouse_filter = 1
 theme = ExtResource("4_dvjyt")
+theme_override_font_sizes/normal_font_size = 24
+theme_override_font_sizes/bold_font_size = 24
 theme_override_font_sizes/bold_italics_font_size = 24
 theme_override_font_sizes/italics_font_size = 24
 theme_override_font_sizes/mono_font_size = 24
-theme_override_font_sizes/normal_font_size = 24
-theme_override_font_sizes/bold_font_size = 24
 text = "Combatant Name Goes Here"
 fit_content = true
 
-[node name="OtherEquipmentDetailsButton" parent="." instance=ExtResource("6_quaih")]
+[node name="OtherEquipmentDetailsButton" parent="." unique_id=1224315934 instance=ExtResource("6_quaih")]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 1
 anchors_preset = 6
@@ -82,7 +110,7 @@ texture_normal = ExtResource("5_lbk02")
 texture_focused = ExtResource("7_bry84")
 stretch_mode = 0
 
-[node name="EquipmentSpriteButton" parent="." instance=ExtResource("6_quaih")]
+[node name="EquipmentSpriteButton" parent="." unique_id=667292249 instance=ExtResource("6_quaih")]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 1
 anchors_preset = 6
@@ -100,7 +128,7 @@ texture_normal = ExtResource("5_lbk02")
 texture_focused = ExtResource("7_bry84")
 stretch_mode = 0
 
-[node name="CenterButtons" type="VBoxContainer" parent="."]
+[node name="CenterButtons" type="VBoxContainer" parent="." unique_id=1298588163]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 1.0
@@ -112,22 +140,22 @@ grow_horizontal = 0
 grow_vertical = 2
 alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CenterButtons"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterButtons" unique_id=525254893]
 layout_mode = 2
 theme = ExtResource("5_8fr31")
 alignment = 2
 
-[node name="StatsButton" parent="CenterButtons/HBoxContainer" instance=ExtResource("6_p4nse")]
+[node name="StatsButton" parent="CenterButtons/HBoxContainer" unique_id=1787310917 instance=ExtResource("6_p4nse")]
 custom_minimum_size = Vector2(70, 50)
 layout_mode = 2
 text = "Stats"
 
-[node name="UnequipButton" parent="CenterButtons/HBoxContainer" instance=ExtResource("6_p4nse")]
+[node name="UnequipButton" parent="CenterButtons/HBoxContainer" unique_id=218492312 instance=ExtResource("6_p4nse")]
 custom_minimum_size = Vector2(85, 50)
 layout_mode = 2
 text = "Unequip"
 
-[node name="EquipButton" parent="CenterButtons/HBoxContainer" instance=ExtResource("6_p4nse")]
+[node name="EquipButton" parent="CenterButtons/HBoxContainer" unique_id=1085737054 instance=ExtResource("6_p4nse")]
 custom_minimum_size = Vector2(85, 50)
 layout_mode = 2
 text = "Equip

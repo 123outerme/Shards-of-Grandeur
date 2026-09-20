@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="DialogueEntry" format=3 uid="uid://bbylrfqlvawbm"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_0wxt4"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_78uha"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="3_x2dc4"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="4_vdmge"]
+
+[sub_resource type="Resource" id="Resource_d4acb"]
+script = ExtResource("1_0wxt4")
+lines = Array[String](["This is a hefty, but really elegant piece of armor! It'll be a good piece of gear to add to my collection."])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[resource]
+script = ExtResource("4_vdmge")
+items = Array[ExtResource("1_0wxt4")]([SubResource("Resource_d4acb")])
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"

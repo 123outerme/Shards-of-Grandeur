@@ -1,0 +1,58 @@
+[gd_resource type="Resource" script_class="DialogueEntry" format=3 uid="uid://bliieleku5pnm"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_l01kc"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_838oh"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_gobhj"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_885b6"]
+[ext_resource type="Script" uid="uid://fw22o8hbosnk" path="res://scripts/inventory/inventory_slot.gd" id="4_dfia1"]
+[ext_resource type="Script" uid="uid://fsrd48o26kgo" path="res://scripts/dialogue/story_reqs_dialogue_item.gd" id="5_jwy3k"]
+[ext_resource type="Resource" uid="uid://on6n1psbtfwa" path="res://gamedata/dialogue/giant_steppes/stargazer/act2_training/stargazer_spar2_decline.tres" id="6_fqivn"]
+[ext_resource type="Script" uid="uid://b6oofnelefs8o" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="6_jwy3k"]
+[ext_resource type="Resource" uid="uid://jvi2bkoolmku" path="res://gamedata/dialogue/giant_steppes/stargazer/act2_training/stargazer_spar2_start.tres" id="7_fqivn"]
+
+[sub_resource type="Resource" id="Resource_u12g4"]
+script = ExtResource("1_l01kc")
+lines = Array[String](["Excellent work retrieving the Moon Sigil. I trusted your intuition and battle sense would lead you to overcome our gauntlet."])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[sub_resource type="Resource" id="Resource_gobhj"]
+script = ExtResource("1_l01kc")
+lines = Array[String](["I can sense you could make... more thorough use of it. Did it not resonate in your hands when you picked it up?"])
+animation = "talk"
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[sub_resource type="Resource" id="Resource_4a6lw"]
+script = ExtResource("2_838oh")
+invalidFromDiscoveringEvolutions = null
+metadata/_custom_type_script = "uid://bjesn36acj0uh"
+
+[sub_resource type="Resource" id="Resource_kfgy2"]
+script = ExtResource("5_jwy3k")
+alternativeDialogueItems = Array[ExtResource("1_l01kc")]([SubResource("Resource_gobhj")])
+alternativeStoryReqs = Array[ExtResource("2_838oh")]([SubResource("Resource_4a6lw")])
+lines = Array[String](["Evidently you sensed a deep connection to the lunar power it bestowed, and have undergone $highlight{Evolution}color$ yourself! Splendid work!"])
+animation = "talk"
+metadata/_custom_type_script = "uid://fsrd48o26kgo"
+
+[sub_resource type="Resource" id="Resource_w0h72"]
+script = ExtResource("2_gobhj")
+choiceBtn = "Wait..."
+leadsTo = ExtResource("6_fqivn")
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_dfia1"]
+script = ExtResource("2_gobhj")
+leadsTo = ExtResource("7_fqivn")
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_0o47w"]
+script = ExtResource("1_l01kc")
+lines = Array[String](["Now, a question remains... Did your experiences in that trial make you stronger? I must spar you again and see!"])
+animation = "talk"
+choices = Array[ExtResource("2_gobhj")]([SubResource("Resource_w0h72"), SubResource("Resource_dfia1")])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[resource]
+script = ExtResource("3_885b6")
+items = Array[ExtResource("1_l01kc")]([SubResource("Resource_u12g4"), SubResource("Resource_kfgy2"), SubResource("Resource_0o47w")])
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"

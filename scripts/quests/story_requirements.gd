@@ -78,6 +78,9 @@ class_name StoryRequirements
 ## specified by "<puzzle ID> -> ['state1', 'state2', etc.]". Wildcard for a certain state should be "" empty string (or no such index)
 @export var invalidFromPuzzleStates: Dictionary[String, Array] = {}
 
+## specified by "<base combatant save name>#<evolution save name>". If only one entry and blank, will be treated as "have no evolutions been discovered?"
+@export var invalidFromDiscoveringEvolutions: Array[String] = []
+
 ## specified by "<follower ID>"
 @export var invalidFromHavingFollowers: Array[String] = []
 
@@ -117,6 +120,7 @@ func _init(
 	i_invalidBattles: Array[String] = [],
 	i_invalidPuzzles: Array[String] = [],
 	i_invalidPuzzleStates: Dictionary[String, Array] = {},
+	i_invalidEvos: Array[String] = [],
 	i_invalidFollowers: Array[String] = [],
 	i_invalidItems: Array[InventorySlot] = [],
 ):
@@ -143,6 +147,7 @@ func _init(
 	invalidAfterSpecialBattles = i_invalidBattles
 	invalidAfterSolvingPuzzles = i_invalidPuzzles
 	invalidFromPuzzleStates = i_invalidPuzzleStates
+	invalidFromDiscoveringEvolutions = i_invalidEvos
 	invalidFromHavingFollowers = i_invalidFollowers
 	invalidFromHavingItems = i_invalidItems
 
@@ -270,6 +275,18 @@ func is_valid() -> bool:
 					break
 			if matches:
 				return false
+	
+	if len(invalidFromDiscoveringEvolutions) == 1 and invalidFromDiscoveringEvolutions[0] == '':
+		if len(PlayerResources.playerInfo.evolutionsFound) > 0:
+			return false
+	else:
+		for fullEvoSaveName: String in invalidFromDiscoveringEvolutions:
+			if PlayerResources.playerInfo.has_found_evolution(fullEvoSaveName):
+				return false
+	
+	for followerId: String in prereqHavingFollowers:
+		if not PlayerResources.playerInfo.has_active_follower(followerId):
+			return false
 	
 	for followerId: String in invalidFromHavingFollowers:
 		if PlayerResources.playerInfo.has_active_follower(followerId):
