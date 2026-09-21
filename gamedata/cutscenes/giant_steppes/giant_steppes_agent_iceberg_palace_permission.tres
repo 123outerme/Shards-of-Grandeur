@@ -1,0 +1,84 @@
+[gd_resource type="Resource" script_class="Cutscene" format=3 uid="uid://csi5373206ktj"]
+
+[ext_resource type="Script" uid="uid://cqpl74uk8cjo0" path="res://scripts/cutscenes/cutscene_frame.gd" id="1_ur011"]
+[ext_resource type="Script" uid="uid://fpa08p2kb0ts" path="res://scripts/cutscenes/cutscene.gd" id="2_12y65"]
+[ext_resource type="Script" uid="uid://cg21ocaokyfnx" path="res://scripts/cutscenes/actor_anim_set.gd" id="2_yjwjt"]
+[ext_resource type="Script" uid="uid://dy2r6h7mhh2oc" path="res://scripts/cutscenes/actor_sprite_anim.gd" id="3_sxkpl"]
+[ext_resource type="Script" uid="uid://fw22o8hbosnk" path="res://scripts/inventory/inventory_slot.gd" id="3_yuclc"]
+[ext_resource type="Script" uid="uid://8oxtwxpqllgd" path="res://scripts/cutscenes/actor_face_target.gd" id="4_3yghu"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="4_kketd"]
+[ext_resource type="Script" uid="uid://g5p5b4jsf6bs" path="res://scripts/cutscenes/actor_tween.gd" id="5_qeu17"]
+[ext_resource type="Script" uid="uid://jcu0gq2ns4in" path="res://scripts/cutscenes/cutscene_dialogue.gd" id="6_w1u68"]
+[ext_resource type="Script" uid="uid://b5d2qgg22dgbw" path="res://scripts/cutscenes/tweens/tween_vector2.gd" id="7_sxkpl"]
+
+[sub_resource type="Resource" id="Resource_bvyno"]
+script = ExtResource("3_sxkpl")
+actorTreePath = "TilemapRoot/WarlockAgent2"
+animation = "walk"
+metadata/_custom_type_script = "uid://dy2r6h7mhh2oc"
+
+[sub_resource type="Resource" id="Resource_8425k"]
+script = ExtResource("1_ur011")
+frameLength = 0.1
+annotation = "Start the agent walking"
+actorAnims = Array[ExtResource("3_sxkpl")]([SubResource("Resource_bvyno")])
+metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
+
+[sub_resource type="Resource" id="Resource_3yghu"]
+script = ExtResource("7_sxkpl")
+value = Vector2(1008, -70)
+actorTreePath = "TilemapRoot/WarlockAgent2"
+propertyName = "position"
+metadata/_custom_type_script = "uid://b5d2qgg22dgbw"
+
+[sub_resource type="Resource" id="Resource_arork"]
+script = ExtResource("1_ur011")
+annotation = "The agent walks down the mountain's stairs"
+actorTweens = Array[ExtResource("5_qeu17")]([SubResource("Resource_3yghu")])
+metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
+
+[sub_resource type="Resource" id="Resource_bjbyd"]
+script = ExtResource("3_sxkpl")
+actorTreePath = "TilemapRoot/WarlockAgent2"
+animation = "stand"
+metadata/_custom_type_script = "uid://dy2r6h7mhh2oc"
+
+[sub_resource type="Resource" id="Resource_w1u68"]
+script = ExtResource("7_sxkpl")
+value = Vector2(1492, 194)
+actorTreePath = "TilemapRoot/WarlockAgent2"
+propertyName = "position"
+metadata/_custom_type_script = "uid://b5d2qgg22dgbw"
+
+[sub_resource type="Resource" id="Resource_qeu17"]
+script = ExtResource("1_ur011")
+frameLength = 0.1
+annotation = "The agent stands, teleports to where he needs to be to block the player going to tundra east"
+actorTweens = Array[ExtResource("5_qeu17")]([SubResource("Resource_w1u68")])
+actorAnims = Array[ExtResource("3_sxkpl")]([SubResource("Resource_bjbyd")])
+metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
+
+[sub_resource type="Resource" id="Resource_tnovd"]
+script = ExtResource("4_3yghu")
+actorTreePath = "TilemapRoot/WarlockAgent2"
+targetIsPlayer = true
+metadata/_custom_type_script = "uid://8oxtwxpqllgd"
+
+[sub_resource type="Resource" id="Resource_iqugw"]
+script = ExtResource("1_ur011")
+frameLength = 0.1
+annotation = "The agent faces left (where the player is right now)"
+actorFaceTargets = Array[ExtResource("4_3yghu")]([SubResource("Resource_tnovd")])
+metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
+
+[sub_resource type="Resource" id="Resource_yuclc"]
+script = ExtResource("4_kketd")
+invalidAfterCutscenes = Array[String](["gis_agent_iceberg_palace_permission"])
+metadata/_custom_type_script = "uid://bjesn36acj0uh"
+
+[resource]
+script = ExtResource("2_12y65")
+cutsceneFrames = Array[ExtResource("1_ur011")]([SubResource("Resource_8425k"), SubResource("Resource_arork"), SubResource("Resource_qeu17"), SubResource("Resource_iqugw")])
+saveName = "gis_agent_iceberg_palace_permission"
+storyRequirements = SubResource("Resource_yuclc")
+metadata/_custom_type_script = "uid://fpa08p2kb0ts"

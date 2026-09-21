@@ -1,8 +1,97 @@
 [gd_resource type="Resource" script_class="Cutscene" format=3 uid="uid://cp186ecgimd3"]
 
 [ext_resource type="Script" uid="uid://cqpl74uk8cjo0" path="res://scripts/cutscenes/cutscene_frame.gd" id="1_s10rs"]
+[ext_resource type="Script" uid="uid://cg21ocaokyfnx" path="res://scripts/cutscenes/actor_anim_set.gd" id="2_udwyy"]
 [ext_resource type="Script" uid="uid://fpa08p2kb0ts" path="res://scripts/cutscenes/cutscene.gd" id="2_xcnd5"]
+[ext_resource type="Script" uid="uid://dy2r6h7mhh2oc" path="res://scripts/cutscenes/actor_sprite_anim.gd" id="3_iy4ha"]
+[ext_resource type="Resource" uid="uid://dcphj1dtjg3mr" path="res://gamedata/cutscenes/reused/player_stand_anim.tres" id="4_iy4ha"]
+[ext_resource type="Script" uid="uid://8oxtwxpqllgd" path="res://scripts/cutscenes/actor_face_target.gd" id="4_nppkn"]
+[ext_resource type="Script" uid="uid://g5p5b4jsf6bs" path="res://scripts/cutscenes/actor_tween.gd" id="5_x7mv6"]
+[ext_resource type="Script" uid="uid://jcu0gq2ns4in" path="res://scripts/cutscenes/cutscene_dialogue.gd" id="6_64x17"]
+[ext_resource type="Resource" uid="uid://bhhs2axr1n15b" path="res://gamedata/cutscenes/reused/player_walk_anim.tres" id="8_x7mv6"]
+[ext_resource type="Script" uid="uid://b5d2qgg22dgbw" path="res://scripts/cutscenes/tweens/tween_vector2.gd" id="9_64x17"]
+
+[sub_resource type="Resource" id="Resource_emtmx"]
+script = ExtResource("3_iy4ha")
+actorTreePath = "TilemapRoot/WarlockAgent2"
+animation = "talk"
+metadata/_custom_type_script = "uid://dy2r6h7mhh2oc"
+
+[sub_resource type="Resource" id="Resource_nppkn"]
+script = ExtResource("4_nppkn")
+isPlayer = true
+targetTreePath = "TilemapRoot/WarlockAgent2"
+metadata/_custom_type_script = "uid://8oxtwxpqllgd"
+
+[sub_resource type="Resource" id="Resource_iy4ha"]
+script = ExtResource("4_nppkn")
+actorTreePath = "TilemapRoot/WarlockAgent2"
+targetIsPlayer = true
+metadata/_custom_type_script = "uid://8oxtwxpqllgd"
+
+[sub_resource type="Resource" id="Resource_uhruj"]
+script = ExtResource("6_64x17")
+speaker = "Warlock Agent"
+texts = Array[String](["To the north is the Iceberg Palace. That is where your trial begins. I will meet you there."])
+speakerActorScenePath = "TilemapRoot/WarlockAgent2"
+metadata/_custom_type_script = "uid://jcu0gq2ns4in"
+
+[sub_resource type="Resource" id="Resource_sxkpl"]
+script = ExtResource("1_s10rs")
+frameLength = 0.1
+annotation = "The player stands as the Agent tells him to go north instead"
+actorAnims = Array[ExtResource("3_iy4ha")]([ExtResource("4_iy4ha"), SubResource("Resource_emtmx")])
+actorFaceTargets = Array[ExtResource("4_nppkn")]([SubResource("Resource_nppkn"), SubResource("Resource_iy4ha")])
+dialogues = Array[ExtResource("6_64x17")]([SubResource("Resource_uhruj")])
+metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
+
+[sub_resource type="Resource" id="Resource_x7mv6"]
+script = ExtResource("1_s10rs")
+frameLength = 0.1
+annotation = "wait for dialogue to be closed"
+metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
+
+[sub_resource type="Resource" id="Resource_hmq42"]
+script = ExtResource("3_iy4ha")
+actorTreePath = "TilemapRoot/WarlockAgent2"
+animation = "stand"
+metadata/_custom_type_script = "uid://dy2r6h7mhh2oc"
+
+[sub_resource type="Resource" id="Resource_4c2bq"]
+script = ExtResource("9_64x17")
+value = Vector2(1438, 160)
+isPlayer = true
+propertyName = "position"
+metadata/_custom_type_script = "uid://b5d2qgg22dgbw"
+
+[sub_resource type="Resource" id="Resource_64x17"]
+script = ExtResource("1_s10rs")
+annotation = "The player walks back away from the path to tundra east"
+actorTweens = Array[ExtResource("5_x7mv6")]([SubResource("Resource_4c2bq")])
+actorAnims = Array[ExtResource("3_iy4ha")]([ExtResource("8_x7mv6"), SubResource("Resource_hmq42")])
+metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
+
+[sub_resource type="Resource" id="Resource_kr03s"]
+script = ExtResource("4_nppkn")
+isPlayer = true
+targetTreePath = "TilemapRoot/WarlockAgent2"
+metadata/_custom_type_script = "uid://8oxtwxpqllgd"
+
+[sub_resource type="Resource" id="Resource_bgwsk"]
+script = ExtResource("4_nppkn")
+actorTreePath = "TilemapRoot/WarlockAgent2"
+targetIsPlayer = true
+metadata/_custom_type_script = "uid://8oxtwxpqllgd"
+
+[sub_resource type="Resource" id="Resource_6105x"]
+script = ExtResource("1_s10rs")
+frameLength = 0.1
+annotation = "The player stands, they both face each other again"
+actorAnims = Array[ExtResource("3_iy4ha")]([ExtResource("4_iy4ha")])
+actorFaceTargets = Array[ExtResource("4_nppkn")]([SubResource("Resource_kr03s"), SubResource("Resource_bgwsk")])
+metadata/_custom_type_script = "uid://cqpl74uk8cjo0"
 
 [resource]
 script = ExtResource("2_xcnd5")
+cutsceneFrames = Array[ExtResource("1_s10rs")]([SubResource("Resource_sxkpl"), SubResource("Resource_x7mv6"), SubResource("Resource_64x17"), SubResource("Resource_6105x")])
 metadata/_custom_type_script = "uid://fpa08p2kb0ts"

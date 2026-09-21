@@ -32,7 +32,7 @@ func load_new_moves_panel() -> void:
 			build_new_move_list_item_panel(move, PlayerResources.playerInfo.combatant, null)
 		)
 	
-	for playerEvolution: Evolution in PlayerResources.playerInfo.combatant.evolutions:
+	for playerEvolution: Evolution in PlayerResources.playerInfo.combatant.evolutions.evolutionList:
 		if not PlayerResources.playerInfo.has_found_evolution(playerEvolution.evolutionSaveName):
 			continue
 		for move: Move in get_new_moves(playerEvolution.stats.movepool):

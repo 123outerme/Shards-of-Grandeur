@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dqtu7xjqahxq"]
+[gd_scene format=3 uid="uid://dqtu7xjqahxq"]
 
 [ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://themes/root_theme.tres" id="1_tlgo2"]
 [ext_resource type="StyleBox" uid="uid://cqjpxgwhrhqj2" path="res://themes/nested_ui/inner_panel.tres" id="2_1odjq"]
@@ -9,13 +9,13 @@
 [ext_resource type="PackedScene" uid="uid://cdo34hug5ldv1" path="res://prefabs/ui/virtual_keyboard/virtual_keyboard.tscn" id="6_trqd2"]
 [ext_resource type="PackedScene" uid="uid://djat5vf5bcbma" path="res://prefabs/ui/sfx_check_button.tscn" id="7_okjcs"]
 
-[node name="MinionsPanel" type="Panel"]
+[node name="MinionsPanel" type="Panel" unique_id=992404961]
 offset_bottom = 355.0
 theme = ExtResource("1_tlgo2")
 theme_override_styles/panel = ExtResource("2_1odjq")
 script = ExtResource("3_e76mr")
 
-[node name="PlayerView" type="Control" parent="."]
+[node name="PlayerView" type="Control" parent="." unique_id=845301351]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -24,7 +24,7 @@ offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MinionsTitle" type="RichTextLabel" parent="PlayerView"]
+[node name="MinionsTitle" type="RichTextLabel" parent="PlayerView" unique_id=801759393]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -38,7 +38,7 @@ bbcode_enabled = true
 text = "[center]Minions:[/center]"
 fit_content = true
 
-[node name="ReorderButton" parent="PlayerView" instance=ExtResource("4_gjbxj")]
+[node name="ReorderButton" parent="PlayerView" unique_id=1049425426 instance=ExtResource("4_gjbxj")]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -50,7 +50,7 @@ offset_bottom = 38.0
 grow_horizontal = 2
 text = "Reorder"
 
-[node name="ScrollContainer" type="ScrollContainer" parent="PlayerView" node_paths=PackedStringArray("boxContainer")]
+[node name="ScrollContainer" type="ScrollContainer" parent="PlayerView" unique_id=192166253 node_paths=PackedStringArray("boxContainer")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -64,10 +64,10 @@ horizontal_scroll_mode = 0
 script = ExtResource("4_e8361")
 boxContainer = NodePath("VBoxContainer")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PlayerView/ScrollContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="PlayerView/ScrollContainer" unique_id=1132706554]
 layout_mode = 2
 
-[node name="MinionView" type="Control" parent="."]
+[node name="MinionView" type="Control" parent="." unique_id=635231069]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -75,7 +75,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MinionName" type="RichTextLabel" parent="MinionView"]
+[node name="MinionName" type="RichTextLabel" parent="MinionView" unique_id=628724343]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -89,7 +89,7 @@ text = "[center]Combatant Nick Here
 (Combatant Name Here):[/center]"
 fit_content = true
 
-[node name="NameInput" type="LineEdit" parent="MinionView"]
+[node name="NameInput" type="LineEdit" parent="MinionView" unique_id=134492158]
 process_priority = 1
 layout_mode = 1
 anchors_preset = 8
@@ -111,7 +111,7 @@ context_menu_enabled = false
 drag_and_drop_selection_enabled = false
 caret_blink = true
 
-[node name="NameFormControls" type="HBoxContainer" parent="MinionView"]
+[node name="NameFormControls" type="HBoxContainer" parent="MinionView" unique_id=1854590070]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 1
 anchors_preset = 14
@@ -124,27 +124,27 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="ConfirmButton" parent="MinionView/NameFormControls" instance=ExtResource("4_gjbxj")]
+[node name="ConfirmButton" parent="MinionView/NameFormControls" unique_id=421222532 instance=ExtResource("4_gjbxj")]
 visible = false
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 focus_neighbor_bottom = NodePath("../../AutoAllocateCheckButton")
 text = "Confirm"
 
-[node name="CancelButton" parent="MinionView/NameFormControls" instance=ExtResource("4_gjbxj")]
+[node name="CancelButton" parent="MinionView/NameFormControls" unique_id=1869387436 instance=ExtResource("4_gjbxj")]
 visible = false
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 focus_neighbor_bottom = NodePath("../../AutoAllocateCheckButton")
 text = "Cancel"
 
-[node name="EditButton" parent="MinionView/NameFormControls" instance=ExtResource("4_gjbxj")]
+[node name="EditButton" parent="MinionView/NameFormControls" unique_id=535001371 instance=ExtResource("4_gjbxj")]
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 focus_neighbor_bottom = NodePath("../../AutoAllocateCheckButton")
 text = "Edit"
 
-[node name="FriendshipLabel" type="RichTextLabel" parent="MinionView"]
+[node name="FriendshipLabel" type="RichTextLabel" parent="MinionView" unique_id=1440372824]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -161,7 +161,7 @@ bbcode_enabled = true
 text = "[center]Attunement:[/center]"
 fit_content = true
 
-[node name="FriendshipBar" type="ProgressBar" parent="MinionView"]
+[node name="FriendshipBar" type="ProgressBar" parent="MinionView" unique_id=1673580570]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -178,7 +178,7 @@ theme = ExtResource("6_dpc4s")
 value = 50.0
 rounded = true
 
-[node name="AutoAllocateCheckButton" parent="MinionView" instance=ExtResource("7_okjcs")]
+[node name="AutoAllocateCheckButton" parent="MinionView" unique_id=272560827 instance=ExtResource("7_okjcs")]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -194,7 +194,7 @@ grow_vertical = 0
 focus_neighbor_top = NodePath("../NameFormControls/EditButton")
 text = "Auto-Allocate Stat Pts"
 
-[node name="VirtualKeyboard" parent="MinionView" instance=ExtResource("6_trqd2")]
+[node name="VirtualKeyboard" parent="MinionView" unique_id=1172487475 instance=ExtResource("6_trqd2")]
 visible = false
 layout_mode = 1
 

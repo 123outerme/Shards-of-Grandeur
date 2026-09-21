@@ -72,6 +72,10 @@ func connect_to_above_panel(abovePanel: MinionSlotPanel, resetBelowFocusNeighbor
 		statsButton.focus_neighbor_bottom = ''
 		reorderButton.focus_neighbor_bottom = ''
 
+func connect_to_above_control(aboveControl: Control) -> void:
+	statsButton.focus_neighbor_top = statsButton.get_path_to(aboveControl)
+	reorderButton.focus_neighbor_top = reorderButton.get_path_to(aboveControl)
+
 func _on_stats_button_pressed():
 	stats_clicked.emit(combatant)
 

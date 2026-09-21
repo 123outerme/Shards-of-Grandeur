@@ -5,12 +5,14 @@
 [ext_resource type="PackedScene" uid="uid://bsalesakrx8yy" path="res://prefabs/entities/npc.tscn" id="3_1wep2"]
 [ext_resource type="Script" uid="uid://8t63d3un22ug" path="res://scripts/npcs/npc_data.gd" id="4_i2fkd"]
 [ext_resource type="SpriteFrames" uid="uid://c17h32c34ksly" path="res://graphics/animations/a_warlock_agent.tres" id="5_i2fkd"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="5_k1cpo"]
 [ext_resource type="PackedScene" uid="uid://6i3blakgy4j0" path="res://prefabs/overworld/weather_particle_field.tscn" id="6_8bj27"]
+[ext_resource type="Resource" uid="uid://eknvn1wio4hx" path="res://gamedata/dialogue/iceberg_palace/warlock_agent_iceberg_palace_1.tres" id="6_mpmdc"]
 [ext_resource type="PackedScene" uid="uid://d3rsvv5iihm7t" path="res://prefabs/overworld/warp_zone.tscn" id="6_qs6b8"]
 [ext_resource type="Material" uid="uid://c13ri0lotilgi" path="res://gamedata/materials/snow_weather_particle_field_material.tres" id="7_p2ub1"]
 [ext_resource type="PackedScene" uid="uid://b1u1r7encrpgs" path="res://prefabs/overworld/camera_hold_zone.tscn" id="7_vq02o"]
 
-[sub_resource type="Resource" id="Resource_8bj27"]
+[sub_resource type="Resource" id="Resource_ibi4k"]
 script = ExtResource("4_i2fkd")
 saveName = "npc"
 position = Vector2(109, -284)
@@ -101,7 +103,8 @@ position = Vector2(109, -284)
 displayName = "Warlock Agent"
 saveName = "warlock_agent_iceberg_palace_entrance"
 loadFlipH = true
-data = SubResource("Resource_8bj27")
+data = SubResource("Resource_ibi4k")
+dialogueEntries = Array[ExtResource("5_k1cpo")]([ExtResource("6_mpmdc")])
 
 [node name="NPCSprite" parent="TilemapRoot/WarlockAgent" index="0"]
 sprite_frames = ExtResource("5_i2fkd")

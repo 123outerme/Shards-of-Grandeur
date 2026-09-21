@@ -164,6 +164,7 @@ func update_panels_reorder_buttons():
 		else:
 			firstMinionPanel = minionSlotPanel
 		lastPanel = minionSlotPanel
+		firstMinionPanel.connect_to_above_control(reorderButton)
 
 func reset_reorder_state(reload: bool = false):
 	if reordering:
@@ -182,7 +183,7 @@ func _on_reorder_clicked(combatant: Combatant):
 		if reorderingMinion != combatant:
 			var idx = PlayerResources.minions.reorder_minion(reorderingMinion, combatant)
 			if idx != -1:
-				var panel = get_panel_for(reorderingMinion)
+				var panel: MinionSlotPanel = get_panel_for(reorderingMinion)
 				vboxContainer.move_child(panel, idx)
 		reorderingMinion = null
 	update_panels_reorder_buttons()

@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="DialogueEntry" format=3 uid="uid://ccdj40pnhr2lx"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_2xhnv"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_7esce"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_ihm0f"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_fiy2h"]
+[ext_resource type="Resource" uid="uid://bjsvsreh81wxw" path="res://gamedata/dialogue/giant_steppes/warlock_agent/agent_iceberg_palace_permission_granted.tres" id="3_weytk"]
+[ext_resource type="Script" uid="uid://fw22o8hbosnk" path="res://scripts/inventory/inventory_slot.gd" id="4_7esce"]
+[ext_resource type="Script" uid="uid://b6oofnelefs8o" path="res://scripts/battle/weighted_things/weighted_dialogue_entry.gd" id="4_k0vct"]
+
+[sub_resource type="Resource" id="Resource_yuclc"]
+script = ExtResource("2_ihm0f")
+choiceBtn = "I'm Retrieving the Moon Sigil."
+leadsTo = ExtResource("3_weytk")
+metadata/_custom_type_script = "uid://bk6klhv2ls55w"
+
+[sub_resource type="Resource" id="Resource_fiy2h"]
+script = ExtResource("1_2xhnv")
+lines = Array[String](["I see you've been tested by the Stargazer. What did he have to say?"])
+animation = "talk"
+choices = Array[ExtResource("2_ihm0f")]([SubResource("Resource_yuclc")])
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[sub_resource type="Resource" id="Resource_onnhs"]
+script = ExtResource("2_7esce")
+prereqQuests = Array[String](["An Ancient Ally#Duel of the Stars"])
+metadata/_custom_type_script = "uid://bjesn36acj0uh"
+
+[resource]
+script = ExtResource("3_fiy2h")
+items = Array[ExtResource("1_2xhnv")]([SubResource("Resource_fiy2h")])
+storyRequirements = SubResource("Resource_onnhs")
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"

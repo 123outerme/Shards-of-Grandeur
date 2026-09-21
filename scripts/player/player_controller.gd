@@ -1008,9 +1008,11 @@ func start_battle():
 	# save to auto-save
 	cam.fade_out(_after_start_battle_fade_out)
 	PlayerResources.battleSaveFolder = ''
-	var playingBattleMusic = SceneLoader.mapLoader.mapEntry.battleMusic.pick_random()
+	var playingBattleMusic = null
 	if PlayerResources.playerInfo.encounter is StaticEncounter and (PlayerResources.playerInfo.encounter as StaticEncounter).battleMusic != null:
 		playingBattleMusic = (PlayerResources.playerInfo.encounter as StaticEncounter).battleMusic
+	else:
+		playingBattleMusic = SceneLoader.mapLoader.mapEntry.battleMusic.pick_random()
 	SceneLoader.audioHandler.play_music(playingBattleMusic, -1)
 
 func _on_shop_button_pressed():

@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="DialogueEntry" format=3 uid="uid://eknvn1wio4hx"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_emkgj"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_sbe3a"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_tcw4j"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_tcw4j"]
+
+[sub_resource type="Resource" id="Resource_r60nx"]
+script = ExtResource("1_emkgj")
+lines = Array[String](["This is the Iceberg Palace, where the $highlight{Moon Sigil}color$ is kept at all times.", "Inside you will find more statues like the ones you saw in the Quiet Tundra. That is all I can tell you, the rest is up to you now."])
+animation = "talk"
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[resource]
+script = ExtResource("3_tcw4j")
+items = Array[ExtResource("1_emkgj")]([SubResource("Resource_r60nx")])
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"
