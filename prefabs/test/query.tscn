@@ -1,11 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://dlykvf3sm1rfd"]
+[gd_scene format=3 uid="uid://dlykvf3sm1rfd"]
 
 [ext_resource type="Script" uid="uid://bsdb52btsddvw" path="res://prefabs/test/query.gd" id="1_rcvbv"]
 
-[node name="Query" type="Node"]
+[node name="Query" type="Node" unique_id=859164154]
 script = ExtResource("1_rcvbv")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=172078072]
 anchors_preset = 14
 anchor_top = 0.5
 anchor_right = 1.0
@@ -22,7 +22,7 @@ theme_override_font_sizes/mono_font_size = 24
 bbcode_enabled = true
 text = "[center]Executing queries...[/center]"
 
-[node name="CloseButton" type="Button" parent="."]
+[node name="CloseButton" type="Button" parent="." unique_id=1660973270]
 custom_minimum_size = Vector2(80, 40)
 anchors_preset = 7
 anchor_left = 0.5

@@ -16,7 +16,6 @@ func _ready():
 
 func create_reports():
 	closeButton.disabled = true
-	var reports: Dictionary = {}
 	# add reports one at a time so we can catch and debug errors on a single report easier
 	var report: String = create_report_for_all_combatants_series(
 		['Movepool Size', 'Highest Move Lv', 'Highest Lv Move', 'Element Weaknesses', 'Element Resistances', 'Status Resistances', 'Status Immunities'],
@@ -142,7 +141,7 @@ func csv_combatant_movepool_size(combatant: Combatant) -> String:
 func csv_combatant_highest_lv_move(combatant: Combatant) -> String:
 	var highestLvMove: Move = null
 	for move: Move in combatant.stats.movepool.pool:
-		if highestLvMove == null or highestLvMove.requiredLv < move.requiredLv:
+		if highestLvMove == null or highestLvMove.requiredLv <= move.requiredLv:
 			highestLvMove = move
 	if highestLvMove != null:
 		return highestLvMove.moveName
@@ -152,7 +151,7 @@ func csv_combatant_highest_lv_move(combatant: Combatant) -> String:
 func csv_combatant_highest_move_lv(combatant: Combatant) -> String:
 	var highestLvMove: Move = null
 	for move: Move in combatant.stats.movepool.pool:
-		if highestLvMove == null or highestLvMove.requiredLv < move.requiredLv:
+		if highestLvMove == null or highestLvMove.requiredLv <= move.requiredLv:
 			highestLvMove = move
 	if highestLvMove != null:
 		return String.num(highestLvMove.requiredLv)

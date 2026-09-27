@@ -2,7 +2,10 @@
 
 [ext_resource type="Script" uid="uid://dx4lnh4driy7a" path="res://scripts/battle/combatant/move.gd" id="1_aj0lc"]
 [ext_resource type="Script" uid="uid://cwh7p05135w7q" path="res://scripts/battle/combatant/movepool.gd" id="2_8bve1"]
+[ext_resource type="Resource" uid="uid://c5jbja2q5xhmt" path="res://gamedata/moves/lunar_shield/lunar_shield.tres" id="2_abdvl"]
 
 [resource]
 script = ExtResource("2_8bve1")
+pool = Array[ExtResource("1_aj0lc")]([ExtResource("2_abdvl")])
+signatureMoves = Array[ExtResource("1_aj0lc")]([ExtResource("2_abdvl")])
 metadata/_custom_type_script = "uid://cwh7p05135w7q"
