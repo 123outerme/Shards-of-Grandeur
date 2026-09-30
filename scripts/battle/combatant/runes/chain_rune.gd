@@ -24,6 +24,7 @@ func copy(copyStorage: bool = false) -> ChainRune:
 		statusEffect.duplicate() if statusEffect != null else null,
 		surgeChanges.duplicate() if surgeChanges != null else null,
 		caster if copyStorage else null,
+		applyingMove if copyStorage else null,
 		runeSpriteAnim,
 		triggerAnims,
 	)

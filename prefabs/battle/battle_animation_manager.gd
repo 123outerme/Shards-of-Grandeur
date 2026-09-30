@@ -736,8 +736,8 @@ func play_triggered_rune_animations(timing: BattleCommand.ApplyTiming, subjectNo
 					for changeTextIdx: int in range(len(statChangesTexts)):
 						combatantTextUpdates[combatantNode.battlePosition].append(Callable())
 						eventTextUpdates.append(Callable())
-					combatantTextSfxs[combatantNode.battlePosition].append(statChangesTextSfx)
-					combatantTextSfxVaryPitches[combatantNode.battlePosition].append(varyStatChangesPitch)
+						combatantTextSfxs[combatantNode.battlePosition].append(statChangesTextSfx)
+						combatantTextSfxVaryPitches[combatantNode.battlePosition].append(varyStatChangesPitch)
 				if combatantNode.combatant.triggeredRunesStatus[runeIdx]:
 					combatantTexts[combatantNode.battlePosition].append(CombatantEventText.build_status_get_text(rune.statusEffect))
 					var statusCallable: Callable = combatantNode.change_current_status.bind(rune.statusEffect)

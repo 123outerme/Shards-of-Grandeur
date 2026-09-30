@@ -38,8 +38,8 @@ const _nova_icon: Texture2D = preload('res://graphics/ui/nova.png')
 # > i.e. if Fear is put on a combatant and Lightning Damage dealt from a previous Rune(s) triggering,
 # > during the AFTER_ROUND step, if this combatant has a Dark Damage Rune, that would then trigger mistakenly
 
-static func get_element_burn_name_from_type(element: Move.Element) -> String:
-	match element:
+static func get_element_burn_name_from_type(el: Move.Element) -> String:
+	match el:
 		Move.Element.NONE:
 			return 'Element Burn'
 		Move.Element.FIRE:

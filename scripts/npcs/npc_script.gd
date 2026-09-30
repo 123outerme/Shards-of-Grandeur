@@ -230,6 +230,7 @@ func load_data(save_path):
 			inventory.inventorySlots.sort_custom(_sort_shop_items)
 		invisible = not data.visible
 	else:
+		play_animation(get_stand_animation())
 		if npcShop != null and inventory == null:
 			inventory = Inventory.new()
 			newInventory = true

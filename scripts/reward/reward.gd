@@ -46,8 +46,8 @@ func scale_reward_by_level(initialLv: int, currentLv: int, playerLv: int, custom
 func scale_reward_by_modifiers(expScale: float, goldScale: float, itemCountScale: float) -> Reward:
 	var scaledReward: Reward = copy()
 	
-	scaledReward.experience *= expScale
-	scaledReward.gold *= goldScale
+	scaledReward.experience = roundi(scaledReward.experience * expScale)
+	scaledReward.gold = roundi(scaledReward.gold * goldScale)
 	scaledReward.itemCount = roundi(scaledReward.itemCount * itemCountScale)
 	
 	return scaledReward

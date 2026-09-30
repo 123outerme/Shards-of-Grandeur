@@ -94,30 +94,30 @@ func get_following_target_position() -> Vector2:
 		lastNonzeroPlayerVelocity = playerVelocity
 	else:
 		playerVelocity = lastNonzeroPlayerVelocity
-	var targetPos: Vector2 = PlayerFinder.player.position
+	var followingTargetPos: Vector2 = PlayerFinder.player.position
 	if playerVelocity.x != 0 and playerVelocity.y != 0:
 		# move to a diagonal of the player (1.15x the size of the NPC away, cuz diagonal) if the player's moving at a diagonal as well
 		if playerVelocity.x > 0:
-			targetPos.x -= spriteSize.x * 1.4 # target left of player to move next to
+			followingTargetPos.x -= spriteSize.x * 1.4 # target left of player to move next to
 		else:
-			targetPos.x += spriteSize.x * 1.4 # target right of player to move next to
+			followingTargetPos.x += spriteSize.x * 1.4 # target right of player to move next to
 		if playerVelocity.y > 0:
-			targetPos.y -= spriteSize.y * 1.4 # target bottom of player to move next to
+			followingTargetPos.y -= spriteSize.y * 1.4 # target bottom of player to move next to
 		else:
-			targetPos.y += spriteSize.y * 1.4 # target top of player to move next to
+			followingTargetPos.y += spriteSize.y * 1.4 # target top of player to move next to
 	elif playerVelocity.x != 0:
 		# player is moving along X, meaning move to left/right of player (1.5x the size of the NPC away)
 		if playerVelocity.x > 0:
-			targetPos.x -= spriteSize.x * 1.5 # target left of player to move next to
+			followingTargetPos.x -= spriteSize.x * 1.5 # target left of player to move next to
 		else:
-			targetPos.x += spriteSize.x * 1.5 # target right of player to move next to
+			followingTargetPos.x += spriteSize.x * 1.5 # target right of player to move next to
 	elif playerVelocity.y != 0:
 		# player is moving along Y, meaning move to top/bottom of player (1.5x the size of the NPC away)
 		if playerVelocity.y > 0:
-			targetPos.y -= spriteSize.y * 1.5 # target bottom of player to move next to
+			followingTargetPos.y -= spriteSize.y * 1.5 # target bottom of player to move next to
 		else:
-			targetPos.y += spriteSize.y * 1.5 # target top of player to move next to
-	return targetPos
+			followingTargetPos.y += spriteSize.y * 1.5 # target top of player to move next to
+	return followingTargetPos
 
 func can_move() -> bool:
 	return not disableMovement and not (PlayerFinder.player != null and PlayerFinder.player.inCutscene)

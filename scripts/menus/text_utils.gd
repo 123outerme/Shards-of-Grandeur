@@ -24,7 +24,7 @@ static func substitute_textcolors(text: String) -> String:
 	return output
 
 static func substitute_playername(text: String) -> String:
-	return text.replace('@', PlayerResources.playerInfo.combatant.stats.displayName)
+	return text.replace('@', PlayerResources.playerInfo.combatant.nickname)
 
 static func escape_user_input(text: String) -> String:
 	return text.replace('[', '[lb]')

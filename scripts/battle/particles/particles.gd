@@ -67,11 +67,11 @@ func _process(_delta) -> void:
 		set_make_particles(false, true)
 
 func get_particle_spawners() -> Array[GPUParticles2D]:
-	var particles: Array[GPUParticles2D] = []
+	var pSpawners: Array[GPUParticles2D] = []
 	for child in get_children():
 		if child is GPUParticles2D:
-			particles.append(child)
-	return particles
+			pSpawners.append(child)
+	return pSpawners
 
 func load_preset() -> void:
 	lifetime = preset.lifetime

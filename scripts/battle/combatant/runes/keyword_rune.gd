@@ -15,12 +15,13 @@ func _init(
 	i_statusEffect: StatusEffect = null,
 	i_surgeChanges: SurgeChanges = null,
 	i_caster: Combatant = null,
+	i_applyingMove: Move = null,
 	i_runeSpriteAnim: MoveAnimSprite = null,
 	i_triggerAnims: Array[MoveAnimSprite] = [],
 	i_keyword: String = '',
 	i_mustDealDamage: bool = false,
 ):
-	super(i_orbChange, i_category, i_element, i_power, i_lifesteal, i_statChanges, i_statusEffect, i_surgeChanges, i_caster, i_runeSpriteAnim, i_triggerAnims)
+	super(i_orbChange, i_category, i_element, i_power, i_lifesteal, i_statChanges, i_statusEffect, i_surgeChanges, i_caster, i_applyingMove, i_runeSpriteAnim, i_triggerAnims)
 	keyword = i_keyword
 	mustDealDamage = i_mustDealDamage
 
@@ -61,11 +62,14 @@ func get_rune_tooltip() -> String:
 			keyword + " Move is used on the enchanted combatant."
 
 func does_rune_trigger(combatant: Combatant, otherCombatants: Array[Combatant], state: BattleState, timing: BattleCommand.ApplyTiming, firstCheck: bool) -> bool:
-	if timing == BattleCommand.ApplyTiming.AFTER_DMG_CALC and combatant.command != null and combatant.command.type == BattleCommand.Type.MOVE:
-		var moveEffect: MoveEffect = combatant.command.move.get_effect_of_type(combatant.command.moveEffectType)
+	var user: Combatant = otherCombatants[0] if len(otherCombatants) > 0 else combatant # `combatant` is only user if no other combatants are listed AND timing is AFTER_DMG_CALC
+	if timing == BattleCommand.ApplyTiming.AFTER_DMG_CALC and user.command != null and user.command.type == BattleCommand.Type.MOVE and user.command.move != null and user.command.targets.has(combatant):
+		if user == caster and applyingMove == user.command.move:
+			return false # deny rune triggering if it was JUST applied from this move (`applyingMove` gets reset at the end of the turn)
+		var moveEffect: MoveEffect = user.command.move.get_effect_of_type(user.command.moveEffectType)
 		if moveEffect != null:
 			return keyword in moveEffect.keywords and (not mustDealDamage or moveEffect.power > 0)
-		
+	
 	return false
 
 func copy(copyStorage: bool = false) -> KeywordRune:
@@ -79,6 +83,7 @@ func copy(copyStorage: bool = false) -> KeywordRune:
 		statusEffect.duplicate() if statusEffect != null else null,
 		surgeChanges.duplicate() if surgeChanges != null else null,
 		caster if copyStorage else null,
+		applyingMove if copyStorage else null,
 		runeSpriteAnim,
 		triggerAnims,
 		keyword,

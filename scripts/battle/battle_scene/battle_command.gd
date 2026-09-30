@@ -135,7 +135,7 @@ static func dmg_logistic(userLv: int, targetLv: int) -> float:
 	var highBound: float = userLv # level-scaling approaches the actual user's level at maximum
 	const e: float = 2.7182818 # approx.
 	const horizShift: float = 6 # magic number to shift bounds (low bound to high bound between x=[0,10] summed-levels) at shift=6
-	return lowBound + ( (highBound - lowBound) / (1.0 + pow(e, -1.0 * (userLv + targetLv - horizShift) )) )
+	return lowBound + ((highBound - lowBound) / (1.0 + pow(e, -1.0 * (userLv + targetLv - horizShift))))
 
 static func damage_formula(power: float, atkStat: float, resistanceStat: float, userLv: int, targetLv: int, damageMultiplier: float) -> int:
 	var atkExpression: float = round(atkStat * 1.1)
@@ -151,11 +151,11 @@ static func damage_formula(power: float, atkStat: float, resistanceStat: float, 
 	var statCheckMultiplier: float = 1 + (0.05 * (atkExpression - resExpression))
 	#print('power: ', power, '\nusr lv mult: ', usrLvMultiplier, '\natk: ', atkExpression, '\nres: ', resExpression)
 	#print('apparent usr lv: ', apparentUserLv, '\napparent target lv: ', apparentTargetLv)
-	var damage: int = roundi( power * usrLvMultiplier * (1 / 3.75) * statCheckMultiplier * damageMultiplier )
+	var damage: int = roundi(power * usrLvMultiplier * (1 / 3.75) * statCheckMultiplier * damageMultiplier)
 	# if move IS a damaging move, make it do at least ceiling[AttackerLv / 2] damage
 	var minDmg: int = ceili(userLv / 2.0)
 	if power > 0 and damage < minDmg:
-		damage = minDmg 
+		damage = minDmg
 	return damage
 
 static func setup_status(user: Combatant, target: Combatant, statusEffect: StatusEffect, power: int, dmgCategory: Move.DmgCategory, element: Move.Element, keywords: Array[String], damage: int) -> void:
@@ -527,7 +527,7 @@ func get_command_results(user: Combatant) -> String:
 		elif moveEffect.power < 0:
 			resultsText += '.\n' + user.disp_name() + ' healed '
 		elif moveEffect.statusEffect != null:
-			resultsText += '.\n' + user.disp_name() + ' '# If the damage was 0, we take care of the "afflicted" text below
+			resultsText += '.\n' + user.disp_name() + ' ' # If the damage was 0, we take care of the "afflicted" text below
 	
 	if type == Type.USE_ITEM:
 		actionTargets = slot.item.battleTargets
@@ -667,7 +667,7 @@ func get_command_results(user: Combatant) -> String:
 			resultsText += '!'
 		
 		# print stat changes on user, targets
-		if type == Type.MOVE and ( \
+		if type == Type.MOVE and (\
 					(moveEffect.selfStatChanges != null and moveEffect.selfStatChanges.has_stat_changes() and commandResult.selfBoosted) \
 					or (moveEffect.targetStatChanges != null and moveEffect.targetStatChanges.has_stat_changes()) \
 				) and (true in commandResult.wasBoosted or commandResult.selfBoosted):

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="DialogueEntry" format=3 uid="uid://bliieleku5pnm"]
+[gd_resource type="Resource" script_class="DialogueEntry" format=3 uid="uid://d1t1cyoo2atuy"]
 
 [ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_l01kc"]
 [ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_838oh"]
@@ -13,23 +13,25 @@
 [sub_resource type="Resource" id="Resource_u12g4"]
 script = ExtResource("1_l01kc")
 lines = Array[String](["Excellent work retrieving the Moon Sigil. I trusted your intuition and battle sense would lead you to overcome our gauntlet."])
+animation = "talk"
 metadata/_custom_type_script = "uid://grt2yrupha8c"
 
 [sub_resource type="Resource" id="Resource_gobhj"]
 script = ExtResource("1_l01kc")
-lines = Array[String](["I can sense you could make... more thorough use of it. Did it not resonate in your hands when you picked it up?"])
+lines = Array[String](["Evidently you sensed a deep connection to the lunar power it bestowed, and have undergone $highlight{Evolution}color$ yourself! Splendid work!"])
 animation = "talk"
 metadata/_custom_type_script = "uid://grt2yrupha8c"
 
 [sub_resource type="Resource" id="Resource_4a6lw"]
 script = ExtResource("2_838oh")
+prereqDiscoveredEvolutions = Array[String](["player#"])
 metadata/_custom_type_script = "uid://bjesn36acj0uh"
 
 [sub_resource type="Resource" id="Resource_kfgy2"]
 script = ExtResource("5_jwy3k")
 alternativeDialogueItems = Array[ExtResource("1_l01kc")]([SubResource("Resource_gobhj")])
 alternativeStoryReqs = Array[ExtResource("2_838oh")]([SubResource("Resource_4a6lw")])
-lines = Array[String](["Evidently you sensed a deep connection to the lunar power it bestowed, and have undergone $highlight{Evolution}color$ yourself! Splendid work!"])
+lines = Array[String](["I can sense you could make... more thorough use of it. Did it not resonate in your hands when you picked it up?"])
 animation = "talk"
 metadata/_custom_type_script = "uid://fsrd48o26kgo"
 
@@ -42,7 +44,9 @@ metadata/_custom_type_script = "uid://bk6klhv2ls55w"
 
 [sub_resource type="Resource" id="Resource_dfia1"]
 script = ExtResource("2_gobhj")
+choiceBtn = "I'll Show You!"
 leadsTo = ExtResource("7_fqivn")
+turnsInQuest = "An Ancient Ally#Into the Iceberg"
 metadata/_custom_type_script = "uid://bk6klhv2ls55w"
 
 [sub_resource type="Resource" id="Resource_0o47w"]

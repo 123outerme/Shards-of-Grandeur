@@ -26,6 +26,7 @@ const HELP_COMMAND_LIST: Array[String] = [
 	'cutscene <set|clear> <cutscene ID>: Sets or clears the specified cutscene\'s seen status',
 	'dialogue <set|clear> <NPC ID>#<dialogue ID>: Sets or clears the specified NPC\'s dialogue\'s status',
 	'specialbattle <set|clear> <static encounter ID>: Sets or clears the specified static encounter\'s completed status',
+	'evolution <set|clear> <combatant name>#<evolution name>: Sets or cleared the specified evolution\'s discovered status',
 	'setact <X>: Sets the current story Act to the specified number',
 	'grounditem <set|clear> <GroundItem ID>: Sets or clears the specified GroundItem\'s picked-up status',
 	'tp <map name>: Teleports to the specified map',
@@ -186,6 +187,16 @@ func parse_command(command: String):
 		for idx: int in range(2, len(pieces)):
 			encounterId += pieces[idx]
 		special_battle_update(encounterId, pieces[1] == 'clear')
+		return
+	if cmdLower.begins_with('evolution '):
+		var pieces: PackedStringArray = command.split(' ')
+		if len(pieces) != 3 or not pieces[2].contains('#'):
+			print_to_console('Syntax error. Command is: evolution <set|clear> <combatant name>#<evolution name>')
+			return
+		if pieces[1].to_lower() != 'set' and pieces[1].to_lower() != 'clear':
+			print_to_console('Syntax error: First argument should be either "set" or "clear". Command is: specialbattle <set|clear> <static encounter ID>.')
+			return
+		evolution_update(pieces[2], pieces[1] == 'clear')
 		return
 	if cmdLower.begins_with('grounditem '):
 		# "grounditem set grounditem_id" or "specialbattle clear grounditem_id"
@@ -420,6 +431,20 @@ func special_battle_update(encounterId: String, clear: bool):
 	else:
 		PlayerResources.playerInfo.set_special_battle_completed(encounterId)
 		print_to_console('Set static encounter "' + encounterId + '" as completed.')
+		PlayerResources.story_requirements_updated.emit()
+
+func evolution_update(evoSaveName: String, clear: bool):
+	if clear:
+		var idx: int = PlayerResources.playerInfo.evolutionsFound.find(evoSaveName)
+		if idx != -1:
+			PlayerResources.playerInfo.evolutionsFound.remove_at(idx)
+			print_to_console('Cleared discovered state on evo "' + evoSaveName + '".')
+			PlayerResources.story_requirements_updated.emit()
+		else:
+			print_to_console('Evolution "' + evoSaveName + '" was already not discovered. No operation performed.')
+	else:
+		PlayerResources.playerInfo.mark_evolution_found(evoSaveName)
+		print_to_console('Set evolution "' + evoSaveName + '" as discovered.')
 		PlayerResources.story_requirements_updated.emit()
 
 func ground_item_update(groundItemId: String, clear: bool):

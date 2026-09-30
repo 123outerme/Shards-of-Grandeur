@@ -334,10 +334,10 @@ func _on_back_button_pressed() -> void:
 		# and/or take away focus from the Stats panel as it comes back up
 	back_pressed.emit()
 
-func _connect_location_button_focus(button: Button, lastButton: Button) -> void:
-	if lastButton != null:
-		button.focus_neighbor_left = button.get_path_to(lastButton)
-		lastButton.focus_neighbor_right = lastButton.get_path_to(button)
+func _connect_location_button_focus(button: Button, lastBtn: Button) -> void:
+	if lastBtn != null:
+		button.focus_neighbor_left = button.get_path_to(lastBtn)
+		lastBtn.focus_neighbor_right = lastBtn.get_path_to(button)
 	else:
 		pass #button.focus_neighbor_left = '.'
 	

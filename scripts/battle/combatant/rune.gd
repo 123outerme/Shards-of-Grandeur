@@ -27,7 +27,11 @@ class_name Rune
 ## the surge changes (except status chance and self Stat Changes) that will be applied to the rune
 @export var surgeChanges: SurgeChanges = null
 
+## the caster that put this rune on the combatant that has it (will be null until applied to a combatant)
 @export_storage var caster: Combatant = null
+
+## the move that put this rune on the combatant that has it this turn (will be null until applied to a combatant, only for the turn it was applied)
+@export_storage var applyingMove: Move = null
 
 @export_category('Visuals')
 ## the animation to play while the rune is applied to the combatant
@@ -46,6 +50,7 @@ func _init(
 	i_statusEffect: StatusEffect = null,
 	i_surgeChanges: SurgeChanges = null,
 	i_caster: Combatant = null,
+	i_applyingMove: Move = null,
 	i_runeSpriteAnim: MoveAnimSprite = null,
 	i_triggerAnims: Array[MoveAnimSprite] = [],
 ):
@@ -58,12 +63,22 @@ func _init(
 	statusEffect = i_statusEffect
 	surgeChanges = i_surgeChanges
 	caster = i_caster
+	applyingMove = i_applyingMove
 	runeSpriteAnim = i_runeSpriteAnim
 	triggerAnims = i_triggerAnims
 
 func init_rune_state(combatant: Combatant, otherCombatants: Array[Combatant], state: BattleState) -> void:
 	if len(otherCombatants) > 0 and otherCombatants[0] != null:
 		caster = otherCombatants[0]
+		if caster.command != null:
+			if caster.command.type == BattleCommand.Type.MOVE and caster.command.move != null:
+				applyingMove = caster.command.move
+			else:
+				printerr('Rune init_rune_state() error: caster move not provided')
+				push_error('Rune init_rune_state() error: caster move not provided')
+		else:
+			printerr('Rune init_rune_state() error: caster command not provided')
+			push_error('Rune init_rune_state() error: caster command not provided')
 	else:
 		printerr('Rune init_rune_state() error: caster not provided')
 		push_error('Rune init_rune_state() error: caster not provided')
@@ -123,6 +138,7 @@ func copy(copyStorage: bool = false) -> Rune:
 		statusEffect.duplicate() if statusEffect != null else null,
 		surgeChanges.duplicate() if surgeChanges != null else null,
 		caster if copyStorage else null,
+		applyingMove if copyStorage else null,
 		runeSpriteAnim,
 		triggerAnims,
 	)

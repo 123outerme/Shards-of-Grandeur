@@ -22,7 +22,7 @@ func get_recoil_damage(combatant, allCombatants: Array, attackerIdx: int, justCa
 	if attackerIdx < 0 or attackerIdx >= len(allCombatants) or allCombatants[attackerIdx].command == null or allCombatants[attackerIdx].command.commandResult == null:
 		#printerr('Reflect error: ', attackerIdx, ' / ', allCombatants[attackerIdx].disp_name(), ' did not have a command ongoing')
 		# emergency bail out of recoil dmg calculation
-		return damage
+		return 0
 	# Assumption: targets are already fetched
 	# if the afflicted combatant is in the list of targets, add up damage dealt to the afflicted to reflect back to the attacker
 	for targetIdx in range(len(allCombatants[attackerIdx].command.targets)):

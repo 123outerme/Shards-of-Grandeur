@@ -16,12 +16,13 @@ func _init(
 	i_statusEffect: StatusEffect = null,
 	i_surgeChanges: SurgeChanges = null,
 	i_caster: Combatant = null,
+	i_applyingMove: Move = null,
 	i_runeSpriteAnim: MoveAnimSprite = null,
 	i_triggerAnims: Array[MoveAnimSprite] = [],
 	i_afterTurns: int = 1,
 	i_turnEnchanted: int = 0,
 ):
-	super(i_orbChange, i_category, i_element, i_power, i_lifesteal, i_statChanges, i_statusEffect, i_surgeChanges, i_caster, i_runeSpriteAnim, i_triggerAnims)
+	super(i_orbChange, i_category, i_element, i_power, i_lifesteal, i_statChanges, i_statusEffect, i_surgeChanges, i_caster, i_applyingMove, i_runeSpriteAnim, i_triggerAnims)
 	afterTurns = i_afterTurns
 	turnEnchanted = i_turnEnchanted
 
@@ -58,6 +59,7 @@ func copy(copyStorage: bool = false) -> TimedRune:
 		statusEffect.duplicate() if statusEffect != null else null,
 		surgeChanges.duplicate() if surgeChanges != null else null,
 		caster if copyStorage else null,
+		applyingMove if copyStorage else null,
 		runeSpriteAnim,
 		triggerAnims,
 		afterTurns,

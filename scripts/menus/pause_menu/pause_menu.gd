@@ -59,6 +59,8 @@ func unpause_game() -> void:
 	pauseMenuPage.visible = true
 	if codexMenu.visible:
 		codexMenu.toggle_codex_menu(false)
+	if mapPanel.visible:
+		mapPanel._on_back_button_pressed()
 	if saveGamePanel.visible:
 		saveGamePanel.toggle_saves_panel(false)
 	if settingsMenu.visible:
@@ -154,4 +156,7 @@ func _on_show_map_for_location(locations: Array[WorldLocation.MapLocation], ques
 	pauseMenuPage.visible = false
 
 func _on_return_from_quest_map_location(quest: Quest) -> void:
-	unpause_game()
+	isPaused = false
+	visible = false
+	mapPanel.visible = false
+	codexMenu.visible = false

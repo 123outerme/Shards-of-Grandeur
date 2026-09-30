@@ -75,8 +75,8 @@ class_name StoryRequirements
 ## specified by "<puzzle ID>"
 @export var invalidAfterSolvingPuzzles: Array[String] = []
 
-## specified by "<puzzle ID> -> ['state1', 'state2', etc.]". Wildcard for a certain state should be "" empty string (or no such index)
-@export var invalidFromPuzzleStates: Dictionary[String, Array] = {}
+## each item in the array is a [Dictionary] specified by <[String]> -> <[Array][[String]]>: "puzzle ID -> ['state1', 'state2', etc.]". Wildcard for a certain state should be "" empty string (or no such index). Repeating a puzzle ID must be done in another [Dictionary] entry in the root [Array]
+@export var invalidFromPuzzleStates: Array[Dictionary] = []
 
 ## specified by "<base combatant save name>#<evolution save name>". If only one entry and blank, will be treated as "have no evolutions been discovered?"
 @export var invalidFromDiscoveringEvolutions: Array[String] = []
@@ -119,7 +119,7 @@ func _init(
 	i_invalidPlacesVisited: Array[String] = [],
 	i_invalidBattles: Array[String] = [],
 	i_invalidPuzzles: Array[String] = [],
-	i_invalidPuzzleStates: Dictionary[String, Array] = {},
+	i_invalidPuzzleStates: Array[Dictionary] = [],
 	i_invalidEvos: Array[String] = [],
 	i_invalidFollowers: Array[String] = [],
 	i_invalidItems: Array[InventorySlot] = [],
@@ -220,7 +220,16 @@ func is_valid() -> bool:
 			return false
 	else:
 		for fullEvoSaveName: String in prereqDiscoveredEvolutions:
-			if not PlayerResources.playerInfo.has_found_evolution(fullEvoSaveName):
+			var evoSaveNamePieces: PackedStringArray = fullEvoSaveName.split('#')
+			if len(evoSaveNamePieces[1]) == 0:
+				var foundEvo: bool = false
+				for evoFound: String in PlayerResources.playerInfo.evolutionsFound:
+					if evoFound.begins_with(evoSaveNamePieces[0] + '#'):
+						foundEvo = true
+						break
+				if not foundEvo:
+					return false
+			elif not PlayerResources.playerInfo.has_found_evolution(fullEvoSaveName):
 				return false
 	
 	for followerId: String in prereqHavingFollowers:
@@ -263,18 +272,19 @@ func is_valid() -> bool:
 		if PlayerResources.playerInfo.has_solved_puzzle(puzzle):
 			return false
 	
-	for puzzleId: String in invalidFromPuzzleStates.keys():
-		if PlayerResources.playerInfo.has_puzzle_states(puzzleId):
-			var curStates: Array[String] = PlayerResources.playerInfo.get_puzzle_states(puzzleId)
-			# if the prereq states doesn't cover every current state, then the remaining states are not checked (wildcarded)
-			var matches: bool = true
-			for i: int in range(len(invalidFromPuzzleStates[puzzleId])):
-				# if this prerequisite isn't a wildcard and it doesn't exist or match in the list of current states: fail
-				if invalidFromPuzzleStates[puzzleId][i] != '' and (i >= len(curStates) or curStates[i] != invalidFromPuzzleStates[puzzleId][i]):
-					matches = false
-					break
-			if matches:
-				return false
+	for puzzles: Dictionary in invalidFromPuzzleStates:
+		for puzzleId: String in puzzles.keys():
+			if PlayerResources.playerInfo.has_puzzle_states(puzzleId):
+				var curStates: Array[String] = PlayerResources.playerInfo.get_puzzle_states(puzzleId)
+				# if the prereq states doesn't cover every current state, then the remaining states are not checked (wildcarded)
+				var matches: bool = true
+				for i: int in range(len(puzzles[puzzleId])):
+					# if this prerequisite isn't a wildcard and it doesn't exist or match in the list of current states: fail
+					if puzzles[puzzleId][i] != '' and (i >= len(curStates) or curStates[i] != puzzles[puzzleId][i]):
+						matches = false
+						break
+				if matches:
+					return false
 	
 	if len(invalidFromDiscoveringEvolutions) == 1 and invalidFromDiscoveringEvolutions[0] == '':
 		if len(PlayerResources.playerInfo.evolutionsFound) > 0:

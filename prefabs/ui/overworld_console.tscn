@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://b7ltlhbnu5jgp"]
+[gd_scene format=3 uid="uid://b7ltlhbnu5jgp"]
 
 [ext_resource type="Script" uid="uid://dcqqk0557q7pn" path="res://scripts/menus/overworld_console.gd" id="1_sjx0r"]
 [ext_resource type="Theme" uid="uid://dspb6mujs3bb2" path="res://themes/title_text_theme.tres" id="2_1uf0e"]
@@ -6,10 +6,10 @@
 [ext_resource type="PackedScene" uid="uid://cyjyqhebj5ril" path="res://prefabs/ui/settings/game_logs_panel.tscn" id="5_ejn82"]
 [ext_resource type="Theme" uid="uid://dsowi08f2y6iv" path="res://themes/root_theme.tres" id="6_a4c22"]
 
-[node name="OverworldConsole" type="Node2D"]
+[node name="OverworldConsole" type="Node2D" unique_id=1752791348]
 script = ExtResource("1_sjx0r")
 
-[node name="Panel" type="Panel" parent="."]
+[node name="Panel" type="Panel" parent="." unique_id=1531591536]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -18,7 +18,7 @@ offset_bottom = 720.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ConsoleTitle" type="RichTextLabel" parent="Panel"]
+[node name="ConsoleTitle" type="RichTextLabel" parent="Panel" unique_id=1215892991]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -28,7 +28,7 @@ bbcode_enabled = true
 text = "[center]Overworld Console[/center]"
 fit_content = true
 
-[node name="ConsoleOutput" type="RichTextLabel" parent="Panel"]
+[node name="ConsoleOutput" type="RichTextLabel" parent="Panel" unique_id=1244301432]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -68,7 +68,7 @@ text = "1
 selection_enabled = true
 drag_and_drop_selection_enabled = false
 
-[node name="LineEdit" type="LineEdit" parent="Panel"]
+[node name="LineEdit" type="LineEdit" parent="Panel" unique_id=800580714]
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -85,7 +85,7 @@ virtual_keyboard_type = 6
 caret_blink = true
 caret_mid_grapheme = true
 
-[node name="VirtualKeyboard" parent="Panel" instance=ExtResource("5_dpx6y")]
+[node name="VirtualKeyboard" parent="Panel" unique_id=2040281224 instance=ExtResource("5_dpx6y")]
 visible = false
 layout_mode = 1
 offset_left = 132.0
@@ -95,7 +95,7 @@ offset_bottom = -392.0
 theme = ExtResource("6_a4c22")
 closeOnEnterPress = false
 
-[node name="LogsPanel" parent="Panel" instance=ExtResource("5_ejn82")]
+[node name="LogsPanel" parent="Panel" unique_id=507609959 instance=ExtResource("5_ejn82")]
 layout_mode = 0
 anchors_preset = 0
 anchor_right = 0.0

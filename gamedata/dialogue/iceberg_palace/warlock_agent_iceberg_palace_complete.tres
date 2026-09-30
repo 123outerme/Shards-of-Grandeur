@@ -1,0 +1,38 @@
+[gd_resource type="Resource" script_class="DialogueEntry" format=3 uid="uid://c21q4cgj5xqbr"]
+
+[ext_resource type="Script" uid="uid://grt2yrupha8c" path="res://scripts/dialogue/dialogue_item.gd" id="1_ivjvd"]
+[ext_resource type="Script" uid="uid://bjesn36acj0uh" path="res://scripts/quests/story_requirements.gd" id="2_wfb74"]
+[ext_resource type="Script" uid="uid://bk6klhv2ls55w" path="res://scripts/dialogue/dialogue_choice.gd" id="2_xrlt6"]
+[ext_resource type="Script" uid="uid://1n6mppc7hmmf" path="res://scripts/dialogue/dialogue_entry.gd" id="3_xrlt6"]
+[ext_resource type="Script" uid="uid://fw22o8hbosnk" path="res://scripts/inventory/inventory_slot.gd" id="4_wfb74"]
+[ext_resource type="Script" uid="uid://fsrd48o26kgo" path="res://scripts/dialogue/story_reqs_dialogue_item.gd" id="5_061jo"]
+
+[sub_resource type="Resource" id="Resource_kg6ck"]
+script = ExtResource("1_ivjvd")
+lines = Array[String](["You have the Moon Sigil in hand! The Stargazer will be very pleased. I can see you've already discovered the $highlight{Moon Sigil}color$'s power."])
+animation = "talk"
+metadata/_custom_type_script = "uid://grt2yrupha8c"
+
+[sub_resource type="Resource" id="Resource_n1bvg"]
+script = ExtResource("2_wfb74")
+prereqDiscoveredEvolutions = Array[String](["player#"])
+metadata/_custom_type_script = "uid://bjesn36acj0uh"
+
+[sub_resource type="Resource" id="Resource_061jo"]
+script = ExtResource("5_061jo")
+alternativeDialogueItems = Array[ExtResource("1_ivjvd")]([SubResource("Resource_kg6ck")])
+alternativeStoryReqs = Array[ExtResource("2_wfb74")]([SubResource("Resource_n1bvg")])
+lines = Array[String](["You have the Moon Sigil in hand! The Stargazer will be very pleased.", "In the heat of the battle you may not have taken note of the $highlight{Moon Sigil}color$... but it certainly is a powerful artifact."])
+animation = "talk"
+metadata/_custom_type_script = "uid://fsrd48o26kgo"
+
+[sub_resource type="Resource" id="Resource_wa7gm"]
+script = ExtResource("2_wfb74")
+prereqSpecialBattles = Array[String](["frost_bat_iceberg_palace"])
+metadata/_custom_type_script = "uid://bjesn36acj0uh"
+
+[resource]
+script = ExtResource("3_xrlt6")
+items = Array[ExtResource("1_ivjvd")]([SubResource("Resource_061jo")])
+storyRequirements = SubResource("Resource_wa7gm")
+metadata/_custom_type_script = "uid://1n6mppc7hmmf"

@@ -1,30 +1,30 @@
-[gd_scene load_steps=5 format=3 uid="uid://bk5magi8dnwgj"]
+[gd_scene format=3 uid="uid://bk5magi8dnwgj"]
 
 [ext_resource type="Script" uid="uid://ktcan5l7kcm8" path="res://prefabs/battle/battle_animation_manager.gd" id="1_rvftt"]
 [ext_resource type="PackedScene" uid="uid://cm4jsnjutjfu6" path="res://prefabs/battle/combatant_node.tscn" id="1_tdlew"]
 [ext_resource type="AudioStream" uid="uid://3mr51u5ur61t" path="res://audio/sfx/ui/success_ping.mp3" id="2_r4w5w"]
 [ext_resource type="Script" uid="uid://v3fhsrghmbiw" path="res://scripts/battle/battle_scene/battlefield_shade.gd" id="2_xle2k"]
 
-[node name="BattleAnimationManager" type="Node2D"]
+[node name="BattleAnimationManager" type="Node2D" unique_id=88354196]
 script = ExtResource("1_rvftt")
 statChangesTextSfx = ExtResource("2_r4w5w")
 
-[node name="GlobalMarker" type="Marker2D" parent="."]
+[node name="GlobalMarker" type="Marker2D" parent="." unique_id=822629505]
 position = Vector2(-5, -19)
 gizmo_extents = 5.0
 metadata/_edit_lock_ = true
 
-[node name="PlayerTeamMarker" type="Marker2D" parent="."]
+[node name="PlayerTeamMarker" type="Marker2D" parent="." unique_id=2011773762]
 position = Vector2(-19, -24)
 gizmo_extents = 5.0
 metadata/_edit_lock_ = true
 
-[node name="EnemyTeamMarker" type="Marker2D" parent="."]
+[node name="EnemyTeamMarker" type="Marker2D" parent="." unique_id=629814252]
 position = Vector2(9, -22)
 gizmo_extents = 5.0
 metadata/_edit_lock_ = true
 
-[node name="PlayerCombatant" parent="." node_paths=PackedStringArray("allyTeamMarker", "enemyTeamMarker", "globalMarker") groups=["BattleCombatantNode"] instance=ExtResource("1_tdlew")]
+[node name="PlayerCombatant" parent="." unique_id=510808992 node_paths=PackedStringArray("allyTeamMarker", "enemyTeamMarker", "globalMarker") groups=["BattleCombatantNode"] instance=ExtResource("1_tdlew")]
 z_index = 3
 position = Vector2(-44, -3)
 leftSide = true
@@ -43,7 +43,7 @@ position = Vector2(16, 0)
 [node name="OnAssistPos" parent="PlayerCombatant" index="4"]
 position = Vector2(-4, -16)
 
-[node name="MinionCombatant" parent="." node_paths=PackedStringArray("allyTeamMarker", "enemyTeamMarker", "globalMarker") groups=["BattleCombatantNode"] instance=ExtResource("1_tdlew")]
+[node name="MinionCombatant" parent="." unique_id=487644292 node_paths=PackedStringArray("allyTeamMarker", "enemyTeamMarker", "globalMarker") groups=["BattleCombatantNode"] instance=ExtResource("1_tdlew")]
 z_index = 2
 position = Vector2(-54, -39)
 leftSide = true
@@ -61,7 +61,7 @@ position = Vector2(16, 0)
 [node name="OnAssistPos" parent="MinionCombatant" index="4"]
 position = Vector2(4, 16)
 
-[node name="EnemyCombatant1" parent="." node_paths=PackedStringArray("allyTeamMarker", "enemyTeamMarker", "globalMarker") groups=["BattleCombatantNode"] instance=ExtResource("1_tdlew")]
+[node name="EnemyCombatant1" parent="." unique_id=1903270499 node_paths=PackedStringArray("allyTeamMarker", "enemyTeamMarker", "globalMarker") groups=["BattleCombatantNode"] instance=ExtResource("1_tdlew")]
 z_index = 2
 position = Vector2(36, -22)
 battlePosition = "Center"
@@ -79,7 +79,7 @@ position = Vector2(-16, 0)
 [node name="OnAssistPos" parent="EnemyCombatant1" index="4"]
 position = Vector2(16, 0)
 
-[node name="EnemyCombatant2" parent="." node_paths=PackedStringArray("allyTeamMarker", "enemyTeamMarker", "globalMarker") groups=["BattleCombatantNode"] instance=ExtResource("1_tdlew")]
+[node name="EnemyCombatant2" parent="." unique_id=1400795943 node_paths=PackedStringArray("allyTeamMarker", "enemyTeamMarker", "globalMarker") groups=["BattleCombatantNode"] instance=ExtResource("1_tdlew")]
 z_index = 1
 position = Vector2(52, -53)
 battlePosition = "Top"
@@ -97,7 +97,7 @@ position = Vector2(-16, 0)
 [node name="OnAssistPos" parent="EnemyCombatant2" index="4"]
 position = Vector2(0, 16)
 
-[node name="EnemyCombatant3" parent="." node_paths=PackedStringArray("allyTeamMarker", "enemyTeamMarker", "globalMarker") groups=["BattleCombatantNode"] instance=ExtResource("1_tdlew")]
+[node name="EnemyCombatant3" parent="." unique_id=179357296 node_paths=PackedStringArray("allyTeamMarker", "enemyTeamMarker", "globalMarker") groups=["BattleCombatantNode"] instance=ExtResource("1_tdlew")]
 z_index = 3
 position = Vector2(58, 7)
 battlePosition = "Bottom"
@@ -115,7 +115,7 @@ position = Vector2(-16, 0)
 [node name="OnAssistPos" parent="EnemyCombatant3" index="4"]
 position = Vector2(0, -16)
 
-[node name="BattlefieldShade" type="ColorRect" parent="."]
+[node name="BattlefieldShade" type="ColorRect" parent="." unique_id=1733529229]
 z_index = 5
 offset_left = -160.0
 offset_top = -98.0

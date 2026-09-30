@@ -78,11 +78,11 @@ func load_item_count_choose_panel() -> void:
 			if inventoryCount > 0:
 				invCountString = '[right]Shop has ' + TextUtils.num_to_comma_string(inventoryCount) + 'x ' + item.itemName + '.[/right]'
 				inventoryCountLabel.visible = true
-				maxValue = min(inventoryCount, item.maxCount - otherInventoryCount, floori(PlayerResources.playerInfo.gold / item.cost as float))
+				maxValue = min(inventoryCount, item.maxCount - otherInventoryCount, floori(PlayerResources.playerInfo.gold / (item.cost as float)))
 			else:
 				inventoryCountLabel.visible = false
 				otherInvCountString = '[center]'
-				maxValue = min(item.maxCount - otherInventoryCount, floori(PlayerResources.playerInfo.gold / item.cost as float))
+				maxValue = min(item.maxCount - otherInventoryCount, floori(PlayerResources.playerInfo.gold / (item.cost as float)))
 			otherInvCountString += 'You have ' + TextUtils.num_to_comma_string(otherInventoryCount) + 'x ' + item.itemName
 			otherInventoryCountLabel.visible = true
 			if item.maxCount > 0:

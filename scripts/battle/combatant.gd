@@ -294,34 +294,42 @@ func switch_evolution(evolution: Evolution, prevEvolution: Evolution, isMinion: 
 	var prevIdx: String = get_evolution_stats_idx(prevEvolution)
 	evolutionStats[prevIdx] = stats
 	stats = get_evolution_stats(evolution)
+	# copy over equipment
+	stats.equippedArmor = evolutionStats[prevIdx].equippedArmor
+	stats.equippedWeapon = evolutionStats[prevIdx].equippedWeapon
+	stats.equippedAccessory = evolutionStats[prevIdx].equippedAccessory
 	
 	if evolution != null:
 		# if it's already found, nothing will be done
 		PlayerResources.playerInfo.mark_evolution_found(save_name() + '#' + evolution.evolutionSaveName)
 	
 	# if this is a player evolution, keep learned moves and add moves granted by new evolution
-	if save_name() == 'player' and evolution != null:
-		# adjust movepool to be all learned moves (moves in base form), plus moves granted by this evolution
-		print('adjust movepool for player evo')
-		var movepool: MovePool = get_evolution_stats(null).movepool.copy()
-		# for each move granted by this evolution, if not in the movepool, add it
-		var unlockedEvoMoves: Array[Move] = []
-		for move: Move in evolution.stats.movepool.pool:
-			if not (move in movepool.pool):
-				movepool.pool.append(move)
-				if evolutionStats[prevIdx].level >= move.requiredLv:
-					unlockedEvoMoves.append(move)
-		stats.movepool = movepool
-		# first time evolution was unlocked:
-		if len(stats.moves) == 0:
-			# auto-assign new and unlocked evolution moves
-			if len(unlockedEvoMoves) > 0:
-				for idx in range(min(len(unlockedEvoMoves), 4)):
-					stats.moves.append(unlockedEvoMoves[idx])
-				# for the rest of the available move slots (up to the 4th one), allocate moves from the previous evo moves list
-				for idx in range(min(len(evolutionStats[prevIdx].moves), 4 - len(stats.moves))):
-					stats.moves.append(evolutionStats[prevIdx].moves[idx])
-				returnCode += 0b01100 # move list WAS invalid, this logic just cleaned it up before validate_moves()
+	if save_name() == 'player':
+		var spriteFrames: SpriteFrames = get_sprite_frames()
+		if spriteFrames != null:
+			PlayerFinder.player.set_sprite_frames(spriteFrames)
+		if evolution != null:
+			# adjust movepool to be all learned moves (moves in base form), plus moves granted by this evolution
+			print('adjust movepool for player evo')
+			var movepool: MovePool = get_evolution_stats(null).movepool.copy()
+			# for each move granted by this evolution, if not in the movepool, add it
+			var unlockedEvoMoves: Array[Move] = []
+			for move: Move in evolution.stats.movepool.pool:
+				if not (move in movepool.pool):
+					movepool.pool.append(move)
+					if evolutionStats[prevIdx].level >= move.requiredLv:
+						unlockedEvoMoves.append(move)
+			stats.movepool = movepool
+			# first time evolution was unlocked:
+			if len(stats.moves) == 0:
+				# auto-assign new and unlocked evolution moves
+				if len(unlockedEvoMoves) > 0:
+					for idx in range(min(len(unlockedEvoMoves), 4)):
+						stats.moves.append(unlockedEvoMoves[idx])
+					# for the rest of the available move slots (up to the 4th one), allocate moves from the previous evo moves list
+					for idx in range(min(len(evolutionStats[prevIdx].moves), 4 - len(stats.moves))):
+						stats.moves.append(evolutionStats[prevIdx].moves[idx])
+					returnCode += 0b01100 # move list WAS invalid, this logic just cleaned it up before validate_moves()
 	
 	# if this stats set is underlevelled, level it up now
 	if stats.level < evolutionStats[prevIdx].level:
@@ -340,10 +348,6 @@ func switch_evolution(evolution: Evolution, prevEvolution: Evolution, isMinion: 
 			statAllocStrat.allocate_stats(stats)
 			returnCode += 0b10000
 	
-	# copy over equipment
-	stats.equippedArmor = evolutionStats[prevIdx].equippedArmor
-	stats.equippedWeapon = evolutionStats[prevIdx].equippedWeapon
-	stats.equippedAccessory = evolutionStats[prevIdx].equippedAccessory
 	# if the movepool changed: alert the player
 	if stats.movepool != evolutionStats[prevIdx].movepool:
 		returnCode += 0b00010
@@ -542,6 +546,10 @@ func update_runes(otherCombatants: Array[Combatant], battleState: BattleState, t
 		triggeredRunes = []
 		triggeredRunesDmg = []
 		triggeredRunesStatus = []
+		# reset the stored `applyingMove` on the rune so the applying move can now cause their (certain) runes from applied on previous turns to be triggered
+		# (i.e. preventing moves that apply a (certain type of) rune AND immediately satisfy its triggering conditions from causing the rune to activate)
+		for rune: Rune in runes:
+			rune.applyingMove = null
 	
 	var runesToCheck: bool = len(runes) > 0
 	var firstCheck: bool = true
